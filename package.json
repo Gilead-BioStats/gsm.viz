@@ -6,6 +6,7 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
+    "format": "npx prettier --write src",
     "watch": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap --watch"
   },
   "repository": {
@@ -28,6 +29,7 @@
   "dependencies": {
     "chart.js": "^3.9.1",
     "esbuild": "^0.15.5",
+    "prettier": "2.7.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0"
