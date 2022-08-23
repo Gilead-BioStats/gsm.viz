@@ -6,7 +6,9 @@
   "main": "index.js",
   "scripts": {
     "build": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
-    "format": "npx prettier --write src",
+    "format": "npm run format-src && npm run format-examples",
+    "format-src": "npx prettier --single-quote --tab-width=4 --write src",
+    "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "watch": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap --watch"
   },
   "repository": {
