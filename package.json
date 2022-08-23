@@ -5,7 +5,8 @@
   "module": "src/index.js",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
+    "watch": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap --watch"
   },
   "repository": {
     "type": "git",
@@ -26,7 +27,9 @@
   "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
   "dependencies": {
     "chart.js": "^3.9.1",
+    "esbuild": "^0.15.5",
+    "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
-    "rollup": "^2.78.0"
+    "react-dom": "^18.2.0"
   }
 }

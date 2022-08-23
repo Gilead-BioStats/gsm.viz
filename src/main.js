@@ -1,5 +1,5 @@
 import scatterPlot from './scatterPlot';
 
-export {
+export default rbmViz = {
     scatterPlot
 }
