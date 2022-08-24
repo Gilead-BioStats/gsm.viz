@@ -6,39 +6,66 @@ fetch("../data/results_summary.csv")
       .filter((d) => d.workflowid === "kri0001")
       .map((d) => d.flag);
 
-    // this should be a function in a utils folder prob?
-    var colors = [];
-    let yellow = "#FADB14";
-    let green = "#52C41A";
-    let red = "#FF4D4F";
-    for (var i = 0; i < flag.length; i++) {
-      var color;
-      switch (flag[i]) {
-        case "-1":
-          color = red;
-          break;
-        case "0":
-          color = yellow;
-          break;
-        case "1":
-          color = green;
-          break;
-        //etc..
-      }
-      colors[i] = color;
-    }
+    // we store some object somewhere globally to use colors?
+    let colors = {
+      yellow: "#FADB14",
+      green: "#52C41A",
+      red: "#FF4D4F",
+    };
 
     const chartData = {
       datasets: [
         {
-          label: "Bar Plot",
+          type: "line",
+          label: "Flagged Threshold",
+          //backgroundColor: colors.yellow,
+          data: [],
+          fill: false,
+          borderColor: colors.red,
+        },
+        {
+          type: "line",
+          label: "At Risk Threshold",
+          //backgroundColor: colors.red,
+          data: [],
+          fill: false,
+          borderColor: colors.yellow,
+        },
+        {
+          label: "Flagged Sites",
+          type: "bar",
           data: data
             .filter((d) => d.workflowid === "kri0001")
+            .filter((d) => d.flag === "-1")
             .map((d) => ({
               x: d.groupid,
               y: parseInt(d.score),
             })),
-          backgroundColor: colors,
+          backgroundColor: colors.red,
+        },
+        {
+          label: "At Risk Sites",
+          type: "bar",
+          data: data
+            .filter((d) => d.workflowid === "kri0001")
+            .filter((d) => d.flag === "0")
+            .map((d) => ({
+              x: d.groupid,
+              y: parseInt(d.score),
+            })),
+          backgroundColor: colors.yellow,
+        },
+        {
+          label: "Sites Not Flagged Or at Risk",
+          type: "bar",
+          data: data
+            .filter((d) => d.workflowid === "kri0001")
+            .filter((d) => d.flag === "1")
+            .map((d) => ({
+              x: d.groupid,
+              y: parseInt(d.score),
+            })),
+          backgroundColor: colors.green,
         },
       ],
     };
@@ -61,6 +88,7 @@ fetch("../data/results_summary.csv")
         annotation: {
           annotations: {
             line1: {
+              drawTime: "beforeDatasetsDraw",
               type: "line",
               yMin: 10,
               yMax: 10,
@@ -71,8 +99,7 @@ fetch("../data/results_summary.csv")
           },
         },
         legend: {
-          display: true,
-          position: "top",
+          display: false,
         },
       },
       scales: {
@@ -111,4 +138,44 @@ fetch("../data/results_summary.csv")
       chartData,
       options
     );
+
+    function generateLegend() {
+      const chartBox = document.querySelector(".chartBox");
+      const div = document.createElement("DIV");
+      div.setAttribute("class", "customLegend");
+
+      const ul = document.createElement("UL");
+
+      output.legend.legendItems.forEach((dataset, index) => {
+        const text = dataset.text;
+        const stroke = dataset.strokeStyle;
+        const fill = dataset.fillStyle;
+        const fontColor = "#666";
+        const dat = dataset.data;
+
+        const li = document.createElement("LI");
+        const spanBox = document.createElement("SPAN");
+        spanBox.style.borderColor = stroke;
+
+        if (fill == "rgba(0,0,0,0.1)") {
+          spanBox.setAttribute("class", "legend-annotation");
+        } else {
+          spanBox.setAttribute("class", "legend-content");
+          spanBox.style.backgroundColor = fill;
+        }
+
+        const p = document.createElement("P");
+        const textNode = document.createTextNode(text);
+
+        ul.appendChild(li);
+        li.appendChild(spanBox);
+        li.appendChild(p);
+        p.appendChild(textNode);
+      });
+
+      chartBox.prepend(div);
+      div.appendChild(ul);
+    }
+
+    generateLegend();
   });

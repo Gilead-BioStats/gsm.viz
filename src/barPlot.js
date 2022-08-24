@@ -10,8 +10,8 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
  */
 export default function barPlot(ctx, data, config) {
   const chart = new Chart(ctx, {
-    type: "bar",
     data: data,
+    //type: "bar",
     plugins: [ChartDataLabels],
     options: config,
   });
