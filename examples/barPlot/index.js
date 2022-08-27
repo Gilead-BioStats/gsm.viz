@@ -178,6 +178,12 @@ fetch("../data/results_summary.csv")
         const p = document.createElement("P");
         const textNode = document.createTextNode(text);
 
+        li.onclick = (click) => {
+          const isHidden = !output.isDatasetVisible(index);
+          output.setDatasetVisibility(index, isHidden);
+          updateLegend(click);
+        };
+
         ul.appendChild(li);
         li.appendChild(spanBox);
         li.appendChild(p);
@@ -186,6 +192,12 @@ fetch("../data/results_summary.csv")
 
       chartBox.prepend(div);
       div.appendChild(ul);
+    }
+
+    function updateLegend(click) {
+      const element = click.target.parentNode;
+      element.classList.toggle("fade");
+      output.update();
     }
 
     generateLegend();
