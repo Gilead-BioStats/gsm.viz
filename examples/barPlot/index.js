@@ -73,8 +73,19 @@ fetch("../data/results_summary.csv")
     let options = {
       plugins: {
         datalabels: {
-          anchor: "end",
-          align: "top",
+          //anchor: "end",
+          //align: "top",
+
+          // anchor: "start",
+          // align: "bottom",
+          anchor: function (context) {
+            let y = context.dataset.data[context.dataIndex].y;
+            return y < 0 ? "end" : "start";
+          },
+          align: function (context) {
+            let y = context.dataset.data[context.dataIndex].y;
+            return y < 0 ? "top" : "bottom";
+          },
           rotation: 90,
           font: {
             weight: "bold",
@@ -173,7 +184,7 @@ fetch("../data/results_summary.csv")
         p.appendChild(textNode);
       });
 
-      chartBox.prepend(div);
+      chartBox.appendChild(div);
       div.appendChild(ul);
     }
 
