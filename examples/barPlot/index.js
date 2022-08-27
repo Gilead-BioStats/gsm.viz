@@ -184,7 +184,7 @@ fetch("../data/results_summary.csv")
         p.appendChild(textNode);
       });
 
-      chartBox.appendChild(div);
+      chartBox.prepend(div);
       div.appendChild(ul);
     }
 
