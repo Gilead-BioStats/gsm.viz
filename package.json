@@ -5,7 +5,8 @@
   "module": "src/index.js",
   "main": "index.js",
   "scripts": {
-    "build": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
+    "build": "npm run bundle && npm run format",
+    "bundle": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
     "format": "npm run format-src && npm run format-examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
