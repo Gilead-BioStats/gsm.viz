@@ -7,6 +7,7 @@ fetch("../data/results_summary.csv")
       .map((d) => d.flag);
 
     // we store some object somewhere globally to use colors?
+    // a file for static stuff
     let colors = {
       yellow: "#FADB14",
       green: "#52C41A",
@@ -149,6 +150,8 @@ fetch("../data/results_summary.csv")
       chartData,
       options
     );
+
+    console.log(output);
 
     function generateLegend() {
       const chartBox = document.querySelector(".chartBox");
