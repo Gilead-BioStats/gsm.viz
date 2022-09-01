@@ -1,6 +1,6 @@
 export default function addCanvas(el) {
     if (!document.body.contains(el)) {
-        console.error('addCanvas: [ el ] does not exist.')
+        console.error('addCanvas: [ el ] does not exist.');
         return;
     }
 
