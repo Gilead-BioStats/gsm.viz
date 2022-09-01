@@ -7,7 +7,8 @@ import { format, rollups } from 'd3';
 export default function scatterPlot(
     _element_,
     _data_,
-    _config_ = {}
+    _config_ = {},
+    bounds = null
 ) {
     const canvas = addCanvas(_element_);
 
@@ -32,11 +33,7 @@ export default function scatterPlot(
             return datum;
         })
         .sort((a,b) => a.stratum - b.stratum);
-    console.table(_data_[0]);
-    console.table(config);
 
-    console.log(config.color);
-    console.log(new Set(data.map(d => d.stratum)));
     const colors = ['rgba(224,224,224,0.5)', '#d6604d'];
 
     // 
@@ -44,8 +41,9 @@ export default function scatterPlot(
         data,
         group => {
             return {
+                type: 'scatter',
                 label: `Flag=${group[0].stratum}`,
-                data: group,
+                data: group
             };
         },
         d => d.stratum
@@ -55,6 +53,29 @@ export default function scatterPlot(
 
         return dataset;
     });
+
+    const lowerBounds = {
+        type: 'line',
+        data: bounds.map(d => ({
+            x: Math.exp(d.LogExposure),
+            y: d.LowerCount
+        })),
+        borderColor: colors[1],
+        pointRadius: 0
+    };
+
+    const upperBounds = {
+        type: 'line',
+        data: bounds.map(d => ({
+            x: Math.exp(d.LogExposure),
+            y: d.UpperCount
+        })),
+        borderColor: colors[1],
+        pointRadius: 0
+    };
+
+    datasets.push(lowerBounds);
+    datasets.push(upperBounds);
     console.log(datasets);
 
     const plugins = {
@@ -105,7 +126,6 @@ export default function scatterPlot(
     const chart = new Chart(
         canvas,
         {
-            type: 'scatter',
             data: {
                 datasets
             },
