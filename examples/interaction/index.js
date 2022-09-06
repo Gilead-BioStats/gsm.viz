@@ -31,9 +31,9 @@ Promise.all(dataPromises)
 
         // Handle data change event.
         document.querySelector('#kri').addEventListener('change', (event) => {
-            console.log(event.target.value);
-            const workflow = datasets[0]
-                .find(d => d.workflowid === event.target.value);
+            const workflow = datasets[0].find(
+                (d) => d.workflowid === event.target.value
+            );
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
@@ -44,17 +44,13 @@ Promise.all(dataPromises)
         });
 
         // Handle config change event.
-        document.querySelector('#x-axis-type').addEventListener('change', (event) => {
-            console.log(event.target.value);
-            instance.helpers.updateOption(instance, 'scales.x.type', event.target.value);
-            //const workflow = datasets[0]
-            //    .find(d => d.workflowid === event.target.value);
-            //const results = datasets[1].filter(
-            //    (d) => d.workflowid === workflow.workflowid
-            //);
-            //const bounds = datasets[2].filter(
-            //    (d) => d.workflowid === workflow.workflowid
-            //);
-            //instance.helpers.updateData(instance, results, workflow, bounds);
-        });
+        document
+            .querySelector('#x-axis-type')
+            .addEventListener('change', (event) => {
+                instance.helpers.updateOption(
+                    instance,
+                    'scales.x.type',
+                    event.target.value
+                );
+            });
     });

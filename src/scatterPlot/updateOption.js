@@ -1,11 +1,9 @@
 export default function updateOption(chart, option, value) {
-    console.log(chart);
-    console.log(option);
-    option.split('.')
-        .reduce(
-            (options,key) => options && options[key] || null,
-            chart.options
-        );
-    //conosle.log(jkjk
-    //chart.options[.scales.
+    const objPath = option.split('.');
+    let obj = chart.options;
+    for (let i = 0; i < objPath.length; i++) {
+        if (i < objPath.length - 1) obj = obj[objPath[i]];
+        else obj[objPath[i]] = value;
+    }
+    chart.update();
 }

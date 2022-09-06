@@ -32,15 +32,15 @@ export default function scatterPlot(
     const chart = new Chart(canvas, {
         data: {
             datasets,
-            config
+            config,
         },
-        options
+        options,
     });
 
     chart.helpers = {
         updateData: updateData,
         updateConfig: updateConfig,
-        updateOption: updateOption
+        updateOption: updateOption,
     };
 
     return chart;

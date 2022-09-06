@@ -13,7 +13,10 @@ export default function configure(_config_) {
 
     // color
     config.color = coalesce(config.flag, 'flag');
-    config.colors = coalesce(config.colors, ['rgba(224,224,224,0.5)', '#d6604d']);
+    config.colors = coalesce(config.colors, [
+        'rgba(224,224,224,0.5)',
+        '#d6604d',
+    ]);
 
     return config;
 }
