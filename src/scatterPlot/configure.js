@@ -11,8 +11,9 @@ export default function configure(_config_) {
     config.y = coalesce(config.y, 'numerator');
     config.yLabel = coalesce(config.yLabel, config[config.y]);
 
-    // miscellaneous
+    // color
     config.color = coalesce(config.flag, 'flag');
+    config.colors = coalesce(config.colors, ['rgba(224,224,224,0.5)', '#d6604d']);
 
     return config;
 }
