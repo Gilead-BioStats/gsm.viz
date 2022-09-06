@@ -1,5 +1,5 @@
-import Chart from "chart.js/auto";
-import ChartDataLabels from "chartjs-plugin-datalabels";
+import Chart from 'chart.js/auto';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 /**
  * chart.js barchart wrapper function
@@ -9,12 +9,12 @@ import ChartDataLabels from "chartjs-plugin-datalabels";
  * @returns {Node} responsive barchart inside the delieniated container
  */
 export default function barPlot(ctx, data, config) {
-  const chart = new Chart(ctx, {
-    data: data,
-    //type: "bar",
-    plugins: [ChartDataLabels],
-    options: config,
-  });
+    const chart = new Chart(ctx, {
+        data: data,
+        //type: "bar",
+        plugins: [ChartDataLabels],
+        options: config,
+    });
 
-  return chart;
+    return chart;
 }
