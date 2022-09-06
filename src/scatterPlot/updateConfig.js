@@ -1,0 +1,19 @@
+import configure from './configure';
+import definePlugins from './definePlugins';
+import getScales from './getScales';
+
+export default function updateConfig(chart, _config_, update = false) {
+    // Update config.
+    const config = configure(_config_);
+
+    // Define plugins (title, tooltip) and scales (x, y).
+    chart.options.plugins = definePlugins(config);
+    chart.options.scales = getScales(config);
+
+    chart.data.config = config;
+
+    if (update)
+        chart.update()
+
+    return config;
+}
