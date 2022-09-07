@@ -1,7 +1,7 @@
 import Chart from 'chart.js/auto';
 import addCanvas from './util/addCanvas';
 import configure from './barPlot/configure';
-import { rollups } from 'd3';
+import { format, rollups } from 'd3';
 import generateLegend from './util/generateLegend';
 
 /**
@@ -30,6 +30,7 @@ export default function barPlot(_element_, _data_, _config_ = {}) {
                 x: d[config.x],
                 y: +d[config.y],
                 stratum: Math.abs(+d[config.color]),
+                n: d[config.n],
             };
 
             return datum;
@@ -72,6 +73,20 @@ export default function barPlot(_element_, _data_, _config_ = {}) {
     console.log(datasets);
 
     let plugins = {
+        tooltip: {
+            callbacks: {
+                label: (data) => {
+                    const datum = data.dataset.data[data.dataIndex];
+                    console.log(datum);
+                    const tooltip = [
+                        `${config.xLabel}: ${datum.x}`,
+                        `${config.yLabel}: ${format('.3f')(datum.y)}`,
+                    ];
+
+                    return tooltip;
+                },
+            },
+        },
         datalabels: {
             //anchor: "end",
             //align: "top",
