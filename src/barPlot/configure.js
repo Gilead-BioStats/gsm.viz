@@ -2,7 +2,6 @@ import coalesce from '../util/coalesce';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
-    console.log(config);
     // x-axis
     config.x = coalesce(config.x, 'groupid');
     config.xLabel = coalesce(config.xLabel, config[config.x]);
@@ -18,6 +17,5 @@ export default function configure(_config_) {
     config.n = coalesce(config.n, 'n');
     config.nLabel = coalesce(config.nLabel, config[config.n]);
 
-    console.log(config);
     return config;
 }

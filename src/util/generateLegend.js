@@ -1,8 +1,6 @@
 function updateLegend(click, output) {
     const element = click.target.parentNode;
     element.classList.toggle('fade');
-    console.log(element);
-    console.log(output);
     output.update();
 }
 
