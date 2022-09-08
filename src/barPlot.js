@@ -21,7 +21,7 @@ export default function scatterPlot(
     const config = configure(_config_);
 
     // Define array of input datasets to chart.
-    const datasets = structureBarData(_data_, config, bounds);
+    const datasets = structureBarData(_data_, config);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {

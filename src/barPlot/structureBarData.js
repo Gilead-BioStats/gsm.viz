@@ -1,6 +1,8 @@
 import { rollups } from 'd3';
 
 export default function structureBarData(_data_, config) {
+    console.log(_data_);
+    console.log(config);
     const colors = {
         green: '#52C41A',
         yellow: '#FADB14',
@@ -53,6 +55,6 @@ export default function structureBarData(_data_, config) {
             group[1].label === 'Flag=0' ? colors.green : colors.red;
         return dataset;
     });
-
+console.log(datasets);
     return [...lineLegend, ...datasets];
 }
