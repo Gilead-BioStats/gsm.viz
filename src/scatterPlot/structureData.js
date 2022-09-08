@@ -35,28 +35,30 @@ export default function structureData(_data_, config, bounds) {
     });
 
     if (bounds !== null) {
-        const lowerBounds = {
+        const lowerBound = {
             type: 'line',
             data: bounds.map((d) => ({
                 x: Math.exp(d.LogExposure),
                 y: d.LowerCount,
             })),
+            label: 'Lower bound',
             borderColor: config.colors[1],
             pointRadius: 0,
         };
 
-        const upperBounds = {
+        const upperBound = {
             type: 'line',
             data: bounds.map((d) => ({
                 x: Math.exp(d.LogExposure),
                 y: d.UpperCount,
             })),
+            label: 'Upper bound',
             borderColor: config.colors[1],
             pointRadius: 0,
         };
 
-        datasets.push(lowerBounds);
-        datasets.push(upperBounds);
+        datasets.push(lowerBound);
+        datasets.push(upperBound);
     }
 
     return datasets;

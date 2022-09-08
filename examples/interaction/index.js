@@ -55,37 +55,39 @@ Promise.all(dataPromises)
                 );
             });
 
-        // Destroy chart.
         const button = document.getElementById('destroy');
-        const destroy = () => {
-            instance.destroy();
+        // Destroy chart:
+        // 1. calls chart.destroy
+        // 2. click event updates to create
+        // 3. button text changes to Create
+        const destroy = function() {
+            this.destroy();
             button.innerHTML = '<em>Create</em>';
-            create()
-            button.onclick = destroy;
+            button.onclick = create;
         }
+        button.onclick = destroy.bind(instance);
+
+        // Create chart:
+        // 1. calls rbmViz.scatterPlot
+        // 2. click event updates to destroy
+        // 3. button text changes to KILL
         const create = () => {
-            button.onclick = 
-        button.onclick = () => {
-            instance.destroy();
-            button.innerHTML = '<em>Create</em>';
-            button.onclick = () => {
-                const workflow = datasets[0].find(
-                    (d) => d.workflowid === kriDropdown.value
-                );
-                console.log(workflow);
-                const results = datasets[1].filter(
-                    (d) => d.workflowid === workflow.workflowid
-                );
-                const bounds = datasets[2].filter(
-                    (d) => d.workflowid === workflow.workflowid
-                );
-                const instance = rbmViz.scatterPlot(
-                    document.getElementById('container'),
-                    results,
-                    workflow,
-                    bounds
-                );
-                button.innerHTML = '<strong>KILL</strong>';
-            }
+            const workflow = datasets[0].find(
+                (d) => d.workflowid === kriDropdown.value
+            );
+            const results = datasets[1].filter(
+                (d) => d.workflowid === workflow.workflowid
+            );
+            const bounds = datasets[2].filter(
+                (d) => d.workflowid === workflow.workflowid
+            );
+            const instance = rbmViz.scatterPlot(
+                document.getElementById('container').getElementsByTagName('canvas')[0],
+                results,
+                workflow,
+                bounds
+            );
+            button.innerHTML = '<strong>KILL</strong>';
+            button.onclick = destroy.bind(instance);
         }
     });
