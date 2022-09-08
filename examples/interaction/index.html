@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Scatter Plot</title>
+        <link rel="stylesheet" href="style.css" />
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="../../index.js"></script>
+    </head>
+
+    <body>
+        <div id="container"></div>
+        <div>
+            <fieldset>
+                <legend>KRI</legend>
+                <select id="kri">
+                    <option>kri0001</option>
+                    <option>kri0002</option>
+                    <option>kri0003</option>
+                    <option>kri0004</option>
+                    <option>kri0005</option>
+                    <option>kri0006</option>
+                    <option>kri0007</option>
+                    <option>kri0008</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>X-axis Type</legend>
+
+                <form id="x-axis-type">
+                    <div>
+                        <input
+                            type="radio"
+                            id="log-x-axis"
+                            name="x-axis-type"
+                            value="logarithmic"
+                            checked
+                        />
+                        <label for="log">log</label>
+                    </div>
+
+                    <div>
+                        <input
+                            type="radio"
+                            id="linear-x-axis"
+                            name="x-axis-type"
+                            value="linear"
+                        />
+                        <label for="linear">linear</label>
+                    </div>
+                </form>
+            </fieldset>
+        </div>
+    </body>
+
+    <script src="index.js"></script>
+</html>
