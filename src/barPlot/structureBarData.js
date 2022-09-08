@@ -13,7 +13,7 @@ export default function structureBarData(_data_, config) {
             const datum = {
                 x: d[config.x],
                 y: +d[config.y],
-                stratum: Math.abs(+d[config.color]),
+                stratum: Math.abs(+d[config.flag]),
                 n: d[config.n],
             };
 
