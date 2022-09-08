@@ -1,7 +1,4 @@
-const dataFiles = [
-    '../data/meta_workflow.csv',
-    '../data/results_summary.csv'
-];
+const dataFiles = ['../data/meta_workflow.csv', '../data/results_summary.csv'];
 
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
@@ -16,7 +13,7 @@ Promise.all(dataPromises)
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
         );
-console.log(results);
+        console.log(results);
         // visualization
         const instance = rbmViz.barPlot(
             document.getElementById('container'),
