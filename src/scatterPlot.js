@@ -9,6 +9,13 @@ import updateData from './scatterPlot/updateData';
 import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
 
+/** scatterPlot
+ * chart.js scatter plot wrapper function
+ * @param {Node} arg1 HTML element in which to render chart
+ * @param {Array} arg2 input data where each array item is an object of key-value pairs
+ * @param {Object} arg3 
+ */
+
 export default function scatterPlot(
     _element_,
     _data_,
