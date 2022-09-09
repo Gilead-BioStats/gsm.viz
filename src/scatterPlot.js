@@ -11,11 +11,14 @@ import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
 
 /**
- * scatter plot
- * @param {Node} _element_ - DOM element in which to render chart
+ * Generate a scatter plot built with Chart.js.
+ *
+ * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} bounds - optional auxiliary data plotted as a line representing bounds
+ *
+ * @returns {Object} Chart.js chart object
  */
 export default function scatterPlot(
     _element_,
