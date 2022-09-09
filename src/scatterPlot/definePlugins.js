@@ -4,17 +4,17 @@ export default function definePlugins(config) {
     const plugins = {
         legend: {
             labels: {
-                filter: function(legendItem, chartData) {
+                filter: function (legendItem, chartData) {
                     return !/bound/.test(legendItem.text);
-                }
-            }
+                },
+            },
         },
         title: {
             display: true,
             text: `${config.metric} by ${config.group}`,
         },
         tooltip: {
-            custom: function(tooltipModel) {
+            custom: function (tooltipModel) {
                 // EXTENSION: filter is not enough! Hide tooltip frame
                 if (!tooltipModel.body || tooltipModel.body.length < 1) {
                     tooltipModel.caretSize = 0;
@@ -40,7 +40,7 @@ export default function definePlugins(config) {
                 title: () => null,
             },
             events: ['click'],
-            filter: (data) => !/bound/.test(data.dataset.label)
+            filter: (data) => !/bound/.test(data.dataset.label),
         },
     };
 

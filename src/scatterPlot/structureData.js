@@ -21,7 +21,7 @@ export default function structureData(_data_, config, bounds) {
         (group) => {
             return {
                 type: 'scatter',
-                label: group[0].stratum !== 0 ? 'At risk' : 'Within thresholds',//`Flag=${group[0].stratum}`,
+                label: group[0].stratum !== 0 ? 'At risk' : 'Within thresholds', //`Flag=${group[0].stratum}`,
                 data: group,
             };
         },
