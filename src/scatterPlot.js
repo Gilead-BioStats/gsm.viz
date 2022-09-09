@@ -1,15 +1,16 @@
 import Chart from 'chart.js/auto';
-import { getRelativePosition } from 'chart.js/helpers';
 import addCanvas from './util/addCanvas';
 import configure from './scatterPlot/configure';
 import structureData from './scatterPlot/structureData';
+import onClick from './scatterPlot/onClick';
+import onHover from './scatterPlot/onHover';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
 import updateData from './scatterPlot/updateData';
 import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
 
-/** 
+/**
  * scatter plot
  * @param {Node} _element_ - DOM element in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
@@ -32,6 +33,10 @@ export default function scatterPlot(
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
+        animation: false,
+        events: ['click', 'mousemove', 'mouseout'],
+        onClick,
+        onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
     };

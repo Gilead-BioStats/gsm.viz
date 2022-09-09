@@ -5,11 +5,10 @@ export default function structureData(_data_, config, bounds) {
     const data = _data_
         .map((d) => {
             const datum = {
-                groupid: d.groupid,
+                ...d,
                 x: +d[config.x],
                 y: +d[config.y],
                 stratum: Math.abs(+d[config.color]),
-                metric: +d.metric,
             };
 
             return datum;
@@ -22,7 +21,7 @@ export default function structureData(_data_, config, bounds) {
         (group) => {
             return {
                 type: 'scatter',
-                label: `Flag=${group[0].stratum}`,
+                label: group[0].stratum !== 0 ? 'At risk' : 'Within thresholds',//`Flag=${group[0].stratum}`,
                 data: group,
             };
         },
@@ -43,6 +42,8 @@ export default function structureData(_data_, config, bounds) {
             })),
             label: 'Lower bound',
             borderColor: config.colors[1],
+            borderWidth: 1,
+            hoverRadius: 0,
             pointRadius: 0,
         };
 
@@ -54,6 +55,8 @@ export default function structureData(_data_, config, bounds) {
             })),
             label: 'Upper bound',
             borderColor: config.colors[1],
+            borderWidth: 1,
+            hoverRadius: 0,
             pointRadius: 0,
         };
 
