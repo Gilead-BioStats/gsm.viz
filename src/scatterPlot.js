@@ -1,14 +1,25 @@
 import Chart from 'chart.js/auto';
-import { getRelativePosition } from 'chart.js/helpers';
 import addCanvas from './util/addCanvas';
 import configure from './scatterPlot/configure';
 import structureData from './scatterPlot/structureData';
+import onClick from './scatterPlot/onClick';
+import onHover from './scatterPlot/onHover';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
 import updateData from './scatterPlot/updateData';
 import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
 
+/**
+ * Generate a scatter plot built with Chart.js.
+ *
+ * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
+ * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Object} _config_ - chart configuration and metadata
+ * @param {Array} bounds - optional auxiliary data plotted as a line representing bounds
+ *
+ * @returns {Object} Chart.js chart object
+ */
 export default function scatterPlot(
     _element_,
     _data_,
@@ -25,6 +36,10 @@ export default function scatterPlot(
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
+        animation: false,
+        events: ['click', 'mousemove', 'mouseout'],
+        onClick,
+        onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
     };
@@ -36,6 +51,7 @@ export default function scatterPlot(
         },
         options,
     });
+    console.log(chart);
 
     chart.helpers = {
         updateData: updateData,
