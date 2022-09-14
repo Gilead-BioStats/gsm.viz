@@ -31,6 +31,8 @@
   "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
   "dependencies": {
     "chart.js": "^3.9.1",
+    "chartjs-plugin-annotation": "^2.0.1",
+    "chartjs-plugin-datalabels": "^2.1.0",
     "d3": "^7.6.1",
     "esbuild": "^0.15.5",
     "prettier": "2.7.1",
