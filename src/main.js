@@ -1,5 +1,7 @@
 import scatterPlot from './scatterPlot';
 
-export default rbmViz = {
-    scatterPlot,
+const rbmViz = {
+    scatterPlot, 
 };
+
+export default rbmViz
