@@ -5,7 +5,9 @@ import { Chart } from 'chart.js';
 
 //Chart.register(annotationPlugin);
 
-export default rbmViz = {
+const rbmViz = {
     scatterPlot,
     barPlot,
 };
+
+export default rbmViz;
