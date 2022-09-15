@@ -14,7 +14,9 @@ export default function structureBarData(_data_, config) {
                 x: d[config.x],
                 y: +d[config.y],
                 stratum: +d[config.color],
-                n: d[config.n],
+                n: +d[config.n],
+                numerator: +d[config.num],
+                denominator: +d[config.denom],
             };
 
             return datum;

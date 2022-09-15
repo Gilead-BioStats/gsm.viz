@@ -9,7 +9,7 @@ import updateBarConfig from './barPlot/updateBarConfig';
 import updateBarOption from './barPlot/updateBarOption';
 import generateLegend from './util/generateLegend';
 
-export default function scatterPlot(
+export default function barPlot(
     _element_,
     _data_,
     _config_ = {},
