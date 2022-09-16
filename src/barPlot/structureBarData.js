@@ -4,7 +4,6 @@ import mapFlagColor from '../util/mapFlagColor';
 import mapFlagLabel from '../util/mapFlagLabel';
 
 export default function structureBarData(_data_, config) {
-    console.log(colors);
     // Update data.
     const data = _data_
         .map((d) => {
@@ -55,9 +54,6 @@ export default function structureBarData(_data_, config) {
         // group[1].label === "Flagged Site" ? colors.colors.red : colors.colors.green;
         return dataset;
     });
-
-    console.log('DATASETS');
-    console.log(datasets);
 
     return [...lineLegend, ...datasets];
 }

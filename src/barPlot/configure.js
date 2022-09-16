@@ -2,7 +2,6 @@ import coalesce from '../util/coalesce';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
-    console.log(_config_);
 
     // x-axis
     config.x = coalesce(config.x, 'groupid');

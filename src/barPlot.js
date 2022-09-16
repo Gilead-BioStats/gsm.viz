@@ -8,7 +8,7 @@ import updateBarData from './barPlot/updateBarData';
 import updateBarConfig from './barPlot/updateBarConfig';
 import updateBarOption from './barPlot/updateBarOption';
 import generateLegend from './util/generateLegend';
-import onClick from './scatterPlot/onClick';
+import onBarClick from './barPlot/onBarClick';
 import onHover from './scatterPlot/onHover';
 
 export default function barPlot(
@@ -29,7 +29,7 @@ export default function barPlot(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onClick,
+        onClick: onBarClick,
         onHover,
         plugins: defineBarPlugins(config),
         scales: getBarScales(config),
