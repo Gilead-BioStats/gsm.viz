@@ -8,6 +8,7 @@ import updateBarData from './barPlot/updateBarData';
 import updateBarConfig from './barPlot/updateBarConfig';
 import updateBarOption from './barPlot/updateBarOption';
 import generateLegend from './util/generateLegend';
+import annotationPlugin from 'chartjs-plugin-annotation';
 
 export default function barPlot(
     _element_,

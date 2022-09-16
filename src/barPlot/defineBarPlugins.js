@@ -1,7 +1,17 @@
 import { format } from 'd3';
+import mapFlagColor from '../util/mapFlagColor';
 
 export default function defineBarPlugins(config) {
-    console.log(config);
+    let annotations = config.threshhold.map((x, i) => ({
+        drawTime: 'beforeDatasetsDraw',
+        type: 'line',
+        yMin: x.threshhold,
+        yMax: x.threshhold,
+        borderColor: mapFlagColor(+x.flag),
+        borderWidth: 2,
+        borderDash: [5],
+    }));
+
     const plugins = {
         tooltip: {
             callbacks: {
@@ -45,17 +55,7 @@ export default function defineBarPlugins(config) {
             },
         },
         annotation: {
-            annotations: {
-                line1: {
-                    drawTime: 'beforeDatasetsDraw',
-                    type: 'line',
-                    yMin: 10,
-                    yMax: 10,
-                    borderColor: 'red',
-                    borderWidth: 2,
-                    borderDash: [5],
-                },
-            },
+            annotations,
         },
         legend: {
             display: false,
