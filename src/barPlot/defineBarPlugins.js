@@ -29,30 +29,7 @@ export default function defineBarPlugins(config) {
                 },
                 title: () => null,
             },
-        },
-        datalabels: {
-            //anchor: "end",
-            //align: "top",
-
-            // anchor: "start",
-            // align: "bottom",
-            anchor: function (context) {
-                let y = context.dataset.data[context.dataIndex].y;
-                return y < 0 ? 'end' : 'start';
-            },
-            align: function (context) {
-                let y = context.dataset.data[context.dataIndex].y;
-                return y < 0 ? 'top' : 'bottom';
-            },
-            rotation: 90,
-            font: {
-                weight: 'bold',
-            },
-            formatter: function (value, ctx) {
-                var index = ctx.dataIndex;
-                var label = ctx.chart.data.labels[index];
-                return label;
-            },
+            // events: ['click'],
         },
         annotation: {
             annotations,
