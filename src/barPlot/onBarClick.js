@@ -13,7 +13,7 @@ export default function onBarClick(event, clickedElements) {
 
     const url = encodeURI(
         [
-            `studyid=${datum.studyid}`,
+            `studyid=${config.studyid}`,
             `workflowid=${config.workflowid}`,
             `groupid=${raw.x}`,
             `group=${config.group}`,
