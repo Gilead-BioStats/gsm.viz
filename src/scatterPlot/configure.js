@@ -15,6 +15,7 @@ export default function configure(_config_) {
     config.color = coalesce(config.flag, 'flag');
     config.colors = coalesce(config.colors, [
         'rgba(224,224,224,0.5)',
+        //'yellow',
         '#d6604d',
     ]);
 

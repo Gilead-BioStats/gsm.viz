@@ -92,4 +92,12 @@ Promise.all(dataPromises)
             button.innerHTML = '<strong>KILL</strong>';
             button.onclick = destroy.bind(instance);
         };
+
+        const download = document.getElementById('download');
+        download.onclick = () => {
+            const a = document.createElement('a');
+            a.href = instance.toBase64Image();
+            a.download = 'scatter-plot.png';
+            a.click();
+        };
     });
