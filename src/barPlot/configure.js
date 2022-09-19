@@ -30,11 +30,11 @@ export default function configure(_config_) {
         config[config.denom]
     );
 
-    config.threshhold = [
-        { threshhold: 10, flag: -2 },
-        { threshhold: -10, flag: 2 },
-        { threshhold: 5, flag: 1 },
-        { threshhold: -5, flag: 1 },
+    config.threshold = [
+        { threshold: 10, flag: -2 },
+        { threshold: -10, flag: 2 },
+        { threshold: 5, flag: 1 },
+        { threshold: -5, flag: -1 },
     ];
 
     return config;

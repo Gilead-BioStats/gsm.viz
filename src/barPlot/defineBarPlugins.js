@@ -2,11 +2,11 @@ import { format } from 'd3';
 import mapFlagColor from '../util/mapFlagColor';
 
 export default function defineBarPlugins(config) {
-    let annotations = config.threshhold.map((x, i) => ({
+    let annotations = config.threshold.map((x, i) => ({
         drawTime: 'beforeDatasetsDraw',
         type: 'line',
-        yMin: x.threshhold,
-        yMax: x.threshhold,
+        yMin: x.threshold,
+        yMax: x.threshold,
         borderColor: mapFlagColor(+x.flag),
         borderWidth: 2,
         borderDash: [5],
