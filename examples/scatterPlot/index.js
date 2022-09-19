@@ -99,5 +99,5 @@ Promise.all(dataPromises)
             a.href = instance.toBase64Image();
             a.download = 'scatter-plot.png';
             a.click();
-        }
+        };
     });

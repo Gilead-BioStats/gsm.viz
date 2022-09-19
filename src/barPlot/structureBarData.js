@@ -1,20 +1,20 @@
 import { rollups } from 'd3';
+import colors from '../util/colors';
+import mapFlagColor from '../util/mapFlagColor';
+import mapFlagLabel from '../util/mapFlagLabel';
 
 export default function structureBarData(_data_, config) {
-    const colors = {
-        green: '#52C41A',
-        yellow: '#FADB14',
-        red: '#FF4D4F',
-    };
-
     // Update data.
     const data = _data_
         .map((d) => {
             const datum = {
+                ...d,
                 x: d[config.x],
                 y: +d[config.y],
                 stratum: +d[config.color],
-                n: d[config.n],
+                n: +d[config.n],
+                numerator: +d[config.num],
+                denominator: +d[config.denom],
             };
 
             return datum;
@@ -27,13 +27,13 @@ export default function structureBarData(_data_, config) {
             type: 'line',
             label: 'Flagged Threshold',
             data: [],
-            borderColor: colors.red,
+            borderColor: colors.colors.red,
         },
         {
             type: 'line',
             label: 'At Risk Threshold',
             data: [],
-            borderColor: colors.yellow,
+            borderColor: colors.colors.yellow,
         },
     ];
 
@@ -42,20 +42,17 @@ export default function structureBarData(_data_, config) {
         (group) => {
             return {
                 type: 'bar',
-                label: `${
-                    group[0].stratum === 0
-                        ? 'Sites Not Flagged or At Risk'
-                        : 'Flagged Site'
-                }`,
+                label: mapFlagLabel(group[0].stratum),
                 data: group,
                 barThickness: 1.5,
+                flag: group[0].stratum,
             };
         },
         (d) => d.stratum
     ).map((group, i) => {
         const dataset = group[1];
-        dataset.backgroundColor =
-            group[1].label === 'Flagged Site' ? colors.red : colors.green;
+        dataset.backgroundColor = mapFlagColor(group[1].flag);
+        // group[1].label === "Flagged Site" ? colors.colors.red : colors.colors.green;
         return dataset;
     });
 
