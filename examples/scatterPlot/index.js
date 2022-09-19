@@ -22,7 +22,7 @@ Promise.all(dataPromises)
         );
 
         // visualization
-        rbmViz.scatterPlot(
+        rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             workflow,

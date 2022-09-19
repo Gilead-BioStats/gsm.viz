@@ -15,7 +15,7 @@ Promise.all(dataPromises)
         );
         console.log(results);
         // visualization
-        const instance = rbmViz.barPlot(
+        const instance = rbmViz.default.barPlot(
             document.getElementById('container'),
             results,
             workflow
