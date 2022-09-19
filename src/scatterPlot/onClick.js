@@ -34,5 +34,9 @@ export default function onClick(event) {
                 `group=${config.group}`,
             ].join('&')
         );
+        console.log(url);
+    } else {
+        const image = chart.toBase64Image();
+        console.log(image);
     }
 }
