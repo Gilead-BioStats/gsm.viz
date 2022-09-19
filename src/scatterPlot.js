@@ -51,7 +51,6 @@ export default function scatterPlot(
         },
         options,
     });
-    console.log(chart);
 
     chart.helpers = {
         updateData: updateData,

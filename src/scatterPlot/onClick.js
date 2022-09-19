@@ -34,6 +34,5 @@ export default function onClick(event) {
                 `group=${config.group}`,
             ].join('&')
         );
-        console.log(url);
     }
 }
