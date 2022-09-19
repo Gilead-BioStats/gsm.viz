@@ -35,5 +35,8 @@ export default function onClick(event) {
             ].join('&')
         );
         console.log(url);
+    } else {
+        const image = chart.toBase64Image();
+        console.log(image);
     }
 }
