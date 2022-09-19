@@ -22,7 +22,7 @@ Promise.all(dataPromises)
         );
 
         // visualization
-        const instance = rbmViz.scatterPlot(
+        const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             workflow,
@@ -68,7 +68,7 @@ Promise.all(dataPromises)
         button.onclick = destroy.bind(instance);
 
         // Create chart:
-        // 1. calls rbmViz.scatterPlot
+        // 1. calls rbmViz.default.scatterPlot
         // 2. click event updates to destroy
         // 3. button text changes to KILL
         const create = () => {
@@ -81,7 +81,7 @@ Promise.all(dataPromises)
             const bounds = datasets[2].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            const instance = rbmViz.scatterPlot(
+            const instance = rbmViz.default.scatterPlot(
                 document
                     .getElementById('container')
                     .getElementsByTagName('canvas')[0],

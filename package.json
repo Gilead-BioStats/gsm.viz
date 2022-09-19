@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format",
-    "bundle": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
+    "bundle": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap",
     "format": "npm run format-src && npm run format-examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
-    "watch": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap --watch"
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch"
   },
   "repository": {
     "type": "git",
