@@ -1,8 +1,4 @@
-const dataFiles = [
-    '../data/meta_workflow.csv',
-    '../data/results_summary.csv',
-    '../data/results_bounds.csv',
-];
+const dataFiles = ['../data/meta_workflow.csv', '../data/results_summary.csv'];
 
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
@@ -14,19 +10,20 @@ Promise.all(dataPromises)
         // data
         const [workflow] = datasets[0] // destructured assignment
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
+        datasets[1].forEach((d) => {
+            if (Math.abs(+d.score) > 10) {
+                d.flag = Math.sign(+d.score) * 2;
+            }
+        });
         const results = datasets[1].filter(
-            (d) => d.workflowid === workflow.workflowid
-        );
-        const bounds = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
 
         // visualization
-        const instance = rbmViz.scatterPlot(
+        const instance = rbmViz.default.barPlot(
             document.getElementById('container'),
             results,
-            workflow,
-            bounds
+            workflow
         );
 
         // Handle data change event.
@@ -37,20 +34,6 @@ Promise.all(dataPromises)
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            const bounds = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            instance.helpers.updateData(instance, results, workflow, bounds);
+            instance.helpers.updateBarData(instance, results, workflow);
         });
-
-        // Handle config change event.
-        document
-            .querySelector('#x-axis-type')
-            .addEventListener('change', (event) => {
-                instance.helpers.updateOption(
-                    instance,
-                    'scales.x.type',
-                    event.target.value
-                );
-            });
     });

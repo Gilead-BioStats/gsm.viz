@@ -1,3 +1,11 @@
+/**
+ * Update a single chart option and redraw chart.
+ *
+ * @param {Object} chart - Chart.js chart object
+ * @param {string} option - dot-delimited object path of option
+ * @param {(string|number)} value - option value
+ *
+ */
 export default function updateOption(chart, option, value) {
     const objPath = option.split('.');
     let obj = chart.options;

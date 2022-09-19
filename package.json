@@ -6,11 +6,11 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format",
-    "bundle": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap",
+    "bundle": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap",
     "format": "npm run format-src && npm run format-examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
-    "watch": "esbuild src/main.js --outfile=index.js --bundle --minify --sourcemap --watch"
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch"
   },
   "repository": {
     "type": "git",
@@ -31,11 +31,16 @@
   "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
   "dependencies": {
     "chart.js": "^3.9.1",
+    "chartjs-plugin-annotation": "^2.0.1",
+    "chartjs-plugin-datalabels": "^2.1.0",
     "d3": "^7.6.1",
-    "esbuild": "^0.15.5",
-    "prettier": "2.7.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.15.7",
+    "jsdoc": "^3.6.11",
+    "prettier": "^2.7.1"
   }
 }
