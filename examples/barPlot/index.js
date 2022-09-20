@@ -34,7 +34,15 @@ Promise.all(dataPromises)
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            instance.helpers.updateBarData(instance, results, workflow);
+
+            const isChecked = document.getElementById('inliners').checked;
+
+            instance.helpers.updateBarData(
+                instance,
+                results,
+                workflow,
+                isChecked
+            );
         });
 
         // TODO: update data to inlcude/exclude inliners
@@ -47,15 +55,11 @@ Promise.all(dataPromises)
                     (d) => d.workflowid === current_kri
                 );
 
-                let sub_results = datasets[1].filter(
-                    (d) => d.workflowid === workflow.workflowid
-                );
-
-                const isChecked = event.target.value;
+                const isChecked = event.target.checked;
 
                 instance.helpers.updateBarData(
                     instance,
-                    sub_results,
+                    results,
                     workflow,
                     isChecked
                 );

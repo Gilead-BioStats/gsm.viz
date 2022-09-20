@@ -3,7 +3,7 @@ import colors from '../util/colors';
 import mapFlagColor from '../util/mapFlagColor';
 import mapFlagLabel from '../util/mapFlagLabel';
 
-export default function structureBarData(_data_, config, isChecked = false) {
+export default function structureBarData(_data_, config, isChecked = true) {
     // Update data.
     let data = _data_
         .map((d) => {
@@ -22,12 +22,7 @@ export default function structureBarData(_data_, config, isChecked = false) {
         .sort((a, b) => b.y - a.y);
 
     if (isChecked) {
-        // find the max and min thresshold
-        // filter data to only include inliners
-        let thresholds = config.threshold.map((x) => +x.threshold);
-        let max = Math.max(...thresholds);
-        let min = Math.min(...thresholds);
-        data = data.filter((x) => (+x.score >= max) | (+x.score <= min));
+        data = data.filter((x) => +x.stratum !== 0);
     }
 
     // dummy dataset for legend

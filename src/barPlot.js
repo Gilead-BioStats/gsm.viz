@@ -42,6 +42,7 @@ export default function barPlot(_element_, _data_, _config_ = {}) {
             datasets,
             config,
         },
+        metadata: 'test',
         options,
         plugins: [customLegend],
     });
@@ -52,5 +53,6 @@ export default function barPlot(_element_, _data_, _config_ = {}) {
         updateBarOption: updateBarOption,
     };
 
+    console.log(chart);
     return chart;
 }
