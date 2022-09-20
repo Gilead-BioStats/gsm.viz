@@ -3,9 +3,9 @@ import colors from '../util/colors';
 import mapFlagColor from '../util/mapFlagColor';
 import mapFlagLabel from '../util/mapFlagLabel';
 
-export default function structureBarData(_data_, config) {
+export default function structureBarData(_data_, config, isChecked = false) {
     // Update data.
-    const data = _data_
+    let data = _data_
         .map((d) => {
             const datum = {
                 x: d[config.x],
@@ -19,6 +19,19 @@ export default function structureBarData(_data_, config) {
             return datum;
         })
         .sort((a, b) => b.y - a.y);
+
+    if (isChecked) {
+        // find the max and min thresshold
+        // filter data to only include inliners
+        let threshholds = config.threshhold.map((x) => x.threshhold);
+        let max = Math.max(threshholds);
+        let min = Math.min(threshholds);
+        data = data.filter(
+            (x) => (+x.threshhold > max) | (+x.threshhold < min)
+        );
+    }
+
+    console.log(data);
 
     // dummy dataset for legend
     const lineLegend = [
@@ -43,7 +56,6 @@ export default function structureBarData(_data_, config) {
                 type: 'bar',
                 label: mapFlagLabel(group[0].stratum),
                 data: group,
-                barThickness: 1.5,
                 flag: group[0].stratum,
             };
         },

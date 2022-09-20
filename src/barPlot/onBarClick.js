@@ -7,10 +7,6 @@ export default function onBarClick(event, clickedElements) {
     const { dataIndex, raw } = clickedElements[0].element.$context;
     const barLabel = event.chart.data.labels[dataIndex];
 
-    console.log(raw);
-    console.log(barLabel);
-    console.log(config);
-
     const url = encodeURI(
         [
             `studyid=${config.studyid}`,

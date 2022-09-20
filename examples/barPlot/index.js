@@ -31,4 +31,27 @@ Promise.all(dataPromises)
             );
             instance.helpers.updateBarData(instance, results, workflow);
         });
+
+        // TODO: update data to inlcude/exclude inliners
+        document
+            .querySelector('#inliners')
+            .addEventListener('change', (event) => {
+                const current_kri = document.getElementById('kri').value;
+
+                const workflow = datasets[0].find(
+                    (d) => d.workflowid === current_kri
+                );
+                let results = datasets[1].filter(
+                    (d) => d.workflowid === workflow.workflowid
+                );
+
+                const isChecked = event.target.value;
+
+                instance.helpers.updateBarData(
+                    instance,
+                    results,
+                    workflow,
+                    isChecked
+                );
+            });
     });

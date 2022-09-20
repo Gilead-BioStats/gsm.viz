@@ -11,12 +11,7 @@ import generateLegend from './util/generateLegend';
 import onBarClick from './barPlot/onBarClick';
 import onHover from './scatterPlot/onHover';
 
-export default function barPlot(
-    _element_,
-    _data_,
-    _config_ = {},
-    bounds = null
-) {
+export default function barPlot(_element_, _data_, _config_ = {}) {
     const canvas = addCanvas(_element_);
 
     // Update config.
