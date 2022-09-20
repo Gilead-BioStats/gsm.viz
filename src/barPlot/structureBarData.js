@@ -8,6 +8,7 @@ export default function structureBarData(_data_, config, isChecked = false) {
     let data = _data_
         .map((d) => {
             const datum = {
+                ...d,
                 x: d[config.x],
                 y: +d[config.y],
                 stratum: +d[config.color],
