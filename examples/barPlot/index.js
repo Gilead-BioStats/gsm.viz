@@ -46,7 +46,8 @@ Promise.all(dataPromises)
                 const workflow = datasets[0].find(
                     (d) => d.workflowid === current_kri
                 );
-                let results = datasets[1].filter(
+
+                let sub_results = datasets[1].filter(
                     (d) => d.workflowid === workflow.workflowid
                 );
 
@@ -54,7 +55,7 @@ Promise.all(dataPromises)
 
                 instance.helpers.updateBarData(
                     instance,
-                    results,
+                    sub_results,
                     workflow,
                     isChecked
                 );

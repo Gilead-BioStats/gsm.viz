@@ -24,15 +24,11 @@ export default function structureBarData(_data_, config, isChecked = false) {
     if (isChecked) {
         // find the max and min thresshold
         // filter data to only include inliners
-        let threshholds = config.threshhold.map((x) => x.threshhold);
-        let max = Math.max(threshholds);
-        let min = Math.min(threshholds);
-        data = data.filter(
-            (x) => (+x.threshhold > max) | (+x.threshhold < min)
-        );
+        let thresholds = config.threshold.map((x) => +x.threshold);
+        let max = Math.max(...thresholds);
+        let min = Math.min(...thresholds);
+        data = data.filter((x) => (+x.score >= max) | (+x.score <= min));
     }
-
-    console.log(data);
 
     // dummy dataset for legend
     const lineLegend = [
