@@ -2,7 +2,7 @@
   "name": "rbm-viz",
   "version": "0.1.0",
   "description": "web-based data visualization for risk-based monitoring",
-  "module": "src/index.js",
+  "module": "src/main.js",
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format",
