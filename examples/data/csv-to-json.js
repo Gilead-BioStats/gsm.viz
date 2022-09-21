@@ -1,15 +1,15 @@
 //jshint esversion:8
 //jshint node:true
-const fs = require( 'fs' );
-const path = require( 'path' );
+const fs = require('fs');
+const path = require('path');
 const csvToJson = require('convert-csv-to-json');
 
 // Make an async function that gets executed immediately
-(async ()=>{
+(async () => {
     // Our starting point
     try {
         // Get the files as an array
-        const files = await fs.promises.readdir( '.' );
+        const files = await fs.promises.readdir('.');
 
         // Loop them all with the new for...of
         for (const file of files) {
@@ -23,9 +23,8 @@ const csvToJson = require('convert-csv-to-json');
                     );
             }
         } // End for...of
-    }
-    catch( e ) {
+    } catch (e) {
         // Catch anything bad that happens
-        console.error( "We've thrown! Whoops!", e );
+        console.error("We've thrown! Whoops!", e);
     }
 })(); // Wrap in parenthesis and call now

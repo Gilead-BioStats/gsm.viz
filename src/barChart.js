@@ -1,17 +1,17 @@
 import Chart from 'chart.js/auto';
 import addCanvas from './util/addCanvas';
-import configure from './barPlot/configure';
-import structureBarData from './barPlot/structureBarData';
-import defineBarPlugins from './barPlot/defineBarPlugins';
-import getBarScales from './barPlot/getBarScales';
-import updateBarData from './barPlot/updateBarData';
-import updateBarConfig from './barPlot/updateBarConfig';
-import updateBarOption from './barPlot/updateBarOption';
+import configure from './barChart/configure';
+import structureBarData from './barChart/structureBarData';
+import defineBarPlugins from './barChart/defineBarPlugins';
+import getBarScales from './barChart/getBarScales';
+import updateBarData from './barChart/updateBarData';
+import updateBarConfig from './barChart/updateBarConfig';
+import updateBarOption from './barChart/updateBarOption';
 import generateLegend from './util/generateLegend';
-import onBarClick from './barPlot/onBarClick';
+import onBarClick from './barChart/onBarClick';
 import onHover from './scatterPlot/onHover';
 
-export default function barPlot(
+export default function barChart(
     _element_,
     _data_,
     _config_ = {},
