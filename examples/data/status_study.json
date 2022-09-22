@@ -1,14 +1,14 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "enrolled_sites": "175",
-        "enrolled_particiapnts": "1297",
-        "planned_participants": "175",
-        "planned_sites": "1297",
-        "protocol": "Sample Protocol",
-        "indication": "Sample Indication",
-        "ta": "Oncology",
-        "product": "Sample Prodcut",
-        "phase": "3"
-    }
+ {
+  "studyid": "AA-AA-000-0000",
+  "enrolled_sites": "175",
+  "enrolled_particiapnts": "1297",
+  "planned_participants": "175",
+  "planned_sites": "1297",
+  "protocol": "Sample Protocol",
+  "indication": "Sample Indication",
+  "ta": "Oncology",
+  "product": "Sample Prodcut",
+  "phase": "3"
+ }
 ]

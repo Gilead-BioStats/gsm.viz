@@ -1,18 +1,18 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.1",
-        "param": "threshold",
-        "index": "1",
-        "value": "-7"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.1",
-        "param": "threshold",
-        "index": "2",
-        "value": "7"
-    }
+ {
+  "studyid": "AA-AA-000-0000",
+  "workflowid": "kri0001",
+  "gsm_version": "1.1",
+  "param": "threshold",
+  "index": "1",
+  "value": "-7"
+ },
+ {
+  "studyid": "AA-AA-000-0000",
+  "workflowid": "kri0001",
+  "gsm_version": "1.1",
+  "param": "threshold",
+  "index": "2",
+  "value": "7"
+ }
 ]

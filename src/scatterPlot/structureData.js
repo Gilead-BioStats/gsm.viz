@@ -31,7 +31,11 @@ export default function structureData(_data_, config, bounds) {
         (group) => {
             return {
                 type: 'scatter',
-                label: group[0].stratum !== 0 ? 'At risk' : 'Within thresholds', //`Flag=${group[0].stratum}`,
+                label: group[0].stratum > 1
+                    ? 'Flagged'
+                    : group[0].stratum > 0
+                    ? 'At risk'
+                    : 'Within thresholds',
                 data: group,
             };
         },
@@ -47,8 +51,8 @@ export default function structureData(_data_, config, bounds) {
         const lowerBound = {
             type: 'line',
             data: bounds.map((d) => ({
-                x: Math.exp(d.LogExposure),
-                y: d.LowerCount,
+                x: Math.exp(d.logexposure),
+                y: d.lowercount,
             })),
             label: 'Lower bound',
             borderColor: config.colors[1],
@@ -60,8 +64,8 @@ export default function structureData(_data_, config, bounds) {
         const upperBound = {
             type: 'line',
             data: bounds.map((d) => ({
-                x: Math.exp(d.LogExposure),
-                y: d.UpperCount,
+                x: Math.exp(d.logexposure),
+                y: d.uppercount,
             })),
             label: 'Upper bound',
             borderColor: config.colors[1],
