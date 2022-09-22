@@ -1,5 +1,5 @@
 import { format } from 'd3';
-import mapFlagColor from '../util/mapFlagColor';
+import thresholds from '../util/colors';
 
 export default function defineBarPlugins(config) {
     let annotations = config.threshold.map((x, i) => ({
@@ -7,7 +7,9 @@ export default function defineBarPlugins(config) {
         type: 'line',
         yMin: x.threshold,
         yMax: x.threshold,
-        borderColor: mapFlagColor(+x.flag),
+        borderColor: thresholds.thresholds.filter((x) =>
+            x.flag.includes(+x.flag)
+        )[0].color,
         borderWidth: 2,
         borderDash: [5],
     }));

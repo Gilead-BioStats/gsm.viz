@@ -1,7 +1,5 @@
 import { rollups } from 'd3';
-import colors from '../util/colors';
-import mapFlagColor from '../util/mapFlagColor';
-import mapFlagLabel from '../util/mapFlagLabel';
+import thresholds from '../util/colors';
 
 export default function structureBarData(_data_, config, isChecked = true) {
     // Update data.
@@ -31,13 +29,13 @@ export default function structureBarData(_data_, config, isChecked = true) {
             type: 'line',
             label: 'Flagged Threshold',
             data: [],
-            borderColor: colors.colors.red,
+            borderColor: thresholds.thresholds[0].color,
         },
         {
             type: 'line',
             label: 'At Risk Threshold',
             data: [],
-            borderColor: colors.colors.yellow,
+            borderColor: thresholds.thresholds[1].color,
         },
     ];
 
@@ -46,7 +44,9 @@ export default function structureBarData(_data_, config, isChecked = true) {
         (group) => {
             return {
                 type: 'bar',
-                label: mapFlagLabel(group[0].stratum),
+                label: thresholds.thresholds.filter((x) =>
+                    x.flag.includes(group[0].stratum)
+                )[0].description,
                 data: group,
                 flag: group[0].stratum,
             };
@@ -54,8 +54,9 @@ export default function structureBarData(_data_, config, isChecked = true) {
         (d) => d.stratum
     ).map((group, i) => {
         const dataset = group[1];
-        dataset.backgroundColor = mapFlagColor(group[1].flag);
-        // group[1].label === "Flagged Site" ? colors.colors.red : colors.colors.green;
+        dataset.backgroundColor = thresholds.thresholds.filter((x) =>
+            x.flag.includes(group[1].flag)
+        )[0].color;
         return dataset;
     });
 
