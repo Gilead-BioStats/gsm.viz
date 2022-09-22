@@ -7,41 +7,43 @@ function updateLegend(click, output) {
 }
 
 export default function generateLegend(output, container) {
-    if (document.querySelectorAll('.customLegend').length === 0) {
-        const chartBox = document.querySelector(container);
-        const div = document.createElement('DIV');
-        div.setAttribute('class', 'customLegend');
+    if (document.querySelectorAll('.customLegend').length !== 0) {
+        let div = document.querySelectorAll('.customLegend');
+        div[0].innerHTML = '';
+    }
 
-        const ul = document.createElement('UL');
+    const chartBox = document.querySelector(container);
+    const div = document.createElement('DIV');
+    div.setAttribute('class', 'customLegend');
 
-        output.legend.legendItems
-            // filter to only include one instance of each flag name
-            // by filtering legend items by their text
-            .filter((element, index, array) => {
-                return array.findIndex((a) => a.text == element.text) === index;
-            })
-            .forEach((dataset, index) => {
-                const text = dataset.text;
-                const stroke = dataset.strokeStyle;
-                const fill = dataset.fillStyle;
-                const fontColor = '#666';
-                const dat = dataset.data;
+    const ul = document.createElement('UL');
 
-                const li = document.createElement('LI');
-                const spanBox = document.createElement('SPAN');
-                spanBox.style.borderColor = stroke;
+    output.legend.legendItems
+        // filter to only include one instance of each flag name
+        // by filtering legend items by their text
+        .filter((element, index, array) => {
+            return array.findIndex((a) => a.text == element.text) === index;
+        })
+        .forEach((dataset, index) => {
+            const text = dataset.text;
+            const stroke = dataset.strokeStyle;
+            const fill = dataset.fillStyle;
 
-                if (fill == 'rgba(0,0,0,0.1)') {
-                    spanBox.setAttribute('class', 'legend-annotation');
-                } else {
-                    spanBox.setAttribute('class', 'legend-content');
-                    spanBox.style.backgroundColor = fill;
-                }
+            const li = document.createElement('LI');
+            const spanBox = document.createElement('SPAN');
+            spanBox.style.borderColor = stroke;
 
-                const p = document.createElement('P');
-                const textNode = document.createTextNode(text);
+            if (fill == 'rgba(0,0,0,0.1)') {
+                spanBox.setAttribute('class', 'legend-annotation');
+            } else {
+                spanBox.setAttribute('class', 'legend-content');
+                spanBox.style.backgroundColor = fill;
+            }
 
-                /*
+            const p = document.createElement('P');
+            const textNode = document.createTextNode(text);
+
+            /*
             li.onclick = (click) => {
                 const isHidden = !output.isDatasetVisible(index);
                 output.setDatasetVisibility(index, isHidden);
@@ -49,13 +51,13 @@ export default function generateLegend(output, container) {
             };
             */
 
-                ul.appendChild(li);
-                li.appendChild(spanBox);
-                li.appendChild(p);
-                p.appendChild(textNode);
-            });
+            ul.appendChild(li);
+            li.appendChild(spanBox);
+            li.appendChild(p);
+            p.appendChild(textNode);
+        });
 
-        chartBox.prepend(div);
-        div.appendChild(ul);
-    }
+    chartBox.prepend(div);
+    div.appendChild(ul);
+    //}
 }

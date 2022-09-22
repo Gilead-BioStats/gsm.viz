@@ -32,7 +32,7 @@ export default function barPlot(_element_, _data_, _config_ = {}) {
 
     const customLegend = {
         id: 'customLegend',
-        afterDraw(chart, args, options) {
+        afterUpdate(chart, args, options) {
             generateLegend(chart, '.chartBox');
         },
     };
