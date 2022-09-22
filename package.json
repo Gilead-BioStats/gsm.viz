@@ -2,7 +2,7 @@
   "name": "rbm-viz",
   "version": "0.1.0",
   "description": "web-based data visualization for risk-based monitoring",
-  "module": "src/index.js",
+  "module": "src/main.js",
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format",
@@ -39,6 +39,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "convert-csv-to-json": "^1.3.3",
     "esbuild": "^0.15.7",
     "jsdoc": "^3.6.11",
     "prettier": "^2.7.1"
