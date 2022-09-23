@@ -18,6 +18,15 @@ export default function generateLegend(output, container) {
 
     const ul = document.createElement('UL');
 
+    let li = document.createElement('LI');
+    let spanBox = document.createElement('SPAN');
+    spanBox.style.borderColor = 'gray';
+    spanBox.setAttribute('class', 'legend-content inliners');
+    spanBox.setAttribute('id', 'inliner-legend');
+    spanBox.style.backgroundColor = 'gray';
+    ul.appendChild(li);
+    li.appendChild(spanBox);
+
     output.legend.legendItems
         // filter to only include one instance of each flag name
         // by filtering legend items by their text

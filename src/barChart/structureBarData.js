@@ -20,6 +20,10 @@ export default function structureBarData(_data_, config, isChecked = true) {
         .sort((a, b) => b.y - a.y);
 
     if (isChecked) {
+        let inliners =
+            data.length - data.filter((x) => +x.stratum !== 0).length;
+        // console.log(inliners);
+        // document.getElementById('inliner-legend').innerHTML = inliners;
         data = data.filter((x) => +x.stratum !== 0);
     }
 
