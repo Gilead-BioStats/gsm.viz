@@ -7,6 +7,7 @@ function updateLegend(click, output) {
 }
 
 export default function generateLegend(output, container) {
+    console.log('count runs');
     if (document.querySelectorAll('.customLegend').length !== 0) {
         let div = document.querySelectorAll('.customLegend');
         div[0].innerHTML = '';
@@ -23,7 +24,8 @@ export default function generateLegend(output, container) {
     spanBox.style.borderColor = 'gray';
     spanBox.setAttribute('class', 'legend-content inliners');
     spanBox.setAttribute('id', 'inliner-legend');
-    spanBox.style.backgroundColor = 'gray';
+    spanBox.style.backgroundColor = '#e3e3e3';
+    spanBox.innerHTML = output.options.inliner_count;
     ul.appendChild(li);
     li.appendChild(spanBox);
 

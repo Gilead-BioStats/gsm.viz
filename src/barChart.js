@@ -18,7 +18,8 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     const config = configure(_config_);
 
     // Define array of input datasets to chart.
-    const datasets = structureBarData(_data_, config);
+    const data = structureBarData(_data_, config);
+    const datasets = data.data;
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -32,7 +33,13 @@ export default function barChart(_element_, _data_, _config_ = {}) {
 
     const customLegend = {
         id: 'customLegend',
-        afterUpdate(chart, args, options) {
+        beforeEvent(chart, args, options) {
+            generateLegend(chart, '.chartBox');
+        },
+        defaults: {
+            inliner_count: data.inliner_count,
+        },
+        afterDatasetUpdate(chart, args, options) {
             generateLegend(chart, '.chartBox');
         },
     };
@@ -53,6 +60,9 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         updateBarOption: updateBarOption,
     };
 
+    chart.options.inliner_count = data.inliner_count;
+
     console.log(chart);
+
     return chart;
 }

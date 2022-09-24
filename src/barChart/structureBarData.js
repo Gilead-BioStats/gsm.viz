@@ -19,11 +19,9 @@ export default function structureBarData(_data_, config, isChecked = true) {
         })
         .sort((a, b) => b.y - a.y);
 
+    let inliners = 0;
     if (isChecked) {
-        let inliners =
-            data.length - data.filter((x) => +x.stratum !== 0).length;
-        // console.log(inliners);
-        // document.getElementById('inliner-legend').innerHTML = inliners;
+        inliners = data.length - data.filter((x) => +x.stratum !== 0).length;
         data = data.filter((x) => +x.stratum !== 0);
     }
 
@@ -64,5 +62,5 @@ export default function structureBarData(_data_, config, isChecked = true) {
         return dataset;
     });
 
-    return [...lineLegend, ...datasets];
+    return { data: [...lineLegend, ...datasets], inliner_count: inliners };
 }
