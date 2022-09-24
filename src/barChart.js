@@ -31,17 +31,20 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         scales: getBarScales(config),
     };
 
+    // https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html
     const customLegend = {
         id: 'customLegend',
-        beforeEvent(chart, args, options) {
+        beforeDraw(chart, args, options) {
             generateLegend(chart, '.chartBox');
         },
         defaults: {
             inliner_count: data.inliner_count,
         },
+        /*
         afterDatasetUpdate(chart, args, options) {
             generateLegend(chart, '.chartBox');
         },
+        */
     };
 
     const chart = new Chart(canvas, {
