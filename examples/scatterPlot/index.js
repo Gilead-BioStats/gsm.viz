@@ -1,7 +1,7 @@
 const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/results_summary.csv',
-    '../data/results_bounds.csv',
+    '../data/results_bounds_long.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -31,6 +31,7 @@ Promise.all(dataPromises)
 
         // Handle data change event.
         const kriDropdown = document.querySelector('#kri');
+        kriDropdown.value = workflow.workflowid;
         kriDropdown.addEventListener('change', (event) => {
             const workflow = datasets[0].find(
                 (d) => d.workflowid === event.target.value

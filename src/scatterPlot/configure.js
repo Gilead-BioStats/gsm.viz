@@ -14,7 +14,10 @@ export default function configure(_config_) {
 
     // color
     config.color = coalesce(config.flag, 'flag');
-    config.colors = coalesce(config.colors, Object.keys(colors).map(key => colors[key]));
+    config.colors = coalesce(
+        config.colors,
+        Object.keys(colors).map((key) => colors[key])
+    );
 
     return config;
 }

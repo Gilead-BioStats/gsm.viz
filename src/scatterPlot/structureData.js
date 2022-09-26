@@ -6,11 +6,11 @@ import { rollups } from 'd3';
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} bounds - optional auxiliary data plotted as a line representing bounds
+ * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
  *
  * @returns {Object} Chart.js chart object
  */
-export default function structureData(_data_, config, bounds) {
+export default function structureData(_data_, config, _bounds_) {
     // Update data.
     const data = _data_
         .map((d) => {
@@ -31,51 +31,51 @@ export default function structureData(_data_, config, bounds) {
         (group) => {
             return {
                 type: 'scatter',
-                label: group[0].stratum > 1
-                    ? 'Flagged'
-                    : group[0].stratum > 0
-                    ? 'At risk'
-                    : 'Within thresholds',
+                stratum: group[0].stratum,
+                label:
+                    group[0].stratum > 1
+                        ? 'Flagged'
+                        : group[0].stratum > 0
+                        ? 'At risk'
+                        : 'Within thresholds',
                 data: group,
             };
         },
         (d) => d.stratum
     ).map((group, i) => {
         const dataset = group[1];
-        dataset.backgroundColor = config.colors[i];
+        dataset.backgroundColor = config.colors[dataset.stratum];
 
         return dataset;
     });
 
-    if (bounds !== null) {
-        const lowerBound = {
-            type: 'line',
-            data: bounds.map((d) => ({
-                x: Math.exp(d.logexposure),
-                y: d.lowercount,
-            })),
-            label: 'Lower bound',
-            borderColor: config.colors[1],
-            borderWidth: 1,
-            hoverRadius: 0,
-            pointRadius: 0,
-        };
+    if (_bounds_ !== null) {
+        const bounds = rollups(
+            _bounds_,
+            (group) => {
+                return {
+                    type: 'line',
+                    data: group.map((d) => ({
+                        x: Math.exp(+d.x),
+                        y: +d.y,
+                    })),
+                    borderWidth: 1,
+                    hoverRadius: 0,
+                    pointRadius: 0,
+                };
+            },
+            (d) => d.threshold
+        ).map((group, i) => group[1]);
 
-        const upperBound = {
-            type: 'line',
-            data: bounds.map((d) => ({
-                x: Math.exp(d.logexposure),
-                y: d.uppercount,
-            })),
-            label: 'Upper bound',
-            borderColor: config.colors[1],
-            borderWidth: 1,
-            hoverRadius: 0,
-            pointRadius: 0,
-        };
+        bounds.forEach((bound, i) => {
+            bound.flag = i - Math.floor(bounds.length / 2);
+            bound.label = `Bound (Flag = ${bound.flag})`;
+            bound.borderColor = config.colors[Math.abs(bound.flag)];
+        });
 
-        datasets.push(lowerBound);
-        datasets.push(upperBound);
+        bounds.forEach((bound) => {
+            datasets.push(bound);
+        });
     }
 
     return datasets;
