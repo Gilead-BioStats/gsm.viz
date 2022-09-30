@@ -9,8 +9,8 @@
         "outcome": "Rate",
         "model": "Poisson",
         "score": "Residual from Poisson Model",
-        "data_inputs": "\"rawplus.ae",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.ae, rawplus.subj",
+        "data_filters": "Non-Serious, TreatmentEmergent"
     },
     {
         "workflowid": "kri0002",
@@ -22,8 +22,8 @@
         "outcome": "Rate",
         "model": "Poisson",
         "score": "Residual from Poisson Model",
-        "data_inputs": "\"rawplus.ae",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.ae, rawplus.subj",
+        "data_filters": "Serious, TreatmentEmergent"
     },
     {
         "workflowid": "kri0003",
@@ -35,8 +35,8 @@
         "outcome": "Rate",
         "model": "Poisson",
         "score": "Residual from Poisson Model",
-        "data_inputs": "\"rawplus.pd",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.pd, rawplus.subj",
+        "data_filters": "Non-Important"
     },
     {
         "workflowid": "kri0004",
@@ -48,8 +48,8 @@
         "outcome": "Rate",
         "model": "Poisson",
         "score": "Residual from Poisson Model",
-        "data_inputs": "\"rawplus.pd",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.pd, rawplus.subj",
+        "data_filters": "Important"
     },
     {
         "workflowid": "kri0005",
@@ -61,8 +61,8 @@
         "outcome": "Percent",
         "model": "Fisher",
         "score": "P-value from Fisher's Exact Test",
-        "data_inputs": "\"rawplus.lb",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.lb, rawplus.subj",
+        "data_filters": ""
     },
     {
         "workflowid": "kri0006",
@@ -74,8 +74,8 @@
         "outcome": "Percent",
         "model": "Fisher",
         "score": "P-value from Fisher's Exact Test",
-        "data_inputs": "\"rawplus.lb",
-        "data_filters": " rawplus.subj\""
+        "data_inputs": "rawplus.lb, rawplus.subj",
+        "data_filters": "Grade >= 3"
     },
     {
         "workflowid": "kri0007",
@@ -100,7 +100,7 @@
         "outcome": "Percent",
         "model": "Fisher",
         "score": "P-value from Fisher's Exact Test",
-        "data_inputs": " rawplus.subj",
+        "data_inputs": "rawplus.subj",
         "data_filters": ""
     }
 ]

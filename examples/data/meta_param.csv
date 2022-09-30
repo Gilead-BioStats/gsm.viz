@@ -1,7 +1,9 @@
 ﻿workflowid,gsm_version,param,index,default,configurable
 kri0001,1.1,strGroup,,Site,FALSE
-kri0001,1.1,vThreshold,1,-5,TRUE
-kri0001,1.1,vThreshold,2,5,TRUE
+kri0001,1.1,vThreshold,1,-8,TRUE
+kri0001,1.1,vThreshold,2,-5,TRUE
+kri0001,1.1,vThreshold,3,5,TRUE
+kri0001,1.1,vThreshold,4,8,TRUE
 kri0001,1.1,strMethod,,poisson,FALSE
 kri0002,1.1,strGroup,,Site,FALSE
 kri0002,1.1,vThreshold,1,-5,TRUE
