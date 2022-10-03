@@ -44,6 +44,28 @@ export default function scatterPlot(
         scales: getScales(config),
     };
 
+    config.clickEvent = new Event('click-event');
+    canvas.addEventListener(
+        'click-event',
+        (event) => {
+            const data = event.data;
+            console.log(data);
+            return data;
+        },
+        false
+    );
+
+    config.hoverEvent = new Event('hover-event');
+    canvas.addEventListener(
+        'hover-event',
+        (event) => {
+            const data = event.data;
+            console.log(data);
+            return data;
+        },
+        false
+    );
+
     const chart = new Chart(canvas, {
         data: {
             datasets,

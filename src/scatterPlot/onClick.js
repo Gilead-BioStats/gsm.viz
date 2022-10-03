@@ -24,19 +24,21 @@ export default function onClick(event) {
         const point = points[0];
         const data = chart.data.datasets[point.datasetIndex].data;
         const datum = data[point.index];
-        const workflowid = config.workflowid;
-        const groupid = datum.groupid;
-        const url = encodeURI(
-            [
-                `studyid=${datum.studyid}`,
-                `workflowid=${datum.workflowid}`,
-                `groupid=${datum.groupid}`,
-                `group=${config.group}`,
-            ].join('&')
-        );
-        console.log(url);
+        config.clickEvent.data = datum;
+        chart.canvas.dispatchEvent(config.clickEvent);
+        //const workflowid = config.workflowid;
+        //const groupid = datum.groupid;
+        //const url = encodeURI(
+        //    [
+        //        `studyid=${datum.studyid}`,
+        //        `workflowid=${datum.workflowid}`,
+        //        `groupid=${datum.groupid}`,
+        //        `group=${config.group}`,
+        //    ].join('&')
+        //);
+        //console.log(url);
     } else {
         const image = chart.toBase64Image();
-        console.log(image);
+        //console.log(image);
     }
 }
