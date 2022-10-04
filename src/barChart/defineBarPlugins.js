@@ -60,7 +60,18 @@ export default function defineBarPlugins(config) {
             annotations,
         },
         legend: {
-            //display: false,
+            labels: {
+                filter: function (item, chart) {
+                    console.log('test');
+                    console.log(item);
+                    console.log(chart);
+                    console.log(chart.datasetIndex);
+                    console.log(item.datasetIndex);
+                    return (
+                        Math.sign(chart.datasets[item.datasetIndex].flag) !== -1
+                    );
+                },
+            },
         },
     };
 
