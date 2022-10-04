@@ -2,8 +2,8 @@ import Chart from 'chart.js/auto';
 import addCanvas from './util/addCanvas';
 import configure from './scatterPlot/configure';
 import structureData from './scatterPlot/structureData';
-import onClick from './scatterPlot/onClick';
 import onHover from './scatterPlot/onHover';
+import onClick from './scatterPlot/onClick';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
 import updateData from './scatterPlot/updateData';
@@ -38,30 +38,30 @@ export default function scatterPlot(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onClick,
         onHover,
+        onClick,
         plugins: definePlugins(config),
         scales: getScales(config),
     };
-
-    config.clickEvent = new Event('click-event');
-    canvas.addEventListener(
-        'click-event',
-        (event) => {
-            const data = event.data;
-            console.log(data);
-            return data;
-        },
-        false
-    );
 
     config.hoverEvent = new Event('hover-event');
     canvas.addEventListener(
         'hover-event',
         (event) => {
-            const data = event.data;
-            console.log(data);
-            return data;
+            const pointDatum = event.data;
+            config.hoverCallback(pointDatum);
+            return pointDatum;
+        },
+        false
+    );
+
+    config.clickEvent = new Event('click-event');
+    canvas.addEventListener(
+        'click-event',
+        (event) => {
+            const pointDatum = event.data;
+            config.clickCallback(pointDatum);
+            return pointDatum;
         },
         false
     );

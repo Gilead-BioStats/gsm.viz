@@ -19,5 +19,15 @@ export default function configure(_config_) {
         Object.keys(colors).map((key) => colors[key])
     );
 
+    // event callbacks
+    config.hoverCallback = coalesce(
+        config.hoverCallback,
+        (datum) => {}
+    );
+    config.clickCallback = coalesce(
+        config.clickCallback,
+        (datum) => console.table(datum)
+    );
+
     return config;
 }

@@ -1,22 +1,23 @@
+import getPoints from '../util/getPoints';
+import getPointDatum from '../util/getPointDatum';
+
 export default function onHover(event) {
     const chart = event.chart;
     const config = chart.data.config;
 
-    const points = event.chart.getElementsAtEventForMode(
-        event,
-        'nearest',
-        {
-            intersect: true,
-        },
-        true
-    );
+    const points = getPoints(event);
 
-    if (points.length) {
-        const point = points[0];
-        const data = chart.data.datasets[point.datasetIndex].data;
-        const datum = data[point.index];
-        event.native.target.style.cursor = 'pointer';
+    if (
+        points.length &&
+            chart.data.datasets[
+                points[0].datasetIndex
+            ].type === 'scatter'
+    ) {
+        const datum = getPointDatum(points, chart);
         config.hoverEvent.data = datum;
         chart.canvas.dispatchEvent(config.hoverEvent);
-    } else event.native.target.style.cursor = 'default';
+        event.native.target.style.cursor = 'pointer';
+    } else {
+        event.native.target.style.cursor = 'default';
+    }
 }

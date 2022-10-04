@@ -1,4 +1,6 @@
 import { getRelativePosition } from 'chart.js/helpers';
+import getPoints from '../util/getPoints';
+import getPointDatum from '../util/getPointDatum';
 
 export default function onClick(event) {
     const chart = event.chart;
@@ -10,35 +12,18 @@ export default function onClick(event) {
     const dataX = chart.scales.x.getValueForPixel(canvasPosition.x);
     const dataY = chart.scales.y.getValueForPixel(canvasPosition.y);
 
-    // Find data associated with point.
-    const points = chart.getElementsAtEventForMode(
-        event,
-        'nearest',
-        {
-            intersect: true,
-        },
-        true
-    );
+    const points = getPoints(event);
 
-    if (points.length) {
-        const point = points[0];
-        const data = chart.data.datasets[point.datasetIndex].data;
-        const datum = data[point.index];
+    if (
+        points.length &&
+            chart.data.datasets[
+                points[0].datasetIndex
+            ].type === 'scatter'
+    ) {
+        const datum = getPointDatum(points, chart);
         config.clickEvent.data = datum;
         chart.canvas.dispatchEvent(config.clickEvent);
-        //const workflowid = config.workflowid;
-        //const groupid = datum.groupid;
-        //const url = encodeURI(
-        //    [
-        //        `studyid=${datum.studyid}`,
-        //        `workflowid=${datum.workflowid}`,
-        //        `groupid=${datum.groupid}`,
-        //        `group=${config.group}`,
-        //    ].join('&')
-        //);
-        //console.log(url);
     } else {
-        const image = chart.toBase64Image();
-        //console.log(image);
+        //const image = chart.toBase64Image();
     }
 }
