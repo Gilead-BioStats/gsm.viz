@@ -1,3 +1,3 @@
 export default function coalesce(a, b) {
-    return a ? a : b;
+    return ![null, undefined].includes(a) ? a : b;
 }
