@@ -26,6 +26,7 @@ export default function structureBarData(_data_, config, isChecked = true) {
     }
 
     // dummy dataset for legend
+    /*
     const lineLegend = [
         {
             type: 'line',
@@ -40,6 +41,7 @@ export default function structureBarData(_data_, config, isChecked = true) {
             borderColor: thresholds.thresholds[1].color,
         },
     ];
+    */
 
     const datasets = rollups(
         data,
@@ -62,5 +64,5 @@ export default function structureBarData(_data_, config, isChecked = true) {
         return dataset;
     });
 
-    return { data: [...lineLegend, ...datasets], inliner_count: inliners };
+    return { data: [...datasets], inliner_count: inliners };
 }

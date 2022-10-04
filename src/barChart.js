@@ -31,6 +31,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         scales: getBarScales(config),
     };
 
+    /*
     // https://www.chartjs.org/docs/latest/api/interfaces/Plugin.html
     const customLegend = {
         id: 'customLegend',
@@ -40,12 +41,11 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         defaults: {
             inliner_count: data.inliner_count,
         },
-        /*
         afterDatasetUpdate(chart, args, options) {
             generateLegend(chart, '.chartBox');
         },
-        */
     };
+    */
 
     const chart = new Chart(canvas, {
         data: {
@@ -54,7 +54,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         },
         metadata: 'test',
         options,
-        plugins: [customLegend],
+        // plugins: [customLegend],
     });
 
     chart.helpers = {
