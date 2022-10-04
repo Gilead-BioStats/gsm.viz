@@ -1,7 +1,6 @@
 import updateBarConfig from './updateBarConfig';
 import updateBarPlugin from './updateBarPlugins';
 import structureBarData from './structureBarData';
-import generateLegend from '../util/generateLegend';
 
 export default function updateBarData(chart, _data_, _config_, isChecked) {
     chart.data.config = updateBarConfig(chart, _config_);

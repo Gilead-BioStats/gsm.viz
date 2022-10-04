@@ -22,4 +22,4 @@ const thresholds = [
     },
 ];
 
-module.exports = { thresholds };
+module.exports = { colors, thresholds };

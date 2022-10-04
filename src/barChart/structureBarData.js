@@ -25,24 +25,6 @@ export default function structureBarData(_data_, config, isChecked = true) {
         data = data.filter((x) => +x.stratum !== 0);
     }
 
-    // dummy dataset for legend
-    /*
-    const lineLegend = [
-        {
-            type: 'line',
-            label: 'Flagged Threshold',
-            data: [],
-            borderColor: thresholds.thresholds[0].color,
-        },
-        {
-            type: 'line',
-            label: 'At Risk Threshold',
-            data: [],
-            borderColor: thresholds.thresholds[1].color,
-        },
-    ];
-    */
-
     const datasets = rollups(
         data,
         (group) => {

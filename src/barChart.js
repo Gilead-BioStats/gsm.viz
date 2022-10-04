@@ -36,7 +36,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
             config,
         },
         metadata: 'test',
-        options
+        options,
     });
 
     chart.helpers = {
