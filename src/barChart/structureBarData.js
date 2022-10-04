@@ -1,11 +1,9 @@
 import { rollups } from 'd3';
-import colors from '../util/colors';
-import mapFlagColor from '../util/mapFlagColor';
-import mapFlagLabel from '../util/mapFlagLabel';
+import thresholds from '../util/colors';
 
-export default function structureBarData(_data_, config) {
+export default function structureBarData(_data_, config, isChecked = true) {
     // Update data.
-    const data = _data_
+    let data = _data_
         .map((d) => {
             const datum = {
                 ...d,
@@ -21,40 +19,32 @@ export default function structureBarData(_data_, config) {
         })
         .sort((a, b) => b.y - a.y);
 
-    // dummy dataset for legend
-    const lineLegend = [
-        {
-            type: 'line',
-            label: 'Flagged Threshold',
-            data: [],
-            borderColor: colors.colors.red,
-        },
-        {
-            type: 'line',
-            label: 'At Risk Threshold',
-            data: [],
-            borderColor: colors.colors.yellow,
-        },
-    ];
+    let inliners = 0;
+    if (isChecked) {
+        inliners = data.length - data.filter((x) => +x.stratum !== 0).length;
+        data = data.filter((x) => +x.stratum !== 0);
+    }
 
     const datasets = rollups(
         data,
         (group) => {
             return {
                 type: 'bar',
-                label: mapFlagLabel(group[0].stratum),
+                label: thresholds.thresholds.filter((x) =>
+                    x.flag.includes(group[0].stratum)
+                )[0].description,
                 data: group,
-                barThickness: 1.5,
                 flag: group[0].stratum,
             };
         },
         (d) => d.stratum
     ).map((group, i) => {
         const dataset = group[1];
-        dataset.backgroundColor = mapFlagColor(group[1].flag);
-        // group[1].label === "Flagged Site" ? colors.colors.red : colors.colors.green;
+        dataset.backgroundColor = thresholds.thresholds.filter((x) =>
+            x.flag.includes(group[1].flag)
+        )[0].color;
         return dataset;
     });
 
-    return [...lineLegend, ...datasets];
+    return { data: [...datasets], inliner_count: inliners };
 }

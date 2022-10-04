@@ -9,9 +9,7 @@ export default function onHover(event) {
 
     if (
         points.length &&
-            chart.data.datasets[
-                points[0].datasetIndex
-            ].type === 'scatter'
+        chart.data.datasets[points[0].datasetIndex].type === 'scatter'
     ) {
         const datum = getPointDatum(points, chart);
         config.hoverEvent.data = datum;

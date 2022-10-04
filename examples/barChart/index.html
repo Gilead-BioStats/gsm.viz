@@ -25,6 +25,15 @@
                     <option>kri0008</option>
                 </select>
             </fieldset>
+
+            <input
+                type="checkbox"
+                id="inliners"
+                name="inliners"
+                value="include_inliners"
+                checked
+            />
+            <label for="inliners">exclude inliners?</label>
         </div>
     </body>
 
@@ -78,6 +87,12 @@
             border-top-style: dotted;
             height: 0px;
             width: 20px;
+        }
+
+        .inliners {
+            height: 20px;
+            width: max-content;
+            padding: 0px 5px;
         }
     </style>
 

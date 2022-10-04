@@ -20,20 +20,13 @@ export default function configure(_config_) {
     );
 
     // event callbacks
-    config.hoverCallback = coalesce(
-        config.hoverCallback,
-        (datum) => {}
-    );
-    config.clickCallback = coalesce(
-        config.clickCallback,
-        (datum) => console.table(datum)
+    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
+    config.clickCallback = coalesce(config.clickCallback, (datum) =>
+        console.table(datum)
     );
 
     // sizing
-    config.maintainAspectRatio = coalesce(
-        config.maintainAspectRatio,
-        true
-    );
+    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, true);
 
     return config;
 }
