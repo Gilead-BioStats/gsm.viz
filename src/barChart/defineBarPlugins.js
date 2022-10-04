@@ -1,5 +1,16 @@
 import { format } from 'd3';
-import mapFlagColor from '../util/mapFlagColor';
+import thresholds from '../util/colors';
+
+let create_annotation_label = (x) => {
+    console.log(x.flag);
+    console.log(Math.sign(x.flag));
+    if (Math.sign(x.flag) === 1) {
+        return thresholds.thresholds.filter((y) => y.flag.includes(+x.flag))[0]
+            .description;
+    } else {
+        return '';
+    }
+};
 
 export default function defineBarPlugins(config) {
     let annotations = config.threshold.map((x, i) => ({
@@ -7,9 +18,23 @@ export default function defineBarPlugins(config) {
         type: 'line',
         yMin: x.threshold,
         yMax: x.threshold,
-        borderColor: mapFlagColor(+x.flag),
+        borderColor: thresholds.thresholds.filter((y) =>
+            y.flag.includes(+x.flag)
+        )[0].color,
         borderWidth: 2,
         borderDash: [5],
+        label: {
+            rotation: 'auto',
+            position: 'end',
+            color: thresholds.thresholds.filter((y) =>
+                y.flag.includes(+x.flag)
+            )[0].color,
+            backgroundColor: 'white',
+            content: thresholds.thresholds.filter((y) =>
+                y.flag.includes(+x.flag)
+            )[0].description,
+            display: Math.sign(+x.flag) === 1,
+        },
     }));
 
     const plugins = {
@@ -35,7 +60,13 @@ export default function defineBarPlugins(config) {
             annotations,
         },
         legend: {
-            display: false,
+            labels: {
+                filter: function (item, chart) {
+                    return (
+                        Math.sign(chart.datasets[item.datasetIndex].flag) !== -1
+                    );
+                },
+            },
         },
     };
 

@@ -4,4 +4,22 @@ const colors = {
     red: '#FF4D4F',
 };
 
-module.exports = { colors };
+const thresholds = [
+    {
+        flag: [-2, 2],
+        color: colors.red,
+        description: 'Flagged',
+    },
+    {
+        flag: [-1, 1],
+        color: colors.yellow,
+        description: 'At Risk',
+    },
+    {
+        flag: [0],
+        color: colors.green,
+        description: 'Sites Not Flagged Or At Risk',
+    },
+];
+
+module.exports = { colors, thresholds };

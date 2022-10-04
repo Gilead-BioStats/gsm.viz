@@ -7,23 +7,18 @@ import getBarScales from './barChart/getBarScales';
 import updateBarData from './barChart/updateBarData';
 import updateBarConfig from './barChart/updateBarConfig';
 import updateBarOption from './barChart/updateBarOption';
-import generateLegend from './util/generateLegend';
 import onBarClick from './barChart/onBarClick';
 import onHover from './scatterPlot/onHover';
 
-export default function barChart(
-    _element_,
-    _data_,
-    _config_ = {},
-    bounds = null
-) {
+export default function barChart(_element_, _data_, _config_ = {}) {
     const canvas = addCanvas(_element_);
 
     // Update config.
     const config = configure(_config_);
 
     // Define array of input datasets to chart.
-    const datasets = structureBarData(_data_, config);
+    const data = structureBarData(_data_, config);
+    const datasets = data.data;
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -35,20 +30,13 @@ export default function barChart(
         scales: getBarScales(config),
     };
 
-    const customLegend = {
-        id: 'customLegend',
-        afterDraw(chart, args, options) {
-            generateLegend(chart, '.chartBox');
-        },
-    };
-
     const chart = new Chart(canvas, {
         data: {
             datasets,
             config,
         },
+        metadata: 'test',
         options,
-        plugins: [customLegend],
     });
 
     chart.helpers = {
@@ -56,6 +44,10 @@ export default function barChart(
         updateBarConfig: updateBarConfig,
         updateBarOption: updateBarOption,
     };
+
+    chart.options.inliner_count = data.inliner_count;
+
+    console.log(chart);
 
     return chart;
 }
