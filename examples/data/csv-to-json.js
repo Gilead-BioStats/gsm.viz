@@ -2,7 +2,7 @@
 //jshint node:true
 const fs = require('fs');
 const path = require('path');
-const csvToJson = require('convert-csv-to-json');
+const csv = require('csvtojson');
 
 // Make an async function that gets executed immediately
 (async () => {
@@ -15,12 +15,14 @@ const csvToJson = require('convert-csv-to-json');
         for (const file of files) {
             if (/csv$/.test(file)) {
                 console.log(file);
-                csvToJson
-                    .fieldDelimiter(',')
-                    .generateJsonFileFromCsv(
-                        file,
-                        file.replace(/csv$/, 'json')
-                    );
+                csv()
+                    .fromFile(file)
+                    .then((data) => {
+                        fs.writeFileSync(
+                            file.replace(/csv$/, 'json'),
+                            JSON.stringify(data, null, '\t')
+                        );
+                    });
             }
         } // End for...of
     } catch (e) {

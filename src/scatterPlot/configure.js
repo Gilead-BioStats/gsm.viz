@@ -1,4 +1,5 @@
 import coalesce from '../util/coalesce';
+import { colors } from '../util/colors';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
@@ -13,11 +14,10 @@ export default function configure(_config_) {
 
     // color
     config.color = coalesce(config.flag, 'flag');
-    config.colors = coalesce(config.colors, [
-        'rgba(224,224,224,0.5)',
-        //'yellow',
-        '#d6604d',
-    ]);
+    config.colors = coalesce(
+        config.colors,
+        Object.keys(colors).map((key) => colors[key])
+    );
 
     return config;
 }

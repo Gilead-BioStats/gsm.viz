@@ -5,7 +5,7 @@ export default function definePlugins(config) {
         legend: {
             labels: {
                 filter: function (legendItem, chartData) {
-                    return !/bound/.test(legendItem.text);
+                    return !/bound/i.test(legendItem.text);
                 },
             },
         },
