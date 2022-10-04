@@ -23,7 +23,20 @@ export default function structureData(_data_, config, _bounds_) {
 
             return datum;
         })
-        .sort((a, b) => a.stratum - b.stratum);
+        .sort((a, b) => {
+            const aSelected = config.selectedGroupIDs.indexOf(a.groupid) > -1;
+            const bSelected = config.selectedGroupIDs.indexOf(b.groupid) > -1;
+            const stratum = b.stratum - a.stratum;
+
+            return aSelected
+                ? 1
+                : bSelected
+                ? -1
+                : stratum;
+        });
+    // TODO: ensure points of greater interest are rendered on top of points of lesser interest
+    // TODO: ensure legend displays in the correct order: green > yellow > red
+    console.log(new Set(data.map(d => d.stratum)));
 
     // Stratify dataset in order to apply color scheme.
     const datasets = rollups(

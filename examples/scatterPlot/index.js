@@ -22,6 +22,9 @@ Promise.all(dataPromises)
         );
 
         // visualization
+        workflow.selectedGroupIDs = Array.from(new Set(results.map(d => d.groupid)).values())
+            .filter(groupid => ['10', '92', '144'].includes(groupid)); // Math.random() < .01);
+        console.log(workflow.selectedGroupIDs);
         const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,

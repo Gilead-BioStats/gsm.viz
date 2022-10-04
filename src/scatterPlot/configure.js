@@ -19,5 +19,11 @@ export default function configure(_config_) {
         Object.keys(colors).map((key) => colors[key])
     );
 
+    // selected group IDs
+    config.selectedGroupIDs = coalesce(
+        config.selectedGroupIDs,
+        []
+    );
+
     return config;
 }

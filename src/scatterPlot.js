@@ -34,6 +34,43 @@ export default function scatterPlot(
     // Define array of input datasets to chart.
     const datasets = structureData(_data_, config, bounds);
 
+    const radius = function(context, options) {
+        const data = context.dataset;
+        const datum = context.dataset.data[context.dataIndex];
+
+        if (data.type === 'scatter') {
+            return this.selectedGroupIDs.includes(datum.groupid)
+                ? 5
+                : 3;
+        }// else {
+        //    return options.color;
+        //}
+    }
+
+    const borderColor = function(context, options) {
+        const data = context.dataset;
+        const datum = context.dataset.data[context.dataIndex];
+
+        if (data.type === 'scatter') {
+            return this.selectedGroupIDs.includes(datum.groupid)
+                ? 'black'
+                : 'rgba(0, 0, 0, 0.1)';
+        }// else {
+        //    return options.color;
+        //}
+    }
+
+    const borderWidth = function(context, options) {
+        const data = context.dataset;
+        const datum = context.dataset.data[context.dataIndex];
+
+        if (data.type === 'scatter') {
+            return this.selectedGroupIDs.includes(datum.groupid)
+                ? 3
+                : 1;
+        }
+    }
+
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
         animation: false,
@@ -42,6 +79,9 @@ export default function scatterPlot(
         onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
+        borderColor: borderColor.bind(config),
+        borderWidth: borderWidth.bind(config),
+        radius: radius.bind(config),
     };
 
     const chart = new Chart(canvas, {
