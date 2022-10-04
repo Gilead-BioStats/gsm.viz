@@ -66,6 +66,8 @@ export default function scatterPlot(
         false
     );
 
+    options.maintainAspectRatio = config.maintainAspectRatio;
+
     const chart = new Chart(canvas, {
         data: {
             datasets,

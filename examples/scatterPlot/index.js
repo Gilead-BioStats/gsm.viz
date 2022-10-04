@@ -22,6 +22,7 @@ Promise.all(dataPromises)
         );
 
         // visualization
+        workflow.maintainAspectRatio = false;
         const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
