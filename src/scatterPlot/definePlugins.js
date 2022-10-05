@@ -1,13 +1,21 @@
 import { format } from 'd3';
 
 export default function definePlugins(config) {
+    const legendOrder = ['Within thresholds', 'At risk', 'Flagged'];
     const plugins = {
         legend: {
             labels: {
                 filter: function (legendItem, chartData) {
                     return !/bound/i.test(legendItem.text);
                 },
+                sort: function (a, b, chartData) {
+                    return (
+                        legendOrder.indexOf(a.text) -
+                        legendOrder.indexOf(b.text)
+                    );
+                },
             },
+            position: 'top',
         },
         title: {
             display: true,

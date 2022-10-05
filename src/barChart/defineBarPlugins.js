@@ -4,15 +4,16 @@ import thresholds from '../util/colors';
 let create_annotation_label = (x) => {
     console.log(x.flag);
     console.log(Math.sign(x.flag));
-    if (Math.sign(x.flag) === 1) {
-        return thresholds.thresholds.filter((y) => y.flag.includes(+x.flag))[0]
-            .description;
-    } else {
-        return '';
-    }
+    //if (Math.sign(x.flag) === 1) {
+    return thresholds.thresholds.filter((y) => y.flag.includes(+x.flag))[0]
+        .description;
+    //} else {
+    //    return '';
+    //}
 };
 
 export default function defineBarPlugins(config) {
+    //const legendOrder = ['Sites Not Flagged Or At Risk', 'At Risk', 'Flagged'];
     let annotations = config.threshold.map((x, i) => ({
         drawTime: 'beforeDatasetsDraw',
         type: 'line',
@@ -25,7 +26,7 @@ export default function defineBarPlugins(config) {
         borderDash: [5],
         label: {
             rotation: 'auto',
-            position: 'end',
+            position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
             color: thresholds.thresholds.filter((y) =>
                 y.flag.includes(+x.flag)
             )[0].color,
@@ -33,7 +34,7 @@ export default function defineBarPlugins(config) {
             content: thresholds.thresholds.filter((y) =>
                 y.flag.includes(+x.flag)
             )[0].description,
-            display: Math.sign(+x.flag) === 1,
+            display: true, //Math.sign(+x.flag) === 1,
         },
     }));
 
@@ -60,13 +61,18 @@ export default function defineBarPlugins(config) {
             annotations,
         },
         legend: {
-            labels: {
-                filter: function (item, chart) {
-                    return (
-                        Math.sign(chart.datasets[item.datasetIndex].flag) !== -1
-                    );
-                },
-            },
+            display: false,
+            //labels: {
+            //    filter: function (item, chart) {
+            //        return (
+            //            Math.sign(chart.datasets[item.datasetIndex].flag) !== -1
+            //        );
+            //    },
+            //    sort: function (a, b, chartData) {
+            //        return legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
+            //    },
+            //    position: 'top',
+            //},
         },
     };
 

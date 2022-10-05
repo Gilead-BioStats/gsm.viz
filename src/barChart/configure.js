@@ -2,6 +2,7 @@ import coalesce from '../util/coalesce';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
+    config.type = 'bar';
 
     // x-axis
     config.x = coalesce(config.x, 'groupid');
@@ -30,12 +31,19 @@ export default function configure(_config_) {
         config[config.denom]
     );
 
-    config.threshold = [
+    //
+    config.threshold = coalesce(config.threshold, [
         { threshold: 10, flag: 2 },
         { threshold: -10, flag: -2 },
         { threshold: 5, flag: 1 },
         { threshold: -5, flag: -1 },
-    ];
+    ]);
+
+    // Custom event callbacks
+    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
+    config.clickCallback = coalesce(config.clickCallback, (datum) =>
+        console.table(datum)
+    );
 
     return config;
 }

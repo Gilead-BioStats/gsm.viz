@@ -3,6 +3,7 @@ import { colors } from '../util/colors';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
+    config.type = 'scatter';
 
     // x-axis
     config.x = coalesce(config.x, 'denominator');

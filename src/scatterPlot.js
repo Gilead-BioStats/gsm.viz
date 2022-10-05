@@ -1,11 +1,13 @@
-import Chart from 'chart.js/auto';
-import addCanvas from './util/addCanvas';
 import configure from './scatterPlot/configure';
+import addCanvas from './util/addCanvas';
 import structureData from './scatterPlot/structureData';
-import onHover from './scatterPlot/onHover';
-import onClick from './scatterPlot/onClick';
+
+import onHover from './util/onHover';
+import onClick from './util/onClick';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
+
+import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
 import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
@@ -26,10 +28,11 @@ export default function scatterPlot(
     _config_ = {},
     bounds = null
 ) {
-    const canvas = addCanvas(_element_);
-
     // Update config.
     const config = configure(_config_);
+
+    // Add or select canvas element in which to render chart.
+    const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
     const datasets = structureData(_data_, config, bounds);
@@ -79,28 +82,6 @@ export default function scatterPlot(
         borderWidth: borderWidth.bind(config),
         radius: radius.bind(config),
     };
-
-    config.hoverEvent = new Event('hover-event');
-    canvas.addEventListener(
-        'hover-event',
-        (event) => {
-            const pointDatum = event.data;
-            config.hoverCallback(pointDatum);
-            return pointDatum;
-        },
-        false
-    );
-
-    config.clickEvent = new Event('click-event');
-    canvas.addEventListener(
-        'click-event',
-        (event) => {
-            const pointDatum = event.data;
-            config.clickCallback(pointDatum);
-            return pointDatum;
-        },
-        false
-    );
 
     options.maintainAspectRatio = config.maintainAspectRatio;
 

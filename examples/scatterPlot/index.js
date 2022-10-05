@@ -22,88 +22,33 @@ Promise.all(dataPromises)
         );
 
         // visualization
-        workflow.maintainAspectRatio = false;
-        workflow.selectedGroupIDs = Array.from(
-            new Set(results.map((d) => d.groupid)).values()
-        ).filter((groupid) => ['10', '92', '144'].includes(groupid)); // Math.random() < .01);
-        console.log(workflow.selectedGroupIDs);
-        const instance = rbmViz.default.scatterPlot(
+        //workflow.maintainAspectRatio = false;
+        const groupIDs = [
+            ...new Set(results.map((result) => result.groupid)).values(),
+        ];
+        workflow.selectedGroupIDs = [
+            results[Math.floor(Math.random() * results.length)].groupid,
+        ];
+        let instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             workflow,
             bounds
         );
+        console.log(instance.canvas);
 
-        // Handle data change event.
-        const kriDropdown = document.querySelector('#kri');
-        kriDropdown.value = workflow.workflowid;
-        kriDropdown.addEventListener('change', (event) => {
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === event.target.value
-            );
-            const results = datasets[1].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            const bounds = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            instance.helpers.updateData(instance, results, workflow, bounds);
-        });
+        // Add event listener to KRI dropdown.
+        kri(workflow, datasets, instance, true);
 
-        // Handle config change event.
-        document
-            .querySelector('#x-axis-type')
-            .addEventListener('change', (event) => {
-                instance.helpers.updateOption(
-                    instance,
-                    'scales.x.type',
-                    event.target.value
-                );
-            });
+        // Add event listener to highlight sites.
+        site(datasets, instance, true);
 
-        const button = document.getElementById('destroy');
-        // Destroy chart:
-        // 1. calls chart.destroy
-        // 2. click event updates to create
-        // 3. button text changes to Create
-        const destroy = function () {
-            this.destroy();
-            button.innerHTML = '<em>Create</em>';
-            button.onclick = create;
-        };
-        button.onclick = destroy.bind(instance);
+        // Add event listener to x-axis type toggle.
+        xAxisType(instance, true);
 
-        // Create chart:
-        // 1. calls rbmViz.default.scatterPlot
-        // 2. click event updates to destroy
-        // 3. button text changes to KILL
-        const create = () => {
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === kriDropdown.value
-            );
-            const results = datasets[1].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            const bounds = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            const instance = rbmViz.default.scatterPlot(
-                document
-                    .getElementById('container')
-                    .getElementsByTagName('canvas')[0],
-                results,
-                workflow,
-                bounds
-            );
-            button.innerHTML = '<strong>KILL</strong>';
-            button.onclick = destroy.bind(instance);
-        };
+        // Add event listener to chart lifecycle button.
+        lifecycle(instance, datasets, true);
 
-        const download = document.getElementById('download');
-        download.onclick = () => {
-            const a = document.createElement('a');
-            a.href = instance.toBase64Image();
-            a.download = 'scatter-plot.png';
-            a.click();
-        };
+        // Add event listener to download button.
+        download(instance, true);
     });
