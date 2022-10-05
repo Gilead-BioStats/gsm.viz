@@ -19,13 +19,6 @@ export default function structureBarData(_data_, config, isChecked = true) {
         })
         .sort((a, b) => b.y - a.y);
 
-    let inliners = 0;
-    if (isChecked) {
-        inliners = data.length - data.filter((x) => +x.stratum !== 0).length;
-        data = data.filter((x) => +x.stratum !== 0);
-    }
-    //console.log(data.length);
-
     const datasets = rollups(
         data,
         (group) => {
@@ -84,5 +77,5 @@ export default function structureBarData(_data_, config, isChecked = true) {
         },
     ];
 
-    return { data: [...test], inliner_count: inliners };
+    return test;
 }

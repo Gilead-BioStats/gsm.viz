@@ -19,20 +19,8 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
-    const data = structureBarData(_data_, config);
-    const datasets = data.data;
-
-    const backgroundColor = function (context, options) {
-        //const data = context.dataset;
-        //const datum = context.dataset.data[context.dataIndex];
-        //if (data.type === 'scatter') {
-        //    return this.selectedGroupIDs.includes(datum.groupid)
-        //        ? 'black'
-        //        : 'rgba(0, 0, 0, 0.1)';
-        //} // else {
-        //    return options.color;
-        //}
-    };
+    const datasets = structureBarData(_data_, config);
+    //const datasets = data.data;
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -59,7 +47,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         updateBarOption: updateBarOption,
     };
 
-    chart.options.inliner_count = data.inliner_count;
+    //chart.options.inliner_count = data.inliner_count;
 
     return chart;
 }
