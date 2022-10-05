@@ -2,8 +2,8 @@ import Chart from 'chart.js/auto';
 import addCanvas from './util/addCanvas';
 import configure from './scatterPlot/configure';
 import structureData from './scatterPlot/structureData';
-import onClick from './scatterPlot/onClick';
 import onHover from './scatterPlot/onHover';
+import onClick from './scatterPlot/onClick';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
 import updateData from './scatterPlot/updateData';
@@ -34,20 +34,18 @@ export default function scatterPlot(
     // Define array of input datasets to chart.
     const datasets = structureData(_data_, config, bounds);
 
-    const radius = function(context, options) {
+    const radius = function (context, options) {
         const data = context.dataset;
         const datum = context.dataset.data[context.dataIndex];
 
         if (data.type === 'scatter') {
-            return this.selectedGroupIDs.includes(datum.groupid)
-                ? 5
-                : 3;
-        }// else {
+            return this.selectedGroupIDs.includes(datum.groupid) ? 5 : 3;
+        } // else {
         //    return options.color;
         //}
-    }
+    };
 
-    const borderColor = function(context, options) {
+    const borderColor = function (context, options) {
         const data = context.dataset;
         const datum = context.dataset.data[context.dataIndex];
 
@@ -55,34 +53,56 @@ export default function scatterPlot(
             return this.selectedGroupIDs.includes(datum.groupid)
                 ? 'black'
                 : 'rgba(0, 0, 0, 0.1)';
-        }// else {
+        } // else {
         //    return options.color;
         //}
-    }
+    };
 
-    const borderWidth = function(context, options) {
+    const borderWidth = function (context, options) {
         const data = context.dataset;
         const datum = context.dataset.data[context.dataIndex];
 
         if (data.type === 'scatter') {
-            return this.selectedGroupIDs.includes(datum.groupid)
-                ? 3
-                : 1;
+            return this.selectedGroupIDs.includes(datum.groupid) ? 3 : 1;
         }
-    }
+    };
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onClick,
         onHover,
+        onClick,
         plugins: definePlugins(config),
         scales: getScales(config),
         borderColor: borderColor.bind(config),
         borderWidth: borderWidth.bind(config),
         radius: radius.bind(config),
     };
+
+    config.hoverEvent = new Event('hover-event');
+    canvas.addEventListener(
+        'hover-event',
+        (event) => {
+            const pointDatum = event.data;
+            config.hoverCallback(pointDatum);
+            return pointDatum;
+        },
+        false
+    );
+
+    config.clickEvent = new Event('click-event');
+    canvas.addEventListener(
+        'click-event',
+        (event) => {
+            const pointDatum = event.data;
+            config.clickCallback(pointDatum);
+            return pointDatum;
+        },
+        false
+    );
+
+    options.maintainAspectRatio = config.maintainAspectRatio;
 
     const chart = new Chart(canvas, {
         data: {

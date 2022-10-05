@@ -40,7 +40,7 @@ export default function definePlugins(config) {
                 title: () => null,
             },
             events: ['click', 'mouseenter', 'mouseover'],
-            filter: (data) => !/bound/.test(data.dataset.label), // turns off tooltip for bounds
+            filter: (data) => !/bound/i.test(data.dataset.label), // turns off tooltip for bounds
         },
     };
 

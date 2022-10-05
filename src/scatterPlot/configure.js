@@ -20,10 +20,16 @@ export default function configure(_config_) {
     );
 
     // selected group IDs
-    config.selectedGroupIDs = coalesce(
-        config.selectedGroupIDs,
-        []
+    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
+
+    // event callbacks
+    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
+    config.clickCallback = coalesce(config.clickCallback, (datum) =>
+        console.table(datum)
     );
+
+    // sizing
+    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, true);
 
     return config;
 }
