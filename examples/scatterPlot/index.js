@@ -1,7 +1,7 @@
 const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/results_summary.csv',
-    '../data/results_bounds_long.csv',
+    '../data/results_bounds.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>

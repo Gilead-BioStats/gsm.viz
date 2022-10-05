@@ -6,6 +6,7 @@ import onHover from './util/onHover';
 import onClick from './util/onClick';
 import defineBarPlugins from './barChart/defineBarPlugins';
 import getBarScales from './barChart/getBarScales';
+import scriptableOptions from './barChart/scriptableOptions';
 
 import Chart from 'chart.js/auto';
 import updateBarData from './barChart/updateBarData';
@@ -30,7 +31,9 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         onClick,
         plugins: defineBarPlugins(config),
         scales: getBarScales(config),
+        ...scriptableOptions(config),
     };
+    console.log(config.selectedGroupIDs);
 
     const chart = new Chart(canvas, {
         data: {

@@ -6,6 +6,7 @@ import onHover from './util/onHover';
 import onClick from './util/onClick';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
+import scriptableOptions from './scatterPlot/scriptableOptions';
 
 import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
@@ -18,7 +19,7 @@ import updateOption from './scatterPlot/updateOption';
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} bounds - optional auxiliary data plotted as a line representing bounds
+ * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing _bounds_
  *
  * @returns {Object} Chart.js chart object
  */
@@ -26,7 +27,7 @@ export default function scatterPlot(
     _element_,
     _data_,
     _config_ = {},
-    bounds = null
+    _bounds_ = null
 ) {
     // Update config.
     const config = configure(_config_);
@@ -35,40 +36,7 @@ export default function scatterPlot(
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
-    const datasets = structureData(_data_, config, bounds);
-
-    const radius = function (context, options) {
-        const data = context.dataset;
-        const datum = context.dataset.data[context.dataIndex];
-
-        if (data.type === 'scatter') {
-            return this.selectedGroupIDs.includes(datum.groupid) ? 5 : 3;
-        } // else {
-        //    return options.color;
-        //}
-    };
-
-    const borderColor = function (context, options) {
-        const data = context.dataset;
-        const datum = context.dataset.data[context.dataIndex];
-
-        if (data.type === 'scatter') {
-            return this.selectedGroupIDs.includes(datum.groupid)
-                ? 'black'
-                : 'rgba(0, 0, 0, 0.1)';
-        } // else {
-        //    return options.color;
-        //}
-    };
-
-    const borderWidth = function (context, options) {
-        const data = context.dataset;
-        const datum = context.dataset.data[context.dataIndex];
-
-        if (data.type === 'scatter') {
-            return this.selectedGroupIDs.includes(datum.groupid) ? 3 : 1;
-        }
-    };
+    const datasets = structureData(_data_, config, _bounds_);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -78,9 +46,7 @@ export default function scatterPlot(
         onClick,
         plugins: definePlugins(config),
         scales: getScales(config),
-        borderColor: borderColor.bind(config),
-        borderWidth: borderWidth.bind(config),
-        radius: radius.bind(config),
+        ...scriptableOptions(config),
     };
 
     options.maintainAspectRatio = config.maintainAspectRatio;

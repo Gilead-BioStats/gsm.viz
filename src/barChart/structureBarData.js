@@ -19,37 +19,38 @@ export default function structureBarData(_data_, config, isChecked = true) {
         })
         .sort((a, b) => b.y - a.y);
 
-    const datasets = rollups(
-        data,
-        (group) => {
-            return {
-                type: 'bar',
-                label: thresholds.thresholds.filter((x) =>
-                    x.flag.includes(group[0].stratum)
-                )[0].description,
-                data: group,
-                flag: group[0].stratum,
-            };
-        },
-        (d) => d.stratum
-    ).map((group, i) => {
-        const dataset = group[1];
-        //dataset.backgroundColor = function(d) {
-        //    console.log(d);
-        //};
-        dataset.backgroundColor = thresholds.thresholds.filter((x) =>
-            x.flag.includes(group[1].flag)
-        )[0].color;
-        dataset.barThickness = function (d) {
-            return data.length === 25 ? 15 : 3; // 'flex';
-        };
-        dataset.categoryPercentage = 1;
-        dataset.barPercentage = 1;
+    //const datasets = rollups(
+    //    data,
+    //    (group) => {
+    //        return {
+    //            type: 'bar',
+    //            label: thresholds.thresholds.filter((x) =>
+    //                x.flag.includes(group[0].stratum)
+    //            )[0].description,
+    //            data: group,
+    //            flag: group[0].stratum,
+    //        };
+    //    },
+    //    (d) => d.stratum
+    //).map((group, i) => {
+    //    const dataset = group[1];
+    //    //dataset.backgroundColor = function(d) {
+    //    //    console.log(d);
+    //    //};
+    //    dataset.backgroundColor = thresholds.thresholds.filter((x) =>
+    //        x.flag.includes(group[1].flag)
+    //    )[0].color;
+    //    //dataset.borderWidth = 1;
+    //    //dataset.barThickness = function (d) {
+    //    //    return data.length === 25 ? 15 : 3; // 'flex';
+    //    //};
+    //    //dataset.categoryPercentage = 1;
+    //    //dataset.barPercentage = 1;
 
-        return dataset;
-    });
+    //    return dataset;
+    //});
 
-    const test = [
+    const datasets = [
         {
             type: 'bar',
             //label: thresholds.thresholds.filter((x) =>
@@ -64,18 +65,15 @@ export default function structureBarData(_data_, config, isChecked = true) {
 
                 if (data.type === 'bar') {
                     //console.log(datum);
-                    return thresholds.thresholds.find((x) =>
-                        x.flag.includes(datum.stratum)
-                    ).color;
-                    //return this.selectedGroupIDs.includes(datum.groupid)
-                    //    ? 'black'
-                    //    : 'rgba(0, 0, 0, 0.1)';
-                } // else {
-                //    return options.color;
-                //}
+                    return config.selectedGroupIDs.includes(datum.groupid)
+                        ? 'black'
+                        : thresholds.thresholds.find((x) =>
+                              x.flag.includes(datum.stratum)
+                          ).color;
+                }
             },
         },
     ];
 
-    return test;
+    return datasets;
 }

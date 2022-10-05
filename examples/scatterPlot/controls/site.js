@@ -6,9 +6,6 @@ const site = function (datasets, instance, setup = false) {
         option.value = 'None';
         option.innerHTML = 'None';
         siteDropdown.appendChild(option);
-        siteDropdown.value = instance.data.config.selectedGroupIDs.length
-            ? instance.data.config.selectedGroupIDs[0]
-            : 'None';
 
         const groupIDs = Array.from(
             new Set(datasets[1].map((d) => d.groupid)).values()
@@ -20,6 +17,10 @@ const site = function (datasets, instance, setup = false) {
             option.innerHTML = groupIDs[i];
             siteDropdown.appendChild(option);
         }
+
+        siteDropdown.value = instance.data.config.selectedGroupIDs.length
+            ? instance.data.config.selectedGroupIDs[0]
+            : 'None';
 
         siteDropdown.addEventListener('change', (event) => {
             instance.destroy();

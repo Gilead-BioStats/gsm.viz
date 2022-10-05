@@ -39,6 +39,9 @@ export default function configure(_config_) {
         { threshold: -5, flag: -1 },
     ]);
 
+    // selected group IDs
+    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
+
     // Custom event callbacks
     config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
     config.clickCallback = coalesce(config.clickCallback, (datum) =>
