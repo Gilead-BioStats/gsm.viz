@@ -29,12 +29,13 @@ const site = function (datasets, instance, setup = false) {
                 [] :
                 [event.target.value];
             console.log(instance.data.config.selectedGroupIDs);
-            instance.helpers
-                .updateConfig(
-                    instance,
-                    instance.data.config,
-                    true
-                );
+            instance.update();
+            //instance.helpers
+            //    .updateConfig(
+            //        instance,
+            //        instance.data.config,
+            //        true
+            //    );
 
             //const workflow = datasets[0].find((d) => d.workflowid === kri());
             //const results = datasets[1].filter(
