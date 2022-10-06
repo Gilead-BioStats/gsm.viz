@@ -51,6 +51,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     };
 
     //chart.options.inliner_count = data.inliner_count;
+    options.maintainAspectRatio = config.maintainAspectRatio;
 
     return chart;
 }

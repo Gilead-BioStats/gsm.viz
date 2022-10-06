@@ -72,7 +72,7 @@ export default function structureData(_data_, config, _bounds_) {
             },
             (d) => d.threshold
         ).map((group, i) => group[1]);
-        console.log(bounds);
+
         bounds.forEach((bound, i) => {
             bound.flag = i - Math.floor(bounds.length / 2);
             bound.label = `Bound (Flag = ${bound.flag})`;

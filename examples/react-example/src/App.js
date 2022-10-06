@@ -14,10 +14,12 @@ const App = () => {
     // };
 
     const WORKFLOW = meta_workflow[0];
-    const DATA = results_summary
-        .filter(d => d.workflowid === WORKFLOW.workflowid);
-    const BOUNDS = results_bounds
-        .filter(d => d.workflowid === WORKFLOW.workflowid);
+    const DATA = results_summary.filter(
+        (d) => d.workflowid === WORKFLOW.workflowid
+    );
+    const BOUNDS = results_bounds.filter(
+        (d) => d.workflowid === WORKFLOW.workflowid
+    );
 
     return (
         <>
