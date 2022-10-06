@@ -1,0 +1,18 @@
+[
+    {
+        "studyid": "AA-AA-000-0000",
+        "enrolled_sites": "176",
+        "enrolled_participants": "1301",
+        "planned_sites": "190",
+        "planned_participants": "1300",
+        "title": "Sample Protocol",
+        "nickname": "Sample Nickname",
+        "indication": "Sample Indication",
+        "ta": "Oncology",
+        "phase": "3",
+        "status": "Active",
+        "fpfv": "1/1/2003",
+        "lplv": "6/1/2021",
+        "rbm_flag": "1"
+    }
+]
