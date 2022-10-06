@@ -42,14 +42,13 @@ export default function scatterPlot(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onHover,
+        maintainAspectRatio: config.maintainAspectRatio,
         onClick,
+        onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
         ...scriptableOptions(config),
     };
-
-    options.maintainAspectRatio = config.maintainAspectRatio;
 
     const chart = new Chart(canvas, {
         data: {

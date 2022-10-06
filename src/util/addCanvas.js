@@ -18,11 +18,10 @@ export default function addCanvas(_element_, config) {
         const oldCanvas = _element_.getElementsByTagName('canvas')[0];
 
         if (oldCanvas !== undefined) {
-            //if (oldCanvas.hasOwnProperty('chart'))
-            //    oldCanvas.chart.destroy();
+            if (oldCanvas.hasOwnProperty('chart'))
+                oldCanvas.chart.destroy();
 
-            //oldCanvas.replaceWith(newCanvas);
-            newCanvas = oldCanvas;
+            oldCanvas.replaceWith(newCanvas);
         } else {
             _element_.appendChild(newCanvas);
         }

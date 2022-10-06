@@ -27,13 +27,13 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onHover,
+        maintainAspectRatio: config.maintainAspectRatio,
         onClick,
+        onHover,
         plugins: defineBarPlugins(config),
         scales: getBarScales(config),
         ...scriptableOptions(config),
     };
-    console.log(config.selectedGroupIDs);
 
     const chart = new Chart(canvas, {
         data: {
@@ -50,8 +50,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         updateBarOption: updateBarOption,
     };
 
-    //chart.options.inliner_count = data.inliner_count;
-    options.maintainAspectRatio = config.maintainAspectRatio;
+    canvas.chart = chart;
 
     return chart;
 }
