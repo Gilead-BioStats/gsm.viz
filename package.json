@@ -11,7 +11,8 @@
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "local": "live-server --ignore=**/node_modules --wait=250 .",
-    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch"
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch",
+    "test": "npx mocha-esbuild \"test/*\""
   },
   "repository": {
     "type": "git",
@@ -40,10 +41,13 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@rtvision/mocha-esbuild": "^0.1.8",
+    "chai": "^4.3.6",
     "csvtojson": "^2.0.10",
     "esbuild": "^0.15.7",
     "jsdoc": "^3.6.11",
     "live-server": "^1.2.2",
+    "mocha": "^10.0.0",
     "prettier": "^2.7.1"
   }
 }
