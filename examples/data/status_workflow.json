@@ -2,65 +2,33 @@
     {
         "studyid": "AA-AA-000-0000",
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "active": "TRUE",
-        "status": "Valid",
+        "status": "TRUE",
         "notes": ""
     },
     {
         "studyid": "AA-AA-000-0000",
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "active": "TRUE",
-        "status": "Valid",
+        "status": "TRUE",
         "notes": ""
     },
     {
         "studyid": "AA-AA-000-0000",
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "active": "TRUE",
-        "status": "Valid",
+        "status": "TRUE",
         "notes": ""
     },
     {
         "studyid": "AA-AA-000-0000",
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "active": "TRUE",
-        "status": "Valid",
-        "notes": ""
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.1",
-        "active": "TRUE",
-        "status": "Valid",
-        "notes": ""
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.1",
-        "active": "TRUE",
-        "status": "Valid",
-        "notes": ""
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.1",
-        "active": "TRUE",
-        "status": "Valid",
-        "notes": ""
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0008",
-        "gsm_version": "1.1",
-        "active": "TRUE",
-        "status": "Valid",
+        "status": "TRUE",
         "notes": ""
     }
 ]

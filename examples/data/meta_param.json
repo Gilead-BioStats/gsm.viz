@@ -1,7 +1,7 @@
 [
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -9,15 +9,15 @@
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "-8",
+        "default": "-7",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "2",
         "default": "-5",
@@ -25,7 +25,7 @@
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "3",
         "default": "5",
@@ -33,15 +33,15 @@
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "4",
-        "default": "8",
+        "default": "7",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
         "default": "poisson",
@@ -49,7 +49,7 @@
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -57,23 +57,39 @@
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "-7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0002",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "-5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
-        "index": "2",
+        "index": "3",
         "default": "5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0002",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
         "default": "poisson",
@@ -81,7 +97,7 @@
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -89,23 +105,39 @@
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "-7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0003",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "-5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
-        "index": "2",
+        "index": "3",
         "default": "5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0003",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
         "default": "poisson",
@@ -113,7 +145,7 @@
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -121,23 +153,39 @@
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "-7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0004",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "-5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
-        "index": "2",
+        "index": "3",
         "default": "5",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "7",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0004",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
         "default": "poisson",
@@ -145,7 +193,7 @@
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -153,31 +201,31 @@
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "0.01",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0005",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "0.05",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1",
-        "param": "vThreshold",
-        "index": "2",
-        "default": "NA",
-        "configurable": "FALSE"
-    },
-    {
-        "workflowid": "kri0005",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
-        "default": "chisq",
+        "default": "fisher",
         "configurable": "FALSE"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -185,31 +233,31 @@
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "0.01",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0006",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "0.05",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1",
-        "param": "vThreshold",
-        "index": "2",
-        "default": "NA",
-        "configurable": "FALSE"
-    },
-    {
-        "workflowid": "kri0006",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
-        "default": "chisq",
+        "default": "fisher",
         "configurable": "FALSE"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -217,31 +265,31 @@
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "0.01",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0007",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "0.05",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1",
-        "param": "vThreshold",
-        "index": "2",
-        "default": "NA",
-        "configurable": "FALSE"
-    },
-    {
-        "workflowid": "kri0007",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
-        "default": "chisq",
+        "default": "fisher",
         "configurable": "FALSE"
     },
     {
         "workflowid": "kri0008",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
@@ -249,26 +297,26 @@
     },
     {
         "workflowid": "kri0008",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "vThreshold",
         "index": "1",
+        "default": "0.01",
+        "configurable": "TRUE"
+    },
+    {
+        "workflowid": "kri0008",
+        "gsm_version": "1.1.0",
+        "param": "vThreshold",
+        "index": "2",
         "default": "0.05",
         "configurable": "TRUE"
     },
     {
         "workflowid": "kri0008",
-        "gsm_version": "1.1",
-        "param": "vThreshold",
-        "index": "2",
-        "default": "NA",
-        "configurable": "FALSE"
-    },
-    {
-        "workflowid": "kri0008",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "param": "strMethod",
         "index": "",
-        "default": "chisq",
+        "default": "fisher",
         "configurable": "FALSE"
     }
 ]

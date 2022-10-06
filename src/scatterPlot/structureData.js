@@ -23,7 +23,13 @@ export default function structureData(_data_, config, _bounds_) {
 
             return datum;
         })
-        .sort((a, b) => a.stratum - b.stratum);
+        .sort((a, b) => {
+            const aSelected = config.selectedGroupIDs.indexOf(a.groupid) > -1;
+            const bSelected = config.selectedGroupIDs.indexOf(b.groupid) > -1;
+            const stratum = b.stratum - a.stratum;
+
+            return aSelected ? 1 : bSelected ? -1 : stratum;
+        });
 
     // Stratify dataset in order to apply color scheme.
     const datasets = rollups(
@@ -51,13 +57,13 @@ export default function structureData(_data_, config, _bounds_) {
 
     if (_bounds_ !== null) {
         const bounds = rollups(
-            _bounds_,
+            _bounds_.sort((a, b) => a.threshold - b.threshold),
             (group) => {
                 return {
                     type: 'line',
                     data: group.map((d) => ({
-                        x: Math.exp(+d.x),
-                        y: +d.y,
+                        x: +d.denominator,
+                        y: +d.numerator,
                     })),
                     borderWidth: 1,
                     hoverRadius: 0,
@@ -66,7 +72,7 @@ export default function structureData(_data_, config, _bounds_) {
             },
             (d) => d.threshold
         ).map((group, i) => group[1]);
-
+        console.log(bounds);
         bounds.forEach((bound, i) => {
             bound.flag = i - Math.floor(bounds.length / 2);
             bound.label = `Bound (Flag = ${bound.flag})`;
