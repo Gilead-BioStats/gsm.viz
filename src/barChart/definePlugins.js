@@ -1,7 +1,7 @@
 import { format } from 'd3';
 import thresholds from '../util/colors';
 
-export default function defineBarPlugins(config) {
+export default function definePlugins(config) {
     //const legendOrder = ['Sites Not Flagged Or At Risk', 'At Risk', 'Flagged'];
     let annotations = config.threshold.map((x, i) => ({
         drawTime: 'beforeDatasetsDraw',

@@ -35,12 +35,12 @@ Promise.all(dataPromises)
             workflow,
             bounds
         );
-        const duplicate = rbmViz.default.scatterPlot(
-            document.getElementById('container'),
-            results,
-            workflow,
-            bounds
-        );
+        //const duplicate = rbmViz.default.scatterPlot(
+        //    document.getElementById('container'),
+        //    results,
+        //    workflow,
+        //    bounds
+        //);
 
         // Add event listener to KRI dropdown.
         kri(workflow, datasets, instance, true);

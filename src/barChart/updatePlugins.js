@@ -1,4 +1,4 @@
-export default function updateBarOption(chart, option, value) {
+export default function updatePlugins(chart, option, value) {
     const objPath = option.split('.');
     let obj = chart.options;
     for (let i = 0; i < objPath.length; i++) {

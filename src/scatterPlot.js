@@ -6,7 +6,6 @@ import onHover from './util/onHover';
 import onClick from './util/onClick';
 import definePlugins from './scatterPlot/definePlugins';
 import getScales from './scatterPlot/getScales';
-import scriptableOptions from './scatterPlot/scriptableOptions';
 
 import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
@@ -47,7 +46,7 @@ export default function scatterPlot(
         onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
-        ...scriptableOptions(config),
+        //...scriptableOptions(config),
     };
 
     const chart = new Chart(canvas, {
@@ -58,7 +57,7 @@ export default function scatterPlot(
         options,
     });
 
-    canvas.chart = chart;
+    //canvas.chart = chart;
 
     chart.helpers = {
         updateData: updateData,
