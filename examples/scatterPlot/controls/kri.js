@@ -1,3 +1,4 @@
+// TODO: make data-driven
 const kri = function (workflow, datasets, instance, setup = false) {
     const kriDropdown = document.querySelector('#kri');
 

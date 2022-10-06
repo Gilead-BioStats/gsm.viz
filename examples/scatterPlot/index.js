@@ -35,7 +35,6 @@ Promise.all(dataPromises)
             workflow,
             bounds
         );
-        console.log(instance.canvas);
 
         // Add event listener to KRI dropdown.
         kri(workflow, datasets, instance, true);
