@@ -24,6 +24,9 @@ export default function defineBarPlugins(config) {
                 y.flag.includes(+x.flag)
             )[0].description,
             display: true, //Math.sign(+x.flag) === 1,
+            font: {
+                size: 12,
+            },
         },
     }));
 
@@ -51,6 +54,7 @@ export default function defineBarPlugins(config) {
         },
         legend: {
             display: false,
+            /*
             labels: {
                 filter: function (item, chart) {
                     return (
@@ -65,6 +69,7 @@ export default function defineBarPlugins(config) {
                 },
                 position: 'top',
             },
+            */
         },
     };
 
