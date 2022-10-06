@@ -1,2 +1,2 @@
-﻿studyid,enrolled_sites,enrolled_particiapnts,planned_participants,planned_sites,protocol,indication,ta,product,phase
-AA-AA-000-0000,175,1297,175,1297,Sample Protocol,Sample Indication,Oncology,Sample Prodcut,3
+studyid,enrolled_sites,enrolled_participants,planned_sites,planned_participants,title,nickname,indication,ta,phase,status,fpfv,lplv,rbm_flag
+AA-AA-000-0000,176,1301,190,1300,Sample Protocol,Sample Nickname,Sample Indication,Oncology,3, Active,1/1/2003,6/1/2021,1

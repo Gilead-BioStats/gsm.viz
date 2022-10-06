@@ -1,4 +1,5 @@
-export default function onHover(event) {
+// Find data associated with point.
+export default function getPoints(event) {
     const points = event.chart.getElementsAtEventForMode(
         event,
         'nearest',
@@ -8,6 +9,5 @@ export default function onHover(event) {
         true
     );
 
-    if (points.length) event.native.target.style.cursor = 'pointer';
-    else event.native.target.style.cursor = 'default';
+    return points;
 }

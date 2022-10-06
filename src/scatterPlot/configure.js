@@ -3,6 +3,7 @@ import { colors } from '../util/colors';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
+    config.type = 'scatter';
 
     // x-axis
     config.x = coalesce(config.x, 'denominator');
@@ -18,6 +19,18 @@ export default function configure(_config_) {
         config.colors,
         Object.keys(colors).map((key) => colors[key])
     );
+
+    // selected group IDs
+    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
+
+    // event callbacks
+    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
+    config.clickCallback = coalesce(config.clickCallback, (datum) =>
+        console.table(datum)
+    );
+
+    // sizing
+    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, true);
 
     return config;
 }

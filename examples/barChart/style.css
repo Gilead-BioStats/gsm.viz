@@ -1,0 +1,56 @@
+.chartBox {
+    width: 80%;
+}
+
+.customLegend ul {
+    display: flex;
+    flex-direction: row;
+    margin: 0 auto;
+    list-style: none;
+    justify-content: center;
+}
+
+.customLegend ul li {
+    margin: 15px;
+    display: flex;
+    align-items: center;
+    /* cursor: pointer; */
+    flex-direction: row;
+    line-height: 22px;
+}
+
+.customLegend p {
+    font-family: 'Helvetica';
+    font-size: 12px;
+    color: #666;
+}
+
+.customLegend ul li.fade p {
+    color: rgba(102, 102, 102, 0.5);
+}
+
+li.fade span {
+    opacity: 0.3;
+}
+
+.customLegend ul li span {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.legend-content {
+    height: 10px;
+    width: 10px;
+}
+
+.legend-annotation {
+    border-top-style: dotted;
+    height: 0px;
+    width: 20px;
+}
+
+.inliners {
+    height: 20px;
+    width: max-content;
+    padding: 0px 5px;
+}

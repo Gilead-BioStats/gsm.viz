@@ -1,11 +1,9 @@
 import { rollups } from 'd3';
-import colors from '../util/colors';
-import mapFlagColor from '../util/mapFlagColor';
-import mapFlagLabel from '../util/mapFlagLabel';
+import thresholds from '../util/colors';
 
-export default function structureBarData(_data_, config) {
+export default function structureBarData(_data_, config, isChecked = true) {
     // Update data.
-    const data = _data_
+    let data = _data_
         .map((d) => {
             const datum = {
                 ...d,
@@ -21,40 +19,61 @@ export default function structureBarData(_data_, config) {
         })
         .sort((a, b) => b.y - a.y);
 
-    // dummy dataset for legend
-    const lineLegend = [
+    //const datasets = rollups(
+    //    data,
+    //    (group) => {
+    //        return {
+    //            type: 'bar',
+    //            label: thresholds.thresholds.filter((x) =>
+    //                x.flag.includes(group[0].stratum)
+    //            )[0].description,
+    //            data: group,
+    //            flag: group[0].stratum,
+    //        };
+    //    },
+    //    (d) => d.stratum
+    //).map((group, i) => {
+    //    const dataset = group[1];
+    //    //dataset.backgroundColor = function(d) {
+    //    //    console.log(d);
+    //    //};
+    //    dataset.backgroundColor = thresholds.thresholds.filter((x) =>
+    //        x.flag.includes(group[1].flag)
+    //    )[0].color;
+    //    //dataset.borderWidth = 1;
+    //    //dataset.barThickness = function (d) {
+    //    //    return data.length === 25 ? 15 : 3; // 'flex';
+    //    //};
+    //    //dataset.categoryPercentage = 1;
+    //    //dataset.barPercentage = 1;
+
+    //    return dataset;
+    //});
+
+    const datasets = [
         {
-            type: 'line',
-            label: 'Flagged Threshold',
-            data: [],
-            borderColor: colors.colors.red,
-        },
-        {
-            type: 'line',
-            label: 'At Risk Threshold',
-            data: [],
-            borderColor: colors.colors.yellow,
+            type: 'bar',
+            //label: thresholds.thresholds.filter((x) =>
+            //    x.flag.includes(group[0].stratum)
+            //)[0].description,
+            data: data,
+            label: 'asdf',
+            //flag: group[0].stratum,
+            backgroundColor: function (context, options) {
+                const data = context.dataset;
+                const datum = context.dataset.data[context.dataIndex];
+
+                if (data.type === 'bar') {
+                    //console.log(datum);
+                    return config.selectedGroupIDs.includes(datum.groupid)
+                        ? 'black'
+                        : thresholds.thresholds.find((x) =>
+                              x.flag.includes(datum.stratum)
+                          ).color;
+                }
+            },
         },
     ];
 
-    const datasets = rollups(
-        data,
-        (group) => {
-            return {
-                type: 'bar',
-                label: mapFlagLabel(group[0].stratum),
-                data: group,
-                barThickness: 1.5,
-                flag: group[0].stratum,
-            };
-        },
-        (d) => d.stratum
-    ).map((group, i) => {
-        const dataset = group[1];
-        dataset.backgroundColor = mapFlagColor(group[1].flag);
-        // group[1].label === "Flagged Site" ? colors.colors.red : colors.colors.green;
-        return dataset;
-    });
-
-    return [...lineLegend, ...datasets];
+    return datasets;
 }

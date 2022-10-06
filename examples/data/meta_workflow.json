@@ -1,7 +1,7 @@
 [
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Non-serious AE Reporting Rate",
         "numerator": "Treatment Emergent AEs",
@@ -14,7 +14,7 @@
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "SAE Reporting Rate",
         "numerator": "Treatment Emergent SAEs",
@@ -27,7 +27,7 @@
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Non-important Protocol Deviation Rate",
         "numerator": "Non-Important PDs",
@@ -40,7 +40,7 @@
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Important Protocol Deviation Rate",
         "numerator": "Important PDs",
@@ -53,7 +53,7 @@
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Lab Abnormality Rate",
         "numerator": "Abnormal Lab Samples",
@@ -66,7 +66,7 @@
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "G3 or higher Lab Abnormality Rate",
         "numerator": "G3+ Abnormal Labs Samples",
@@ -79,7 +79,7 @@
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Subject Discontinuation",
         "numerator": "Subjects Discontinued",
@@ -92,7 +92,7 @@
     },
     {
         "workflowid": "kri0008",
-        "gsm_version": "1.1",
+        "gsm_version": "1.1.0",
         "group": "Site",
         "metric": "Subject Treatment Discontinuation",
         "numerator": "Subjects with Treatment Discontinued",
