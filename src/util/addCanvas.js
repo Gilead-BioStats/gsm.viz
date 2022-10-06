@@ -5,19 +5,27 @@ import addCustomClickEvent from './addCanvas/addCustomClickEvent';
 export default function addCanvas(_element_, config) {
     let canvas;
 
+    // [ _element_ ] doesn't exist.
     if (!document.body.contains(_element_)) {
-        // [ _element_ ] doesn't exist
         console.error('addCanvas: [ _element_ ] does not exist.');
+
         return;
-    } else if (_element_.nodeName && _element_.nodeName === 'CANVAS') {
-        // [ _element_ ] is a canvas element
+    }
+    // [ _element_ ] is a canvas element.
+    else if (_element_.nodeName && _element_.nodeName.toLowerCase() === 'canvas') {
+        // Destroy existing chart.
+        if (_element_.hasOwnProperty('chart'))
+            _element_.chart.destroy();
+
         canvas = _element_;
-    } else {
-        // create a canvas element
-        let newCanvas = document.createElement('canvas');
+    }
+    // Create a canvas element.
+    else {
+        const newCanvas = document.createElement('canvas');
         const oldCanvas = _element_.getElementsByTagName('canvas')[0];
 
         if (oldCanvas !== undefined) {
+            // Destroy existing chart.
             if (oldCanvas.hasOwnProperty('chart'))
                 oldCanvas.chart.destroy();
 
@@ -28,7 +36,6 @@ export default function addCanvas(_element_, config) {
 
         canvas = newCanvas;
     }
-    //console.log(Chart.getChart(_element_));
 
     config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
     config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
