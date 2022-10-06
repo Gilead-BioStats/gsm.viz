@@ -9,14 +9,17 @@ export default function addCanvas(_element_, config) {
         return _element_;
     }
 
-    let canvas = _element_.getElementsByTagName('canvas');
-    if (canvas.length) canvas[0].remove();
-
-    canvas = document.createElement('canvas');
-    _element_.appendChild(canvas);
+    const newCanvas = document.createElement('canvas');
+    const oldCanvas = _element_.getElementsByTagName('canvas')[0];
+    if (canvas !== undefined) {
+        oldCanvas.replaceWith(newCanvas);
+    } else {
+        _element_.appendChild(newCanvas);
+    }
 
     config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
     config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
+    console.log(canvas);
 
-    return canvas;
+    return newCanvas;
 }
