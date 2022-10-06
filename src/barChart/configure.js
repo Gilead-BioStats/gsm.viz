@@ -33,8 +33,8 @@ export default function configure(_config_) {
 
     //
     config.threshold = coalesce(config.threshold, [
-        { threshold: 10, flag: 2 },
-        { threshold: -10, flag: -2 },
+        { threshold: 7, flag: 2 },
+        { threshold: -7, flag: -2 },
         { threshold: 5, flag: 1 },
         { threshold: -5, flag: -1 },
     ]);
