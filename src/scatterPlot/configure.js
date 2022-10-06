@@ -30,7 +30,7 @@ export default function configure(_config_) {
     );
 
     // sizing
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, true);
+    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
 
     return config;
 }

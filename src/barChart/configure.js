@@ -48,5 +48,8 @@ export default function configure(_config_) {
         console.table(datum)
     );
 
+    // sizing
+    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
+
     return config;
 }
