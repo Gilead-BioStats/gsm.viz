@@ -25,9 +25,9 @@ export default function defineBarPlugins(config) {
             )[0].description,
             display: true, //Math.sign(+x.flag) === 1,
             font: {
-                size: 12
-            }
-        }
+                size: 12,
+            },
+        },
     }));
 
     const plugins = {

@@ -2,6 +2,7 @@ import coalesce from '../util/coalesce';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
+
     config.type = 'bar';
 
     // x-axis
