@@ -1,4 +1,9 @@
+/*
 module.exports = {
     moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-    testPathIgnorePatterns: ['/node_modules/']
+    extensionsToTreatAsEsm: ['.ts'],
+    testPathIgnorePatterns: ['/node_modules/'],
+    testEnvironment: 'jest-environment-node',
+    transform: {}
 }
+*/
