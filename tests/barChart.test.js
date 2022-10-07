@@ -7,28 +7,63 @@ import updateBarOption from "../src/barChart/updateBarOption"
 import updateBarPlugins from "../src/barChart/updateBarPlugins"
 import configure from "../src/barChart/configure"
 
-describe("barChart function suite", () => {
+let config = {
+    workflowid: "kri0001",
+    gsm_version: "1.1.0",
+    group: "Site",
+    metric: "Non-serious AE Reporting Rate",
+    numerator: "Treatment Emergent AEs",
+    denominator: "Days on Treatment",
+    outcome: "Rate",
+    model: "Poisson",
+    score: "Residual from Poisson Model",
+    data_inputs: "rawplus.ae, rawplus.subj",
+    data_filters: "Non-Serious, TreatmentEmergent",
+    selectedGroupIDs: [
+        "160"
+    ]
+}
 
-    let config = {
-        workflowid: "kri0001",
-        gsm_version: "1.1.0",
-        group: "Site",
-        metric: "Non-serious AE Reporting Rate",
-        numerator: "Treatment Emergent AEs",
-        denominator: "Days on Treatment",
-        outcome: "Rate",
-        model: "Poisson",
-        score: "Residual from Poisson Model",
-        data_inputs: "rawplus.ae, rawplus.subj",
-        data_filters: "Non-Serious, TreatmentEmergent",
-        selectedGroupID: [
-            "160"
-        ]
+let data = [
+    {
+        "studyid": "AA-AA-000-0000",
+        "workflowid": "kri0001",
+        "groupid": "91",
+        "numerator": "126",
+        "denominator": "11534",
+        "metric": "0.0109242240332929",
+        "score": "7.9540229885143",
+        "flag": "2"
+    },
+    {
+        "studyid": "AA-AA-000-0000",
+        "workflowid": "kri0001",
+        "groupid": "75",
+        "numerator": "106",
+        "denominator": "7621",
+        "metric": "0.0139089358351922",
+        "score": "9.05626659281585",
+        "flag": "0"
+    },
+    {
+        "studyid": "AA-AA-000-0000",
+        "workflowid": "kri0001",
+        "groupid": "132",
+        "numerator": "15",
+        "denominator": "671",
+        "metric": "0.022354694485842",
+        "score": "4.44762014018215",
+        "flag": "1"
     }
+]
+
+describe("config function suite", () => {
 
     test('config transforms raw config to chart.js', ()  => {
+        let configured = configure(config)
+        let config_keys = Object.keys(configured).sort()
 
-        expect(Object.keys(configure(config))).toEqual([
+        expect(config_keys).toEqual([
             "workflowid",
             "gsm_version",
             "group",
@@ -58,39 +93,57 @@ describe("barChart function suite", () => {
             "hoverCallback",
             "clickCallback",
             "maintainAspectRatio"
-        ])
+        ].sort())
+    })
+})
+
+describe('structureBarData function suite', () => {
+    let dataset = structureBarData(data, config)
+    test('structureBarData returns single object', ()  => {
+        expect(dataset.length).toBe(1)
     })
 
-    test('structureBarData returns data object in chart.js format' , ()  => {
-        
+    test('structureBarData data length equal to data length', ()  => {
+        expect(dataset[0].data.length).toBe(data.length)
     })
 
-    test('defineBarPlugins creates an object with custom tooltip', ()  => {
- 
+    test('structureBarData formatted for chart.js', ()  => {
+        expect(Object.keys(dataset[0]).sort()).toEqual(
+            ['type', 'data', 'label', 'backgroundColor'].sort()
+        )
     })
 
-    test('getBarScales returns scale object with no x ticks', ()  => {
-        
+    test('structureBarData is type bar', () => {
+        expect(dataset[0].type).toBe('bar')
     })
 
-    // TODO
-    test('scriptableOptions', ()  => {
-        
+    test('structureBarData is a single dataset with the label asdf', () => {
+        expect(dataset[0].label).toBe('asdf')
     })
 
-    // TODO
-    test('updateBarConfig' , ()  => {
-        
-    })
+})
 
-    // TODO
-    test('updateBarOption' , ()  => {
-        
-    })
 
-    // TODO
-    test('updateBarPlugins' , ()  => {
-        
-    })
+describe('defineBarPlugin test suite', () => {
 
+})
+
+describe('getBarScales test suite', () => {
+    
+})
+
+describe('scriptableOptions test suite', () => {
+    
+})
+
+describe('updateBarConfig test suite', () => {
+    
+})
+
+describe('updateBarOptions test suite', () => {
+    
+})
+
+describe('updateBarPlugins test suite', () => {
+    
 })

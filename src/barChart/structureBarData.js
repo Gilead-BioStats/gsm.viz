@@ -3,6 +3,7 @@ import thresholds from '../util/colors';
 
 export default function structureBarData(_data_, config, isChecked = true) {
     // Update data.
+    console.log(_data_);
     let data = _data_
         .map((d) => {
             const datum = {
@@ -19,46 +20,11 @@ export default function structureBarData(_data_, config, isChecked = true) {
         })
         .sort((a, b) => b.y - a.y);
 
-    //const datasets = rollups(
-    //    data,
-    //    (group) => {
-    //        return {
-    //            type: 'bar',
-    //            label: thresholds.thresholds.filter((x) =>
-    //                x.flag.includes(group[0].stratum)
-    //            )[0].description,
-    //            data: group,
-    //            flag: group[0].stratum,
-    //        };
-    //    },
-    //    (d) => d.stratum
-    //).map((group, i) => {
-    //    const dataset = group[1];
-    //    //dataset.backgroundColor = function(d) {
-    //    //    console.log(d);
-    //    //};
-    //    dataset.backgroundColor = thresholds.thresholds.filter((x) =>
-    //        x.flag.includes(group[1].flag)
-    //    )[0].color;
-    //    //dataset.borderWidth = 1;
-    //    //dataset.barThickness = function (d) {
-    //    //    return data.length === 25 ? 15 : 3; // 'flex';
-    //    //};
-    //    //dataset.categoryPercentage = 1;
-    //    //dataset.barPercentage = 1;
-
-    //    return dataset;
-    //});
-
     const datasets = [
         {
             type: 'bar',
-            //label: thresholds.thresholds.filter((x) =>
-            //    x.flag.includes(group[0].stratum)
-            //)[0].description,
             data: data,
             label: 'asdf',
-            //flag: group[0].stratum,
             backgroundColor: function (context, options) {
                 const data = context.dataset;
                 const datum = context.dataset.data[context.dataIndex];
@@ -75,5 +41,7 @@ export default function structureBarData(_data_, config, isChecked = true) {
         },
     ];
 
+    console.log('datasets');
+    console.log(datasets);
     return datasets;
 }
