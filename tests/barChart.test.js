@@ -126,24 +126,29 @@ describe('structureBarData function suite', () => {
 
 describe('defineBarPlugin test suite', () => {
 
+    let plugins = defineBarPlugins(configure(config))
+
+    test('custom tooltip function', () => {
+        expect(plugins.tooltip.callbacks.label).toEqual(expect.any(Function))
+    })
+
+    test('annotation lines drawn at correct threshholds', () => {
+        expect(plugins.annotation.annotations.map(x => x.yMin)).toEqual([7, -7, 5, -5])
+    })
+
+    test('annotation labels left for negative and right for positive', () => {
+        expect(plugins.annotation.annotations.map(x => x.label.position)).toEqual(['end', 'start', 'end', 'start'])
+    })
+
 })
 
 describe('getBarScales test suite', () => {
-    
+    test('x labels not visible for bar graph', () => {
+        expect(getBarScales(configure(config)).x.ticks.display).toBeFalsy()
+    })
 })
 
+// TODO
 describe('scriptableOptions test suite', () => {
-    
-})
-
-describe('updateBarConfig test suite', () => {
-    
-})
-
-describe('updateBarOptions test suite', () => {
-    
-})
-
-describe('updateBarPlugins test suite', () => {
     
 })

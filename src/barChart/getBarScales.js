@@ -21,5 +21,7 @@ export default function getScales(config) {
         },
     };
 
+    console.log(scales);
+
     return scales;
 }
