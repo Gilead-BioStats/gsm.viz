@@ -5,8 +5,6 @@ export default function radius(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'scatter') {
-        return config.selectedGroupIDs.includes(datum.groupid)
-            ? 5
-            : 3;
+        return config.selectedGroupIDs.includes(datum.groupid) ? 5 : 3;
     }
-};
+}

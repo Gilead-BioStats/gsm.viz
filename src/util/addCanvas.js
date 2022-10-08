@@ -12,10 +12,12 @@ export default function addCanvas(_element_, config) {
         return;
     }
     // [ _element_ ] is a canvas element.
-    else if (_element_.nodeName && _element_.nodeName.toLowerCase() === 'canvas') {
+    else if (
+        _element_.nodeName &&
+        _element_.nodeName.toLowerCase() === 'canvas'
+    ) {
         // Destroy existing chart.
-        if (_element_.hasOwnProperty('chart'))
-            _element_.chart.destroy();
+        if (_element_.hasOwnProperty('chart')) _element_.chart.destroy();
 
         canvas = _element_;
     }
@@ -26,8 +28,7 @@ export default function addCanvas(_element_, config) {
 
         if (oldCanvas !== undefined) {
             // Destroy existing chart.
-            if (oldCanvas.hasOwnProperty('chart'))
-                oldCanvas.chart.destroy();
+            if (oldCanvas.hasOwnProperty('chart')) oldCanvas.chart.destroy();
 
             oldCanvas.replaceWith(newCanvas);
         } else {

@@ -12,7 +12,7 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         // data
-        const [workflow] = datasets[0] // destructured assignment
+        const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
@@ -21,15 +21,16 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
-        // visualization
-        //workflow.maintainAspectRatio = false;
+        // configuration
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
         workflow.selectedGroupIDs = [
             results[Math.floor(Math.random() * results.length)].groupid,
         ];
-        let instance = rbmViz.default.scatterPlot(
+
+        // visualization
+        const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             workflow,
@@ -42,18 +43,25 @@ Promise.all(dataPromises)
         //    bounds
         //);
 
+        //d3.timeout(() => {
+        //console.log(instance);
+        //console.log(instance.canvas);
+        //console.log(instance.data);
+        //console.log(instance.canvas.chart);
+
         // Add event listener to KRI dropdown.
-        kri(workflow, datasets, instance, true);
+        kri(workflow, datasets, true);
 
         // Add event listener to highlight sites.
-        site(datasets, instance, true);
+        site(datasets, true);
 
         // Add event listener to x-axis type toggle.
-        xAxisType(instance, true);
+        xAxisType(true);
 
         // Add event listener to chart lifecycle button.
-        lifecycle(instance, datasets, true);
+        lifecycle(datasets, true);
 
         // Add event listener to download button.
-        download(instance, true);
+        download(true);
+        //}, 250);
     });

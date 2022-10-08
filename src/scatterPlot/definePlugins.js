@@ -1,17 +1,24 @@
 import { format } from 'd3';
+import { thresholds } from '../util/colors';
 
+// TODO: fix legend.
 export default function definePlugins(config) {
-    const legendOrder = ['Within thresholds', 'At risk', 'Flagged'];
+    const legendOrder = thresholds
+        .sort((a, b) => a.order - b.order)
+        .map((threshold) => threshold.description);
+
     const plugins = {
         legend: {
+            display: true,
             labels: {
+                boxHeight: 1,
                 filter: function (legendItem, chartData) {
-                    return !/bound/i.test(legendItem.text);
+                    return legendItem.text !== '';
                 },
                 sort: function (a, b, chartData) {
                     return (
-                        legendOrder.indexOf(a.text) -
-                        legendOrder.indexOf(b.text)
+                        legendOrder.indexOf(b.text) -
+                        legendOrder.indexOf(a.text)
                     );
                 },
             },

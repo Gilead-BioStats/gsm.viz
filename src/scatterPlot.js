@@ -46,7 +46,6 @@ export default function scatterPlot(
         onHover,
         plugins: definePlugins(config),
         scales: getScales(config),
-        //...scriptableOptions(config),
     };
 
     const chart = new Chart(canvas, {
@@ -57,7 +56,7 @@ export default function scatterPlot(
         options,
     });
 
-    //canvas.chart = chart;
+    canvas.chart = chart;
 
     chart.helpers = {
         updateData: updateData,

@@ -5,8 +5,6 @@ export default function borderWidth(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'scatter') {
-        return config.selectedGroupIDs.includes(datum.groupid)
-            ? 3
-            : 1;
+        return config.selectedGroupIDs.includes(datum.groupid) ? 3 : 1;
     }
-};
+}

@@ -9,8 +9,7 @@ export default function backgroundColor(context, options) {
     if (dataset.type === 'bar') {
         return config.selectedGroupIDs.includes(datum.groupid)
             ? 'black'
-            : thresholds.thresholds.find((x) =>
-                    x.flag.includes(datum.stratum)
-                ).color;
+            : thresholds.thresholds.find((x) => x.flag.includes(datum.stratum))
+                  .color;
     }
 }

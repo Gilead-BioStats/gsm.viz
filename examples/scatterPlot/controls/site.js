@@ -1,4 +1,5 @@
-const site = function (datasets, instance, setup = false) {
+const site = function (datasets, setup = false) {
+    const instance = getChart();
     const siteDropdown = document.querySelector('#groupid');
 
     if (setup) {
@@ -23,40 +24,9 @@ const site = function (datasets, instance, setup = false) {
             : 'None';
 
         siteDropdown.addEventListener('change', (event) => {
-            //instance.destroy();
-
-            instance.data.config.selectedGroupIDs = event.target.value === 'None' ?
-                [] :
-                [event.target.value];
-            console.log(instance.data.config.selectedGroupIDs);
+            instance.data.config.selectedGroupIDs =
+                event.target.value === 'None' ? [] : [event.target.value];
             instance.update();
-            //instance.helpers
-            //    .updateConfig(
-            //        instance,
-            //        instance.data.config,
-            //        true
-            //    );
-
-            //const workflow = datasets[0].find((d) => d.workflowid === kri());
-            //const results = datasets[1].filter(
-            //    (d) => d.workflowid === workflow.workflowid
-            //);
-            //const bounds = datasets[2].filter(
-            //    (d) => d.workflowid === workflow.workflowid
-            //);
-            //workflow.selectedGroupIDs =
-            //    event.target.value === 'None' ? [] : [event.target.value];
-            ////instance.helpers.updateData(instance, results, workflow, bounds);
-
-            ////workflow.selectedGroupIDs = [event.target.value];
-            ////instance.helpers.updateData(instance, results, workflow, bounds);
-
-            //instance = rbmViz.default.scatterPlot(
-            //    document.getElementById('container'),
-            //    results,
-            //    workflow,
-            //    bounds
-            //);
         });
     }
 

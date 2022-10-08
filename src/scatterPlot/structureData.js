@@ -1,5 +1,5 @@
 import mutate from './structureData/mutate';
-import { rollups } from 'd3';
+import { group } from 'd3';
 import scriptableOptions from './structureData/scriptableOptions';
 import rollupBounds from './structureData/rollupBounds';
 
@@ -17,36 +17,13 @@ export default function structureData(_data_, config, _bounds_) {
     // Update data.
     const data = mutate(_data_, config);
 
-    // Stratify dataset in order to apply color scheme.
-    //const datasets = rollups(
-    //    data,
-    //    (group) => {
-    //        return {
-    //            type: 'scatter',
-    //            stratum: group[0].stratum,
-    //            label:
-    //                group[0].stratum > 1
-    //                    ? 'Flagged'
-    //                    : group[0].stratum > 0
-    //                    ? 'At risk'
-    //                    : 'Within thresholds',
-    //            data: group,
-    //        };
-    //    },
-    //    (d) => d.stratum
-    //).map((group, i) => {
-    //    const dataset = group[1];
-    //    dataset.backgroundColor = config.colors[dataset.stratum];
-
-    //    return dataset;
-    //});
-
     const datasets = [
         {
             type: 'scatter',
             data,
+            label: '',
             ...scriptableOptions(),
-        }
+        },
     ];
 
     const bounds = rollupBounds(_bounds_, config);

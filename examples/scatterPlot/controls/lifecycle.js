@@ -1,4 +1,5 @@
-const lifecycle = function (instance, datasets, setup = false) {
+const lifecycle = function (datasets, setup = false) {
+    let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
     // Destroy chart:
@@ -24,10 +25,10 @@ const lifecycle = function (instance, datasets, setup = false) {
         const bounds = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
+        workflow.selectedGroupIDs = [site()];
+        workflow.xType = xAxisType();
         instance = rbmViz.default.scatterPlot(
-            document
-                .getElementById('container')
-                .getElementsByTagName('canvas')[0],
+            document.getElementById('container'),
             results,
             workflow,
             bounds

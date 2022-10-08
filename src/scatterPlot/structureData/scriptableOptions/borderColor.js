@@ -9,4 +9,4 @@ export default function borderColor(context, options) {
             ? 'black'
             : 'rgba(0, 0, 0, 0.1)';
     }
-};
+}

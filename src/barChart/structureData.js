@@ -19,7 +19,7 @@ export default function structureData(_data_, config) {
             type: 'bar',
             data,
             ...scriptableOptions(),
-        }
+        },
     ];
 
     return datasets;

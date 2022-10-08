@@ -1,4 +1,5 @@
-const xAxisType = function (instance, setup = false) {
+const xAxisType = function (setup = false) {
+    const instance = getChart();
     const xAxisToggle = document.querySelector('#x-axis-type');
 
     if (setup)
