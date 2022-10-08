@@ -1,3 +1,4 @@
+// Add event listener to x-axis type toggle.
 const xAxisType = function (setup = false) {
     const instance = getChart();
     const xAxisToggle = document.querySelector('#x-axis-type');

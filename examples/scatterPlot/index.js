@@ -36,32 +36,11 @@ Promise.all(dataPromises)
             workflow,
             bounds
         );
-        //const duplicate = rbmViz.default.scatterPlot(
-        //    document.getElementById('container'),
-        //    results,
-        //    workflow,
-        //    bounds
-        //);
 
-        //d3.timeout(() => {
-        //console.log(instance);
-        //console.log(instance.canvas);
-        //console.log(instance.data);
-        //console.log(instance.canvas.chart);
-
-        // Add event listener to KRI dropdown.
+        // controls
         kri(workflow, datasets, true);
-
-        // Add event listener to highlight sites.
         site(datasets, true);
-
-        // Add event listener to x-axis type toggle.
         xAxisType(true);
-
-        // Add event listener to chart lifecycle button.
-        lifecycle(datasets, true);
-
-        // Add event listener to download button.
+        lifecycle(datasets, 'scatterPlot', true);
         download(true);
-        //}, 250);
     });

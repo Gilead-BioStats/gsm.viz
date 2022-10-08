@@ -1,4 +1,4 @@
-// TODO: make data-driven
+// Add event listener to KRI dropdown.
 const kri = function (workflow, datasets, setup = false) {
     const instance = getChart();
     const kriDropdown = document.querySelector('#kri');
@@ -27,7 +27,8 @@ const kri = function (workflow, datasets, setup = false) {
                 (d) => d.workflowid === workflow.workflowid
             );
             workflow.selectedGroupIDs = [site()];
-            workflow.xType = xAxisType();
+            if (instance.data.datasets[0].type === 'scatter')
+                workflow.xType = xAxisType();
             instance.helpers.updateData(instance, results, workflow, bounds);
         });
     }

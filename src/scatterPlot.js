@@ -59,9 +59,9 @@ export default function scatterPlot(
     canvas.chart = chart;
 
     chart.helpers = {
-        updateData: updateData,
-        updateConfig: updateConfig,
-        updateOption: updateOption,
+        updateData,
+        updateConfig,
+        updateOption,
     };
 
     return chart;

@@ -1,4 +1,5 @@
-const lifecycle = function (datasets, setup = false) {
+// Add event listener to chart lifecycle button.
+const lifecycle = function (datasets, chartFunction, setup = false) {
     let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
@@ -26,8 +27,9 @@ const lifecycle = function (datasets, setup = false) {
             (d) => d.workflowid === workflow.workflowid
         );
         workflow.selectedGroupIDs = [site()];
-        workflow.xType = xAxisType();
-        instance = rbmViz.default.scatterPlot(
+        if (instance.data.datasets[0].type === 'scatter')
+            workflow.xType = xAxisType();
+        instance = rbmViz.default[ chartFunction ](
             document.getElementById('container'),
             results,
             workflow,

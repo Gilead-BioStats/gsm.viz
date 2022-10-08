@@ -1,3 +1,4 @@
+// Add event listener to download button.
 const download = function () {
     const instance = getChart();
     const downloadButton = document.getElementById('download');

@@ -42,9 +42,9 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     });
 
     chart.helpers = {
-        updateData: updateData,
-        updateConfig: updateConfig,
-        updateOption: updateOption,
+        updateData,
+        updateConfig,
+        updateOption,
     };
 
     canvas.chart = chart;

@@ -7,36 +7,34 @@
         <link rel="stylesheet" href="style.css" />
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../../index.js"></script>
+        <script src="../controls/getChart.js"></script>
+        <script src="../controls/kri.js"></script>
+        <script src="../controls/site.js"></script>
+        <script src="../controls/lifecycle.js"></script>
+        <script src="../controls/download.js"></script>
     </head>
 
     <body>
         <div id="controls">
             <fieldset>
                 <legend>KRI</legend>
-
-                <select id="kri">
-                    <option>kri0001</option>
-                    <option>kri0002</option>
-                    <option>kri0003</option>
-                    <option>kri0004</option>
-                    <!--option>kri0005</option>
-                    <option>kri0006</option>
-                    <option>kri0007</option>
-                    <option>kri0008</option-->
-                </select>
+                <select id="kri"></select>
             </fieldset>
 
-            <!--fieldset>
-                <legend>Exclude inliers?</legend>
+            <fieldset>
+                <legend>Highlighted Site</legend>
+                <select id="groupid"></select>
+            </fieldset>
 
-                <input
-                    type="checkbox"
-                    id="inliners"
-                    name="inliners"
-                    value="include_inliners"
-                    checked
-                />
-            </fieldset-->
+            <fieldset>
+                <legend>Chart Lifecycle</legend>
+                <button id="lifecycle"><strong>KILL</strong></button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Download Chart</legend>
+                <button id="download">Download chart</button>
+            </fieldset>
         </div>
 
         <div id="container" , class="chartBox"></div>

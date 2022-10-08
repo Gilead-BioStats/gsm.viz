@@ -1,3 +1,4 @@
+// Add event listener to highlight sites.
 const site = function (datasets, setup = false) {
     const instance = getChart();
     const siteDropdown = document.querySelector('#groupid');

@@ -37,43 +37,9 @@ Promise.all(dataPromises)
             workflow
         );
 
-        // Handle data change event.
-        document.querySelector('#kri').addEventListener('change', (event) => {
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === event.target.value
-            );
-            const results = datasets[1].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-
-            //const isChecked = document.getElementById('inliners').checked;
-
-            workflow.selectedGroupIDs = selectedGroupIDs;
-            instance.helpers.updateBarData(
-                instance,
-                results,
-                workflow
-                //isChecked
-            );
-        });
-
-        // TODO: update data to inlcude/exclude inliners
-        //document
-        //    .querySelector('#inliners')
-        //    .addEventListener('change', (event) => {
-        //        const current_kri = document.getElementById('kri').value;
-
-        //        const workflow = datasets[0].find(
-        //            (d) => d.workflowid === current_kri
-        //        );
-
-        //        const isChecked = event.target.checked;
-
-        //        instance.helpers.updateBarData(
-        //            instance,
-        //            results,
-        //            workflow,
-        //            isChecked
-        //        );
-        //    });
+        // controls
+        kri(workflow, datasets, true);
+        site(datasets, true);
+        lifecycle(datasets, 'barChart', true);
+        download(true);
     });
