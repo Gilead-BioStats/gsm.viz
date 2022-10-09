@@ -1,8 +1,7 @@
 import { format } from 'd3';
 import { thresholds } from '../util/colors';
 
-// TODO: fix legend.
-export default function definePlugins(config) {
+export default function plugins(config) {
     const legendOrder = thresholds
         .sort((a, b) => a.order - b.order)
         .map((threshold) => threshold.description);

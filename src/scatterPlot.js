@@ -4,7 +4,7 @@ import structureData from './scatterPlot/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import definePlugins from './scatterPlot/definePlugins';
+import plugins from './scatterPlot/plugins';
 import getScales from './scatterPlot/getScales';
 
 import Chart from 'chart.js/auto';
@@ -44,7 +44,7 @@ export default function scatterPlot(
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: definePlugins(config),
+        plugins: plugins(config),
         scales: getScales(config),
     };
 
