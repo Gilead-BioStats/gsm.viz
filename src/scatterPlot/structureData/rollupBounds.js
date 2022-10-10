@@ -1,4 +1,4 @@
-import { rollups } from 'd3';
+import { rollup, rollups } from 'd3';
 
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
@@ -55,7 +55,7 @@ export default function rollupBounds(_bounds_, config) {
         });
 
         // Remove labels to avoid displaying duplicate legend items.
-        d3.rollup(
+        rollup(
             bounds,
             (group) => {
                 group.forEach((d, i) => {

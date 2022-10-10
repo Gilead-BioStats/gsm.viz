@@ -12,7 +12,7 @@ export default function getScales(config) {
         y: {
             title: {
                 display: true,
-                text: 'AE Reporting Residual Score',
+                text: config[config.y],
                 padding: { top: 20, left: 0, right: 0, bottom: 0 },
             },
             grid: {
@@ -20,8 +20,6 @@ export default function getScales(config) {
             },
         },
     };
-
-    console.log(scales);
 
     return scales;
 }
