@@ -4,8 +4,6 @@ export default function scriptableOptions(config) {
         const datum = context.dataset.data[context.dataIndex];
 
         if (data.type === 'bar') {
-            if (this.selectedGroupIDs.includes(datum.groupid))
-                console.log(datum);
             return this.selectedGroupIDs.includes(datum.groupid)
                 ? 'black'
                 : 'rgba(0, 0, 0, 0.1)';
@@ -17,8 +15,6 @@ export default function scriptableOptions(config) {
         const datum = context.dataset.data[context.dataIndex];
 
         if (data.type === 'bar') {
-            if (this.selectedGroupIDs.includes(datum.groupid))
-                console.log(datum);
             return this.selectedGroupIDs.includes(datum.groupid)
                 ? 'black'
                 : 'red';

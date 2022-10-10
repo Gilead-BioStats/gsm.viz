@@ -23,6 +23,16 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
+        // TODO: move to helper function in library and derive flags
+        const thresholds = datasets[2]
+            .filter((d) => d.workflowid === workflow.workflowid)
+            .filter((d) => d.param === 'vThreshold')
+            .map((d) => {
+                return {
+                    threshold: d.default,
+                };
+            });
+
         // visualization
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),

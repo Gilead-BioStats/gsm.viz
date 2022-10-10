@@ -1,5 +1,5 @@
 import React from 'react';
-import { ScatterPlot } from './RbmViz';
+import { ScatterPlot, BarChart } from './RbmViz';
 import results_summary from './data/results_summary';
 import meta_workflow from './data/meta_workflow';
 import results_bounds from './data/results_bounds';
@@ -25,7 +25,8 @@ const App = () => {
         <>
             {/* <p>welcome</p> */}
             {/* <button onClick={updateHndler}>Update</button> */}
-            <ScatterPlot data={DATA} config={WORKFLOW} bonds={BOUNDS} />
+            <ScatterPlot data={DATA} config={WORKFLOW} bounds={BOUNDS} />
+            <BarChart data={DATA} config={WORKFLOW} />
         </>
     );
 };

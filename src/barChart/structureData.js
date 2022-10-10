@@ -17,6 +17,7 @@ export default function structureData(_data_, config) {
     const datasets = [
         {
             type: 'bar',
+            label: 'asdf',
             data,
             ...scriptableOptions(),
         },

@@ -15,7 +15,6 @@ import updateOption from './barChart/updateOption';
 export default function barChart(_element_, _data_, _config_ = {}) {
     // Update config.
     const config = configure(_config_);
-
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
