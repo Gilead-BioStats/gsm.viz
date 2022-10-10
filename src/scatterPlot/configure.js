@@ -1,5 +1,5 @@
 import coalesce from '../util/coalesce';
-import { colors } from '../util/colors';
+import { colors, thresholds as colorMeta } from '../util/colors';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
@@ -8,10 +8,12 @@ export default function configure(_config_) {
     // x-axis
     config.x = coalesce(config.x, 'denominator');
     config.xLabel = coalesce(config.xLabel, config[config.x]);
+    config.xType = coalesce(config.xType, 'logarithmic');
 
     // y-axis
     config.y = coalesce(config.y, 'numerator');
     config.yLabel = coalesce(config.yLabel, config[config.y]);
+    config.yType = coalesce(config.yType, 'linear');
 
     // color
     config.color = coalesce(config.flag, 'flag');
@@ -19,6 +21,7 @@ export default function configure(_config_) {
         config.colors,
         Object.keys(colors).map((key) => colors[key])
     );
+    config.colorMeta = coalesce(config.colorMeta, colorMeta);
 
     // selected group IDs
     config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);

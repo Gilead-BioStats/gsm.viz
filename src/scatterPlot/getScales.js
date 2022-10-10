@@ -6,7 +6,7 @@ export default function getScales(config) {
                 display: true,
                 text: config.xLabel,
             },
-            type: 'logarithmic',
+            type: config.xType,
         },
         y: {
             display: true,
@@ -14,7 +14,7 @@ export default function getScales(config) {
                 display: true,
                 text: config.yLabel,
             },
-            type: 'linear',
+            type: config.yType,
         },
     };
 
