@@ -1,4 +1,4 @@
-import structureBarData from "../src/barChart/structureBarData"
+import structureData from "../src/barChart/structureData"
 import getScales from "../src/barChart/getScales"
 import configure from "../src/barChart/configure"
 
@@ -97,27 +97,27 @@ describe("config function suite", () => {
     })
 })
 
-describe('structureBarData function suite', () => {
-    let dataset = structureBarData(data, config)
-    test('structureBarData returns single object', ()  => {
+describe('structureData function suite', () => {
+    let dataset = structureData(data, config)
+    test('structureData returns single object', ()  => {
         expect(dataset.length).toBe(1)
     })
 
-    test('structureBarData data length equal to data length', ()  => {
+    test('structureData data length equal to data length', ()  => {
         expect(dataset[0].data.length).toBe(data.length)
     })
 
-    test('structureBarData formatted for chart.js', ()  => {
+    test('structureData formatted for chart.js', ()  => {
         expect(Object.keys(dataset[0]).sort()).toEqual(
             ['type', 'data', 'label', 'backgroundColor'].sort()
         )
     })
 
-    test('structureBarData is type bar', () => {
+    test('structureData is type bar', () => {
         expect(dataset[0].type).toBe('bar')
     })
 
-    test('structureBarData is a single dataset with the label asdf', () => {
+    test('structureData is a single dataset with the label asdf', () => {
         expect(dataset[0].label).toBe('asdf')
     })
 
