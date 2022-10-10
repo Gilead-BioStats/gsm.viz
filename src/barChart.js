@@ -1,17 +1,16 @@
 import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
-import structureBarData from './barChart/structureBarData';
+import structureData from './barChart/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import defineBarPlugins from './barChart/defineBarPlugins';
-import getBarScales from './barChart/getBarScales';
-import scriptableOptions from './barChart/scriptableOptions';
+import plugins from './barChart/plugins';
+import getScales from './barChart/getScales';
 
 import Chart from 'chart.js/auto';
-import updateBarData from './barChart/updateBarData';
-import updateBarConfig from './barChart/updateBarConfig';
-import updateBarOption from './barChart/updateBarOption';
+import updateData from './barChart/updateData';
+import updateConfig from './barChart/updateConfig';
+import updateOption from './barChart/updateOption';
 
 export default function barChart(_element_, _data_, _config_ = {}) {
     // Update config.
@@ -19,20 +18,18 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
-    const datasets = structureBarData(_data_, config);
-    //const datasets = data.data;
+    const datasets = structureData(_data_, config);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        onHover,
+        maintainAspectRatio: config.maintainAspectRatio,
         onClick,
-        plugins: defineBarPlugins(config),
-        scales: getBarScales(config),
-        ...scriptableOptions(config),
+        onHover,
+        plugins: plugins(config),
+        scales: getScales(config),
     };
-    console.log(config.selectedGroupIDs);
 
     const chart = new Chart(canvas, {
         data: {
@@ -44,12 +41,12 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     });
 
     chart.helpers = {
-        updateBarData: updateBarData,
-        updateBarConfig: updateBarConfig,
-        updateBarOption: updateBarOption,
+        updateData,
+        updateConfig,
+        updateOption,
     };
 
-    //chart.options.inliner_count = data.inliner_count;
+    canvas.chart = chart;
 
     return chart;
 }

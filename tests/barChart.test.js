@@ -1,11 +1,11 @@
-import defineBarPlugins from "../src/barChart/defineBarPlugins"
-import getBarScales from "../src/barChart/getBarScales"
-import scriptableOptions from "../src/barChart/scriptableOptions"
 import structureBarData from "../src/barChart/structureBarData"
-import updateBarConfig from "../src/barChart/updateBarConfig"
-import updateBarOption from "../src/barChart/updateBarOption"
-import updateBarPlugins from "../src/barChart/updateBarPlugins"
+import getScales from "../src/barChart/getScales"
 import configure from "../src/barChart/configure"
+
+import annotations from "../src/barChart/plugins/annotations"
+import legend from "../src/barChart/plugins/legend"
+import tooltip from "../src/barChart/plugins/tooltip"
+
 
 let config = {
     workflowid: "kri0001",
@@ -124,31 +124,29 @@ describe('structureBarData function suite', () => {
 })
 
 
-describe('defineBarPlugin test suite', () => {
+describe('plugin test suite', () => {
 
-    let plugins = defineBarPlugins(configure(config))
 
     test('custom tooltip function', () => {
-        expect(plugins.tooltip.callbacks.label).toEqual(expect.any(Function))
+        expect(tooltip(configure(config)).callbacks.label).toEqual(expect.any(Function))
     })
 
     test('annotation lines drawn at correct threshholds', () => {
-        expect(plugins.annotation.annotations.map(x => x.yMin)).toEqual([7, -7, 5, -5])
+        expect(annotations(configure(config)).map(x => x.yMin)).toEqual([7, -7, 5, -5])
     })
 
     test('annotation labels left for negative and right for positive', () => {
-        expect(plugins.annotation.annotations.map(x => x.label.position)).toEqual(['end', 'start', 'end', 'start'])
+        expect(annotations(configure(config)).map(x => x.label.position)).toEqual(['end', 'start', 'end', 'start'])
+    })
+
+    test('legend display returns false', () => {
+        expect(legend(configure(config)).display).toBeFalsy()
     })
 
 })
 
-describe('getBarScales test suite', () => {
+describe('getScales test suite', () => {
     test('x labels not visible for bar graph', () => {
-        expect(getBarScales(configure(config)).x.ticks.display).toBeFalsy()
+        expect(getScales(configure(config)).x.ticks.display).toBeFalsy()
     })
-})
-
-// TODO
-describe('scriptableOptions test suite', () => {
-    
 })
