@@ -4,9 +4,8 @@ import structureData from './scatterPlot/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import definePlugins from './scatterPlot/definePlugins';
+import plugins from './scatterPlot/plugins';
 import getScales from './scatterPlot/getScales';
-import scriptableOptions from './scatterPlot/scriptableOptions';
 
 import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
@@ -45,9 +44,8 @@ export default function scatterPlot(
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: definePlugins(config),
+        plugins: plugins(config),
         scales: getScales(config),
-        ...scriptableOptions(config),
     };
 
     const chart = new Chart(canvas, {
@@ -61,9 +59,9 @@ export default function scatterPlot(
     canvas.chart = chart;
 
     chart.helpers = {
-        updateData: updateData,
-        updateConfig: updateConfig,
-        updateOption: updateOption,
+        updateData,
+        updateConfig,
+        updateOption,
     };
 
     return chart;

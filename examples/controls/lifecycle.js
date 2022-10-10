@@ -1,4 +1,6 @@
-const lifecycle = function (instance, datasets, setup = false) {
+// Add event listener to chart lifecycle button.
+const lifecycle = function (datasets, chartFunction, setup = false) {
+    let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
     // Destroy chart:
@@ -24,10 +26,11 @@ const lifecycle = function (instance, datasets, setup = false) {
         const bounds = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
-        instance = rbmViz.default.scatterPlot(
-            document
-                .getElementById('container')
-                .getElementsByTagName('canvas')[0],
+        workflow.selectedGroupIDs = [site()];
+        if (instance.data.datasets[0].type === 'scatter')
+            workflow.xType = xAxisType();
+        instance = rbmViz.default[chartFunction](
+            document.getElementById('container'),
             results,
             workflow,
             bounds

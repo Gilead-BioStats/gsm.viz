@@ -3,16 +3,7 @@ import addCustomHoverEvent from '../util/addCanvas/addCustomHoverEvent';
 import addCustomClickEvent from '../util/addCanvas/addCustomClickEvent';
 import structureData from './structureData';
 
-/**
- * Update chart data and redraw chart.
- *
- * @param {Object} chart - Chart.js chart object
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
- * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
- *
- */
-export default function updateData(chart, _data_, _config_, _bounds_) {
+export default function updateData(chart, _data_, _config_) {
     chart.data.config = updateConfig(chart, _config_);
     // TODO: figure out why these events have to be redefined on data change
     chart.data.config.hoverEvent = addCustomHoverEvent(
@@ -23,6 +14,6 @@ export default function updateData(chart, _data_, _config_, _bounds_) {
         chart.canvas,
         chart.data.config.clickCallback
     );
-    chart.data.datasets = structureData(_data_, chart.data.config, _bounds_);
+    chart.data.datasets = structureData(_data_, chart.data.config);
     chart.update();
 }

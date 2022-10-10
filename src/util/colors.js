@@ -6,19 +6,22 @@ const colors = {
 
 const thresholds = [
     {
-        flag: [-2, 2],
-        color: colors.red,
-        description: 'Flagged',
+        flag: [0],
+        order: 0,
+        color: colors.green,
+        description: 'Within Thresholds',
     },
     {
         flag: [-1, 1],
+        order: 1,
         color: colors.yellow,
         description: 'At Risk',
     },
     {
-        flag: [0],
-        color: colors.green,
-        description: 'Sites Not Flagged Or At Risk',
+        flag: [-2, 2],
+        order: 2,
+        color: colors.red,
+        description: 'Flagged',
     },
 ];
 

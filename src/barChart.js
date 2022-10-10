@@ -1,17 +1,16 @@
 import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
-import structureBarData from './barChart/structureBarData';
+import structureData from './barChart/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import defineBarPlugins from './barChart/defineBarPlugins';
-import getBarScales from './barChart/getBarScales';
-import scriptableOptions from './barChart/scriptableOptions';
+import plugins from './barChart/plugins';
+import getScales from './barChart/getScales';
 
 import Chart from 'chart.js/auto';
-import updateBarData from './barChart/updateBarData';
-import updateBarConfig from './barChart/updateBarConfig';
-import updateBarOption from './barChart/updateBarOption';
+import updateData from './barChart/updateData';
+import updateConfig from './barChart/updateConfig';
+import updateOption from './barChart/updateOption';
 
 export default function barChart(_element_, _data_, _config_ = {}) {
     // Update config.
@@ -20,8 +19,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
-    const datasets = structureBarData(_data_, config);
-    //const datasets = data.data;
+    const datasets = structureData(_data_, config);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -30,9 +28,8 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: defineBarPlugins(config),
-        scales: getBarScales(config),
-        ...scriptableOptions(config),
+        plugins: plugins(config),
+        scales: getScales(config),
     };
 
     const chart = new Chart(canvas, {
@@ -45,9 +42,9 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     });
 
     chart.helpers = {
-        updateBarData: updateBarData,
-        updateBarConfig: updateBarConfig,
-        updateBarOption: updateBarOption,
+        updateData,
+        updateConfig,
+        updateOption,
     };
 
     canvas.chart = chart;

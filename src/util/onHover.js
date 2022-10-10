@@ -7,6 +7,7 @@ export default function onHover(event, activeElements, chart) {
         activeElements.length &&
         chart.data.datasets[activeElements[0].datasetIndex].type === config.type
     ) {
+        console.log(config);
         const datum = getElementDatum(activeElements, chart);
         config.hoverEvent.data = datum;
         chart.canvas.dispatchEvent(config.hoverEvent);
