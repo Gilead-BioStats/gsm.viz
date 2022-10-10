@@ -38,6 +38,7 @@ export default function addCanvas(_element_, config) {
         canvas = newCanvas;
     }
 
+    // TODO: figure out how to add this functionality in config rather than canvas
     config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
     config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
 

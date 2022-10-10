@@ -29,7 +29,7 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
         workflow.selectedGroupIDs = [site()];
         if (instance.data.datasets[0].type === 'scatter')
             workflow.xType = xAxisType();
-        instance = rbmViz.default[ chartFunction ](
+        instance = rbmViz.default[chartFunction](
             document.getElementById('container'),
             results,
             workflow,

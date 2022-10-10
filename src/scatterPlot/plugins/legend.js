@@ -14,8 +14,7 @@ export default function legend(config) {
             },
             sort: function (a, b, chartData) {
                 return (
-                    legendOrder.indexOf(a.text) -
-                    legendOrder.indexOf(b.text)
+                    legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text)
                 );
             },
         },
