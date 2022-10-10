@@ -4,7 +4,7 @@ import structureData from './barChart/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import definePlugins from './barChart/definePlugins';
+import plugins from './barChart/plugins';
 import getScales from './barChart/getScales';
 
 import Chart from 'chart.js/auto';
@@ -28,7 +28,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: definePlugins(config),
+        plugins: plugins(config),
         scales: getScales(config),
     };
 

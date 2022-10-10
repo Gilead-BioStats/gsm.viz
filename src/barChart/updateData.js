@@ -1,5 +1,4 @@
 import updateConfig from './updateConfig';
-import updatePlugin from './updatePlugins';
 import structureData from './structureData';
 
 export default function updateData(chart, _data_, _config_) {
