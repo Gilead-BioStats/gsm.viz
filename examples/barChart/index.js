@@ -23,6 +23,22 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
+        const thresholds = datasets[2]
+            .filter((d) => d.workflowid === workflow.workflowid)
+            .filter((d) => d.param === 'vThreshold')
+            .map((d) => {
+                return {
+                    threshold: d.default,
+                };
+            });
+        console.table(thresholds);
+        //config.threshold = coalesce(config.threshold, [
+        //    { threshold: 7, flag: 2 },
+        //    { threshold: -7, flag: -2 },
+        //    { threshold: 5, flag: 1 },
+        //    { threshold: -5, flag: -1 },
+        //]);
+
         // visualization
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
