@@ -32,7 +32,6 @@ export default function configure(_config_, thresholds = false) {
         config[config.denom]
     );
 
-    console.log(thresholds);
     if (thresholds) {
         config.threshold = thresholds
             .filter((d) => d.workflowid == config['workflowid'])
@@ -45,6 +44,8 @@ export default function configure(_config_, thresholds = false) {
                         Math.sign(d.default),
                 };
             });
+    } else {
+        config.threshold = null;
     }
 
     // selected group IDs

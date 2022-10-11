@@ -23,8 +23,7 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
-        // TODO: move to helper function in library and derive flags
-        // const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
+        const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
         // visualization
         const groupIDs = [
@@ -39,7 +38,8 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow
+            workflow,
+            thresholds
         );
 
         // controls
