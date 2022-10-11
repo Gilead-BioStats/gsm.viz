@@ -1,6 +1,6 @@
 import coalesce from '../util/coalesce';
 
-export default function configure(_config_) {
+export default function configure(_config_, thresholds = true) {
     const config = { ..._config_ };
 
     config.type = 'bar';
@@ -32,13 +32,16 @@ export default function configure(_config_) {
         config[config.denom]
     );
 
-    //
-    config.threshold = coalesce(config.threshold, [
-        { threshold: 7, flag: 2 },
-        { threshold: -7, flag: -2 },
-        { threshold: 5, flag: 1 },
-        { threshold: -5, flag: -1 },
-    ]);
+    if (thresholds) {
+        config.threshold = thresholds.get(config['workflowid']).map((d) => {
+            return {
+                threshold: d.default,
+                flag:
+                    (Math.abs(+d.default) <= 5 ? '1' : '2') *
+                    Math.sign(d.default),
+            };
+        });
+    }
 
     // selected group IDs
     config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);

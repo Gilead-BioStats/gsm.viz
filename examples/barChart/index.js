@@ -24,27 +24,27 @@ Promise.all(dataPromises)
         );
 
         // TODO: move to helper function in library and derive flags
-        const thresholds = datasets[2]
-            .filter((d) => d.workflowid === workflow.workflowid)
-            .filter((d) => d.param === 'vThreshold')
-            .map((d) => {
-                return {
-                    threshold: d.default,
-                };
-            });
+        const all_thresholds = datasets[2].filter(
+            (d) => d.param === 'vThreshold'
+        );
+
+        const thresholds = d3.group(all_thresholds, (d) => d.workflowid);
 
         // visualization
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
+
         const selectedGroupIDs = [
             results[Math.floor(Math.random() * results.length)].groupid,
         ];
+
         workflow.selectedGroupIDs = selectedGroupIDs;
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow
+            workflow,
+            thresholds
         );
 
         // controls

@@ -4,7 +4,9 @@ import tooltip from './plugins/tooltip';
 
 export default function plugins(config) {
     const plugins = {
-        annotations: annotations(config),
+        annotation: {
+            annotations: annotations(config),
+        },
         legend: legend(config),
         tooltip: tooltip(config),
     };

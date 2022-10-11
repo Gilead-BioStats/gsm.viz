@@ -2,9 +2,14 @@ import configure from './configure';
 import plugins from './plugins';
 import getScales from './getScales';
 
-export default function updateConfig(chart, _config_, update = false) {
+export default function updateConfig(
+    chart,
+    _config_,
+    update = false,
+    thresholds = null
+) {
     // Update config.
-    const config = configure(_config_);
+    const config = configure(_config_, thresholds);
 
     // Define plugins (title, tooltip) and scales (x, y).
     chart.options.plugins = plugins(config);

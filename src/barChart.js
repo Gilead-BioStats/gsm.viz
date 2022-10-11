@@ -12,9 +12,14 @@ import updateData from './barChart/updateData';
 import updateConfig from './barChart/updateConfig';
 import updateOption from './barChart/updateOption';
 
-export default function barChart(_element_, _data_, _config_ = {}) {
+export default function barChart(
+    _element_,
+    _data_,
+    _config_ = {},
+    thresholds = null
+) {
     // Update config.
-    const config = configure(_config_);
+    const config = configure(_config_, thresholds);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
