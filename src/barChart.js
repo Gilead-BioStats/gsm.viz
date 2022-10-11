@@ -16,7 +16,7 @@ export default function barChart(
     _element_,
     _data_,
     _config_ = {},
-    thresholds = null
+    thresholds = false
 ) {
     // Update config.
     const config = configure(_config_, thresholds);

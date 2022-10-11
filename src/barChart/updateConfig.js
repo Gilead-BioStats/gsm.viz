@@ -5,8 +5,8 @@ import getScales from './getScales';
 export default function updateConfig(
     chart,
     _config_,
-    update = false,
-    thresholds = null
+    thresholds = false,
+    update = false
 ) {
     // Update config.
     const config = configure(_config_, thresholds);

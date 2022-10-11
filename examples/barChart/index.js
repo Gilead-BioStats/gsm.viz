@@ -24,11 +24,7 @@ Promise.all(dataPromises)
         );
 
         // TODO: move to helper function in library and derive flags
-        const all_thresholds = datasets[2].filter(
-            (d) => d.param === 'vThreshold'
-        );
-
-        const thresholds = d3.group(all_thresholds, (d) => d.workflowid);
+        // const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
         // visualization
         const groupIDs = [
@@ -43,8 +39,7 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
-            thresholds
+            workflow
         );
 
         // controls
