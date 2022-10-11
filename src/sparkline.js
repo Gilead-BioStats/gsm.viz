@@ -1,24 +1,35 @@
-import configure from './barChart/configure';
+import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
-import structureData from './barChart/structureData';
+import structureData from './sparkline/structureData';
 
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import plugins from './barChart/plugins';
-import getScales from './barChart/getScales';
+import plugins from './sparkline/plugins';
+import getScales from './sparkline/getScales';
 
 import Chart from 'chart.js/auto';
-import updateData from './barChart/updateData';
-import updateConfig from './barChart/updateConfig';
-import updateOption from './barChart/updateOption';
+import updateData from './sparkline/updateData';
+import updateConfig from './sparkline/updateConfig';
+import updateOption from './sparkline/updateOption';
 
-export default function barChart(
+/**
+ * Generate a scatter plot built with Chart.js.
+ *
+ * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
+ * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Object} _config_ - chart configuration and metadata
+ *
+ * @returns {Object} Chart.js chart object
+ */
+export default function sparkline(
     _element_ = 'body',
     _data_ = [],
     _config_ = {}
 ) {
     // Update config.
     const config = configure(_config_);
+
+    // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
@@ -37,20 +48,20 @@ export default function barChart(
 
     const chart = new Chart(canvas, {
         data: {
+            labels: datasets.labels,
             datasets,
             config,
         },
-        metadata: 'test',
         options,
     });
+
+    canvas.chart = chart;
 
     chart.helpers = {
         updateData,
         updateConfig,
         updateOption,
     };
-
-    canvas.chart = chart;
 
     return chart;
 }

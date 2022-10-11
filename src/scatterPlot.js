@@ -23,8 +23,8 @@ import updateOption from './scatterPlot/updateOption';
  * @returns {Object} Chart.js chart object
  */
 export default function scatterPlot(
-    _element_,
-    _data_,
+    _element_ = 'body',
+    _data_ = [],
     _config_ = {},
     _bounds_ = null
 ) {
