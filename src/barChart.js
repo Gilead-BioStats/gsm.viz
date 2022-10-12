@@ -1,3 +1,5 @@
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './barChart/structureData';
