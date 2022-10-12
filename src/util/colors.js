@@ -1,3 +1,5 @@
+import { color as d3color } from 'd3';
+
 const colors = {
     green: '#52C41A',
     yellow: '#FADB14',
@@ -24,5 +26,10 @@ const thresholds = [
         description: 'Flagged',
     },
 ];
+
+thresholds.forEach(threshold => {
+    threshold.rgba = d3color(threshold.color);
+    console.log(threshold);
+});
 
 module.exports = { colors, thresholds };
