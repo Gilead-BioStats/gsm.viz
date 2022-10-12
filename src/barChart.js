@@ -12,6 +12,8 @@ import updateData from './barChart/updateData';
 import updateConfig from './barChart/updateConfig';
 import updateOption from './barChart/updateOption';
 
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
 export default function barChart(_element_, _data_, _config_ = {}) {
     // Update config.
     const config = configure(_config_);
@@ -38,6 +40,7 @@ export default function barChart(_element_, _data_, _config_ = {}) {
         },
         metadata: 'test',
         options,
+        plugins: [ChartDataLabels],
     });
 
     chart.helpers = {

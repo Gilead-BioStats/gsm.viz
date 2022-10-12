@@ -1,4 +1,4 @@
-import thresholds from '../../../util/colors';
+import meta_thresholds from '../../../util/colors';
 
 export default function borderColor(context, options) {
     const chart = context.chart;
