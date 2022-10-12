@@ -23,7 +23,7 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
-        const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
+        //const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
         // visualization
         const groupIDs = [
@@ -39,7 +39,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            thresholds
+            //thresholds
         );
 
         // controls
