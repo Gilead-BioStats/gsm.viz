@@ -19,9 +19,8 @@ Promise.all(dataPromises)
                 d.flag = Math.sign(+d.score) * 2;
             }
         });
-        const results = datasets[1].filter(
-            (d) => d.workflowid === workflow.workflowid
-        );
+        const results = datasets[1]
+            .filter((d) => d.workflowid === workflow.workflowid)
 
         // TODO: move to helper function in library and derive flags
         const thresholds = datasets[2]
