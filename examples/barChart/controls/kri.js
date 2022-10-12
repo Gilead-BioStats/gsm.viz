@@ -26,7 +26,7 @@ const kri = function (workflow, datasets, setup = false) {
             let thresholds = datasets[2].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            // thresholds = false
+            //thresholds = false
             workflow.selectedGroupIDs = [site()];
             instance.helpers.updateData(
                 instance,
