@@ -39,7 +39,8 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            thresholds
+            thresholds,
+            'score'
         );
 
         // controls
@@ -48,4 +49,5 @@ Promise.all(dataPromises)
         lifecycle(datasets, 'barChart', true);
         download(true);
         threshold(workflow, datasets, true);
+        yaxis(workflow, datasets, true);
     });

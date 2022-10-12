@@ -6,11 +6,12 @@ export default function updateConfig(
     chart,
     _config_,
     thresholds = false,
+    yaxis = 'score',
     update = false
 ) {
     // Update config.
 
-    const config = configure(_config_, thresholds);
+    const config = configure(_config_, thresholds, yaxis);
 
     // Define plugins (title, tooltip) and scales (x, y).
     chart.options.plugins = plugins(config);

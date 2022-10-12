@@ -1,6 +1,10 @@
 import coalesce from '../util/coalesce';
 
-export default function configure(_config_, thresholds = false) {
+export default function configure(
+    _config_,
+    thresholds = false,
+    yaxis = 'score'
+) {
     const config = { ..._config_ };
 
     config.type = 'bar';
@@ -10,7 +14,8 @@ export default function configure(_config_, thresholds = false) {
     config.xLabel = coalesce(config.xLabel, config['group']);
 
     // y-axis
-    config.y = coalesce(config.y, 'score');
+    console.log(yaxis);
+    config.y = coalesce(config.y, yaxis);
     config.yLabel = coalesce(config.yLabel, config[config.y]);
 
     // miscellaneous
@@ -32,7 +37,7 @@ export default function configure(_config_, thresholds = false) {
         config[config.denom]
     );
 
-    if (thresholds) {
+    if (thresholds && config.y !== 'metric') {
         config.threshold = thresholds
             .filter((d) => d.workflowid == config['workflowid'])
             .filter((d) => d.param === 'vThreshold')

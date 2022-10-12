@@ -16,10 +16,11 @@ export default function barChart(
     _element_,
     _data_,
     _config_ = {},
-    thresholds = null
+    thresholds = null,
+    yaxis = 'score'
 ) {
     // Update config.
-    const config = configure(_config_, thresholds);
+    const config = configure(_config_, thresholds, yaxis);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.

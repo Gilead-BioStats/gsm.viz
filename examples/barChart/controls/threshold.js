@@ -5,7 +5,6 @@ const threshold = function (workflow, datasets, setup = false) {
 
     thresholdToggle.addEventListener('change', (event) => {
         const kriDropdown = document.querySelector('#kri').value;
-        console.log(kriDropdown);
         // need to know state of threshold
         const isThreshold = thresholdToggle.checked;
 
