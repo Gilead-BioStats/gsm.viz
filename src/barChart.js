@@ -44,6 +44,7 @@ export default function barChart(
         },
         metadata: 'test',
         options,
+        plugins: [ChartDataLabels],
     });
 
     chart.helpers = {
