@@ -3,7 +3,8 @@ import { rollup, rollups } from 'd3';
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
         const boundUps = rollups(
-            _bounds_.sort((a, b) => a.threshold - b.threshold),
+            _bounds_
+                .sort((a, b) => a.threshold - b.threshold),
             (group) => {
                 return {
                     type: 'line',
@@ -39,20 +40,22 @@ export default function rollupBounds(_bounds_, config) {
             };
         });
 
-        const bounds = boundUps.map((bound, i) => {
-            const threshold = +bound[0];
-            const group = bound[1];
-            const flag = flags.find((flag) => flag.threshold === threshold);
+        const bounds = boundUps
+            .map((bound, i) => {
+                const group = bound[1];
+                group.threshold = +bound[0];
+                group.flag = flags.find((flag) => flag.threshold === group.threshold);
+                const flag = group.flag.flag;
 
-            group.flag = flag.flag;
-            group.label = config.colorMeta.find((color) => {
-                return color.flag.includes(group.flag);
-            }).description;
-            group.borderColor = config.colors[Math.abs(group.flag)];
-            group.backgroundColor = config.colors[Math.abs(group.flag)];
+                group.label = config.colorMeta.find((color) => {
+                    return color.flag.includes(flag);
+                }).description;
+                group.borderColor = config.colors[Math.abs(flag)];
+                group.backgroundColor = config.colors[Math.abs(flag)];
 
-            return bound[1];
-        });
+                return group;
+            })
+            .filter(bound => !(config.displayTrendLine === false && bound.threshold === 0))
 
         // Remove labels to avoid displaying duplicate legend items.
         rollup(
