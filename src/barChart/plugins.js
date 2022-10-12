@@ -14,7 +14,7 @@ export default function plugins(config) {
             },
             display: function (context) {
                 var barWidth = context.chart.getDatasetMeta(0).data[1].width;
-                return barWidth >= 5;
+                return barWidth >= context.chart.options.font.size - 3;
             },
             align: function (context) {
                 let y =
