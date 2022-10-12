@@ -23,14 +23,17 @@ const kri = function (workflow, datasets, setup = false) {
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            const bounds = datasets[2].filter(
+            let thresholds = datasets[2].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
+            // thresholds = false
             workflow.selectedGroupIDs = [site()];
-            if (instance.data.datasets[0].type === 'scatter')
-                workflow.xType = xAxisType();
-            console.log(bounds);
-            instance.helpers.updateData(instance, results, workflow, bounds);
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                thresholds
+            );
         });
     }
 

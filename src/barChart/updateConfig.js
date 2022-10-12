@@ -10,6 +10,7 @@ export default function updateConfig(
 ) {
     // Update config.
 
+    console.log(thresholds);
     const config = configure(_config_, thresholds);
 
     // Define plugins (title, tooltip) and scales (x, y).

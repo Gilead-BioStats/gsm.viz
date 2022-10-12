@@ -38,7 +38,7 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
+            workflow
             //thresholds
         );
 
