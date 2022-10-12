@@ -1,4 +1,4 @@
-import { color as d3color} from 'd3';
+import { color as d3color } from 'd3';
 
 export default function borderColor(context, options) {
     const chart = context.chart;

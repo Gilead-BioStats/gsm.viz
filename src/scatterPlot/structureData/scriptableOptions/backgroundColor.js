@@ -1,4 +1,4 @@
-import { color as d3color} from 'd3';
+import { color as d3color } from 'd3';
 
 export default function backgroundColor(context, options) {
     const chart = context.chart;
@@ -8,9 +8,11 @@ export default function backgroundColor(context, options) {
 
     if (dataset.type === 'scatter') {
         const color = d3color(config.colors[datum.stratum]);
-        color.opacity = config.selectedGroupIDs.includes(datum.groupid) | config.selectedGroupIDs.length === 0
-            ? 1
-            : 0.25;
+        color.opacity =
+            config.selectedGroupIDs.includes(datum.groupid) |
+            (config.selectedGroupIDs.length === 0)
+                ? 1
+                : 0.25;
         return color + '';
     }
 }

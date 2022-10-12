@@ -1,6 +1,7 @@
 import configure from './configure';
 import plugins from './plugins';
 import getScales from './getScales';
+import triggerTooltip from '../util/triggerTooltip';
 
 export default function updateConfig(chart, _config_, update = false) {
     // Update config.
@@ -11,6 +12,8 @@ export default function updateConfig(chart, _config_, update = false) {
     chart.options.scales = getScales(config);
 
     chart.data.config = config;
+
+    triggerTooltip(chart);
 
     if (update) chart.update();
 

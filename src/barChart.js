@@ -11,6 +11,7 @@ import Chart from 'chart.js/auto';
 import updateData from './barChart/updateData';
 import updateConfig from './barChart/updateConfig';
 import updateOption from './barChart/updateOption';
+import triggerTooltip from './util/triggerTooltip';
 
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
@@ -50,6 +51,8 @@ export default function barChart(_element_, _data_, _config_ = {}) {
     };
 
     canvas.chart = chart;
+
+    triggerTooltip(chart);
 
     return chart;
 }

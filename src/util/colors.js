@@ -27,7 +27,7 @@ const thresholds = [
     },
 ];
 
-thresholds.forEach(threshold => {
+thresholds.forEach((threshold) => {
     threshold.rgba = d3color(threshold.color);
 });
 
