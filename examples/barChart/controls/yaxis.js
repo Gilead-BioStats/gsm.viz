@@ -19,9 +19,9 @@ const yaxis = function (workflow, datasets, setup = false) {
 
         // disable threshold when metric selected
         if (yaxisDropdown.value === 'metric') {
-            document.getElementById('threshold').disabled = true
+            document.getElementById('threshold').disabled = true;
         } else {
-            document.getElementById('threshold').disabled = false
+            document.getElementById('threshold').disabled = false;
         }
 
         //thresholds = false
@@ -35,5 +35,5 @@ const yaxis = function (workflow, datasets, setup = false) {
         );
     });
 
-    return yaxisDropdown.value
+    return yaxisDropdown.value;
 };
