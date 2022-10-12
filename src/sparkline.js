@@ -1,3 +1,4 @@
+// TODO: add flags of -2 and 2 to the data
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
@@ -42,7 +43,7 @@ export default function sparkline(
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: plugins(config),
+        plugins: plugins(config, _data_),
         scales: getScales(config),
     };
 

@@ -1,3 +1,4 @@
+// TODO: turn off pretty axis algorithm
 export default function getScales(config) {
     const scales = {
         x: {
@@ -9,7 +10,7 @@ export default function getScales(config) {
             //type: config.xType,
         },
         y: {
-            display: false,
+            display: true,
             title: {
                 display: true,
                 text: config.yLabel,
