@@ -47,4 +47,5 @@ Promise.all(dataPromises)
         site(datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);
+        threshold(workflow, datasets, true);
     });

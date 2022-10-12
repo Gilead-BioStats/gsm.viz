@@ -29,7 +29,7 @@ const kri = function (workflow, datasets, setup = false) {
             workflow.selectedGroupIDs = [site()];
             if (instance.data.datasets[0].type === 'scatter')
                 workflow.xType = xAxisType();
-            console.log(bounds);
+
             instance.helpers.updateData(instance, results, workflow, bounds);
         });
     }
