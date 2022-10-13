@@ -1,4 +1,4 @@
-import { rollup, rollups } from 'd3';
+import { color as d3color, rollup, rollups } from 'd3';
 
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
@@ -39,20 +39,34 @@ export default function rollupBounds(_bounds_, config) {
             };
         });
 
+        // TODO: figure out how to hide trend line while maintaining consistent legend marks
         const bounds = boundUps.map((bound, i) => {
-            const threshold = +bound[0];
             const group = bound[1];
-            const flag = flags.find((flag) => flag.threshold === threshold);
+            group.threshold = +bound[0];
+            group.flag = flags.find(
+                (flag) => flag.threshold === group.threshold
+            );
+            const flag = group.flag.flag;
 
-            group.flag = flag.flag;
             group.label = config.colorMeta.find((color) => {
-                return color.flag.includes(group.flag);
+                return color.flag.includes(flag);
             }).description;
-            group.borderColor = config.colors[Math.abs(group.flag)];
-            group.backgroundColor = config.colors[Math.abs(group.flag)];
+            const color = config.colors[Math.abs(flag)];
+            group.borderColor = color;
+            const backgroundColor = d3color(color);
+            backgroundColor.opacity = 0.75;
+            group.backgroundColor = backgroundColor + '';
+            group.borderDash = [2];
 
-            return bound[1];
+            //group.hidden = config.displayTrendLine === false && group.threshold === 0;
+
+            if (config.displayTrendLine === false && group.threshold === 0) {
+                group.borderColor = 'rgba(0,0,0,0)';
+            }
+
+            return group;
         });
+        //.filter(bound => !(config.displayTrendLine === false && bound.threshold === 0));
 
         // Remove labels to avoid displaying duplicate legend items.
         rollup(
@@ -62,7 +76,7 @@ export default function rollupBounds(_bounds_, config) {
                     if (i > 0) d.label = '';
                 });
             },
-            (d) => Math.abs(d.flag)
+            (d) => Math.abs(d.flag.flag)
         );
 
         return bounds;
