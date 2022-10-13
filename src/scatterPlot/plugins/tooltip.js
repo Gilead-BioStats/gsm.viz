@@ -28,6 +28,6 @@ export default function tooltip(config) {
             title: () => null,
         },
         events: ['click', 'mouseenter', 'mouseover'],
-        filter: (data) => !/bound/i.test(data.dataset.label), // turns off tooltip for bounds
+        filter: (data) => data.dataset.type !== 'line', // turns off tooltip for bounds
     };
 }

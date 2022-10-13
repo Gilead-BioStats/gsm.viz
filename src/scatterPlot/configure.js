@@ -23,6 +23,9 @@ export default function configure(_config_) {
     );
     config.colorMeta = coalesce(config.colorMeta, colorMeta);
 
+    // display of trend line (center green bound line)
+    config.displayTrendLine = coalesce(config.displayTrendLine, false);
+
     // selected group IDs
     config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
 

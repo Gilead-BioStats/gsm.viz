@@ -8,7 +8,9 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../../index.js"></script>
         <script src="../controls/getChart.js"></script>
-        <script src="../controls/kri.js"></script>
+        <script src="./controls/kri.js"></script>
+        <script src="./controls/yaxis.js"></script>
+        <script src="./controls/threshold.js"></script>
         <script src="../controls/site.js"></script>
         <script src="../controls/lifecycle.js"></script>
         <script src="../controls/download.js"></script>
@@ -24,6 +26,24 @@
             <fieldset>
                 <legend>Highlighted Site</legend>
                 <select id="groupid"></select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Y-Axis</legend>
+                <select id="yaxis">
+                    <option value="score">score</option>
+                    <option value="metric">metric</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Threshold</legend>
+                <input
+                    type="checkbox"
+                    id="threshold"
+                    name="threshold"
+                    checked
+                />
             </fieldset>
 
             <fieldset>

@@ -17,20 +17,31 @@ const kri = function (workflow, datasets, setup = false) {
 
         kriDropdown.value = workflow.workflowid;
         kriDropdown.addEventListener('change', (event) => {
+            // need to know state of threshold
+            const isThreshold = document.getElementById('threshold').checked;
+
             const workflow = datasets[0].find(
                 (d) => d.workflowid === event.target.value
             );
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            const bounds = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            workflow.selectedGroupIDs = [site()];
-            if (instance.data.datasets[0].type === 'scatter')
-                workflow.xType = xAxisType();
 
-            instance.helpers.updateData(instance, results, workflow, bounds);
+            let thresholds = null;
+            if (isThreshold) {
+                thresholds = datasets[2].filter(
+                    (d) => d.workflowid === workflow.workflowid
+                );
+            }
+
+            //thresholds = false
+            workflow.selectedGroupIDs = [site()];
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                thresholds
+            );
         });
     }
 

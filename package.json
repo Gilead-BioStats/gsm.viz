@@ -1,11 +1,11 @@
 {
   "name": "rbm-viz",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
-    "build": "npm run bundle && npm run format && npm run test",
+    "build": "npm run bundle && npm run format",
     "bundle": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap",
     "format": "npm run format-src && npm run format-examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
