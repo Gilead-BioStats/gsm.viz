@@ -1,5 +1,5 @@
 import { color as d3color } from 'd3';
-import meta_thresholds from '../../../util/colors';
+import colorScheme from '../../../util/colorScheme';
 
 export default function backgroundColor(context, options) {
     const chart = context.chart;
@@ -8,10 +8,10 @@ export default function backgroundColor(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'bar') {
-        const threshold = meta_thresholds.thresholds.find((x) =>
+        const threshold = colorScheme.find((x) =>
             x.flag.includes(datum.stratum)
         );
-        const color = d3color(threshold.color);
+        const color = threshold.rgba;
         color.opacity =
             config.selectedGroupIDs.includes(datum.groupid) |
             (config.selectedGroupIDs.length === 0)

@@ -48,10 +48,10 @@ export default function rollupBounds(_bounds_, config) {
             );
             const flag = group.flag.flag;
 
-            group.label = config.colorMeta.find((color) => {
+            group.label = config.colorScheme.find((color) => {
                 return color.flag.includes(flag);
             }).description;
-            const color = config.colors[Math.abs(flag)];
+            const color = config.colorScheme[Math.abs(flag)].color;
             group.borderColor = color;
             const backgroundColor = d3color(color);
             backgroundColor.opacity = 0.75;
