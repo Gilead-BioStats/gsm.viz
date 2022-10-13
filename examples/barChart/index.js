@@ -23,28 +23,24 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
-        // TODO: move to helper function in library and derive flags
-        const thresholds = datasets[2]
-            .filter((d) => d.workflowid === workflow.workflowid)
-            .filter((d) => d.param === 'vThreshold')
-            .map((d) => {
-                return {
-                    threshold: d.default,
-                };
-            });
+        const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
         // visualization
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
+
         const selectedGroupIDs = [
             results[Math.floor(Math.random() * results.length)].groupid,
         ];
+
         workflow.selectedGroupIDs = selectedGroupIDs;
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow
+            workflow,
+            thresholds,
+            'score'
         );
 
         // controls
@@ -52,4 +48,6 @@ Promise.all(dataPromises)
         site(datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);
+        threshold(workflow, datasets, true);
+        yaxis(workflow, datasets, true);
     });

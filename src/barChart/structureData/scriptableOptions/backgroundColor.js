@@ -1,4 +1,4 @@
-import thresholds from '../../../util/colors';
+import meta_thresholds from '../../../util/colors';
 
 export default function backgroundColor(context, options) {
     const chart = context.chart;
@@ -9,7 +9,8 @@ export default function backgroundColor(context, options) {
     if (dataset.type === 'bar') {
         return config.selectedGroupIDs.includes(datum.groupid)
             ? 'black'
-            : thresholds.thresholds.find((x) => x.flag.includes(datum.stratum))
-                  .color;
+            : meta_thresholds.thresholds.find((x) =>
+                  x.flag.includes(datum.stratum)
+              ).color;
     }
 }
