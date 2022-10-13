@@ -1,4 +1,4 @@
-import thresholds from '../../util/colors';
+// import thresholds from '../../util/colors';
 
 export default function legend(config) {
     //const legendOrder = thresholds.map(threshold => threshold.description);
