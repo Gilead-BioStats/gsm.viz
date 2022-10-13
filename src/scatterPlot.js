@@ -11,6 +11,7 @@ import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
 import updateConfig from './scatterPlot/updateConfig';
 import updateOption from './scatterPlot/updateOption';
+import triggerTooltip from './util/triggerTooltip';
 
 /**
  * Generate a scatter plot built with Chart.js.
@@ -62,7 +63,10 @@ export default function scatterPlot(
         updateData,
         updateConfig,
         updateOption,
+        //triggerTooltip,
     };
+
+    triggerTooltip(chart);
 
     return chart;
 }

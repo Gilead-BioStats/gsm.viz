@@ -1,5 +1,5 @@
 import coalesce from '../util/coalesce';
-import { colors, thresholds as colorMeta } from '../util/colors';
+import colorScheme from '../util/colorScheme';
 
 export default function configure(_config_) {
     const config = { ..._config_ };
@@ -17,11 +17,10 @@ export default function configure(_config_) {
 
     // color
     config.color = coalesce(config.flag, 'flag');
-    config.colors = coalesce(
-        config.colors,
-        Object.keys(colors).map((key) => colors[key])
-    );
-    config.colorMeta = coalesce(config.colorMeta, colorMeta);
+    config.colorScheme = coalesce(config.colorScheme, colorScheme);
+
+    // display of trend line (center green bound line)
+    config.displayTrendLine = coalesce(config.displayTrendLine, false);
 
     // selected group IDs
     config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);

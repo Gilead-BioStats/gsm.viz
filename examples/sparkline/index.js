@@ -13,17 +13,16 @@ Promise.all(dataPromises)
         // data
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
-        const groupids = [
-            ...new Set(datasets[1].map(d => d.groupid))
-        ].filter(_ => Math.random() < 0.05);
+        const groupids = [...new Set(datasets[1].map((d) => d.groupid))].filter(
+            (_) => Math.random() < 0.05
+        );
         //const groupid = groupids[
         //    Math.floor(Math.random()*groupids.length)
         //];
         const results = datasets[1].filter(
-            (d) => (
+            (d) =>
                 d.workflowid === workflow.workflowid &&
                 groupids.includes(d.groupid)
-            )
         );
 
         // configuration
@@ -33,14 +32,14 @@ Promise.all(dataPromises)
             const groupid = groupids[i];
             console.log(groupid);
             const container = document.getElementById('container');
-            const subcontainer = document.createElement('div')
+            const subcontainer = document.createElement('div');
             subcontainer.id = `container_${i}`;
             container.appendChild(subcontainer);
 
             // visualization
             const instance = rbmViz.default.sparkline(
                 subcontainer,
-                results.filter(d => d.groupid === groupid),
+                results.filter((d) => d.groupid === groupid),
                 workflow
             );
         }
