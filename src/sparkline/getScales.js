@@ -1,5 +1,11 @@
-// TODO: turn off pretty axis algorithm
-export default function getScales(config) {
+import { min, max } from 'd3';
+
+export default function getScales(config, data) {
+    const yMin = min(data);
+    const yMax = max(data);
+    const range = yMin === yMax
+        ? yMin
+        : yMax - yMin;
     const scales = {
         x: {
             display: false,
@@ -11,6 +17,8 @@ export default function getScales(config) {
         },
         y: {
             display: false,
+            min: yMin - range*.1,
+            max: yMax + range*.1,
             title: {
                 display: true,
                 text: config.yLabel,

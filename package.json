@@ -10,7 +10,7 @@
     "format": "npm run format-src && npm run format-examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
-    "local": "live-server --ignore=**/node_modules --wait=250 .",
+    "local": "live-server --ignore=node_modules --wait=250 .",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch",
     "test": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
   },

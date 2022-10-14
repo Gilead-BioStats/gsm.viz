@@ -43,9 +43,8 @@ export default function sparkline(
         onClick,
         onHover,
         plugins: plugins(config, _data_),
-        scales: getScales(config),
+        scales: getScales(config, datasets[0].data),
     };
-
     const chart = new Chart(canvas, {
         data: {
             labels: datasets.labels,

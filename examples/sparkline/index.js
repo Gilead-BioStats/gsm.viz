@@ -16,7 +16,7 @@ Promise.all(dataPromises)
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
         //workflow.y = 'n_flagged';
         const groupids = [...new Set(datasets[1].map((d) => d.groupid))].filter(
-            (_) => Math.random() < 0.05
+            (_) => Math.random() < 0.25
         );
         //const groupid = groupids[
         //    Math.floor(Math.random()*groupids.length)

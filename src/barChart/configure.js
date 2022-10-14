@@ -14,7 +14,6 @@ export default function configure(
     config.xLabel = coalesce(config.xLabel, config['group']);
 
     // y-axis
-    console.log(yaxis);
     config.y = coalesce(config.y, yaxis);
     config.yLabel = coalesce(config.yLabel, config[config.y]);
 
@@ -22,17 +21,13 @@ export default function configure(
     config.color = coalesce(config.flag, 'flag');
     config.colorLabel = coalesce(config.colorLabel, config[config.color]);
 
-    // n
-    config.n = coalesce(config.n, 'n');
-    config.nLabel = coalesce(config.nLabel, config[config.n]);
-
     // numerator
     config.num = 'numerator';
     config.numeratorLabel = coalesce(config.numeratorLabel, config[config.num]);
 
     // denominator
     config.denom = 'denominator';
-    config.denomionatorLabel = coalesce(
+    config.denominatorLabel = coalesce(
         config.denominatorLabel,
         config[config.denom]
     );
