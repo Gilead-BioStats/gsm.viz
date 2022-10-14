@@ -3,6 +3,7 @@ import { ScatterPlot, BarChart } from './RbmViz';
 import results_summary from './data/results_summary';
 import meta_workflow from './data/meta_workflow';
 import results_bounds from './data/results_bounds';
+import meta_param from './data/meta_param';
 
 const App = () => {
     // const [bondSate, setBondState] = React.useState(BOUNDS);
@@ -20,13 +21,14 @@ const App = () => {
     const BOUNDS = results_bounds.filter(
         (d) => d.workflowid === WORKFLOW.workflowid
     );
+    const THRESHOLDS = meta_param.filter((d) => d.param === 'vThreshold');
 
     return (
         <>
             {/* <p>welcome</p> */}
             {/* <button onClick={updateHndler}>Update</button> */}
             <ScatterPlot data={DATA} config={WORKFLOW} bounds={BOUNDS} />
-            <BarChart data={DATA} config={WORKFLOW} />
+            <BarChart data={DATA} config={WORKFLOW} thresholds={THRESHOLDS} />
         </>
     );
 };

@@ -6,20 +6,20 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const BarChart = ({ data, config }) => {
+const BarChart = ({ data, config, thresholds }) => {
     const container = useRef(null);
 
     useEffect(() => {
         if (container.current) {
-            rbm.barChart(container.current, data, config);
+            rbm.barChart(container.current, data, config, thresholds);
         }
-    }, [data, config]);
+    }, [data, config, thresholds]);
 
     return (
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '49.5%', display: 'inline-block' }}
+            style={{ width: '49.5%', height: '300px', display: 'inline-block' }}
         ></div>
     );
 };
@@ -27,11 +27,13 @@ const BarChart = ({ data, config }) => {
 BarChart.propTypes = {
     data: PropTypes.array,
     config: PropTypes.object,
+    thresholds: PropTypes.array,
 };
 
 BarChart.defaultProps = {
     data: [],
     config: {},
+    thresholds: [],
 };
 
 export { BarChart };
