@@ -23,7 +23,7 @@ Promise.all(dataPromises)
         //];
         const results = datasets[1].filter(
             (d) =>
-            d.workflowid === workflow.workflowid &&
+                d.workflowid === workflow.workflowid &&
                 groupids.includes(d.groupid)
         );
 
