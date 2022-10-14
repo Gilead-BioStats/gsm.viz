@@ -10,7 +10,7 @@ export default function getScales(config) {
             //type: config.xType,
         },
         y: {
-            display: true,
+            display: false,
             title: {
                 display: true,
                 text: config.yLabel,

@@ -18,5 +18,5 @@ export default function mutate(_data_, config) {
             return aSelected ? 1 : bSelected ? -1 : stratum;
         });
 
-    return data;
+    return data.slice(data.length - config.nSnapshots);
 }

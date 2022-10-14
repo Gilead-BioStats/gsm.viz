@@ -31,5 +31,7 @@ export default function configure(_config_) {
     // sizing
     config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
 
+    config.nSnapshots = coalesce(config.nSnapshots, 5);
+
     return config;
 }

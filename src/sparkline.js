@@ -1,4 +1,3 @@
-// TODO: add flags of -2 and 2 to the data
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
