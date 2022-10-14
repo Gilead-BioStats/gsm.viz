@@ -1,0 +1,13 @@
+#container {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#container div {
+    width: 12.5%;
+    height: 50px;
+    border: 1px dotted #aaa;
+    margin: 2px;
+}
