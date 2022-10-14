@@ -1,4 +1,4 @@
-import threshold_meta from '../../util/colors';
+import colorScheme from '../../util/colorScheme';
 
 export default function annotations(config) {
     let annotations = null;
@@ -8,7 +8,7 @@ export default function annotations(config) {
             type: 'line',
             yMin: x.threshold,
             yMax: x.threshold,
-            borderColor: threshold_meta.thresholds.filter((y) =>
+            borderColor: colorScheme.filter((y) =>
                 y.flag.includes(+x.flag)
             )[0].color,
             borderWidth: 2,
@@ -16,11 +16,11 @@ export default function annotations(config) {
             label: {
                 rotation: 'auto',
                 position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
-                color: threshold_meta.thresholds.filter((y) =>
+                color: colorScheme.filter((y) =>
                     y.flag.includes(+x.flag)
                 )[0].color,
                 backgroundColor: 'white',
-                content: threshold_meta.thresholds.filter((y) =>
+                content: colorScheme.filter((y) =>
                     y.flag.includes(+x.flag)
                 )[0].description,
                 display: true, //Math.sign(+x.flag) === 1,

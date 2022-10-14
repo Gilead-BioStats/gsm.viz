@@ -7,7 +7,7 @@ export default function backgroundColor(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'scatter') {
-        const color = d3color(config.colors[datum.stratum]);
+        const color = config.colorScheme[datum.stratum].rgba;
         color.opacity =
             config.selectedGroupIDs.includes(datum.groupid) |
             (config.selectedGroupIDs.length === 0)

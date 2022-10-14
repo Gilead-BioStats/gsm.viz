@@ -1,9 +1,9 @@
-import { thresholds } from '../../util/colors';
+import colorScheme from '../../util/colorScheme';
 
 export default function legend(config) {
-    const legendOrder = thresholds
+    const legendOrder = colorScheme
         .sort((a, b) => a.order - b.order)
-        .map((threshold) => threshold.description);
+        .map((color) => color.description);
 
     return {
         display: true,
