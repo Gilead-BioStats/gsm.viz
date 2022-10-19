@@ -1,13 +1,17 @@
 export default function getScales(config) {
     const scales = {
         x: {
-            type: 'category',
-            ticks: {
-                display: false,
-            },
             grid: {
                 display: false,
             },
+            ticks: {
+                display: false,
+            },
+            title: {
+                display: true,
+                text: config.group,
+            },
+            type: 'category',
         },
         y: {
             title: {

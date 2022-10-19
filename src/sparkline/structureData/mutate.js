@@ -1,3 +1,5 @@
+import { ascending } from 'd3';
+
 export default function mutate(_data_, config) {
     const data = _data_
         .map((d) => {
@@ -10,13 +12,7 @@ export default function mutate(_data_, config) {
 
             return datum;
         })
-        .sort((a, b) => {
-            const aSelected = config.selectedGroupIDs.indexOf(a.groupid) > -1;
-            const bSelected = config.selectedGroupIDs.indexOf(b.groupid) > -1;
-            const stratum = b.stratum - a.stratum;
+        .sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
 
-            return aSelected ? 1 : bSelected ? -1 : stratum;
-        });
-
-    return data.slice(data.length - config.nSnapshots);
+    return data; //.slice(data.length - config.nSnapshots);
 }

@@ -1,10 +1,7 @@
 import coalesce from '../util/coalesce';
+import getThresholdFlags from '../util/getThresholdFlags';
 
-export default function configure(
-    _config_,
-    thresholds = false,
-    yaxis = 'score'
-) {
+export default function configure(_config_, _thresholds_) {
     const config = { ..._config_ };
 
     config.type = 'bar';
@@ -14,17 +11,12 @@ export default function configure(
     config.xLabel = coalesce(config.xLabel, config['group']);
 
     // y-axis
-    console.log(yaxis);
-    config.y = coalesce(config.y, yaxis);
+    config.y = coalesce(config.y, 'score');
     config.yLabel = coalesce(config.yLabel, config[config.y]);
 
     // miscellaneous
     config.color = coalesce(config.flag, 'flag');
     config.colorLabel = coalesce(config.colorLabel, config[config.color]);
-
-    // n
-    config.n = coalesce(config.n, 'n');
-    config.nLabel = coalesce(config.nLabel, config[config.n]);
 
     // numerator
     config.num = 'numerator';
@@ -32,23 +24,23 @@ export default function configure(
 
     // denominator
     config.denom = 'denominator';
-    config.denomionatorLabel = coalesce(
+    config.denominatorLabel = coalesce(
         config.denominatorLabel,
         config[config.denom]
     );
 
-    if (thresholds && config.y !== 'metric') {
-        config.threshold = thresholds
-            .filter((d) => d.workflowid == config['workflowid'])
-            .filter((d) => d.param === 'vThreshold')
-            .map((d) => {
-                return {
-                    threshold: d.default,
-                    flag:
-                        (Math.abs(+d.default) <= 5 ? '1' : '2') *
-                        Math.sign(d.default),
-                };
-            });
+    if (_thresholds_ && config.y !== 'metric') {
+        // TODO: remove hard code check for 'metric'
+        const thresholds = _thresholds_
+            .filter(
+                (d) =>
+                    d.workflowid === config.workflowid &&
+                    d.param === 'vThreshold'
+            )
+            .map((d) => d.default);
+
+        const flags = getThresholdFlags(thresholds);
+        config.threshold = flags;
     } else {
         config.threshold = null;
     }

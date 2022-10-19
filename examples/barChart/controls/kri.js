@@ -17,15 +17,15 @@ const kri = function (workflow, datasets, setup = false) {
 
         kriDropdown.value = workflow.workflowid;
         kriDropdown.addEventListener('change', (event) => {
-            // need to know state of threshold
-            const isThreshold = document.getElementById('threshold').checked;
-
             const workflow = datasets[0].find(
                 (d) => d.workflowid === event.target.value
             );
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
+
+            // need to know state of threshold
+            const isThreshold = document.getElementById('threshold').checked;
 
             let thresholds = null;
             if (isThreshold) {
@@ -35,7 +35,7 @@ const kri = function (workflow, datasets, setup = false) {
             }
 
             //thresholds = false
-            workflow.selectedGroupIDs = [site()];
+            workflow.selectedGroupIDs = site() !== 'None' ? [site()] : [];
             instance.helpers.updateData(
                 instance,
                 results,

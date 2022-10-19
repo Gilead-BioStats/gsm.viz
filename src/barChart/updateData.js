@@ -7,10 +7,10 @@ export default function updateData(
     chart,
     _data_,
     _config_,
-    thresholds = false,
-    yaxis = 'score'
+    thresholds = false
 ) {
-    chart.data.config = updateConfig(chart, _config_, thresholds, yaxis);
+    chart.data.config = updateConfig(chart, _config_, thresholds);
+
     // TODO: figure out why these events have to be redefined on data change
     chart.data.config.hoverEvent = addCustomHoverEvent(
         chart.canvas,
