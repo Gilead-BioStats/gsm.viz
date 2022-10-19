@@ -1,10 +1,7 @@
 import coalesce from '../util/coalesce';
 import getThresholdFlags from '../util/getThresholdFlags';
 
-export default function configure(
-    _config_,
-    _thresholds_
-) {
+export default function configure(_config_, _thresholds_) {
     const config = { ..._config_ };
 
     config.type = 'bar';
@@ -32,13 +29,15 @@ export default function configure(
         config[config.denom]
     );
 
-    if (_thresholds_) {
+    if (_thresholds_ && config.y !== 'metric') {
+        // TODO: remove hard code check for 'metric'
         const thresholds = _thresholds_
-            .filter((d) => (
-                d.workflowid === config.workflowid &&
-                d.param === 'vThreshold'
-            ))
-            .map(d => d.default);
+            .filter(
+                (d) =>
+                    d.workflowid === config.workflowid &&
+                    d.param === 'vThreshold'
+            )
+            .map((d) => d.default);
 
         const flags = getThresholdFlags(thresholds);
         config.threshold = flags;

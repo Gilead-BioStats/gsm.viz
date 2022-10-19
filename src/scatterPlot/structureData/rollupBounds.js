@@ -23,7 +23,7 @@ export default function rollupBounds(_bounds_, config) {
         );
 
         // Map thresholds to flags, e.g. -7 > -2, -5 > -1, 5 > 1, 7 > 2.
-        const flags = getThresholdFlags(boundUps.map(bound => bound[0]));
+        const flags = getThresholdFlags(boundUps.map((bound) => bound[0]));
 
         // TODO: figure out how to hide trend line while maintaining consistent legend marks
         const bounds = boundUps.map((bound, i) => {
@@ -34,9 +34,9 @@ export default function rollupBounds(_bounds_, config) {
             );
             const flag = group.flag.flag;
 
-            group.label = config.colorScheme
-                .find((color) => color.flag.includes(flag))
-                .description;
+            group.label = config.colorScheme.find((color) =>
+                color.flag.includes(flag)
+            ).description;
             const color = config.colorScheme[Math.abs(flag)].color;
             group.borderColor = color;
             const backgroundColor = d3color(color);

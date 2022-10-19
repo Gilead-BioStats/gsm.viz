@@ -50,5 +50,5 @@ Promise.all(dataPromises)
         //site(datasets, true);
         //xAxisType(true);
         //lifecycle(datasets, 'scatterPlot', true);
-        //download(true);
+        download(true);
     });

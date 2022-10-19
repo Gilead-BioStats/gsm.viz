@@ -1,3 +1,4 @@
+// TODO: annotate final point
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
@@ -7,6 +8,7 @@ import onClick from './util/onClick';
 import plugins from './sparkline/plugins';
 import getScales from './sparkline/getScales';
 
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import Chart from 'chart.js/auto';
 import updateData from './sparkline/updateData';
 import updateConfig from './sparkline/updateConfig';
@@ -39,12 +41,18 @@ export default function sparkline(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
+        //layout: {
+        //    padding: {
+        //        right: 50,
+        //    },
+        //},
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
         plugins: plugins(config, _data_),
         scales: getScales(config, datasets[0].data),
     };
+
     const chart = new Chart(canvas, {
         data: {
             labels: datasets.labels,
@@ -52,6 +60,7 @@ export default function sparkline(
             config,
         },
         options,
+        //plugins: [ChartDataLabels],
     });
 
     canvas.chart = chart;

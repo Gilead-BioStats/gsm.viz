@@ -1,4 +1,3 @@
-
 // Add event listener to outcome toggle.
 const outcome = function (setup = false) {
     const instance = getChart();
@@ -6,8 +5,7 @@ const outcome = function (setup = false) {
 
     if (setup)
         outcomeToggle.addEventListener('change', (event) => {
-            instance.
-            instance.helpers.updateOption(
+            instance.instance.helpers.updateOption(
                 instance,
                 'scales.x.type',
                 event.target.value

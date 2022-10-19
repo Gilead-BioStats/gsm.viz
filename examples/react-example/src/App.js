@@ -16,7 +16,7 @@ const App = () => {
     // };
 
     const WORKFLOW = meta_workflow[0];
-    WORKFLOW.selectedGroupIDs = ['86'];
+    WORKFLOW.selectedGroupIDs = '86';
     WORKFLOW.nSnapshots = 100;
     const DATA = results_summary.filter(
         (d) => d.workflowid === WORKFLOW.workflowid
@@ -25,12 +25,11 @@ const App = () => {
         (d) => d.workflowid === WORKFLOW.workflowid
     );
     const THRESHOLDS = meta_param.filter((d) => d.param === 'vThreshold');
-    const LONGITUDINAL = results_summary_over_time
-        .filter(d => (
+    const LONGITUDINAL = results_summary_over_time.filter(
+        (d) =>
             d.workflowid === WORKFLOW.workflowid &&
-            WORKFLOW.selectedGroupIDs.includes(d.groupid)
-        ));
-console.log(WORKFLOW.selectedGroupIDs);
+            WORKFLOW.selectedGroupIDs === d.groupid
+    );
     return (
         <>
             {/* <p>welcome</p> */}

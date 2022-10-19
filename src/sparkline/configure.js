@@ -6,12 +6,12 @@ export default function configure(_config_) {
     config.type = 'scatter';
 
     // x-axis
-    config.x = coalesce(config.x, 'denominator');
+    config.x = coalesce(config.x, 'snapshot_date');
     config.xLabel = coalesce(config.xLabel, config[config.x]);
     config.xType = coalesce(config.xType, 'logarithmic');
 
     // y-axis
-    config.y = coalesce(config.y, 'numerator');
+    config.y = coalesce(config.y, 'metric');
     config.yLabel = coalesce(config.yLabel, config[config.y]);
     config.yType = coalesce(config.yType, 'linear');
 

@@ -8,11 +8,9 @@ export default function getScales(config) {
                 borderDash: [2],
             },
             ticks: {
-                callback: function(value, index, context) {
+                callback: function (value, index, context) {
                     const tick = context[index];
-                    return tick.major
-                        ? format(',d')(tick.value)
-                        : null;
+                    return tick.major ? format(',d')(tick.value) : null;
                 },
             },
             title: {

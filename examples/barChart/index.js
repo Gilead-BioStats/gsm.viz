@@ -11,30 +11,33 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        // data
+        // configuration
         const [workflow] = datasets[0] // destructured assignment
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
+
+        // bar data
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
-        ).filter(() => Math.random() < .25);
+        ); //.filter(() => Math.random() < .25);
 
+        // threshold annotations
         const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
-        // visualization
+        // custom settings
+        workflow.y = 'score'; //'metric';
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
+        const selectedGroupIDs =
+            results[Math.floor(Math.random() * results.length)].groupid;
+        //workflow.selectedGroupIDs = selectedGroupIDs;
 
-        let selectedGroupIDs = results[Math.floor(Math.random() * results.length)].groupid;
-        console.log(selectedGroupIDs);
-
-        workflow.selectedGroupIDs = selectedGroupIDs;
+        // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             workflow,
-            thresholds,
-            'score'
+            datasets[2] //thresholds
         );
 
         // controls

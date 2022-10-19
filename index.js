@@ -16100,8 +16100,10 @@ var rbmViz = (() => {
       config.denominatorLabel,
       config[config.denom]
     );
-    if (_thresholds_) {
-      const thresholds = _thresholds_.filter((d) => d.workflowid === config.workflowid && d.param === "vThreshold").map((d) => d.default);
+    if (_thresholds_ && config.y !== "metric") {
+      const thresholds = _thresholds_.filter(
+        (d) => d.workflowid === config.workflowid && d.param === "vThreshold"
+      ).map((d) => d.default);
       const flags = getThresholdFlags(thresholds);
       config.threshold = flags;
     } else {
@@ -19171,7 +19173,9 @@ var rbmViz = (() => {
           const tooltip4 = [
             `${config.xLabel}: ${datum2.x}`,
             `${config.numeratorLabel}: ${datum2.numerator}`,
-            `${config.denominatorLabel}: ${format(",")(datum2.denominator)}`,
+            `${config.denominatorLabel}: ${format(",")(
+              datum2.denominator
+            )}`,
             `${config.outcome}: ${format(".3f")(datum2.metric)}`,
             `${config.yLabel}: ${format(".3f")(datum2.y)}`
           ];
@@ -19463,7 +19467,9 @@ var rbmViz = (() => {
           (flag2) => flag2.threshold === group2.threshold
         );
         const flag = group2.flag.flag;
-        group2.label = config.colorScheme.find((color4) => color4.flag.includes(flag)).description;
+        group2.label = config.colorScheme.find(
+          (color4) => color4.flag.includes(flag)
+        ).description;
         const color3 = config.colorScheme[Math.abs(flag)].color;
         group2.borderColor = color3;
         const backgroundColor4 = color2(color3);
@@ -19687,10 +19693,10 @@ var rbmViz = (() => {
   function configure4(_config_) {
     const config = { ..._config_ };
     config.type = "scatter";
-    config.x = coalesce(config.x, "denominator");
+    config.x = coalesce(config.x, "snapshot_date");
     config.xLabel = coalesce(config.xLabel, config[config.x]);
     config.xType = coalesce(config.xType, "logarithmic");
-    config.y = coalesce(config.y, "numerator");
+    config.y = coalesce(config.y, "metric");
     config.yLabel = coalesce(config.yLabel, config[config.y]);
     config.yType = coalesce(config.yType, "linear");
     config.color = coalesce(config.flag, "flag");
