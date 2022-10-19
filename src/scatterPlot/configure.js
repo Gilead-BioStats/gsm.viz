@@ -19,6 +19,8 @@ export default function configure(_config_) {
     config.color = coalesce(config.flag, 'flag');
     config.colorScheme = coalesce(config.colorScheme, colorScheme);
 
+    config.displayTitle = false;
+
     // display of trend line (center green bound line)
     config.displayTrendLine = coalesce(config.displayTrendLine, false);
 

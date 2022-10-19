@@ -19,7 +19,7 @@ const threshold = function (workflow, datasets, setup = false) {
         }
 
         //thresholds = false
-        workflow.selectedGroupIDs = [site()];
+        workflow.selectedGroupIDs = site() === 'None' ? [] : [site()];
         instance.helpers.updateData(instance, results, workflow, thresholds);
     });
 };

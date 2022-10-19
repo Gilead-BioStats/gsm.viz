@@ -14,9 +14,9 @@ Promise.all(dataPromises)
         // data
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
-        //workflow.y = 'n_flagged';
+        workflow.y = 'metric';
         const groupids = [...new Set(datasets[1].map((d) => d.groupid))].filter(
-            (_) => Math.random() < 0.05
+            (_) => Math.random() < 0.25
         );
         //const groupid = groupids[
         //    Math.floor(Math.random()*groupids.length)
@@ -50,5 +50,5 @@ Promise.all(dataPromises)
         //site(datasets, true);
         //xAxisType(true);
         //lifecycle(datasets, 'scatterPlot', true);
-        //download(true);
+        download(true);
     });

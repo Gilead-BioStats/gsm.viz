@@ -1,4 +1,5 @@
 import { BarChart } from './RbmViz/BarChart';
 import { ScatterPlot } from './RbmViz/ScatterPlot';
+import { Sparkline } from './RbmViz/Sparkline';
 
-export { ScatterPlot, BarChart };
+export { BarChart, ScatterPlot, Sparkline };

@@ -1,6 +1,6 @@
 export default function title(config) {
     return {
-        display: true,
+        display: config.displayTitle,
         text: `${config.metric} by ${config.group}`,
     };
 }
