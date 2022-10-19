@@ -16,7 +16,7 @@ Promise.all(dataPromises)
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
-        );
+        ).filter(() => Math.random() < .25);
 
         const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
 
@@ -25,9 +25,8 @@ Promise.all(dataPromises)
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
 
-        const selectedGroupIDs = [
-            results[Math.floor(Math.random() * results.length)].groupid,
-        ];
+        let selectedGroupIDs = results[Math.floor(Math.random() * results.length)].groupid;
+        console.log(selectedGroupIDs);
 
         workflow.selectedGroupIDs = selectedGroupIDs;
         const instance = rbmViz.default.barChart(

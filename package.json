@@ -6,12 +6,13 @@
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format",
-    "bundle": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap",
-    "format": "npm run format-src && npm run format-examples",
-    "format-src": "npx prettier --single-quote --tab-width=4 --write src",
+    "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
+    "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
+    "format-src": "npx prettier --single-quote --tab-width=4 --write src",
+    "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
     "local": "live-server --ignore=node_modules --wait=250 .",
-    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --minify --outfile=index.js --sourcemap --watch",
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
     "test": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
   },
   "repository": {

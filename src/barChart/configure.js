@@ -1,9 +1,9 @@
 import coalesce from '../util/coalesce';
+import getThresholdFlags from '../util/getThresholdFlags';
 
 export default function configure(
     _config_,
-    thresholds = false,
-    yaxis = 'score'
+    _thresholds_
 ) {
     const config = { ..._config_ };
 
@@ -14,7 +14,7 @@ export default function configure(
     config.xLabel = coalesce(config.xLabel, config['group']);
 
     // y-axis
-    config.y = coalesce(config.y, yaxis);
+    config.y = coalesce(config.y, 'score');
     config.yLabel = coalesce(config.yLabel, config[config.y]);
 
     // miscellaneous
@@ -32,18 +32,16 @@ export default function configure(
         config[config.denom]
     );
 
-    if (thresholds && config.y !== 'metric') {
-        config.threshold = thresholds
-            .filter((d) => d.workflowid == config['workflowid'])
-            .filter((d) => d.param === 'vThreshold')
-            .map((d) => {
-                return {
-                    threshold: d.default,
-                    flag:
-                        (Math.abs(+d.default) <= 5 ? '1' : '2') *
-                        Math.sign(d.default),
-                };
-            });
+    if (_thresholds_) {
+        const thresholds = _thresholds_
+            .filter((d) => (
+                d.workflowid === config.workflowid &&
+                d.param === 'vThreshold'
+            ))
+            .map(d => d.default);
+
+        const flags = getThresholdFlags(thresholds);
+        config.threshold = flags;
     } else {
         config.threshold = null;
     }

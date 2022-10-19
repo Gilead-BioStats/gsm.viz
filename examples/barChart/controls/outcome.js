@@ -1,10 +1,12 @@
-// Add event listener to x-axis type toggle.
+
+// Add event listener to outcome toggle.
 const outcome = function (setup = false) {
     const instance = getChart();
-    const xAxisToggle = document.querySelector('#x-axis-type');
+    const outcomeToggle = document.querySelector('#outcome');
 
     if (setup)
-        xAxisToggle.addEventListener('change', (event) => {
+        outcomeToggle.addEventListener('change', (event) => {
+            instance.
             instance.helpers.updateOption(
                 instance,
                 'scales.x.type',

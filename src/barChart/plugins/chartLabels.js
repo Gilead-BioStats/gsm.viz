@@ -1,25 +1,16 @@
 export default function chartLabels() {
     return {
+        align: (context) => (
+            Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? 'start' : 'end'
+        ),
+        anchor: (context) => (
+            Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? 'start' : 'end'
+        ),
         color: 'black',
-        formatter: function (value, context) {
-            return context.chart.data.labels[context.dataIndex];
-        },
-        display: function (context) {
-            var barWidth = context.chart.getDatasetMeta(0).data[1].width;
-            return barWidth >= context.chart.options.font.size - 3;
-        },
-        align: function (context) {
-            let y = context.chart.data.datasets[0].data[context.dataIndex].y;
-            y_sign = Math.sign(y) === 1 ? 'start' : 'end';
-
-            return y_sign;
-        },
-        anchor: function (context) {
-            let y = context.chart.data.datasets[0].data[context.dataIndex].y;
-            y_sign = Math.sign(y) === 1 ? 'start' : 'end';
-
-            return y_sign;
-        },
-        rotation: 90,
+        display: (context) => (
+            context.chart.getDatasetMeta(0).data[1].width >= context.chart.options.font.size - 3
+        ),
+        formatter: (value, context) => context.chart.data.labels[context.dataIndex],
+        rotation: -90,
     };
 }
