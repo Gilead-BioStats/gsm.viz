@@ -13649,16 +13649,16 @@ var rbmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function adjustScaleRange(chart, scale, annotations2) {
-    const range = getScaleLimits(chart.scales, scale, annotations2);
+  function adjustScaleRange(chart, scale, annotations3) {
+    const range = getScaleLimits(chart.scales, scale, annotations3);
     let changed = changeScaleLimit(scale, range, "min", "suggestedMin");
     changed = changeScaleLimit(scale, range, "max", "suggestedMax") || changed;
     if (changed && typeof scale.handleTickRangeOptions === "function") {
       scale.handleTickRangeOptions();
     }
   }
-  function verifyScaleOptions(annotations2, scales2) {
-    for (const annotation2 of annotations2) {
+  function verifyScaleOptions(annotations3, scales2) {
+    for (const annotation2 of annotations3) {
       verifyScaleIDs(annotation2, scales2);
     }
   }
@@ -13692,7 +13692,7 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function getScaleLimits(scales2, scale, annotations2) {
+  function getScaleLimits(scales2, scale, annotations3) {
     const axis = scale.axis;
     const scaleID = scale.id;
     const scaleIDOption = axis + "ScaleID";
@@ -13700,7 +13700,7 @@ var rbmViz = (() => {
       min: valueOrDefault(scale.min, Number.NEGATIVE_INFINITY),
       max: valueOrDefault(scale.max, Number.POSITIVE_INFINITY)
     };
-    for (const annotation2 of annotations2) {
+    for (const annotation2 of annotations3) {
       if (annotation2.scaleID === scaleID) {
         updateLimits2(annotation2, scale, ["value", "endValue"], limits);
       } else if (retrieveScaleID(scales2, annotation2, scaleIDOption) === scaleID) {
@@ -14763,10 +14763,10 @@ var rbmViz = (() => {
   }
   function updateElements(chart, state, options, mode) {
     const animations = resolveAnimations(chart, options.animations, mode);
-    const annotations2 = state.annotations;
-    const elements2 = resyncElements(state.elements, annotations2);
-    for (let i = 0; i < annotations2.length; i++) {
-      const annotationOptions = annotations2[i];
+    const annotations3 = state.annotations;
+    const elements2 = resyncElements(state.elements, annotations3);
+    for (let i = 0; i < annotations3.length; i++) {
+      const annotationOptions = annotations3[i];
       const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
@@ -14846,8 +14846,8 @@ var rbmViz = (() => {
       type: "annotation"
     }));
   }
-  function resyncElements(elements2, annotations2) {
-    const count = annotations2.length;
+  function resyncElements(elements2, annotations3) {
+    const count = annotations3.length;
     const start2 = elements2.length;
     if (start2 < count) {
       const add = count - start2;
@@ -14884,20 +14884,20 @@ var rbmViz = (() => {
     },
     beforeUpdate(chart, args, options) {
       const state = chartStates.get(chart);
-      const annotations2 = state.annotations = [];
+      const annotations3 = state.annotations = [];
       let annotationOptions = options.annotations;
       if (isObject(annotationOptions)) {
         Object.keys(annotationOptions).forEach((key) => {
           const value = annotationOptions[key];
           if (isObject(value)) {
             value.id = key;
-            annotations2.push(value);
+            annotations3.push(value);
           }
         });
       } else if (isArray(annotationOptions)) {
-        annotations2.push(...annotationOptions);
+        annotations3.push(...annotationOptions);
       }
-      verifyScaleOptions(annotations2, chart.scales);
+      verifyScaleOptions(annotations3, chart.scales);
     },
     afterDataLimits(chart, args) {
       const state = chartStates.get(chart);
@@ -19131,9 +19131,9 @@ var rbmViz = (() => {
 
   // src/barChart/plugins/annotations.js
   function annotations(config) {
-    let annotations2 = null;
+    let annotations3 = null;
     if (config.threshold) {
-      annotations2 = config.threshold.map((x, i) => ({
+      annotations3 = config.threshold.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -19154,7 +19154,7 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations2;
+    return annotations3;
   }
 
   // src/barChart/plugins/legend.js
@@ -19735,12 +19735,49 @@ var rbmViz = (() => {
     const datasets = [
       {
         type: "line",
-        data: yValues,
+        data: data.map((d, i) => {
+          const datum2 = { ...d };
+          datum2.x = i;
+          datum2.y = +d[config.y];
+          return datum2;
+        }),
         pointBackgroundColor
       }
     ];
+    console.log(datasets[0].data);
     datasets.labels = labels;
     return datasets;
+  }
+
+  // src/sparkline/plugins/annotation.js
+  function annotations2(config, data) {
+    const xMax = data.length;
+    const yMin = min(data, (d) => +d[config.y]);
+    const yMax = max(data, (d) => +d[config.y]);
+    const range = yMin === yMax ? yMin : yMax - yMin;
+    const xValue = xMax;
+    const yValue = range === yMin ? yMin : yMin + range / 2;
+    const content = [
+      format(".3f")(data.slice(-1)[0][config.y]).replace(/^0/, "")
+    ];
+    console.log(content);
+    return {
+      clip: false,
+      annotations: {
+        label1: {
+          type: "label",
+          xValue,
+          yValue,
+          content,
+          font: {
+            size: 16
+          },
+          position: {
+            x: "start"
+          }
+        }
+      }
+    };
   }
 
   // src/sparkline/plugins/legend.js
@@ -19753,6 +19790,7 @@ var rbmViz = (() => {
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
     const plugins5 = {
+      annotation: annotations2(config, _data_),
       legend: legend3(config)
     };
     return plugins5;
@@ -19760,8 +19798,8 @@ var rbmViz = (() => {
 
   // src/sparkline/getScales.js
   function getScales3(config, data) {
-    const yMin = min(data);
-    const yMax = max(data);
+    const yMin = min(data, (d) => d.y);
+    const yMax = max(data, (d) => d.y);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const scales2 = {
       x: {
@@ -19831,6 +19869,11 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      layout: {
+        padding: {
+          right: 50
+        }
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,

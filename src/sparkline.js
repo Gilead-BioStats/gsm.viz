@@ -41,11 +41,11 @@ export default function sparkline(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        //layout: {
-        //    padding: {
-        //        right: 50,
-        //    },
-        //},
+        layout: {
+            padding: {
+                right: 50,
+            },
+        },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
