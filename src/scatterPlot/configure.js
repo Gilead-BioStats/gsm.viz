@@ -1,40 +1,43 @@
-import coalesce from '../util/coalesce';
 import colorScheme from '../util/colorScheme';
+import configureAll from '../util/configure';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 
-export default function configure(_config_) {
-    const config = { ..._config_ };
-    config.type = 'scatter';
+export default function configure(_config_, _data_) {
+    const defaults = {};
 
-    // x-axis
-    config.x = coalesce(config.x, 'denominator');
-    config.xLabel = coalesce(config.xLabel, config[config.x]);
-    config.xType = coalesce(config.xType, 'logarithmic');
+    defaults.type = 'scatter';
 
-    // y-axis
-    config.y = coalesce(config.y, 'numerator');
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.yType = coalesce(config.yType, 'linear');
+    // horizontal
+    defaults.x = 'denominator';
+    defaults.xType = 'logarithmic';
+    defaults.xLabel = _config_[ defaults.x ];
+
+    // vertical
+    defaults.y = 'numerator';
+    defaults.yType = 'linear';
+    defaults.yLabel = _config_[ defaults.y ];
 
     // color
-    config.color = coalesce(config.flag, 'flag');
-    config.colorScheme = coalesce(config.colorScheme, colorScheme);
+    defaults.color = 'flag';
+    defaults.colorScheme = colorScheme;
 
-    config.displayTitle = false;
+    // callbacks
+    defaults.hoverCallback = (datum) => {};
+    defaults.clickCallback = (datum) => {};
 
-    // display of trend line (center green bound line)
-    config.displayTrendLine = coalesce(config.displayTrendLine, false);
+    // miscellaneous
+    defaults.displayTitle = false;
+    defaults.displayTrendLine = false;
+    defaults.maintainAspectRatio =  false;
 
-    // selected group IDs
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-
-    // event callbacks
-    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
-    config.clickCallback = coalesce(config.clickCallback, (datum) =>
-        console.table(datum)
+    const config = configureAll(
+        defaults,
+        _config_,
+        {
+            selectedGroupIDs: checkSelectedGroupIDs
+                .bind(null, _config_.selectedGroupIDs, _data_)
+        }
     );
-
-    // sizing
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
 
     return config;
 }

@@ -2,8 +2,8 @@ import colorScheme from '../../util/colorScheme';
 
 export default function annotations(config) {
     let annotations = null;
-    if (config.threshold) {
-        annotations = config.threshold.map((x, i) => ({
+    if (config.thresholds) {
+        annotations = config.thresholds.map((x, i) => ({
             drawTime: 'beforeDatasetsDraw',
             type: 'line',
             yMin: x.threshold,

@@ -1,61 +1,54 @@
-import coalesce from '../util/coalesce';
-import getThresholdFlags from '../util/getThresholdFlags';
+import colorScheme from '../util/colorScheme';
+import configureAll from '../util/configure';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
+import checkThresholds from './configure/checkThresholds';
 
-export default function configure(_config_, _thresholds_) {
-    const config = { ..._config_ };
+export default function configure(_config_, _data_, _thresholds_) {
+    const defaults = {};
 
-    config.type = 'bar';
+    defaults.type = 'bar';
 
-    // x-axis
-    config.x = coalesce(config.x, 'groupid');
-    config.xLabel = coalesce(config.xLabel, config['group']);
+    // horizontal
+    defaults.x = 'groupid';
+    //defaults.xType = 'logarithmic';
+    defaults.xLabel = _config_[ 'group' ];
 
-    // y-axis
-    config.y = coalesce(config.y, 'score');
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
+    // vertical
+    defaults.y = 'score';
+    defaults.yType = 'linear';
+    defaults.yLabel = _config_[ defaults.y ];
 
-    // miscellaneous
-    config.color = coalesce(config.flag, 'flag');
-    config.colorLabel = coalesce(config.colorLabel, config[config.color]);
+    // color
+    defaults.color = 'flag';
+    //defaults.colorScheme = colorScheme;
+    defaults.colorLabel = _config_[ defaults.color ];
 
     // numerator
-    config.num = 'numerator';
-    config.numeratorLabel = coalesce(config.numeratorLabel, config[config.num]);
+    defaults.num = 'numerator';
+    defaults.numeratorLabel = _config_[ defaults.num ];
 
     // denominator
-    config.denom = 'denominator';
-    config.denominatorLabel = coalesce(
-        config.denominatorLabel,
-        config[config.denom]
+    defaults.denom = 'denominator';
+    defaults.denominatorLabel = _config_[ defaults.denom ];
+
+    // callbacks
+    defaults.hoverCallback = (datum) => {};
+    defaults.clickCallback = (datum) => {};
+
+    // miscellaneous
+    //defaults.displayTitle = false;
+    defaults.maintainAspectRatio =  false;
+
+    const config = configureAll(
+        defaults,
+        _config_,
+        {
+            selectedGroupIDs: checkSelectedGroupIDs
+                .bind(null, _config_.selectedGroupIDs, _data_),
+            thresholds: checkThresholds
+                .bind(null, _config_, _thresholds_)
+        }
     );
-
-    if (_thresholds_ && config.y !== 'metric') {
-        // TODO: remove hard code check for 'metric'
-        const thresholds = _thresholds_
-            .filter(
-                (d) =>
-                    d.workflowid === config.workflowid &&
-                    d.param === 'vThreshold'
-            )
-            .map((d) => d.default);
-
-        const flags = getThresholdFlags(thresholds);
-        config.threshold = flags;
-    } else {
-        config.threshold = null;
-    }
-
-    // selected group IDs
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-
-    // Custom event callbacks
-    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
-    config.clickCallback = coalesce(config.clickCallback, (datum) =>
-        console.table(datum)
-    );
-
-    // sizing
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
 
     return config;
 }

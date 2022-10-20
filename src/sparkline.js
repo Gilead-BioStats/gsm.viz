@@ -29,7 +29,7 @@ export default function sparkline(
     _config_ = {}
 ) {
     // Update config.
-    const config = configure(_config_);
+    const config = configure(_config_, _data_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
