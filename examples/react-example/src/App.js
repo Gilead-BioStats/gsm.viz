@@ -16,14 +16,14 @@ const App = () => {
     // };
 
     const workflow = meta_workflow[0];
-    workflow.nSnapshots = 100;
-    workflow.y = 'metric'
-    const groupIDs = [
-        ...new Set(results_summary.map(d => d.groupid))
-    ].filter(() => Math.random() < .15);
-    workflow.selectedGroupIDs = '86';
+    //workflow.nSnapshots = 100;
+    //workflow.y = 'metric'
+    //const groupIDs = [
+    //    ...new Set(results_summary.map(d => d.groupid))
+    //].filter(() => Math.random() < .15);
+    const selectedGroupIDs = '86';
     const data = results_summary.filter(
-        (d) => d.workflowid === workflow.workflowid && groupIDs.includes(d.groupid)
+        (d) => d.workflowid === workflow.workflowid // && groupIDs.includes(d.groupid)
     );
     const bounds = results_bounds.filter(
         (d) => d.workflowid === workflow.workflowid
@@ -32,7 +32,7 @@ const App = () => {
     const LONGITUDINAL = results_summary_over_time.filter(
         (d) =>
             d.workflowid === workflow.workflowid &&
-            workflow.selectedGroupIDs === d.groupid
+            selectedGroupIDs === d.groupid
     );
     return (
         <>

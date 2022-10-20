@@ -10,12 +10,12 @@ export default function configure(_config_, _data_) {
     // horizontal
     defaults.x = 'denominator';
     defaults.xType = 'logarithmic';
-    defaults.xLabel = _config_[ defaults.x ];
+    defaults.xLabel = _config_[defaults.x];
 
     // vertical
     defaults.y = 'numerator';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[ defaults.y ];
+    defaults.yLabel = _config_[defaults.y];
 
     // color
     defaults.color = 'flag';
@@ -28,16 +28,15 @@ export default function configure(_config_, _data_) {
     // miscellaneous
     defaults.displayTitle = false;
     defaults.displayTrendLine = false;
-    defaults.maintainAspectRatio =  false;
+    defaults.maintainAspectRatio = false;
 
-    const config = configureAll(
-        defaults,
-        _config_,
-        {
-            selectedGroupIDs: checkSelectedGroupIDs
-                .bind(null, _config_.selectedGroupIDs, _data_)
-        }
-    );
+    const config = configureAll(defaults, _config_, {
+        selectedGroupIDs: checkSelectedGroupIDs.bind(
+            null,
+            _config_.selectedGroupIDs,
+            _data_
+        ),
+    });
 
     return config;
 }

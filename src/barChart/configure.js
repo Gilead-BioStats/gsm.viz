@@ -11,25 +11,25 @@ export default function configure(_config_, _data_, _thresholds_) {
     // horizontal
     defaults.x = 'groupid';
     //defaults.xType = 'logarithmic';
-    defaults.xLabel = _config_[ 'group' ];
+    defaults.xLabel = _config_['group'];
 
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[ defaults.y ];
+    defaults.yLabel = _config_[defaults.y];
 
     // color
     defaults.color = 'flag';
     //defaults.colorScheme = colorScheme;
-    defaults.colorLabel = _config_[ defaults.color ];
+    defaults.colorLabel = _config_[defaults.color];
 
     // numerator
     defaults.num = 'numerator';
-    defaults.numeratorLabel = _config_[ defaults.num ];
+    defaults.numeratorLabel = _config_[defaults.num];
 
     // denominator
     defaults.denom = 'denominator';
-    defaults.denominatorLabel = _config_[ defaults.denom ];
+    defaults.denominatorLabel = _config_[defaults.denom];
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -37,18 +37,16 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // miscellaneous
     //defaults.displayTitle = false;
-    defaults.maintainAspectRatio =  false;
+    defaults.maintainAspectRatio = false;
 
-    const config = configureAll(
-        defaults,
-        _config_,
-        {
-            selectedGroupIDs: checkSelectedGroupIDs
-                .bind(null, _config_.selectedGroupIDs, _data_),
-            thresholds: checkThresholds
-                .bind(null, _config_, _thresholds_)
-        }
-    );
+    const config = configureAll(defaults, _config_, {
+        selectedGroupIDs: checkSelectedGroupIDs.bind(
+            null,
+            _config_.selectedGroupIDs,
+            _data_
+        ),
+        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
+    });
 
     return config;
 }

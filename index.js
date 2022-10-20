@@ -18958,7 +18958,9 @@ var rbmViz = (() => {
       const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
       for (const selectedGroupID of selectedGroupIDs) {
         if (actualGroupIDs.includes(selectedGroupID) === false)
-          selectedGroupIDs = selectedGroupIDs.filter((groupID) => groupID !== selectedGroupID);
+          selectedGroupIDs = selectedGroupIDs.filter(
+            (groupID) => groupID !== selectedGroupID
+          );
       }
     }
     return selectedGroupIDs;
@@ -19020,14 +19022,14 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
     };
     defaults3.maintainAspectRatio = false;
-    const config = configure2(
-      defaults3,
-      _config_,
-      {
-        selectedGroupIDs: checkSelectedGroupIDs.bind(null, _config_.selectedGroupIDs, _data_),
-        thresholds: checkThresholds.bind(null, _config_, _thresholds_)
-      }
-    );
+    const config = configure2(defaults3, _config_, {
+      selectedGroupIDs: checkSelectedGroupIDs.bind(
+        null,
+        _config_.selectedGroupIDs,
+        _data_
+      ),
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
+    });
     return config;
   }
 
@@ -19400,13 +19402,13 @@ var rbmViz = (() => {
     defaults3.displayTitle = false;
     defaults3.displayTrendLine = false;
     defaults3.maintainAspectRatio = false;
-    const config = configure2(
-      defaults3,
-      _config_,
-      {
-        selectedGroupIDs: checkSelectedGroupIDs.bind(null, _config_.selectedGroupIDs, _data_)
-      }
-    );
+    const config = configure2(defaults3, _config_, {
+      selectedGroupIDs: checkSelectedGroupIDs.bind(
+        null,
+        _config_.selectedGroupIDs,
+        _data_
+      )
+    });
     return config;
   }
 
@@ -19737,26 +19739,23 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure5(_config_) {
-    const config = { ..._config_ };
-    config.type = "scatter";
-    config.x = coalesce(config.x, "snapshot_date");
-    config.xLabel = coalesce(config.xLabel, config[config.x]);
-    config.xType = coalesce(config.xType, "logarithmic");
-    config.y = coalesce(config.y, "metric");
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.yType = coalesce(config.yType, "linear");
-    config.color = coalesce(config.flag, "flag");
-    config.colorScheme = coalesce(config.colorScheme, colorScheme_default);
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-    config.hoverCallback = coalesce(config.hoverCallback, (datum2) => {
-    });
-    config.clickCallback = coalesce(
-      config.clickCallback,
-      (datum2) => console.table(datum2)
-    );
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
-    config.nSnapshots = coalesce(config.nSnapshots, 5);
+  function configure5(_config_, _data_, _thresholds_) {
+    const defaults3 = {};
+    defaults3.type = "line";
+    defaults3.x = "snapshot_date";
+    defaults3.xLabel = _config_[defaults3.x];
+    defaults3.y = "metric";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.color = "flag";
+    defaults3.colorScheme = colorScheme_default;
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.maintainAspectRatio = false;
+    defaults3.nSnapshots = 5;
+    const config = configure2(defaults3, _config_, {});
     return config;
   }
 
@@ -19770,7 +19769,25 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data;
+    return data.sort((a, b) => Math.random() - Math.random()).slice(0, config.nSnapshots);
+  }
+
+  // src/sparkline/structureData/scriptableOptions/radius.js
+  function radius2(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "line") {
+      return datum2 === dataset.data[dataset.data.length - 1] ? 3 : 2;
+    }
+  }
+
+  // src/sparkline/structureData/scriptableOptions.js
+  function scriptableOptions3() {
+    return {
+      radius: radius2
+    };
   }
 
   // src/sparkline/structureData.js
@@ -19788,26 +19805,29 @@ var rbmViz = (() => {
           datum2.y = +d[config.y];
           return datum2;
         }),
-        pointBackgroundColor
+        pointBackgroundColor,
+        ...scriptableOptions3()
       }
     ];
-    console.log(datasets[0].data);
     datasets.labels = labels;
     return datasets;
   }
 
   // src/sparkline/plugins/annotation.js
   function annotations2(config, data) {
-    const xMax = data.length;
+    const xMin = 0;
+    const xMax = data.length - 1;
+    const xValue = xMax;
+    console.log(xMax);
     const yMin = min(data, (d) => +d[config.y]);
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
-    const xValue = xMax;
     const yValue = range === yMin ? yMin : yMin + range / 2;
+    const datum2 = data.slice(-1)[0];
+    console.log(datum2);
     const content = [
-      format(".3f")(data.slice(-1)[0][config.y]).replace(/^0/, "")
+      format(" 4d")(datum2.numerator)
     ];
-    console.log(content);
     return {
       clip: false,
       annotations: {
@@ -19817,10 +19837,12 @@ var rbmViz = (() => {
           yValue,
           content,
           font: {
-            size: 16
+            size: 16,
+            family: "lucida console"
           },
           position: {
-            x: "start"
+            x: "start",
+            y: "middle"
           }
         }
       }
@@ -19858,8 +19880,8 @@ var rbmViz = (() => {
       },
       y: {
         display: false,
-        min: yMin - range * 0.1,
-        max: yMax + range * 0.1,
+        min: yMin - range * 0.35,
+        max: yMax + range * 0.35,
         title: {
           display: true,
           text: config.yLabel
@@ -19924,7 +19946,7 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins4(config, _data_),
+      plugins: plugins4(config, datasets[0].data),
       scales: getScales3(config, datasets[0].data)
     };
     const chart = new auto_default(canvas, {

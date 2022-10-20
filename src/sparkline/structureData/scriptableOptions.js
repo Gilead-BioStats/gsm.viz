@@ -5,9 +5,9 @@ import radius from './scriptableOptions/radius';
 
 export default function scriptableOptions() {
     return {
-        backgroundColor,
-        borderColor,
-        borderWidth,
+        //backgroundColor,
+        //borderColor,
+        //borderWidth,
         radius,
     };
 }

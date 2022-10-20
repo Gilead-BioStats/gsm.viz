@@ -4,7 +4,7 @@ export default function radius(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
-        return config.selectedGroupIDs.includes(datum.groupid) ? 5 : 3;
+    if (dataset.type === 'line') {
+        return datum === dataset.data[dataset.data.length - 1] ? 3 : 2;
     }
 }

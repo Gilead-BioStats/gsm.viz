@@ -23,18 +23,17 @@ export default function structureData(_data_, config) {
     const datasets = [
         {
             type: 'line',
-            data: data.map((d,i) => {
-                const datum = {...d};
+            data: data.map((d, i) => {
+                const datum = { ...d };
                 datum.x = i;
                 datum.y = +d[config.y];
                 return datum;
             }),
             pointBackgroundColor,
             //label: '',
-            //...scriptableOptions(),
+            ...scriptableOptions(),
         },
     ];
-    console.log(datasets[0].data);
 
     datasets.labels = labels;
 

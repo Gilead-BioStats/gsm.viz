@@ -1,4 +1,3 @@
-// TODO: annotate final point
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
@@ -49,7 +48,7 @@ export default function sparkline(
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: plugins(config, _data_),
+        plugins: plugins(config, datasets[0].data),
         scales: getScales(config, datasets[0].data),
     };
 
