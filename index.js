@@ -19818,13 +19818,11 @@ var rbmViz = (() => {
     const xMin = 0;
     const xMax = data.length - 1;
     const xValue = xMax;
-    console.log(xMax);
     const yMin = min(data, (d) => +d[config.y]);
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = range === yMin ? yMin : yMin + range / 2;
     const datum2 = data.slice(-1)[0];
-    console.log(datum2);
     const content = [
       format(" 4d")(datum2.numerator)
     ];

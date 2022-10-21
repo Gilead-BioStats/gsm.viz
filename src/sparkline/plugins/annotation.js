@@ -5,7 +5,6 @@ export default function annotations(config, data) {
     const xMin = 0;
     const xMax = data.length - 1;
     const xValue = xMax;
-    console.log(xMax);
 
     // vertical position
     const yMin = min(data, (d) => +d[config.y]);
@@ -15,7 +14,6 @@ export default function annotations(config, data) {
 
     // content
     const datum = data.slice(-1)[0];
-    console.log(datum);
     const content = [
         format(' 4d')(datum.numerator),
         //.replace(/^0+/,
