@@ -16,6 +16,6 @@ export default function mutate(_data_, config) {
 
     //return data
         //.sort((a, b) => Math.random() - Math.random())
-        .slice(0, config.nSnapshots);
+        //.slice(0, config.nSnapshots);
     //return data.slice(data.length - config.nSnapshots);
 }
