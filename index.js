@@ -19766,7 +19766,7 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data.sort((a, b) => Math.random() - Math.random()).slice(0, config.nSnapshots);
+    return data.slice(data.length - config.nSnapshots);
   }
 
   // src/sparkline/structureData/scriptableOptions/radius.js

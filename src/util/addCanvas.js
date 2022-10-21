@@ -13,10 +13,7 @@ export default function addCanvas(_element_, config) {
     //}
     // [ _element_ ] is a canvas element.
     //else
-        if (
-        _element_.nodeName &&
-        _element_.nodeName.toLowerCase() === 'canvas'
-    ) {
+    if (_element_.nodeName && _element_.nodeName.toLowerCase() === 'canvas') {
         // Destroy existing chart.
         if (_element_.hasOwnProperty('chart')) _element_.chart.destroy();
 
