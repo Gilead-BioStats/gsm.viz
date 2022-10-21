@@ -19066,10 +19066,7 @@ var rbmViz = (() => {
   // src/util/addCanvas.js
   function addCanvas(_element_, config) {
     let canvas;
-    if (!document.body.contains(_element_)) {
-      console.error("addCanvas: [ _element_ ] does not exist.");
-      return;
-    } else if (_element_.nodeName && _element_.nodeName.toLowerCase() === "canvas") {
+    if (_element_.nodeName && _element_.nodeName.toLowerCase() === "canvas") {
       if (_element_.hasOwnProperty("chart"))
         _element_.chart.destroy();
       canvas = _element_;

@@ -10,4 +10,8 @@
     height: 50px;
     border: 1px dotted #aaa;
     margin: 2px;
+    display: none;
+}
+#container span {
+
 }
