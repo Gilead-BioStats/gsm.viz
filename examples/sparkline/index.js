@@ -36,6 +36,14 @@ Promise.all(dataPromises)
             const subcontainer = document.createElement('div');
             subcontainer.id = `container_${i}`;
             container.appendChild(subcontainer);
+            subcontainer.style.display = 'inline-block';
+            //const display = document.createElement('span');
+            //display.innerHTML = 'spark!';
+            //container.appendChild(display);
+            //display.onclick = () => {
+            //    console.log('click');
+            //    subcontainer.style.display = 'inline-block';
+            //};
 
             // visualization
             const instance = rbmViz.default.sparkline(

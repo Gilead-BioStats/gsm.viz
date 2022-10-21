@@ -1,4 +1,3 @@
-// TODO: annotate final point
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
@@ -29,7 +28,7 @@ export default function sparkline(
     _config_ = {}
 ) {
     // Update config.
-    const config = configure(_config_);
+    const config = configure(_config_, _data_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
@@ -41,15 +40,15 @@ export default function sparkline(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
-        //layout: {
-        //    padding: {
-        //        right: 50,
-        //    },
-        //},
+        layout: {
+            padding: {
+                right: 50,
+            },
+        },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: plugins(config, _data_),
+        plugins: plugins(config, datasets[0].data),
         scales: getScales(config, datasets[0].data),
     };
 

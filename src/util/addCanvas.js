@@ -6,13 +6,14 @@ export default function addCanvas(_element_, config) {
     let canvas;
 
     // [ _element_ ] doesn't exist.
-    if (!document.body.contains(_element_)) {
-        console.error('addCanvas: [ _element_ ] does not exist.');
+    //if (!document.body.contains(_element_)) {
+    //    console.error('addCanvas: [ _element_ ] does not exist.');
 
-        return;
-    }
+    //    return;
+    //}
     // [ _element_ ] is a canvas element.
-    else if (
+    //else
+        if (
         _element_.nodeName &&
         _element_.nodeName.toLowerCase() === 'canvas'
     ) {

@@ -1,5 +1,5 @@
 import { color as d3color, rollup, rollups } from 'd3';
-import getThresholdFlags from '../../util/getThresholdFlags';
+import mapThresholdsToFlags from '../../util/mapThresholdsToFlags';
 
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
@@ -23,7 +23,7 @@ export default function rollupBounds(_bounds_, config) {
         );
 
         // Map thresholds to flags, e.g. -7 > -2, -5 > -1, 5 > 1, 7 > 2.
-        const flags = getThresholdFlags(boundUps.map((bound) => bound[0]));
+        const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
 
         // TODO: figure out how to hide trend line while maintaining consistent legend marks
         const bounds = boundUps.map((bound, i) => {

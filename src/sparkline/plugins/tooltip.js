@@ -23,11 +23,12 @@ export default function tooltip(config) {
                     `${config.outcome}: ${format('.3f')(datum.metric)}`,
                 ];
 
+                console.log(datum);
                 return tooltip;
             },
             title: () => null,
         },
         events: ['click', 'mouseenter', 'mouseover'],
-        filter: (data) => !/bound/i.test(data.dataset.label), // turns off tooltip for bounds
+        //filter: (data) => !/bound/i.test(data.dataset.label), // turns off tooltip for bounds
     };
 }
