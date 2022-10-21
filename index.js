@@ -13649,16 +13649,16 @@ var rbmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function adjustScaleRange(chart, scale, annotations2) {
-    const range = getScaleLimits(chart.scales, scale, annotations2);
+  function adjustScaleRange(chart, scale, annotations3) {
+    const range = getScaleLimits(chart.scales, scale, annotations3);
     let changed = changeScaleLimit(scale, range, "min", "suggestedMin");
     changed = changeScaleLimit(scale, range, "max", "suggestedMax") || changed;
     if (changed && typeof scale.handleTickRangeOptions === "function") {
       scale.handleTickRangeOptions();
     }
   }
-  function verifyScaleOptions(annotations2, scales2) {
-    for (const annotation2 of annotations2) {
+  function verifyScaleOptions(annotations3, scales2) {
+    for (const annotation2 of annotations3) {
       verifyScaleIDs(annotation2, scales2);
     }
   }
@@ -13692,7 +13692,7 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function getScaleLimits(scales2, scale, annotations2) {
+  function getScaleLimits(scales2, scale, annotations3) {
     const axis = scale.axis;
     const scaleID = scale.id;
     const scaleIDOption = axis + "ScaleID";
@@ -13700,7 +13700,7 @@ var rbmViz = (() => {
       min: valueOrDefault(scale.min, Number.NEGATIVE_INFINITY),
       max: valueOrDefault(scale.max, Number.POSITIVE_INFINITY)
     };
-    for (const annotation2 of annotations2) {
+    for (const annotation2 of annotations3) {
       if (annotation2.scaleID === scaleID) {
         updateLimits2(annotation2, scale, ["value", "endValue"], limits);
       } else if (retrieveScaleID(scales2, annotation2, scaleIDOption) === scaleID) {
@@ -14763,10 +14763,10 @@ var rbmViz = (() => {
   }
   function updateElements(chart, state, options, mode) {
     const animations = resolveAnimations(chart, options.animations, mode);
-    const annotations2 = state.annotations;
-    const elements2 = resyncElements(state.elements, annotations2);
-    for (let i = 0; i < annotations2.length; i++) {
-      const annotationOptions = annotations2[i];
+    const annotations3 = state.annotations;
+    const elements2 = resyncElements(state.elements, annotations3);
+    for (let i = 0; i < annotations3.length; i++) {
+      const annotationOptions = annotations3[i];
       const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
@@ -14846,8 +14846,8 @@ var rbmViz = (() => {
       type: "annotation"
     }));
   }
-  function resyncElements(elements2, annotations2) {
-    const count = annotations2.length;
+  function resyncElements(elements2, annotations3) {
+    const count = annotations3.length;
     const start2 = elements2.length;
     if (start2 < count) {
       const add = count - start2;
@@ -14884,20 +14884,20 @@ var rbmViz = (() => {
     },
     beforeUpdate(chart, args, options) {
       const state = chartStates.get(chart);
-      const annotations2 = state.annotations = [];
+      const annotations3 = state.annotations = [];
       let annotationOptions = options.annotations;
       if (isObject(annotationOptions)) {
         Object.keys(annotationOptions).forEach((key) => {
           const value = annotationOptions[key];
           if (isObject(value)) {
             value.id = key;
-            annotations2.push(value);
+            annotations3.push(value);
           }
         });
       } else if (isArray(annotationOptions)) {
-        annotations2.push(...annotationOptions);
+        annotations3.push(...annotationOptions);
       }
-      verifyScaleOptions(annotations2, chart.scales);
+      verifyScaleOptions(annotations3, chart.scales);
     },
     afterDataLimits(chart, args) {
       const state = chartStates.get(chart);
@@ -16050,148 +16050,6 @@ var rbmViz = (() => {
       delete expando._dirty;
     }
   };
-
-  // src/util/coalesce.js
-  function coalesce(a, b) {
-    if ([null, void 0].includes(a))
-      return b;
-    if (Array.isArray(b) && !Array.isArray(a))
-      a = [a];
-    if (typeof a === typeof b)
-      return a;
-    return b;
-  }
-
-  // src/util/getThresholdFlags.js
-  function getThresholdFlags(_thresholds_) {
-    const nonNegativeThresholds = [
-      ...new Set(_thresholds_.map((threshold) => Math.abs(threshold)))
-    ];
-    const negativeThresholds = nonNegativeThresholds.map(
-      (threshold) => -1 * threshold
-    );
-    const thresholds = [
-      .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
-    ].sort((a, b) => a - b);
-    const flags = thresholds.map((threshold, i) => {
-      const flag = i - Math.floor(thresholds.length / 2);
-      return {
-        threshold,
-        flag: flag + (thresholds.length % 2 === 0 && flag >= 0)
-      };
-    });
-    return flags;
-  }
-
-  // src/barChart/configure.js
-  function configure2(_config_, _thresholds_) {
-    const config = { ..._config_ };
-    config.type = "bar";
-    config.x = coalesce(config.x, "groupid");
-    config.xLabel = coalesce(config.xLabel, config["group"]);
-    config.y = coalesce(config.y, "score");
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.color = coalesce(config.flag, "flag");
-    config.colorLabel = coalesce(config.colorLabel, config[config.color]);
-    config.num = "numerator";
-    config.numeratorLabel = coalesce(config.numeratorLabel, config[config.num]);
-    config.denom = "denominator";
-    config.denominatorLabel = coalesce(
-      config.denominatorLabel,
-      config[config.denom]
-    );
-    if (_thresholds_ && config.y !== "metric") {
-      const thresholds = _thresholds_.filter(
-        (d) => d.workflowid === config.workflowid && d.param === "vThreshold"
-      ).map((d) => d.default);
-      const flags = getThresholdFlags(thresholds);
-      config.threshold = flags;
-    } else {
-      config.threshold = null;
-    }
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-    config.hoverCallback = coalesce(config.hoverCallback, (datum2) => {
-    });
-    config.clickCallback = coalesce(
-      config.clickCallback,
-      (datum2) => console.table(datum2)
-    );
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
-    return config;
-  }
-
-  // src/util/addCanvas/addCustomHoverEvent.js
-  function addCustomHoverEvent(canvas, callback2) {
-    const hoverEvent = new Event("hover-event");
-    canvas.addEventListener(
-      "hover-event",
-      (event) => {
-        const pointDatum = event.data;
-        callback2(pointDatum);
-        return pointDatum;
-      },
-      false
-    );
-    return hoverEvent;
-  }
-
-  // src/util/addCanvas/addCustomClickEvent.js
-  function addCustomClickEvent(canvas, callback2) {
-    const clickEvent = new Event("click-event");
-    canvas.addEventListener(
-      "click-event",
-      (event) => {
-        const pointDatum = event.data;
-        callback2(pointDatum);
-        return pointDatum;
-      },
-      false
-    );
-    return clickEvent;
-  }
-
-  // src/util/addCanvas.js
-  function addCanvas(_element_, config) {
-    let canvas;
-    if (!document.body.contains(_element_)) {
-      console.error("addCanvas: [ _element_ ] does not exist.");
-      return;
-    } else if (_element_.nodeName && _element_.nodeName.toLowerCase() === "canvas") {
-      if (_element_.hasOwnProperty("chart"))
-        _element_.chart.destroy();
-      canvas = _element_;
-    } else {
-      const newCanvas = document.createElement("canvas");
-      const oldCanvas = _element_.getElementsByTagName("canvas")[0];
-      if (oldCanvas !== void 0) {
-        if (oldCanvas.hasOwnProperty("chart"))
-          oldCanvas.chart.destroy();
-        oldCanvas.replaceWith(newCanvas);
-      } else {
-        _element_.appendChild(newCanvas);
-      }
-      canvas = newCanvas;
-    }
-    config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
-    config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
-    return canvas;
-  }
-
-  // src/barChart/structureData/mutate.js
-  function mutate(_data_, config) {
-    const data = _data_.map((d) => {
-      const datum2 = {
-        ...d,
-        x: d[config.x],
-        y: +d[config.y],
-        stratum: +d[config.color],
-        numerator: +d[config.num],
-        denominator: +d[config.denom]
-      };
-      return datum2;
-    }).sort((a, b) => b.y - a.y);
-    return data;
-  }
 
   // node_modules/d3-array/src/ascending.js
   function ascending(a, b) {
@@ -19061,6 +18919,190 @@ var rbmViz = (() => {
   });
   var colorScheme_default = colorScheme;
 
+  // src/util/coalesce.js
+  function coalesce(a, b) {
+    if ([null, void 0].includes(a))
+      return b;
+    if (typeof b === "string" && a === "")
+      return b;
+    if (Array.isArray(b) && !Array.isArray(a))
+      a = [a];
+    if (Array.isArray(b) && Array.isArray(a) && a[0] === "")
+      return b;
+    if (typeof a === typeof b)
+      return a;
+    return b;
+  }
+
+  // src/util/configure.js
+  function configure2(defaults3, _config_, customSettings = null) {
+    const config = { ..._config_ };
+    for (const key in defaults3) {
+      config[key] = coalesce(config[key], defaults3[key]);
+    }
+    if (customSettings !== null) {
+      for (const key in customSettings) {
+        config[key] = customSettings[key]();
+      }
+    }
+    return config;
+  }
+
+  // src/util/checkSelectedGroupIDs.js
+  function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
+    if (["", null, void 0].includes(selectedGroupIDs) || Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0)
+      return [];
+    if (!Array.isArray(selectedGroupIDs))
+      selectedGroupIDs = [selectedGroupIDs];
+    if (Array.isArray(selectedGroupIDs)) {
+      const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
+      for (const selectedGroupID of selectedGroupIDs) {
+        if (actualGroupIDs.includes(selectedGroupID) === false)
+          selectedGroupIDs = selectedGroupIDs.filter(
+            (groupID) => groupID !== selectedGroupID
+          );
+      }
+    }
+    return selectedGroupIDs;
+  }
+
+  // src/util/mapThresholdsToFlags.js
+  function mapThresholdsToFlags(_thresholds_) {
+    const nonNegativeThresholds = [
+      ...new Set(_thresholds_.map((threshold) => Math.abs(threshold)))
+    ];
+    const negativeThresholds = nonNegativeThresholds.map(
+      (threshold) => -1 * threshold
+    );
+    const thresholds = [
+      .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
+    ].sort((a, b) => a - b);
+    const flags = thresholds.map((threshold, i) => {
+      const flag = i - Math.floor(thresholds.length / 2);
+      return {
+        threshold,
+        flag: flag + (thresholds.length % 2 === 0 && flag >= 0)
+      };
+    });
+    return flags;
+  }
+
+  // src/barChart/configure/checkThresholds.js
+  function checkThresholds(_config_, _thresholds_) {
+    let thresholds = _config_.thresholds;
+    if (_config_.y === "metric")
+      return null;
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold !== "number"))
+      return mapThresholdsToFlags(thresholds);
+    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+      return null;
+    thresholds = _thresholds_.filter(
+      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    ).map((d) => d.default);
+    return mapThresholdsToFlags(thresholds);
+  }
+
+  // src/barChart/configure.js
+  function configure3(_config_, _data_, _thresholds_) {
+    const defaults3 = {};
+    defaults3.type = "bar";
+    defaults3.x = "groupid";
+    defaults3.xLabel = _config_["group"];
+    defaults3.y = "score";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.color = "flag";
+    defaults3.colorLabel = _config_[defaults3.color];
+    defaults3.num = "numerator";
+    defaults3.numeratorLabel = _config_[defaults3.num];
+    defaults3.denom = "denominator";
+    defaults3.denominatorLabel = _config_[defaults3.denom];
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.maintainAspectRatio = false;
+    const config = configure2(defaults3, _config_, {
+      selectedGroupIDs: checkSelectedGroupIDs.bind(
+        null,
+        _config_.selectedGroupIDs,
+        _data_
+      ),
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
+    });
+    return config;
+  }
+
+  // src/util/addCanvas/addCustomHoverEvent.js
+  function addCustomHoverEvent(canvas, callback2) {
+    const hoverEvent = new Event("hover-event");
+    canvas.addEventListener(
+      "hover-event",
+      (event) => {
+        const pointDatum = event.data;
+        callback2(pointDatum);
+        return pointDatum;
+      },
+      false
+    );
+    return hoverEvent;
+  }
+
+  // src/util/addCanvas/addCustomClickEvent.js
+  function addCustomClickEvent(canvas, callback2) {
+    const clickEvent = new Event("click-event");
+    canvas.addEventListener(
+      "click-event",
+      (event) => {
+        const pointDatum = event.data;
+        callback2(pointDatum);
+        return pointDatum;
+      },
+      false
+    );
+    return clickEvent;
+  }
+
+  // src/util/addCanvas.js
+  function addCanvas(_element_, config) {
+    let canvas;
+    if (_element_.nodeName && _element_.nodeName.toLowerCase() === "canvas") {
+      if (_element_.hasOwnProperty("chart"))
+        _element_.chart.destroy();
+      canvas = _element_;
+    } else {
+      const newCanvas = document.createElement("canvas");
+      const oldCanvas = _element_.getElementsByTagName("canvas")[0];
+      if (oldCanvas !== void 0) {
+        if (oldCanvas.hasOwnProperty("chart"))
+          oldCanvas.chart.destroy();
+        oldCanvas.replaceWith(newCanvas);
+      } else {
+        _element_.appendChild(newCanvas);
+      }
+      canvas = newCanvas;
+    }
+    config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
+    config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
+    return canvas;
+  }
+
+  // src/barChart/structureData/mutate.js
+  function mutate(_data_, config) {
+    const data = _data_.map((d) => {
+      const datum2 = {
+        ...d,
+        x: d[config.x],
+        y: +d[config.y],
+        stratum: +d[config.color],
+        numerator: +d[config.num],
+        denominator: +d[config.denom]
+      };
+      return datum2;
+    }).sort((a, b) => b.y - a.y);
+    return data;
+  }
+
   // src/barChart/structureData/scriptableOptions/backgroundColor.js
   function backgroundColor(context, options) {
     const chart = context.chart;
@@ -19131,9 +19173,9 @@ var rbmViz = (() => {
 
   // src/barChart/plugins/annotations.js
   function annotations(config) {
-    let annotations2 = null;
-    if (config.threshold) {
-      annotations2 = config.threshold.map((x, i) => ({
+    let annotations3 = null;
+    if (config.thresholds) {
+      annotations3 = config.thresholds.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -19154,7 +19196,7 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations2;
+    return annotations3;
   }
 
   // src/barChart/plugins/legend.js
@@ -19267,7 +19309,7 @@ var rbmViz = (() => {
 
   // src/barChart/updateConfig.js
   function updateConfig(chart, _config_, thresholds = false, yaxis = "score", update = false) {
-    const config = configure2(_config_, thresholds, yaxis);
+    const config = configure3(_config_, thresholds, yaxis);
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
     chart.data.config = config;
@@ -19307,7 +19349,7 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
-    const config = configure2(_config_, _thresholds_);
+    const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
     const options = {
@@ -19339,27 +19381,31 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/configure.js
-  function configure3(_config_) {
-    const config = { ..._config_ };
-    config.type = "scatter";
-    config.x = coalesce(config.x, "denominator");
-    config.xLabel = coalesce(config.xLabel, config[config.x]);
-    config.xType = coalesce(config.xType, "logarithmic");
-    config.y = coalesce(config.y, "numerator");
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.yType = coalesce(config.yType, "linear");
-    config.color = coalesce(config.flag, "flag");
-    config.colorScheme = coalesce(config.colorScheme, colorScheme_default);
-    config.displayTitle = false;
-    config.displayTrendLine = coalesce(config.displayTrendLine, false);
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-    config.hoverCallback = coalesce(config.hoverCallback, (datum2) => {
+  function configure4(_config_, _data_) {
+    const defaults3 = {};
+    defaults3.type = "scatter";
+    defaults3.x = "denominator";
+    defaults3.xType = "logarithmic";
+    defaults3.xLabel = _config_[defaults3.x];
+    defaults3.y = "numerator";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.color = "flag";
+    defaults3.colorScheme = colorScheme_default;
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.displayTitle = false;
+    defaults3.displayTrendLine = false;
+    defaults3.maintainAspectRatio = false;
+    const config = configure2(defaults3, _config_, {
+      selectedGroupIDs: checkSelectedGroupIDs.bind(
+        null,
+        _config_.selectedGroupIDs,
+        _data_
+      )
     });
-    config.clickCallback = coalesce(
-      config.clickCallback,
-      (datum2) => console.table(datum2)
-    );
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
     return config;
   }
 
@@ -19459,7 +19505,7 @@ var rbmViz = (() => {
         },
         (d) => d.threshold
       );
-      const flags = getThresholdFlags(boundUps.map((bound) => bound[0]));
+      const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
       const bounds = boundUps.map((bound, i) => {
         const group2 = bound[1];
         group2.threshold = +bound[0];
@@ -19620,7 +19666,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot/updateConfig.js
   function updateConfig2(chart, _config_, update = false) {
-    const config = configure3(_config_);
+    const config = configure4(_config_);
     chart.options.plugins = plugins3(config);
     chart.options.scales = getScales2(config);
     chart.data.config = config;
@@ -19660,7 +19706,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
-    const config = configure3(_config_);
+    const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData2(_data_, config, _bounds_);
     const options = {
@@ -19690,26 +19736,23 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure4(_config_) {
-    const config = { ..._config_ };
-    config.type = "scatter";
-    config.x = coalesce(config.x, "snapshot_date");
-    config.xLabel = coalesce(config.xLabel, config[config.x]);
-    config.xType = coalesce(config.xType, "logarithmic");
-    config.y = coalesce(config.y, "metric");
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.yType = coalesce(config.yType, "linear");
-    config.color = coalesce(config.flag, "flag");
-    config.colorScheme = coalesce(config.colorScheme, colorScheme_default);
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-    config.hoverCallback = coalesce(config.hoverCallback, (datum2) => {
-    });
-    config.clickCallback = coalesce(
-      config.clickCallback,
-      (datum2) => console.table(datum2)
-    );
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
-    config.nSnapshots = coalesce(config.nSnapshots, 5);
+  function configure5(_config_, _data_, _thresholds_) {
+    const defaults3 = {};
+    defaults3.type = "line";
+    defaults3.x = "snapshot_date";
+    defaults3.xLabel = _config_[defaults3.x];
+    defaults3.y = "metric";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.color = "flag";
+    defaults3.colorScheme = colorScheme_default;
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.maintainAspectRatio = false;
+    defaults3.nSnapshots = 5;
+    const config = configure2(defaults3, _config_, {});
     return config;
   }
 
@@ -19723,7 +19766,25 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data;
+    return data.slice(data.length - config.nSnapshots);
+  }
+
+  // src/sparkline/structureData/scriptableOptions/radius.js
+  function radius2(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "line") {
+      return datum2 === dataset.data[dataset.data.length - 1] ? 3 : 2;
+    }
+  }
+
+  // src/sparkline/structureData/scriptableOptions.js
+  function scriptableOptions3() {
+    return {
+      radius: radius2
+    };
   }
 
   // src/sparkline/structureData.js
@@ -19735,12 +19796,52 @@ var rbmViz = (() => {
     const datasets = [
       {
         type: "line",
-        data: yValues,
-        pointBackgroundColor
+        data: data.map((d, i) => {
+          const datum2 = { ...d };
+          datum2.x = i;
+          datum2.y = +d[config.y];
+          return datum2;
+        }),
+        pointBackgroundColor,
+        ...scriptableOptions3()
       }
     ];
     datasets.labels = labels;
     return datasets;
+  }
+
+  // src/sparkline/plugins/annotation.js
+  function annotations2(config, data) {
+    const xMin = 0;
+    const xMax = data.length - 1;
+    const xValue = xMax;
+    const yMin = min(data, (d) => +d[config.y]);
+    const yMax = max(data, (d) => +d[config.y]);
+    const range = yMin === yMax ? yMin : yMax - yMin;
+    const yValue = range === yMin ? yMin : yMin + range / 2;
+    const datum2 = data.slice(-1)[0];
+    const content = [
+      format(" 4d")(datum2.numerator)
+    ];
+    return {
+      clip: false,
+      annotations: {
+        label1: {
+          type: "label",
+          xValue,
+          yValue,
+          content,
+          font: {
+            size: 16,
+            family: "lucida console"
+          },
+          position: {
+            x: "start",
+            y: "middle"
+          }
+        }
+      }
+    };
   }
 
   // src/sparkline/plugins/legend.js
@@ -19753,6 +19854,7 @@ var rbmViz = (() => {
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
     const plugins5 = {
+      annotation: annotations2(config, _data_),
       legend: legend3(config)
     };
     return plugins5;
@@ -19760,8 +19862,8 @@ var rbmViz = (() => {
 
   // src/sparkline/getScales.js
   function getScales3(config, data) {
-    const yMin = min(data);
-    const yMax = max(data);
+    const yMin = min(data, (d) => d.y);
+    const yMax = max(data, (d) => d.y);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const scales2 = {
       x: {
@@ -19773,8 +19875,8 @@ var rbmViz = (() => {
       },
       y: {
         display: false,
-        min: yMin - range * 0.1,
-        max: yMax + range * 0.1,
+        min: yMin - range * 0.35,
+        max: yMax + range * 0.35,
         title: {
           display: true,
           text: config.yLabel
@@ -19786,7 +19888,7 @@ var rbmViz = (() => {
 
   // src/sparkline/updateConfig.js
   function updateConfig3(chart, _config_, update = false) {
-    const config = configure4(_config_);
+    const config = configure5(_config_);
     chart.options.plugins = plugins4(config);
     chart.options.scales = getScales3(config);
     chart.data.config = config;
@@ -19825,16 +19927,21 @@ var rbmViz = (() => {
 
   // src/sparkline.js
   function sparkline(_element_ = "body", _data_ = [], _config_ = {}) {
-    const config = configure4(_config_);
+    const config = configure5(_config_, _data_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      layout: {
+        padding: {
+          right: 50
+        }
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins4(config, _data_),
+      plugins: plugins4(config, datasets[0].data),
       scales: getScales3(config, datasets[0].data)
     };
     const chart = new auto_default(canvas, {

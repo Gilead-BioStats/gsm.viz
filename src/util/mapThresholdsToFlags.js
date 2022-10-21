@@ -1,4 +1,4 @@
-export default function getThresholdFlags(_thresholds_) {
+export default function mapThresholdsToFlags(_thresholds_) {
     // Capture complete set of thresholds, even when only a partial set exists in the data.
     const nonNegativeThresholds = [
         ...new Set(_thresholds_.map((threshold) => Math.abs(threshold))),

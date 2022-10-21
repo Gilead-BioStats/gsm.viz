@@ -1,37 +1,38 @@
-import coalesce from '../util/coalesce';
 import colorScheme from '../util/colorScheme';
+import configureAll from '../util/configure';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
+import checkThresholds from '../barChart/configure/checkThresholds';
 
-export default function configure(_config_) {
-    const config = { ..._config_ };
-    config.type = 'scatter';
+export default function configure(_config_, _data_, _thresholds_) {
+    const defaults = {};
 
-    // x-axis
-    config.x = coalesce(config.x, 'snapshot_date');
-    config.xLabel = coalesce(config.xLabel, config[config.x]);
-    config.xType = coalesce(config.xType, 'logarithmic');
+    defaults.type = 'line';
 
-    // y-axis
-    config.y = coalesce(config.y, 'metric');
-    config.yLabel = coalesce(config.yLabel, config[config.y]);
-    config.yType = coalesce(config.yType, 'linear');
+    // horizontal
+    defaults.x = 'snapshot_date';
+    //defaults.xType = 'logarithmic';
+    defaults.xLabel = _config_[defaults.x];
+
+    // vertical
+    defaults.y = 'metric';
+    defaults.yType = 'linear';
+    defaults.yLabel = _config_[defaults.y];
 
     // color
-    config.color = coalesce(config.flag, 'flag');
-    config.colorScheme = coalesce(config.colorScheme, colorScheme);
+    defaults.color = 'flag';
+    defaults.colorScheme = colorScheme;
+    //defaults.colorLabel = _config_[ defaults.color ];
 
-    // selected group IDs
-    config.selectedGroupIDs = coalesce(config.selectedGroupIDs, []);
-
+    // callbacks
+    defaults.hoverCallback = (datum) => {};
+    defaults.clickCallback = (datum) => {};
     // event callbacks
-    config.hoverCallback = coalesce(config.hoverCallback, (datum) => {});
-    config.clickCallback = coalesce(config.clickCallback, (datum) =>
-        console.table(datum)
-    );
 
-    // sizing
-    config.maintainAspectRatio = coalesce(config.maintainAspectRatio, false);
+    // miscellaneous
+    defaults.maintainAspectRatio = false;
+    defaults.nSnapshots = 5;
 
-    config.nSnapshots = coalesce(config.nSnapshots, 5);
+    const config = configureAll(defaults, _config_, {});
 
     return config;
 }
