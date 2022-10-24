@@ -9,7 +9,12 @@ export default function updateData(
     _config_,
     thresholds = false
 ) {
-    chart.data.config = updateConfig(chart, _config_, thresholds);
+    chart.data.config = updateConfig(
+        chart,
+        _config_,
+        _data_,
+        thresholds
+    );
 
     // TODO: figure out why these events have to be redefined on data change
     chart.data.config.hoverEvent = addCustomHoverEvent(

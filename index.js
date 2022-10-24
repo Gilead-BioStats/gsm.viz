@@ -19308,20 +19308,29 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, thresholds = false, yaxis = "score", update = false) {
-    const config = configure3(_config_, thresholds, yaxis);
+  function updateConfig(chart, _config_, _data_, _thresholds_, update = false) {
+    const config = configure3(
+      _config_,
+      chart.data.datasets.find((dataset) => dataset.type === "bar").data,
+      _thresholds_
+    );
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
     chart.data.config = config;
-    triggerTooltip(chart);
     if (update)
       chart.update();
+    triggerTooltip(chart);
     return config;
   }
 
   // src/barChart/updateData.js
   function updateData(chart, _data_, _config_, thresholds = false) {
-    chart.data.config = updateConfig(chart, _config_, thresholds);
+    chart.data.config = updateConfig(
+      chart,
+      _config_,
+      _data_,
+      thresholds
+    );
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -19666,13 +19675,16 @@ var rbmViz = (() => {
 
   // src/scatterPlot/updateConfig.js
   function updateConfig2(chart, _config_, update = false) {
-    const config = configure4(_config_);
+    const config = configure4(
+      _config_,
+      chart.data.datasets.find((dataset) => dataset.type === "scatter").data
+    );
     chart.options.plugins = plugins3(config);
     chart.options.scales = getScales2(config);
     chart.data.config = config;
-    triggerTooltip(chart);
     if (update)
       chart.update();
+    triggerTooltip(chart);
     return config;
   }
 
@@ -19689,6 +19701,7 @@ var rbmViz = (() => {
     );
     chart.data.datasets = structureData2(_data_, chart.data.config, _bounds_);
     chart.update();
+    triggerTooltip(chart);
   }
 
   // src/scatterPlot/updateOption.js
@@ -19702,6 +19715,7 @@ var rbmViz = (() => {
         obj[objPath[i]] = value;
     }
     chart.update();
+    triggerTooltip(chart);
   }
 
   // src/scatterPlot.js

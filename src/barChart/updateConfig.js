@@ -6,13 +6,16 @@ import triggerTooltip from '../util/triggerTooltip';
 export default function updateConfig(
     chart,
     _config_,
-    thresholds = false,
-    yaxis = 'score',
+    _data_,
+    _thresholds_,
     update = false
 ) {
     // Update config.
-
-    const config = configure(_config_, thresholds, yaxis);
+    const config = configure(
+        _config_,
+        chart.data.datasets.find(dataset => dataset.type === 'bar').data,
+        _thresholds_
+    );
 
     // Define plugins (title, tooltip) and scales (x, y).
     chart.options.plugins = plugins(config);
@@ -20,9 +23,9 @@ export default function updateConfig(
 
     chart.data.config = config;
 
-    triggerTooltip(chart);
-
     if (update) chart.update();
+
+    triggerTooltip(chart);
 
     return config;
 }

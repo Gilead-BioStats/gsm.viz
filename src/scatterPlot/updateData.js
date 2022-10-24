@@ -2,6 +2,7 @@ import updateConfig from './updateConfig';
 import addCustomHoverEvent from '../util/addCanvas/addCustomHoverEvent';
 import addCustomClickEvent from '../util/addCanvas/addCustomClickEvent';
 import structureData from './structureData';
+import triggerTooltip from '../util/triggerTooltip';
 
 /**
  * Update chart data and redraw chart.
@@ -25,4 +26,6 @@ export default function updateData(chart, _data_, _config_, _bounds_) {
     );
     chart.data.datasets = structureData(_data_, chart.data.config, _bounds_);
     chart.update();
+
+    triggerTooltip(chart);
 }
