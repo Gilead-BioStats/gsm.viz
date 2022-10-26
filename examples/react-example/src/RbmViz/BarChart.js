@@ -19,7 +19,7 @@ const BarChart = ({ data, config, thresholds }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '49.5%', height: '300px', display: 'inline-block' }}
+            style={{ width: '33%', height: '300px', display: 'inline-block' }}
         ></div>
     );
 };
