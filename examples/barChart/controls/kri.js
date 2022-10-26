@@ -23,24 +23,19 @@ const kri = function (workflow, datasets, setup = false) {
             const results = datasets[1].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
+            const parameters = document.getElementById('threshold').checked
+                ? datasets[2].filter(
+                      (d) => d.workflowid === workflow.workflowid
+                  )
+                : null;
 
-            // need to know state of threshold
-            const isThreshold = document.getElementById('threshold').checked;
-
-            let thresholds = null;
-            if (isThreshold) {
-                thresholds = datasets[2].filter(
-                    (d) => d.workflowid === workflow.workflowid
-                );
-            }
-
-            //thresholds = false
-            workflow.selectedGroupIDs = site() !== 'None' ? [site()] : [];
+            workflow.selectedGroupIDs = site();
+            workflow.y = yaxis();
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
-                thresholds
+                parameters
             );
         });
     }

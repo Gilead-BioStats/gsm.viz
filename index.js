@@ -18992,7 +18992,7 @@ var rbmViz = (() => {
     let thresholds = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
-    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold !== "number"))
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds);
     if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
       return null;
@@ -19028,7 +19028,11 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
+      thresholds: checkThresholds.bind(
+        null,
+        _config_,
+        _thresholds_
+      )
     });
     return config;
   }
@@ -19308,7 +19312,7 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, _data_, _thresholds_, update = false) {
+  function updateConfig(chart, _config_, _thresholds_, update = false) {
     const config = configure3(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
@@ -19324,13 +19328,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, thresholds = false) {
-    chart.data.config = updateConfig(
-      chart,
-      _config_,
-      _data_,
-      thresholds
-    );
+  function updateData(chart, _data_, _config_, _thresholds_) {
+    chart.data.config = updateConfig(chart, _config_, _thresholds_);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -19373,7 +19372,9 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
-        config
+        config,
+        _thresholds_,
+        _data_
       },
       metadata: "test",
       options,

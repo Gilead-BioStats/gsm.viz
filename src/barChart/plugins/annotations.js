@@ -2,6 +2,7 @@ import colorScheme from '../../util/colorScheme';
 
 export default function annotations(config) {
     let annotations = null;
+
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => ({
             drawTime: 'beforeDatasetsDraw',

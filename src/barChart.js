@@ -43,6 +43,8 @@ export default function barChart(
         data: {
             datasets,
             config,
+            _thresholds_,
+            _data_
         },
         metadata: 'test',
         options,

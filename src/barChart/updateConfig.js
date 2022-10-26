@@ -6,14 +6,15 @@ import triggerTooltip from '../util/triggerTooltip';
 export default function updateConfig(
     chart,
     _config_,
-    _data_,
     _thresholds_,
     update = false
 ) {
     // Update config.
     const config = configure(
         _config_,
-        chart.data.datasets.find(dataset => dataset.type === 'bar').data,
+        chart.data.datasets
+            .find((dataset) => dataset.type === 'bar')
+            .data,
         _thresholds_
     );
 

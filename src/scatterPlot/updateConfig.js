@@ -12,11 +12,17 @@ import triggerTooltip from '../util/triggerTooltip';
  *
  * @returns {Object} updated chart configuration
  */
-export default function updateConfig(chart, _config_, update = false) {
+export default function updateConfig(
+    chart,
+    _config_,
+    update = false
+) {
     // Update config.
     const config = configure(
         _config_,
-        chart.data.datasets.find(dataset => dataset.type === 'scatter').data
+        chart.data.datasets
+            .find((dataset) => dataset.type === 'scatter')
+            .data
     );
 
     // Define plugins (title, tooltip) and scales (x, y).

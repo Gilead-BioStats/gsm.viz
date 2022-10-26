@@ -18,13 +18,13 @@ Promise.all(dataPromises)
         // bar data
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
-        ); //.filter(() => Math.random() < .25);
+        )//.filter(() => Math.random() < .25);
 
         // threshold annotations
-        const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
+        const parameters = datasets[2].filter(d => d.workflowid === workflow.workflowid);
 
         // custom settings
-        workflow.y = 'score'; //'metric';
+        workflow.y = 'score';
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -37,14 +37,14 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            datasets[2] //thresholds
+            parameters
         );
 
         // controls
         kri(workflow, datasets, true);
         site(datasets, true);
+        yaxis(workflow, datasets, true);
+        threshold(workflow, datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);
-        threshold(workflow, datasets, true);
-        yaxis(workflow, datasets, true);
     });
