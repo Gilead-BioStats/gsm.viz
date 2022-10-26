@@ -18929,9 +18929,7 @@ var rbmViz = (() => {
       a = [a];
     if (Array.isArray(b) && Array.isArray(a) && a[0] === "")
       return b;
-    if (typeof a === typeof b)
-      return a;
-    return b;
+    return a;
   }
 
   // src/util/configure.js
@@ -19765,15 +19763,28 @@ var rbmViz = (() => {
     };
     defaults3.clickCallback = (datum2) => {
     };
+    defaults3.count = "";
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
+    if (_config_.y === "site") {
+      defaults3.count = "site";
+      _config_.y = null;
+      defaults3.y = "pct";
+      defaults3.aggregate = (snapshot) => snapshot.filter((d) => +d.flag !== 0).length;
+    }
+    if (_config_.y === "kri") {
+      defaults3.count = "kri";
+      _config_.y = null;
+      defaults3.y = "n";
+      defaults3.aggregate = (snapshot) => snapshot.filter((d) => +d.flag !== 0).length;
+    }
     const config = configure2(defaults3, _config_, {});
     return config;
   }
 
   // src/sparkline/structureData/mutate.js
   function mutate3(_data_, config) {
-    const data = _data_.map((d) => {
+    let data = _data_.map((d) => {
       const datum2 = {
         ...d,
         y: +d[config.y],
@@ -19781,6 +19792,25 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
+    if (["site", "kri"].includes(config.count)) {
+      const N = config.count === "site" ? new Set(data.map((d) => d.groupid)).size : new Set(data.map((d) => d.workflowid)).size;
+      data = rollups(
+        data,
+        (snapshot) => {
+          const n = config.aggregate(snapshot);
+          const pct = n / N * 100;
+          return {
+            n,
+            numerator: n,
+            pct
+          };
+        },
+        (d) => d.snapshot_date
+      ).map((d) => {
+        d[1].snapshot_date = d[0];
+        return d[1];
+      });
+    }
     return data.slice(data.length - config.nSnapshots);
   }
 
@@ -19805,7 +19835,6 @@ var rbmViz = (() => {
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
-    const yValues = data.map((d) => +d[config.y]);
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : null;
     const datasets = [
@@ -19879,7 +19908,7 @@ var rbmViz = (() => {
   function getScales3(config, data) {
     const yMin = min(data, (d) => d.y);
     const yMax = max(data, (d) => d.y);
-    const range = yMin === yMax ? yMin : yMax - yMin;
+    const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     const scales2 = {
       x: {
         display: false,
