@@ -4,7 +4,9 @@ export default function backgroundColor(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
-        return config.colorScheme[datum.stratum].color;
+    if (dataset.type === 'line') {
+        return datum === dataset.data[dataset.data.length - 1]
+            ? 'red' //'rgba(0, 0, 0, 0.5)'
+            : 'blue'; //'rgba(0, 0, 0, 0.1)';
     }
 }

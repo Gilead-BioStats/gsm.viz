@@ -18929,9 +18929,7 @@ var rbmViz = (() => {
       a = [a];
     if (Array.isArray(b) && Array.isArray(a) && a[0] === "")
       return b;
-    if (typeof a === typeof b)
-      return a;
-    return b;
+    return a;
   }
 
   // src/util/configure.js
@@ -18992,7 +18990,7 @@ var rbmViz = (() => {
     let thresholds = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
-    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold !== "number"))
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds);
     if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
       return null;
@@ -19308,20 +19306,24 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, thresholds = false, yaxis = "score", update = false) {
-    const config = configure3(_config_, thresholds, yaxis);
+  function updateConfig(chart, _config_, _thresholds_, update = false) {
+    const config = configure3(
+      _config_,
+      chart.data.datasets.find((dataset) => dataset.type === "bar").data,
+      _thresholds_
+    );
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
     chart.data.config = config;
-    triggerTooltip(chart);
     if (update)
       chart.update();
+    triggerTooltip(chart);
     return config;
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, thresholds = false) {
-    chart.data.config = updateConfig(chart, _config_, thresholds);
+  function updateData(chart, _data_, _config_, _thresholds_) {
+    chart.data.config = updateConfig(chart, _config_, _thresholds_);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -19364,7 +19366,9 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
-        config
+        config,
+        _thresholds_,
+        _data_
       },
       metadata: "test",
       options,
@@ -19666,13 +19670,16 @@ var rbmViz = (() => {
 
   // src/scatterPlot/updateConfig.js
   function updateConfig2(chart, _config_, update = false) {
-    const config = configure4(_config_);
+    const config = configure4(
+      _config_,
+      chart.data.datasets.find((dataset) => dataset.type === "scatter").data
+    );
     chart.options.plugins = plugins3(config);
     chart.options.scales = getScales2(config);
     chart.data.config = config;
-    triggerTooltip(chart);
     if (update)
       chart.update();
+    triggerTooltip(chart);
     return config;
   }
 
@@ -19689,6 +19696,7 @@ var rbmViz = (() => {
     );
     chart.data.datasets = structureData2(_data_, chart.data.config, _bounds_);
     chart.update();
+    triggerTooltip(chart);
   }
 
   // src/scatterPlot/updateOption.js
@@ -19702,6 +19710,7 @@ var rbmViz = (() => {
         obj[objPath[i]] = value;
     }
     chart.update();
+    triggerTooltip(chart);
   }
 
   // src/scatterPlot.js
@@ -19753,6 +19762,7 @@ var rbmViz = (() => {
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
     const config = configure2(defaults3, _config_, {});
+    config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
   }
 
@@ -19769,6 +19779,17 @@ var rbmViz = (() => {
     return data.slice(data.length - config.nSnapshots);
   }
 
+  // src/sparkline/structureData/scriptableOptions/borderColor.js
+  function borderColor3(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "line") {
+      return datum2 === dataset.data[dataset.data.length - 1] ? "black" : "rgba(0, 0, 0, 0.1)";
+    }
+  }
+
   // src/sparkline/structureData/scriptableOptions/radius.js
   function radius2(context, options) {
     const chart = context.chart;
@@ -19776,13 +19797,14 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "line") {
-      return datum2 === dataset.data[dataset.data.length - 1] ? 3 : 2;
+      return datum2 === dataset.data[dataset.data.length - 1] ? 5 : 3;
     }
   }
 
   // src/sparkline/structureData/scriptableOptions.js
   function scriptableOptions3() {
     return {
+      borderColor: borderColor3,
       radius: radius2
     };
   }
@@ -19790,9 +19812,10 @@ var rbmViz = (() => {
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
-    const yValues = data.map((d) => +d[config.y]);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : null;
+    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
+      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
+    );
     const datasets = [
       {
         type: "line",
@@ -19821,7 +19844,7 @@ var rbmViz = (() => {
     const yValue = range === yMin ? yMin : yMin + range / 2;
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(" 4d")(datum2.numerator)
+      format(" 4d")(datum2[config.annotation])
     ];
     return {
       clip: false,
@@ -19851,11 +19874,17 @@ var rbmViz = (() => {
     };
   }
 
+  // src/sparkline/plugins/tooltip.js
+  function tooltip3(config) {
+    return {};
+  }
+
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
     const plugins5 = {
       annotation: annotations2(config, _data_),
-      legend: legend3(config)
+      legend: legend3(config),
+      tooltip: tooltip3(config)
     };
     return plugins5;
   }
@@ -19864,7 +19893,7 @@ var rbmViz = (() => {
   function getScales3(config, data) {
     const yMin = min(data, (d) => d.y);
     const yMax = max(data, (d) => d.y);
-    const range = yMin === yMax ? yMin : yMax - yMin;
+    const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     const scales2 = {
       x: {
         display: false,

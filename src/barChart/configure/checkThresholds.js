@@ -12,7 +12,7 @@ export default function checkThresholds(_config_, _thresholds_) {
     if (
         Array.isArray(thresholds) &&
         thresholds.length > 0 &&
-        thresholds.every((threshold) => typeof threshold !== 'number')
+        thresholds.every((threshold) => typeof threshold === 'number')
     )
         return mapThresholdsToFlags(thresholds);
 

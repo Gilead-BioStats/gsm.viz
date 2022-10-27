@@ -19,7 +19,7 @@ const ScatterPlot = ({ data, config, bounds }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '49.5%', height: '300px', display: 'inline-block' }}
+            style={{ width: '33%', height: '25vh', display: 'inline-block' }}
         ></div>
     );
 };
