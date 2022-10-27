@@ -12,7 +12,7 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflows = datasets[0];
         const flagCounts = datasets[1];
-        const groupIDs = [...new Set(flagCounts.map(d => d.groupid))];
+        const groupIDs = [...new Set(flagCounts.map((d) => d.groupid))];
         console.log(groupIDs);
         const container = document.getElementById('container');
 
@@ -24,8 +24,7 @@ Promise.all(dataPromises)
             subcontainer.style.display = 'inline-block';
 
             // data
-            const data = flagCounts
-                .filter(d => d.groupid === groupID);
+            const data = flagCounts.filter((d) => d.groupid === groupID);
 
             // configuration
             const config = {};

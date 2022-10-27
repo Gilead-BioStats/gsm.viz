@@ -22,7 +22,6 @@ export default function tooltip(config) {
         //            `${format(',d')(datum.x)} ${config.xLabel}`,
         //            `${config.outcome}: ${format('.3f')(datum.metric)}`,
         //        ];
-
         //        return tooltip;
         //    },
         //    //title: () => null,

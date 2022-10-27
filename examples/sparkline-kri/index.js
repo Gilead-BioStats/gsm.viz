@@ -12,7 +12,7 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflows = datasets[0];
         const flagCounts = datasets[1];
-        const workflowIDs = [...new Set(flagCounts.map(d => d.workflowid))];
+        const workflowIDs = [...new Set(flagCounts.map((d) => d.workflowid))];
         const container = document.getElementById('container');
 
         for (const workflowID of workflowIDs) {
@@ -23,12 +23,12 @@ Promise.all(dataPromises)
             subcontainer.style.display = 'inline-block';
 
             // data
-            const data = flagCounts
-                .filter(d => d.workflowid === workflowID);
+            const data = flagCounts.filter((d) => d.workflowid === workflowID);
 
             // configuration
-            const config = workflows
-                .find(workflow => workflow.workflowid === workflowID);
+            const config = workflows.find(
+                (workflow) => workflow.workflowid === workflowID
+            );
             config.x = 'snapshot_date';
             config.y = 'n_flagged';
             config.color = null;

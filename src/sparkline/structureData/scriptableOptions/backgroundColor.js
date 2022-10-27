@@ -6,7 +6,7 @@ export default function backgroundColor(context, options) {
 
     if (dataset.type === 'line') {
         return datum === dataset.data[dataset.data.length - 1]
-            ? 'red'//'rgba(0, 0, 0, 0.5)'
-            : 'blue'//'rgba(0, 0, 0, 0.1)';
+            ? 'red' //'rgba(0, 0, 0, 0.5)'
+            : 'blue'; //'rgba(0, 0, 0, 0.1)';
     }
 }

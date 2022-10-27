@@ -19,7 +19,12 @@ const Sparkline = ({ data, config }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '12.5%', margin: 'auto', height: '50px', display: 'inline-block' }}
+            style={{
+                width: '12.5%',
+                margin: 'auto',
+                height: '50px',
+                display: 'inline-block',
+            }}
         ></div>
     );
 };

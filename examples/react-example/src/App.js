@@ -21,8 +21,7 @@ const App = () => {
         (d) => d.workflowid === workflow.workflowid
     );
     const resultsOverTime = resultsOverTimeAll.filter(
-        (d) =>
-            d.workflowid === workflow.workflowid
+        (d) => d.workflowid === workflow.workflowid
     );
 
     const workflowScoreBars = { ...workflow };
@@ -33,19 +32,20 @@ const App = () => {
     const workflowSparkline = { ...workflow };
     workflow.nSnapshots = 25;
 
-    const groupIDs = [
-        ...new Set(resultsOverTime.map(d => d.groupid))
-    ].filter(() => Math.random() < .15);
+    const groupIDs = [...new Set(resultsOverTime.map((d) => d.groupid))].filter(
+        () => Math.random() < 0.15
+    );
     const sparklines = [];
     for (let i = 0; i < groupIDs.length; i++) {
         const groupID = groupIDs[i];
-        const data = resultsOverTime
-            .filter(d => d.groupid === groupID);
-        const sparkline = <Sparkline
-            data={shuffle(data).slice(0,25)}
-            config={{...workflowSparkline}}
-            key={i}
-        />;
+        const data = resultsOverTime.filter((d) => d.groupid === groupID);
+        const sparkline = (
+            <Sparkline
+                data={shuffle(data).slice(0, 25)}
+                config={{ ...workflowSparkline }}
+                key={i}
+            />
+        );
         sparklines.push(sparkline);
     }
 
@@ -53,9 +53,21 @@ const App = () => {
         <>
             {/* <p>welcome</p> */}
             {/* <button onClick={updateHndler}>Update</button> */}
-            <BarChart    data={results}         config={workflowScoreBars}   thresholds={parameters} />
-            <ScatterPlot data={results}         config={workflowScatterPlot} bounds={bounds}         />
-            <BarChart    data={results}         config={workflowMetricBars}  thresholds={parameters} />
+            <BarChart
+                data={results}
+                config={workflowScoreBars}
+                thresholds={parameters}
+            />
+            <ScatterPlot
+                data={results}
+                config={workflowScatterPlot}
+                bounds={bounds}
+            />
+            <BarChart
+                data={results}
+                config={workflowMetricBars}
+                thresholds={parameters}
+            />
             {sparklines}
         </>
     );

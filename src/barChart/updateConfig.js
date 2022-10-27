@@ -12,9 +12,7 @@ export default function updateConfig(
     // Update config.
     const config = configure(
         _config_,
-        chart.data.datasets
-            .find((dataset) => dataset.type === 'bar')
-            .data,
+        chart.data.datasets.find((dataset) => dataset.type === 'bar').data,
         _thresholds_
     );
 
