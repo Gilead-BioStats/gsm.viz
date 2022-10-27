@@ -19763,28 +19763,15 @@ var rbmViz = (() => {
     };
     defaults3.clickCallback = (datum2) => {
     };
-    defaults3.count = "";
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
-    if (_config_.y === "site") {
-      defaults3.count = "site";
-      _config_.y = null;
-      defaults3.y = "pct";
-      defaults3.aggregate = (snapshot) => snapshot.filter((d) => +d.flag !== 0).length;
-    }
-    if (_config_.y === "kri") {
-      defaults3.count = "kri";
-      _config_.y = null;
-      defaults3.y = "n";
-      defaults3.aggregate = (snapshot) => snapshot.filter((d) => +d.flag !== 0).length;
-    }
     const config = configure2(defaults3, _config_, {});
     return config;
   }
 
   // src/sparkline/structureData/mutate.js
   function mutate3(_data_, config) {
-    let data = _data_.map((d) => {
+    const data = _data_.map((d) => {
       const datum2 = {
         ...d,
         y: +d[config.y],
@@ -19792,26 +19779,30 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    if (["site", "kri"].includes(config.count)) {
-      const N = config.count === "site" ? new Set(data.map((d) => d.groupid)).size : new Set(data.map((d) => d.workflowid)).size;
-      data = rollups(
-        data,
-        (snapshot) => {
-          const n = config.aggregate(snapshot);
-          const pct = n / N * 100;
-          return {
-            n,
-            numerator: n,
-            pct
-          };
-        },
-        (d) => d.snapshot_date
-      ).map((d) => {
-        d[1].snapshot_date = d[0];
-        return d[1];
-      });
-    }
     return data.slice(data.length - config.nSnapshots);
+  }
+
+  // src/sparkline/structureData/scriptableOptions/backgroundColor.js
+  function backgroundColor3(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[0];
+    console.log(datum2);
+    if (dataset.type === "line") {
+      return datum2 === dataset.data[dataset.data.length - 1] ? "red" : "blue";
+    }
+  }
+
+  // src/sparkline/structureData/scriptableOptions/borderColor.js
+  function borderColor3(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "line") {
+      return datum2 === dataset.data[dataset.data.length - 1] ? "black" : "rgba(0, 0, 0, 0.1)";
+    }
   }
 
   // src/sparkline/structureData/scriptableOptions/radius.js
@@ -19821,13 +19812,15 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "line") {
-      return datum2 === dataset.data[dataset.data.length - 1] ? 3 : 2;
+      return datum2 === dataset.data[dataset.data.length - 1] ? 5 : 3;
     }
   }
 
   // src/sparkline/structureData/scriptableOptions.js
   function scriptableOptions3() {
     return {
+      backgroundColor: backgroundColor3,
+      borderColor: borderColor3,
       radius: radius2
     };
   }
@@ -19865,7 +19858,7 @@ var rbmViz = (() => {
     const yValue = range === yMin ? yMin : yMin + range / 2;
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(" 4d")(datum2.numerator)
+      format(" 4d")(datum2.y)
     ];
     return {
       clip: false,

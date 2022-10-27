@@ -26,6 +26,7 @@ export default function structureData(_data_, config) {
                 const datum = { ...d };
                 datum.x = i;
                 datum.y = +d[config.y];
+
                 return datum;
             }),
             pointBackgroundColor,

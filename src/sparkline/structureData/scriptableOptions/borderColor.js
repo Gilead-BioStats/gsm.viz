@@ -4,8 +4,8 @@ export default function borderColor(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
-        return config.selectedGroupIDs.includes(datum.groupid)
+    if (dataset.type === 'line') {
+        return datum === dataset.data[dataset.data.length - 1]
             ? 'black'
             : 'rgba(0, 0, 0, 0.1)';
     }

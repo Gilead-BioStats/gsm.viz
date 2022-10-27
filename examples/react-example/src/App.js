@@ -10,7 +10,7 @@ import resultsOverTimeAll from './data/results_summary_over_time';
 
 const App = () => {
     const workflow = workflows[0];
-    workflow.selectedGroupIDs = '43';
+    //workflow.selectedGroupIDs = '43';
     const results = resultsAll.filter(
         (d) => d.workflowid === workflow.workflowid
     );
@@ -31,8 +31,8 @@ const App = () => {
     workflowMetricBars.y = 'metric';
     const workflowScatterPlot = { ...workflow };
     const workflowSparkline = { ...workflow };
+    workflow.nSnapshots = 25;
 
-    //workflow.nSnapshots = 100;
     const groupIDs = [
         ...new Set(resultsOverTime.map(d => d.groupid))
     ].filter(() => Math.random() < .15);
@@ -40,9 +40,9 @@ const App = () => {
     for (let i = 0; i < groupIDs.length; i++) {
         const groupID = groupIDs[i];
         const data = resultsOverTime
-            .filter(d => d.groupid === groupIDs[i]);
+            .filter(d => d.groupid === groupID);
         const sparkline = <Sparkline
-            data={shuffle}
+            data={shuffle(data).slice(0,25)}
             config={{...workflowSparkline}}
             key={i}
         />;
