@@ -14,7 +14,10 @@ import triggerTooltip from '../util/triggerTooltip';
  */
 export default function updateConfig(chart, _config_, update = false) {
     // Update config.
-    const config = configure(_config_);
+    const config = configure(
+        _config_,
+        chart.data.datasets.find((dataset) => dataset.type === 'scatter').data
+    );
 
     // Define plugins (title, tooltip) and scales (x, y).
     chart.options.plugins = plugins(config);
@@ -22,9 +25,9 @@ export default function updateConfig(chart, _config_, update = false) {
 
     chart.data.config = config;
 
-    triggerTooltip(chart);
-
     if (update) chart.update();
+
+    triggerTooltip(chart);
 
     return config;
 }

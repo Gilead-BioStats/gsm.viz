@@ -1,3 +1,5 @@
+import triggerTooltip from '../util/triggerTooltip';
+
 /**
  * Update a single chart option and redraw chart.
  *
@@ -14,4 +16,6 @@ export default function updateOption(chart, option, value) {
         else obj[objPath[i]] = value;
     }
     chart.update();
+
+    triggerTooltip(chart);
 }

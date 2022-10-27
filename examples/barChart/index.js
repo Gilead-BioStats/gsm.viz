@@ -14,37 +14,31 @@ Promise.all(dataPromises)
         // configuration
         const [workflow] = datasets[0] // destructured assignment
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
+        workflow.y = 'score';
 
         // bar data
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
-        ); //.filter(() => Math.random() < .25);
+        );
 
         // threshold annotations
-        const thresholds = datasets[2].filter((d) => d.param === 'vThreshold');
-
-        // custom settings
-        workflow.y = 'score'; //'metric';
-        const groupIDs = [
-            ...new Set(results.map((result) => result.groupid)).values(),
-        ];
-        const selectedGroupIDs =
-            results[Math.floor(Math.random() * results.length)].groupid;
-        //workflow.selectedGroupIDs = selectedGroupIDs;
+        const parameters = datasets[2].filter(
+            (d) => d.workflowid === workflow.workflowid
+        );
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             workflow,
-            datasets[2] //thresholds
+            parameters
         );
 
         // controls
         kri(workflow, datasets, true);
         site(datasets, true);
+        yaxis(workflow, datasets, true);
+        threshold(workflow, datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);
-        threshold(workflow, datasets, true);
-        yaxis(workflow, datasets, true);
     });

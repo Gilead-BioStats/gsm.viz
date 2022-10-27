@@ -15,7 +15,7 @@ export default function annotations(config, data) {
     // content
     const datum = data.slice(-1)[0];
     const content = [
-        format(' 4d')(datum.numerator),
+        format(' 4d')(datum[config.annotation]),
         //.replace(/^0+/,
         //.replace(/^0/, '')
     ];

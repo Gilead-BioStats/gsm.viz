@@ -34,5 +34,10 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     const config = configureAll(defaults, _config_, {});
 
+    // annotation
+    config.annotation = ['metric', 'score'].includes(config.y)
+        ? 'numerator'
+        : config.y;
+
     return config;
 }
