@@ -1,0 +1,322 @@
+[
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "-7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "-5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "3",
+		"default": "5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "4",
+		"default": "7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0001",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "poisson",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "-7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "-5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "3",
+		"default": "5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "4",
+		"default": "7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0002",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "poisson",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "-7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "-5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "3",
+		"default": "5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "4",
+		"default": "7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0003",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "poisson",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "-7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "-5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "3",
+		"default": "5",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "4",
+		"default": "7",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0004",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "poisson",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0005",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0005",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "0.01",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0005",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "0.05",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0005",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "fisher",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0006",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0006",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "0.01",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0006",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "0.05",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0006",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "fisher",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0007",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0007",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "0.01",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0007",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "0.05",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0007",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "fisher",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0008",
+		"gsm_version": "1.1.0",
+		"param": "strGroup",
+		"index": "",
+		"default": "Site",
+		"configurable": "FALSE"
+	},
+	{
+		"workflowid": "kri0008",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "1",
+		"default": "0.01",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0008",
+		"gsm_version": "1.1.0",
+		"param": "vThreshold",
+		"index": "2",
+		"default": "0.05",
+		"configurable": "TRUE"
+	},
+	{
+		"workflowid": "kri0008",
+		"gsm_version": "1.1.0",
+		"param": "strMethod",
+		"index": "",
+		"default": "fisher",
+		"configurable": "FALSE"
+	}
+]
