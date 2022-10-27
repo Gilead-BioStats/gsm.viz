@@ -19766,6 +19766,7 @@ var rbmViz = (() => {
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
     const config = configure2(defaults3, _config_, {});
+    config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
   }
 
@@ -19780,18 +19781,6 @@ var rbmViz = (() => {
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
     return data.slice(data.length - config.nSnapshots);
-  }
-
-  // src/sparkline/structureData/scriptableOptions/backgroundColor.js
-  function backgroundColor3(context, options) {
-    const chart = context.chart;
-    const config = chart.data.config;
-    const dataset = context.dataset;
-    const datum2 = dataset.data[0];
-    console.log(datum2);
-    if (dataset.type === "line") {
-      return datum2 === dataset.data[dataset.data.length - 1] ? "red" : "blue";
-    }
   }
 
   // src/sparkline/structureData/scriptableOptions/borderColor.js
@@ -19819,7 +19808,6 @@ var rbmViz = (() => {
   // src/sparkline/structureData/scriptableOptions.js
   function scriptableOptions3() {
     return {
-      backgroundColor: backgroundColor3,
       borderColor: borderColor3,
       radius: radius2
     };
@@ -19829,7 +19817,9 @@ var rbmViz = (() => {
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : null;
+    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
+      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
+    );
     const datasets = [
       {
         type: "line",
@@ -19858,7 +19848,7 @@ var rbmViz = (() => {
     const yValue = range === yMin ? yMin : yMin + range / 2;
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(" 4d")(datum2.y)
+      format(" 4d")(datum2[config.annotation])
     ];
     return {
       clip: false,
@@ -19888,11 +19878,17 @@ var rbmViz = (() => {
     };
   }
 
+  // src/sparkline/plugins/tooltip.js
+  function tooltip3(config) {
+    return {};
+  }
+
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
     const plugins5 = {
       annotation: annotations2(config, _data_),
-      legend: legend3(config)
+      legend: legend3(config),
+      tooltip: tooltip3(config)
     };
     return plugins5;
   }

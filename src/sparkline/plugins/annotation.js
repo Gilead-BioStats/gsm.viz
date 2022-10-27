@@ -14,9 +14,8 @@ export default function annotations(config, data) {
 
     // content
     const datum = data.slice(-1)[0];
-    // TODO: figure out why background isn't less opaque
     const content = [
-        format(' 4d')(datum.y),
+        format(' 4d')(datum[config.annotation]),
         //.replace(/^0+/,
         //.replace(/^0/, '')
     ];

@@ -1,10 +1,8 @@
-// Figure out what's going on here
 export default function backgroundColor(context, options) {
     const chart = context.chart;
     const config = chart.data.config;
     const dataset = context.dataset;
-    const datum = dataset.data[0];
-    console.log(datum);
+    const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'line') {
         return datum === dataset.data[dataset.data.length - 1]

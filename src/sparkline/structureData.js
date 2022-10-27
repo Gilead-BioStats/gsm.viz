@@ -17,7 +17,10 @@ export default function structureData(_data_, config) {
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = !isNaN(data[0].stratum)
         ? data.map((d) => config.colorScheme[d.stratum].color)
-        : null;
+        : data.map((d,i) => i < data.length - 1
+            ? 'rgba(0, 0, 0, 0.1)'
+            : 'rgba(0, 0, 0, 0.5)'
+        );
 
     const datasets = [
         {

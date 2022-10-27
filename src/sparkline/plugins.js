@@ -13,7 +13,7 @@ export default function plugins(config, _data_) {
         //    display: true,
         //    text: _data_[0].groupid,
         //}, // title(config),
-        //tooltip: tooltip(config),
+        tooltip: tooltip(config),
     };
 
     return plugins;

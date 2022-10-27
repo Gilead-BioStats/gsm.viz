@@ -15,12 +15,8 @@ Promise.all(dataPromises)
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
         workflow.y = 'metric';
-        const groupids = [...new Set(datasets[1].map((d) => d.groupid))].filter(
-            (_) => Math.random() < 0.25
-        );
-        //const groupid = groupids[
-        //    Math.floor(Math.random()*groupids.length)
-        //];
+        workflow.nSnapshots = 25;
+        const groupids = [...new Set(datasets[1].map((d) => d.groupid))];
         const results = datasets[1].filter(
             (d) =>
                 d.workflowid === workflow.workflowid &&
