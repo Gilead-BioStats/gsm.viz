@@ -13,15 +13,13 @@ export default function annotations(config, data) {
     const yValue = range === yMin ? yMin : yMin + range / 2;
 
     // Identify appropriate number format.
-    const format = (
-        data.every(d => +d[config.y] % 1 === 0)
-            ? ' 4d'
-            : range < .1
-            ? '.3f'
-            : range < 1
-            ? '.2f'
-            : '.1f'
-    );
+    const format = data.every((d) => +d[config.y] % 1 === 0)
+        ? ' 4d'
+        : range < 0.1
+        ? '.3f'
+        : range < 1
+        ? '.2f'
+        : '.1f';
 
     // content
     const datum = data.slice(-1)[0];

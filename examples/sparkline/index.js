@@ -14,44 +14,34 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
         const groupID = '75';
-        const results = datasets[0].filter(
-            d => d.workflowid === workflowID && d.groupid === groupID
-        ).slice(35,45);
-        const workflow = datasets[1].filter(
-            d => d.workflowid === workflowID
-        );
+        const results = datasets[0]
+            .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
+            .slice(35, 45);
+        const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
         workflow.nSnapshots = 10;
         const flagCountsByKRI = datasets[2].filter(
-            d => d.workflowid === workflowID
+            (d) => d.workflowid === workflowID
         );
         const flagCountsByGroup = datasets[3].filter(
-            d => d.groupid === groupID
+            (d) => d.groupid === groupID
         );
 
-        rbmViz.default.sparkline(
-            document.getElementById('score'),
-            results,
-            {
-                ...workflow,
-                y:  'score',
-            }
-        );
+        rbmViz.default.sparkline(document.getElementById('score'), results, {
+            ...workflow,
+            y: 'score',
+        });
 
-        rbmViz.default.sparkline(
-            document.getElementById('metric'),
-            results,
-            {
-                ...workflow,
-                y:  'metric',
-            }
-        );
+        rbmViz.default.sparkline(document.getElementById('metric'), results, {
+            ...workflow,
+            y: 'metric',
+        });
 
         rbmViz.default.sparkline(
             document.getElementById('flag-counts-by-kri'),
             flagCountsByKRI,
             {
                 ...workflow,
-                y:  'n_flagged',
+                y: 'n_flagged',
             }
         );
 
@@ -60,7 +50,7 @@ Promise.all(dataPromises)
             flagCountsByGroup,
             {
                 ...workflow,
-                y:  'n_flagged',
+                y: 'n_flagged',
             }
         );
     });

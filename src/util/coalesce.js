@@ -11,7 +11,11 @@ export default function coalesce(customSetting, defaultSetting) {
         customSetting = [customSetting];
     }
 
-    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === '') {
+    if (
+        Array.isArray(defaultSetting) &&
+        Array.isArray(customSetting) &&
+        customSetting[0] === ''
+    ) {
         return defaultSetting;
     }
 

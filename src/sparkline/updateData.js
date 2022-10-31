@@ -28,8 +28,14 @@ export default function updateData(chart, _data_, _config_) {
         chart.data.config.clickCallback
     );
 
-    chart.options.plugins = plugins(chart.data.config, chart.data.datasets[0].data);
-    chart.options.scales = getScales(chart.data.config, chart.data.datasets[0].data);
+    chart.options.plugins = plugins(
+        chart.data.config,
+        chart.data.datasets[0].data
+    );
+    chart.options.scales = getScales(
+        chart.data.config,
+        chart.data.datasets[0].data
+    );
 
     chart.update();
 }

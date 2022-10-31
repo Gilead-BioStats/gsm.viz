@@ -19941,8 +19941,14 @@ var rbmViz = (() => {
       chart.canvas,
       chart.data.config.clickCallback
     );
-    chart.options.plugins = plugins4(chart.data.config, chart.data.datasets[0].data);
-    chart.options.scales = getScales3(chart.data.config, chart.data.datasets[0].data);
+    chart.options.plugins = plugins4(
+      chart.data.config,
+      chart.data.datasets[0].data
+    );
+    chart.options.scales = getScales3(
+      chart.data.config,
+      chart.data.datasets[0].data
+    );
     chart.update();
   }
 
@@ -19980,12 +19986,17 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/timeSeries.js
+  function barChart2(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+  }
+
   // src/main.js
   Chart.register(annotation);
   var rbmViz = {
     barChart,
     scatterPlot,
-    sparkline
+    sparkline,
+    timeSeries: barChart2
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);

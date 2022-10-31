@@ -1,4 +1,7 @@
-div.list * {margin: 0; padding: 0;}
+div.list * {
+    margin: 0;
+    padding: 0;
+}
 
 #container {
     width: 100%;
@@ -25,29 +28,28 @@ div.sparkline {
 }
 
 div.list {
-  margin: 20px;
+    margin: 20px;
 }
 
 ul {
-  list-style-type: none;
-  width: 500px;
+    list-style-type: none;
+    width: 500px;
 }
 
 li {
-  padding: 10px;
-  overflow: auto;
+    padding: 10px;
+    overflow: auto;
 }
 
 li:hover {
-  background: #eee;
-  cursor: pointer;
+    background: #eee;
+    cursor: pointer;
 }
 
 li h3 {
-  font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
+    font: bold 20px/1.5 Helvetica, Verdana, sans-serif;
 }
 
 li p {
-  font: 200 12px/1.5 Georgia, Times New Roman, serif;
+    font: 200 12px/1.5 Georgia, Times New Roman, serif;
 }
-

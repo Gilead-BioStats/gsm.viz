@@ -1,6 +1,6 @@
 const dataFiles = [
     '../../data/results_summary_over_time.csv',
-    '../../data/meta_workflow.csv'
+    '../../data/meta_workflow.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -15,14 +15,11 @@ Promise.all(dataPromises)
         // data
         const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         const results = datasets[0].filter(
-            (d) =>
-                d.workflowid === workflowid &&
-                groupids.includes(d.groupid)
+            (d) => d.workflowid === workflowid && groupids.includes(d.groupid)
         );
 
         // configuration
-        const workflow = datasets[1]
-            .filter(d => d.workflowid === workflowid);
+        const workflow = datasets[1].filter((d) => d.workflowid === workflowid);
         workflow.y = 'score';
         workflow.nSnapshots = 25;
 
