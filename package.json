@@ -5,7 +5,7 @@
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
-    "build": "npm run bundle && npm run format && npm run test",
+    "build": "npm run bundle && npm run format",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",

@@ -1,3 +1,5 @@
+import chartLabels from '../../../barChart/plugins/chartLabels';
+
 export default function borderColor(context, options) {
     const chart = context.chart;
     const config = chart.data.config;

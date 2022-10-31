@@ -10,6 +10,7 @@ export default function getScales(config) {
             title: {
                 display: true,
                 text: config.group,
+                padding: 50,
             },
             type: 'category',
         },
@@ -17,7 +18,7 @@ export default function getScales(config) {
             title: {
                 display: true,
                 text: config[config.y],
-                padding: { top: 20, left: 0, right: 0, bottom: 0 },
+                padding: 30,
             },
             grid: {
                 borderDash: [5],

@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -19090,11 +19091,11 @@ var rbmViz = (() => {
     const data = _data_.map((d) => {
       const datum2 = {
         ...d,
-        x: d[config.x],
-        y: +d[config.y],
-        stratum: +d[config.color],
-        numerator: +d[config.num],
-        denominator: +d[config.denom]
+        x: d[config.x] + "",
+        y: d[config.y],
+        stratum: d[config.color],
+        numerator: d[config.num],
+        denominator: d[config.denom]
       };
       return datum2;
     }).sort((a, b) => b.y - a.y);
@@ -19263,7 +19264,8 @@ var rbmViz = (() => {
         },
         title: {
           display: true,
-          text: config.group
+          text: config.group,
+          padding: 50
         },
         type: "category"
       },
@@ -19271,7 +19273,7 @@ var rbmViz = (() => {
         title: {
           display: true,
           text: config[config.y],
-          padding: { top: 20, left: 0, right: 0, bottom: 0 }
+          padding: 30
         },
         grid: {
           borderDash: [5]
@@ -19876,7 +19878,58 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
-    return {};
+    return {
+      external: function(context) {
+        let tooltipEl = document.getElementById("chartjs-tooltip");
+        if (!tooltipEl) {
+          tooltipEl = document.createElement("div");
+          tooltipEl.id = "chartjs-tooltip";
+          tooltipEl.innerHTML = "<table></table>";
+          document.body.appendChild(tooltipEl);
+        }
+        const tooltipModel = context.tooltip;
+        if (tooltipModel.opacity === 0) {
+          tooltipEl.style.opacity = 0;
+          return;
+        }
+        tooltipEl.classList.remove("above", "below", "no-transform");
+        if (tooltipModel.yAlign) {
+          tooltipEl.classList.add(tooltipModel.yAlign);
+        } else {
+          tooltipEl.classList.add("no-transform");
+        }
+        function getBody(bodyItem) {
+          return bodyItem.lines;
+        }
+        if (tooltipModel.body) {
+          const titleLines = tooltipModel.title || [];
+          const bodyLines = tooltipModel.body.map(getBody);
+          let innerHtml = "<thead>";
+          titleLines.forEach(function(title3) {
+            innerHtml += "<tr><th>" + title3 + "</th></tr>";
+          });
+          innerHtml += "</thead><tbody>";
+          bodyLines.forEach(function(body, i) {
+            const colors2 = tooltipModel.labelColors[i];
+            let style = "background:" + colors2.backgroundColor;
+            style += "; border-color:" + colors2.borderColor;
+            style += "; border-width: 2px";
+            const span = '<span style="' + style + '"></span>';
+            innerHtml += "<tr><td>" + span + body + "</td></tr>";
+          });
+          innerHtml += "</tbody>";
+          let tableRoot = tooltipEl.querySelector("table");
+          tableRoot.innerHTML = innerHtml;
+        }
+        const position = context.chart.canvas.getBoundingClientRect();
+        tooltipEl.style.opacity = 1;
+        tooltipEl.style.position = "absolute";
+        tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + "px";
+        tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + "px";
+        tooltipEl.style.padding = tooltipModel.padding + "px " + tooltipModel.padding + "px";
+        tooltipEl.style.pointerEvents = "none";
+      }
+    };
   }
 
   // src/sparkline/plugins.js

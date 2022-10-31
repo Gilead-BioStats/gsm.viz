@@ -9,7 +9,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 );
 
 Promise.all(dataPromises)
-    .then((texts) => texts.map((text) => d3.csvParse(text)))
+    .then((texts) => texts.map((text) => d3.csvParse(text, d3.autoType)))
     .then((datasets) => {
         // configuration
         const [workflow] = datasets[0] // destructured assignment

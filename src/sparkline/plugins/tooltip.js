@@ -1,32 +1,76 @@
 import { format } from 'd3';
-
 export default function tooltip(config) {
     return {
-        //custom: function (tooltipModel) {
-        //    // EXTENSION: filter is not enough! Hide tooltip frame
-        //    if (!tooltipModel.body || tooltipModel.body.length < 1) {
-        //        tooltipModel.caretSize = 0;
-        //        tooltipModel.xPadding = 0;
-        //        tooltipModel.yPadding = 0;
-        //        tooltipModel.cornerRadius = 0;
-        //        tooltipModel.width = 0;
-        //        tooltipModel.height = 0;
-        //    }
-        //},
-        //callbacks: {
-        //    label: (data) => {
-        //        const datum = data.dataset.data[data.dataIndex];
-        //        const tooltip = [
-        //            `${datum.groupid}`,
-        //            `${format(',d')(datum.y)} ${config.yLabel}`,
-        //            `${format(',d')(datum.x)} ${config.xLabel}`,
-        //            `${config.outcome}: ${format('.3f')(datum.metric)}`,
-        //        ];
-        //        return tooltip;
-        //    },
-        //    //title: () => null,
-        //},
-        //events: ['click', 'mouseenter', 'mouseover'],
-        //filter: (data) => !/bound/i.test(data.dataset.label), // turns off tooltip for bounds
+        // enabled: false,
+        external: function (context) {
+            // can we just set this to the react component we want to populate?
+            let tooltipEl = document.getElementById('chartjs-tooltip');
+
+            // Create element on first render
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.id = 'chartjs-tooltip';
+                tooltipEl.innerHTML = '<table></table>';
+                document.body.appendChild(tooltipEl);
+            }
+
+            // Hide if no tooltip
+            const tooltipModel = context.tooltip;
+            if (tooltipModel.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+            }
+
+            // Set caret Position
+            tooltipEl.classList.remove('above', 'below', 'no-transform');
+            if (tooltipModel.yAlign) {
+                tooltipEl.classList.add(tooltipModel.yAlign);
+            } else {
+                tooltipEl.classList.add('no-transform');
+            }
+
+            function getBody(bodyItem) {
+                return bodyItem.lines;
+            }
+
+            // Set Text
+            if (tooltipModel.body) {
+                const titleLines = tooltipModel.title || [];
+                const bodyLines = tooltipModel.body.map(getBody);
+
+                let innerHtml = '<thead>';
+
+                titleLines.forEach(function (title) {
+                    innerHtml += '<tr><th>' + title + '</th></tr>';
+                });
+                innerHtml += '</thead><tbody>';
+
+                bodyLines.forEach(function (body, i) {
+                    const colors = tooltipModel.labelColors[i];
+                    let style = 'background:' + colors.backgroundColor;
+                    style += '; border-color:' + colors.borderColor;
+                    style += '; border-width: 2px';
+                    const span = '<span style="' + style + '"></span>';
+                    innerHtml += '<tr><td>' + span + body + '</td></tr>';
+                });
+                innerHtml += '</tbody>';
+
+                let tableRoot = tooltipEl.querySelector('table');
+                tableRoot.innerHTML = innerHtml;
+            }
+
+            const position = context.chart.canvas.getBoundingClientRect();
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.left =
+                position.left + window.pageXOffset + tooltipModel.caretX + 'px';
+            tooltipEl.style.top =
+                position.top + window.pageYOffset + tooltipModel.caretY + 'px';
+            tooltipEl.style.padding =
+                tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
+            tooltipEl.style.pointerEvents = 'none';
+        },
     };
 }
