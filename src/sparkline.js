@@ -66,8 +66,8 @@ export default function sparkline(
 
     chart.helpers = {
         updateData,
-        updateConfig,
-        updateOption,
+        //updateConfig,
+        //updateOption,
     };
 
     return chart;

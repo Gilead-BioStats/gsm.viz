@@ -1,11 +1,19 @@
-export default function coalesce(a, b) {
-    if ([null, undefined].includes(a)) return b;
+export default function coalesce(customSetting, defaultSetting) {
+    if ([null, undefined].includes(customSetting)) {
+        return defaultSetting;
+    }
 
-    if (typeof b === 'string' && a === '') return b;
+    if (typeof defaultSetting === 'string' && customSetting === '') {
+        return defaultSetting;
+    }
 
-    if (Array.isArray(b) && !Array.isArray(a)) a = [a];
+    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
+        customSetting = [customSetting];
+    }
 
-    if (Array.isArray(b) && Array.isArray(a) && a[0] === '') return b;
+    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === '') {
+        return defaultSetting;
+    }
 
-    return a;
+    return customSetting;
 }

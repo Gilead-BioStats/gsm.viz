@@ -1,4 +1,5 @@
 {
+  "TODO": "align sparkline annotation across outcomes and add number format setting",
   "name": "rbm-viz",
   "version": "0.6.0",
   "description": "web-based data visualization for risk-based monitoring",

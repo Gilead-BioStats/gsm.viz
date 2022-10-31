@@ -1,9 +1,9 @@
-import { format, max, min } from 'd3';
+import { format as d3format, max, min } from 'd3';
 
 export default function annotations(config, data) {
     // horizontal position
     const xMin = 0;
-    const xMax = data.length - 1;
+    const xMax = data.length;
     const xValue = xMax;
 
     // vertical position
@@ -12,10 +12,22 @@ export default function annotations(config, data) {
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = range === yMin ? yMin : yMin + range / 2;
 
+    // Identify appropriate number format.
+    const format = (
+        data.every(d => +d[config.y] % 1 === 0)
+            ? ' 4d'
+            : range < .1
+            ? '.3f'
+            : range < 1
+            ? '.2f'
+            : '.1f'
+    );
+
     // content
     const datum = data.slice(-1)[0];
     const content = [
-        format(' 4d')(datum[config.annotation]),
+        //format('.1f')(datum.score),
+        d3format(format)(datum.y).replace(/^0./, '.'),
         //.replace(/^0+/,
         //.replace(/^0/, '')
     ];
@@ -30,7 +42,7 @@ export default function annotations(config, data) {
                 //backgroundColor: 'rgba(245,245,245)',
                 content,
                 font: {
-                    size: 16,
+                    size: 12,
                     family: 'lucida console',
                 },
                 position: {

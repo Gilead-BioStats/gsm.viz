@@ -1,7 +1,8 @@
 const dataFiles = [
-    '../data/meta_workflow.csv',
     '../data/results_summary_over_time.csv',
-    //'../data/flag_summary_over_time.csv',
+    '../data/meta_workflow.csv',
+    '../data/flag_counts_by_kri.csv',
+    '../data/flag_counts_by_group.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -11,48 +12,55 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        // data
-        const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
-            .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
-        workflow.y = 'metric';
-        workflow.nSnapshots = 25;
-        const groupids = [...new Set(datasets[1].map((d) => d.groupid))];
-        const results = datasets[1].filter(
-            (d) =>
-                d.workflowid === workflow.workflowid &&
-                groupids.includes(d.groupid)
+        const workflowID = 'kri0001';
+        const groupID = '75';
+        const results = datasets[0].filter(
+            d => d.workflowid === workflowID && d.groupid === groupID
+        ).slice(35,45);
+        const workflow = datasets[1].filter(
+            d => d.workflowid === workflowID
+        );
+        workflow.nSnapshots = 10;
+        const flagCountsByKRI = datasets[2].filter(
+            d => d.workflowid === workflowID
+        );
+        const flagCountsByGroup = datasets[3].filter(
+            d => d.groupid === groupID
         );
 
-        // configuration
+        rbmViz.default.sparkline(
+            document.getElementById('score'),
+            results,
+            {
+                ...workflow,
+                y:  'score',
+            }
+        );
 
-        // visualization
-        for (const i in groupids) {
-            const groupid = groupids[i];
-            const container = document.getElementById('container');
-            const subcontainer = document.createElement('div');
-            subcontainer.id = `container_${i}`;
-            container.appendChild(subcontainer);
-            subcontainer.style.display = 'inline-block';
-            //const display = document.createElement('span');
-            //display.innerHTML = 'spark!';
-            //container.appendChild(display);
-            //display.onclick = () => {
-            //    console.log('click');
-            //    subcontainer.style.display = 'inline-block';
-            //};
+        rbmViz.default.sparkline(
+            document.getElementById('metric'),
+            results,
+            {
+                ...workflow,
+                y:  'metric',
+            }
+        );
 
-            // visualization
-            const instance = rbmViz.default.sparkline(
-                subcontainer,
-                results.filter((d) => d.groupid === groupid),
-                workflow
-            );
-        }
+        rbmViz.default.sparkline(
+            document.getElementById('flag-counts-by-kri'),
+            flagCountsByKRI,
+            {
+                ...workflow,
+                y:  'n_flagged',
+            }
+        );
 
-        // controls
-        //kri(workflow, datasets, true);
-        //site(datasets, true);
-        //xAxisType(true);
-        //lifecycle(datasets, 'scatterPlot', true);
-        download(true);
+        rbmViz.default.sparkline(
+            document.getElementById('flag-counts-by-group'),
+            flagCountsByGroup,
+            {
+                ...workflow,
+                y:  'n_flagged',
+            }
+        );
     });

@@ -18920,16 +18920,20 @@ var rbmViz = (() => {
   var colorScheme_default = colorScheme;
 
   // src/util/coalesce.js
-  function coalesce(a, b) {
-    if ([null, void 0].includes(a))
-      return b;
-    if (typeof b === "string" && a === "")
-      return b;
-    if (Array.isArray(b) && !Array.isArray(a))
-      a = [a];
-    if (Array.isArray(b) && Array.isArray(a) && a[0] === "")
-      return b;
-    return a;
+  function coalesce(customSetting, defaultSetting) {
+    if ([null, void 0].includes(customSetting)) {
+      return defaultSetting;
+    }
+    if (typeof defaultSetting === "string" && customSetting === "") {
+      return defaultSetting;
+    }
+    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
+      customSetting = [customSetting];
+    }
+    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
+      return defaultSetting;
+    }
+    return customSetting;
   }
 
   // src/util/configure.js
@@ -19745,12 +19749,12 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure5(_config_, _data_, _thresholds_) {
+  function configure5(_config_) {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
     defaults3.xLabel = _config_[defaults3.x];
-    defaults3.y = "metric";
+    defaults3.y = "score";
     defaults3.yType = "linear";
     defaults3.yLabel = _config_[defaults3.y];
     defaults3.color = "flag";
@@ -19836,15 +19840,16 @@ var rbmViz = (() => {
   // src/sparkline/plugins/annotation.js
   function annotations2(config, data) {
     const xMin = 0;
-    const xMax = data.length - 1;
+    const xMax = data.length;
     const xValue = xMax;
     const yMin = min(data, (d) => +d[config.y]);
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = range === yMin ? yMin : yMin + range / 2;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? " 4d" : range < 0.1 ? ".3f" : range < 1 ? ".2f" : ".1f";
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(" 4d")(datum2[config.annotation])
+      format(format2)(datum2.y).replace(/^0./, ".")
     ];
     return {
       clip: false,
@@ -19855,7 +19860,7 @@ var rbmViz = (() => {
           yValue,
           content,
           font: {
-            size: 16,
+            size: 12,
             family: "lucida console"
           },
           position: {
@@ -19918,8 +19923,6 @@ var rbmViz = (() => {
   // src/sparkline/updateConfig.js
   function updateConfig3(chart, _config_, update = false) {
     const config = configure5(_config_);
-    chart.options.plugins = plugins4(config);
-    chart.options.scales = getScales3(config);
     chart.data.config = config;
     if (update)
       chart.update();
@@ -19927,8 +19930,9 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/updateData.js
-  function updateData3(chart, _data_, _config_, _bounds_) {
+  function updateData3(chart, _data_, _config_) {
     chart.data.config = updateConfig3(chart, _config_);
+    chart.data.datasets = structureData3(_data_, chart.data.config);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -19937,20 +19941,8 @@ var rbmViz = (() => {
       chart.canvas,
       chart.data.config.clickCallback
     );
-    chart.data.datasets = structureData3(_data_, chart.data.config, _bounds_);
-    chart.update();
-  }
-
-  // src/sparkline/updateOption.js
-  function updateOption3(chart, option, value) {
-    const objPath = option.split(".");
-    let obj = chart.options;
-    for (let i = 0; i < objPath.length; i++) {
-      if (i < objPath.length - 1)
-        obj = obj[objPath[i]];
-      else
-        obj[objPath[i]] = value;
-    }
+    chart.options.plugins = plugins4(chart.data.config, chart.data.datasets[0].data);
+    chart.options.scales = getScales3(chart.data.config, chart.data.datasets[0].data);
     chart.update();
   }
 
@@ -19983,9 +19975,7 @@ var rbmViz = (() => {
     });
     canvas.chart = chart;
     chart.helpers = {
-      updateData: updateData3,
-      updateConfig: updateConfig3,
-      updateOption: updateOption3
+      updateData: updateData3
     };
     return chart;
   }

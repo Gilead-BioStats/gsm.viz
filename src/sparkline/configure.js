@@ -1,9 +1,8 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from '../barChart/configure/checkThresholds';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_) {
     const defaults = {};
 
     defaults.type = 'line';
@@ -14,7 +13,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.xLabel = _config_[defaults.x];
 
     // vertical
-    defaults.y = 'metric';
+    defaults.y = 'score';
     defaults.yType = 'linear';
     defaults.yLabel = _config_[defaults.y];
 
