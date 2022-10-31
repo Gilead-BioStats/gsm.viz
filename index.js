@@ -7910,7 +7910,7 @@ var rbmViz = (() => {
     }
     return e;
   }
-  var Chart = class {
+  var Chart2 = class {
     constructor(item, userConfig) {
       const config = this.config = new Config(userConfig);
       const initialCanvas = getCanvas(item);
@@ -8672,9 +8672,9 @@ var rbmViz = (() => {
       return this.getElementsAtEventForMode(e, hoverOptions.mode, hoverOptions, useFinalPosition);
     }
   };
-  var invalidatePlugins = () => each(Chart.instances, (chart) => chart._plugins.invalidate());
+  var invalidatePlugins = () => each(Chart2.instances, (chart) => chart._plugins.invalidate());
   var enumerable = true;
-  Object.defineProperties(Chart, {
+  Object.defineProperties(Chart2, {
     defaults: {
       enumerable,
       value: defaults
@@ -14863,13 +14863,13 @@ var rbmViz = (() => {
     id: "annotation",
     version: version2,
     beforeRegister() {
-      requireVersion("chart.js", "3.7", Chart.version);
+      requireVersion("chart.js", "3.7", Chart2.version);
     },
     afterRegister() {
-      Chart.register(annotationTypes);
+      Chart2.register(annotationTypes);
     },
     afterUnregister() {
-      Chart.unregister(annotationTypes);
+      Chart2.unregister(annotationTypes);
     },
     beforeInit(chart) {
       chartStates.set(chart, {
@@ -14999,6 +14999,1105 @@ var rbmViz = (() => {
     }
     return drawableElements;
   }
+
+  // node_modules/@sgratzl/boxplots/build/index.js
+  var HELPER = Math.sqrt(2 * Math.PI);
+  function gaussian(u) {
+    return Math.exp(-0.5 * u * u) / HELPER;
+  }
+  function toSampleVariance(variance, len) {
+    return variance * len / (len - 1);
+  }
+  function nrd(iqr, variance, len) {
+    let s = Math.sqrt(toSampleVariance(variance, len));
+    if (typeof iqr === "number") {
+      s = Math.min(s, iqr / 1.34);
+    }
+    return 1.06 * s * Math.pow(len, -0.2);
+  }
+  function kde(stats) {
+    const len = stats.items.length;
+    const bandwidth = nrd(stats.iqr, stats.variance, len);
+    return (x) => {
+      let i = 0;
+      let sum = 0;
+      for (i = 0; i < len; i++) {
+        const v = stats.items[i];
+        sum += gaussian((x - v) / bandwidth);
+      }
+      return sum / bandwidth / len;
+    };
+  }
+  function quantilesInterpolate(arr, length, interpolate3) {
+    const n1 = length - 1;
+    const compute2 = (q) => {
+      const index3 = q * n1;
+      const lo = Math.floor(index3);
+      const h = index3 - lo;
+      const a = arr[lo];
+      return h === 0 ? a : interpolate3(a, arr[Math.min(lo + 1, n1)], h);
+    };
+    return {
+      q1: compute2(0.25),
+      median: compute2(0.5),
+      q3: compute2(0.75)
+    };
+  }
+  function quantilesType7(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (a, b, alpha2) => a + alpha2 * (b - a));
+  }
+  function quantilesLinear(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j, fraction) => i + (j - i) * fraction);
+  }
+  function quantilesLower(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i) => i);
+  }
+  function quantilesHigher(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (_, j) => j);
+  }
+  function quantilesNearest(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j, fraction) => fraction < 0.5 ? i : j);
+  }
+  function quantilesMidpoint(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j) => (i + j) * 0.5);
+  }
+  function quantilesFivenum(arr, length = arr.length) {
+    const n = length;
+    const n4 = Math.floor((n + 3) / 2) / 2;
+    const compute2 = (d) => 0.5 * (arr[Math.floor(d) - 1] + arr[Math.ceil(d) - 1]);
+    return {
+      q1: compute2(n4),
+      median: compute2((n + 1) / 2),
+      q3: compute2(n + 1 - n4)
+    };
+  }
+  function quantilesHinges(arr, length = arr.length) {
+    return quantilesFivenum(arr, length);
+  }
+  function createSortedData(data) {
+    let valid = 0;
+    const { length } = data;
+    const vs = data instanceof Float64Array ? new Float64Array(length) : new Float32Array(length);
+    for (let i = 0; i < length; i += 1) {
+      const v = data[i];
+      if (v == null || Number.isNaN(v)) {
+        continue;
+      }
+      vs[valid] = v;
+      valid += 1;
+    }
+    const missing = length - valid;
+    if (valid === 0) {
+      return {
+        min: Number.NaN,
+        max: Number.NaN,
+        missing,
+        s: []
+      };
+    }
+    const validData = valid === length ? vs : vs.subarray(0, valid);
+    validData.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
+    const min3 = validData[0];
+    const max3 = validData[validData.length - 1];
+    return {
+      min: min3,
+      max: max3,
+      missing,
+      s: validData
+    };
+  }
+  function withSortedData(data) {
+    if (data.length === 0) {
+      return {
+        min: Number.NaN,
+        max: Number.NaN,
+        missing: 0,
+        s: []
+      };
+    }
+    const min3 = data[0];
+    const max3 = data[data.length - 1];
+    return {
+      min: min3,
+      max: max3,
+      missing: 0,
+      s: data
+    };
+  }
+  function computeWhiskers(s, valid, min3, max3, { eps, quantiles, coef, whiskersMode }) {
+    const same = (a, b) => Math.abs(a - b) < eps;
+    const { median, q1, q3 } = quantiles(s, valid);
+    const iqr = q3 - q1;
+    const isCoefValid = typeof coef === "number" && coef > 0;
+    let whiskerLow = isCoefValid ? Math.max(min3, q1 - coef * iqr) : min3;
+    let whiskerHigh = isCoefValid ? Math.min(max3, q3 + coef * iqr) : max3;
+    const outlierLow = [];
+    for (let i = 0; i < valid; i += 1) {
+      const v = s[i];
+      if (v >= whiskerLow || same(v, whiskerLow)) {
+        if (whiskersMode === "nearest") {
+          whiskerLow = v;
+        }
+        break;
+      }
+      if (outlierLow.length === 0 || !same(outlierLow[outlierLow.length - 1], v)) {
+        outlierLow.push(v);
+      }
+    }
+    const reversedOutlierHigh = [];
+    for (let i = valid - 1; i >= 0; i -= 1) {
+      const v = s[i];
+      if (v <= whiskerHigh || same(v, whiskerHigh)) {
+        if (whiskersMode === "nearest") {
+          whiskerHigh = v;
+        }
+        break;
+      }
+      if ((reversedOutlierHigh.length === 0 || !same(reversedOutlierHigh[reversedOutlierHigh.length - 1], v)) && (outlierLow.length === 0 || !same(outlierLow[outlierLow.length - 1], v))) {
+        reversedOutlierHigh.push(v);
+      }
+    }
+    const outlier = outlierLow.concat(reversedOutlierHigh.reverse());
+    return {
+      median,
+      q1,
+      q3,
+      iqr,
+      outlier,
+      whiskerHigh,
+      whiskerLow
+    };
+  }
+  function computeStats(s, valid) {
+    let mean = 0;
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
+      mean += v;
+    }
+    mean /= valid;
+    let variance = 0;
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
+      variance += (v - mean) * (v - mean);
+    }
+    variance /= valid;
+    return {
+      mean,
+      variance
+    };
+  }
+  function boxplot(data, options = {}) {
+    const fullOptions = {
+      coef: 1.5,
+      eps: 0.01,
+      quantiles: quantilesType7,
+      validAndSorted: false,
+      whiskersMode: "nearest",
+      ...options
+    };
+    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
+    const invalid = {
+      min: Number.NaN,
+      max: Number.NaN,
+      mean: Number.NaN,
+      missing,
+      iqr: Number.NaN,
+      count: data.length,
+      whiskerHigh: Number.NaN,
+      whiskerLow: Number.NaN,
+      outlier: [],
+      median: Number.NaN,
+      q1: Number.NaN,
+      q3: Number.NaN,
+      variance: 0,
+      items: [],
+      kde: () => 0
+    };
+    const valid = data.length - missing;
+    if (valid === 0) {
+      return invalid;
+    }
+    const result = {
+      min: min3,
+      max: max3,
+      count: data.length,
+      missing,
+      items: s,
+      ...computeStats(s, valid),
+      ...computeWhiskers(s, valid, min3, max3, fullOptions)
+    };
+    return {
+      ...result,
+      kde: kde(result)
+    };
+  }
+
+  // node_modules/@sgratzl/chartjs-chart-boxplot/build/index.js
+  function whiskers(boxplot2, arr, coef = 1.5) {
+    const iqr = boxplot2.q3 - boxplot2.q1;
+    const coefValid = typeof coef === "number" && coef > 0;
+    let whiskerMin = coefValid ? Math.max(boxplot2.min, boxplot2.q1 - coef * iqr) : boxplot2.min;
+    let whiskerMax = coefValid ? Math.min(boxplot2.max, boxplot2.q3 + coef * iqr) : boxplot2.max;
+    if (Array.isArray(arr)) {
+      for (let i = 0; i < arr.length; i += 1) {
+        const v = arr[i];
+        if (v >= whiskerMin) {
+          whiskerMin = v;
+          break;
+        }
+      }
+      for (let i = arr.length - 1; i >= 0; i -= 1) {
+        const v = arr[i];
+        if (v <= whiskerMax) {
+          whiskerMax = v;
+          break;
+        }
+      }
+    }
+    return {
+      whiskerMin,
+      whiskerMax
+    };
+  }
+  var defaultStatsOptions = {
+    coef: 1.5,
+    quantiles: 7
+  };
+  function determineQuantiles(q) {
+    if (typeof q === "function") {
+      return q;
+    }
+    const lookup = {
+      hinges: quantilesHinges,
+      fivenum: quantilesFivenum,
+      7: quantilesType7,
+      quantiles: quantilesType7,
+      linear: quantilesLinear,
+      lower: quantilesLower,
+      higher: quantilesHigher,
+      nearest: quantilesNearest,
+      midpoint: quantilesMidpoint
+    };
+    return lookup[q] || quantilesType7;
+  }
+  function determineStatsOptions(options) {
+    const coef = options == null || typeof options.coef !== "number" ? defaultStatsOptions.coef : options.coef;
+    const q = options == null || options.quantiles == null ? quantilesType7 : options.quantiles;
+    const quantiles = determineQuantiles(q);
+    return {
+      coef,
+      quantiles
+    };
+  }
+  function boxplotStats(arr, options) {
+    const r = boxplot(arr, determineStatsOptions(options));
+    return {
+      items: Array.from(r.items),
+      outliers: r.outlier,
+      whiskerMax: r.whiskerHigh,
+      whiskerMin: r.whiskerLow,
+      max: r.max,
+      median: r.median,
+      mean: r.mean,
+      min: r.min,
+      q1: r.q1,
+      q3: r.q3
+    };
+  }
+  function computeSamples(min3, max3, points) {
+    const range = max3 - min3;
+    const samples = [];
+    const inc = range / points;
+    for (let v = min3; v <= max3 && inc > 0; v += inc) {
+      samples.push(v);
+    }
+    if (samples[samples.length - 1] !== max3) {
+      samples.push(max3);
+    }
+    return samples;
+  }
+  function violinStats(arr, options) {
+    if (arr.length === 0) {
+      return void 0;
+    }
+    const stats = boxplot(arr, determineStatsOptions(options));
+    const samples = computeSamples(stats.min, stats.max, options.points);
+    const coords = samples.map((v) => ({ v, estimate: stats.kde(v) }));
+    const maxEstimate = coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
+    return {
+      max: stats.max,
+      min: stats.min,
+      mean: stats.mean,
+      median: stats.median,
+      q1: stats.q1,
+      q3: stats.q3,
+      items: Array.from(stats.items),
+      coords,
+      outliers: [],
+      maxEstimate
+    };
+  }
+  function asBoxPlotStats(value, options) {
+    if (!value) {
+      return void 0;
+    }
+    if (typeof value.median === "number" && typeof value.q1 === "number" && typeof value.q3 === "number") {
+      if (typeof value.whiskerMin === "undefined") {
+        const { coef } = determineStatsOptions(options);
+        const { whiskerMin, whiskerMax } = whiskers(value, Array.isArray(value.items) ? value.items.slice().sort((a, b) => a - b) : null, coef);
+        value.whiskerMin = whiskerMin;
+        value.whiskerMax = whiskerMax;
+      }
+      return value;
+    }
+    if (!Array.isArray(value)) {
+      return void 0;
+    }
+    return boxplotStats(value, options);
+  }
+  function asViolinStats(value, options) {
+    if (!value) {
+      return void 0;
+    }
+    if (typeof value.median === "number" && Array.isArray(value.coords)) {
+      return value;
+    }
+    if (!Array.isArray(value)) {
+      return void 0;
+    }
+    return violinStats(value, options);
+  }
+  function rnd(seed = Date.now()) {
+    let s = seed;
+    return () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+  }
+  var baseDefaults$1 = {
+    borderWidth: 1,
+    outlierStyle: "circle",
+    outlierRadius: 2,
+    outlierBorderWidth: 1,
+    itemStyle: "circle",
+    itemRadius: 0,
+    itemBorderWidth: 0,
+    meanStyle: "circle",
+    meanRadius: 3,
+    meanBorderWidth: 1,
+    hitPadding: 2,
+    outlierHitRadius: 4
+  };
+  var baseRoutes = {
+    outlierBackgroundColor: "backgroundColor",
+    outlierBorderColor: "borderColor",
+    itemBackgroundColor: "backgroundColor",
+    itemBorderColor: "borderColor",
+    meanBackgroundColor: "backgroundColor",
+    meanBorderColor: "borderColor"
+  };
+  var baseOptionKeys = (() => Object.keys(baseDefaults$1).concat(Object.keys(baseRoutes)))();
+  var StatsBase$1 = class extends Element {
+    isVertical() {
+      return !this.horizontal;
+    }
+    _drawItems(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "items", "width", "height", "outliers"]);
+      const { options } = this;
+      if (options.itemRadius <= 0 || !props.items || props.items.length <= 0) {
+        return;
+      }
+      ctx.save();
+      ctx.strokeStyle = options.itemBorderColor;
+      ctx.fillStyle = options.itemBackgroundColor;
+      ctx.lineWidth = options.itemBorderWidth;
+      const random = rnd(this._datasetIndex * 1e3 + this._index);
+      const pointOptions = {
+        pointStyle: options.itemStyle,
+        radius: options.itemRadius,
+        borderWidth: options.itemBorderWidth
+      };
+      const outliers = new Set(props.outliers || []);
+      if (vert) {
+        props.items.forEach((v) => {
+          if (!outliers.has(v)) {
+            drawPoint(ctx, pointOptions, props.x - props.width / 2 + random() * props.width, v);
+          }
+        });
+      } else {
+        props.items.forEach((v) => {
+          if (!outliers.has(v)) {
+            drawPoint(ctx, pointOptions, v, props.y - props.height / 2 + random() * props.height);
+          }
+        });
+      }
+      ctx.restore();
+    }
+    _drawOutliers(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "outliers"]);
+      const { options } = this;
+      if (options.outlierRadius <= 0 || !props.outliers || props.outliers.length === 0) {
+        return;
+      }
+      ctx.save();
+      ctx.fillStyle = options.outlierBackgroundColor;
+      ctx.strokeStyle = options.outlierBorderColor;
+      ctx.lineWidth = options.outlierBorderWidth;
+      const pointOptions = {
+        pointStyle: options.outlierStyle,
+        radius: options.outlierRadius,
+        borderWidth: options.outlierBorderWidth
+      };
+      if (vert) {
+        props.outliers.forEach((v) => {
+          drawPoint(ctx, pointOptions, props.x, v);
+        });
+      } else {
+        props.outliers.forEach((v) => {
+          drawPoint(ctx, pointOptions, v, props.y);
+        });
+      }
+      ctx.restore();
+    }
+    _drawMeanDot(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "mean"]);
+      const { options } = this;
+      if (options.meanRadius <= 0 || props.mean == null || Number.isNaN(props.mean)) {
+        return;
+      }
+      ctx.save();
+      ctx.fillStyle = options.meanBackgroundColor;
+      ctx.strokeStyle = options.meanBorderColor;
+      ctx.lineWidth = options.meanBorderWidth;
+      const pointOptions = {
+        pointStyle: options.meanStyle,
+        radius: options.meanRadius,
+        borderWidth: options.meanBorderWidth
+      };
+      if (vert) {
+        drawPoint(ctx, pointOptions, props.x, props.mean);
+      } else {
+        drawPoint(ctx, pointOptions, props.mean, props.y);
+      }
+      ctx.restore();
+    }
+    _getBounds(_useFinalPosition) {
+      return {
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
+      };
+    }
+    _getHitBounds(useFinalPosition) {
+      const padding = this.options.hitPadding;
+      const b = this._getBounds(useFinalPosition);
+      return {
+        left: b.left - padding,
+        top: b.top - padding,
+        right: b.right + padding,
+        bottom: b.bottom + padding
+      };
+    }
+    inRange(mouseX, mouseY, useFinalPosition) {
+      if (Number.isNaN(this.x) && Number.isNaN(this.y)) {
+        return false;
+      }
+      return this._boxInRange(mouseX, mouseY, useFinalPosition) || this._outlierIndexInRange(mouseX, mouseY, useFinalPosition) >= 0;
+    }
+    inXRange(mouseX, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseX >= bounds.left && mouseX <= bounds.right;
+    }
+    inYRange(mouseY, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseY >= bounds.top && mouseY <= bounds.bottom;
+    }
+    _outlierIndexInRange(mouseX, mouseY, useFinalPosition) {
+      const props = this.getProps(["x", "y"], useFinalPosition);
+      const hitRadius = this.options.outlierHitRadius;
+      const outliers = this._getOutliers(useFinalPosition);
+      const vertical = this.isVertical();
+      if (vertical && Math.abs(mouseX - props.x) > hitRadius || !vertical && Math.abs(mouseY - props.y) > hitRadius) {
+        return -1;
+      }
+      const toCompare = vertical ? mouseY : mouseX;
+      for (let i = 0; i < outliers.length; i += 1) {
+        if (Math.abs(outliers[i] - toCompare) <= hitRadius) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    _boxInRange(mouseX, mouseY, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseX >= bounds.left && mouseX <= bounds.right && mouseY >= bounds.top && mouseY <= bounds.bottom;
+    }
+    getCenterPoint(useFinalPosition) {
+      const props = this.getProps(["x", "y"], useFinalPosition);
+      return {
+        x: props.x,
+        y: props.y
+      };
+    }
+    _getOutliers(useFinalPosition) {
+      const props = this.getProps(["outliers"], useFinalPosition);
+      return props.outliers || [];
+    }
+    tooltipPosition(eventPosition, tooltip4) {
+      if (!eventPosition || typeof eventPosition === "boolean") {
+        return this.getCenterPoint();
+      }
+      if (tooltip4) {
+        delete tooltip4._tooltipOutlier;
+      }
+      const props = this.getProps(["x", "y"]);
+      const index3 = this._outlierIndexInRange(eventPosition.x, eventPosition.y);
+      if (index3 < 0 || !tooltip4) {
+        return this.getCenterPoint();
+      }
+      tooltip4._tooltipOutlier = {
+        index: index3,
+        datasetIndex: this._datasetIndex
+      };
+      if (this.isVertical()) {
+        return {
+          x: props.x,
+          y: this._getOutliers()[index3]
+        };
+      }
+      return {
+        x: this._getOutliers()[index3],
+        y: props.y
+      };
+    }
+  };
+  var boxOptionsKeys = baseOptionKeys.concat(["medianColor", "lowerBackgroundColor"]);
+  var BoxAndWiskers = class extends StatsBase$1 {
+    draw(ctx) {
+      ctx.save();
+      ctx.fillStyle = this.options.backgroundColor;
+      ctx.strokeStyle = this.options.borderColor;
+      ctx.lineWidth = this.options.borderWidth;
+      this._drawBoxPlot(ctx);
+      this._drawOutliers(ctx);
+      this._drawMeanDot(ctx);
+      ctx.restore();
+      this._drawItems(ctx);
+    }
+    _drawBoxPlot(ctx) {
+      if (this.isVertical()) {
+        this._drawBoxPlotVertical(ctx);
+      } else {
+        this._drawBoxPlotHorizontal(ctx);
+      }
+    }
+    _drawBoxPlotVertical(ctx) {
+      const { options } = this;
+      const props = this.getProps(["x", "width", "q1", "q3", "median", "whiskerMin", "whiskerMax"]);
+      const { x } = props;
+      const { width } = props;
+      const x0 = x - width / 2;
+      if (props.q3 > props.q1) {
+        ctx.fillRect(x0, props.q1, width, props.q3 - props.q1);
+      } else {
+        ctx.fillRect(x0, props.q3, width, props.q1 - props.q3);
+      }
+      ctx.save();
+      if (options.medianColor && options.medianColor !== "transparent" && options.medianColor !== "#0000") {
+        ctx.strokeStyle = options.medianColor;
+      }
+      ctx.beginPath();
+      ctx.moveTo(x0, props.median);
+      ctx.lineTo(x0 + width, props.median);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      if (options.lowerBackgroundColor && options.lowerBackgroundColor !== "transparent" && options.lowerBackgroundColor !== "#0000") {
+        ctx.fillStyle = options.lowerBackgroundColor;
+        if (props.q3 > props.q1) {
+          ctx.fillRect(x0, props.median, width, props.q3 - props.median);
+        } else {
+          ctx.fillRect(x0, props.median, width, props.q1 - props.median);
+        }
+      }
+      ctx.restore();
+      if (props.q3 > props.q1) {
+        ctx.strokeRect(x0, props.q1, width, props.q3 - props.q1);
+      } else {
+        ctx.strokeRect(x0, props.q3, width, props.q1 - props.q3);
+      }
+      ctx.beginPath();
+      ctx.moveTo(x0, props.whiskerMin);
+      ctx.lineTo(x0 + width, props.whiskerMin);
+      ctx.moveTo(x, props.whiskerMin);
+      ctx.lineTo(x, props.q1);
+      ctx.moveTo(x0, props.whiskerMax);
+      ctx.lineTo(x0 + width, props.whiskerMax);
+      ctx.moveTo(x, props.whiskerMax);
+      ctx.lineTo(x, props.q3);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    _drawBoxPlotHorizontal(ctx) {
+      const { options } = this;
+      const props = this.getProps(["y", "height", "q1", "q3", "median", "whiskerMin", "whiskerMax"]);
+      const { y } = props;
+      const { height } = props;
+      const y0 = y - height / 2;
+      if (props.q3 > props.q1) {
+        ctx.fillRect(props.q1, y0, props.q3 - props.q1, height);
+      } else {
+        ctx.fillRect(props.q3, y0, props.q1 - props.q3, height);
+      }
+      ctx.save();
+      if (options.medianColor && options.medianColor !== "transparent") {
+        ctx.strokeStyle = options.medianColor;
+      }
+      ctx.beginPath();
+      ctx.moveTo(props.median, y0);
+      ctx.lineTo(props.median, y0 + height);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      if (options.lowerBackgroundColor && options.lowerBackgroundColor !== "transparent") {
+        ctx.fillStyle = options.lowerBackgroundColor;
+        if (props.q3 > props.q1) {
+          ctx.fillRect(props.median, y0, props.q3 - props.median, height);
+        } else {
+          ctx.fillRect(props.median, y0, props.q1 - props.median, height);
+        }
+      }
+      ctx.restore();
+      if (props.q3 > props.q1) {
+        ctx.strokeRect(props.q1, y0, props.q3 - props.q1, height);
+      } else {
+        ctx.strokeRect(props.q3, y0, props.q1 - props.q3, height);
+      }
+      ctx.beginPath();
+      ctx.moveTo(props.whiskerMin, y0);
+      ctx.lineTo(props.whiskerMin, y0 + height);
+      ctx.moveTo(props.whiskerMin, y);
+      ctx.lineTo(props.q1, y);
+      ctx.moveTo(props.whiskerMax, y0);
+      ctx.lineTo(props.whiskerMax, y0 + height);
+      ctx.moveTo(props.whiskerMax, y);
+      ctx.lineTo(props.q3, y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    _getBounds(useFinalPosition) {
+      const vert = this.isVertical();
+      if (this.x == null) {
+        return {
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0
+        };
+      }
+      if (vert) {
+        const { x, width, whiskerMax: whiskerMax2, whiskerMin: whiskerMin2 } = this.getProps(["x", "width", "whiskerMin", "whiskerMax"], useFinalPosition);
+        const x0 = x - width / 2;
+        return {
+          left: x0,
+          top: whiskerMax2,
+          right: x0 + width,
+          bottom: whiskerMin2
+        };
+      }
+      const { y, height, whiskerMax, whiskerMin } = this.getProps(["y", "height", "whiskerMin", "whiskerMax"], useFinalPosition);
+      const y0 = y - height / 2;
+      return {
+        left: whiskerMin,
+        top: y0,
+        right: whiskerMax,
+        bottom: y0 + height
+      };
+    }
+  };
+  BoxAndWiskers.id = "boxandwhiskers";
+  BoxAndWiskers.defaults = {
+    ...BarElement.defaults,
+    ...baseDefaults$1,
+    medianColor: "transparent",
+    lowerBackgroundColor: "transparent"
+  };
+  BoxAndWiskers.defaultRoutes = { ...BarElement.defaultRoutes, ...baseRoutes };
+  var Violin = class extends StatsBase$1 {
+    draw(ctx) {
+      ctx.save();
+      ctx.fillStyle = this.options.backgroundColor;
+      ctx.strokeStyle = this.options.borderColor;
+      ctx.lineWidth = this.options.borderWidth;
+      const props = this.getProps(["x", "y", "median", "width", "height", "min", "max", "coords", "maxEstimate"]);
+      if (props.median != null) {
+        drawPoint(ctx, {
+          pointStyle: "rectRot",
+          radius: 5,
+          borderWidth: this.options.borderWidth
+        }, props.x, props.y);
+      }
+      if (props.coords && props.coords.length > 0) {
+        this._drawCoords(ctx, props);
+      }
+      this._drawOutliers(ctx);
+      this._drawMeanDot(ctx);
+      ctx.restore();
+      this._drawItems(ctx);
+    }
+    _drawCoords(ctx, props) {
+      let maxEstimate;
+      if (props.maxEstimate == null) {
+        maxEstimate = props.coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
+      } else {
+        maxEstimate = props.maxEstimate;
+      }
+      if (this.isVertical()) {
+        const { x, width } = props;
+        const factor = width / 2 / maxEstimate;
+        ctx.moveTo(x, props.min);
+        props.coords.forEach((c) => {
+          ctx.lineTo(x - c.estimate * factor, c.v);
+        });
+        ctx.lineTo(x, props.max);
+        ctx.moveTo(x, props.min);
+        props.coords.forEach((c) => {
+          ctx.lineTo(x + c.estimate * factor, c.v);
+        });
+        ctx.lineTo(x, props.max);
+      } else {
+        const { y, height } = props;
+        const factor = height / 2 / maxEstimate;
+        ctx.moveTo(props.min, y);
+        props.coords.forEach((c) => {
+          ctx.lineTo(c.v, y - c.estimate * factor);
+        });
+        ctx.lineTo(props.max, y);
+        ctx.moveTo(props.min, y);
+        props.coords.forEach((c) => {
+          ctx.lineTo(c.v, y + c.estimate * factor);
+        });
+        ctx.lineTo(props.max, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+      ctx.fill();
+    }
+    _getBounds(useFinalPosition) {
+      if (this.isVertical()) {
+        const { x, width, min: min4, max: max4 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
+        const x0 = x - width / 2;
+        return {
+          left: x0,
+          top: max4,
+          right: x0 + width,
+          bottom: min4
+        };
+      }
+      const { y, height, min: min3, max: max3 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
+      const y0 = y - height / 2;
+      return {
+        left: min3,
+        top: y0,
+        right: max3,
+        bottom: y0 + height
+      };
+    }
+  };
+  Violin.id = "violin";
+  Violin.defaults = { ...BarElement.defaults, ...baseDefaults$1 };
+  Violin.defaultRoutes = { ...BarElement.defaultRoutes, ...baseRoutes };
+  var interpolators2 = {
+    number(from2, to2, factor) {
+      if (from2 === to2) {
+        return to2;
+      }
+      if (from2 == null) {
+        return to2;
+      }
+      if (to2 == null) {
+        return from2;
+      }
+      return from2 + (to2 - from2) * factor;
+    }
+  };
+  function interpolateNumberArray(from2, to2, factor) {
+    if (typeof from2 === "number" && typeof to2 === "number") {
+      return interpolators2.number(from2, to2, factor);
+    }
+    if (Array.isArray(from2) && Array.isArray(to2)) {
+      return to2.map((t, i) => interpolators2.number(from2[i], t, factor));
+    }
+    return to2;
+  }
+  function interpolateKdeCoords(from2, to2, factor) {
+    if (Array.isArray(from2) && Array.isArray(to2)) {
+      return to2.map((t, i) => ({
+        v: interpolators2.number(from2[i] ? from2[i].v : null, t.v, factor),
+        estimate: interpolators2.number(from2[i] ? from2[i].estimate : null, t.estimate, factor)
+      }));
+    }
+    return to2;
+  }
+  function patchInHoveredOutlier(item) {
+    const value = item.formattedValue;
+    const that = this;
+    if (value && that._tooltipOutlier != null && item.datasetIndex === that._tooltipOutlier.datasetIndex) {
+      value.hoveredOutlierIndex = that._tooltipOutlier.index;
+    }
+  }
+  function outlierPositioner(items, eventPosition) {
+    if (!items.length) {
+      return false;
+    }
+    let x = 0;
+    let y = 0;
+    let count = 0;
+    for (let i = 0; i < items.length; i += 1) {
+      const el = items[i].element;
+      if (el && el.hasValue()) {
+        const pos = el.tooltipPosition(eventPosition, this);
+        x += pos.x;
+        y += pos.y;
+        count += 1;
+      }
+    }
+    return {
+      x: x / count,
+      y: y / count
+    };
+  }
+  outlierPositioner.id = "average";
+  outlierPositioner.register = () => {
+    plugin_tooltip.positioners.average = outlierPositioner;
+    return outlierPositioner;
+  };
+  function baseDefaults(keys) {
+    const colorKeys = ["borderColor", "backgroundColor"].concat(keys.filter((c) => c.endsWith("Color")));
+    return {
+      animations: {
+        numberArray: {
+          fn: interpolateNumberArray,
+          properties: ["outliers", "items"]
+        },
+        colors: {
+          type: "color",
+          properties: colorKeys
+        }
+      },
+      transitions: {
+        show: {
+          animations: {
+            colors: {
+              type: "color",
+              properties: colorKeys,
+              from: "transparent"
+            }
+          }
+        },
+        hide: {
+          animations: {
+            colors: {
+              type: "color",
+              properties: colorKeys,
+              to: "transparent"
+            }
+          }
+        }
+      },
+      minStats: "min",
+      maxStats: "max",
+      ...defaultStatsOptions
+    };
+  }
+  function defaultOverrides() {
+    return {
+      plugins: {
+        tooltip: {
+          position: outlierPositioner.register().id,
+          callbacks: {
+            beforeLabel: patchInHoveredOutlier
+          }
+        }
+      }
+    };
+  }
+  var StatsBase = class extends BarController {
+    _transformStats(target, source, mapper) {
+      for (const key of ["min", "max", "median", "q3", "q1", "mean"]) {
+        const v = source[key];
+        if (typeof v === "number") {
+          target[key] = mapper(v);
+        }
+      }
+      for (const key of ["outliers", "items"]) {
+        if (Array.isArray(source[key])) {
+          target[key] = source[key].map(mapper);
+        }
+      }
+    }
+    getMinMax(scale, canStack) {
+      const bak = scale.axis;
+      const config = this.options;
+      scale.axis = config.minStats;
+      const { min: min3 } = super.getMinMax(scale, canStack);
+      scale.axis = config.maxStats;
+      const { max: max3 } = super.getMinMax(scale, canStack);
+      scale.axis = bak;
+      return { min: min3, max: max3 };
+    }
+    parsePrimitiveData(meta, data, start2, count) {
+      const vScale = meta.vScale;
+      const iScale = meta.iScale;
+      const labels = iScale.getLabels();
+      const r = [];
+      for (let i = 0; i < count; i += 1) {
+        const index3 = i + start2;
+        const parsed = {};
+        parsed[iScale.axis] = iScale.parse(labels[index3], index3);
+        const stats = this._parseStats(data == null ? null : data[index3], this.options);
+        if (stats) {
+          Object.assign(parsed, stats);
+          parsed[vScale.axis] = stats.median;
+        }
+        r.push(parsed);
+      }
+      return r;
+    }
+    parseArrayData(meta, data, start2, count) {
+      return this.parsePrimitiveData(meta, data, start2, count);
+    }
+    parseObjectData(meta, data, start2, count) {
+      return this.parsePrimitiveData(meta, data, start2, count);
+    }
+    getLabelAndValue(index3) {
+      const r = super.getLabelAndValue(index3);
+      const { vScale } = this._cachedMeta;
+      const parsed = this.getParsed(index3);
+      if (!vScale || !parsed || r.value === "NaN") {
+        return r;
+      }
+      r.value = {
+        raw: parsed,
+        hoveredOutlierIndex: -1
+      };
+      this._transformStats(r.value, parsed, (v) => vScale.getLabelForValue(v));
+      const s = this._toStringStats(r.value.raw);
+      r.value.toString = function toString() {
+        if (this.hoveredOutlierIndex >= 0) {
+          return `(outlier: ${this.outliers[this.hoveredOutlierIndex]})`;
+        }
+        return s;
+      };
+      return r;
+    }
+    _toStringStats(b) {
+      const f = (v) => v == null ? "NaN" : formatNumber(v, this.chart.options.locale, {});
+      return `(min: ${f(b.min)}, 25% quantile: ${f(b.q1)}, median: ${f(b.median)}, mean: ${f(b.mean)}, 75% quantile: ${f(b.q3)}, max: ${f(b.max)})`;
+    }
+    updateElement(rectangle, index3, properties, mode) {
+      const reset = mode === "reset";
+      const scale = this._cachedMeta.vScale;
+      const parsed = this.getParsed(index3);
+      const base = scale.getBasePixel();
+      properties._datasetIndex = this.index;
+      properties._index = index3;
+      this._transformStats(properties, parsed, (v) => reset ? base : scale.getPixelForValue(v, index3));
+      super.updateElement(rectangle, index3, properties, mode);
+    }
+  };
+  function patchController(type2, config, controller, elements2 = [], scales2 = []) {
+    registry.addControllers(controller);
+    if (Array.isArray(elements2)) {
+      registry.addElements(...elements2);
+    } else {
+      registry.addElements(elements2);
+    }
+    if (Array.isArray(scales2)) {
+      registry.addScales(...scales2);
+    } else {
+      registry.addScales(scales2);
+    }
+    const c = config;
+    c.type = type2;
+    return c;
+  }
+  var BoxPlotController = class extends StatsBase {
+    _parseStats(value, config) {
+      return asBoxPlotStats(value, config);
+    }
+    _transformStats(target, source, mapper) {
+      super._transformStats(target, source, mapper);
+      for (const key of ["whiskerMin", "whiskerMax"]) {
+        target[key] = mapper(source[key]);
+      }
+    }
+  };
+  BoxPlotController.id = "boxplot";
+  BoxPlotController.defaults = merge({}, [
+    BarController.defaults,
+    baseDefaults(boxOptionsKeys),
+    {
+      animations: {
+        numbers: {
+          type: "number",
+          properties: BarController.defaults.animations.numbers.properties.concat(["q1", "q3", "min", "max", "median", "whiskerMin", "whiskerMax", "mean"], boxOptionsKeys.filter((c) => !c.endsWith("Color")))
+        }
+      },
+      dataElementType: BoxAndWiskers.id
+    }
+  ]);
+  BoxPlotController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
+  var BoxPlotChart = class extends Chart2 {
+    constructor(item, config) {
+      super(item, patchController("boxplot", config, BoxPlotController, BoxAndWiskers, [LinearScale, CategoryScale]));
+    }
+  };
+  BoxPlotChart.id = BoxPlotController.id;
+  var ViolinController = class extends StatsBase {
+    _parseStats(value, config) {
+      return asViolinStats(value, config);
+    }
+    _transformStats(target, source, mapper) {
+      super._transformStats(target, source, mapper);
+      target.maxEstimate = source.maxEstimate;
+      if (Array.isArray(source.coords)) {
+        target.coords = source.coords.map((c) => ({ ...c, v: mapper(c.v) }));
+      }
+    }
+  };
+  ViolinController.id = "violin";
+  ViolinController.defaults = merge({}, [
+    BarController.defaults,
+    baseDefaults(baseOptionKeys),
+    {
+      points: 100,
+      animations: {
+        numbers: {
+          type: "number",
+          properties: BarController.defaults.animations.numbers.properties.concat(["q1", "q3", "min", "max", "median", "maxEstimate"], baseOptionKeys.filter((c) => !c.endsWith("Color")))
+        },
+        kdeCoords: {
+          fn: interpolateKdeCoords,
+          properties: ["coords"]
+        }
+      },
+      dataElementType: Violin.id
+    }
+  ]);
+  ViolinController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
+  var ViolinChart = class extends Chart2 {
+    constructor(item, config) {
+      super(item, patchController("violin", config, ViolinController, Violin, [LinearScale, CategoryScale]));
+    }
+  };
+  ViolinChart.id = ViolinController.id;
 
   // node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js
   var devicePixelRatio = function() {
@@ -19286,8 +20385,8 @@ var rbmViz = (() => {
   }
 
   // node_modules/chart.js/auto/auto.mjs
-  Chart.register(...registerables);
-  var auto_default = Chart;
+  Chart2.register(...registerables);
+  var auto_default = Chart2;
 
   // src/util/triggerTooltip.js
   function triggerTooltip(chart) {
@@ -19986,17 +21085,74 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/timeSeries/configure.js
+  function configure6(_config_, _data_, _thresholds_) {
+    const defaults3 = {};
+    defaults3.type = "boxplot";
+    defaults3.x = "snapshot_date";
+    defaults3.xLabel = "Snapshot Date";
+    defaults3.y = "score";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.maintainAspectRatio = false;
+    const config = configure2(defaults3, _config_);
+    return config;
+  }
+
+  // src/timeSeries/structureData.js
+  function structureData4(_data_, config) {
+    const grouped = d3.rollups(
+      _data_.sort((a, b) => d3.ascending(a.snapshot_date, b.snapshot_date)),
+      (group2) => group2.map((d) => +d.score),
+      (d) => d.snapshot_date
+    );
+    const data = {
+      labels: grouped.map((d) => d[0]),
+      datasets: [
+        {
+          data: grouped.map((d) => d[1])
+        }
+      ]
+    };
+    return data;
+  }
+
   // src/timeSeries.js
-  function barChart2(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    const config = configure6(_config_, _data_, _thresholds_);
+    console.log(config);
+    const canvas = addCanvas(_element_, config);
+    console.log(canvas);
+    const datasets = structureData4(_data_, config);
+    console.log(datasets);
+    const options = {
+      animation: false,
+      events: ["click", "mousemove", "mouseout"],
+      maintainAspectRatio: config.maintainAspectRatio
+    };
+    const chart = new Chart(canvas, {
+      type: "boxplot",
+      data: {
+        datasets,
+        config,
+        _data_
+      },
+      options
+    });
   }
 
   // src/main.js
-  Chart.register(annotation);
+  Chart2.register(annotation);
+  Chart2.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
   var rbmViz = {
     barChart,
     scatterPlot,
     sparkline,
-    timeSeries: barChart2
+    timeSeries
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);

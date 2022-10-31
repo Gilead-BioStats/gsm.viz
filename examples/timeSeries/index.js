@@ -18,54 +18,10 @@ Promise.all(dataPromises)
         );
 
         // visualization
-        //const instance = rbmViz.default.timeSeries(
-        //    document.getElementById('container'),
-        //    results,
-        //    workflow,
-        //    bounds
-        //);
-        function randomValues(count, min, max) {
-            const delta = max - min;
-            return Array.from({ length: count }).map(
-                () => Math.random() * delta + min
-            );
-        }
-        const scores = d3.rollups(
+        const instance = rbmViz.default.timeSeries(
+            document.getElementById('container'),
             results,
-            group => group.map(d => +d.score),
-            d => d.snapshot_date
+            workflow,
+            //bounds,
         );
-        const data = {
-            labels: scores.map(d => d[0]),
-            datasets: [
-                {
-                    label: 'Score',
-                    backgroundColor: 'rgba(0,0,255,0.5)',
-                    borderColor: 'blue',
-                    borderWidth: 1,
-                    outlierColor: '#999999',
-                    padding: 10,
-                    itemRadius: 0,
-                    data: scores.map(d => d[1]),
-                }
-            ],
-        };
-
-        //window.onload = () => {
-            const ctx = document.getElementById('canvas').getContext('2d');
-            window.myBar = new Chart(ctx, {
-                type: 'boxplot',
-                data,
-                options: {
-                    responsive: true,
-                    legend: {
-                        position: 'top',
-                    },
-                    title: {
-                        display: true,
-                        text: 'Chart.js Box Plot Chart',
-                    },
-                },
-            });
-        //};
     });
