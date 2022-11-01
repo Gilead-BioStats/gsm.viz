@@ -1,9 +1,9 @@
-//import colorScheme from '../util/colorScheme';
+import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 //import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-//import checkThresholds from './configure/checkThresholds';
+import checkThresholds from './configure/checkThresholds';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
 
     defaults.type = 'boxplot';
@@ -20,7 +20,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // color
     //defaults.color = 'flag';
-    //defaults.colorScheme = colorScheme;
+    defaults.colorScheme = colorScheme;
     //defaults.colorLabel = _config_[defaults.color];
 
     // callbacks
@@ -31,14 +31,14 @@ export default function configure(_config_, _data_, _thresholds_) {
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
 
-    const config = configureAll(defaults, _config_);//, {
+    const config = configureAll(defaults, _config_, {
         //selectedGroupIDs: checkSelectedGroupIDs.bind(
         //    null,
         //    _config_.selectedGroupIDs,
         //    _data_
         //),
-        //thresholds: checkThresholds.bind(null, _config_, _thresholds_),
-    //});
+        thresholds: checkThresholds.bind(null, _config_, _parameters_),
+    });
 
     return config;
 }

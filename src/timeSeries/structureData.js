@@ -1,13 +1,12 @@
 export default function structureData(_data_, config) {
     const grouped = d3.rollups(
-        _data_.sort((a,b) => d3.ascending(a.snapshot_date, b.snapshot_date)),
-        group => group.map(d => +d.score),
-        d => d.snapshot_date
+        _data_.sort((a, b) => d3.ascending(a.snapshot_date, b.snapshot_date)),
+        (group) => group.map((d) => +d.score),
+        (d) => d.snapshot_date
     );
-    console.log(grouped.map(d => d[1]));
 
     const data = {
-        labels: grouped.map(d => d[0]),
+        labels: grouped.map((d) => d[0]),
         datasets: [
             {
                 //label: 'Score',
@@ -17,8 +16,8 @@ export default function structureData(_data_, config) {
                 //outlierColor: '#999999',
                 //padding: 10,
                 //itemRadius: 0,
-                data: grouped.map(d => d[1]),
-            }
+                data: grouped.map((d) => d[1]),
+            },
         ],
     };
 

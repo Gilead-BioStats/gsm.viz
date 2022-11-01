@@ -7500,8 +7500,8 @@ var rbmViz = (() => {
     _createDescriptors(chart, all) {
       const config = chart && chart.config;
       const options = valueOrDefault(config.options && config.options.plugins, {});
-      const plugins5 = allPlugins(config);
-      return options === false && !all ? [] : createDescriptors(chart, plugins5, options, all);
+      const plugins6 = allPlugins(config);
+      return options === false && !all ? [] : createDescriptors(chart, plugins6, options, all);
     }
     _notifyStateChanges(chart) {
       const previousDescriptors = this._oldCache || [];
@@ -7513,20 +7513,20 @@ var rbmViz = (() => {
   };
   function allPlugins(config) {
     const localIds = {};
-    const plugins5 = [];
+    const plugins6 = [];
     const keys = Object.keys(registry.plugins.items);
     for (let i = 0; i < keys.length; i++) {
-      plugins5.push(registry.getPlugin(keys[i]));
+      plugins6.push(registry.getPlugin(keys[i]));
     }
     const local = config.plugins || [];
     for (let i = 0; i < local.length; i++) {
       const plugin2 = local[i];
-      if (plugins5.indexOf(plugin2) === -1) {
-        plugins5.push(plugin2);
+      if (plugins6.indexOf(plugin2) === -1) {
+        plugins6.push(plugin2);
         localIds[plugin2.id] = true;
       }
     }
-    return { plugins: plugins5, localIds };
+    return { plugins: plugins6, localIds };
   }
   function getOpts(options, all) {
     if (!all && options === false) {
@@ -7537,10 +7537,10 @@ var rbmViz = (() => {
     }
     return options;
   }
-  function createDescriptors(chart, { plugins: plugins5, localIds }, options, all) {
+  function createDescriptors(chart, { plugins: plugins6, localIds }, options, all) {
     const result = [];
     const context = chart.getContext();
-    for (const plugin2 of plugins5) {
+    for (const plugin2 of plugins6) {
       const id2 = plugin2.id;
       const opts = getOpts(options[id2], all);
       if (opts === null) {
@@ -7910,7 +7910,7 @@ var rbmViz = (() => {
     }
     return e;
   }
-  var Chart2 = class {
+  var Chart = class {
     constructor(item, userConfig) {
       const config = this.config = new Config(userConfig);
       const initialCanvas = getCanvas(item);
@@ -8672,9 +8672,9 @@ var rbmViz = (() => {
       return this.getElementsAtEventForMode(e, hoverOptions.mode, hoverOptions, useFinalPosition);
     }
   };
-  var invalidatePlugins = () => each(Chart2.instances, (chart) => chart._plugins.invalidate());
+  var invalidatePlugins = () => each(Chart.instances, (chart) => chart._plugins.invalidate());
   var enumerable = true;
-  Object.defineProperties(Chart2, {
+  Object.defineProperties(Chart, {
     defaults: {
       enumerable,
       value: defaults
@@ -13649,16 +13649,16 @@ var rbmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function adjustScaleRange(chart, scale, annotations3) {
-    const range = getScaleLimits(chart.scales, scale, annotations3);
+  function adjustScaleRange(chart, scale, annotations4) {
+    const range = getScaleLimits(chart.scales, scale, annotations4);
     let changed = changeScaleLimit(scale, range, "min", "suggestedMin");
     changed = changeScaleLimit(scale, range, "max", "suggestedMax") || changed;
     if (changed && typeof scale.handleTickRangeOptions === "function") {
       scale.handleTickRangeOptions();
     }
   }
-  function verifyScaleOptions(annotations3, scales2) {
-    for (const annotation2 of annotations3) {
+  function verifyScaleOptions(annotations4, scales2) {
+    for (const annotation2 of annotations4) {
       verifyScaleIDs(annotation2, scales2);
     }
   }
@@ -13692,7 +13692,7 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function getScaleLimits(scales2, scale, annotations3) {
+  function getScaleLimits(scales2, scale, annotations4) {
     const axis = scale.axis;
     const scaleID = scale.id;
     const scaleIDOption = axis + "ScaleID";
@@ -13700,7 +13700,7 @@ var rbmViz = (() => {
       min: valueOrDefault(scale.min, Number.NEGATIVE_INFINITY),
       max: valueOrDefault(scale.max, Number.POSITIVE_INFINITY)
     };
-    for (const annotation2 of annotations3) {
+    for (const annotation2 of annotations4) {
       if (annotation2.scaleID === scaleID) {
         updateLimits2(annotation2, scale, ["value", "endValue"], limits);
       } else if (retrieveScaleID(scales2, annotation2, scaleIDOption) === scaleID) {
@@ -14763,10 +14763,10 @@ var rbmViz = (() => {
   }
   function updateElements(chart, state, options, mode) {
     const animations = resolveAnimations(chart, options.animations, mode);
-    const annotations3 = state.annotations;
-    const elements2 = resyncElements(state.elements, annotations3);
-    for (let i = 0; i < annotations3.length; i++) {
-      const annotationOptions = annotations3[i];
+    const annotations4 = state.annotations;
+    const elements2 = resyncElements(state.elements, annotations4);
+    for (let i = 0; i < annotations4.length; i++) {
+      const annotationOptions = annotations4[i];
       const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
@@ -14846,8 +14846,8 @@ var rbmViz = (() => {
       type: "annotation"
     }));
   }
-  function resyncElements(elements2, annotations3) {
-    const count = annotations3.length;
+  function resyncElements(elements2, annotations4) {
+    const count = annotations4.length;
     const start2 = elements2.length;
     if (start2 < count) {
       const add = count - start2;
@@ -14863,13 +14863,13 @@ var rbmViz = (() => {
     id: "annotation",
     version: version2,
     beforeRegister() {
-      requireVersion("chart.js", "3.7", Chart2.version);
+      requireVersion("chart.js", "3.7", Chart.version);
     },
     afterRegister() {
-      Chart2.register(annotationTypes);
+      Chart.register(annotationTypes);
     },
     afterUnregister() {
-      Chart2.unregister(annotationTypes);
+      Chart.unregister(annotationTypes);
     },
     beforeInit(chart) {
       chartStates.set(chart, {
@@ -14884,20 +14884,20 @@ var rbmViz = (() => {
     },
     beforeUpdate(chart, args, options) {
       const state = chartStates.get(chart);
-      const annotations3 = state.annotations = [];
+      const annotations4 = state.annotations = [];
       let annotationOptions = options.annotations;
       if (isObject(annotationOptions)) {
         Object.keys(annotationOptions).forEach((key) => {
           const value = annotationOptions[key];
           if (isObject(value)) {
             value.id = key;
-            annotations3.push(value);
+            annotations4.push(value);
           }
         });
       } else if (isArray(annotationOptions)) {
-        annotations3.push(...annotationOptions);
+        annotations4.push(...annotationOptions);
       }
-      verifyScaleOptions(annotations3, chart.scales);
+      verifyScaleOptions(annotations4, chart.scales);
     },
     afterDataLimits(chart, args) {
       const state = chartStates.get(chart);
@@ -16054,7 +16054,7 @@ var rbmViz = (() => {
     }
   ]);
   BoxPlotController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
-  var BoxPlotChart = class extends Chart2 {
+  var BoxPlotChart = class extends Chart {
     constructor(item, config) {
       super(item, patchController("boxplot", config, BoxPlotController, BoxAndWiskers, [LinearScale, CategoryScale]));
     }
@@ -16092,7 +16092,7 @@ var rbmViz = (() => {
     }
   ]);
   ViolinController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
-  var ViolinChart = class extends Chart2 {
+  var ViolinChart = class extends Chart {
     constructor(item, config) {
       super(item, patchController("violin", config, ViolinController, Violin, [LinearScale, CategoryScale]));
     }
@@ -20274,9 +20274,9 @@ var rbmViz = (() => {
 
   // src/barChart/plugins/annotations.js
   function annotations(config) {
-    let annotations3 = null;
+    let annotations4 = null;
     if (config.thresholds) {
-      annotations3 = config.thresholds.map((x, i) => ({
+      annotations4 = config.thresholds.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -20297,7 +20297,8 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations3;
+    console.log(annotations4);
+    return annotations4;
   }
 
   // src/barChart/plugins/legend.js
@@ -20343,7 +20344,7 @@ var rbmViz = (() => {
 
   // src/barChart/plugins.js
   function plugins2(config) {
-    const plugins5 = {
+    const plugins6 = {
       annotation: {
         annotations: annotations(config)
       },
@@ -20351,7 +20352,7 @@ var rbmViz = (() => {
       legend: legend(config),
       tooltip: tooltip(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/barChart/getScales.js
@@ -20385,8 +20386,8 @@ var rbmViz = (() => {
   }
 
   // node_modules/chart.js/auto/auto.mjs
-  Chart2.register(...registerables);
-  var auto_default = Chart2;
+  Chart.register(...registerables);
+  var auto_default = Chart;
 
   // src/util/triggerTooltip.js
   function triggerTooltip(chart) {
@@ -20728,12 +20729,12 @@ var rbmViz = (() => {
 
   // src/scatterPlot/plugins.js
   function plugins3(config) {
-    const plugins5 = {
+    const plugins6 = {
       legend: legend2(config),
       title: title(config),
       tooltip: tooltip2(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/scatterPlot/getScales.js
@@ -20985,12 +20986,12 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
-    const plugins5 = {
+    const plugins6 = {
       annotation: annotations2(config, _data_),
       legend: legend3(config),
       tooltip: tooltip3(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/sparkline/getScales.js
@@ -21085,8 +21086,23 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/timeSeries/configure/checkThresholds.js
+  function checkThresholds2(_config_, _thresholds_) {
+    let thresholds = _config_.thresholds;
+    if (_config_.y === "metric")
+      return null;
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
+      return mapThresholdsToFlags(thresholds);
+    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+      return null;
+    thresholds = _thresholds_.filter(
+      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    ).map((d) => d.default);
+    return mapThresholdsToFlags(thresholds);
+  }
+
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _thresholds_) {
+  function configure6(_config_, _data_, _parameters_) {
     const defaults3 = {};
     defaults3.type = "boxplot";
     defaults3.x = "snapshot_date";
@@ -21094,12 +21110,15 @@ var rbmViz = (() => {
     defaults3.y = "score";
     defaults3.yType = "linear";
     defaults3.yLabel = _config_[defaults3.y];
+    defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
     };
     defaults3.maintainAspectRatio = false;
-    const config = configure2(defaults3, _config_);
+    const config = configure2(defaults3, _config_, {
+      thresholds: checkThresholds2.bind(null, _config_, _parameters_)
+    });
     return config;
   }
 
@@ -21110,7 +21129,6 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d.score),
       (d) => d.snapshot_date
     );
-    console.log(grouped.map((d) => d[1]));
     const data = {
       labels: grouped.map((d) => d[0]),
       datasets: [
@@ -21122,33 +21140,76 @@ var rbmViz = (() => {
     return data;
   }
 
+  // src/timeSeries/plugins/annotations.js
+  function annotations3(config) {
+    let annotations4 = null;
+    if (config.thresholds) {
+      annotations4 = config.thresholds.map((x, i) => ({
+        drawTime: "beforeDatasetsDraw",
+        type: "line",
+        yMin: x.threshold,
+        yMax: x.threshold,
+        borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+        borderWidth: 2,
+        borderDash: [5],
+        label: {
+          rotation: "auto",
+          position: Math.sign(+x.flag) === 1 ? "end" : "start",
+          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+          backgroundColor: "white",
+          content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
+          display: true,
+          font: {
+            size: 12
+          }
+        }
+      }));
+    }
+    console.log(annotations4);
+    return annotations4;
+  }
+
+  // src/timeSeries/plugins.js
+  function plugins5(config) {
+    return {
+      annotation: {
+        annotations: annotations3(config)
+      },
+      legend: {
+        display: false
+      }
+    };
+  }
+
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
-    const config = configure6(_config_, _data_, _thresholds_);
+  function timeSeries(_element_, _data_, _config_ = {}, _parameters_ = null) {
+    const config = configure6(_config_, _data_, _parameters_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
       maintainAspectRatio: config.maintainAspectRatio,
-      plugins: {
-        legend: {
-          display: false
-        }
-      },
+      plugins: plugins5(config),
       responsive: true
     };
-    const chart = new Chart(canvas, {
+    const chart = new auto_default(canvas, {
       type: "boxplot",
       data,
       options
     });
+    canvas.chart = chart;
     return chart;
   }
 
   // src/main.js
-  Chart2.register(annotation);
-  Chart2.register(BoxPlotController, BoxAndWiskers, LinearScale, CategoryScale);
+  Chart.register(
+    annotation,
+    BoxPlotController,
+    BoxAndWiskers,
+    CategoryScale,
+    LinearScale
+  );
   var rbmViz = {
     barChart,
     scatterPlot,
