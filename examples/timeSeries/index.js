@@ -24,4 +24,41 @@ Promise.all(dataPromises)
             workflow,
             //bounds,
         );
+        //const scores = d3.rollups(
+        //    results,
+        //    group => group.map(d => +d.score),
+        //    d => d.snapshot_date
+        //);
+        //const data = {
+        //    labels: scores.map(d => d[0]),
+        //    datasets: [
+        //        {
+        //            label: 'Score',
+        //            backgroundColor: 'rgba(0,0,255,0.5)',
+        //            borderColor: 'blue',
+        //            borderWidth: 1,
+        //            outlierColor: '#999999',
+        //            padding: 10,
+        //            itemRadius: 0,
+        //            data: scores.map(d => d[1]),
+        //        }
+        //    ],
+        //};
+        //console.log(data);
+
+    //    const ctx = document.getElementById('canvas').getContext('2d');
+    //    window.myBar = new Chart(ctx, {
+    //        type: 'boxplot',
+    //        data,
+    //        options: {
+    //            responsive: true,
+    //            legend: {
+    //                position: 'top',
+    //            },
+    //            title: {
+    //                display: true,
+    //                text: 'Chart.js Box Plot Chart',
+    //            },
+    //        },
+    //    });
     });

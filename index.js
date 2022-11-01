@@ -21110,6 +21110,7 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d.score),
       (d) => d.snapshot_date
     );
+    console.log(grouped.map((d) => d[1]));
     const data = {
       labels: grouped.map((d) => d[0]),
       datasets: [
@@ -21124,25 +21125,25 @@ var rbmViz = (() => {
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
-    console.log(config);
     const canvas = addCanvas(_element_, config);
-    console.log(canvas);
-    const datasets = structureData4(_data_, config);
-    console.log(datasets);
+    const data = structureData4(_data_, config);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
-      maintainAspectRatio: config.maintainAspectRatio
+      maintainAspectRatio: config.maintainAspectRatio,
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      responsive: true
     };
     const chart = new Chart(canvas, {
       type: "boxplot",
-      data: {
-        datasets,
-        config,
-        _data_
-      },
+      data,
       options
     });
+    return chart;
   }
 
   // src/main.js

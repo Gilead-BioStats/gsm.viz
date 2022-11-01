@@ -4,6 +4,7 @@ export default function structureData(_data_, config) {
         group => group.map(d => +d.score),
         d => d.snapshot_date
     );
+    console.log(grouped.map(d => d[1]));
 
     const data = {
         labels: grouped.map(d => d[0]),

@@ -14,7 +14,6 @@ import structureData from './timeSeries/structureData';
 //import updateConfig from './barChart/updateConfig';
 //import updateOption from './barChart/updateOption';
 //import triggerTooltip from './util/triggerTooltip';
-
 export default function timeSeries(
     _element_,
     _data_,
@@ -23,13 +22,10 @@ export default function timeSeries(
 ) {
     // Update config.
     const config = configure(_config_, _data_, _thresholds_);
-    console.log(config);
     const canvas = addCanvas(_element_, config);
-    console.log(canvas);
 
     // Define array of input datasets to chart.
-    const datasets = structureData(_data_, config);
-    console.log(datasets);
+    const data = structureData(_data_, config);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
@@ -39,19 +35,19 @@ export default function timeSeries(
         //onClick,
         //onHover,
         //plugins: plugins(config),
+        plugins: {
+            legend: {
+                display: false,
+            },
+        },
+        responsive: true,
         //scales: getScales(config),
     };
 
     const chart = new Chart(canvas, {
         type: 'boxplot',
-        data: {
-            datasets,
-            config,
-            //_thresholds_,
-            _data_,
-        },
-        //metadata: 'test',
-        options,
+        data,
+        options
         //plugins: [ChartDataLabels],
     });
 
@@ -80,5 +76,5 @@ export default function timeSeries(
 
     //triggerTooltip(chart);
 
-    //return chart;
+    return chart;
 }
