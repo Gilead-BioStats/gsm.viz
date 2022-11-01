@@ -1478,12 +1478,12 @@ var rbmViz = (() => {
   function renderText(ctx, text, x, y, font, opts = {}) {
     const lines = isArray(text) ? text : [text];
     const stroke = opts.strokeWidth > 0 && opts.strokeColor !== "";
-    let i, line;
+    let i, line2;
     ctx.save();
     ctx.font = font.string;
     setRenderOpts(ctx, opts);
     for (i = 0; i < lines.length; ++i) {
-      line = lines[i];
+      line2 = lines[i];
       if (stroke) {
         if (opts.strokeColor) {
           ctx.strokeStyle = opts.strokeColor;
@@ -1491,10 +1491,10 @@ var rbmViz = (() => {
         if (!isNullOrUndef(opts.strokeWidth)) {
           ctx.lineWidth = opts.strokeWidth;
         }
-        ctx.strokeText(line, x, y, opts.maxWidth);
+        ctx.strokeText(line2, x, y, opts.maxWidth);
       }
-      ctx.fillText(line, x, y, opts.maxWidth);
-      decorateText(ctx, x, y, line, opts);
+      ctx.fillText(line2, x, y, opts.maxWidth);
+      decorateText(ctx, x, y, line2, opts);
       y += font.lineHeight;
     }
     ctx.restore();
@@ -1516,9 +1516,9 @@ var rbmViz = (() => {
       ctx.textBaseline = opts.textBaseline;
     }
   }
-  function decorateText(ctx, x, y, line, opts) {
+  function decorateText(ctx, x, y, line2, opts) {
     if (opts.strikethrough || opts.underline) {
-      const metrics = ctx.measureText(line);
+      const metrics = ctx.measureText(line2);
       const left = x - metrics.actualBoundingBoxLeft;
       const right = x + metrics.actualBoundingBoxRight;
       const top = y - metrics.actualBoundingBoxAscent;
@@ -2409,11 +2409,11 @@ var rbmViz = (() => {
     }
     return result;
   }
-  function _boundSegments(line, bounds) {
+  function _boundSegments(line2, bounds) {
     const result = [];
-    const segments = line.segments;
+    const segments = line2.segments;
     for (let i = 0; i < segments.length; i++) {
-      const sub = _boundSegment(segments[i], line.points, bounds);
+      const sub = _boundSegment(segments[i], line2.points, bounds);
       if (sub.length) {
         result.push(...sub);
       }
@@ -2468,32 +2468,32 @@ var rbmViz = (() => {
     }
     return result;
   }
-  function _computeSegments(line, segmentOptions) {
-    const points = line.points;
-    const spanGaps = line.options.spanGaps;
+  function _computeSegments(line2, segmentOptions) {
+    const points = line2.points;
+    const spanGaps = line2.options.spanGaps;
     const count = points.length;
     if (!count) {
       return [];
     }
-    const loop = !!line._loop;
+    const loop = !!line2._loop;
     const { start: start2, end } = findStartAndEnd(points, count, loop, spanGaps);
     if (spanGaps === true) {
-      return splitByStyles(line, [{ start: start2, end, loop }], points, segmentOptions);
+      return splitByStyles(line2, [{ start: start2, end, loop }], points, segmentOptions);
     }
     const max3 = end < start2 ? end + count : end;
-    const completeLoop = !!line._fullLoop && start2 === 0 && end === count - 1;
-    return splitByStyles(line, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
+    const completeLoop = !!line2._fullLoop && start2 === 0 && end === count - 1;
+    return splitByStyles(line2, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
   }
-  function splitByStyles(line, segments, points, segmentOptions) {
+  function splitByStyles(line2, segments, points, segmentOptions) {
     if (!segmentOptions || !segmentOptions.setContext || !points) {
       return segments;
     }
-    return doSplitByStyles(line, segments, points, segmentOptions);
+    return doSplitByStyles(line2, segments, points, segmentOptions);
   }
-  function doSplitByStyles(line, segments, points, segmentOptions) {
-    const chartContext = line._chart.getContext();
-    const baseStyle = readStyle(line.options);
-    const { _datasetIndex: datasetIndex, options: { spanGaps } } = line;
+  function doSplitByStyles(line2, segments, points, segmentOptions) {
+    const chartContext = line2._chart.getContext();
+    const baseStyle = readStyle(line2.options);
+    const { _datasetIndex: datasetIndex, options: { spanGaps } } = line2;
     const count = points.length;
     const result = [];
     let prevStyle = baseStyle;
@@ -4568,7 +4568,7 @@ var rbmViz = (() => {
     }
     update(mode) {
       const meta = this._cachedMeta;
-      const { dataset: line, data: points = [], _dataset } = meta;
+      const { dataset: line2, data: points = [], _dataset } = meta;
       const animationsDisabled = this.chart._animationsDisabled;
       let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points, animationsDisabled);
       this._drawStart = start2;
@@ -4577,16 +4577,16 @@ var rbmViz = (() => {
         start2 = 0;
         count = points.length;
       }
-      line._chart = this.chart;
-      line._datasetIndex = this.index;
-      line._decimated = !!_dataset._decimated;
-      line.points = points;
+      line2._chart = this.chart;
+      line2._datasetIndex = this.index;
+      line2._decimated = !!_dataset._decimated;
+      line2.points = points;
       const options = this.resolveDatasetElementOptions(mode);
       if (!this.options.showLine) {
         options.borderWidth = 0;
       }
       options.segment = this.options.segment;
-      this.updateElement(line, void 0, {
+      this.updateElement(line2, void 0, {
         animated: !animationsDisabled,
         options
       }, mode);
@@ -4863,10 +4863,10 @@ var rbmViz = (() => {
     }
     update(mode) {
       const meta = this._cachedMeta;
-      const line = meta.dataset;
+      const line2 = meta.dataset;
       const points = meta.data || [];
       const labels = meta.iScale.getLabels();
-      line.points = points;
+      line2.points = points;
       if (mode !== "resize") {
         const options = this.resolveDatasetElementOptions(mode);
         if (!this.options.showLine) {
@@ -4877,7 +4877,7 @@ var rbmViz = (() => {
           _fullLoop: labels.length === points.length,
           options
         };
-        this.updateElement(line, void 0, properties, mode);
+        this.updateElement(line2, void 0, properties, mode);
       }
       this.updateElements(points, 0, points.length, mode);
     }
@@ -6536,14 +6536,14 @@ var rbmViz = (() => {
         count = points.length;
       }
       if (this.options.showLine) {
-        const { dataset: line, _dataset } = meta;
-        line._chart = this.chart;
-        line._datasetIndex = this.index;
-        line._decimated = !!_dataset._decimated;
-        line.points = points;
+        const { dataset: line2, _dataset } = meta;
+        line2._chart = this.chart;
+        line2._datasetIndex = this.index;
+        line2._decimated = !!_dataset._decimated;
+        line2.points = points;
         const options = this.resolveDatasetElementOptions(mode);
         options.segment = this.options.segment;
-        this.updateElement(line, void 0, {
+        this.updateElement(line2, void 0, {
           animated: !animationsDisabled,
           options
         }, mode);
@@ -7500,8 +7500,8 @@ var rbmViz = (() => {
     _createDescriptors(chart, all) {
       const config = chart && chart.config;
       const options = valueOrDefault(config.options && config.options.plugins, {});
-      const plugins5 = allPlugins(config);
-      return options === false && !all ? [] : createDescriptors(chart, plugins5, options, all);
+      const plugins6 = allPlugins(config);
+      return options === false && !all ? [] : createDescriptors(chart, plugins6, options, all);
     }
     _notifyStateChanges(chart) {
       const previousDescriptors = this._oldCache || [];
@@ -7513,20 +7513,20 @@ var rbmViz = (() => {
   };
   function allPlugins(config) {
     const localIds = {};
-    const plugins5 = [];
+    const plugins6 = [];
     const keys = Object.keys(registry.plugins.items);
     for (let i = 0; i < keys.length; i++) {
-      plugins5.push(registry.getPlugin(keys[i]));
+      plugins6.push(registry.getPlugin(keys[i]));
     }
     const local = config.plugins || [];
     for (let i = 0; i < local.length; i++) {
       const plugin2 = local[i];
-      if (plugins5.indexOf(plugin2) === -1) {
-        plugins5.push(plugin2);
+      if (plugins6.indexOf(plugin2) === -1) {
+        plugins6.push(plugin2);
         localIds[plugin2.id] = true;
       }
     }
-    return { plugins: plugins5, localIds };
+    return { plugins: plugins6, localIds };
   }
   function getOpts(options, all) {
     if (!all && options === false) {
@@ -7537,10 +7537,10 @@ var rbmViz = (() => {
     }
     return options;
   }
-  function createDescriptors(chart, { plugins: plugins5, localIds }, options, all) {
+  function createDescriptors(chart, { plugins: plugins6, localIds }, options, all) {
     const result = [];
     const context = chart.getContext();
-    for (const plugin2 of plugins5) {
+    for (const plugin2 of plugins6) {
       const id2 = plugin2.id;
       const opts = getOpts(options[id2], all);
       if (opts === null) {
@@ -9002,8 +9002,8 @@ var rbmViz = (() => {
       ilen: end < start2 && !outside ? count + end - start2 : end - start2
     };
   }
-  function pathSegment(ctx, line, segment, params) {
-    const { points, options } = line;
+  function pathSegment(ctx, line2, segment, params) {
+    const { points, options } = line2;
     const { count, start: start2, loop, ilen } = pathVars(points, segment, params);
     const lineMethod = getLineMethod(options);
     let { move = true, reverse } = params || {};
@@ -9026,8 +9026,8 @@ var rbmViz = (() => {
     }
     return !!loop;
   }
-  function fastPathSegment(ctx, line, segment, params) {
-    const points = line.points;
+  function fastPathSegment(ctx, line2, segment, params) {
+    const points = line2.points;
     const { count, start: start2, ilen } = pathVars(points, segment, params);
     const { move = true, reverse } = params || {};
     let avgX = 0;
@@ -9071,10 +9071,10 @@ var rbmViz = (() => {
     }
     drawX();
   }
-  function _getSegmentMethod(line) {
-    const opts = line.options;
+  function _getSegmentMethod(line2) {
+    const opts = line2.options;
     const borderDash = opts.borderDash && opts.borderDash.length;
-    const useFastPath = !line._decimated && !line._loop && !opts.tension && opts.cubicInterpolationMode !== "monotone" && !opts.stepped && !borderDash;
+    const useFastPath = !line2._decimated && !line2._loop && !opts.tension && opts.cubicInterpolationMode !== "monotone" && !opts.stepped && !borderDash;
     return useFastPath ? fastPathSegment : pathSegment;
   }
   function _getInterpolationMethod(options) {
@@ -9086,35 +9086,35 @@ var rbmViz = (() => {
     }
     return _pointInLine;
   }
-  function strokePathWithCache(ctx, line, start2, count) {
-    let path = line._path;
+  function strokePathWithCache(ctx, line2, start2, count) {
+    let path = line2._path;
     if (!path) {
-      path = line._path = new Path2D();
-      if (line.path(path, start2, count)) {
+      path = line2._path = new Path2D();
+      if (line2.path(path, start2, count)) {
         path.closePath();
       }
     }
-    setStyle(ctx, line.options);
+    setStyle(ctx, line2.options);
     ctx.stroke(path);
   }
-  function strokePathDirect(ctx, line, start2, count) {
-    const { segments, options } = line;
-    const segmentMethod = _getSegmentMethod(line);
+  function strokePathDirect(ctx, line2, start2, count) {
+    const { segments, options } = line2;
+    const segmentMethod = _getSegmentMethod(line2);
     for (const segment of segments) {
       setStyle(ctx, options, segment.style);
       ctx.beginPath();
-      if (segmentMethod(ctx, line, segment, { start: start2, end: start2 + count - 1 })) {
+      if (segmentMethod(ctx, line2, segment, { start: start2, end: start2 + count - 1 })) {
         ctx.closePath();
       }
       ctx.stroke();
     }
   }
   var usePath2D = typeof Path2D === "function";
-  function draw(ctx, line, start2, count) {
-    if (usePath2D && !line.options.segment) {
-      strokePathWithCache(ctx, line, start2, count);
+  function draw(ctx, line2, start2, count) {
+    if (usePath2D && !line2.options.segment) {
+      strokePathWithCache(ctx, line2, start2, count);
     } else {
-      strokePathDirect(ctx, line, start2, count);
+      strokePathDirect(ctx, line2, start2, count);
     }
   }
   var LineElement = class extends Element {
@@ -9675,9 +9675,9 @@ var rbmViz = (() => {
       cleanDecimatedData(chart);
     }
   };
-  function _segments(line, target, property) {
-    const segments = line.segments;
-    const points = line.points;
+  function _segments(line2, target, property) {
+    const segments = line2.segments;
+    const points = line2.points;
     const tpoints = target.points;
     const parts = [];
     for (const segment of segments) {
@@ -9725,11 +9725,11 @@ var rbmViz = (() => {
     }
     return { property, start: start2, end };
   }
-  function _pointsFromSegments(boundary, line) {
+  function _pointsFromSegments(boundary, line2) {
     const { x = null, y = null } = boundary || {};
-    const linePoints = line.points;
+    const linePoints = line2.points;
     const points = [];
-    line.segments.forEach(({ start: start2, end }) => {
+    line2.segments.forEach(({ start: start2, end }) => {
       end = _findSegmentEnd(start2, end, linePoints);
       const first = linePoints[start2];
       const last = linePoints[end];
@@ -9758,14 +9758,14 @@ var rbmViz = (() => {
     }
     return a ? a[prop] : b ? b[prop] : 0;
   }
-  function _createBoundaryLine(boundary, line) {
+  function _createBoundaryLine(boundary, line2) {
     let points = [];
     let _loop = false;
     if (isArray(boundary)) {
       _loop = true;
       points = boundary;
     } else {
-      points = _pointsFromSegments(boundary, line);
+      points = _pointsFromSegments(boundary, line2);
     }
     return points.length ? new LineElement({
       points,
@@ -9801,8 +9801,8 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function _decodeFill(line, index3, count) {
-    const fill2 = parseFillOption(line);
+  function _decodeFill(line2, index3, count) {
+    const fill2 = parseFillOption(line2);
     if (isObject(fill2)) {
       return isNaN(fill2.value) ? false : fill2;
     }
@@ -9847,8 +9847,8 @@ var rbmViz = (() => {
     }
     return value;
   }
-  function parseFillOption(line) {
-    const options = line.options;
+  function parseFillOption(line2) {
+    const options = line2.options;
     const fillOption = options.fill;
     let fill2 = valueOrDefault(fillOption && fillOption.target, fillOption);
     if (fill2 === void 0) {
@@ -9863,12 +9863,12 @@ var rbmViz = (() => {
     return fill2;
   }
   function _buildStackLine(source) {
-    const { scale, index: index3, line } = source;
+    const { scale, index: index3, line: line2 } = source;
     const points = [];
-    const segments = line.segments;
-    const sourcePoints = line.points;
+    const segments = line2.segments;
+    const sourcePoints = line2.points;
     const linesBelow = getLinesBelow(scale, index3);
-    linesBelow.push(_createBoundaryLine({ x: null, y: scale.bottom }, line));
+    linesBelow.push(_createBoundaryLine({ x: null, y: scale.bottom }, line2));
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
       for (let j = segment.start; j <= segment.end; j++) {
@@ -9894,8 +9894,8 @@ var rbmViz = (() => {
   function addPointsBelow(points, sourcePoint, linesBelow) {
     const postponed = [];
     for (let j = 0; j < linesBelow.length; j++) {
-      const line = linesBelow[j];
-      const { first, last, point } = findPoint(line, sourcePoint, "x");
+      const line2 = linesBelow[j];
+      const { first, last, point } = findPoint(line2, sourcePoint, "x");
       if (!point || first && last) {
         continue;
       }
@@ -9910,14 +9910,14 @@ var rbmViz = (() => {
     }
     points.push(...postponed);
   }
-  function findPoint(line, sourcePoint, property) {
-    const point = line.interpolate(sourcePoint, property);
+  function findPoint(line2, sourcePoint, property) {
+    const point = line2.interpolate(sourcePoint, property);
     if (!point) {
       return {};
     }
     const pointValue = point[property];
-    const segments = line.segments;
-    const linePoints = line.points;
+    const segments = line2.segments;
+    const linePoints = line2.points;
     let first = false;
     let last = false;
     for (let i = 0; i < segments.length; i++) {
@@ -9955,7 +9955,7 @@ var rbmViz = (() => {
     }
   };
   function _getTarget(source) {
-    const { chart, fill: fill2, line } = source;
+    const { chart, fill: fill2, line: line2 } = source;
     if (isNumberFinite(fill2)) {
       return getLineByIndex(chart, fill2);
     }
@@ -9969,7 +9969,7 @@ var rbmViz = (() => {
     if (boundary instanceof simpleArc) {
       return boundary;
     }
-    return _createBoundaryLine(boundary, line);
+    return _createBoundaryLine(boundary, line2);
   }
   function getLineByIndex(chart, index3) {
     const meta = chart.getDatasetMeta(index3);
@@ -10017,29 +10017,29 @@ var rbmViz = (() => {
   }
   function _drawfill(ctx, source, area) {
     const target = _getTarget(source);
-    const { line, scale, axis } = source;
-    const lineOpts = line.options;
+    const { line: line2, scale, axis } = source;
+    const lineOpts = line2.options;
     const fillOption = lineOpts.fill;
     const color3 = lineOpts.backgroundColor;
     const { above = color3, below = color3 } = fillOption || {};
-    if (target && line.points.length) {
+    if (target && line2.points.length) {
       clipArea(ctx, area);
-      doFill(ctx, { line, target, above, below, area, scale, axis });
+      doFill(ctx, { line: line2, target, above, below, area, scale, axis });
       unclipArea(ctx);
     }
   }
   function doFill(ctx, cfg) {
-    const { line, target, above, below, area, scale } = cfg;
-    const property = line._loop ? "angle" : cfg.axis;
+    const { line: line2, target, above, below, area, scale } = cfg;
+    const property = line2._loop ? "angle" : cfg.axis;
     ctx.save();
     if (property === "x" && below !== above) {
       clipVertical(ctx, target, area.top);
-      fill(ctx, { line, target, color: above, scale, property });
+      fill(ctx, { line: line2, target, color: above, scale, property });
       ctx.restore();
       ctx.save();
       clipVertical(ctx, target, area.bottom);
     }
-    fill(ctx, { line, target, color: below, scale, property });
+    fill(ctx, { line: line2, target, color: below, scale, property });
     ctx.restore();
   }
   function clipVertical(ctx, target, clipY) {
@@ -10070,8 +10070,8 @@ var rbmViz = (() => {
     ctx.clip();
   }
   function fill(ctx, cfg) {
-    const { line, target, property, color: color3, scale } = cfg;
-    const segments = _segments(line, target, property);
+    const { line: line2, target, property, color: color3, scale } = cfg;
+    const segments = _segments(line2, target, property);
     for (const { source: src, target: tgt, start: start2, end } of segments) {
       const { style: { backgroundColor: backgroundColor4 = color3 } = {} } = src;
       const notShape = target !== true;
@@ -10079,7 +10079,7 @@ var rbmViz = (() => {
       ctx.fillStyle = backgroundColor4;
       clipBounds(ctx, scale, notShape && _getBounds(property, start2, end));
       ctx.beginPath();
-      const lineLoop = !!line.pathSegment(ctx, src);
+      const lineLoop = !!line2.pathSegment(ctx, src);
       let loop;
       if (notShape) {
         if (lineLoop) {
@@ -10118,20 +10118,20 @@ var rbmViz = (() => {
     afterDatasetsUpdate(chart, _args, options) {
       const count = (chart.data.datasets || []).length;
       const sources = [];
-      let meta, i, line, source;
+      let meta, i, line2, source;
       for (i = 0; i < count; ++i) {
         meta = chart.getDatasetMeta(i);
-        line = meta.dataset;
+        line2 = meta.dataset;
         source = null;
-        if (line && line.options && line instanceof LineElement) {
+        if (line2 && line2.options && line2 instanceof LineElement) {
           source = {
             visible: chart.isDatasetVisible(i),
             index: i,
-            fill: _decodeFill(line, i, count),
+            fill: _decodeFill(line2, i, count),
             chart,
             axis: meta.controller.options.indexAxis,
             scale: meta.vScale,
-            line
+            line: line2
           };
         }
         meta.$filler = source;
@@ -10945,8 +10945,8 @@ var rbmViz = (() => {
       height += options.footerMarginTop + footerLineCount * footerFont.lineHeight + (footerLineCount - 1) * options.footerSpacing;
     }
     let widthPadding = 0;
-    const maxLineWidth = function(line) {
-      width = Math.max(width, ctx.measureText(line).width + widthPadding);
+    const maxLineWidth = function(line2) {
+      width = Math.max(width, ctx.measureText(line2).width + widthPadding);
     };
     ctx.save();
     ctx.font = titleFont.string;
@@ -11384,8 +11384,8 @@ var rbmViz = (() => {
       let bodyLineHeight = bodyFont.lineHeight;
       let xLinePadding = 0;
       const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
-      const fillLineOfText = function(line) {
-        ctx.fillText(line, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
+      const fillLineOfText = function(line2) {
+        ctx.fillText(line2, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
         pt.y += bodyLineHeight + bodySpacing;
       };
       const bodyAlignForCalculation = rtlHelper.textAlign(bodyAlign);
@@ -13649,16 +13649,16 @@ var rbmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function adjustScaleRange(chart, scale, annotations3) {
-    const range = getScaleLimits(chart.scales, scale, annotations3);
+  function adjustScaleRange(chart, scale, annotations4) {
+    const range = getScaleLimits(chart.scales, scale, annotations4);
     let changed = changeScaleLimit(scale, range, "min", "suggestedMin");
     changed = changeScaleLimit(scale, range, "max", "suggestedMax") || changed;
     if (changed && typeof scale.handleTickRangeOptions === "function") {
       scale.handleTickRangeOptions();
     }
   }
-  function verifyScaleOptions(annotations3, scales2) {
-    for (const annotation2 of annotations3) {
+  function verifyScaleOptions(annotations4, scales2) {
+    for (const annotation2 of annotations4) {
       verifyScaleIDs(annotation2, scales2);
     }
   }
@@ -13692,7 +13692,7 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function getScaleLimits(scales2, scale, annotations3) {
+  function getScaleLimits(scales2, scale, annotations4) {
     const axis = scale.axis;
     const scaleID = scale.id;
     const scaleIDOption = axis + "ScaleID";
@@ -13700,7 +13700,7 @@ var rbmViz = (() => {
       min: valueOrDefault(scale.min, Number.NEGATIVE_INFINITY),
       max: valueOrDefault(scale.max, Number.POSITIVE_INFINITY)
     };
-    for (const annotation2 of annotations3) {
+    for (const annotation2 of annotations4) {
       if (annotation2.scaleID === scaleID) {
         updateLimits2(annotation2, scale, ["value", "endValue"], limits);
       } else if (retrieveScaleID(scales2, annotation2, scaleIDOption) === scaleID) {
@@ -14189,23 +14189,23 @@ var rbmViz = (() => {
     }
     return coordinate;
   }
-  function getArrowHeads(line) {
-    const options = line.options;
+  function getArrowHeads(line2) {
+    const options = line2.options;
     const arrowStartOpts = options.arrowHeads && options.arrowHeads.start;
     const arrowEndOpts = options.arrowHeads && options.arrowHeads.end;
     return {
       startOpts: arrowStartOpts,
       endOpts: arrowEndOpts,
-      startAdjust: getLineAdjust(line, arrowStartOpts),
-      endAdjust: getLineAdjust(line, arrowEndOpts)
+      startAdjust: getLineAdjust(line2, arrowStartOpts),
+      endAdjust: getLineAdjust(line2, arrowEndOpts)
     };
   }
-  function getLineAdjust(line, arrowOpts) {
+  function getLineAdjust(line2, arrowOpts) {
     if (!arrowOpts || !arrowOpts.display) {
       return 0;
     }
     const { length, width } = arrowOpts;
-    const adjust = line.options.borderWidth / 2;
+    const adjust = line2.options.borderWidth / 2;
     const p1 = { x: length, y: width + adjust };
     const p2 = { x: 0, y: adjust };
     return Math.abs(interpolateX(0, p1, p2));
@@ -14763,10 +14763,10 @@ var rbmViz = (() => {
   }
   function updateElements(chart, state, options, mode) {
     const animations = resolveAnimations(chart, options.animations, mode);
-    const annotations3 = state.annotations;
-    const elements2 = resyncElements(state.elements, annotations3);
-    for (let i = 0; i < annotations3.length; i++) {
-      const annotationOptions = annotations3[i];
+    const annotations4 = state.annotations;
+    const elements2 = resyncElements(state.elements, annotations4);
+    for (let i = 0; i < annotations4.length; i++) {
+      const annotationOptions = annotations4[i];
       const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
@@ -14846,8 +14846,8 @@ var rbmViz = (() => {
       type: "annotation"
     }));
   }
-  function resyncElements(elements2, annotations3) {
-    const count = annotations3.length;
+  function resyncElements(elements2, annotations4) {
+    const count = annotations4.length;
     const start2 = elements2.length;
     if (start2 < count) {
       const add = count - start2;
@@ -14884,20 +14884,20 @@ var rbmViz = (() => {
     },
     beforeUpdate(chart, args, options) {
       const state = chartStates.get(chart);
-      const annotations3 = state.annotations = [];
+      const annotations4 = state.annotations = [];
       let annotationOptions = options.annotations;
       if (isObject(annotationOptions)) {
         Object.keys(annotationOptions).forEach((key) => {
           const value = annotationOptions[key];
           if (isObject(value)) {
             value.id = key;
-            annotations3.push(value);
+            annotations4.push(value);
           }
         });
       } else if (isArray(annotationOptions)) {
-        annotations3.push(...annotationOptions);
+        annotations4.push(...annotationOptions);
       }
-      verifyScaleOptions(annotations3, chart.scales);
+      verifyScaleOptions(annotations4, chart.scales);
     },
     afterDataLimits(chart, args) {
       const state = chartStates.get(chart);
@@ -14999,6 +14999,1105 @@ var rbmViz = (() => {
     }
     return drawableElements;
   }
+
+  // node_modules/@sgratzl/boxplots/build/index.js
+  var HELPER = Math.sqrt(2 * Math.PI);
+  function gaussian(u) {
+    return Math.exp(-0.5 * u * u) / HELPER;
+  }
+  function toSampleVariance(variance, len) {
+    return variance * len / (len - 1);
+  }
+  function nrd(iqr, variance, len) {
+    let s = Math.sqrt(toSampleVariance(variance, len));
+    if (typeof iqr === "number") {
+      s = Math.min(s, iqr / 1.34);
+    }
+    return 1.06 * s * Math.pow(len, -0.2);
+  }
+  function kde(stats) {
+    const len = stats.items.length;
+    const bandwidth = nrd(stats.iqr, stats.variance, len);
+    return (x) => {
+      let i = 0;
+      let sum = 0;
+      for (i = 0; i < len; i++) {
+        const v = stats.items[i];
+        sum += gaussian((x - v) / bandwidth);
+      }
+      return sum / bandwidth / len;
+    };
+  }
+  function quantilesInterpolate(arr, length, interpolate3) {
+    const n1 = length - 1;
+    const compute2 = (q) => {
+      const index3 = q * n1;
+      const lo = Math.floor(index3);
+      const h = index3 - lo;
+      const a = arr[lo];
+      return h === 0 ? a : interpolate3(a, arr[Math.min(lo + 1, n1)], h);
+    };
+    return {
+      q1: compute2(0.25),
+      median: compute2(0.5),
+      q3: compute2(0.75)
+    };
+  }
+  function quantilesType7(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (a, b, alpha2) => a + alpha2 * (b - a));
+  }
+  function quantilesLinear(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j, fraction) => i + (j - i) * fraction);
+  }
+  function quantilesLower(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i) => i);
+  }
+  function quantilesHigher(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (_, j) => j);
+  }
+  function quantilesNearest(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j, fraction) => fraction < 0.5 ? i : j);
+  }
+  function quantilesMidpoint(arr, length = arr.length) {
+    return quantilesInterpolate(arr, length, (i, j) => (i + j) * 0.5);
+  }
+  function quantilesFivenum(arr, length = arr.length) {
+    const n = length;
+    const n4 = Math.floor((n + 3) / 2) / 2;
+    const compute2 = (d) => 0.5 * (arr[Math.floor(d) - 1] + arr[Math.ceil(d) - 1]);
+    return {
+      q1: compute2(n4),
+      median: compute2((n + 1) / 2),
+      q3: compute2(n + 1 - n4)
+    };
+  }
+  function quantilesHinges(arr, length = arr.length) {
+    return quantilesFivenum(arr, length);
+  }
+  function createSortedData(data) {
+    let valid = 0;
+    const { length } = data;
+    const vs = data instanceof Float64Array ? new Float64Array(length) : new Float32Array(length);
+    for (let i = 0; i < length; i += 1) {
+      const v = data[i];
+      if (v == null || Number.isNaN(v)) {
+        continue;
+      }
+      vs[valid] = v;
+      valid += 1;
+    }
+    const missing = length - valid;
+    if (valid === 0) {
+      return {
+        min: Number.NaN,
+        max: Number.NaN,
+        missing,
+        s: []
+      };
+    }
+    const validData = valid === length ? vs : vs.subarray(0, valid);
+    validData.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
+    const min3 = validData[0];
+    const max3 = validData[validData.length - 1];
+    return {
+      min: min3,
+      max: max3,
+      missing,
+      s: validData
+    };
+  }
+  function withSortedData(data) {
+    if (data.length === 0) {
+      return {
+        min: Number.NaN,
+        max: Number.NaN,
+        missing: 0,
+        s: []
+      };
+    }
+    const min3 = data[0];
+    const max3 = data[data.length - 1];
+    return {
+      min: min3,
+      max: max3,
+      missing: 0,
+      s: data
+    };
+  }
+  function computeWhiskers(s, valid, min3, max3, { eps, quantiles, coef, whiskersMode }) {
+    const same = (a, b) => Math.abs(a - b) < eps;
+    const { median, q1, q3 } = quantiles(s, valid);
+    const iqr = q3 - q1;
+    const isCoefValid = typeof coef === "number" && coef > 0;
+    let whiskerLow = isCoefValid ? Math.max(min3, q1 - coef * iqr) : min3;
+    let whiskerHigh = isCoefValid ? Math.min(max3, q3 + coef * iqr) : max3;
+    const outlierLow = [];
+    for (let i = 0; i < valid; i += 1) {
+      const v = s[i];
+      if (v >= whiskerLow || same(v, whiskerLow)) {
+        if (whiskersMode === "nearest") {
+          whiskerLow = v;
+        }
+        break;
+      }
+      if (outlierLow.length === 0 || !same(outlierLow[outlierLow.length - 1], v)) {
+        outlierLow.push(v);
+      }
+    }
+    const reversedOutlierHigh = [];
+    for (let i = valid - 1; i >= 0; i -= 1) {
+      const v = s[i];
+      if (v <= whiskerHigh || same(v, whiskerHigh)) {
+        if (whiskersMode === "nearest") {
+          whiskerHigh = v;
+        }
+        break;
+      }
+      if ((reversedOutlierHigh.length === 0 || !same(reversedOutlierHigh[reversedOutlierHigh.length - 1], v)) && (outlierLow.length === 0 || !same(outlierLow[outlierLow.length - 1], v))) {
+        reversedOutlierHigh.push(v);
+      }
+    }
+    const outlier = outlierLow.concat(reversedOutlierHigh.reverse());
+    return {
+      median,
+      q1,
+      q3,
+      iqr,
+      outlier,
+      whiskerHigh,
+      whiskerLow
+    };
+  }
+  function computeStats(s, valid) {
+    let mean = 0;
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
+      mean += v;
+    }
+    mean /= valid;
+    let variance = 0;
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
+      variance += (v - mean) * (v - mean);
+    }
+    variance /= valid;
+    return {
+      mean,
+      variance
+    };
+  }
+  function boxplot(data, options = {}) {
+    const fullOptions = {
+      coef: 1.5,
+      eps: 0.01,
+      quantiles: quantilesType7,
+      validAndSorted: false,
+      whiskersMode: "nearest",
+      ...options
+    };
+    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
+    const invalid = {
+      min: Number.NaN,
+      max: Number.NaN,
+      mean: Number.NaN,
+      missing,
+      iqr: Number.NaN,
+      count: data.length,
+      whiskerHigh: Number.NaN,
+      whiskerLow: Number.NaN,
+      outlier: [],
+      median: Number.NaN,
+      q1: Number.NaN,
+      q3: Number.NaN,
+      variance: 0,
+      items: [],
+      kde: () => 0
+    };
+    const valid = data.length - missing;
+    if (valid === 0) {
+      return invalid;
+    }
+    const result = {
+      min: min3,
+      max: max3,
+      count: data.length,
+      missing,
+      items: s,
+      ...computeStats(s, valid),
+      ...computeWhiskers(s, valid, min3, max3, fullOptions)
+    };
+    return {
+      ...result,
+      kde: kde(result)
+    };
+  }
+
+  // node_modules/@sgratzl/chartjs-chart-boxplot/build/index.js
+  function whiskers(boxplot3, arr, coef = 1.5) {
+    const iqr = boxplot3.q3 - boxplot3.q1;
+    const coefValid = typeof coef === "number" && coef > 0;
+    let whiskerMin = coefValid ? Math.max(boxplot3.min, boxplot3.q1 - coef * iqr) : boxplot3.min;
+    let whiskerMax = coefValid ? Math.min(boxplot3.max, boxplot3.q3 + coef * iqr) : boxplot3.max;
+    if (Array.isArray(arr)) {
+      for (let i = 0; i < arr.length; i += 1) {
+        const v = arr[i];
+        if (v >= whiskerMin) {
+          whiskerMin = v;
+          break;
+        }
+      }
+      for (let i = arr.length - 1; i >= 0; i -= 1) {
+        const v = arr[i];
+        if (v <= whiskerMax) {
+          whiskerMax = v;
+          break;
+        }
+      }
+    }
+    return {
+      whiskerMin,
+      whiskerMax
+    };
+  }
+  var defaultStatsOptions = {
+    coef: 1.5,
+    quantiles: 7
+  };
+  function determineQuantiles(q) {
+    if (typeof q === "function") {
+      return q;
+    }
+    const lookup = {
+      hinges: quantilesHinges,
+      fivenum: quantilesFivenum,
+      7: quantilesType7,
+      quantiles: quantilesType7,
+      linear: quantilesLinear,
+      lower: quantilesLower,
+      higher: quantilesHigher,
+      nearest: quantilesNearest,
+      midpoint: quantilesMidpoint
+    };
+    return lookup[q] || quantilesType7;
+  }
+  function determineStatsOptions(options) {
+    const coef = options == null || typeof options.coef !== "number" ? defaultStatsOptions.coef : options.coef;
+    const q = options == null || options.quantiles == null ? quantilesType7 : options.quantiles;
+    const quantiles = determineQuantiles(q);
+    return {
+      coef,
+      quantiles
+    };
+  }
+  function boxplotStats(arr, options) {
+    const r = boxplot(arr, determineStatsOptions(options));
+    return {
+      items: Array.from(r.items),
+      outliers: r.outlier,
+      whiskerMax: r.whiskerHigh,
+      whiskerMin: r.whiskerLow,
+      max: r.max,
+      median: r.median,
+      mean: r.mean,
+      min: r.min,
+      q1: r.q1,
+      q3: r.q3
+    };
+  }
+  function computeSamples(min3, max3, points) {
+    const range = max3 - min3;
+    const samples = [];
+    const inc = range / points;
+    for (let v = min3; v <= max3 && inc > 0; v += inc) {
+      samples.push(v);
+    }
+    if (samples[samples.length - 1] !== max3) {
+      samples.push(max3);
+    }
+    return samples;
+  }
+  function violinStats(arr, options) {
+    if (arr.length === 0) {
+      return void 0;
+    }
+    const stats = boxplot(arr, determineStatsOptions(options));
+    const samples = computeSamples(stats.min, stats.max, options.points);
+    const coords = samples.map((v) => ({ v, estimate: stats.kde(v) }));
+    const maxEstimate = coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
+    return {
+      max: stats.max,
+      min: stats.min,
+      mean: stats.mean,
+      median: stats.median,
+      q1: stats.q1,
+      q3: stats.q3,
+      items: Array.from(stats.items),
+      coords,
+      outliers: [],
+      maxEstimate
+    };
+  }
+  function asBoxPlotStats(value, options) {
+    if (!value) {
+      return void 0;
+    }
+    if (typeof value.median === "number" && typeof value.q1 === "number" && typeof value.q3 === "number") {
+      if (typeof value.whiskerMin === "undefined") {
+        const { coef } = determineStatsOptions(options);
+        const { whiskerMin, whiskerMax } = whiskers(value, Array.isArray(value.items) ? value.items.slice().sort((a, b) => a - b) : null, coef);
+        value.whiskerMin = whiskerMin;
+        value.whiskerMax = whiskerMax;
+      }
+      return value;
+    }
+    if (!Array.isArray(value)) {
+      return void 0;
+    }
+    return boxplotStats(value, options);
+  }
+  function asViolinStats(value, options) {
+    if (!value) {
+      return void 0;
+    }
+    if (typeof value.median === "number" && Array.isArray(value.coords)) {
+      return value;
+    }
+    if (!Array.isArray(value)) {
+      return void 0;
+    }
+    return violinStats(value, options);
+  }
+  function rnd(seed = Date.now()) {
+    let s = seed;
+    return () => {
+      s = (s * 9301 + 49297) % 233280;
+      return s / 233280;
+    };
+  }
+  var baseDefaults$1 = {
+    borderWidth: 1,
+    outlierStyle: "circle",
+    outlierRadius: 2,
+    outlierBorderWidth: 1,
+    itemStyle: "circle",
+    itemRadius: 0,
+    itemBorderWidth: 0,
+    meanStyle: "circle",
+    meanRadius: 3,
+    meanBorderWidth: 1,
+    hitPadding: 2,
+    outlierHitRadius: 4
+  };
+  var baseRoutes = {
+    outlierBackgroundColor: "backgroundColor",
+    outlierBorderColor: "borderColor",
+    itemBackgroundColor: "backgroundColor",
+    itemBorderColor: "borderColor",
+    meanBackgroundColor: "backgroundColor",
+    meanBorderColor: "borderColor"
+  };
+  var baseOptionKeys = (() => Object.keys(baseDefaults$1).concat(Object.keys(baseRoutes)))();
+  var StatsBase$1 = class extends Element {
+    isVertical() {
+      return !this.horizontal;
+    }
+    _drawItems(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "items", "width", "height", "outliers"]);
+      const { options } = this;
+      if (options.itemRadius <= 0 || !props.items || props.items.length <= 0) {
+        return;
+      }
+      ctx.save();
+      ctx.strokeStyle = options.itemBorderColor;
+      ctx.fillStyle = options.itemBackgroundColor;
+      ctx.lineWidth = options.itemBorderWidth;
+      const random = rnd(this._datasetIndex * 1e3 + this._index);
+      const pointOptions = {
+        pointStyle: options.itemStyle,
+        radius: options.itemRadius,
+        borderWidth: options.itemBorderWidth
+      };
+      const outliers = new Set(props.outliers || []);
+      if (vert) {
+        props.items.forEach((v) => {
+          if (!outliers.has(v)) {
+            drawPoint(ctx, pointOptions, props.x - props.width / 2 + random() * props.width, v);
+          }
+        });
+      } else {
+        props.items.forEach((v) => {
+          if (!outliers.has(v)) {
+            drawPoint(ctx, pointOptions, v, props.y - props.height / 2 + random() * props.height);
+          }
+        });
+      }
+      ctx.restore();
+    }
+    _drawOutliers(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "outliers"]);
+      const { options } = this;
+      if (options.outlierRadius <= 0 || !props.outliers || props.outliers.length === 0) {
+        return;
+      }
+      ctx.save();
+      ctx.fillStyle = options.outlierBackgroundColor;
+      ctx.strokeStyle = options.outlierBorderColor;
+      ctx.lineWidth = options.outlierBorderWidth;
+      const pointOptions = {
+        pointStyle: options.outlierStyle,
+        radius: options.outlierRadius,
+        borderWidth: options.outlierBorderWidth
+      };
+      if (vert) {
+        props.outliers.forEach((v) => {
+          drawPoint(ctx, pointOptions, props.x, v);
+        });
+      } else {
+        props.outliers.forEach((v) => {
+          drawPoint(ctx, pointOptions, v, props.y);
+        });
+      }
+      ctx.restore();
+    }
+    _drawMeanDot(ctx) {
+      const vert = this.isVertical();
+      const props = this.getProps(["x", "y", "mean"]);
+      const { options } = this;
+      if (options.meanRadius <= 0 || props.mean == null || Number.isNaN(props.mean)) {
+        return;
+      }
+      ctx.save();
+      ctx.fillStyle = options.meanBackgroundColor;
+      ctx.strokeStyle = options.meanBorderColor;
+      ctx.lineWidth = options.meanBorderWidth;
+      const pointOptions = {
+        pointStyle: options.meanStyle,
+        radius: options.meanRadius,
+        borderWidth: options.meanBorderWidth
+      };
+      if (vert) {
+        drawPoint(ctx, pointOptions, props.x, props.mean);
+      } else {
+        drawPoint(ctx, pointOptions, props.mean, props.y);
+      }
+      ctx.restore();
+    }
+    _getBounds(_useFinalPosition) {
+      return {
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
+      };
+    }
+    _getHitBounds(useFinalPosition) {
+      const padding = this.options.hitPadding;
+      const b = this._getBounds(useFinalPosition);
+      return {
+        left: b.left - padding,
+        top: b.top - padding,
+        right: b.right + padding,
+        bottom: b.bottom + padding
+      };
+    }
+    inRange(mouseX, mouseY, useFinalPosition) {
+      if (Number.isNaN(this.x) && Number.isNaN(this.y)) {
+        return false;
+      }
+      return this._boxInRange(mouseX, mouseY, useFinalPosition) || this._outlierIndexInRange(mouseX, mouseY, useFinalPosition) >= 0;
+    }
+    inXRange(mouseX, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseX >= bounds.left && mouseX <= bounds.right;
+    }
+    inYRange(mouseY, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseY >= bounds.top && mouseY <= bounds.bottom;
+    }
+    _outlierIndexInRange(mouseX, mouseY, useFinalPosition) {
+      const props = this.getProps(["x", "y"], useFinalPosition);
+      const hitRadius = this.options.outlierHitRadius;
+      const outliers = this._getOutliers(useFinalPosition);
+      const vertical = this.isVertical();
+      if (vertical && Math.abs(mouseX - props.x) > hitRadius || !vertical && Math.abs(mouseY - props.y) > hitRadius) {
+        return -1;
+      }
+      const toCompare = vertical ? mouseY : mouseX;
+      for (let i = 0; i < outliers.length; i += 1) {
+        if (Math.abs(outliers[i] - toCompare) <= hitRadius) {
+          return i;
+        }
+      }
+      return -1;
+    }
+    _boxInRange(mouseX, mouseY, useFinalPosition) {
+      const bounds = this._getHitBounds(useFinalPosition);
+      return mouseX >= bounds.left && mouseX <= bounds.right && mouseY >= bounds.top && mouseY <= bounds.bottom;
+    }
+    getCenterPoint(useFinalPosition) {
+      const props = this.getProps(["x", "y"], useFinalPosition);
+      return {
+        x: props.x,
+        y: props.y
+      };
+    }
+    _getOutliers(useFinalPosition) {
+      const props = this.getProps(["outliers"], useFinalPosition);
+      return props.outliers || [];
+    }
+    tooltipPosition(eventPosition, tooltip4) {
+      if (!eventPosition || typeof eventPosition === "boolean") {
+        return this.getCenterPoint();
+      }
+      if (tooltip4) {
+        delete tooltip4._tooltipOutlier;
+      }
+      const props = this.getProps(["x", "y"]);
+      const index3 = this._outlierIndexInRange(eventPosition.x, eventPosition.y);
+      if (index3 < 0 || !tooltip4) {
+        return this.getCenterPoint();
+      }
+      tooltip4._tooltipOutlier = {
+        index: index3,
+        datasetIndex: this._datasetIndex
+      };
+      if (this.isVertical()) {
+        return {
+          x: props.x,
+          y: this._getOutliers()[index3]
+        };
+      }
+      return {
+        x: this._getOutliers()[index3],
+        y: props.y
+      };
+    }
+  };
+  var boxOptionsKeys = baseOptionKeys.concat(["medianColor", "lowerBackgroundColor"]);
+  var BoxAndWiskers = class extends StatsBase$1 {
+    draw(ctx) {
+      ctx.save();
+      ctx.fillStyle = this.options.backgroundColor;
+      ctx.strokeStyle = this.options.borderColor;
+      ctx.lineWidth = this.options.borderWidth;
+      this._drawBoxPlot(ctx);
+      this._drawOutliers(ctx);
+      this._drawMeanDot(ctx);
+      ctx.restore();
+      this._drawItems(ctx);
+    }
+    _drawBoxPlot(ctx) {
+      if (this.isVertical()) {
+        this._drawBoxPlotVertical(ctx);
+      } else {
+        this._drawBoxPlotHorizontal(ctx);
+      }
+    }
+    _drawBoxPlotVertical(ctx) {
+      const { options } = this;
+      const props = this.getProps(["x", "width", "q1", "q3", "median", "whiskerMin", "whiskerMax"]);
+      const { x } = props;
+      const { width } = props;
+      const x0 = x - width / 2;
+      if (props.q3 > props.q1) {
+        ctx.fillRect(x0, props.q1, width, props.q3 - props.q1);
+      } else {
+        ctx.fillRect(x0, props.q3, width, props.q1 - props.q3);
+      }
+      ctx.save();
+      if (options.medianColor && options.medianColor !== "transparent" && options.medianColor !== "#0000") {
+        ctx.strokeStyle = options.medianColor;
+      }
+      ctx.beginPath();
+      ctx.moveTo(x0, props.median);
+      ctx.lineTo(x0 + width, props.median);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      if (options.lowerBackgroundColor && options.lowerBackgroundColor !== "transparent" && options.lowerBackgroundColor !== "#0000") {
+        ctx.fillStyle = options.lowerBackgroundColor;
+        if (props.q3 > props.q1) {
+          ctx.fillRect(x0, props.median, width, props.q3 - props.median);
+        } else {
+          ctx.fillRect(x0, props.median, width, props.q1 - props.median);
+        }
+      }
+      ctx.restore();
+      if (props.q3 > props.q1) {
+        ctx.strokeRect(x0, props.q1, width, props.q3 - props.q1);
+      } else {
+        ctx.strokeRect(x0, props.q3, width, props.q1 - props.q3);
+      }
+      ctx.beginPath();
+      ctx.moveTo(x0, props.whiskerMin);
+      ctx.lineTo(x0 + width, props.whiskerMin);
+      ctx.moveTo(x, props.whiskerMin);
+      ctx.lineTo(x, props.q1);
+      ctx.moveTo(x0, props.whiskerMax);
+      ctx.lineTo(x0 + width, props.whiskerMax);
+      ctx.moveTo(x, props.whiskerMax);
+      ctx.lineTo(x, props.q3);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    _drawBoxPlotHorizontal(ctx) {
+      const { options } = this;
+      const props = this.getProps(["y", "height", "q1", "q3", "median", "whiskerMin", "whiskerMax"]);
+      const { y } = props;
+      const { height } = props;
+      const y0 = y - height / 2;
+      if (props.q3 > props.q1) {
+        ctx.fillRect(props.q1, y0, props.q3 - props.q1, height);
+      } else {
+        ctx.fillRect(props.q3, y0, props.q1 - props.q3, height);
+      }
+      ctx.save();
+      if (options.medianColor && options.medianColor !== "transparent") {
+        ctx.strokeStyle = options.medianColor;
+      }
+      ctx.beginPath();
+      ctx.moveTo(props.median, y0);
+      ctx.lineTo(props.median, y0 + height);
+      ctx.closePath();
+      ctx.stroke();
+      ctx.restore();
+      ctx.save();
+      if (options.lowerBackgroundColor && options.lowerBackgroundColor !== "transparent") {
+        ctx.fillStyle = options.lowerBackgroundColor;
+        if (props.q3 > props.q1) {
+          ctx.fillRect(props.median, y0, props.q3 - props.median, height);
+        } else {
+          ctx.fillRect(props.median, y0, props.q1 - props.median, height);
+        }
+      }
+      ctx.restore();
+      if (props.q3 > props.q1) {
+        ctx.strokeRect(props.q1, y0, props.q3 - props.q1, height);
+      } else {
+        ctx.strokeRect(props.q3, y0, props.q1 - props.q3, height);
+      }
+      ctx.beginPath();
+      ctx.moveTo(props.whiskerMin, y0);
+      ctx.lineTo(props.whiskerMin, y0 + height);
+      ctx.moveTo(props.whiskerMin, y);
+      ctx.lineTo(props.q1, y);
+      ctx.moveTo(props.whiskerMax, y0);
+      ctx.lineTo(props.whiskerMax, y0 + height);
+      ctx.moveTo(props.whiskerMax, y);
+      ctx.lineTo(props.q3, y);
+      ctx.closePath();
+      ctx.stroke();
+    }
+    _getBounds(useFinalPosition) {
+      const vert = this.isVertical();
+      if (this.x == null) {
+        return {
+          left: 0,
+          top: 0,
+          right: 0,
+          bottom: 0
+        };
+      }
+      if (vert) {
+        const { x, width, whiskerMax: whiskerMax2, whiskerMin: whiskerMin2 } = this.getProps(["x", "width", "whiskerMin", "whiskerMax"], useFinalPosition);
+        const x0 = x - width / 2;
+        return {
+          left: x0,
+          top: whiskerMax2,
+          right: x0 + width,
+          bottom: whiskerMin2
+        };
+      }
+      const { y, height, whiskerMax, whiskerMin } = this.getProps(["y", "height", "whiskerMin", "whiskerMax"], useFinalPosition);
+      const y0 = y - height / 2;
+      return {
+        left: whiskerMin,
+        top: y0,
+        right: whiskerMax,
+        bottom: y0 + height
+      };
+    }
+  };
+  BoxAndWiskers.id = "boxandwhiskers";
+  BoxAndWiskers.defaults = {
+    ...BarElement.defaults,
+    ...baseDefaults$1,
+    medianColor: "transparent",
+    lowerBackgroundColor: "transparent"
+  };
+  BoxAndWiskers.defaultRoutes = { ...BarElement.defaultRoutes, ...baseRoutes };
+  var Violin = class extends StatsBase$1 {
+    draw(ctx) {
+      ctx.save();
+      ctx.fillStyle = this.options.backgroundColor;
+      ctx.strokeStyle = this.options.borderColor;
+      ctx.lineWidth = this.options.borderWidth;
+      const props = this.getProps(["x", "y", "median", "width", "height", "min", "max", "coords", "maxEstimate"]);
+      if (props.median != null) {
+        drawPoint(ctx, {
+          pointStyle: "rectRot",
+          radius: 5,
+          borderWidth: this.options.borderWidth
+        }, props.x, props.y);
+      }
+      if (props.coords && props.coords.length > 0) {
+        this._drawCoords(ctx, props);
+      }
+      this._drawOutliers(ctx);
+      this._drawMeanDot(ctx);
+      ctx.restore();
+      this._drawItems(ctx);
+    }
+    _drawCoords(ctx, props) {
+      let maxEstimate;
+      if (props.maxEstimate == null) {
+        maxEstimate = props.coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
+      } else {
+        maxEstimate = props.maxEstimate;
+      }
+      if (this.isVertical()) {
+        const { x, width } = props;
+        const factor = width / 2 / maxEstimate;
+        ctx.moveTo(x, props.min);
+        props.coords.forEach((c) => {
+          ctx.lineTo(x - c.estimate * factor, c.v);
+        });
+        ctx.lineTo(x, props.max);
+        ctx.moveTo(x, props.min);
+        props.coords.forEach((c) => {
+          ctx.lineTo(x + c.estimate * factor, c.v);
+        });
+        ctx.lineTo(x, props.max);
+      } else {
+        const { y, height } = props;
+        const factor = height / 2 / maxEstimate;
+        ctx.moveTo(props.min, y);
+        props.coords.forEach((c) => {
+          ctx.lineTo(c.v, y - c.estimate * factor);
+        });
+        ctx.lineTo(props.max, y);
+        ctx.moveTo(props.min, y);
+        props.coords.forEach((c) => {
+          ctx.lineTo(c.v, y + c.estimate * factor);
+        });
+        ctx.lineTo(props.max, y);
+      }
+      ctx.closePath();
+      ctx.stroke();
+      ctx.fill();
+    }
+    _getBounds(useFinalPosition) {
+      if (this.isVertical()) {
+        const { x, width, min: min4, max: max4 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
+        const x0 = x - width / 2;
+        return {
+          left: x0,
+          top: max4,
+          right: x0 + width,
+          bottom: min4
+        };
+      }
+      const { y, height, min: min3, max: max3 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
+      const y0 = y - height / 2;
+      return {
+        left: min3,
+        top: y0,
+        right: max3,
+        bottom: y0 + height
+      };
+    }
+  };
+  Violin.id = "violin";
+  Violin.defaults = { ...BarElement.defaults, ...baseDefaults$1 };
+  Violin.defaultRoutes = { ...BarElement.defaultRoutes, ...baseRoutes };
+  var interpolators2 = {
+    number(from2, to2, factor) {
+      if (from2 === to2) {
+        return to2;
+      }
+      if (from2 == null) {
+        return to2;
+      }
+      if (to2 == null) {
+        return from2;
+      }
+      return from2 + (to2 - from2) * factor;
+    }
+  };
+  function interpolateNumberArray(from2, to2, factor) {
+    if (typeof from2 === "number" && typeof to2 === "number") {
+      return interpolators2.number(from2, to2, factor);
+    }
+    if (Array.isArray(from2) && Array.isArray(to2)) {
+      return to2.map((t, i) => interpolators2.number(from2[i], t, factor));
+    }
+    return to2;
+  }
+  function interpolateKdeCoords(from2, to2, factor) {
+    if (Array.isArray(from2) && Array.isArray(to2)) {
+      return to2.map((t, i) => ({
+        v: interpolators2.number(from2[i] ? from2[i].v : null, t.v, factor),
+        estimate: interpolators2.number(from2[i] ? from2[i].estimate : null, t.estimate, factor)
+      }));
+    }
+    return to2;
+  }
+  function patchInHoveredOutlier(item) {
+    const value = item.formattedValue;
+    const that = this;
+    if (value && that._tooltipOutlier != null && item.datasetIndex === that._tooltipOutlier.datasetIndex) {
+      value.hoveredOutlierIndex = that._tooltipOutlier.index;
+    }
+  }
+  function outlierPositioner(items, eventPosition) {
+    if (!items.length) {
+      return false;
+    }
+    let x = 0;
+    let y = 0;
+    let count = 0;
+    for (let i = 0; i < items.length; i += 1) {
+      const el = items[i].element;
+      if (el && el.hasValue()) {
+        const pos = el.tooltipPosition(eventPosition, this);
+        x += pos.x;
+        y += pos.y;
+        count += 1;
+      }
+    }
+    return {
+      x: x / count,
+      y: y / count
+    };
+  }
+  outlierPositioner.id = "average";
+  outlierPositioner.register = () => {
+    plugin_tooltip.positioners.average = outlierPositioner;
+    return outlierPositioner;
+  };
+  function baseDefaults(keys) {
+    const colorKeys = ["borderColor", "backgroundColor"].concat(keys.filter((c) => c.endsWith("Color")));
+    return {
+      animations: {
+        numberArray: {
+          fn: interpolateNumberArray,
+          properties: ["outliers", "items"]
+        },
+        colors: {
+          type: "color",
+          properties: colorKeys
+        }
+      },
+      transitions: {
+        show: {
+          animations: {
+            colors: {
+              type: "color",
+              properties: colorKeys,
+              from: "transparent"
+            }
+          }
+        },
+        hide: {
+          animations: {
+            colors: {
+              type: "color",
+              properties: colorKeys,
+              to: "transparent"
+            }
+          }
+        }
+      },
+      minStats: "min",
+      maxStats: "max",
+      ...defaultStatsOptions
+    };
+  }
+  function defaultOverrides() {
+    return {
+      plugins: {
+        tooltip: {
+          position: outlierPositioner.register().id,
+          callbacks: {
+            beforeLabel: patchInHoveredOutlier
+          }
+        }
+      }
+    };
+  }
+  var StatsBase = class extends BarController {
+    _transformStats(target, source, mapper) {
+      for (const key of ["min", "max", "median", "q3", "q1", "mean"]) {
+        const v = source[key];
+        if (typeof v === "number") {
+          target[key] = mapper(v);
+        }
+      }
+      for (const key of ["outliers", "items"]) {
+        if (Array.isArray(source[key])) {
+          target[key] = source[key].map(mapper);
+        }
+      }
+    }
+    getMinMax(scale, canStack) {
+      const bak = scale.axis;
+      const config = this.options;
+      scale.axis = config.minStats;
+      const { min: min3 } = super.getMinMax(scale, canStack);
+      scale.axis = config.maxStats;
+      const { max: max3 } = super.getMinMax(scale, canStack);
+      scale.axis = bak;
+      return { min: min3, max: max3 };
+    }
+    parsePrimitiveData(meta, data, start2, count) {
+      const vScale = meta.vScale;
+      const iScale = meta.iScale;
+      const labels = iScale.getLabels();
+      const r = [];
+      for (let i = 0; i < count; i += 1) {
+        const index3 = i + start2;
+        const parsed = {};
+        parsed[iScale.axis] = iScale.parse(labels[index3], index3);
+        const stats = this._parseStats(data == null ? null : data[index3], this.options);
+        if (stats) {
+          Object.assign(parsed, stats);
+          parsed[vScale.axis] = stats.median;
+        }
+        r.push(parsed);
+      }
+      return r;
+    }
+    parseArrayData(meta, data, start2, count) {
+      return this.parsePrimitiveData(meta, data, start2, count);
+    }
+    parseObjectData(meta, data, start2, count) {
+      return this.parsePrimitiveData(meta, data, start2, count);
+    }
+    getLabelAndValue(index3) {
+      const r = super.getLabelAndValue(index3);
+      const { vScale } = this._cachedMeta;
+      const parsed = this.getParsed(index3);
+      if (!vScale || !parsed || r.value === "NaN") {
+        return r;
+      }
+      r.value = {
+        raw: parsed,
+        hoveredOutlierIndex: -1
+      };
+      this._transformStats(r.value, parsed, (v) => vScale.getLabelForValue(v));
+      const s = this._toStringStats(r.value.raw);
+      r.value.toString = function toString() {
+        if (this.hoveredOutlierIndex >= 0) {
+          return `(outlier: ${this.outliers[this.hoveredOutlierIndex]})`;
+        }
+        return s;
+      };
+      return r;
+    }
+    _toStringStats(b) {
+      const f = (v) => v == null ? "NaN" : formatNumber(v, this.chart.options.locale, {});
+      return `(min: ${f(b.min)}, 25% quantile: ${f(b.q1)}, median: ${f(b.median)}, mean: ${f(b.mean)}, 75% quantile: ${f(b.q3)}, max: ${f(b.max)})`;
+    }
+    updateElement(rectangle, index3, properties, mode) {
+      const reset = mode === "reset";
+      const scale = this._cachedMeta.vScale;
+      const parsed = this.getParsed(index3);
+      const base = scale.getBasePixel();
+      properties._datasetIndex = this.index;
+      properties._index = index3;
+      this._transformStats(properties, parsed, (v) => reset ? base : scale.getPixelForValue(v, index3));
+      super.updateElement(rectangle, index3, properties, mode);
+    }
+  };
+  function patchController(type2, config, controller, elements2 = [], scales2 = []) {
+    registry.addControllers(controller);
+    if (Array.isArray(elements2)) {
+      registry.addElements(...elements2);
+    } else {
+      registry.addElements(elements2);
+    }
+    if (Array.isArray(scales2)) {
+      registry.addScales(...scales2);
+    } else {
+      registry.addScales(scales2);
+    }
+    const c = config;
+    c.type = type2;
+    return c;
+  }
+  var BoxPlotController = class extends StatsBase {
+    _parseStats(value, config) {
+      return asBoxPlotStats(value, config);
+    }
+    _transformStats(target, source, mapper) {
+      super._transformStats(target, source, mapper);
+      for (const key of ["whiskerMin", "whiskerMax"]) {
+        target[key] = mapper(source[key]);
+      }
+    }
+  };
+  BoxPlotController.id = "boxplot";
+  BoxPlotController.defaults = merge({}, [
+    BarController.defaults,
+    baseDefaults(boxOptionsKeys),
+    {
+      animations: {
+        numbers: {
+          type: "number",
+          properties: BarController.defaults.animations.numbers.properties.concat(["q1", "q3", "min", "max", "median", "whiskerMin", "whiskerMax", "mean"], boxOptionsKeys.filter((c) => !c.endsWith("Color")))
+        }
+      },
+      dataElementType: BoxAndWiskers.id
+    }
+  ]);
+  BoxPlotController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
+  var BoxPlotChart = class extends Chart {
+    constructor(item, config) {
+      super(item, patchController("boxplot", config, BoxPlotController, BoxAndWiskers, [LinearScale, CategoryScale]));
+    }
+  };
+  BoxPlotChart.id = BoxPlotController.id;
+  var ViolinController = class extends StatsBase {
+    _parseStats(value, config) {
+      return asViolinStats(value, config);
+    }
+    _transformStats(target, source, mapper) {
+      super._transformStats(target, source, mapper);
+      target.maxEstimate = source.maxEstimate;
+      if (Array.isArray(source.coords)) {
+        target.coords = source.coords.map((c) => ({ ...c, v: mapper(c.v) }));
+      }
+    }
+  };
+  ViolinController.id = "violin";
+  ViolinController.defaults = merge({}, [
+    BarController.defaults,
+    baseDefaults(baseOptionKeys),
+    {
+      points: 100,
+      animations: {
+        numbers: {
+          type: "number",
+          properties: BarController.defaults.animations.numbers.properties.concat(["q1", "q3", "min", "max", "median", "maxEstimate"], baseOptionKeys.filter((c) => !c.endsWith("Color")))
+        },
+        kdeCoords: {
+          fn: interpolateKdeCoords,
+          properties: ["coords"]
+        }
+      },
+      dataElementType: Violin.id
+    }
+  ]);
+  ViolinController.overrides = merge({}, [BarController.overrides, defaultOverrides()]);
+  var ViolinChart = class extends Chart {
+    constructor(item, config) {
+      super(item, patchController("violin", config, ViolinController, Violin, [LinearScale, CategoryScale]));
+    }
+  };
+  ViolinChart.id = ViolinController.id;
 
   // node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js
   var devicePixelRatio = function() {
@@ -18920,16 +20019,20 @@ var rbmViz = (() => {
   var colorScheme_default = colorScheme;
 
   // src/util/coalesce.js
-  function coalesce(a, b) {
-    if ([null, void 0].includes(a))
-      return b;
-    if (typeof b === "string" && a === "")
-      return b;
-    if (Array.isArray(b) && !Array.isArray(a))
-      a = [a];
-    if (Array.isArray(b) && Array.isArray(a) && a[0] === "")
-      return b;
-    return a;
+  function coalesce(customSetting, defaultSetting) {
+    if ([null, void 0].includes(customSetting)) {
+      return defaultSetting;
+    }
+    if (typeof defaultSetting === "string" && customSetting === "") {
+      return defaultSetting;
+    }
+    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
+      customSetting = [customSetting];
+    }
+    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
+      return defaultSetting;
+    }
+    return customSetting;
   }
 
   // src/util/configure.js
@@ -19171,9 +20274,9 @@ var rbmViz = (() => {
 
   // src/barChart/plugins/annotations.js
   function annotations(config) {
-    let annotations3 = null;
+    let annotations4 = null;
     if (config.thresholds) {
-      annotations3 = config.thresholds.map((x, i) => ({
+      annotations4 = config.thresholds.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -19194,7 +20297,7 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations3;
+    return annotations4;
   }
 
   // src/barChart/plugins/legend.js
@@ -19240,7 +20343,7 @@ var rbmViz = (() => {
 
   // src/barChart/plugins.js
   function plugins2(config) {
-    const plugins5 = {
+    const plugins6 = {
       annotation: {
         annotations: annotations(config)
       },
@@ -19248,7 +20351,7 @@ var rbmViz = (() => {
       legend: legend(config),
       tooltip: tooltip(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/barChart/getScales.js
@@ -19625,12 +20728,12 @@ var rbmViz = (() => {
 
   // src/scatterPlot/plugins.js
   function plugins3(config) {
-    const plugins5 = {
+    const plugins6 = {
       legend: legend2(config),
       title: title(config),
       tooltip: tooltip2(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/scatterPlot/getScales.js
@@ -19744,13 +20847,28 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/util/checkThresholds.js
+  function checkThresholds2(_config_, _thresholds_) {
+    let thresholds = _config_.thresholds;
+    if (_config_.y === "metric")
+      return null;
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
+      return mapThresholdsToFlags(thresholds);
+    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+      return null;
+    thresholds = _thresholds_.filter(
+      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    ).map((d) => d.default);
+    return mapThresholdsToFlags(thresholds);
+  }
+
   // src/sparkline/configure.js
-  function configure5(_config_, _data_, _thresholds_) {
+  function configure5(_config_, _data_, _parameters_) {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
     defaults3.xLabel = _config_[defaults3.x];
-    defaults3.y = "metric";
+    defaults3.y = "score";
     defaults3.yType = "linear";
     defaults3.yLabel = _config_[defaults3.y];
     defaults3.color = "flag";
@@ -19761,7 +20879,9 @@ var rbmViz = (() => {
     };
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
-    const config = configure2(defaults3, _config_, {});
+    const config = configure2(defaults3, _config_, {
+      thresholds: checkThresholds2.bind(null, _config_, _parameters_)
+    });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
   }
@@ -19776,7 +20896,7 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data.slice(data.length - config.nSnapshots);
+    return data.slice(-config.nSnapshots);
   }
 
   // src/sparkline/structureData/scriptableOptions/borderColor.js
@@ -19836,15 +20956,16 @@ var rbmViz = (() => {
   // src/sparkline/plugins/annotation.js
   function annotations2(config, data) {
     const xMin = 0;
-    const xMax = data.length - 1;
+    const xMax = data.length;
     const xValue = xMax;
     const yMin = min(data, (d) => +d[config.y]);
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = range === yMin ? yMin : yMin + range / 2;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? " 4d" : range < 0.1 ? ".3f" : range < 1 ? ".2f" : ".1f";
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(" 4d")(datum2[config.annotation])
+      format(format2)(datum2.y).replace(/^0./, ".")
     ];
     return {
       clip: false,
@@ -19855,8 +20976,9 @@ var rbmViz = (() => {
           yValue,
           content,
           font: {
-            size: 16,
-            family: "lucida console"
+            size: 14,
+            family: "roboto",
+            weight: 700
           },
           position: {
             x: "start",
@@ -19881,12 +21003,12 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
-    const plugins5 = {
+    const plugins6 = {
       annotation: annotations2(config, _data_),
       legend: legend3(config),
       tooltip: tooltip3(config)
     };
-    return plugins5;
+    return plugins6;
   }
 
   // src/sparkline/getScales.js
@@ -19918,8 +21040,6 @@ var rbmViz = (() => {
   // src/sparkline/updateConfig.js
   function updateConfig3(chart, _config_, update = false) {
     const config = configure5(_config_);
-    chart.options.plugins = plugins4(config);
-    chart.options.scales = getScales3(config);
     chart.data.config = config;
     if (update)
       chart.update();
@@ -19927,8 +21047,9 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/updateData.js
-  function updateData3(chart, _data_, _config_, _bounds_) {
+  function updateData3(chart, _data_, _config_) {
     chart.data.config = updateConfig3(chart, _config_);
+    chart.data.datasets = structureData3(_data_, chart.data.config);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -19937,26 +21058,20 @@ var rbmViz = (() => {
       chart.canvas,
       chart.data.config.clickCallback
     );
-    chart.data.datasets = structureData3(_data_, chart.data.config, _bounds_);
-    chart.update();
-  }
-
-  // src/sparkline/updateOption.js
-  function updateOption3(chart, option, value) {
-    const objPath = option.split(".");
-    let obj = chart.options;
-    for (let i = 0; i < objPath.length; i++) {
-      if (i < objPath.length - 1)
-        obj = obj[objPath[i]];
-      else
-        obj[objPath[i]] = value;
-    }
+    chart.options.plugins = plugins4(
+      chart.data.config,
+      chart.data.datasets[0].data
+    );
+    chart.options.scales = getScales3(
+      chart.data.config,
+      chart.data.datasets[0].data
+    );
     chart.update();
   }
 
   // src/sparkline.js
-  function sparkline(_element_ = "body", _data_ = [], _config_ = {}) {
-    const config = configure5(_config_, _data_);
+  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _param_ = []) {
+    const config = configure5(_config_, _data_, _param_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
@@ -19983,19 +21098,273 @@ var rbmViz = (() => {
     });
     canvas.chart = chart;
     chart.helpers = {
-      updateData: updateData3,
-      updateConfig: updateConfig3,
-      updateOption: updateOption3
+      updateData: updateData3
     };
     return chart;
   }
 
+  // src/timeSeries/configure/checkThresholds.js
+  function checkThresholds3(_config_, _thresholds_) {
+    let thresholds = _config_.thresholds;
+    if (_config_.y === "metric")
+      return null;
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
+      return mapThresholdsToFlags(thresholds);
+    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+      return null;
+    thresholds = _thresholds_.filter(
+      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    ).map((d) => d.default);
+    return mapThresholdsToFlags(thresholds);
+  }
+
+  // src/timeSeries/configure.js
+  function configure6(_config_, _data_, _parameters_) {
+    const defaults3 = {};
+    defaults3.type = "boxplot";
+    defaults3.x = "snapshot_date";
+    defaults3.xLabel = "Snapshot Date";
+    defaults3.y = "score";
+    defaults3.yType = "linear";
+    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.colorScheme = colorScheme_default;
+    defaults3.hoverCallback = (datum2) => {
+    };
+    defaults3.clickCallback = (datum2) => {
+    };
+    defaults3.maintainAspectRatio = false;
+    const config = configure2(defaults3, _config_, {
+      selectedGroupIDs: checkSelectedGroupIDs.bind(
+        null,
+        _config_.selectedGroupIDs,
+        _data_
+      ),
+      thresholds: checkThresholds3.bind(null, _config_, _parameters_)
+    });
+    return config;
+  }
+
+  // src/timeSeries/structureData/getLabels.js
+  function getLabels(_data_, config) {
+    const labels = [...new Set(_data_.map((d) => d[config.x]))];
+    return labels;
+  }
+
+  // src/timeSeries/structureData/boxplot.js
+  function boxplot2(_data_, config) {
+    const grouped = rollups(
+      _data_,
+      (group2) => group2.map((d) => +d[config.y]),
+      (d) => d.snapshot_date
+    );
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "boxplot",
+      backgroundColor: color3.rgba + "",
+      borderColor: color3.color,
+      data: grouped.map((d) => d[1])
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/violin.js
+  function violin(_data_, config) {
+    const grouped = rollups(
+      _data_.filter((d) => +d.flag === 0),
+      (group2) => group2.map((d) => +d[config.y]),
+      (d) => d.snapshot_date
+    );
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "violin",
+      backgroundColor: color3.rgba + "",
+      borderColor: color3.color,
+      data: grouped.map((d) => d[1])
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/atRisk.js
+  function atRisk(_data_, config, labels) {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 1)
+    );
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "scatter",
+      data: pointData,
+      borderColor: color3.color,
+      backgroundColor: color3.rgba + "",
+      radius: 1.5
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/flagged.js
+  function flagged(_data_, config, labels) {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d, i) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) > 1)
+    );
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "scatter",
+      data: pointData,
+      borderColor: color3.color,
+      backgroundColor: color3.rgba + "",
+      radius: 1.5
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/line.js
+  function line(_data_, config, labels) {
+    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const dataset = {
+      type: "line",
+      data: lineData,
+      backgroundColor: "rgba(0,0,255,.75)",
+      borderColor: "rgba(0,0,255,.25)"
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData.js
+  function structureData4(_data_, config) {
+    _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
+    const labels = getLabels(_data_, config);
+    let data;
+    if (config.y === "score") {
+      const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
+      data = {
+        labels,
+        datasets: [
+          distribution,
+          atRisk(_data_, config, labels),
+          flagged(_data_, config, labels),
+          line(_data_, config, labels)
+        ].filter((dataset) => dataset !== null)
+      };
+    }
+    if (/flag|risk/.test(config.y)) {
+      const lineData = _data_.map((d, i) => {
+        const datum2 = { ...d };
+        datum2.x = datum2[config.x];
+        datum2.y = +datum2[config.y];
+        return datum2;
+      });
+      data = {
+        labels,
+        datasets: [
+          {
+            type: "line",
+            data: lineData.map((d) => d.y),
+            backgroundColor: "rgba(0,0,255,.75)",
+            borderColor: "rgba(0,0,255,.25)"
+          }
+        ]
+      };
+    }
+    return data;
+  }
+
+  // src/timeSeries/plugins/annotations.js
+  function annotations3(config) {
+    let annotations4 = null;
+    if (config.thresholds) {
+      annotations4 = config.thresholds.map((x, i) => ({
+        drawTime: "beforeDatasetsDraw",
+        type: "line",
+        yMin: x.threshold,
+        yMax: x.threshold,
+        borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+        borderWidth: 2,
+        borderDash: [5],
+        label: {
+          rotation: "auto",
+          position: Math.sign(+x.flag) === 1 ? "end" : "start",
+          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+          backgroundColor: "white",
+          content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
+          display: true,
+          font: {
+            size: 12
+          }
+        }
+      }));
+    }
+    return annotations4;
+  }
+
+  // src/timeSeries/plugins.js
+  function plugins5(config) {
+    return {
+      annotation: {
+        annotations: annotations3(config)
+      },
+      legend: {
+        display: false
+      }
+    };
+  }
+
+  // src/timeSeries.js
+  function timeSeries(_element_, _data_, _config_ = {}, _parameters_ = null) {
+    const config = configure6(_config_, _data_, _parameters_);
+    const canvas = addCanvas(_element_, config);
+    const data = structureData4(_data_, config);
+    const options = {
+      animation: false,
+      events: ["click", "mousemove", "mouseout"],
+      maintainAspectRatio: config.maintainAspectRatio,
+      plugins: plugins5(config),
+      responsive: true
+    };
+    const chart = new auto_default(canvas, {
+      data,
+      options
+    });
+    canvas.chart = chart;
+    return chart;
+  }
+
   // src/main.js
-  Chart.register(annotation);
+  Chart.register(
+    annotation,
+    CategoryScale,
+    LinearScale,
+    BoxPlotController,
+    BoxAndWiskers,
+    ViolinController,
+    Violin
+  );
   var rbmViz = {
     barChart,
     scatterPlot,
-    sparkline
+    sparkline,
+    timeSeries
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);
