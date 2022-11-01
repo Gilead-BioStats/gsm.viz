@@ -40,8 +40,9 @@ export default function annotations(config, data) {
                 //backgroundColor: 'rgba(245,245,245)',
                 content,
                 font: {
-                    size: 12,
-                    family: 'lucida console',
+                    size: 14,
+                    family: 'roboto',
+                    weight: 700,
                 },
                 position: {
                     x: 'start',

@@ -23,7 +23,7 @@ export default function annotations(config) {
                     .description,
                 display: true, //Math.sign(+x.flag) === 1,
                 font: {
-                    size: 12,
+                    size: 14,
                 },
             },
         }));

@@ -1,6 +1,7 @@
 const dataFiles = [
     '../data/meta_workflow.csv',
-    '../data/flag_counts_by_kri.csv',
+    '../data/results_summary_over_time.csv',
+    '../data/meta_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -13,15 +14,19 @@ Promise.all(dataPromises)
         // data
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
-        workflow.y = 'n_flagged';
-        const flagCounts = datasets[1].filter(
+        workflow.selectedGroupIDs = '43';
+        const results = datasets[1].filter(
+            (d) => d.workflowid === workflow.workflowid
+        );
+        const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
 
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
-            flagCounts,
-            workflow
+            results,
+            workflow,
+            parameters
         );
     });

@@ -13,22 +13,47 @@ export default function structureData(_data_, config) {
 
     const labels = getLabels(_data_, config);
 
-    const distribution = config.type === 'boxplot'
-        ? boxplot(_data_, config, labels)
-        : config.type === 'violin'
-        ? violin(_data_, config, labels)
-        : null;
+    let data;
+    if (config.y === 'score') {
+        const distribution = config.type === 'boxplot'
+            ? boxplot(_data_, config, labels)
+            : config.type === 'violin'
+            ? violin(_data_, config, labels)
+            : null;
 
-    const data = {
-        labels,
-        datasets: [
-            distribution,
-            atRisk(_data_, config, labels),
-            flagged(_data_, config, labels),
-            line(_data_, config, labels),
-        ].filter(dataset => dataset !== null),
-    };
-    console.log(data.datasets);
+        data = {
+            labels,
+            datasets: [
+                distribution,
+                atRisk(_data_, config, labels),
+                flagged(_data_, config, labels),
+                line(_data_, config, labels),
+            ].filter(dataset => dataset !== null),
+        };
+    }
+
+    if (/flag|risk/.test(config.y)) {
+        const lineData = _data_
+            .map((d,i) => {
+                const datum = { ...d };
+                datum.x = datum[config.x];//labels
+                //.findIndex(label => label === datum[config.x]);
+                datum.y = +datum[config.y];
+                return datum;
+            });
+
+        data = {
+            labels,
+            datasets: [
+                {
+                    type: 'line',
+                    data: lineData.map(d => d.y),
+                    backgroundColor: 'rgba(0,0,255,.75)',
+                    borderColor: 'rgba(0,0,255,.25)',
+                },
+            ],
+        }
+    }
 
     return data;
 }

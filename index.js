@@ -20879,7 +20879,7 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data.slice(data.length - config.nSnapshots);
+    return data.slice(-config.nSnapshots);
   }
 
   // src/sparkline/structureData/scriptableOptions/borderColor.js
@@ -20959,8 +20959,9 @@ var rbmViz = (() => {
           yValue,
           content,
           font: {
-            size: 12,
-            family: "lucida console"
+            size: 14,
+            family: "roboto",
+            weight: 700
           },
           position: {
             x: "start",
@@ -21233,17 +21234,38 @@ var rbmViz = (() => {
       (a, b) => ascending(a[config.x], b[config.x])
     );
     const labels = getLabels(_data_, config);
-    const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
-    const data = {
-      labels,
-      datasets: [
-        distribution,
-        atRisk(_data_, config, labels),
-        flagged(_data_, config, labels),
-        line(_data_, config, labels)
-      ].filter((dataset) => dataset !== null)
-    };
-    console.log(data.datasets);
+    let data;
+    if (config.y === "score") {
+      const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
+      data = {
+        labels,
+        datasets: [
+          distribution,
+          atRisk(_data_, config, labels),
+          flagged(_data_, config, labels),
+          line(_data_, config, labels)
+        ].filter((dataset) => dataset !== null)
+      };
+    }
+    if (/flag|risk/.test(config.y)) {
+      const lineData = _data_.map((d, i) => {
+        const datum2 = { ...d };
+        datum2.x = datum2[config.x];
+        datum2.y = +datum2[config.y];
+        return datum2;
+      });
+      data = {
+        labels,
+        datasets: [
+          {
+            type: "line",
+            data: lineData.map((d) => d.y),
+            backgroundColor: "rgba(0,0,255,.75)",
+            borderColor: "rgba(0,0,255,.25)"
+          }
+        ]
+      };
+    }
     return data;
   }
 
@@ -21267,7 +21289,7 @@ var rbmViz = (() => {
           content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
           display: true,
           font: {
-            size: 12
+            size: 14
           }
         }
       }));
