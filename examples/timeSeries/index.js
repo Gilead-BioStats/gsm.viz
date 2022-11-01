@@ -14,6 +14,7 @@ Promise.all(dataPromises)
         // data
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
+        workflow.selectedGroupIDs = '43';
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
         );

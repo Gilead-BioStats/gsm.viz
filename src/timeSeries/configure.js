@@ -1,6 +1,6 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
-//import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from './configure/checkThresholds';
 
 export default function configure(_config_, _data_, _parameters_) {
@@ -32,11 +32,11 @@ export default function configure(_config_, _data_, _parameters_) {
     defaults.maintainAspectRatio = false;
 
     const config = configureAll(defaults, _config_, {
-        //selectedGroupIDs: checkSelectedGroupIDs.bind(
-        //    null,
-        //    _config_.selectedGroupIDs,
-        //    _data_
-        //),
+        selectedGroupIDs: checkSelectedGroupIDs.bind(
+            null,
+            _config_.selectedGroupIDs,
+            _data_
+        ),
         thresholds: checkThresholds.bind(null, _config_, _parameters_),
     });
 

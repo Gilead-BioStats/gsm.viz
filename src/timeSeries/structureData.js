@@ -1,25 +1,20 @@
-import { rollups, ascending } from 'd3';
+import { ascending } from 'd3';
+import getLabels from './structureData/getLabels';
+import boxplot from './structureData/boxplot';
+import line from './structureData/line';
 
 export default function structureData(_data_, config) {
-    const grouped = rollups(
-        _data_.sort((a, b) => ascending(a.snapshot_date, b.snapshot_date)),
-        (group) => group.map((d) => +d.score),
-        (d) => d.snapshot_date
+    _data_.sort(
+        (a, b) => ascending(a[config.x], b[config.x])
     );
 
+    const lineData = line(_data_, config);
+
     const data = {
-        labels: grouped.map((d) => d[0]),
+        labels: getLabels(_data_, config),
         datasets: [
-            {
-                //label: 'Score',
-                //backgroundColor: 'rgba(0,0,255,0.5)',
-                //borderColor: 'blue',
-                //borderWidth: 1,
-                //outlierColor: '#999999',
-                //padding: 10,
-                //itemRadius: 0,
-                data: grouped.map((d) => d[1]),
-            },
+            boxplot(_data_, config),
+            line(_data_, config),
         ],
     };
 

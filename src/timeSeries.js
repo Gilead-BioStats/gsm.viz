@@ -41,7 +41,7 @@ export default function timeSeries(
     };
 
     const chart = new Chart(canvas, {
-        type: 'boxplot',
+        //type: 'boxplot',
         data,
         options,
         //plugins: [
