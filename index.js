@@ -21141,15 +21141,37 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
+    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 0));
+    color3.rgba.opacity = 0.5;
     const dataset = {
       type: "boxplot",
+      backgroundColor: color3.rgba + "",
+      borderColor: color3.color,
+      data: grouped.map((d) => d[1])
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/violin.js
+  function violin(_data_, config) {
+    const grouped = rollups(
+      _data_.filter((d) => +d.flag === 0),
+      (group2) => group2.map((d) => +d[config.y]),
+      (d) => d.snapshot_date
+    );
+    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 0));
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "violin",
+      backgroundColor: color3.rgba + "",
+      borderColor: color3.color,
       data: grouped.map((d) => d[1])
     };
     return dataset;
   }
 
   // src/timeSeries/structureData/atRisk.js
-  function atRisk(_data_, config) {
+  function atRisk(_data_, config, labels) {
     const pointData = _data_.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
@@ -21169,8 +21191,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/flagged.js
-  function flagged(_data_, config) {
-    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
+  function flagged(_data_, config, labels) {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d, i) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21189,8 +21211,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/line.js
-  function line(_data_, config) {
-    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d) => {
+  function line(_data_, config, labels) {
+    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21210,15 +21232,18 @@ var rbmViz = (() => {
     _data_.sort(
       (a, b) => ascending(a[config.x], b[config.x])
     );
+    const labels = getLabels(_data_, config);
+    const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
     const data = {
-      labels: getLabels(_data_, config),
+      labels,
       datasets: [
-        boxplot2(_data_, config),
-        atRisk(_data_, config),
-        flagged(_data_, config),
-        line(_data_, config)
-      ]
+        distribution,
+        atRisk(_data_, config, labels),
+        flagged(_data_, config, labels),
+        line(_data_, config, labels)
+      ].filter((dataset) => dataset !== null)
     };
+    console.log(data.datasets);
     return data;
   }
 
@@ -21285,10 +21310,12 @@ var rbmViz = (() => {
   // src/main.js
   Chart.register(
     annotation,
+    CategoryScale,
+    LinearScale,
     BoxPlotController,
     BoxAndWiskers,
-    CategoryScale,
-    LinearScale
+    ViolinController,
+    Violin
   );
   var rbmViz = {
     barChart,

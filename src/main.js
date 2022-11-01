@@ -4,6 +4,8 @@ import annotationPlugin from 'chartjs-plugin-annotation';
 import {
     BoxPlotController,
     BoxAndWiskers,
+    ViolinController,
+    Violin,
 } from '@sgratzl/chartjs-chart-boxplot';
 
 // modules
@@ -14,10 +16,12 @@ import timeSeries from './timeSeries';
 
 Chart.register(
     annotationPlugin,
+    CategoryScale,
+    LinearScale,
     BoxPlotController,
     BoxAndWiskers,
-    CategoryScale,
-    LinearScale
+    ViolinController,
+    Violin,
 );
 
 const rbmViz = {

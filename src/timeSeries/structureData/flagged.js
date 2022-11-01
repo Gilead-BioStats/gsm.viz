@@ -1,9 +1,10 @@
-export default function flagged(_data_, config) {
+export default function flagged(_data_, config, labels) {
     const pointData = _data_
         .filter(d => Math.abs(+d.flag) > 1)
-        .map(d => {
+        .map((d,i) => {
             const datum = { ...d };
-            datum.x = datum[config.x];
+            datum.x = datum[config.x];//labels
+            //.findIndex(label => label === datum[config.x]);
             datum.y = +datum[config.y];
             return datum;
         });
