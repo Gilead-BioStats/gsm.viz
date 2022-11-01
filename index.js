@@ -21148,6 +21148,46 @@ var rbmViz = (() => {
     return dataset;
   }
 
+  // src/timeSeries/structureData/atRisk.js
+  function atRisk(_data_, config) {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 1));
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "scatter",
+      data: pointData,
+      borderColor: color3.color,
+      backgroundColor: color3.rgba + "",
+      radius: 1.5
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/flagged.js
+  function flagged(_data_, config) {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) > 1));
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      type: "scatter",
+      data: pointData,
+      borderColor: color3.color,
+      backgroundColor: color3.rgba + "",
+      radius: 1.5
+    };
+    return dataset;
+  }
+
   // src/timeSeries/structureData/line.js
   function line(_data_, config) {
     const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d) => {
@@ -21170,11 +21210,12 @@ var rbmViz = (() => {
     _data_.sort(
       (a, b) => ascending(a[config.x], b[config.x])
     );
-    const lineData = line(_data_, config);
     const data = {
       labels: getLabels(_data_, config),
       datasets: [
         boxplot2(_data_, config),
+        atRisk(_data_, config),
+        flagged(_data_, config),
         line(_data_, config)
       ]
     };
