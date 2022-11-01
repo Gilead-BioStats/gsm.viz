@@ -1,6 +1,6 @@
 import colorScheme from '../../util/colorScheme';
 
-export default function annotations(config) {
+export default function thresholds(config) {
     let annotations = null;
 
     if (config.thresholds) {

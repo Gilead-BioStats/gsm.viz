@@ -1,8 +1,9 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
+import checkThresholds from '../util/checkThresholds';
 
-export default function configure(_config_) {
+export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
 
     defaults.type = 'line';
@@ -31,7 +32,9 @@ export default function configure(_config_) {
     defaults.maintainAspectRatio = false;
     defaults.nSnapshots = 5;
 
-    const config = configureAll(defaults, _config_, {});
+    const config = configureAll(defaults, _config_, {
+        thresholds: checkThresholds.bind(null, _config_, _parameters_),
+    });
 
     // annotation
     config.annotation = ['metric', 'score'].includes(config.y)

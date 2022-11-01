@@ -20847,8 +20847,23 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/util/checkThresholds.js
+  function checkThresholds2(_config_, _thresholds_) {
+    let thresholds = _config_.thresholds;
+    if (_config_.y === "metric")
+      return null;
+    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
+      return mapThresholdsToFlags(thresholds);
+    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+      return null;
+    thresholds = _thresholds_.filter(
+      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    ).map((d) => d.default);
+    return mapThresholdsToFlags(thresholds);
+  }
+
   // src/sparkline/configure.js
-  function configure5(_config_) {
+  function configure5(_config_, _data_, _parameters_) {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
@@ -20864,7 +20879,9 @@ var rbmViz = (() => {
     };
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
-    const config = configure2(defaults3, _config_, {});
+    const config = configure2(defaults3, _config_, {
+      thresholds: checkThresholds2.bind(null, _config_, _parameters_)
+    });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
   }
@@ -21053,8 +21070,8 @@ var rbmViz = (() => {
   }
 
   // src/sparkline.js
-  function sparkline(_element_ = "body", _data_ = [], _config_ = {}) {
-    const config = configure5(_config_, _data_);
+  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _param_ = []) {
+    const config = configure5(_config_, _data_, _param_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
@@ -21087,7 +21104,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/configure/checkThresholds.js
-  function checkThresholds2(_config_, _thresholds_) {
+  function checkThresholds3(_config_, _thresholds_) {
     let thresholds = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
@@ -21122,7 +21139,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds2.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds3.bind(null, _config_, _parameters_)
     });
     return config;
   }
@@ -21289,7 +21306,7 @@ var rbmViz = (() => {
           content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
           display: true,
           font: {
-            size: 14
+            size: 12
           }
         }
       }));
