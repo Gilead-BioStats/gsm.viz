@@ -1,6 +1,7 @@
 {
+  "TODO": "figure out how to display time series sans distributions",
   "name": "rbm-viz",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
@@ -33,6 +34,7 @@
   },
   "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
   "dependencies": {
+    "@sgratzl/chartjs-chart-boxplot": "^3.10.0",
     "chart.js": "^3.9.1",
     "chartjs-plugin-annotation": "^2.0.1",
     "chartjs-plugin-datalabels": "^2.1.0",

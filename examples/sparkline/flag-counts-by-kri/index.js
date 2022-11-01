@@ -1,6 +1,6 @@
 const dataFiles = [
-    '../data/meta_workflow.csv',
-    '../data/flag_counts_by_kri.csv',
+    '../../data/flag_counts_by_kri.csv',
+    '../../data/meta_workflow.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -10,8 +10,8 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflows = datasets[0];
-        const flagCounts = datasets[1];
+        const flagCounts = datasets[0];
+        const workflows = datasets[1];
         const workflowIDs = [...new Set(flagCounts.map((d) => d.workflowid))];
         const container = document.getElementById('container');
 
