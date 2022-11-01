@@ -20297,7 +20297,6 @@ var rbmViz = (() => {
         }
       }));
     }
-    console.log(annotations4);
     return annotations4;
   }
 
@@ -21124,8 +21123,8 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config) {
-    const grouped = d3.rollups(
-      _data_.sort((a, b) => d3.ascending(a.snapshot_date, b.snapshot_date)),
+    const grouped = rollups(
+      _data_.sort((a, b) => ascending(a.snapshot_date, b.snapshot_date)),
       (group2) => group2.map((d) => +d.score),
       (d) => d.snapshot_date
     );
@@ -21165,7 +21164,6 @@ var rbmViz = (() => {
         }
       }));
     }
-    console.log(annotations4);
     return annotations4;
   }
 

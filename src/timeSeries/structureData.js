@@ -1,6 +1,8 @@
+import { rollups, ascending } from 'd3';
+
 export default function structureData(_data_, config) {
-    const grouped = d3.rollups(
-        _data_.sort((a, b) => d3.ascending(a.snapshot_date, b.snapshot_date)),
+    const grouped = rollups(
+        _data_.sort((a, b) => ascending(a.snapshot_date, b.snapshot_date)),
         (group) => group.map((d) => +d.score),
         (d) => d.snapshot_date
     );

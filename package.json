@@ -1,7 +1,7 @@
 {
-  "TODO": "align sparkline annotation across outcomes and add number format setting",
+  "TODO": "",
   "name": "rbm-viz",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",

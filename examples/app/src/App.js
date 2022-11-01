@@ -1,6 +1,6 @@
 import React from 'react';
 import { shuffle } from 'd3';
-import { BarChart, ScatterPlot, Sparkline } from './RbmViz';
+import { BarChart, ScatterPlot, Sparkline, TimeSeries } from './RbmViz';
 
 import workflows from './data/meta_workflow';
 import resultsAll from './data/results_summary';
@@ -29,6 +29,7 @@ const App = () => {
     const workflowMetricBars = { ...workflow };
     workflowMetricBars.y = 'metric';
     const workflowScatterPlot = { ...workflow };
+    const workflowTimeSeries = { ...workflow };
     const workflowSparkline = { ...workflow };
     workflow.nSnapshots = 25;
 
@@ -66,6 +67,11 @@ const App = () => {
             <BarChart
                 data={results}
                 config={workflowMetricBars}
+                thresholds={parameters}
+            />
+            <TimeSeries
+                data={resultsOverTime}
+                config={workflowTimeSeries}
                 thresholds={parameters}
             />
             {sparklines}

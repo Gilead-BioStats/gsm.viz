@@ -28,7 +28,6 @@ export default function annotations(config) {
             },
         }));
     }
-    console.log(annotations);
 
     return annotations;
 }
