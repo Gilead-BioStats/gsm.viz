@@ -21,7 +21,7 @@ Chart.register(
     BoxPlotController,
     BoxAndWiskers,
     ViolinController,
-    Violin,
+    Violin
 );
 
 const rbmViz = {

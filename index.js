@@ -21146,9 +21146,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/getLabels.js
   function getLabels(_data_, config) {
-    const labels = [
-      ...new Set(_data_.map((d) => d[config.x]))
-    ];
+    const labels = [...new Set(_data_.map((d) => d[config.x]))];
     return labels;
   }
 
@@ -21159,7 +21157,9 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
-    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 0));
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "boxplot",
@@ -21177,7 +21177,9 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
-    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 0));
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "violin",
@@ -21196,7 +21198,9 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) === 1));
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 1)
+    );
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "scatter",
@@ -21216,7 +21220,9 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = config.colorScheme.find((color4) => color4.flag.some((flag) => Math.abs(flag) > 1));
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) > 1)
+    );
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "scatter",
@@ -21247,9 +21253,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config) {
-    _data_.sort(
-      (a, b) => ascending(a[config.x], b[config.x])
-    );
+    _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(_data_, config);
     let data;
     if (config.y === "score") {

@@ -2,14 +2,15 @@ import { rollups, ascending } from 'd3';
 
 export default function violin(_data_, config) {
     const grouped = rollups(
-        _data_.filter(d => +d.flag === 0),
+        _data_.filter((d) => +d.flag === 0),
         (group) => group.map((d) => +d[config.y]),
         (d) => d.snapshot_date
     );
 
-    const color = config.colorScheme
-        .find(color => color.flag.some(flag => Math.abs(flag) === 0));
-    color.rgba.opacity = 0.5
+    const color = config.colorScheme.find((color) =>
+        color.flag.some((flag) => Math.abs(flag) === 0)
+    );
+    color.rgba.opacity = 0.5;
 
     const dataset = {
         type: 'violin',

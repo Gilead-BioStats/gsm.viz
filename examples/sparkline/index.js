@@ -27,10 +27,15 @@ Promise.all(dataPromises)
             (d) => d.groupid === groupID
         );
 
-        rbmViz.default.sparkline(document.getElementById('score'), results, {
-            ...workflow,
-            y: 'score',
-        }, datasets[4].filter(d => d.workflowid === workflowID));
+        rbmViz.default.sparkline(
+            document.getElementById('score'),
+            results,
+            {
+                ...workflow,
+                y: 'score',
+            },
+            datasets[4].filter((d) => d.workflowid === workflowID)
+        );
 
         rbmViz.default.sparkline(document.getElementById('metric'), results, {
             ...workflow,
