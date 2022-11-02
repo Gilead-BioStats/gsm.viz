@@ -15169,20 +15169,20 @@ var rbmViz = (() => {
     };
   }
   function computeStats(s, valid) {
-    let mean = 0;
+    let mean2 = 0;
     for (let i = 0; i < valid; i++) {
       const v = s[i];
-      mean += v;
+      mean2 += v;
     }
-    mean /= valid;
+    mean2 /= valid;
     let variance = 0;
     for (let i = 0; i < valid; i++) {
       const v = s[i];
-      variance += (v - mean) * (v - mean);
+      variance += (v - mean2) * (v - mean2);
     }
     variance /= valid;
     return {
-      mean,
+      mean: mean2,
       variance
     };
   }
@@ -21256,37 +21256,16 @@ var rbmViz = (() => {
     _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(_data_, config);
     let data;
-    if (config.y === "score") {
-      const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
-      data = {
-        labels,
-        datasets: [
-          distribution,
-          atRisk(_data_, config, labels),
-          flagged(_data_, config, labels),
-          line(_data_, config, labels)
-        ].filter((dataset) => dataset !== null)
-      };
-    }
-    if (/flag|risk/.test(config.y)) {
-      const lineData = _data_.map((d, i) => {
-        const datum2 = { ...d };
-        datum2.x = datum2[config.x];
-        datum2.y = +datum2[config.y];
-        return datum2;
-      });
-      data = {
-        labels,
-        datasets: [
-          {
-            type: "line",
-            data: lineData.map((d) => d.y),
-            backgroundColor: "rgba(0,0,255,.75)",
-            borderColor: "rgba(0,0,255,.25)"
-          }
-        ]
-      };
-    }
+    const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
+    data = {
+      labels,
+      datasets: [
+        distribution,
+        atRisk(_data_, config, labels),
+        flagged(_data_, config, labels),
+        line(_data_, config, labels)
+      ].filter((dataset) => dataset !== null)
+    };
     return data;
   }
 
