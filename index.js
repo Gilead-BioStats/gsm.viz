@@ -19405,6 +19405,9 @@ var rbmViz = (() => {
     defaults3.displayTitle = false;
     defaults3.displayTrendLine = false;
     defaults3.maintainAspectRatio = false;
+    defaults3.tooltipDiv = document.getElementById(
+      "rbm-scatterplot-tooltip-wrapper"
+    );
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
@@ -19597,28 +19600,38 @@ var rbmViz = (() => {
   // src/scatterPlot/plugins/tooltip.js
   function tooltip2(config) {
     return {
-      custom: function(tooltipModel) {
-        if (!tooltipModel.body || tooltipModel.body.length < 1) {
-          tooltipModel.caretSize = 0;
-          tooltipModel.xPadding = 0;
-          tooltipModel.yPadding = 0;
-          tooltipModel.cornerRadius = 0;
-          tooltipModel.width = 0;
-          tooltipModel.height = 0;
+      enabled: false,
+      external: function(context) {
+        let tooltipEl = context.chart.data.config.tooltipDiv;
+        console.log(context.tooltip._active[0]);
+        let dataIndex = context.tooltip._active[0].index;
+        console.log(dataIndex);
+        let datum2 = context.chart.data.datasets[0].data[dataIndex];
+        const tooltipModel = context.tooltip;
+        if (tooltipModel.opacity === 0) {
+          tooltipEl.style.opacity = 0;
+          return;
         }
-      },
-      callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${datum2.groupid}`,
-            `${format(",d")(datum2.y)} ${config.yLabel}`,
-            `${format(",d")(datum2.x)} ${config.xLabel}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`
-          ];
-          return tooltip4;
-        },
-        title: () => null
+        tooltipEl.classList.remove("above", "below", "no-transform");
+        if (tooltipModel.yAlign) {
+          tooltipEl.classList.add(tooltipModel.yAlign);
+        } else {
+          tooltipEl.classList.add("no-transform");
+        }
+        tooltipEl.querySelector(".rbm-tooltip-header-value").innerHTML = datum2.groupid;
+        tooltipEl.querySelector(
+          ".rbm-tooltip-body-item-value.observed"
+        ).innerHTML = datum2.y + " AEs";
+        tooltipEl.querySelector(
+          ".rbm-tooltip-body-item-value.threshold"
+        ).innerHTML = datum2.x + " AEs";
+        const position = context.chart.canvas.getBoundingClientRect();
+        tooltipEl.style.opacity = 1;
+        tooltipEl.style.position = "absolute";
+        tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + "px";
+        tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + "px";
+        tooltipEl.style.padding = tooltipModel.padding + "px " + tooltipModel.padding + "px";
+        tooltipEl.style.pointerEvents = "none";
       },
       events: ["click", "mouseenter", "mouseover"],
       filter: (data) => data.dataset.type !== "line"
@@ -19879,8 +19892,9 @@ var rbmViz = (() => {
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
     return {
+      enabled: false,
       external: function(context) {
-        let tooltipEl = document.getElementById("chartjs-tooltip");
+        let tooltipEl = document.getElementById(context.config.id);
         if (!tooltipEl) {
           tooltipEl = document.createElement("div");
           tooltipEl.id = "chartjs-tooltip";

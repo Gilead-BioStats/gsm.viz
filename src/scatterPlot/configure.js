@@ -30,6 +30,10 @@ export default function configure(_config_, _data_) {
     defaults.displayTrendLine = false;
     defaults.maintainAspectRatio = false;
 
+    defaults.tooltipDiv = document.getElementById(
+        'rbm-scatterplot-tooltip-wrapper'
+    );
+
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,

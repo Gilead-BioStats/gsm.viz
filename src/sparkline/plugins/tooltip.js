@@ -1,10 +1,13 @@
 import { format } from 'd3';
 export default function tooltip(config) {
     return {
-        // enabled: false,
+        enabled: false,
+
         external: function (context) {
             // can we just set this to the react component we want to populate?
-            let tooltipEl = document.getElementById('chartjs-tooltip');
+            // use the compenent that exists
+            // context.config.id
+            let tooltipEl = document.getElementById(context.config.id);
 
             // Create element on first render
             if (!tooltipEl) {
@@ -71,6 +74,10 @@ export default function tooltip(config) {
             tooltipEl.style.padding =
                 tooltipModel.padding + 'px ' + tooltipModel.padding + 'px';
             tooltipEl.style.pointerEvents = 'none';
+
+            // let position = {top: , bottom: , left: , right: }
+            // let content = {blah, blah}
+            // return {position, content}
         },
     };
 }
