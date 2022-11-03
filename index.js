@@ -20325,14 +20325,19 @@ var rbmViz = (() => {
         if (context.tooltip._active[0]) {
           let dataIndex = context.tooltip._active[0].index;
           let datum2 = context.chart.data.datasets[0].data[dataIndex];
+          tooltipEl.querySelector(".rbm-tooltip-header-value").innerHTML = datum2.x;
           tooltipEl.querySelector(".numeratorLabel").innerHTML = config.numeratorLabel;
           tooltipEl.querySelector(".numerator").innerHTML = datum2.numerator;
           tooltipEl.querySelector(".denominatorLabel").innerHTML = config.denominatorLabel;
           tooltipEl.querySelector(".denominator").innerHTML = datum2.denominator;
           tooltipEl.querySelector(".outcome").innerHTML = config.outcome;
-          tooltipEl.querySelector(".metric").innerHTML = format(".3f")(datum2.metric);
+          tooltipEl.querySelector(".metric").innerHTML = format(".3f")(
+            datum2.metric
+          );
           tooltipEl.querySelector(".yLabel").innerHTML = config.yLabel;
-          tooltipEl.querySelector(".y").innerHTML = format(".3f")(datum2.y);
+          tooltipEl.querySelector(".y").innerHTML = format(".3f")(
+            datum2.y
+          );
           const position = context.chart.canvas.getBoundingClientRect();
           tooltipEl.style.opacity = 1;
           tooltipEl.style.position = "absolute";

@@ -17,6 +17,9 @@ export default function tooltip(config) {
                 let dataIndex = context.tooltip._active[0].index;
                 let datum = context.chart.data.datasets[0].data[dataIndex];
 
+                tooltipEl.querySelector('.rbm-tooltip-header-value').innerHTML =
+                    datum.x;
+
                 tooltipEl.querySelector('.numeratorLabel').innerHTML =
                     config.numeratorLabel;
                 tooltipEl.querySelector('.numerator').innerHTML =
