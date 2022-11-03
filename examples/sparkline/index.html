@@ -3,72 +3,57 @@
     <head>
         <meta charset="utf-8" />
         <title>Sparkline</title>
-        <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../../index.js"></script>
-        <script src="../controls/getChart.js"></script>
-        <script src="../controls/kri.js"></script>
-        <script src="../controls/site.js"></script>
-        <script src="./controls/xAxisType.js"></script>
-        <script src="../controls/lifecycle.js"></script>
-        <script src="../controls/download.js"></script>
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="style.css" />
     </head>
 
     <body>
-        <div id="controls">
-            <!--fieldset>
-                <legend>KRI</legend>
-                <select id="kri"></select>
-            </fieldset>
+        <h3>Sparklines</h3>
 
-            <fieldset>
-                <legend>Highlighted Site</legend>
-                <select id="groupid"></select>
-            </fieldset>
+        <div class="list">
+            <ul>
+                <li>
+                    <div class="sparkline" id="score"></div>
+                    <h3><a href="score">Score</a></h3>
+                    <p>
+                        One sparkline per group ID with KRI score on the y-axis
+                    </p>
+                </li>
 
-            <fieldset>
-                <legend>X-axis Type</legend>
+                <li>
+                    <div class="sparkline" id="metric"></div>
+                    <h3><a href="metric">Metric</a></h3>
+                    <p>
+                        One sparkline per group ID with KRI metric on the y-axis
+                    </p>
+                </li>
 
-                <form id="x-axis-type">
-                    <div style="display: inline-block">
-                        <input
-                            type="radio"
-                            id="log-x-axis"
-                            name="x-axis-type"
-                            value="logarithmic"
-                            checked
-                        />
-                        <label for="log">log</label>
-                    </div>
+                <li>
+                    <div class="sparkline" id="flag-counts-by-kri"></div>
+                    <h3><a href="flag-counts-by-kri">Flag Counts by KRI</a></h3>
+                    <p>
+                        One sparkline per workflow ID with number of flagged
+                        groups on the y-axis
+                    </p>
+                </li>
 
-                    <div style="display: inline-block">
-                        <input
-                            type="radio"
-                            id="linear-x-axis"
-                            name="x-axis-type"
-                            value="linear"
-                        />
-                        <label for="linear">linear</label>
-                    </div>
-                </form>
-            </fieldset>
-
-            <fieldset>
-                <legend>Chart Lifecycle</legend>
-                <button id="lifecycle"><strong>KILL</strong></button>
-            </fieldset-->
-
-            <fieldset>
-                <legend>Download Chart</legend>
-                <button id="download">Download chart</button>
-            </fieldset>
+                <li>
+                    <div class="sparkline" id="flag-counts-by-group"></div>
+                    <h3>
+                        <a href="flag-counts-by-group">Flag Counts by Group</a>
+                    </h3>
+                    <p>
+                        One sparkline per group ID with number of flagged KRIs
+                        on the y-axis
+                    </p>
+                </li>
+            </ul>
         </div>
 
         <div id="container"></div>
-        <div id="tooltip">
-            <div></div>
-        </div>
+        <div id="tooltip"></div>
     </body>
 
     <script src="index.js"></script>

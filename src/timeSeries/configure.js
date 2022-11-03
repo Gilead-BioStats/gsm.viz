@@ -1,17 +1,17 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from '../util/checkThresholds';
+import checkThresholds from './configure/checkThresholds';
 
 export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
 
-    defaults.type = 'line';
+    defaults.type = 'boxplot';
 
     // horizontal
     defaults.x = 'snapshot_date';
-    //defaults.xType = 'logarithmic';
-    defaults.xLabel = _config_[defaults.x];
+    //defaults.xType = 'categorical';
+    defaults.xLabel = 'Snapshot Date';
 
     // vertical
     defaults.y = 'score';
@@ -19,27 +19,26 @@ export default function configure(_config_, _data_, _parameters_) {
     defaults.yLabel = _config_[defaults.y];
 
     // color
-    defaults.color = 'flag';
+    //defaults.color = 'flag';
     defaults.colorScheme = colorScheme;
-    //defaults.colorLabel = _config_[ defaults.color ];
+    //defaults.colorLabel = _config_[defaults.color];
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
     defaults.clickCallback = (datum) => {};
-    // event callbacks
 
     // miscellaneous
+    //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
-    defaults.nSnapshots = 5;
 
     const config = configureAll(defaults, _config_, {
+        selectedGroupIDs: checkSelectedGroupIDs.bind(
+            null,
+            _config_.selectedGroupIDs,
+            _data_
+        ),
         thresholds: checkThresholds.bind(null, _config_, _parameters_),
     });
-
-    // annotation
-    config.annotation = ['metric', 'score'].includes(config.y)
-        ? 'numerator'
-        : config.y;
 
     return config;
 }
