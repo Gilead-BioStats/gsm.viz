@@ -20124,6 +20124,9 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
     };
     defaults3.maintainAspectRatio = false;
+    defaults3.tooltipDiv = document.getElementById(
+      "rbm-barchart-tooltip-wrapper"
+    );
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
@@ -20311,21 +20314,33 @@ var rbmViz = (() => {
   // src/barChart/plugins/tooltip.js
   function tooltip(config) {
     return {
-      callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${config.xLabel}: ${datum2.x}`,
-            `${config.numeratorLabel}: ${datum2.numerator}`,
-            `${config.denominatorLabel}: ${format(",")(
-              datum2.denominator
-            )}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`,
-            `${config.yLabel}: ${format(".3f")(datum2.y)}`
-          ];
-          return tooltip4;
-        },
-        title: () => null
+      enabled: false,
+      external: function(context) {
+        let tooltipEl = config.tooltipDiv;
+        const tooltipModel = context.tooltip;
+        if (tooltipModel.opacity === 0) {
+          tooltipEl.style.opacity = 0;
+          return;
+        }
+        if (context.tooltip._active[0]) {
+          let dataIndex = context.tooltip._active[0].index;
+          let datum2 = context.chart.data.datasets[0].data[dataIndex];
+          tooltipEl.querySelector(".numeratorLabel").innerHTML = config.numeratorLabel;
+          tooltipEl.querySelector(".numerator").innerHTML = datum2.numerator;
+          tooltipEl.querySelector(".denominatorLabel").innerHTML = config.denominatorLabel;
+          tooltipEl.querySelector(".denominator").innerHTML = datum2.denominator;
+          tooltipEl.querySelector(".outcome").innerHTML = config.outcome;
+          tooltipEl.querySelector(".metric").innerHTML = format(".3f")(datum2.metric);
+          tooltipEl.querySelector(".yLabel").innerHTML = config.yLabel;
+          tooltipEl.querySelector(".y").innerHTML = format(".3f")(datum2.y);
+          const position = context.chart.canvas.getBoundingClientRect();
+          tooltipEl.style.opacity = 1;
+          tooltipEl.style.position = "absolute";
+          tooltipEl.style.left = position.left + window.pageXOffset + tooltipModel.caretX + "px";
+          tooltipEl.style.top = position.top + window.pageYOffset + tooltipModel.caretY + "px";
+          tooltipEl.style.padding = tooltipModel.padding + "px " + tooltipModel.padding + "px";
+          tooltipEl.style.pointerEvents = "none";
+        }
       }
     };
   }
