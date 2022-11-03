@@ -61,12 +61,14 @@ export default function tooltip(config) {
 
             tooltipEl.querySelector('.rbm-tooltip-header-value').innerHTML =
                 datum.groupid;
-            tooltipEl.querySelector(
-                '.rbm-tooltip-body-item-value.observed'
-            ).innerHTML = datum.y + ' AEs';
-            tooltipEl.querySelector(
-                '.rbm-tooltip-body-item-value.threshold'
-            ).innerHTML = datum.x + ' AEs';
+            tooltipEl.querySelector('.yLabel').innerHTML = config.yLabel;
+            tooltipEl.querySelector('.y').innerHTML = datum.y;
+            tooltipEl.querySelector('.xLabel').innerHTML = config.xLabel;
+            tooltipEl.querySelector('.x').innerHTML = datum.x;
+            tooltipEl.querySelector('.outcome').innerHTML = config.outcome;
+            tooltipEl.querySelector('.metric').innerHTML = format('.3f')(
+                datum.metric
+            );
 
             const position = context.chart.canvas.getBoundingClientRect();
 

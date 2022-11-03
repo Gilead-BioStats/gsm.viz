@@ -20742,12 +20742,12 @@ var rbmViz = (() => {
           tooltipEl.classList.add("no-transform");
         }
         tooltipEl.querySelector(".rbm-tooltip-header-value").innerHTML = datum2.groupid;
-        tooltipEl.querySelector(
-          ".rbm-tooltip-body-item-value.observed"
-        ).innerHTML = datum2.y + " AEs";
-        tooltipEl.querySelector(
-          ".rbm-tooltip-body-item-value.threshold"
-        ).innerHTML = datum2.x + " AEs";
+        tooltipEl.querySelector(".yLabel").innerHTML = config.yLabel;
+        tooltipEl.querySelector(".y").innerHTML = datum2.y;
+        tooltipEl.querySelector(".xLabel").innerHTML = config.xLabel;
+        tooltipEl.querySelector(".x").innerHTML = datum2.x;
+        tooltipEl.querySelector(".outcome").innerHTML = config.outcome;
+        tooltipEl.querySelector(".metric").innerHTML = format(".3f")(datum2.metric);
         const position = context.chart.canvas.getBoundingClientRect();
         tooltipEl.style.opacity = 1;
         tooltipEl.style.position = "absolute";
