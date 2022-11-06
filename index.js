@@ -20956,24 +20956,21 @@ var rbmViz = (() => {
   // src/sparkline/plugins/annotation.js
   function annotations2(config, data) {
     const xMin = 0;
-    const xMax = data.length;
-    const xValue = xMax;
+    const xMax = data.length - 1;
+    const xValue = xMax + xMax / 50;
     const yMin = min(data, (d) => +d[config.y]);
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
-    const yValue = range === yMin ? yMin : yMin + range / 2;
-    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? " 4d" : range < 0.1 ? ".3f" : range < 1 ? ".2f" : ".1f";
+    const yValue = yMin === yMax ? yMin : yMin + range / 2;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
     const datum2 = data.slice(-1)[0];
     const content = [
-      format(format2)(datum2.y).replace(/^0./, ".")
+      format(format2)(datum2.y)
     ];
     return {
       clip: false,
       annotations: {
         label1: {
-          type: "label",
-          xValue,
-          yValue,
           content,
           font: {
             size: 14,
@@ -20982,8 +20979,11 @@ var rbmViz = (() => {
           },
           position: {
             x: "start",
-            y: "middle"
-          }
+            y: "center"
+          },
+          type: "label",
+          xValue,
+          yValue
         }
       }
     };

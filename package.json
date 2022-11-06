@@ -1,5 +1,5 @@
 {
-  "TODO": "figure out how to display time series sans distributions",
+  "TODO": "",
   "name": "rbm-viz",
   "version": "0.8.0",
   "description": "web-based data visualization for risk-based monitoring",
