@@ -1,6 +1,7 @@
 const dataFiles = [
     '../../data/results_summary_over_time.csv',
     '../../data/meta_workflow.csv',
+    '../../data/meta_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -23,6 +24,9 @@ Promise.all(dataPromises)
         workflow.y = 'score';
         workflow.nSnapshots = 25;
 
+        // threshold annotations
+        const parameters = datasets[2].filter((d) => d.workflowid === workflowid);
+
         // loop over group IDs
         for (const i in groupids) {
             const groupid = groupids[i];
@@ -38,7 +42,8 @@ Promise.all(dataPromises)
             const instance = rbmViz.default.sparkline(
                 subcontainer,
                 results.filter((d) => d.groupid === groupid),
-                workflow
+                workflow,
+                parameters
             );
         }
     });

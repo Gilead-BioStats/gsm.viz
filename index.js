@@ -6269,25 +6269,25 @@ var rbmViz = (() => {
       }
     }
     drawTitle() {
-      const { ctx, options: { position, title: title3, reverse } } = this;
-      if (!title3.display) {
+      const { ctx, options: { position, title: title2, reverse } } = this;
+      if (!title2.display) {
         return;
       }
-      const font = toFont(title3.font);
-      const padding = toPadding(title3.padding);
-      const align = title3.align;
+      const font = toFont(title2.font);
+      const padding = toPadding(title2.padding);
+      const align = title2.align;
       let offset = font.lineHeight / 2;
       if (position === "bottom" || position === "center" || isObject(position)) {
         offset += padding.bottom;
-        if (isArray(title3.text)) {
-          offset += font.lineHeight * (title3.text.length - 1);
+        if (isArray(title2.text)) {
+          offset += font.lineHeight * (title2.text.length - 1);
         }
       } else {
         offset += padding.top;
       }
       const { titleX, titleY, maxWidth, rotation } = titleArgs(this, offset, position, align);
-      renderText(ctx, title3.text, 0, 0, font, {
-        color: title3.color,
+      renderText(ctx, title2.text, 0, 0, font, {
+        color: title2.color,
         maxWidth,
         rotation,
         textAlign: titleAlign(align, position, reverse),
@@ -10747,14 +10747,14 @@ var rbmViz = (() => {
     }
   };
   function createTitle(chart, titleOpts) {
-    const title3 = new Title({
+    const title2 = new Title({
       ctx: chart.ctx,
       options: titleOpts,
       chart
     });
-    layouts.configure(chart, title3, titleOpts);
-    layouts.addBox(chart, title3);
-    chart.titleBlock = title3;
+    layouts.configure(chart, title2, titleOpts);
+    layouts.addBox(chart, title2);
+    chart.titleBlock = title2;
   }
   var plugin_title = {
     id: "title",
@@ -10768,9 +10768,9 @@ var rbmViz = (() => {
       delete chart.titleBlock;
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = chart.titleBlock;
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title2 = chart.titleBlock;
+      layouts.configure(chart, title2, options);
+      title2.options = options;
     },
     defaults: {
       align: "center",
@@ -10796,23 +10796,23 @@ var rbmViz = (() => {
   var plugin_subtitle = {
     id: "subtitle",
     start(chart, _args, options) {
-      const title3 = new Title({
+      const title2 = new Title({
         ctx: chart.ctx,
         options,
         chart
       });
-      layouts.configure(chart, title3, options);
-      layouts.addBox(chart, title3);
-      map2.set(chart, title3);
+      layouts.configure(chart, title2, options);
+      layouts.addBox(chart, title2);
+      map2.set(chart, title2);
     },
     stop(chart) {
       layouts.removeBox(chart, map2.get(chart));
       map2.delete(chart);
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = map2.get(chart);
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title2 = map2.get(chart);
+      layouts.configure(chart, title2, options);
+      title2.options = options;
     },
     defaults: {
       align: "center",
@@ -10921,12 +10921,12 @@ var rbmViz = (() => {
   }
   function getTooltipSize(tooltip4, options) {
     const ctx = tooltip4.chart.ctx;
-    const { body, footer, title: title3 } = tooltip4;
+    const { body, footer, title: title2 } = tooltip4;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
     const footerFont = toFont(options.footerFont);
-    const titleLineCount = title3.length;
+    const titleLineCount = title2.length;
     const footerLineCount = footer.length;
     const bodyLineItemCount = body.length;
     const padding = toPadding(options.padding);
@@ -11126,11 +11126,11 @@ var rbmViz = (() => {
     getTitle(context, options) {
       const { callbacks } = options;
       const beforeTitle = callbacks.beforeTitle.apply(this, [context]);
-      const title3 = callbacks.title.apply(this, [context]);
+      const title2 = callbacks.title.apply(this, [context]);
       const afterTitle = callbacks.afterTitle.apply(this, [context]);
       let lines = [];
       lines = pushOrConcat(lines, splitNewlines(beforeTitle));
-      lines = pushOrConcat(lines, splitNewlines(title3));
+      lines = pushOrConcat(lines, splitNewlines(title2));
       lines = pushOrConcat(lines, splitNewlines(afterTitle));
       return lines;
     }
@@ -11292,8 +11292,8 @@ var rbmViz = (() => {
       return { x1, x2, x3, y1, y2, y3 };
     }
     drawTitle(pt, ctx, options) {
-      const title3 = this.title;
-      const length = title3.length;
+      const title2 = this.title;
+      const length = title2.length;
       let titleFont, titleSpacing, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
@@ -11305,7 +11305,7 @@ var rbmViz = (() => {
         ctx.fillStyle = options.titleColor;
         ctx.font = titleFont.string;
         for (i = 0; i < length; ++i) {
-          ctx.fillText(title3[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+          ctx.fillText(title2[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
           pt.y += titleFont.lineHeight + titleSpacing;
           if (i + 1 === length) {
             pt.y += options.titleMarginBottom - titleSpacing;
@@ -13649,16 +13649,16 @@ var rbmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function adjustScaleRange(chart, scale, annotations4) {
-    const range = getScaleLimits(chart.scales, scale, annotations4);
+  function adjustScaleRange(chart, scale, annotations5) {
+    const range = getScaleLimits(chart.scales, scale, annotations5);
     let changed = changeScaleLimit(scale, range, "min", "suggestedMin");
     changed = changeScaleLimit(scale, range, "max", "suggestedMax") || changed;
     if (changed && typeof scale.handleTickRangeOptions === "function") {
       scale.handleTickRangeOptions();
     }
   }
-  function verifyScaleOptions(annotations4, scales2) {
-    for (const annotation2 of annotations4) {
+  function verifyScaleOptions(annotations5, scales2) {
+    for (const annotation2 of annotations5) {
       verifyScaleIDs(annotation2, scales2);
     }
   }
@@ -13692,7 +13692,7 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function getScaleLimits(scales2, scale, annotations4) {
+  function getScaleLimits(scales2, scale, annotations5) {
     const axis = scale.axis;
     const scaleID = scale.id;
     const scaleIDOption = axis + "ScaleID";
@@ -13700,7 +13700,7 @@ var rbmViz = (() => {
       min: valueOrDefault(scale.min, Number.NEGATIVE_INFINITY),
       max: valueOrDefault(scale.max, Number.POSITIVE_INFINITY)
     };
-    for (const annotation2 of annotations4) {
+    for (const annotation2 of annotations5) {
       if (annotation2.scaleID === scaleID) {
         updateLimits2(annotation2, scale, ["value", "endValue"], limits);
       } else if (retrieveScaleID(scales2, annotation2, scaleIDOption) === scaleID) {
@@ -14763,10 +14763,10 @@ var rbmViz = (() => {
   }
   function updateElements(chart, state, options, mode) {
     const animations = resolveAnimations(chart, options.animations, mode);
-    const annotations4 = state.annotations;
-    const elements2 = resyncElements(state.elements, annotations4);
-    for (let i = 0; i < annotations4.length; i++) {
-      const annotationOptions = annotations4[i];
+    const annotations5 = state.annotations;
+    const elements2 = resyncElements(state.elements, annotations5);
+    for (let i = 0; i < annotations5.length; i++) {
+      const annotationOptions = annotations5[i];
       const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
@@ -14846,8 +14846,8 @@ var rbmViz = (() => {
       type: "annotation"
     }));
   }
-  function resyncElements(elements2, annotations4) {
-    const count = annotations4.length;
+  function resyncElements(elements2, annotations5) {
+    const count = annotations5.length;
     const start2 = elements2.length;
     if (start2 < count) {
       const add = count - start2;
@@ -14884,20 +14884,20 @@ var rbmViz = (() => {
     },
     beforeUpdate(chart, args, options) {
       const state = chartStates.get(chart);
-      const annotations4 = state.annotations = [];
+      const annotations5 = state.annotations = [];
       let annotationOptions = options.annotations;
       if (isObject(annotationOptions)) {
         Object.keys(annotationOptions).forEach((key) => {
           const value = annotationOptions[key];
           if (isObject(value)) {
             value.id = key;
-            annotations4.push(value);
+            annotations5.push(value);
           }
         });
       } else if (isArray(annotationOptions)) {
-        annotations4.push(...annotationOptions);
+        annotations5.push(...annotationOptions);
       }
-      verifyScaleOptions(annotations4, chart.scales);
+      verifyScaleOptions(annotations5, chart.scales);
     },
     afterDataLimits(chart, args) {
       const state = chartStates.get(chart);
@@ -20075,36 +20075,36 @@ var rbmViz = (() => {
     const negativeThresholds = nonNegativeThresholds.map(
       (threshold) => -1 * threshold
     );
-    const thresholds = [
+    const thresholds2 = [
       .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
     ].sort((a, b) => a - b);
-    const flags = thresholds.map((threshold, i) => {
-      const flag = i - Math.floor(thresholds.length / 2);
+    const flags = thresholds2.map((threshold, i) => {
+      const flag = i - Math.floor(thresholds2.length / 2);
       return {
         threshold,
-        flag: flag + (thresholds.length % 2 === 0 && flag >= 0)
+        flag: flag + (thresholds2.length % 2 === 0 && flag >= 0)
       };
     });
     return flags;
   }
 
-  // src/barChart/configure/checkThresholds.js
-  function checkThresholds(_config_, _thresholds_) {
-    let thresholds = _config_.thresholds;
+  // src/util/checkThresholds.js
+  function checkThresholds(_config_, _parameters_) {
+    let thresholds2 = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
-    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
-      return mapThresholdsToFlags(thresholds);
-    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
+    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
+      return mapThresholdsToFlags(thresholds2);
+    if (_parameters_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds = _thresholds_.filter(
-      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
+    thresholds2 = _parameters_.filter(
+      (d) => d.param === "vThreshold"
     ).map((d) => d.default);
-    return mapThresholdsToFlags(thresholds);
+    return mapThresholdsToFlags(thresholds2);
   }
 
   // src/barChart/configure.js
-  function configure3(_config_, _data_, _thresholds_) {
+  function configure3(_config_, _data_, _parameters_) {
     const defaults3 = {};
     defaults3.type = "bar";
     defaults3.x = "groupid";
@@ -20129,7 +20129,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
+      thresholds: checkThresholds.bind(null, _config_, _parameters_)
     });
     return config;
   }
@@ -20274,9 +20274,9 @@ var rbmViz = (() => {
 
   // src/barChart/plugins/annotations.js
   function annotations(config) {
-    let annotations4 = null;
+    let annotations5 = null;
     if (config.thresholds) {
-      annotations4 = config.thresholds.map((x, i) => ({
+      annotations5 = config.thresholds.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -20297,7 +20297,7 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations4;
+    return annotations5;
   }
 
   // src/barChart/plugins/legend.js
@@ -20409,11 +20409,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, _thresholds_, update = false) {
+  function updateConfig(chart, _config_, _parameters_, update = false) {
     const config = configure3(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
-      _thresholds_
+      _parameters_
     );
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
@@ -20425,8 +20425,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_) {
-    chart.data.config = updateConfig(chart, _config_, _thresholds_);
+  function updateData(chart, _data_, _config_, _parameters_) {
+    chart.data.config = updateConfig(chart, _config_, _parameters_);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -20453,8 +20453,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
-    const config = configure3(_config_, _data_, _thresholds_);
+  function barChart(_element_, _data_, _config_ = {}, _parameters_ = null) {
+    const config = configure3(_config_, _data_, _parameters_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
     const options = {
@@ -20470,7 +20470,7 @@ var rbmViz = (() => {
       data: {
         datasets,
         config,
-        _thresholds_,
+        _parameters_,
         _data_
       },
       metadata: "test",
@@ -20847,21 +20847,6 @@ var rbmViz = (() => {
     return chart;
   }
 
-  // src/util/checkThresholds.js
-  function checkThresholds2(_config_, _thresholds_) {
-    let thresholds = _config_.thresholds;
-    if (_config_.y === "metric")
-      return null;
-    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
-      return mapThresholdsToFlags(thresholds);
-    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
-      return null;
-    thresholds = _thresholds_.filter(
-      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
-    ).map((d) => d.default);
-    return mapThresholdsToFlags(thresholds);
-  }
-
   // src/sparkline/configure.js
   function configure5(_config_, _data_, _parameters_) {
     const defaults3 = {};
@@ -20880,7 +20865,7 @@ var rbmViz = (() => {
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
     const config = configure2(defaults3, _config_, {
-      thresholds: checkThresholds2.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _parameters_)
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
@@ -20953,7 +20938,30 @@ var rbmViz = (() => {
     return datasets;
   }
 
-  // src/sparkline/plugins/annotation.js
+  // src/sparkline/plugins/annotation/thresholds.js
+  function thresholds(config) {
+    let thresholds2 = null;
+    if (config.thresholds) {
+      thresholds2 = config.thresholds.map((threshold, i) => {
+        const color3 = colorScheme_default.find(
+          (color4) => color4.flag.includes(+threshold.flag)
+        );
+        color3.rgba.opacity = 0.5;
+        const annotation2 = {
+          drawTime: "beforeDatasetsDraw",
+          type: "line",
+          yMin: threshold.threshold,
+          yMax: threshold.threshold,
+          borderColor: color3.rgba + "",
+          borderWidth: 1
+        };
+        return annotation2;
+      });
+    }
+    return thresholds2;
+  }
+
+  // src/sparkline/plugins/annotation/value.js
   function annotations2(config, data) {
     const xMin = 0;
     const xMax = data.length - 1;
@@ -20967,26 +20975,39 @@ var rbmViz = (() => {
     const content = [
       format(format2)(datum2.y)
     ];
-    return {
-      clip: false,
-      annotations: {
-        label1: {
-          content,
-          font: {
-            size: 14,
-            family: "roboto",
-            weight: 700
-          },
-          position: {
-            x: "start",
-            y: "center"
-          },
-          type: "label",
-          xValue,
-          yValue
-        }
-      }
+    const value = {
+      content,
+      font: {
+        size: 14,
+        family: "roboto",
+        weight: 700
+      },
+      position: {
+        x: "start",
+        y: "center"
+      },
+      type: "label",
+      xValue,
+      yValue
     };
+    return value;
+  }
+
+  // src/sparkline/plugins/annotation.js
+  function annotations3(config, data) {
+    const value = annotations2(config, data);
+    const thresholds2 = thresholds(config);
+    const annotations5 = {
+      clip: false,
+      annotations: [
+        value
+      ]
+    };
+    if (thresholds2 !== null)
+      thresholds2.forEach((threshold) => {
+        annotations5.annotations.push(threshold);
+      });
+    return annotations5;
   }
 
   // src/sparkline/plugins/legend.js
@@ -21004,7 +21025,7 @@ var rbmViz = (() => {
   // src/sparkline/plugins.js
   function plugins4(config, _data_) {
     const plugins6 = {
-      annotation: annotations2(config, _data_),
+      annotation: annotations3(config, _data_),
       legend: legend3(config),
       tooltip: tooltip3(config)
     };
@@ -21070,8 +21091,8 @@ var rbmViz = (() => {
   }
 
   // src/sparkline.js
-  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _param_ = []) {
-    const config = configure5(_config_, _data_, _param_);
+  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _parameters_ = []) {
+    const config = configure5(_config_, _data_, _parameters_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
@@ -21103,21 +21124,6 @@ var rbmViz = (() => {
     return chart;
   }
 
-  // src/timeSeries/configure/checkThresholds.js
-  function checkThresholds3(_config_, _thresholds_) {
-    let thresholds = _config_.thresholds;
-    if (_config_.y === "metric")
-      return null;
-    if (Array.isArray(thresholds) && thresholds.length > 0 && thresholds.every((threshold) => typeof threshold === "number"))
-      return mapThresholdsToFlags(thresholds);
-    if (_thresholds_ === null || [null].includes(thresholds) || Array.isArray(thresholds) && (thresholds.length === 0 || thresholds.some((threshold) => typeof threshold !== "number")))
-      return null;
-    thresholds = _thresholds_.filter(
-      (d) => d.workflowid === _config_.workflowid && d.param === "vThreshold"
-    ).map((d) => d.default);
-    return mapThresholdsToFlags(thresholds);
-  }
-
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _parameters_) {
     const defaults3 = {};
@@ -21139,7 +21145,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds3.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _parameters_)
     });
     return config;
   }
@@ -21270,10 +21276,10 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/plugins/annotations.js
-  function annotations3(config) {
-    let annotations4 = null;
+  function annotations4(config) {
+    let annotations5 = null;
     if (config.thresholds) {
-      annotations4 = config.thresholds.map((x, i) => ({
+      annotations5 = config.thresholds.map((x, i) => ({
         drawTime: "beforeDatasetsDraw",
         type: "line",
         yMin: x.threshold,
@@ -21294,14 +21300,14 @@ var rbmViz = (() => {
         }
       }));
     }
-    return annotations4;
+    return annotations5;
   }
 
   // src/timeSeries/plugins.js
   function plugins5(config) {
     return {
       annotation: {
-        annotations: annotations3(config)
+        annotations: annotations4(config)
       },
       legend: {
         display: false

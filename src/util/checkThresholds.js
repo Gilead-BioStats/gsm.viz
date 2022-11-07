@@ -1,6 +1,6 @@
 import mapThresholdsToFlags from './mapThresholdsToFlags';
 
-export default function checkThresholds(_config_, _thresholds_) {
+export default function checkThresholds(_config_, _parameters_) {
     let thresholds = _config_.thresholds;
 
     // TODO: remove hard code check for 'metric'
@@ -18,7 +18,7 @@ export default function checkThresholds(_config_, _thresholds_) {
 
     // invalid input
     if (
-        _thresholds_ === null ||
+        _parameters_ === null ||
         [null].includes(thresholds) ||
         (Array.isArray(thresholds) &&
             (thresholds.length === 0 ||
@@ -27,10 +27,10 @@ export default function checkThresholds(_config_, _thresholds_) {
         return null;
 
     // Filter workflow parameters and get associated metadata.
-    thresholds = _thresholds_
+    thresholds = _parameters_
         .filter(
             (d) =>
-                d.workflowid === _config_.workflowid && d.param === 'vThreshold'
+                d.param === 'vThreshold'
         )
         .map((d) => d.default);
 

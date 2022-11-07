@@ -1,7 +1,7 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from './configure/checkThresholds';
+import checkThresholds from '../util/checkThresholds';
 
 export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
