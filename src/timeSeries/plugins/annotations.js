@@ -5,9 +5,7 @@ export default function annotations(config) {
 
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => {
-            const color = colorScheme.find(
-                (y) => y.flag.includes(+x.flag)
-            );
+            const color = colorScheme.find((y) => y.flag.includes(+x.flag));
             color.rgba.opacity = 0.5;
             const annotation = {
                 drawTime: 'beforeDatasetsDraw',

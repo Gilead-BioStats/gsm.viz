@@ -25,7 +25,9 @@ Promise.all(dataPromises)
         workflow.nSnapshots = 25;
 
         // threshold annotations
-        const parameters = datasets[2].filter((d) => d.workflowid === workflowid);
+        const parameters = datasets[2].filter(
+            (d) => d.workflowid === workflowid
+        );
 
         // loop over group IDs
         for (const i in groupids) {

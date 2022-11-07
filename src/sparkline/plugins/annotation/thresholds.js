@@ -5,12 +5,12 @@ export default function thresholds(config) {
 
     if (config.thresholds) {
         thresholds = config.thresholds.map((threshold, i) => {
-            const color = colorScheme.find(
-                (color) => color.flag.includes(+threshold.flag)
+            const color = colorScheme.find((color) =>
+                color.flag.includes(+threshold.flag)
             );
-            color.rgba.opacity = .5;
+            color.rgba.opacity = 0.5;
 
-            const annotation = { 
+            const annotation = {
                 drawTime: 'beforeDatasetsDraw',
                 type: 'line',
                 yMin: threshold.threshold,

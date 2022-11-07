@@ -14,9 +14,10 @@ export default function line(_data_, config, labels) {
         backgroundColor: 'rgba(0,0,255,.75)',
         borderColor: 'rgba(0,0,255,.25)',
         data: lineData,
-        label: config.selectedGroupIDs.length > 0
-            ? `${config.group} ${lineData[0]?.groupid}`
-            : '',
+        label:
+            config.selectedGroupIDs.length > 0
+                ? `${config.group} ${lineData[0]?.groupid}`
+                : '',
         purpose: 'highlight',
     };
 

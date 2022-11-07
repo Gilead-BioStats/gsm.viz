@@ -13,22 +13,22 @@ export default function structureData(_data_, config) {
 
     let data;
     //if (config.y === 'score') {
-        const distribution =
-            config.type === 'boxplot'
-                ? boxplot(_data_, config, labels)
-                : config.type === 'violin'
-                ? violin(_data_, config, labels)
-                : null;
+    const distribution =
+        config.type === 'boxplot'
+            ? boxplot(_data_, config, labels)
+            : config.type === 'violin'
+            ? violin(_data_, config, labels)
+            : null;
 
-        data = {
-            labels,
-            datasets: [
-                distribution,
-                atRisk(_data_, config, labels),
-                flagged(_data_, config, labels),
-                line(_data_, config, labels),
-            ].filter((dataset) => dataset !== null),
-        };
+    data = {
+        labels,
+        datasets: [
+            distribution,
+            atRisk(_data_, config, labels),
+            flagged(_data_, config, labels),
+            line(_data_, config, labels),
+        ].filter((dataset) => dataset !== null),
+    };
     //}
 
     //if (/flag|risk/.test(config.y)) {

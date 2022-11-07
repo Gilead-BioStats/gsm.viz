@@ -19,7 +19,7 @@ Promise.all(dataPromises)
         //workflow.yLabel = '# At Risk or Flagged Sites';
         workflow.selectedGroupIDs = '173';
         const flagCounts = datasets[1];
-        flagCounts.forEach(d => {
+        flagCounts.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 

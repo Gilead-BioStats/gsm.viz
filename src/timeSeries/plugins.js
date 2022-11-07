@@ -6,6 +6,6 @@ export default function plugins(config) {
         annotation: {
             annotations: annotations(config),
         },
-        legend: legend(config)
+        legend: legend(config),
     };
 }

@@ -20097,9 +20097,7 @@ var rbmViz = (() => {
       return mapThresholdsToFlags(thresholds2);
     if (_parameters_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _parameters_.filter(
-      (d) => d.param === "vThreshold"
-    ).map((d) => d.default);
+    thresholds2 = _parameters_.filter((d) => d.param === "vThreshold").map((d) => d.default);
     return mapThresholdsToFlags(thresholds2);
   }
 
@@ -20972,9 +20970,7 @@ var rbmViz = (() => {
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
     const datum2 = data.slice(-1)[0];
-    const content = [
-      format(format2)(datum2.y)
-    ];
+    const content = [format(format2)(datum2.y)];
     const value = {
       content,
       font: {
@@ -20999,9 +20995,7 @@ var rbmViz = (() => {
     const thresholds2 = thresholds(config);
     const annotations5 = {
       clip: false,
-      annotations: [
-        value
-      ]
+      annotations: [value]
     };
     if (thresholds2 !== null)
       thresholds2.forEach((threshold) => {
@@ -21293,9 +21287,7 @@ var rbmViz = (() => {
     let annotations5 = null;
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
-        const color3 = colorScheme_default.find(
-          (y) => y.flag.includes(+x.flag)
-        );
+        const color3 = colorScheme_default.find((y) => y.flag.includes(+x.flag));
         color3.rgba.opacity = 0.5;
         const annotation2 = {
           drawTime: "beforeDatasetsDraw",

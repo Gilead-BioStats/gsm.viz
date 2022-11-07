@@ -4,7 +4,7 @@ export default function annotations(config, data) {
     // horizontal position
     const xMin = 0;
     const xMax = data.length - 1;
-    const xValue = xMax + xMax/50;
+    const xValue = xMax + xMax / 50;
 
     // vertical position
     const yMin = min(data, (d) => +d[config.y]);
@@ -23,9 +23,7 @@ export default function annotations(config, data) {
 
     // content
     const datum = data.slice(-1)[0];
-    const content = [
-        d3format(format)(datum.y),
-    ];
+    const content = [d3format(format)(datum.y)];
 
     const value = {
         content,

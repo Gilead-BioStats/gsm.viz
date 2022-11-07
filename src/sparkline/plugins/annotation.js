@@ -6,13 +6,11 @@ export default function annotations(config, data) {
     const thresholds = annotateThresholds(config);
     const annotations = {
         clip: false,
-        annotations: [
-            value,
-        ],
+        annotations: [value],
     };
 
     if (thresholds !== null)
-        thresholds.forEach(threshold => {
+        thresholds.forEach((threshold) => {
             annotations.annotations.push(threshold);
         });
 

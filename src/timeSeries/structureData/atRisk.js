@@ -18,9 +18,7 @@ export default function atRisk(_data_, config, labels) {
         borderColor: color.color,
         backgroundColor: color.rgba + '',
         data: pointData,
-        label: pointData.length
-            ? 'At Risk'
-            : '',
+        label: pointData.length ? 'At Risk' : '',
         purpose: 'scatter',
         radius: 1.5,
         type: 'scatter',

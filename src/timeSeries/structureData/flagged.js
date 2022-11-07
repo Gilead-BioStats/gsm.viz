@@ -18,9 +18,7 @@ export default function flagged(_data_, config, labels) {
         borderColor: color.color,
         backgroundColor: color.rgba + '',
         data: pointData,
-        label: pointData.length
-            ? 'Flagged'
-            : '',
+        label: pointData.length ? 'Flagged' : '',
         purpose: 'scatter',
         radius: 1.5,
         type: 'scatter',

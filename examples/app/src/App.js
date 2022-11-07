@@ -25,7 +25,7 @@ const App = () => {
     const resultsOverTime = resultsOverTimeAll.filter(
         (d) => d.workflowid === workflow.workflowid
     );
-    const flagCountsByKRI = flagCountsByKRIAll
+    const flagCountsByKRI = flagCountsByKRIAll;
     //    .filter(
     //    (d) => d.workflowid === workflow.workflowid
     //);
@@ -84,7 +84,10 @@ const App = () => {
                 thresholds={parameters}
             />
             {sparklines}
-            <TimeSeries data={flagCountsByGroupAll} config={workflowFlagCounts} />
+            <TimeSeries
+                data={flagCountsByGroupAll}
+                config={workflowFlagCounts}
+            />
         </>
     );
 };
