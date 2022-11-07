@@ -15,8 +15,11 @@ export default function boxplot(_data_, config) {
     const dataset = {
         type: 'boxplot',
         //label: 'Score',
-        backgroundColor: color.rgba + '',
-        borderColor: color.color,
+        //backgroundColor: color.rgba + '',
+        maxBarThickness: 7,
+        //borderColor: color.color,
+        label: `${config.group} Distribution`,
+        purpose: 'distribution',
         //borderWidth: 1,
         //outlierColor: '#999999',
         //padding: 10,

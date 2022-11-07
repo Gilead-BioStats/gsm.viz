@@ -6,14 +6,14 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const Sparkline = ({ data, config }) => {
+const Sparkline = ({ data, config, parameters }) => {
     const container = useRef(null);
 
     useEffect(() => {
         if (container.current) {
-            rbm.sparkline(container.current, data, config);
+            rbm.sparkline(container.current, data, config, parameters);
         }
-    }, [data, config]);
+    }, [data, config, parameters]);
 
     return (
         <div
@@ -37,6 +37,7 @@ Sparkline.propTypes = {
 Sparkline.defaultProps = {
     data: [],
     config: {},
+    parameters: [],
 };
 
 export { Sparkline };

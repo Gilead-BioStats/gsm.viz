@@ -4,29 +4,34 @@ export default function annotations(config) {
     let annotations = null;
 
     if (config.thresholds) {
-        annotations = config.thresholds.map((x, i) => ({
-            drawTime: 'beforeDatasetsDraw',
-            type: 'line',
-            yMin: x.threshold,
-            yMax: x.threshold,
-            borderColor: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                .color,
-            borderWidth: 2,
-            borderDash: [5],
-            label: {
-                rotation: 'auto',
-                position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
-                color: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                    .color,
-                backgroundColor: 'white',
-                content: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                    .description,
-                display: true, //Math.sign(+x.flag) === 1,
-                font: {
-                    size: 12,
-                },
-            },
-        }));
+        annotations = config.thresholds.map((x, i) => {
+            const color = colorScheme.find((y) => y.flag.includes(+x.flag));
+            color.rgba.opacity = 0.5;
+            const annotation = {
+                drawTime: 'beforeDatasetsDraw',
+                type: 'line',
+                yMin: x.threshold,
+                yMax: x.threshold,
+                borderColor: color.rgba + '',
+                borderWidth: 1,
+                //borderDash: [5],
+                //label: {
+                //    rotation: 'auto',
+                //    position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
+                //    color: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
+                //        .color,
+                //    backgroundColor: 'white',
+                //    content: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
+                //        .description,
+                //    display: true, //Math.sign(+x.flag) === 1,
+                //    font: {
+                //        size: 12,
+                //    },
+                //},
+            };
+
+            return annotation;
+        });
     }
 
     return annotations;

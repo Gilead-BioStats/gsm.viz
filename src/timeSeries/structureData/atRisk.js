@@ -15,11 +15,13 @@ export default function atRisk(_data_, config, labels) {
     color.rgba.opacity = 0.5;
 
     const dataset = {
-        type: 'scatter',
-        data: pointData,
         borderColor: color.color,
         backgroundColor: color.rgba + '',
+        data: pointData,
+        label: pointData.length ? 'At Risk' : '',
+        purpose: 'scatter',
         radius: 1.5,
+        type: 'scatter',
     };
 
     return dataset;

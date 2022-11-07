@@ -1,7 +1,7 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from './configure/checkThresholds';
+import checkThresholds from '../util/checkThresholds';
 
 export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
@@ -16,7 +16,9 @@ export default function configure(_config_, _data_, _parameters_) {
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[defaults.y];
+    defaults.yLabel = /flag|at.risk/.test(_config_.y)
+        ? '# At Risk or Flagged'
+        : _config_[defaults.y];
 
     // color
     //defaults.color = 'flag';
@@ -30,6 +32,12 @@ export default function configure(_config_, _data_, _parameters_) {
     // miscellaneous
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
+    defaults.displayBoxplots = true;
+    defaults.displayViolins = false;
+    defaults.displayAtRisk = true;
+    defaults.displayFlagged = true;
+    defaults.displayThresholds = true;
+    defaults.displayTrendLine = true;
 
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(

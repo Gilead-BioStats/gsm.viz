@@ -1,12 +1,11 @@
 import annotations from './plugins/annotations';
+import legend from './plugins/legend';
 
 export default function plugins(config) {
     return {
         annotation: {
             annotations: annotations(config),
         },
-        legend: {
-            display: false,
-        },
+        legend: legend(config),
     };
 }

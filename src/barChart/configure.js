@@ -1,9 +1,9 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from './configure/checkThresholds';
+import checkThresholds from '../util/checkThresholds';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _data_, _parameters_) {
     const defaults = {};
 
     defaults.type = 'bar';
@@ -45,7 +45,7 @@ export default function configure(_config_, _data_, _thresholds_) {
             _config_.selectedGroupIDs,
             _data_
         ),
-        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
+        thresholds: checkThresholds.bind(null, _config_, _parameters_),
     });
 
     return config;

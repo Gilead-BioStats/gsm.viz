@@ -38,15 +38,25 @@ export default function timeSeries(
         plugins: plugins(config),
         responsive: true,
         //scales: getScales(config),
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: config.xLabel,
+                },
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: config.yLabel,
+                },
+            },
+        },
     };
 
     const chart = new Chart(canvas, {
-        //type: 'boxplot',
         data,
         options,
-        //plugins: [
-        //    ChartDataLabels
-        //],
     });
 
     //chart.helpers = {
