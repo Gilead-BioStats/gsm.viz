@@ -11,9 +11,13 @@ export default function line(_data_, config, labels) {
 
     const dataset = {
         type: 'line',
-        data: lineData,
         backgroundColor: 'rgba(0,0,255,.75)',
         borderColor: 'rgba(0,0,255,.25)',
+        data: lineData,
+        label: config.selectedGroupIDs.length > 0
+            ? `${config.group} ${lineData[0]?.groupid}`
+            : '',
+        purpose: 'highlight',
     };
 
     return dataset;

@@ -4535,9 +4535,9 @@ var rbmViz = (() => {
             return [];
           }
         },
-        onClick(e, legendItem, legend4) {
-          legend4.chart.toggleDataVisibility(legendItem.index);
-          legend4.chart.update();
+        onClick(e, legendItem, legend5) {
+          legend5.chart.toggleDataVisibility(legendItem.index);
+          legend5.chart.update();
         }
       },
       tooltip: {
@@ -4807,9 +4807,9 @@ var rbmViz = (() => {
             return [];
           }
         },
-        onClick(e, legendItem, legend4) {
-          legend4.chart.toggleDataVisibility(legendItem.index);
-          legend4.chart.update();
+        onClick(e, legendItem, legend5) {
+          legend5.chart.toggleDataVisibility(legendItem.index);
+          legend5.chart.update();
         }
       },
       tooltip: {
@@ -10576,23 +10576,23 @@ var rbmViz = (() => {
     id: "legend",
     _element: Legend,
     start(chart, _args, options) {
-      const legend4 = chart.legend = new Legend({ ctx: chart.ctx, options, chart });
-      layouts.configure(chart, legend4, options);
-      layouts.addBox(chart, legend4);
+      const legend5 = chart.legend = new Legend({ ctx: chart.ctx, options, chart });
+      layouts.configure(chart, legend5, options);
+      layouts.addBox(chart, legend5);
     },
     stop(chart) {
       layouts.removeBox(chart, chart.legend);
       delete chart.legend;
     },
     beforeUpdate(chart, _args, options) {
-      const legend4 = chart.legend;
-      layouts.configure(chart, legend4, options);
-      legend4.options = options;
+      const legend5 = chart.legend;
+      layouts.configure(chart, legend5, options);
+      legend5.options = options;
     },
     afterUpdate(chart) {
-      const legend4 = chart.legend;
-      legend4.buildLabels();
-      legend4.adjustHitBoxes();
+      const legend5 = chart.legend;
+      legend5.buildLabels();
+      legend5.adjustHitBoxes();
     },
     afterEvent(chart, args) {
       if (!args.replay) {
@@ -10606,9 +10606,9 @@ var rbmViz = (() => {
       fullSize: true,
       reverse: false,
       weight: 1e3,
-      onClick(e, legendItem, legend4) {
+      onClick(e, legendItem, legend5) {
         const index3 = legendItem.datasetIndex;
-        const ci = legend4.chart;
+        const ci = legend5.chart;
         if (ci.isDatasetVisible(index3)) {
           ci.hide(index3);
           legendItem.hidden = true;
@@ -21132,13 +21132,19 @@ var rbmViz = (() => {
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.yLabel = /flag|at.risk/.test(_config_.y) ? "# At Risk or Flagged" : _config_[defaults3.y];
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
     };
     defaults3.maintainAspectRatio = false;
+    defaults3.displayBoxplots = true;
+    defaults3.displayViolins = false;
+    defaults3.displayAtRisk = true;
+    defaults3.displayFlagged = true;
+    defaults3.displayThresholds = true;
+    defaults3.displayTrendLine = true;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
@@ -21169,8 +21175,9 @@ var rbmViz = (() => {
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "boxplot",
-      backgroundColor: color3.rgba + "",
-      borderColor: color3.color,
+      maxBarThickness: 7,
+      label: `${config.group} Distribution`,
+      purpose: "distribution",
       data: grouped.map((d) => d[1])
     };
     return dataset;
@@ -21189,8 +21196,8 @@ var rbmViz = (() => {
     color3.rgba.opacity = 0.5;
     const dataset = {
       type: "violin",
-      backgroundColor: color3.rgba + "",
-      borderColor: color3.color,
+      label: "Distribution",
+      purpose: "distribution",
       data: grouped.map((d) => d[1])
     };
     return dataset;
@@ -21209,18 +21216,20 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "scatter",
-      data: pointData,
       borderColor: color3.color,
       backgroundColor: color3.rgba + "",
-      radius: 1.5
+      data: pointData,
+      label: pointData.length ? "At Risk" : "",
+      purpose: "scatter",
+      radius: 1.5,
+      type: "scatter"
     };
     return dataset;
   }
 
   // src/timeSeries/structureData/flagged.js
   function flagged(_data_, config, labels) {
-    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d, i) => {
+    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21231,11 +21240,13 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "scatter",
-      data: pointData,
       borderColor: color3.color,
       backgroundColor: color3.rgba + "",
-      radius: 1.5
+      data: pointData,
+      label: pointData.length ? "Flagged" : "",
+      purpose: "scatter",
+      radius: 1.5,
+      type: "scatter"
     };
     return dataset;
   }
@@ -21250,9 +21261,11 @@ var rbmViz = (() => {
     });
     const dataset = {
       type: "line",
-      data: lineData,
       backgroundColor: "rgba(0,0,255,.75)",
-      borderColor: "rgba(0,0,255,.25)"
+      borderColor: "rgba(0,0,255,.25)",
+      data: lineData,
+      label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
+      purpose: "highlight"
     };
     return dataset;
   }
@@ -21279,28 +21292,45 @@ var rbmViz = (() => {
   function annotations4(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.map((x, i) => ({
-        drawTime: "beforeDatasetsDraw",
-        type: "line",
-        yMin: x.threshold,
-        yMax: x.threshold,
-        borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-        borderWidth: 2,
-        borderDash: [5],
-        label: {
-          rotation: "auto",
-          position: Math.sign(+x.flag) === 1 ? "end" : "start",
-          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-          backgroundColor: "white",
-          content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
-          display: true,
-          font: {
-            size: 12
-          }
-        }
-      }));
+      annotations5 = config.thresholds.map((x, i) => {
+        const color3 = colorScheme_default.find(
+          (y) => y.flag.includes(+x.flag)
+        );
+        color3.rgba.opacity = 0.5;
+        const annotation2 = {
+          drawTime: "beforeDatasetsDraw",
+          type: "line",
+          yMin: x.threshold,
+          yMax: x.threshold,
+          borderColor: color3.rgba + "",
+          borderWidth: 1
+        };
+        return annotation2;
+      });
     }
     return annotations5;
+  }
+
+  // src/timeSeries/plugins/legend.js
+  function legend4(config) {
+    const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
+    legendOrder.unshift("Site Distribution");
+    legendOrder.push(`${config.group} ${config.selectedGroupIDs[0]}`);
+    return {
+      display: true,
+      labels: {
+        boxHeight: 5,
+        filter: function(legendItem, chartData) {
+          return legendItem.text !== "";
+        },
+        sort: function(a, b, chartData) {
+          return legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
+        },
+        usePointStyle: true
+      },
+      onClick: () => null,
+      position: "top"
+    };
   }
 
   // src/timeSeries/plugins.js
@@ -21309,9 +21339,7 @@ var rbmViz = (() => {
       annotation: {
         annotations: annotations4(config)
       },
-      legend: {
-        display: false
-      }
+      legend: legend4(config)
     };
   }
 
@@ -21325,7 +21353,21 @@ var rbmViz = (() => {
       events: ["click", "mousemove", "mouseout"],
       maintainAspectRatio: config.maintainAspectRatio,
       plugins: plugins5(config),
-      responsive: true
+      responsive: true,
+      scales: {
+        x: {
+          title: {
+            display: true,
+            text: config.xLabel
+          }
+        },
+        y: {
+          title: {
+            display: true,
+            text: config.yLabel
+          }
+        }
+      }
     };
     const chart = new auto_default(canvas, {
       data,

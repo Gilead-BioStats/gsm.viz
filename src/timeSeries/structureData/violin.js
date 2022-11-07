@@ -15,8 +15,10 @@ export default function violin(_data_, config) {
     const dataset = {
         type: 'violin',
         //label: 'Score',
-        backgroundColor: color.rgba + '',
-        borderColor: color.color,
+        //backgroundColor: color.rgba + '',
+        //borderColor: color.color,
+        label: 'Distribution',
+        purpose: 'distribution',
         //borderWidth: 1,
         //outlierColor: '#999999',
         //padding: 10,

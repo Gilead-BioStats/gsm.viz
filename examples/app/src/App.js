@@ -8,6 +8,7 @@ import boundsAll from './data/results_bounds';
 import parametersAll from './data/meta_param';
 import resultsOverTimeAll from './data/results_summary_over_time';
 import flagCountsByKRIAll from './data/flag_counts_by_kri';
+import flagCountsByGroupAll from './data/flag_counts_by_group';
 
 const App = () => {
     const workflow = workflows[0];
@@ -24,9 +25,10 @@ const App = () => {
     const resultsOverTime = resultsOverTimeAll.filter(
         (d) => d.workflowid === workflow.workflowid
     );
-    const flagCountsByKRI = flagCountsByKRIAll.filter(
-        (d) => d.workflowid === workflow.workflowid
-    );
+    const flagCountsByKRI = flagCountsByKRIAll
+    //    .filter(
+    //    (d) => d.workflowid === workflow.workflowid
+    //);
 
     const workflowScoreBars = { ...workflow };
     workflowScoreBars.y = 'score';
@@ -50,6 +52,7 @@ const App = () => {
             <Sparkline
                 data={shuffle(data).slice(0, 25)}
                 config={{ ...workflowSparkline }}
+                parameters={parameters}
                 key={i}
             />
         );
@@ -81,7 +84,7 @@ const App = () => {
                 thresholds={parameters}
             />
             {sparklines}
-            <TimeSeries data={flagCountsByKRI} config={workflowFlagCounts} />
+            <TimeSeries data={flagCountsByGroupAll} config={workflowFlagCounts} />
         </>
     );
 };
