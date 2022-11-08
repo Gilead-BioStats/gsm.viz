@@ -20870,6 +20870,7 @@ var rbmViz = (() => {
     };
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
+    defaults3.displayThresholds = false;
     const config = configure2(defaults3, _config_, {
       thresholds: checkThresholds.bind(null, _config_, _parameters_)
     });
@@ -20908,7 +20909,7 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "line") {
-      return datum2 === dataset.data[dataset.data.length - 1] ? 5 : 3;
+      return datum2 === dataset.data[dataset.data.length - 1] ? 4 : 3;
     }
   }
 
@@ -20947,7 +20948,7 @@ var rbmViz = (() => {
   // src/sparkline/plugins/annotation/thresholds.js
   function thresholds(config) {
     let thresholds2 = null;
-    if (config.thresholds) {
+    if (config.displayThresholds && config.thresholds) {
       thresholds2 = config.thresholds.map((threshold, i) => {
         const color3 = colorScheme_default.find(
           (color4) => color4.flag.includes(+threshold.flag)

@@ -31,6 +31,7 @@ export default function configure(_config_, _data_, _parameters_) {
     // miscellaneous
     defaults.maintainAspectRatio = false;
     defaults.nSnapshots = 5;
+    defaults.displayThresholds = false;
 
     const config = configureAll(defaults, _config_, {
         thresholds: checkThresholds.bind(null, _config_, _parameters_),
