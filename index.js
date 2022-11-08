@@ -21170,6 +21170,9 @@ var rbmViz = (() => {
     const dataset = {
       type: "boxplot",
       maxBarThickness: 7,
+      maxWhiskerThickness: 0,
+      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
+      meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: `${config.group} Distribution`,
       purpose: "distribution",
       data: grouped.map((d) => d[1])
@@ -21180,7 +21183,7 @@ var rbmViz = (() => {
   // src/timeSeries/structureData/violin.js
   function violin(_data_, config) {
     const grouped = rollups(
-      _data_.filter((d) => +d.flag === 0),
+      _data_,
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
@@ -21255,8 +21258,8 @@ var rbmViz = (() => {
     });
     const dataset = {
       type: "line",
-      backgroundColor: "rgba(0,0,255,.75)",
-      borderColor: "rgba(0,0,255,.25)",
+      backgroundColor: "rgba(20,51,250,.75)",
+      borderColor: "rgba(20,51,250,.25)",
       data: lineData,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
       purpose: "highlight"
@@ -21295,7 +21298,8 @@ var rbmViz = (() => {
           yMin: x.threshold,
           yMax: x.threshold,
           borderColor: color3.rgba + "",
-          borderWidth: 1
+          borderWidth: 1,
+          borderDash: [3]
         };
         return annotation2;
       });
@@ -21307,7 +21311,6 @@ var rbmViz = (() => {
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Site Distribution");
-    legendOrder.push(`${config.group} ${config.selectedGroupIDs[0]}`);
     return {
       display: true,
       labels: {
@@ -21316,7 +21319,8 @@ var rbmViz = (() => {
           return legendItem.text !== "";
         },
         sort: function(a, b, chartData) {
-          return legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
+          const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
+          return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
         usePointStyle: true
       },
@@ -21335,6 +21339,17 @@ var rbmViz = (() => {
     };
   }
 
+  // src/timeSeries/updateSelectedGroupIDs.js
+  function updateSelectedGroupIDs(selectedGroupIDs) {
+    this.data.config.selectedGroupIDs = selectedGroupIDs;
+    this.data.config = configure6(this.data.config, this.data._data_);
+    this.data.datasets = structureData4(
+      this.data._data_,
+      this.data.config
+    ).datasets;
+    this.update();
+  }
+
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _parameters_ = null) {
     const config = configure6(_config_, _data_, _parameters_);
@@ -21348,6 +21363,9 @@ var rbmViz = (() => {
       responsive: true,
       scales: {
         x: {
+          grid: {
+            display: false
+          },
           title: {
             display: true,
             text: config.xLabel
@@ -21362,9 +21380,16 @@ var rbmViz = (() => {
       }
     };
     const chart = new auto_default(canvas, {
-      data,
+      data: {
+        ...data,
+        config,
+        _data_
+      },
       options
     });
+    chart.helpers = {
+      updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart)
+    };
     canvas.chart = chart;
     return chart;
   }

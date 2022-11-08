@@ -11,8 +11,8 @@ export default function line(_data_, config, labels) {
 
     const dataset = {
         type: 'line',
-        backgroundColor: 'rgba(0,0,255,.75)',
-        borderColor: 'rgba(0,0,255,.25)',
+        backgroundColor: 'rgba(20,51,250,.75)',
+        borderColor: 'rgba(20,51,250,.25)',
         data: lineData,
         label:
             config.selectedGroupIDs.length > 0
