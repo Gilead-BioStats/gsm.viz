@@ -14,7 +14,7 @@ export default function annotations(config) {
                 yMax: x.threshold,
                 borderColor: color.rgba + '',
                 borderWidth: 1,
-                //borderDash: [5],
+                borderDash: [3],
                 //label: {
                 //    rotation: 'auto',
                 //    position: Math.sign(+x.flag) === 1 ? 'end' : 'start',

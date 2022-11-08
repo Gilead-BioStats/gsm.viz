@@ -15,6 +15,7 @@ Promise.all(dataPromises)
         const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
             .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
         workflow.selectedGroupIDs = '43';
+        workflow.type = 'boxplot'; //'violin';
         const results = datasets[1].filter(
             (d) => d.workflowid === workflow.workflowid
         );
@@ -29,4 +30,6 @@ Promise.all(dataPromises)
             workflow,
             parameters
         );
+
+        site(datasets, true);
     });
