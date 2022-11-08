@@ -12,7 +12,9 @@ export default function getScales(config) {
             return tick.major ? format(',d')(tick.value) : null;
         },
     };
-    scales.x.title.text = config.xLabel;
+    scales.x.title.text = config.xType === 'logarithmic'
+        ? `${config.xLabel} (Log Scale)`
+        : config.xLabel;
     scales.x.type = config.xType;
 
     // y

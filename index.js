@@ -20764,7 +20764,7 @@ var rbmViz = (() => {
         return tick.major ? format(",d")(tick.value) : null;
       }
     };
-    scales2.x.title.text = config.xLabel;
+    scales2.x.title.text = config.xType === "logarithmic" ? `${config.xLabel} (Log Scale)` : config.xLabel;
     scales2.x.type = config.xType;
     scales2.y.title.text = config.yLabel;
     scales2.y.type = config.yType;
