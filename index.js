@@ -20106,6 +20106,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.type = "bar";
     defaults3.x = "groupid";
+    defaults3.xType = "category";
     defaults3.xLabel = _config_["group"];
     defaults3.y = "score";
     defaults3.yType = "linear";
@@ -20352,33 +20353,52 @@ var rbmViz = (() => {
     return plugins6;
   }
 
-  // src/barChart/getScales.js
-  function getScales(config) {
-    const scales2 = {
+  // src/util/getDefaultScales.js
+  function getDefaultScales() {
+    const defaultScales = {
       x: {
         grid: {
-          display: false
+          borderDash: [2],
+          display: false,
+          drawBorder: false
         },
         ticks: {
-          display: false
+          display: true
         },
         title: {
           display: true,
-          text: config.group
+          text: null
         },
-        type: "category"
+        type: null
       },
       y: {
+        grid: {
+          borderDash: [2],
+          display: true,
+          drawBorder: false
+        },
+        ticks: {
+          display: true
+        },
         title: {
           display: true,
-          text: config[config.y],
-          padding: { top: 20, left: 0, right: 0, bottom: 0 }
+          text: null,
+          padding: null
         },
-        grid: {
-          borderDash: [5]
-        }
+        type: null
       }
     };
+    return defaultScales;
+  }
+
+  // src/barChart/getScales.js
+  function getScales(config) {
+    const scales2 = getDefaultScales();
+    scales2.x.ticks.display = false;
+    scales2.x.title.text = config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -20736,36 +20756,18 @@ var rbmViz = (() => {
 
   // src/scatterPlot/getScales.js
   function getScales2(config) {
-    const scales2 = {
-      x: {
-        display: true,
-        grid: {
-          borderDash: [2]
-        },
-        ticks: {
-          callback: function(value, index3, context) {
-            const tick = context[index3];
-            return tick.major ? format(",d")(tick.value) : null;
-          }
-        },
-        title: {
-          display: true,
-          text: config.xLabel
-        },
-        type: config.xType
-      },
-      y: {
-        display: true,
-        grid: {
-          borderDash: [2]
-        },
-        title: {
-          display: true,
-          text: config.yLabel
-        },
-        type: config.yType
+    const scales2 = getDefaultScales();
+    scales2.x.grid.display = true;
+    scales2.x.ticks = {
+      callback: function(value, index3, context) {
+        const tick = context[index3];
+        return tick.major ? format(",d")(tick.value) : null;
       }
     };
+    scales2.x.title.text = config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -20850,6 +20852,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
+    defaults3.xType = "category";
     defaults3.xLabel = _config_[defaults3.x];
     defaults3.y = "score";
     defaults3.yType = "linear";
@@ -21028,27 +21031,16 @@ var rbmViz = (() => {
 
   // src/sparkline/getScales.js
   function getScales3(config, data) {
+    const scales2 = getDefaultScales();
+    scales2.x.display = false;
+    scales2.x.type = config.xType;
     const yMin = min(data, (d) => d.y);
     const yMax = max(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
-    const scales2 = {
-      x: {
-        display: false,
-        title: {
-          display: true,
-          text: config.xLabel
-        }
-      },
-      y: {
-        display: false,
-        min: yMin - range * 0.35,
-        max: yMax + range * 0.35,
-        title: {
-          display: true,
-          text: config.yLabel
-        }
-      }
-    };
+    scales2.y.display = false;
+    scales2.y.min = yMin - range * 0.35;
+    scales2.y.max = yMax + range * 0.35;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -21123,6 +21115,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.type = "boxplot";
     defaults3.x = "snapshot_date";
+    defaults3.xType = "category";
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
@@ -21339,6 +21332,16 @@ var rbmViz = (() => {
     };
   }
 
+  // src/timeSeries/getScales.js
+  function getScales4(config) {
+    const scales2 = getDefaultScales();
+    scales2.x.title.text = config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
+    return scales2;
+  }
+
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = selectedGroupIDs;
@@ -21361,23 +21364,7 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       plugins: plugins5(config),
       responsive: true,
-      scales: {
-        x: {
-          grid: {
-            display: false
-          },
-          title: {
-            display: true,
-            text: config.xLabel
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: config.yLabel
-          }
-        }
-      }
+      scales: getScales4(config)
     };
     const chart = new auto_default(canvas, {
       data: {

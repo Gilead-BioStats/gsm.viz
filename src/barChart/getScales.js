@@ -1,29 +1,16 @@
+import getDefaultScales from '../util/getDefaultScales';
+
 export default function getScales(config) {
-    const scales = {
-        x: {
-            grid: {
-                display: false,
-            },
-            ticks: {
-                display: false,
-            },
-            title: {
-                display: true,
-                text: config.group,
-            },
-            type: 'category',
-        },
-        y: {
-            title: {
-                display: true,
-                text: config[config.y],
-                padding: { top: 20, left: 0, right: 0, bottom: 0 },
-            },
-            grid: {
-                borderDash: [5],
-            },
-        },
-    };
+    const scales = getDefaultScales();
+
+    // x
+    scales.x.ticks.display = false;
+    scales.x.title.text = config.xLabel;
+    scales.x.type = config.xType;
+
+    // y
+    scales.y.title.text = config.yLabel;
+    scales.y.type = config.yType;
 
     return scales;
 }

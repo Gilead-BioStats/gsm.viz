@@ -10,7 +10,7 @@ export default function configure(_config_, _data_, _parameters_) {
 
     // horizontal
     defaults.x = 'snapshot_date';
-    //defaults.xType = 'categorical';
+    defaults.xType = 'category';
     defaults.xLabel = 'Snapshot Date';
 
     // vertical

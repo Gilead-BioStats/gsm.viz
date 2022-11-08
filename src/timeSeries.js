@@ -5,7 +5,7 @@ import structureData from './timeSeries/structureData';
 //import onHover from './util/onHover';
 //import onClick from './util/onClick';
 import plugins from './timeSeries/plugins';
-//import getScales from './timeSeries/getScales';
+import getScales from './timeSeries/getScales';
 
 import Chart from 'chart.js/auto';
 import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
@@ -32,24 +32,7 @@ export default function timeSeries(
         //onHover,
         plugins: plugins(config),
         responsive: true,
-        //scales: getScales(config),
-        scales: {
-            x: {
-                grid: {
-                    display: false,
-                },
-                title: {
-                    display: true,
-                    text: config.xLabel,
-                },
-            },
-            y: {
-                title: {
-                    display: true,
-                    text: config.yLabel,
-                },
-            },
-        },
+        scales: getScales(config),
     };
 
     const chart = new Chart(canvas, {

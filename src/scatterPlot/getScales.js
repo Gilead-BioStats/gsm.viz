@@ -1,36 +1,23 @@
+import getDefaultScales from '../util/getDefaultScales';
 import { format } from 'd3';
 
 export default function getScales(config) {
-    const scales = {
-        x: {
-            display: true,
-            grid: {
-                borderDash: [2],
-            },
-            ticks: {
-                callback: function (value, index, context) {
-                    const tick = context[index];
-                    return tick.major ? format(',d')(tick.value) : null;
-                },
-            },
-            title: {
-                display: true,
-                text: config.xLabel,
-            },
-            type: config.xType,
-        },
-        y: {
-            display: true,
-            grid: {
-                borderDash: [2],
-            },
-            title: {
-                display: true,
-                text: config.yLabel,
-            },
-            type: config.yType,
+    const scales = getDefaultScales();
+
+    // x
+    scales.x.grid.display = true;
+    scales.x.ticks = {
+        callback: function (value, index, context) {
+            const tick = context[index];
+            return tick.major ? format(',d')(tick.value) : null;
         },
     };
+    scales.x.title.text = config.xLabel;
+    scales.x.type = config.xType;
+
+    // y
+    scales.y.title.text = config.yLabel;
+    scales.y.type = config.yType;
 
     return scales;
 }
