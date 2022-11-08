@@ -25,9 +25,7 @@ const site = function (datasets, setup = false) {
             : 'None';
 
         siteDropdown.addEventListener('change', (event) => {
-            instance.helpers.updateSelectedGroupIDs(
-                event.target.value
-            );
+            instance.helpers.updateSelectedGroupIDs(event.target.value);
         });
     }
 

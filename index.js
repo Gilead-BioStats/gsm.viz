@@ -21170,8 +21170,9 @@ var rbmViz = (() => {
     const dataset = {
       type: "boxplot",
       maxBarThickness: 7,
-      outlierRadius: 0,
-      meanRadius: 0,
+      maxWhiskerThickness: 0,
+      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
+      meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: `${config.group} Distribution`,
       purpose: "distribution",
       data: grouped.map((d) => d[1])
