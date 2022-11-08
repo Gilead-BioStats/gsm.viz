@@ -20248,6 +20248,16 @@ var rbmViz = (() => {
     return datum2;
   }
 
+  // src/util/onClick.js
+  function onClick(event, activeElements, chart) {
+    const config = chart.data.config;
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
+      const datum2 = getElementDatum(activeElements, chart);
+      config.clickEvent.data = datum2;
+      chart.canvas.dispatchEvent(config.clickEvent);
+    }
+  }
+
   // src/util/onHover.js
   function onHover(event, activeElements, chart) {
     const config = chart.data.config;
@@ -20258,16 +20268,6 @@ var rbmViz = (() => {
       event.native.target.style.cursor = "pointer";
     } else {
       event.native.target.style.cursor = "default";
-    }
-  }
-
-  // src/util/onClick.js
-  function onClick(event, activeElements, chart) {
-    const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
-      const datum2 = getElementDatum(activeElements, chart);
-      config.clickEvent.data = datum2;
-      chart.canvas.dispatchEvent(config.clickEvent);
     }
   }
 
@@ -20329,10 +20329,10 @@ var rbmViz = (() => {
   }
 
   // src/barChart/plugins/chartLabels.js
-  function chartLabels() {
+  function chartLabels(config) {
     return {
-      align: (context) => Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? "start" : "end",
-      anchor: (context) => Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? "start" : "end",
+      align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
       color: "black",
       display: (context) => context.chart.getDatasetMeta(0).data[1].width >= context.chart.options.font.size - 3,
       formatter: (value, context) => context.chart.data.labels[context.dataIndex],
@@ -20346,7 +20346,7 @@ var rbmViz = (() => {
       annotation: {
         annotations: annotations(config)
       },
-      datalabels: chartLabels(),
+      datalabels: chartLabels(config),
       legend: legend(config),
       tooltip: tooltip(config)
     };
@@ -20392,7 +20392,7 @@ var rbmViz = (() => {
   }
 
   // src/barChart/getScales.js
-  function getScales(config) {
+  function getScales(config, datasets) {
     const scales2 = getDefaultScales();
     scales2.x.ticks.display = false;
     scales2.x.title.text = config.xLabel;
@@ -20478,11 +20478,16 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      layout: {
+        padding: {
+          top: config.y === "metric" ? max(datasets[0].data, (d) => d.groupid.length) * 8 : null
+        }
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
       plugins: plugins2(config),
-      scales: getScales(config)
+      scales: getScales(config, datasets)
     };
     const chart = new auto_default(canvas, {
       data: {
