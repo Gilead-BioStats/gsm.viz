@@ -1,5 +1,3 @@
-//import ChartDataLabels from 'chartjs-plugin-datalabels';
-
 import configure from './timeSeries/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './timeSeries/structureData';
@@ -7,13 +5,10 @@ import structureData from './timeSeries/structureData';
 //import onHover from './util/onHover';
 //import onClick from './util/onClick';
 import plugins from './timeSeries/plugins';
-//import getScales from './barChart/getScales';
+//import getScales from './timeSeries/getScales';
 
 import Chart from 'chart.js/auto';
-//import updateData from './barChart/updateData';
-//import updateConfig from './barChart/updateConfig';
-//import updateOption from './barChart/updateOption';
-//import triggerTooltip from './util/triggerTooltip';
+import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
 
 export default function timeSeries(
     _element_,
@@ -40,6 +35,9 @@ export default function timeSeries(
         //scales: getScales(config),
         scales: {
             x: {
+                grid: {
+                    display: false,
+                },
                 title: {
                     display: true,
                     text: config.xLabel,
@@ -55,19 +53,19 @@ export default function timeSeries(
     };
 
     const chart = new Chart(canvas, {
-        data,
+        data: {
+            ...data,
+            config,
+            _data_,
+        },
         options,
     });
 
-    //chart.helpers = {
-    //    updateData,
-    //    updateConfig,
-    //    updateOption,
-    //};
+    chart.helpers = {
+        updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart),
+    };
 
     canvas.chart = chart;
-
-    //triggerTooltip(chart);
 
     return chart;
 }

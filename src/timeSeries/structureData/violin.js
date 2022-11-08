@@ -2,7 +2,7 @@ import { rollups, ascending } from 'd3';
 
 export default function violin(_data_, config) {
     const grouped = rollups(
-        _data_.filter((d) => +d.flag === 0),
+        _data_, //.filter((d) => +d.flag === 0),
         (group) => group.map((d) => +d[config.y]),
         (d) => d.snapshot_date
     );
