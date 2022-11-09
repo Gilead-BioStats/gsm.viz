@@ -10919,9 +10919,9 @@ var rbmViz = (() => {
       element
     };
   }
-  function getTooltipSize(tooltip4, options) {
-    const ctx = tooltip4.chart.ctx;
-    const { body, footer, title: title2 } = tooltip4;
+  function getTooltipSize(tooltip5, options) {
+    const ctx = tooltip5.chart.ctx;
+    const { body, footer, title: title2 } = tooltip5;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
@@ -10933,7 +10933,7 @@ var rbmViz = (() => {
     let height = padding.height;
     let width = 0;
     let combinedBodyLength = body.reduce((count, bodyItem) => count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length, 0);
-    combinedBodyLength += tooltip4.beforeBody.length + tooltip4.afterBody.length;
+    combinedBodyLength += tooltip5.beforeBody.length + tooltip5.afterBody.length;
     if (titleLineCount) {
       height += titleLineCount * titleFont.lineHeight + (titleLineCount - 1) * options.titleSpacing + options.titleMarginBottom;
     }
@@ -10950,9 +10950,9 @@ var rbmViz = (() => {
     };
     ctx.save();
     ctx.font = titleFont.string;
-    each(tooltip4.title, maxLineWidth);
+    each(tooltip5.title, maxLineWidth);
     ctx.font = bodyFont.string;
-    each(tooltip4.beforeBody.concat(tooltip4.afterBody), maxLineWidth);
+    each(tooltip5.beforeBody.concat(tooltip5.afterBody), maxLineWidth);
     widthPadding = options.displayColors ? boxWidth + 2 + options.boxPadding : 0;
     each(body, (bodyItem) => {
       each(bodyItem.before, maxLineWidth);
@@ -10961,7 +10961,7 @@ var rbmViz = (() => {
     });
     widthPadding = 0;
     ctx.font = footerFont.string;
-    each(tooltip4.footer, maxLineWidth);
+    each(tooltip5.footer, maxLineWidth);
     ctx.restore();
     width += padding.width;
     return { width, height };
@@ -11051,16 +11051,16 @@ var rbmViz = (() => {
       y: _limitValue(y, 0, chart.height - size.height)
     };
   }
-  function getAlignedX(tooltip4, align, options) {
+  function getAlignedX(tooltip5, align, options) {
     const padding = toPadding(options.padding);
-    return align === "center" ? tooltip4.x + tooltip4.width / 2 : align === "right" ? tooltip4.x + tooltip4.width - padding.right : tooltip4.x + padding.left;
+    return align === "center" ? tooltip5.x + tooltip5.width / 2 : align === "right" ? tooltip5.x + tooltip5.width - padding.right : tooltip5.x + padding.left;
   }
   function getBeforeAfterBodyLines(callback2) {
     return pushOrConcat([], splitNewlines(callback2));
   }
-  function createTooltipContext(parent, tooltip4, tooltipItems) {
+  function createTooltipContext(parent, tooltip5, tooltipItems) {
     return createContext(parent, {
-      tooltip: tooltip4,
+      tooltip: tooltip5,
       tooltipItems,
       type: "tooltip"
     });
@@ -11620,15 +11620,15 @@ var rbmViz = (() => {
       }
     },
     afterDraw(chart) {
-      const tooltip4 = chart.tooltip;
-      if (tooltip4 && tooltip4._willRender()) {
+      const tooltip5 = chart.tooltip;
+      if (tooltip5 && tooltip5._willRender()) {
         const args = {
-          tooltip: tooltip4
+          tooltip: tooltip5
         };
         if (chart.notifyPlugins("beforeTooltipDraw", args) === false) {
           return;
         }
-        tooltip4.draw(chart.ctx);
+        tooltip5.draw(chart.ctx);
         chart.notifyPlugins("afterTooltipDraw", args);
       }
     },
@@ -15547,19 +15547,19 @@ var rbmViz = (() => {
       const props = this.getProps(["outliers"], useFinalPosition);
       return props.outliers || [];
     }
-    tooltipPosition(eventPosition, tooltip4) {
+    tooltipPosition(eventPosition, tooltip5) {
       if (!eventPosition || typeof eventPosition === "boolean") {
         return this.getCenterPoint();
       }
-      if (tooltip4) {
-        delete tooltip4._tooltipOutlier;
+      if (tooltip5) {
+        delete tooltip5._tooltipOutlier;
       }
       const props = this.getProps(["x", "y"]);
       const index3 = this._outlierIndexInRange(eventPosition.x, eventPosition.y);
-      if (index3 < 0 || !tooltip4) {
+      if (index3 < 0 || !tooltip5) {
         return this.getCenterPoint();
       }
-      tooltip4._tooltipOutlier = {
+      tooltip5._tooltipOutlier = {
         index: index3,
         datasetIndex: this._datasetIndex
       };
@@ -20089,23 +20089,28 @@ var rbmViz = (() => {
   }
 
   // src/util/checkThresholds.js
-  function checkThresholds(_config_, _parameters_) {
+  function checkThresholds(_config_, _thresholds_) {
     let thresholds2 = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
-    if (_parameters_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
+    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every(
+      (threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("flag")
+    ))
+      return thresholds2;
+    if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _parameters_.filter((d) => d.param === "vThreshold").map((d) => d.default);
+    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.default);
     return mapThresholdsToFlags(thresholds2);
   }
 
   // src/barChart/configure.js
-  function configure3(_config_, _data_, _parameters_) {
+  function configure3(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "bar";
     defaults3.x = "groupid";
+    defaults3.xType = "category";
     defaults3.xLabel = _config_["group"];
     defaults3.y = "score";
     defaults3.yType = "linear";
@@ -20119,6 +20124,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
@@ -20127,7 +20133,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     return config;
   }
@@ -20247,6 +20253,16 @@ var rbmViz = (() => {
     return datum2;
   }
 
+  // src/util/onClick.js
+  function onClick(event, activeElements, chart) {
+    const config = chart.data.config;
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
+      const datum2 = getElementDatum(activeElements, chart);
+      config.clickEvent.data = datum2;
+      chart.canvas.dispatchEvent(config.clickEvent);
+    }
+  }
+
   // src/util/onHover.js
   function onHover(event, activeElements, chart) {
     const config = chart.data.config;
@@ -20257,16 +20273,6 @@ var rbmViz = (() => {
       event.native.target.style.cursor = "pointer";
     } else {
       event.native.target.style.cursor = "default";
-    }
-  }
-
-  // src/util/onClick.js
-  function onClick(event, activeElements, chart) {
-    const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
-      const datum2 = getElementDatum(activeElements, chart);
-      config.clickEvent.data = datum2;
-      chart.canvas.dispatchEvent(config.clickEvent);
     }
   }
 
@@ -20305,33 +20311,47 @@ var rbmViz = (() => {
     };
   }
 
+  // src/util/formatResultTooltipContent.js
+  function formatResultTooltipContent(config, data) {
+    const datum2 = data.dataset.data[data.dataIndex];
+    let content;
+    if (["bar", "line", "scatter"].includes(data.dataset.type)) {
+      content = config.isCount === false ? [
+        `${config.group}: ${datum2.groupid}`,
+        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
+        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `${config.numerator}: ${format(",")(datum2.numerator)}`,
+        `${config.denominator}: ${format(",")(
+          datum2.denominator
+        )}`
+      ] : [
+        `${datum2.n_flagged} flagged ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
+      ];
+    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
+      const stats = ["mean", "median"].map(
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
+      );
+      content = [data.label, ...stats];
+    }
+    return content;
+  }
+
   // src/barChart/plugins/tooltip.js
   function tooltip(config) {
     return {
       callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${config.xLabel}: ${datum2.x}`,
-            `${config.numeratorLabel}: ${datum2.numerator}`,
-            `${config.denominatorLabel}: ${format(",")(
-              datum2.denominator
-            )}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`,
-            `${config.yLabel}: ${format(".3f")(datum2.y)}`
-          ];
-          return tooltip4;
-        },
+        label: formatResultTooltipContent.bind(null, config),
         title: () => null
       }
     };
   }
 
   // src/barChart/plugins/chartLabels.js
-  function chartLabels() {
+  function chartLabels(config) {
     return {
-      align: (context) => Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? "start" : "end",
-      anchor: (context) => Math.sign(context.dataset.data[context.dataIndex].y) === 1 ? "start" : "end",
+      align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
       color: "black",
       display: (context) => context.chart.getDatasetMeta(0).data[1].width >= context.chart.options.font.size - 3,
       formatter: (value, context) => context.chart.data.labels[context.dataIndex],
@@ -20345,40 +20365,59 @@ var rbmViz = (() => {
       annotation: {
         annotations: annotations(config)
       },
-      datalabels: chartLabels(),
+      datalabels: chartLabels(config),
       legend: legend(config),
       tooltip: tooltip(config)
     };
     return plugins6;
   }
 
-  // src/barChart/getScales.js
-  function getScales(config) {
-    const scales2 = {
+  // src/util/getDefaultScales.js
+  function getDefaultScales() {
+    const defaultScales = {
       x: {
         grid: {
-          display: false
+          borderDash: [2],
+          display: false,
+          drawBorder: false
         },
         ticks: {
-          display: false
+          display: true
         },
         title: {
           display: true,
-          text: config.group
+          text: null
         },
-        type: "category"
+        type: null
       },
       y: {
+        grid: {
+          borderDash: [2],
+          display: true,
+          drawBorder: false
+        },
+        ticks: {
+          display: true
+        },
         title: {
           display: true,
-          text: config[config.y],
-          padding: { top: 20, left: 0, right: 0, bottom: 0 }
+          text: null,
+          padding: null
         },
-        grid: {
-          borderDash: [5]
-        }
+        type: null
       }
     };
+    return defaultScales;
+  }
+
+  // src/barChart/getScales.js
+  function getScales(config, datasets) {
+    const scales2 = getDefaultScales();
+    scales2.x.ticks.display = false;
+    scales2.x.title.text = config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -20388,15 +20427,15 @@ var rbmViz = (() => {
 
   // src/util/triggerTooltip.js
   function triggerTooltip(chart) {
-    const tooltip4 = chart.tooltip;
-    if (tooltip4.getActiveElements().length > 0) {
-      tooltip4.setActiveElements([], { x: 0, y: 0 });
+    const tooltip5 = chart.tooltip;
+    if (tooltip5.getActiveElements().length > 0) {
+      tooltip5.setActiveElements([], { x: 0, y: 0 });
     }
     if (chart.data.config.selectedGroupIDs.length > 0) {
       const pointIndex = chart.data.datasets[0].data.findIndex(
         (d) => chart.data.config.selectedGroupIDs.includes(d.groupid)
       );
-      tooltip4.setActiveElements([
+      tooltip5.setActiveElements([
         {
           datasetIndex: 0,
           index: pointIndex
@@ -20407,11 +20446,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, _parameters_, update = false) {
+  function updateConfig(chart, _config_, _thresholds_, update = false) {
     const config = configure3(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
-      _parameters_
+      _thresholds_
     );
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
@@ -20423,8 +20462,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _parameters_) {
-    chart.data.config = updateConfig(chart, _config_, _parameters_);
+  function updateData(chart, _data_, _config_, _thresholds_) {
+    chart.data.config = updateConfig(chart, _config_, _thresholds_);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -20451,24 +20490,29 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_, _data_, _config_ = {}, _parameters_ = null) {
-    const config = configure3(_config_, _data_, _parameters_);
+  function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      layout: {
+        padding: {
+          top: config.y === "metric" ? max(datasets[0].data, (d) => d.groupid.length) * 8 : null
+        }
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
       plugins: plugins2(config),
-      scales: getScales(config)
+      scales: getScales(config, datasets)
     };
     const chart = new auto_default(canvas, {
       data: {
         datasets,
         config,
-        _parameters_,
+        _thresholds_,
         _data_
       },
       metadata: "test",
@@ -20500,6 +20544,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.displayTitle = false;
     defaults3.displayTrendLine = false;
@@ -20696,6 +20741,10 @@ var rbmViz = (() => {
   // src/scatterPlot/plugins/tooltip.js
   function tooltip2(config) {
     return {
+      callbacks: {
+        label: formatResultTooltipContent.bind(null, config),
+        title: () => null
+      },
       custom: function(tooltipModel) {
         if (!tooltipModel.body || tooltipModel.body.length < 1) {
           tooltipModel.caretSize = 0;
@@ -20706,20 +20755,6 @@ var rbmViz = (() => {
           tooltipModel.height = 0;
         }
       },
-      callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${datum2.groupid}`,
-            `${format(",d")(datum2.y)} ${config.yLabel}`,
-            `${format(",d")(datum2.x)} ${config.xLabel}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`
-          ];
-          return tooltip4;
-        },
-        title: () => null
-      },
-      events: ["click", "mouseenter", "mouseover"],
       filter: (data) => data.dataset.type !== "line"
     };
   }
@@ -20736,36 +20771,18 @@ var rbmViz = (() => {
 
   // src/scatterPlot/getScales.js
   function getScales2(config) {
-    const scales2 = {
-      x: {
-        display: true,
-        grid: {
-          borderDash: [2]
-        },
-        ticks: {
-          callback: function(value, index3, context) {
-            const tick = context[index3];
-            return tick.major ? format(",d")(tick.value) : null;
-          }
-        },
-        title: {
-          display: true,
-          text: config.xLabel
-        },
-        type: config.xType
-      },
-      y: {
-        display: true,
-        grid: {
-          borderDash: [2]
-        },
-        title: {
-          display: true,
-          text: config.yLabel
-        },
-        type: config.yType
+    const scales2 = getDefaultScales();
+    scales2.x.grid.display = true;
+    scales2.x.ticks = {
+      callback: function(value, index3, context) {
+        const tick = context[index3];
+        return tick.major ? format(",d")(tick.value) : null;
       }
     };
+    scales2.x.title.text = config.xType === "logarithmic" ? `${config.xLabel} (Log Scale)` : config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -20846,10 +20863,11 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure5(_config_, _data_, _parameters_) {
+  function configure5(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
+    defaults3.xType = "category";
     defaults3.xLabel = _config_[defaults3.x];
     defaults3.y = "score";
     defaults3.yType = "linear";
@@ -20859,11 +20877,13 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
+    defaults3.displayThresholds = false;
     const config = configure2(defaults3, _config_, {
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
@@ -20900,7 +20920,7 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "line") {
-      return datum2 === dataset.data[dataset.data.length - 1] ? 5 : 3;
+      return datum2 === dataset.data[dataset.data.length - 1] ? 4 : 3;
     }
   }
 
@@ -20939,7 +20959,7 @@ var rbmViz = (() => {
   // src/sparkline/plugins/annotation/thresholds.js
   function thresholds(config) {
     let thresholds2 = null;
-    if (config.thresholds) {
+    if (config.displayThresholds && config.thresholds) {
       thresholds2 = config.thresholds.map((threshold, i) => {
         const color3 = colorScheme_default.find(
           (color4) => color4.flag.includes(+threshold.flag)
@@ -21013,7 +21033,14 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
-    return {};
+    return {
+      callbacks: {
+        label: function(data) {
+          return `${data.label}: ${data.formattedValue}`;
+        },
+        title: () => null
+      }
+    };
   }
 
   // src/sparkline/plugins.js
@@ -21028,27 +21055,16 @@ var rbmViz = (() => {
 
   // src/sparkline/getScales.js
   function getScales3(config, data) {
+    const scales2 = getDefaultScales();
+    scales2.x.display = false;
+    scales2.x.type = config.xType;
     const yMin = min(data, (d) => d.y);
     const yMax = max(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
-    const scales2 = {
-      x: {
-        display: false,
-        title: {
-          display: true,
-          text: config.xLabel
-        }
-      },
-      y: {
-        display: false,
-        min: yMin - range * 0.35,
-        max: yMax + range * 0.35,
-        title: {
-          display: true,
-          text: config.yLabel
-        }
-      }
-    };
+    scales2.y.display = false;
+    scales2.y.min = yMin - range * 0.35;
+    scales2.y.max = yMax + range * 0.35;
+    scales2.y.type = config.yType;
     return scales2;
   }
 
@@ -21085,8 +21101,8 @@ var rbmViz = (() => {
   }
 
   // src/sparkline.js
-  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _parameters_ = []) {
-    const config = configure5(_config_, _data_, _parameters_);
+  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = []) {
+    const config = configure5(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
@@ -21098,8 +21114,6 @@ var rbmViz = (() => {
         }
       },
       maintainAspectRatio: config.maintainAspectRatio,
-      onClick,
-      onHover,
       plugins: plugins4(config, datasets[0].data),
       scales: getScales3(config, datasets[0].data)
     };
@@ -21119,19 +21133,25 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _parameters_) {
+  function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "boxplot";
+    defaults3.isCount = /flag|at.risk/.test(_config_.y);
+    if (defaults3.isCount)
+      defaults3.unit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
     defaults3.x = "snapshot_date";
+    defaults3.xType = "category";
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = /flag|at.risk/.test(_config_.y) ? "# At Risk or Flagged" : _config_[defaults3.y];
+    defaults3.yLabel = defaults3.isCount ? `# At Risk or Flagged ${defaults3.unit}` : _config_[defaults3.y];
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
+    defaults3.group = "Site";
     defaults3.maintainAspectRatio = false;
     defaults3.displayBoxplots = true;
     defaults3.displayViolins = false;
@@ -21145,7 +21165,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     return config;
   }
@@ -21168,14 +21188,14 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "boxplot",
+      data: grouped.map((d) => d[1]),
       maxBarThickness: 7,
       maxWhiskerThickness: 0,
-      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: `${config.group} Distribution`,
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
       purpose: "distribution",
-      data: grouped.map((d) => d[1])
+      type: "boxplot"
     };
     return dataset;
   }
@@ -21192,10 +21212,10 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "violin",
-      label: "Distribution",
+      data: grouped.map((d) => d[1]),
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       purpose: "distribution",
-      data: grouped.map((d) => d[1])
+      type: "violin"
     };
     return dataset;
   }
@@ -21314,7 +21334,8 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: 5,
+        boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
+        boxWidth: 7,
         filter: function(legendItem, chartData) {
           return legendItem.text !== "";
         },
@@ -21322,10 +21343,24 @@ var rbmViz = (() => {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: true
+        usePointStyle: /flag|at.risk/.test(config.y) === false
       },
       onClick: () => null,
       position: "top"
+    };
+  }
+
+  // src/timeSeries/plugins/tooltip.js
+  function tooltip4(config) {
+    return {
+      callbacks: {
+        label: formatResultTooltipContent.bind(null, config),
+        title: () => null
+      },
+      filter: (data) => {
+        const datum2 = data.dataset.data[data.dataIndex];
+        return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+      }
     };
   }
 
@@ -21335,8 +21370,19 @@ var rbmViz = (() => {
       annotation: {
         annotations: annotations4(config)
       },
-      legend: legend4(config)
+      legend: legend4(config),
+      tooltip: tooltip4(config)
     };
+  }
+
+  // src/timeSeries/getScales.js
+  function getScales4(config) {
+    const scales2 = getDefaultScales();
+    scales2.x.title.text = config.xLabel;
+    scales2.x.type = config.xType;
+    scales2.y.title.text = config.yLabel;
+    scales2.y.type = config.yType;
+    return scales2;
   }
 
   // src/timeSeries/updateSelectedGroupIDs.js
@@ -21351,8 +21397,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _parameters_ = null) {
-    const config = configure6(_config_, _data_, _parameters_);
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config);
     const options = {
@@ -21361,23 +21407,7 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       plugins: plugins5(config),
       responsive: true,
-      scales: {
-        x: {
-          grid: {
-            display: false
-          },
-          title: {
-            display: true,
-            text: config.xLabel
-          }
-        },
-        y: {
-          title: {
-            display: true,
-            text: config.yLabel
-          }
-        }
-      }
+      scales: getScales4(config)
     };
     const chart = new auto_default(canvas, {
       data: {

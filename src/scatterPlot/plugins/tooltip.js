@@ -1,7 +1,11 @@
-import { format } from 'd3';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 
 export default function tooltip(config) {
     return {
+        callbacks: {
+            label: formatResultTooltipContent.bind(null, config),
+            title: () => null,
+        },
         custom: function (tooltipModel) {
             // EXTENSION: filter is not enough! Hide tooltip frame
             if (!tooltipModel.body || tooltipModel.body.length < 1) {
@@ -13,21 +17,6 @@ export default function tooltip(config) {
                 tooltipModel.height = 0;
             }
         },
-        callbacks: {
-            label: (data) => {
-                const datum = data.dataset.data[data.dataIndex];
-                const tooltip = [
-                    `${datum.groupid}`,
-                    `${format(',d')(datum.y)} ${config.yLabel}`,
-                    `${format(',d')(datum.x)} ${config.xLabel}`,
-                    `${config.outcome}: ${format('.3f')(datum.metric)}`,
-                ];
-
-                return tooltip;
-            },
-            title: () => null,
-        },
-        events: ['click', 'mouseenter', 'mouseover'],
         filter: (data) => data.dataset.type !== 'line', // turns off tooltip for bounds
     };
 }

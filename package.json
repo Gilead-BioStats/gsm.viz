@@ -1,7 +1,7 @@
 {
-  "TODO": "update VA work report with percentage complete",
+  "TODO": "",
   "name": "rbm-viz",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",

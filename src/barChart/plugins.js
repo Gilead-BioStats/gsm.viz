@@ -8,7 +8,7 @@ export default function plugins(config) {
         annotation: {
             annotations: annotations(config),
         },
-        datalabels: chartLabels(),
+        datalabels: chartLabels(config),
         legend: legend(config),
         tooltip: tooltip(config),
     };

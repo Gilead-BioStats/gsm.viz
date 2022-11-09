@@ -5,6 +5,6 @@ export default function radius(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'line') {
-        return datum === dataset.data[dataset.data.length - 1] ? 5 : 3;
+        return datum === dataset.data[dataset.data.length - 1] ? 4 : 3;
     }
 }

@@ -13,23 +13,24 @@ export default function boxplot(_data_, config) {
     color.rgba.opacity = 0.5;
 
     const dataset = {
-        type: 'boxplot',
-        //label: 'Score',
+        data: grouped.map((d) => d[1]),
         //backgroundColor: color.rgba + '',
+        //borderColor: color.color,
+        //borderWidth: 1,
+        //coef: 0,
         maxBarThickness: 7,
         maxWhiskerThickness: 0,
-        outlierRadius: /^n_/.test(config.y) ? 2 : 0,
         meanRadius: /^n_/.test(config.y) ? 3 : 0,
         //medianColor: 'rgba(0,0,0,0)',
-        //coef: 0,
-        //borderColor: color.color,
-        label: `${config.group} Distribution`,
-        purpose: 'distribution',
-        //borderWidth: 1,
+        label: /flag|at.risk/.test(config.y)
+            ? `Distribution`
+            : `${config.group} Distribution`,
         //outlierColor: '#999999',
+        outlierRadius: /^n_/.test(config.y) ? 2 : 0,
         //padding: 10,
+        purpose: 'distribution',
         //itemRadius: 0,
-        data: grouped.map((d) => d[1]),
+        type: 'boxplot',
     };
 
     return dataset;

@@ -3,7 +3,7 @@ import colorScheme from '../../../util/colorScheme';
 export default function thresholds(config) {
     let thresholds = null;
 
-    if (config.thresholds) {
+    if (config.displayThresholds && config.thresholds) {
         thresholds = config.thresholds.map((threshold, i) => {
             const color = colorScheme.find((color) =>
                 color.flag.includes(+threshold.flag)
