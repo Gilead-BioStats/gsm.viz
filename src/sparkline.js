@@ -47,8 +47,8 @@ export default function sparkline(
             },
         },
         maintainAspectRatio: config.maintainAspectRatio,
-        onClick,
-        onHover,
+        //onClick,
+        //onHover,
         plugins: plugins(config, datasets[0].data),
         scales: getScales(config, datasets[0].data),
     };

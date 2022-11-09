@@ -27,7 +27,7 @@ export default function configure(_config_, _data_, _parameters_) {
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
-    defaults.clickCallback = (datum) => {};
+    defaults.clickCallback = (datum) => { console.log(datum); };
 
     // miscellaneous
     //defaults.displayTitle = false;

@@ -17,6 +17,12 @@ export default function tooltip(config) {
         //        tooltipModel.height = 0;
         //    }
         //},
-        //filter: (data) => data.dataset.type !== 'line', // turns off tooltip for bounds
+        filter: (data) => {
+            const datum = data.dataset.data[data.dataIndex];
+
+            return !(
+                config.selectedGroupIDs.includes(datum.groupid) && data.dataset.type === 'scatter'
+            );
+        }
     };
 }

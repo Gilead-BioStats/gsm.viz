@@ -20120,6 +20120,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
@@ -20308,16 +20309,26 @@ var rbmViz = (() => {
 
   // src/util/formatResultTooltipContent.js
   function formatResultTooltipContent(config, data) {
-    console.log(data);
     const datum2 = data.dataset.data[data.dataIndex];
-    const tooltip5 = [
-      `${config.group}: ${datum2.groupid}`,
-      `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
-      `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
-      `${config.numerator}: ${format(",")(datum2.numerator)}`,
-      `${config.denominator}: ${format(",")(datum2.denominator)}`
-    ];
-    return tooltip5;
+    let content;
+    if (["bar", "line", "scatter"].includes(data.dataset.type)) {
+      content = [
+        `${config.group}: ${datum2.groupid}`,
+        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
+        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `${config.numerator}: ${format(",")(datum2.numerator)}`,
+        `${config.denominator}: ${format(",")(datum2.denominator)}`
+      ];
+    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
+      const stats = ["mean", "median"].map(
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
+      );
+      content = [
+        data.label,
+        ...stats
+      ];
+    }
+    return content;
   }
 
   // src/barChart/plugins/tooltip.js
@@ -20527,6 +20538,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.displayTitle = false;
     defaults3.displayTrendLine = false;
@@ -20859,6 +20871,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.maintainAspectRatio = false;
     defaults3.nSnapshots = 5;
@@ -21014,7 +21027,14 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
-    return {};
+    return {
+      callbacks: {
+        label: function(data) {
+          return `${data.label}: ${data.formattedValue}`;
+        },
+        title: () => null
+      }
+    };
   }
 
   // src/sparkline/plugins.js
@@ -21088,8 +21108,6 @@ var rbmViz = (() => {
         }
       },
       maintainAspectRatio: config.maintainAspectRatio,
-      onClick,
-      onHover,
       plugins: plugins4(config, datasets[0].data),
       scales: getScales3(config, datasets[0].data)
     };
@@ -21122,6 +21140,7 @@ var rbmViz = (() => {
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
+      console.log(datum2);
     };
     defaults3.maintainAspectRatio = false;
     defaults3.displayBoxplots = true;
@@ -21326,6 +21345,10 @@ var rbmViz = (() => {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
         title: () => null
+      },
+      filter: (data) => {
+        const datum2 = data.dataset.data[data.dataIndex];
+        return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
       }
     };
   }
