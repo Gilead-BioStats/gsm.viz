@@ -12,11 +12,8 @@ export default function getScales(config, data) {
     // Define y-domain.
     const yMin = min(data, (d) => d.y);
     const yMax = max(data, (d) => d.y);
-    const range = yMin !== yMax
-        ? yMax - yMin
-        : yMin === yMax && yMin !== 0
-        ? yMin
-        : 1;
+    const range =
+        yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
 
     // y
     scales.y.display = false;

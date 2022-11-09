@@ -21,8 +21,9 @@ export default function tooltip(config) {
             const datum = data.dataset.data[data.dataIndex];
 
             return !(
-                config.selectedGroupIDs.includes(datum.groupid) && data.dataset.type === 'scatter'
+                config.selectedGroupIDs.includes(datum.groupid) &&
+                data.dataset.type === 'scatter'
             );
-        }
+        },
     };
 }

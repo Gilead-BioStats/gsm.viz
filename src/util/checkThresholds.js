@@ -20,11 +20,12 @@ export default function checkThresholds(_config_, _thresholds_) {
     if (
         Array.isArray(thresholds) &&
         thresholds.length > 0 &&
-        thresholds.every((threshold) => (
-            typeof threshold === 'object' &&
-            threshold.hasOwnProperty('threshold') &&
-            threshold.hasOwnProperty('flag')
-        ))
+        thresholds.every(
+            (threshold) =>
+                typeof threshold === 'object' &&
+                threshold.hasOwnProperty('threshold') &&
+                threshold.hasOwnProperty('flag')
+        )
     )
         return thresholds;
 

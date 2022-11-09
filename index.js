@@ -20095,7 +20095,9 @@ var rbmViz = (() => {
       return null;
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
-    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("flag")))
+    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every(
+      (threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("flag")
+    ))
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
@@ -20314,21 +20316,23 @@ var rbmViz = (() => {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type)) {
-      content = [
+      content = config.isCount === false ? [
         `${config.group}: ${datum2.groupid}`,
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
         `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(datum2.denominator)}`
+        `${config.denominator}: ${format(",")(
+          datum2.denominator
+        )}`
+      ] : [
+        `${datum2.n_flagged} flagged ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
       ];
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
       const stats = ["mean", "median"].map(
         (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
       );
-      content = [
-        data.label,
-        ...stats
-      ];
+      content = [data.label, ...stats];
     }
     return content;
   }
@@ -21132,18 +21136,22 @@ var rbmViz = (() => {
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "boxplot";
+    defaults3.isCount = /flag|at.risk/.test(_config_.y);
+    if (defaults3.isCount)
+      defaults3.unit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = /flag|at.risk/.test(_config_.y) ? "# At Risk or Flagged" : _config_[defaults3.y];
+    defaults3.yLabel = defaults3.isCount ? `# At Risk or Flagged ${defaults3.unit}` : _config_[defaults3.y];
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
+    defaults3.group = "Site";
     defaults3.maintainAspectRatio = false;
     defaults3.displayBoxplots = true;
     defaults3.displayViolins = false;
@@ -21180,14 +21188,14 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "boxplot",
+      data: grouped.map((d) => d[1]),
       maxBarThickness: 7,
       maxWhiskerThickness: 0,
-      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: `${config.group} Distribution`,
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
       purpose: "distribution",
-      data: grouped.map((d) => d[1])
+      type: "boxplot"
     };
     return dataset;
   }
@@ -21204,10 +21212,10 @@ var rbmViz = (() => {
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "violin",
-      label: "Distribution",
+      data: grouped.map((d) => d[1]),
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       purpose: "distribution",
-      data: grouped.map((d) => d[1])
+      type: "violin"
     };
     return dataset;
   }
@@ -21326,7 +21334,8 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: 5,
+        boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
+        boxWidth: 7,
         filter: function(legendItem, chartData) {
           return legendItem.text !== "";
         },
@@ -21334,7 +21343,7 @@ var rbmViz = (() => {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: true
+        usePointStyle: /flag|at.risk/.test(config.y) === false
       },
       onClick: () => null,
       position: "top"

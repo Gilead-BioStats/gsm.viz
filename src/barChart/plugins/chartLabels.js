@@ -1,13 +1,17 @@
 export default function chartLabels(config) {
     return {
         align: (context) =>
-            (config.y === 'score' && Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
-            (config.y === 'metric' && Math.sign(context.dataset.data[context.dataIndex].y) === -1)
+            (config.y === 'score' &&
+                Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
+            (config.y === 'metric' &&
+                Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                 ? 'start'
                 : 'end',
         anchor: (context) =>
-            (config.y === 'score' && Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
-            (config.y === 'metric' && Math.sign(context.dataset.data[context.dataIndex].y) === -1)
+            (config.y === 'score' &&
+                Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
+            (config.y === 'metric' &&
+                Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                 ? 'start'
                 : 'end',
         //clip: true,

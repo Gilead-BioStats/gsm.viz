@@ -35,9 +35,10 @@ export default function barChart(
         events: ['click', 'mousemove', 'mouseout'],
         layout: {
             padding: {
-                top: config.y === 'metric'
-                    ? max(datasets[0].data, d => d.groupid.length)*8
-                    : null,
+                top:
+                    config.y === 'metric'
+                        ? max(datasets[0].data, (d) => d.groupid.length) * 8
+                        : null,
             },
         },
         maintainAspectRatio: config.maintainAspectRatio,

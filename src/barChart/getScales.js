@@ -4,7 +4,7 @@ export default function getScales(config, datasets) {
     const scales = getDefaultScales();
 
     //// Determine x-axis padding to prevent clipping.
-    //const data = 
+    //const data =
 
     // x
     scales.x.ticks.display = false;

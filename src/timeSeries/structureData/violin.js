@@ -13,17 +13,18 @@ export default function violin(_data_, config) {
     color.rgba.opacity = 0.5;
 
     const dataset = {
-        type: 'violin',
-        //label: 'Score',
+        data: grouped.map((d) => d[1]),
         //backgroundColor: color.rgba + '',
         //borderColor: color.color,
-        label: 'Distribution',
-        purpose: 'distribution',
         //borderWidth: 1,
+        //itemRadius: 0,
+        label: /flag|at.risk/.test(config.y)
+            ? `Distribution`
+            : `${config.group} Distribution`,
         //outlierColor: '#999999',
         //padding: 10,
-        //itemRadius: 0,
-        data: grouped.map((d) => d[1]),
+        purpose: 'distribution',
+        type: 'violin',
     };
 
     return dataset;

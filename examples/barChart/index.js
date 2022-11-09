@@ -21,6 +21,13 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflow.workflowid
         );
 
+        // configuration
+        const groupIDs = [
+            ...new Set(results.map((result) => result.groupid)).values(),
+        ];
+        workflow.selectedGroupIDs =
+            results[Math.floor(Math.random() * results.length)].groupid;
+
         // threshold annotations
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid

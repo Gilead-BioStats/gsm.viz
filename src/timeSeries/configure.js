@@ -8,6 +8,12 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     defaults.type = 'boxplot';
 
+    defaults.isCount = /flag|at.risk/.test(_config_.y);
+    if (defaults.isCount)
+        defaults.unit = Object.keys(_data_[0]).includes('groupid')
+            ? 'KRI'
+            : 'Site';
+
     // horizontal
     defaults.x = 'snapshot_date';
     defaults.xType = 'category';
@@ -16,8 +22,8 @@ export default function configure(_config_, _data_, _thresholds_) {
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = /flag|at.risk/.test(_config_.y)
-        ? '# At Risk or Flagged'
+    defaults.yLabel = defaults.isCount
+        ? `# At Risk or Flagged ${defaults.unit}`
         : _config_[defaults.y];
 
     // color
@@ -27,9 +33,12 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
-    defaults.clickCallback = (datum) => { console.log(datum); };
+    defaults.clickCallback = (datum) => {
+        console.log(datum);
+    };
 
     // miscellaneous
+    defaults.group = 'Site';
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     defaults.displayBoxplots = true;
