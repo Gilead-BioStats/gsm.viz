@@ -20,10 +20,10 @@ export default function barChart(
     _element_,
     _data_,
     _config_ = {},
-    _parameters_ = null
+    _thresholds_ = null
 ) {
     // Update config.
-    const config = configure(_config_, _data_, _parameters_);
+    const config = configure(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
@@ -51,7 +51,7 @@ export default function barChart(
         data: {
             datasets,
             config,
-            _parameters_,
+            _thresholds_,
             _data_,
         },
         metadata: 'test',

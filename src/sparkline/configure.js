@@ -3,7 +3,7 @@ import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 
-export default function configure(_config_, _data_, _parameters_) {
+export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
     defaults.type = 'line';
@@ -33,7 +33,7 @@ export default function configure(_config_, _data_, _parameters_) {
     defaults.displayThresholds = false;
 
     const config = configureAll(defaults, _config_, {
-        thresholds: checkThresholds.bind(null, _config_, _parameters_),
+        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
     // annotation

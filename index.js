@@ -20089,20 +20089,22 @@ var rbmViz = (() => {
   }
 
   // src/util/checkThresholds.js
-  function checkThresholds(_config_, _parameters_) {
+  function checkThresholds(_config_, _thresholds_) {
     let thresholds2 = _config_.thresholds;
     if (_config_.y === "metric")
       return null;
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
-    if (_parameters_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
+    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("flag")))
+      return thresholds2;
+    if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _parameters_.filter((d) => d.param === "vThreshold").map((d) => d.default);
+    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.default);
     return mapThresholdsToFlags(thresholds2);
   }
 
   // src/barChart/configure.js
-  function configure3(_config_, _data_, _parameters_) {
+  function configure3(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "bar";
     defaults3.x = "groupid";
@@ -20129,7 +20131,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     return config;
   }
@@ -20440,11 +20442,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, _parameters_, update = false) {
+  function updateConfig(chart, _config_, _thresholds_, update = false) {
     const config = configure3(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
-      _parameters_
+      _thresholds_
     );
     chart.options.plugins = plugins2(config);
     chart.options.scales = getScales(config);
@@ -20456,8 +20458,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _parameters_) {
-    chart.data.config = updateConfig(chart, _config_, _parameters_);
+  function updateData(chart, _data_, _config_, _thresholds_) {
+    chart.data.config = updateConfig(chart, _config_, _thresholds_);
     chart.data.config.hoverEvent = addCustomHoverEvent(
       chart.canvas,
       chart.data.config.hoverCallback
@@ -20484,8 +20486,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_, _data_, _config_ = {}, _parameters_ = null) {
-    const config = configure3(_config_, _data_, _parameters_);
+  function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
     const options = {
@@ -20506,7 +20508,7 @@ var rbmViz = (() => {
       data: {
         datasets,
         config,
-        _parameters_,
+        _thresholds_,
         _data_
       },
       metadata: "test",
@@ -20857,7 +20859,7 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure5(_config_, _data_, _parameters_) {
+  function configure5(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
@@ -20877,7 +20879,7 @@ var rbmViz = (() => {
     defaults3.nSnapshots = 5;
     defaults3.displayThresholds = false;
     const config = configure2(defaults3, _config_, {
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     return config;
@@ -21095,8 +21097,8 @@ var rbmViz = (() => {
   }
 
   // src/sparkline.js
-  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _parameters_ = []) {
-    const config = configure5(_config_, _data_, _parameters_);
+  function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = []) {
+    const config = configure5(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
     const options = {
@@ -21127,7 +21129,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _parameters_) {
+  function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "boxplot";
     defaults3.x = "snapshot_date";
@@ -21155,7 +21157,7 @@ var rbmViz = (() => {
         _config_.selectedGroupIDs,
         _data_
       ),
-      thresholds: checkThresholds.bind(null, _config_, _parameters_)
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     return config;
   }
@@ -21386,8 +21388,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _parameters_ = null) {
-    const config = configure6(_config_, _data_, _parameters_);
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config);
     const options = {
