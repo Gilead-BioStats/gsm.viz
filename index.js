@@ -20316,7 +20316,7 @@ var rbmViz = (() => {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type)) {
-      content = config.isCount === false ? [
+      content = !config.isCount ? [
         `${config.group}: ${datum2.groupid}`,
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
         `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
