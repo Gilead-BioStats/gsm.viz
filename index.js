@@ -10919,9 +10919,9 @@ var rbmViz = (() => {
       element
     };
   }
-  function getTooltipSize(tooltip4, options) {
-    const ctx = tooltip4.chart.ctx;
-    const { body, footer, title: title2 } = tooltip4;
+  function getTooltipSize(tooltip5, options) {
+    const ctx = tooltip5.chart.ctx;
+    const { body, footer, title: title2 } = tooltip5;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
@@ -10933,7 +10933,7 @@ var rbmViz = (() => {
     let height = padding.height;
     let width = 0;
     let combinedBodyLength = body.reduce((count, bodyItem) => count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length, 0);
-    combinedBodyLength += tooltip4.beforeBody.length + tooltip4.afterBody.length;
+    combinedBodyLength += tooltip5.beforeBody.length + tooltip5.afterBody.length;
     if (titleLineCount) {
       height += titleLineCount * titleFont.lineHeight + (titleLineCount - 1) * options.titleSpacing + options.titleMarginBottom;
     }
@@ -10950,9 +10950,9 @@ var rbmViz = (() => {
     };
     ctx.save();
     ctx.font = titleFont.string;
-    each(tooltip4.title, maxLineWidth);
+    each(tooltip5.title, maxLineWidth);
     ctx.font = bodyFont.string;
-    each(tooltip4.beforeBody.concat(tooltip4.afterBody), maxLineWidth);
+    each(tooltip5.beforeBody.concat(tooltip5.afterBody), maxLineWidth);
     widthPadding = options.displayColors ? boxWidth + 2 + options.boxPadding : 0;
     each(body, (bodyItem) => {
       each(bodyItem.before, maxLineWidth);
@@ -10961,7 +10961,7 @@ var rbmViz = (() => {
     });
     widthPadding = 0;
     ctx.font = footerFont.string;
-    each(tooltip4.footer, maxLineWidth);
+    each(tooltip5.footer, maxLineWidth);
     ctx.restore();
     width += padding.width;
     return { width, height };
@@ -11051,16 +11051,16 @@ var rbmViz = (() => {
       y: _limitValue(y, 0, chart.height - size.height)
     };
   }
-  function getAlignedX(tooltip4, align, options) {
+  function getAlignedX(tooltip5, align, options) {
     const padding = toPadding(options.padding);
-    return align === "center" ? tooltip4.x + tooltip4.width / 2 : align === "right" ? tooltip4.x + tooltip4.width - padding.right : tooltip4.x + padding.left;
+    return align === "center" ? tooltip5.x + tooltip5.width / 2 : align === "right" ? tooltip5.x + tooltip5.width - padding.right : tooltip5.x + padding.left;
   }
   function getBeforeAfterBodyLines(callback2) {
     return pushOrConcat([], splitNewlines(callback2));
   }
-  function createTooltipContext(parent, tooltip4, tooltipItems) {
+  function createTooltipContext(parent, tooltip5, tooltipItems) {
     return createContext(parent, {
-      tooltip: tooltip4,
+      tooltip: tooltip5,
       tooltipItems,
       type: "tooltip"
     });
@@ -11620,15 +11620,15 @@ var rbmViz = (() => {
       }
     },
     afterDraw(chart) {
-      const tooltip4 = chart.tooltip;
-      if (tooltip4 && tooltip4._willRender()) {
+      const tooltip5 = chart.tooltip;
+      if (tooltip5 && tooltip5._willRender()) {
         const args = {
-          tooltip: tooltip4
+          tooltip: tooltip5
         };
         if (chart.notifyPlugins("beforeTooltipDraw", args) === false) {
           return;
         }
-        tooltip4.draw(chart.ctx);
+        tooltip5.draw(chart.ctx);
         chart.notifyPlugins("afterTooltipDraw", args);
       }
     },
@@ -15547,19 +15547,19 @@ var rbmViz = (() => {
       const props = this.getProps(["outliers"], useFinalPosition);
       return props.outliers || [];
     }
-    tooltipPosition(eventPosition, tooltip4) {
+    tooltipPosition(eventPosition, tooltip5) {
       if (!eventPosition || typeof eventPosition === "boolean") {
         return this.getCenterPoint();
       }
-      if (tooltip4) {
-        delete tooltip4._tooltipOutlier;
+      if (tooltip5) {
+        delete tooltip5._tooltipOutlier;
       }
       const props = this.getProps(["x", "y"]);
       const index3 = this._outlierIndexInRange(eventPosition.x, eventPosition.y);
-      if (index3 < 0 || !tooltip4) {
+      if (index3 < 0 || !tooltip5) {
         return this.getCenterPoint();
       }
-      tooltip4._tooltipOutlier = {
+      tooltip5._tooltipOutlier = {
         index: index3,
         datasetIndex: this._datasetIndex
       };
@@ -20306,23 +20306,25 @@ var rbmViz = (() => {
     };
   }
 
+  // src/util/formatResultTooltipContent.js
+  function formatResultTooltipContent(config, data) {
+    console.log(data);
+    const datum2 = data.dataset.data[data.dataIndex];
+    const tooltip5 = [
+      `${config.group}: ${datum2.groupid}`,
+      `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
+      `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+      `${config.numerator}: ${format(",")(datum2.numerator)}`,
+      `${config.denominator}: ${format(",")(datum2.denominator)}`
+    ];
+    return tooltip5;
+  }
+
   // src/barChart/plugins/tooltip.js
   function tooltip(config) {
     return {
       callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${config.xLabel}: ${datum2.x}`,
-            `${config.numeratorLabel}: ${datum2.numerator}`,
-            `${config.denominatorLabel}: ${format(",")(
-              datum2.denominator
-            )}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`,
-            `${config.yLabel}: ${format(".3f")(datum2.y)}`
-          ];
-          return tooltip4;
-        },
+        label: formatResultTooltipContent.bind(null, config),
         title: () => null
       }
     };
@@ -20408,15 +20410,15 @@ var rbmViz = (() => {
 
   // src/util/triggerTooltip.js
   function triggerTooltip(chart) {
-    const tooltip4 = chart.tooltip;
-    if (tooltip4.getActiveElements().length > 0) {
-      tooltip4.setActiveElements([], { x: 0, y: 0 });
+    const tooltip5 = chart.tooltip;
+    if (tooltip5.getActiveElements().length > 0) {
+      tooltip5.setActiveElements([], { x: 0, y: 0 });
     }
     if (chart.data.config.selectedGroupIDs.length > 0) {
       const pointIndex = chart.data.datasets[0].data.findIndex(
         (d) => chart.data.config.selectedGroupIDs.includes(d.groupid)
       );
-      tooltip4.setActiveElements([
+      tooltip5.setActiveElements([
         {
           datasetIndex: 0,
           index: pointIndex
@@ -20721,6 +20723,10 @@ var rbmViz = (() => {
   // src/scatterPlot/plugins/tooltip.js
   function tooltip2(config) {
     return {
+      callbacks: {
+        label: formatResultTooltipContent.bind(null, config),
+        title: () => null
+      },
       custom: function(tooltipModel) {
         if (!tooltipModel.body || tooltipModel.body.length < 1) {
           tooltipModel.caretSize = 0;
@@ -20731,20 +20737,6 @@ var rbmViz = (() => {
           tooltipModel.height = 0;
         }
       },
-      callbacks: {
-        label: (data) => {
-          const datum2 = data.dataset.data[data.dataIndex];
-          const tooltip4 = [
-            `${datum2.groupid}`,
-            `${format(",d")(datum2.y)} ${config.yLabel}`,
-            `${format(",d")(datum2.x)} ${config.xLabel}`,
-            `${config.outcome}: ${format(".3f")(datum2.metric)}`
-          ];
-          return tooltip4;
-        },
-        title: () => null
-      },
-      events: ["click", "mouseenter", "mouseover"],
       filter: (data) => data.dataset.type !== "line"
     };
   }
@@ -21328,13 +21320,24 @@ var rbmViz = (() => {
     };
   }
 
+  // src/timeSeries/plugins/tooltip.js
+  function tooltip4(config) {
+    return {
+      callbacks: {
+        label: formatResultTooltipContent.bind(null, config),
+        title: () => null
+      }
+    };
+  }
+
   // src/timeSeries/plugins.js
   function plugins5(config) {
     return {
       annotation: {
         annotations: annotations4(config)
       },
-      legend: legend4(config)
+      legend: legend4(config),
+      tooltip: tooltip4(config)
     };
   }
 
