@@ -26,10 +26,10 @@ export default function sparkline(
     _element_ = 'body',
     _data_ = [],
     _config_ = {},
-    _parameters_ = []
+    _thresholds_ = []
 ) {
     // Update config.
-    const config = configure(_config_, _data_, _parameters_);
+    const config = configure(_config_, _data_, _thresholds_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
@@ -47,8 +47,8 @@ export default function sparkline(
             },
         },
         maintainAspectRatio: config.maintainAspectRatio,
-        onClick,
-        onHover,
+        //onClick,
+        //onHover,
         plugins: plugins(config, datasets[0].data),
         scales: getScales(config, datasets[0].data),
     };

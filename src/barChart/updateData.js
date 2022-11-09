@@ -3,8 +3,8 @@ import addCustomHoverEvent from '../util/addCanvas/addCustomHoverEvent';
 import addCustomClickEvent from '../util/addCanvas/addCustomClickEvent';
 import structureData from './structureData';
 
-export default function updateData(chart, _data_, _config_, _parameters_) {
-    chart.data.config = updateConfig(chart, _config_, _parameters_);
+export default function updateData(chart, _data_, _config_, _thresholds_) {
+    chart.data.config = updateConfig(chart, _config_, _thresholds_);
 
     // TODO: figure out why these events have to be redefined on data change
     chart.data.config.hoverEvent = addCustomHoverEvent(

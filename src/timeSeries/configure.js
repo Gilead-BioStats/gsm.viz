@@ -3,21 +3,27 @@ import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 
-export default function configure(_config_, _data_, _parameters_) {
+export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
     defaults.type = 'boxplot';
 
+    defaults.isCount = /flag|at.risk/.test(_config_.y);
+    if (defaults.isCount)
+        defaults.unit = Object.keys(_data_[0]).includes('groupid')
+            ? 'KRI'
+            : 'Site';
+
     // horizontal
     defaults.x = 'snapshot_date';
-    //defaults.xType = 'categorical';
+    defaults.xType = 'category';
     defaults.xLabel = 'Snapshot Date';
 
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = /flag|at.risk/.test(_config_.y)
-        ? '# At Risk or Flagged'
+    defaults.yLabel = defaults.isCount
+        ? `# At Risk or Flagged ${defaults.unit}`
         : _config_[defaults.y];
 
     // color
@@ -27,9 +33,12 @@ export default function configure(_config_, _data_, _parameters_) {
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
-    defaults.clickCallback = (datum) => {};
+    defaults.clickCallback = (datum) => {
+        console.log(datum);
+    };
 
     // miscellaneous
+    defaults.group = 'Site';
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     defaults.displayBoxplots = true;
@@ -45,7 +54,7 @@ export default function configure(_config_, _data_, _parameters_) {
             _config_.selectedGroupIDs,
             _data_
         ),
-        thresholds: checkThresholds.bind(null, _config_, _parameters_),
+        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
     return config;

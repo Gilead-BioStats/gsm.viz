@@ -9,12 +9,14 @@ export default function legend(config) {
     return {
         display: true,
         labels: {
-            boxHeight: 5,
-            //boxWidth: 10,
+            boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
+            boxWidth: 7,
             filter: function (legendItem, chartData) {
                 return legendItem.text !== '';
             },
-            //pointStyleWidth: 10,
+            // TODO: differentiate legend items with generateLabels
+            // https://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface
+            //pointStyleWidth: 3,
             sort: function (a, b, chartData) {
                 const order =
                     legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
@@ -25,7 +27,7 @@ export default function legend(config) {
                     ? -1
                     : order;
             },
-            usePointStyle: true,
+            usePointStyle: /flag|at.risk/.test(config.y) === false,
         },
         onClick: () => null,
         position: 'top',

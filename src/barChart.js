@@ -4,8 +4,9 @@ import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './barChart/structureData';
 
-import onHover from './util/onHover';
+import { min, max } from 'd3';
 import onClick from './util/onClick';
+import onHover from './util/onHover';
 import plugins from './barChart/plugins';
 import getScales from './barChart/getScales';
 
@@ -19,10 +20,10 @@ export default function barChart(
     _element_,
     _data_,
     _config_ = {},
-    _parameters_ = null
+    _thresholds_ = null
 ) {
     // Update config.
-    const config = configure(_config_, _data_, _parameters_);
+    const config = configure(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
@@ -32,18 +33,26 @@ export default function barChart(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
+        layout: {
+            padding: {
+                top:
+                    config.y === 'metric'
+                        ? max(datasets[0].data, (d) => d.groupid.length) * 8
+                        : null,
+            },
+        },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
         plugins: plugins(config),
-        scales: getScales(config),
+        scales: getScales(config, datasets),
     };
 
     const chart = new Chart(canvas, {
         data: {
             datasets,
             config,
-            _parameters_,
+            _thresholds_,
             _data_,
         },
         metadata: 'test',
