@@ -5,7 +5,8 @@
 - [scatter plot](https://fluffy-disco-22959532.pages.github.io/examples/scatterPlot/)
 - [bar chart](https://fluffy-disco-22959532.pages.github.io/examples/barChart/)
 - [sparkline](https://fluffy-disco-22959532.pages.github.io/examples/sparkline/)
-- [time series](https://fluffy-disco-22959532.pages.github.io/examples/timeSeries/)
+- [time series (continuous outcome)](https://fluffy-disco-22959532.pages.github.io/examples/distributionOverTime/)
+- [time series (discrete outcome)](https://fluffy-disco-22959532.pages.github.io/examples/timeSeries/)
 
 ## Installation
 `rbm-viz` is hosted on GitHub and accessible with `npm`:
@@ -44,4 +45,4 @@ git commit -a -m 'fix #123'
 git push -u origin fix-123
 ```
 
-On GitHub, open a [pull request](https://github.com/Gilead-BioStats/rbm-viz/pulls) with `fix-123` as the source and `main` as the target.  The pull request requires a code review prior to merging.
+On GitHub, open a [pull request](https://github.com/Gilead-BioStats/rbm-viz/pulls) with `fix-123` as the source and `dev` as the target.  The pull request requires a code review prior to merging.
