@@ -1,7 +1,7 @@
 const dataFiles = [
     '../data/meta_workflow.csv',
-    //'../data/flag_counts_by_group.csv',
-    '../data/flag_counts_by_kri.csv',
+    '../data/flag_counts_by_group.csv',
+    //'../data/flag_counts_by_kri.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -18,7 +18,7 @@ Promise.all(dataPromises)
         //workflow.selectedGroupIDs = '173';
         const workflow = {
             y: 'n_at_risk_or_flagged',
-            //selectedGroupIDs: '173',
+            selectedGroupIDs: '173',
         };
 
         const flagCounts = datasets[1];

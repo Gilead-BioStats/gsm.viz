@@ -8,6 +8,7 @@ export default function onClick(event, activeElements, chart) {
         chart.data.datasets[activeElements[0].datasetIndex].type === config.type
     ) {
         const datum = getElementDatum(activeElements, chart);
+        delete config.clickEvent.data;
         config.clickEvent.data = datum;
         chart.canvas.dispatchEvent(config.clickEvent);
     }

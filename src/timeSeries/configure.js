@@ -8,7 +8,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     defaults.type = 'boxplot';
 
-    defaults.isCount = /flag|at.risk/.test(_config_.y);
+    defaults.isCount = /flag|risk/.test(_config_.y);
     if (defaults.isCount)
         defaults.unit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
@@ -23,7 +23,15 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.y = 'score';
     defaults.yType = 'linear';
     defaults.yLabel = defaults.isCount
-        ? `# At Risk or Flagged ${defaults.unit}`
+        ? (
+            /flag/.test(_config_.y) && /risk/.test(_config_.y)
+                ? `# At Risk or Flagged ${defaults.unit}s`
+                : /flag/.test(_config_.y)
+                ? `# Flagged ${defaults.unit}s`
+                : /risk/.test(_config_.y)
+                ? `# At Risk ${defaults.unit}s`
+                : ''
+        )
         : _config_[defaults.y];
 
     // color
