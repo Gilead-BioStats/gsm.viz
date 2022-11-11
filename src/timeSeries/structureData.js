@@ -1,10 +1,11 @@
 import { ascending, flatRollup, mean } from 'd3';
 import getLabels from './structureData/getLabels';
-import boxplot from './structureData/boxplot';
-import violin from './structureData/violin';
+import line from './structureData/line';
 import atRisk from './structureData/atRisk';
 import flagged from './structureData/flagged';
-import line from './structureData/line';
+import aggregateLine from './structureData/aggregateLine';
+import boxplot from './structureData/boxplot';
+import violin from './structureData/violin';
 
 export default function structureData(_data_, config) {
     _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
@@ -23,10 +24,11 @@ export default function structureData(_data_, config) {
     data = {
         labels,
         datasets: [
-            distribution,
-            atRisk(_data_, config, labels),
-            flagged(_data_, config, labels),
             line(_data_, config, labels),
+            flagged(_data_, config, labels),
+            atRisk(_data_, config, labels),
+            //aggregateLine(_data_, config, labels),
+            distribution,
         ].filter((dataset) => dataset !== null),
     };
     //}

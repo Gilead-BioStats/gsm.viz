@@ -1478,12 +1478,12 @@ var rbmViz = (() => {
   function renderText(ctx, text, x, y, font, opts = {}) {
     const lines = isArray(text) ? text : [text];
     const stroke = opts.strokeWidth > 0 && opts.strokeColor !== "";
-    let i, line2;
+    let i, line;
     ctx.save();
     ctx.font = font.string;
     setRenderOpts(ctx, opts);
     for (i = 0; i < lines.length; ++i) {
-      line2 = lines[i];
+      line = lines[i];
       if (stroke) {
         if (opts.strokeColor) {
           ctx.strokeStyle = opts.strokeColor;
@@ -1491,10 +1491,10 @@ var rbmViz = (() => {
         if (!isNullOrUndef(opts.strokeWidth)) {
           ctx.lineWidth = opts.strokeWidth;
         }
-        ctx.strokeText(line2, x, y, opts.maxWidth);
+        ctx.strokeText(line, x, y, opts.maxWidth);
       }
-      ctx.fillText(line2, x, y, opts.maxWidth);
-      decorateText(ctx, x, y, line2, opts);
+      ctx.fillText(line, x, y, opts.maxWidth);
+      decorateText(ctx, x, y, line, opts);
       y += font.lineHeight;
     }
     ctx.restore();
@@ -1516,9 +1516,9 @@ var rbmViz = (() => {
       ctx.textBaseline = opts.textBaseline;
     }
   }
-  function decorateText(ctx, x, y, line2, opts) {
+  function decorateText(ctx, x, y, line, opts) {
     if (opts.strikethrough || opts.underline) {
-      const metrics = ctx.measureText(line2);
+      const metrics = ctx.measureText(line);
       const left = x - metrics.actualBoundingBoxLeft;
       const right = x + metrics.actualBoundingBoxRight;
       const top = y - metrics.actualBoundingBoxAscent;
@@ -2409,11 +2409,11 @@ var rbmViz = (() => {
     }
     return result;
   }
-  function _boundSegments(line2, bounds) {
+  function _boundSegments(line, bounds) {
     const result = [];
-    const segments = line2.segments;
+    const segments = line.segments;
     for (let i = 0; i < segments.length; i++) {
-      const sub = _boundSegment(segments[i], line2.points, bounds);
+      const sub = _boundSegment(segments[i], line.points, bounds);
       if (sub.length) {
         result.push(...sub);
       }
@@ -2468,32 +2468,32 @@ var rbmViz = (() => {
     }
     return result;
   }
-  function _computeSegments(line2, segmentOptions) {
-    const points = line2.points;
-    const spanGaps = line2.options.spanGaps;
+  function _computeSegments(line, segmentOptions) {
+    const points = line.points;
+    const spanGaps = line.options.spanGaps;
     const count = points.length;
     if (!count) {
       return [];
     }
-    const loop = !!line2._loop;
+    const loop = !!line._loop;
     const { start: start2, end } = findStartAndEnd(points, count, loop, spanGaps);
     if (spanGaps === true) {
-      return splitByStyles(line2, [{ start: start2, end, loop }], points, segmentOptions);
+      return splitByStyles(line, [{ start: start2, end, loop }], points, segmentOptions);
     }
     const max3 = end < start2 ? end + count : end;
-    const completeLoop = !!line2._fullLoop && start2 === 0 && end === count - 1;
-    return splitByStyles(line2, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
+    const completeLoop = !!line._fullLoop && start2 === 0 && end === count - 1;
+    return splitByStyles(line, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
   }
-  function splitByStyles(line2, segments, points, segmentOptions) {
+  function splitByStyles(line, segments, points, segmentOptions) {
     if (!segmentOptions || !segmentOptions.setContext || !points) {
       return segments;
     }
-    return doSplitByStyles(line2, segments, points, segmentOptions);
+    return doSplitByStyles(line, segments, points, segmentOptions);
   }
-  function doSplitByStyles(line2, segments, points, segmentOptions) {
-    const chartContext = line2._chart.getContext();
-    const baseStyle = readStyle(line2.options);
-    const { _datasetIndex: datasetIndex, options: { spanGaps } } = line2;
+  function doSplitByStyles(line, segments, points, segmentOptions) {
+    const chartContext = line._chart.getContext();
+    const baseStyle = readStyle(line.options);
+    const { _datasetIndex: datasetIndex, options: { spanGaps } } = line;
     const count = points.length;
     const result = [];
     let prevStyle = baseStyle;
@@ -4568,7 +4568,7 @@ var rbmViz = (() => {
     }
     update(mode) {
       const meta = this._cachedMeta;
-      const { dataset: line2, data: points = [], _dataset } = meta;
+      const { dataset: line, data: points = [], _dataset } = meta;
       const animationsDisabled = this.chart._animationsDisabled;
       let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points, animationsDisabled);
       this._drawStart = start2;
@@ -4577,16 +4577,16 @@ var rbmViz = (() => {
         start2 = 0;
         count = points.length;
       }
-      line2._chart = this.chart;
-      line2._datasetIndex = this.index;
-      line2._decimated = !!_dataset._decimated;
-      line2.points = points;
+      line._chart = this.chart;
+      line._datasetIndex = this.index;
+      line._decimated = !!_dataset._decimated;
+      line.points = points;
       const options = this.resolveDatasetElementOptions(mode);
       if (!this.options.showLine) {
         options.borderWidth = 0;
       }
       options.segment = this.options.segment;
-      this.updateElement(line2, void 0, {
+      this.updateElement(line, void 0, {
         animated: !animationsDisabled,
         options
       }, mode);
@@ -4863,10 +4863,10 @@ var rbmViz = (() => {
     }
     update(mode) {
       const meta = this._cachedMeta;
-      const line2 = meta.dataset;
+      const line = meta.dataset;
       const points = meta.data || [];
       const labels = meta.iScale.getLabels();
-      line2.points = points;
+      line.points = points;
       if (mode !== "resize") {
         const options = this.resolveDatasetElementOptions(mode);
         if (!this.options.showLine) {
@@ -4877,7 +4877,7 @@ var rbmViz = (() => {
           _fullLoop: labels.length === points.length,
           options
         };
-        this.updateElement(line2, void 0, properties, mode);
+        this.updateElement(line, void 0, properties, mode);
       }
       this.updateElements(points, 0, points.length, mode);
     }
@@ -6536,14 +6536,14 @@ var rbmViz = (() => {
         count = points.length;
       }
       if (this.options.showLine) {
-        const { dataset: line2, _dataset } = meta;
-        line2._chart = this.chart;
-        line2._datasetIndex = this.index;
-        line2._decimated = !!_dataset._decimated;
-        line2.points = points;
+        const { dataset: line, _dataset } = meta;
+        line._chart = this.chart;
+        line._datasetIndex = this.index;
+        line._decimated = !!_dataset._decimated;
+        line.points = points;
         const options = this.resolveDatasetElementOptions(mode);
         options.segment = this.options.segment;
-        this.updateElement(line2, void 0, {
+        this.updateElement(line, void 0, {
           animated: !animationsDisabled,
           options
         }, mode);
@@ -9002,8 +9002,8 @@ var rbmViz = (() => {
       ilen: end < start2 && !outside ? count + end - start2 : end - start2
     };
   }
-  function pathSegment(ctx, line2, segment, params) {
-    const { points, options } = line2;
+  function pathSegment(ctx, line, segment, params) {
+    const { points, options } = line;
     const { count, start: start2, loop, ilen } = pathVars(points, segment, params);
     const lineMethod = getLineMethod(options);
     let { move = true, reverse } = params || {};
@@ -9026,8 +9026,8 @@ var rbmViz = (() => {
     }
     return !!loop;
   }
-  function fastPathSegment(ctx, line2, segment, params) {
-    const points = line2.points;
+  function fastPathSegment(ctx, line, segment, params) {
+    const points = line.points;
     const { count, start: start2, ilen } = pathVars(points, segment, params);
     const { move = true, reverse } = params || {};
     let avgX = 0;
@@ -9071,10 +9071,10 @@ var rbmViz = (() => {
     }
     drawX();
   }
-  function _getSegmentMethod(line2) {
-    const opts = line2.options;
+  function _getSegmentMethod(line) {
+    const opts = line.options;
     const borderDash = opts.borderDash && opts.borderDash.length;
-    const useFastPath = !line2._decimated && !line2._loop && !opts.tension && opts.cubicInterpolationMode !== "monotone" && !opts.stepped && !borderDash;
+    const useFastPath = !line._decimated && !line._loop && !opts.tension && opts.cubicInterpolationMode !== "monotone" && !opts.stepped && !borderDash;
     return useFastPath ? fastPathSegment : pathSegment;
   }
   function _getInterpolationMethod(options) {
@@ -9086,35 +9086,35 @@ var rbmViz = (() => {
     }
     return _pointInLine;
   }
-  function strokePathWithCache(ctx, line2, start2, count) {
-    let path = line2._path;
+  function strokePathWithCache(ctx, line, start2, count) {
+    let path = line._path;
     if (!path) {
-      path = line2._path = new Path2D();
-      if (line2.path(path, start2, count)) {
+      path = line._path = new Path2D();
+      if (line.path(path, start2, count)) {
         path.closePath();
       }
     }
-    setStyle(ctx, line2.options);
+    setStyle(ctx, line.options);
     ctx.stroke(path);
   }
-  function strokePathDirect(ctx, line2, start2, count) {
-    const { segments, options } = line2;
-    const segmentMethod = _getSegmentMethod(line2);
+  function strokePathDirect(ctx, line, start2, count) {
+    const { segments, options } = line;
+    const segmentMethod = _getSegmentMethod(line);
     for (const segment of segments) {
       setStyle(ctx, options, segment.style);
       ctx.beginPath();
-      if (segmentMethod(ctx, line2, segment, { start: start2, end: start2 + count - 1 })) {
+      if (segmentMethod(ctx, line, segment, { start: start2, end: start2 + count - 1 })) {
         ctx.closePath();
       }
       ctx.stroke();
     }
   }
   var usePath2D = typeof Path2D === "function";
-  function draw(ctx, line2, start2, count) {
-    if (usePath2D && !line2.options.segment) {
-      strokePathWithCache(ctx, line2, start2, count);
+  function draw(ctx, line, start2, count) {
+    if (usePath2D && !line.options.segment) {
+      strokePathWithCache(ctx, line, start2, count);
     } else {
-      strokePathDirect(ctx, line2, start2, count);
+      strokePathDirect(ctx, line, start2, count);
     }
   }
   var LineElement = class extends Element {
@@ -9675,9 +9675,9 @@ var rbmViz = (() => {
       cleanDecimatedData(chart);
     }
   };
-  function _segments(line2, target, property) {
-    const segments = line2.segments;
-    const points = line2.points;
+  function _segments(line, target, property) {
+    const segments = line.segments;
+    const points = line.points;
     const tpoints = target.points;
     const parts = [];
     for (const segment of segments) {
@@ -9725,11 +9725,11 @@ var rbmViz = (() => {
     }
     return { property, start: start2, end };
   }
-  function _pointsFromSegments(boundary, line2) {
+  function _pointsFromSegments(boundary, line) {
     const { x = null, y = null } = boundary || {};
-    const linePoints = line2.points;
+    const linePoints = line.points;
     const points = [];
-    line2.segments.forEach(({ start: start2, end }) => {
+    line.segments.forEach(({ start: start2, end }) => {
       end = _findSegmentEnd(start2, end, linePoints);
       const first = linePoints[start2];
       const last = linePoints[end];
@@ -9758,14 +9758,14 @@ var rbmViz = (() => {
     }
     return a ? a[prop] : b ? b[prop] : 0;
   }
-  function _createBoundaryLine(boundary, line2) {
+  function _createBoundaryLine(boundary, line) {
     let points = [];
     let _loop = false;
     if (isArray(boundary)) {
       _loop = true;
       points = boundary;
     } else {
-      points = _pointsFromSegments(boundary, line2);
+      points = _pointsFromSegments(boundary, line);
     }
     return points.length ? new LineElement({
       points,
@@ -9801,8 +9801,8 @@ var rbmViz = (() => {
     }
     return false;
   }
-  function _decodeFill(line2, index3, count) {
-    const fill2 = parseFillOption(line2);
+  function _decodeFill(line, index3, count) {
+    const fill2 = parseFillOption(line);
     if (isObject(fill2)) {
       return isNaN(fill2.value) ? false : fill2;
     }
@@ -9847,8 +9847,8 @@ var rbmViz = (() => {
     }
     return value;
   }
-  function parseFillOption(line2) {
-    const options = line2.options;
+  function parseFillOption(line) {
+    const options = line.options;
     const fillOption = options.fill;
     let fill2 = valueOrDefault(fillOption && fillOption.target, fillOption);
     if (fill2 === void 0) {
@@ -9863,12 +9863,12 @@ var rbmViz = (() => {
     return fill2;
   }
   function _buildStackLine(source) {
-    const { scale, index: index3, line: line2 } = source;
+    const { scale, index: index3, line } = source;
     const points = [];
-    const segments = line2.segments;
-    const sourcePoints = line2.points;
+    const segments = line.segments;
+    const sourcePoints = line.points;
     const linesBelow = getLinesBelow(scale, index3);
-    linesBelow.push(_createBoundaryLine({ x: null, y: scale.bottom }, line2));
+    linesBelow.push(_createBoundaryLine({ x: null, y: scale.bottom }, line));
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
       for (let j = segment.start; j <= segment.end; j++) {
@@ -9894,8 +9894,8 @@ var rbmViz = (() => {
   function addPointsBelow(points, sourcePoint, linesBelow) {
     const postponed = [];
     for (let j = 0; j < linesBelow.length; j++) {
-      const line2 = linesBelow[j];
-      const { first, last, point } = findPoint(line2, sourcePoint, "x");
+      const line = linesBelow[j];
+      const { first, last, point } = findPoint(line, sourcePoint, "x");
       if (!point || first && last) {
         continue;
       }
@@ -9910,14 +9910,14 @@ var rbmViz = (() => {
     }
     points.push(...postponed);
   }
-  function findPoint(line2, sourcePoint, property) {
-    const point = line2.interpolate(sourcePoint, property);
+  function findPoint(line, sourcePoint, property) {
+    const point = line.interpolate(sourcePoint, property);
     if (!point) {
       return {};
     }
     const pointValue = point[property];
-    const segments = line2.segments;
-    const linePoints = line2.points;
+    const segments = line.segments;
+    const linePoints = line.points;
     let first = false;
     let last = false;
     for (let i = 0; i < segments.length; i++) {
@@ -9955,7 +9955,7 @@ var rbmViz = (() => {
     }
   };
   function _getTarget(source) {
-    const { chart, fill: fill2, line: line2 } = source;
+    const { chart, fill: fill2, line } = source;
     if (isNumberFinite(fill2)) {
       return getLineByIndex(chart, fill2);
     }
@@ -9969,7 +9969,7 @@ var rbmViz = (() => {
     if (boundary instanceof simpleArc) {
       return boundary;
     }
-    return _createBoundaryLine(boundary, line2);
+    return _createBoundaryLine(boundary, line);
   }
   function getLineByIndex(chart, index3) {
     const meta = chart.getDatasetMeta(index3);
@@ -10017,29 +10017,29 @@ var rbmViz = (() => {
   }
   function _drawfill(ctx, source, area) {
     const target = _getTarget(source);
-    const { line: line2, scale, axis } = source;
-    const lineOpts = line2.options;
+    const { line, scale, axis } = source;
+    const lineOpts = line.options;
     const fillOption = lineOpts.fill;
     const color3 = lineOpts.backgroundColor;
     const { above = color3, below = color3 } = fillOption || {};
-    if (target && line2.points.length) {
+    if (target && line.points.length) {
       clipArea(ctx, area);
-      doFill(ctx, { line: line2, target, above, below, area, scale, axis });
+      doFill(ctx, { line, target, above, below, area, scale, axis });
       unclipArea(ctx);
     }
   }
   function doFill(ctx, cfg) {
-    const { line: line2, target, above, below, area, scale } = cfg;
-    const property = line2._loop ? "angle" : cfg.axis;
+    const { line, target, above, below, area, scale } = cfg;
+    const property = line._loop ? "angle" : cfg.axis;
     ctx.save();
     if (property === "x" && below !== above) {
       clipVertical(ctx, target, area.top);
-      fill(ctx, { line: line2, target, color: above, scale, property });
+      fill(ctx, { line, target, color: above, scale, property });
       ctx.restore();
       ctx.save();
       clipVertical(ctx, target, area.bottom);
     }
-    fill(ctx, { line: line2, target, color: below, scale, property });
+    fill(ctx, { line, target, color: below, scale, property });
     ctx.restore();
   }
   function clipVertical(ctx, target, clipY) {
@@ -10070,8 +10070,8 @@ var rbmViz = (() => {
     ctx.clip();
   }
   function fill(ctx, cfg) {
-    const { line: line2, target, property, color: color3, scale } = cfg;
-    const segments = _segments(line2, target, property);
+    const { line, target, property, color: color3, scale } = cfg;
+    const segments = _segments(line, target, property);
     for (const { source: src, target: tgt, start: start2, end } of segments) {
       const { style: { backgroundColor: backgroundColor4 = color3 } = {} } = src;
       const notShape = target !== true;
@@ -10079,7 +10079,7 @@ var rbmViz = (() => {
       ctx.fillStyle = backgroundColor4;
       clipBounds(ctx, scale, notShape && _getBounds(property, start2, end));
       ctx.beginPath();
-      const lineLoop = !!line2.pathSegment(ctx, src);
+      const lineLoop = !!line.pathSegment(ctx, src);
       let loop;
       if (notShape) {
         if (lineLoop) {
@@ -10118,20 +10118,20 @@ var rbmViz = (() => {
     afterDatasetsUpdate(chart, _args, options) {
       const count = (chart.data.datasets || []).length;
       const sources = [];
-      let meta, i, line2, source;
+      let meta, i, line, source;
       for (i = 0; i < count; ++i) {
         meta = chart.getDatasetMeta(i);
-        line2 = meta.dataset;
+        line = meta.dataset;
         source = null;
-        if (line2 && line2.options && line2 instanceof LineElement) {
+        if (line && line.options && line instanceof LineElement) {
           source = {
             visible: chart.isDatasetVisible(i),
             index: i,
-            fill: _decodeFill(line2, i, count),
+            fill: _decodeFill(line, i, count),
             chart,
             axis: meta.controller.options.indexAxis,
             scale: meta.vScale,
-            line: line2
+            line
           };
         }
         meta.$filler = source;
@@ -10945,8 +10945,8 @@ var rbmViz = (() => {
       height += options.footerMarginTop + footerLineCount * footerFont.lineHeight + (footerLineCount - 1) * options.footerSpacing;
     }
     let widthPadding = 0;
-    const maxLineWidth = function(line2) {
-      width = Math.max(width, ctx.measureText(line2).width + widthPadding);
+    const maxLineWidth = function(line) {
+      width = Math.max(width, ctx.measureText(line).width + widthPadding);
     };
     ctx.save();
     ctx.font = titleFont.string;
@@ -11384,8 +11384,8 @@ var rbmViz = (() => {
       let bodyLineHeight = bodyFont.lineHeight;
       let xLinePadding = 0;
       const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
-      const fillLineOfText = function(line2) {
-        ctx.fillText(line2, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
+      const fillLineOfText = function(line) {
+        ctx.fillText(line, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
         pt.y += bodyLineHeight + bodySpacing;
       };
       const bodyAlignForCalculation = rtlHelper.textAlign(bodyAlign);
@@ -14189,23 +14189,23 @@ var rbmViz = (() => {
     }
     return coordinate;
   }
-  function getArrowHeads(line2) {
-    const options = line2.options;
+  function getArrowHeads(line) {
+    const options = line.options;
     const arrowStartOpts = options.arrowHeads && options.arrowHeads.start;
     const arrowEndOpts = options.arrowHeads && options.arrowHeads.end;
     return {
       startOpts: arrowStartOpts,
       endOpts: arrowEndOpts,
-      startAdjust: getLineAdjust(line2, arrowStartOpts),
-      endAdjust: getLineAdjust(line2, arrowEndOpts)
+      startAdjust: getLineAdjust(line, arrowStartOpts),
+      endAdjust: getLineAdjust(line, arrowEndOpts)
     };
   }
-  function getLineAdjust(line2, arrowOpts) {
+  function getLineAdjust(line, arrowOpts) {
     if (!arrowOpts || !arrowOpts.display) {
       return 0;
     }
     const { length, width } = arrowOpts;
-    const adjust = line2.options.borderWidth / 2;
+    const adjust = line.options.borderWidth / 2;
     const p1 = { x: length, y: width + adjust };
     const p2 = { x: 0, y: adjust };
     return Math.abs(interpolateX(0, p1, p2));
@@ -20258,6 +20258,7 @@ var rbmViz = (() => {
     const config = chart.data.config;
     if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
       const datum2 = getElementDatum(activeElements, chart);
+      delete config.clickEvent.data;
       config.clickEvent.data = datum2;
       chart.canvas.dispatchEvent(config.clickEvent);
     }
@@ -20321,9 +20322,7 @@ var rbmViz = (() => {
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
         `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(
-          datum2.denominator
-        )}`
+        `${config.denominator}: ${format(",")(datum2.denominator)}`
       ] : [
         `${datum2.n_flagged} flagged ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`,
         `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
@@ -21176,46 +21175,26 @@ var rbmViz = (() => {
     return labels;
   }
 
-  // src/timeSeries/structureData/boxplot.js
-  function boxplot2(_data_, config) {
-    const grouped = rollups(
-      _data_,
-      (group2) => group2.map((d) => +d[config.y]),
-      (d) => d.snapshot_date
-    );
-    const color3 = config.colorScheme.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
-    );
-    color3.rgba.opacity = 0.5;
+  // src/timeSeries/structureData/line.js
+  function selectedGroupLine(_data_, config, labels) {
+    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
+      const datum2 = { ...d };
+      datum2.x = datum2[config.x];
+      datum2.y = +datum2[config.y];
+      return datum2;
+    });
+    const color3 = "#1890FF";
+    const backgroundColor4 = color2(color3);
+    backgroundColor4.opacity = 1;
+    const borderColor4 = color2(color3);
+    borderColor4.opacity = 0.25;
     const dataset = {
-      data: grouped.map((d) => d[1]),
-      maxBarThickness: 7,
-      maxWhiskerThickness: 0,
-      meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
-      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
-      purpose: "distribution",
-      type: "boxplot"
-    };
-    return dataset;
-  }
-
-  // src/timeSeries/structureData/violin.js
-  function violin(_data_, config) {
-    const grouped = rollups(
-      _data_,
-      (group2) => group2.map((d) => +d[config.y]),
-      (d) => d.snapshot_date
-    );
-    const color3 = config.colorScheme.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
-    );
-    color3.rgba.opacity = 0.5;
-    const dataset = {
-      data: grouped.map((d) => d[1]),
-      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
-      purpose: "distribution",
-      type: "violin"
+      type: "line",
+      backgroundColor: backgroundColor4,
+      borderColor: borderColor4,
+      data: lineData,
+      label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
+      purpose: "highlight"
     };
     return dataset;
   }
@@ -21268,21 +21247,46 @@ var rbmViz = (() => {
     return dataset;
   }
 
-  // src/timeSeries/structureData/line.js
-  function line(_data_, config, labels) {
-    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
-      const datum2 = { ...d };
-      datum2.x = datum2[config.x];
-      datum2.y = +datum2[config.y];
-      return datum2;
-    });
+  // src/timeSeries/structureData/boxplot.js
+  function boxplot2(_data_, config) {
+    const grouped = rollups(
+      _data_,
+      (group2) => group2.map((d) => +d[config.y]),
+      (d) => d.snapshot_date
+    );
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
+    color3.rgba.opacity = 0.5;
     const dataset = {
-      type: "line",
-      backgroundColor: "rgba(20,51,250,.75)",
-      borderColor: "rgba(20,51,250,.25)",
-      data: lineData,
-      label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
-      purpose: "highlight"
+      data: grouped.map((d) => d[1]),
+      maxBarThickness: 7,
+      maxWhiskerThickness: 0,
+      meanRadius: /^n_/.test(config.y) ? 3 : 0,
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
+      purpose: "distribution",
+      type: "boxplot"
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/violin.js
+  function violin(_data_, config) {
+    const grouped = rollups(
+      _data_,
+      (group2) => group2.map((d) => +d[config.y]),
+      (d) => d.snapshot_date
+    );
+    const color3 = config.colorScheme.find(
+      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
+    );
+    color3.rgba.opacity = 0.5;
+    const dataset = {
+      data: grouped.map((d) => d[1]),
+      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      purpose: "distribution",
+      type: "violin"
     };
     return dataset;
   }
@@ -21296,10 +21300,10 @@ var rbmViz = (() => {
     data = {
       labels,
       datasets: [
-        distribution,
-        atRisk(_data_, config, labels),
+        selectedGroupLine(_data_, config, labels),
         flagged(_data_, config, labels),
-        line(_data_, config, labels)
+        atRisk(_data_, config, labels),
+        distribution
       ].filter((dataset) => dataset !== null)
     };
     return data;
