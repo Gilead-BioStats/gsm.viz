@@ -1,10 +1,22 @@
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
 export default function tooltip(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
     return {
         callbacks: {
+            displayColors: (asdf) => console.log(asdf),
             label: formatResultTooltipContent.bind(null, config),
-            title: () => null,
+            labelPointStyle: () => ({ pointStyle: 'rect' }),
+            title: (data) => {
+                if (data.length) {
+                    const datum = data[0].dataset.data[data[0].dataIndex];
+
+                    return data[0].dataset.type !== 'boxplot'
+                        ? `${config.group}: ${datum.groupid}`
+                        : `${data[0].label} Distribution`;
+                }
+            },
         },
         //custom: function (tooltipModel) {
         //    // EXTENSION: filter is not enough! Hide tooltip frame
@@ -25,5 +37,6 @@ export default function tooltip(config) {
                 data.dataset.type === 'scatter'
             );
         },
+        ...tooltipAesthetics,
     };
 }

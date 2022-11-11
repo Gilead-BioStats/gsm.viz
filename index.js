@@ -20340,7 +20340,6 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data2.dataset.type)) {
       content = !config.isCount ? [
-        `${config.group}: ${datum2.groupid}`,
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
         `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
@@ -20350,21 +20349,59 @@ var rbmViz = (() => {
         `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
       ];
     } else if (["boxplot", "violin"].includes(data2.dataset.type)) {
-      const stats = ["mean", "median"].map(
+      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
         (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data2.formattedValue[stat]}`
       );
-      content = [data2.label, ...stats];
+      content = [...stats];
     }
     return content;
   }
 
+  // src/util/getTooltipAesthetics.js
+  function getTooltipAesthetics() {
+    return {
+      backgroundColor: "rgba(255,255,255,.85)",
+      bodyColor: "black",
+      bodyFont: {
+        family: "roboto",
+        size: 12,
+        weight: "bold"
+      },
+      borderColor: "black",
+      borderWidth: 1,
+      boxPadding: 5,
+      boxWidth: 10,
+      cornerRadius: 2,
+      caretPadding: 16,
+      padding: 10,
+      titleColor: "black",
+      titleMarginBottom: 5,
+      titleFont: {
+        family: "roboto",
+        lineHeight: 1.5,
+        size: 16,
+        weight: "bold"
+      },
+      usePointStyle: true
+    };
+  }
+
   // src/barChart/plugins/tooltip.js
   function tooltip(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
+    tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
-      }
+        labelPointStyle: () => ({ pointStyle: "rect" }),
+        title: (data2) => {
+          if (data2.length) {
+            const datum2 = data2[0].dataset.data[data2[0].dataIndex];
+            return `${config.group}: ${datum2.groupid}`;
+          }
+        }
+      },
+      ...tooltipAesthetics
     };
   }
 
@@ -20765,10 +20802,17 @@ var rbmViz = (() => {
 
   // src/scatterPlot/plugins/tooltip.js
   function tooltip2(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
+        title: (data2) => {
+          if (data2.length) {
+            const prefix = config.group;
+            const groupIDs = data2.map((d, i) => d.dataset.data[d.dataIndex].groupid);
+            return `${prefix}${groupIDs.length > 1 ? "s" : ""}: ${groupIDs.join(", ")}`;
+          }
+        }
       },
       custom: function(tooltipModel) {
         if (!tooltipModel.body || tooltipModel.body.length < 1) {
@@ -20780,7 +20824,8 @@ var rbmViz = (() => {
           tooltipModel.height = 0;
         }
       },
-      filter: (data2) => data2.dataset.type !== "line"
+      filter: (data2) => data2.dataset.type !== "line",
+      ...tooltipAesthetics
     };
   }
 
@@ -21414,15 +21459,24 @@ var rbmViz = (() => {
 
   // src/timeSeries/plugins/tooltip.js
   function tooltip4(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
+        displayColors: (asdf) => console.log(asdf),
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
+        labelPointStyle: () => ({ pointStyle: "rect" }),
+        title: (data2) => {
+          if (data2.length) {
+            const datum2 = data2[0].dataset.data[data2[0].dataIndex];
+            return data2[0].dataset.type !== "boxplot" ? `${config.group}: ${datum2.groupid}` : `${data2[0].label} Distribution`;
+          }
+        }
       },
       filter: (data2) => {
         const datum2 = data2.dataset.data[data2.dataIndex];
         return !(config.selectedGroupIDs.includes(datum2.groupid) && data2.dataset.type === "scatter");
-      }
+      },
+      ...tooltipAesthetics
     };
   }
 

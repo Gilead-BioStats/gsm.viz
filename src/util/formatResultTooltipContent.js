@@ -6,7 +6,7 @@ export default function formatResultTooltipContent(config, data) {
     if (['bar', 'line', 'scatter'].includes(data.dataset.type)) {
         content = !config.isCount
             ? [
-                  `${config.group}: ${datum.groupid}`,
+                //`${config.group}: ${datum.groupid}`,
                   `KRI Score: ${format('.1f')(datum.score)} (${config.score})`,
                   `KRI Value: ${format('.3f')(datum.metric)} (${
                       config.metric
@@ -23,13 +23,13 @@ export default function formatResultTooltipContent(config, data) {
                   }`,
               ];
     } else if (['boxplot', 'violin'].includes(data.dataset.type)) {
-        const stats = ['mean', 'median'].map(
+        const stats = ['mean', 'min', 'q1', 'median', 'q3', 'max'].map(
             (stat) =>
                 `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${
                     data.formattedValue[stat]
                 }`
         );
-        content = [data.label, ...stats];
+        content = [...stats];
     }
 
     return content;
