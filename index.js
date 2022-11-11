@@ -21135,7 +21135,7 @@ var rbmViz = (() => {
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.type = "boxplot";
-    defaults3.isCount = /flag|at.risk/.test(_config_.y);
+    defaults3.isCount = /flag|risk/.test(_config_.y);
     if (defaults3.isCount)
       defaults3.unit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
     defaults3.x = "snapshot_date";
@@ -21143,7 +21143,7 @@ var rbmViz = (() => {
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = defaults3.isCount ? `# At Risk or Flagged ${defaults3.unit}` : _config_[defaults3.y];
+    defaults3.yLabel = defaults3.isCount ? /flag/.test(_config_.y) && /risk/.test(_config_.y) ? `# At Risk or Flagged ${defaults3.unit}s` : /flag/.test(_config_.y) ? `# Flagged ${defaults3.unit}s` : /risk/.test(_config_.y) ? `# At Risk ${defaults3.unit}s` : "" : _config_[defaults3.y];
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
