@@ -18,7 +18,7 @@ export default function aggregateGroupLine(_data_, config, labels) {
         borderColor,
         data: [...aggregateData]
             .map(([key, value], i) => ({x: labels[i], y: value})),
-        label: 'Average',
+        label: 'Study Average',
         purpose: 'aggregate',
         type: 'line',
     };

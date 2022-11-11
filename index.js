@@ -1264,10 +1264,10 @@ var rbmViz = (() => {
     }
     return (font.style ? font.style + " " : "") + (font.weight ? font.weight + " " : "") + font.size + "px " + font.family;
   }
-  function _measureText(ctx, data, gc, longest, string) {
-    let textWidth = data[string];
+  function _measureText(ctx, data2, gc, longest, string) {
+    let textWidth = data2[string];
     if (!textWidth) {
-      textWidth = data[string] = ctx.measureText(string).width;
+      textWidth = data2[string] = ctx.measureText(string).width;
       gc.push(string);
     }
     if (textWidth > longest) {
@@ -1277,10 +1277,10 @@ var rbmViz = (() => {
   }
   function _longestText(ctx, font, arrayOfThings, cache) {
     cache = cache || {};
-    let data = cache.data = cache.data || {};
+    let data2 = cache.data = cache.data || {};
     let gc = cache.garbageCollect = cache.garbageCollect || [];
     if (cache.font !== font) {
-      data = cache.data = {};
+      data2 = cache.data = {};
       gc = cache.garbageCollect = [];
       cache.font = font;
     }
@@ -1292,12 +1292,12 @@ var rbmViz = (() => {
     for (i = 0; i < ilen; i++) {
       thing = arrayOfThings[i];
       if (thing !== void 0 && thing !== null && isArray(thing) !== true) {
-        longest = _measureText(ctx, data, gc, longest, thing);
+        longest = _measureText(ctx, data2, gc, longest, thing);
       } else if (isArray(thing)) {
         for (j = 0, jlen = thing.length; j < jlen; j++) {
           nestedThing = thing[j];
           if (nestedThing !== void 0 && nestedThing !== null && !isArray(nestedThing)) {
-            longest = _measureText(ctx, data, gc, longest, nestedThing);
+            longest = _measureText(ctx, data2, gc, longest, nestedThing);
           }
         }
       }
@@ -1306,7 +1306,7 @@ var rbmViz = (() => {
     const gcLen = gc.length / 2;
     if (gcLen > arrayOfThings.length) {
       for (i = 0; i < gcLen; i++) {
-        delete data[gc[i]];
+        delete data2[gc[i]];
       }
       gc.splice(0, gcLen);
     }
@@ -1890,14 +1890,14 @@ var rbmViz = (() => {
     }
     return Array.from(set4);
   }
-  function _parseObjectDataRadialScale(meta, data, start2, count) {
+  function _parseObjectDataRadialScale(meta, data2, start2, count) {
     const { iScale } = meta;
     const { key = "r" } = this._parsing;
     const parsed = new Array(count);
     let i, ilen, index3, item;
     for (i = 0, ilen = count; i < ilen; ++i) {
       index3 = i + start2;
-      item = data[index3];
+      item = data2[index3];
       parsed[i] = {
         r: iScale.parse(resolveObjectKey(item, key), index3)
       };
@@ -3040,15 +3040,15 @@ var rbmViz = (() => {
     }
     return value;
   }
-  function convertObjectDataToArray(data) {
-    const keys = Object.keys(data);
+  function convertObjectDataToArray(data2) {
+    const keys = Object.keys(data2);
     const adata = new Array(keys.length);
     let i, ilen, key;
     for (i = 0, ilen = keys.length; i < ilen; ++i) {
       key = keys[i];
       adata[i] = {
         x: key,
-        y: data[key]
+        y: data2[key]
       };
     }
     return adata;
@@ -3224,22 +3224,22 @@ var rbmViz = (() => {
     }
     _dataCheck() {
       const dataset = this.getDataset();
-      const data = dataset.data || (dataset.data = []);
+      const data2 = dataset.data || (dataset.data = []);
       const _data = this._data;
-      if (isObject(data)) {
-        this._data = convertObjectDataToArray(data);
-      } else if (_data !== data) {
+      if (isObject(data2)) {
+        this._data = convertObjectDataToArray(data2);
+      } else if (_data !== data2) {
         if (_data) {
           unlistenArrayEvents(_data, this);
           const meta = this._cachedMeta;
           clearStacks(meta);
           meta._parsed = [];
         }
-        if (data && Object.isExtensible(data)) {
-          listenArrayEvents(data, this);
+        if (data2 && Object.isExtensible(data2)) {
+          listenArrayEvents(data2, this);
         }
         this._syncList = [];
-        this._data = data;
+        this._data = data2;
       }
     }
     addElements() {
@@ -3275,23 +3275,23 @@ var rbmViz = (() => {
       this._cachedDataOpts = {};
     }
     parse(start2, count) {
-      const { _cachedMeta: meta, _data: data } = this;
+      const { _cachedMeta: meta, _data: data2 } = this;
       const { iScale, _stacked } = meta;
       const iAxis = iScale.axis;
-      let sorted = start2 === 0 && count === data.length ? true : meta._sorted;
+      let sorted = start2 === 0 && count === data2.length ? true : meta._sorted;
       let prev = start2 > 0 && meta._parsed[start2 - 1];
       let i, cur, parsed;
       if (this._parsing === false) {
-        meta._parsed = data;
+        meta._parsed = data2;
         meta._sorted = true;
-        parsed = data;
+        parsed = data2;
       } else {
-        if (isArray(data[start2])) {
-          parsed = this.parseArrayData(meta, data, start2, count);
-        } else if (isObject(data[start2])) {
-          parsed = this.parseObjectData(meta, data, start2, count);
+        if (isArray(data2[start2])) {
+          parsed = this.parseArrayData(meta, data2, start2, count);
+        } else if (isObject(data2[start2])) {
+          parsed = this.parseObjectData(meta, data2, start2, count);
         } else {
-          parsed = this.parsePrimitiveData(meta, data, start2, count);
+          parsed = this.parsePrimitiveData(meta, data2, start2, count);
         }
         const isNotInOrderComparedToPrev = () => cur[iAxis] === null || prev && cur[iAxis] < prev[iAxis];
         for (i = 0; i < count; ++i) {
@@ -3309,7 +3309,7 @@ var rbmViz = (() => {
         updateStacks(this, parsed);
       }
     }
-    parsePrimitiveData(meta, data, start2, count) {
+    parsePrimitiveData(meta, data2, start2, count) {
       const { iScale, vScale } = meta;
       const iAxis = iScale.axis;
       const vAxis = vScale.axis;
@@ -3321,18 +3321,18 @@ var rbmViz = (() => {
         index3 = i + start2;
         parsed[i] = {
           [iAxis]: singleScale || iScale.parse(labels[index3], index3),
-          [vAxis]: vScale.parse(data[index3], index3)
+          [vAxis]: vScale.parse(data2[index3], index3)
         };
       }
       return parsed;
     }
-    parseArrayData(meta, data, start2, count) {
+    parseArrayData(meta, data2, start2, count) {
       const { xScale, yScale } = meta;
       const parsed = new Array(count);
       let i, ilen, index3, item;
       for (i = 0, ilen = count; i < ilen; ++i) {
         index3 = i + start2;
-        item = data[index3];
+        item = data2[index3];
         parsed[i] = {
           x: xScale.parse(item[0], index3),
           y: yScale.parse(item[1], index3)
@@ -3340,14 +3340,14 @@ var rbmViz = (() => {
       }
       return parsed;
     }
-    parseObjectData(meta, data, start2, count) {
+    parseObjectData(meta, data2, start2, count) {
       const { xScale, yScale } = meta;
       const { xAxisKey = "x", yAxisKey = "y" } = this._parsing;
       const parsed = new Array(count);
       let i, ilen, index3, item;
       for (i = 0, ilen = count; i < ilen; ++i) {
         index3 = i + start2;
-        item = data[index3];
+        item = data2[index3];
         parsed[i] = {
           x: xScale.parse(resolveObjectKey(item, xAxisKey), index3),
           y: yScale.parse(resolveObjectKey(item, yAxisKey), index3)
@@ -3604,14 +3604,14 @@ var rbmViz = (() => {
       }
     }
     _resyncElements(resetNewElements) {
-      const data = this._data;
+      const data2 = this._data;
       const elements2 = this._cachedMeta.data;
       for (const [method, arg1, arg2] of this._syncList) {
         this[method](arg1, arg2);
       }
       this._syncList = [];
       const numMeta = elements2.length;
-      const numData = data.length;
+      const numData = data2.length;
       const count = Math.min(numData, numMeta);
       if (count) {
         this.parse(0, count);
@@ -3624,7 +3624,7 @@ var rbmViz = (() => {
     }
     _insertElements(start2, count, resetNewElements = true) {
       const meta = this._cachedMeta;
-      const data = meta.data;
+      const data2 = meta.data;
       const end = start2 + count;
       let i;
       const move = (arr) => {
@@ -3633,16 +3633,16 @@ var rbmViz = (() => {
           arr[i] = arr[i - count];
         }
       };
-      move(data);
+      move(data2);
       for (i = start2; i < end; ++i) {
-        data[i] = new this.dataElementType();
+        data2[i] = new this.dataElementType();
       }
       if (this._parsing) {
         move(meta._parsed);
       }
       this.parse(start2, count);
       if (resetNewElements) {
-        this.updateElements(data, start2, count, "reset");
+        this.updateElements(data2, start2, count, "reset");
       }
     }
     updateElements(element, start2, count, mode) {
@@ -3793,7 +3793,7 @@ var rbmViz = (() => {
     }
     return item;
   }
-  function parseArrayOrPrimitive(meta, data, start2, count) {
+  function parseArrayOrPrimitive(meta, data2, start2, count) {
     const iScale = meta.iScale;
     const vScale = meta.vScale;
     const labels = iScale.getLabels();
@@ -3801,7 +3801,7 @@ var rbmViz = (() => {
     const parsed = [];
     let i, ilen, item, entry;
     for (i = start2, ilen = start2 + count; i < ilen; ++i) {
-      entry = data[i];
+      entry = data2[i];
       item = {};
       item[iScale.axis] = singleScale || iScale.parse(labels[i], i);
       parsed.push(parseValue(entry, item, vScale, i));
@@ -3882,13 +3882,13 @@ var rbmViz = (() => {
     properties.inflateAmount = inflateAmount === "auto" ? ratio === 1 ? 0.33 : 0 : inflateAmount;
   }
   var BarController = class extends DatasetController {
-    parsePrimitiveData(meta, data, start2, count) {
-      return parseArrayOrPrimitive(meta, data, start2, count);
+    parsePrimitiveData(meta, data2, start2, count) {
+      return parseArrayOrPrimitive(meta, data2, start2, count);
     }
-    parseArrayData(meta, data, start2, count) {
-      return parseArrayOrPrimitive(meta, data, start2, count);
+    parseArrayData(meta, data2, start2, count) {
+      return parseArrayOrPrimitive(meta, data2, start2, count);
     }
-    parseObjectData(meta, data, start2, count) {
+    parseObjectData(meta, data2, start2, count) {
       const { iScale, vScale } = meta;
       const { xAxisKey = "x", yAxisKey = "y" } = this._parsing;
       const iAxisKey = iScale.axis === "x" ? xAxisKey : yAxisKey;
@@ -3896,7 +3896,7 @@ var rbmViz = (() => {
       const parsed = [];
       let i, ilen, item, obj;
       for (i = start2, ilen = start2 + count; i < ilen; ++i) {
-        obj = data[i];
+        obj = data2[i];
         item = {};
         item[iScale.axis] = iScale.parse(resolveObjectKey(obj, iAxisKey), i);
         parsed.push(parseValue(resolveObjectKey(obj, vAxisKey), item, vScale, i));
@@ -4147,34 +4147,34 @@ var rbmViz = (() => {
       this.enableOptionSharing = true;
       super.initialize();
     }
-    parsePrimitiveData(meta, data, start2, count) {
-      const parsed = super.parsePrimitiveData(meta, data, start2, count);
+    parsePrimitiveData(meta, data2, start2, count) {
+      const parsed = super.parsePrimitiveData(meta, data2, start2, count);
       for (let i = 0; i < parsed.length; i++) {
         parsed[i]._custom = this.resolveDataElementOptions(i + start2).radius;
       }
       return parsed;
     }
-    parseArrayData(meta, data, start2, count) {
-      const parsed = super.parseArrayData(meta, data, start2, count);
+    parseArrayData(meta, data2, start2, count) {
+      const parsed = super.parseArrayData(meta, data2, start2, count);
       for (let i = 0; i < parsed.length; i++) {
-        const item = data[start2 + i];
+        const item = data2[start2 + i];
         parsed[i]._custom = valueOrDefault(item[2], this.resolveDataElementOptions(i + start2).radius);
       }
       return parsed;
     }
-    parseObjectData(meta, data, start2, count) {
-      const parsed = super.parseObjectData(meta, data, start2, count);
+    parseObjectData(meta, data2, start2, count) {
+      const parsed = super.parseObjectData(meta, data2, start2, count);
       for (let i = 0; i < parsed.length; i++) {
-        const item = data[start2 + i];
+        const item = data2[start2 + i];
         parsed[i]._custom = valueOrDefault(item && item.r && +item.r, this.resolveDataElementOptions(i + start2).radius);
       }
       return parsed;
     }
     getMaxOverflow() {
-      const data = this._cachedMeta.data;
+      const data2 = this._cachedMeta.data;
       let max3 = 0;
-      for (let i = data.length - 1; i >= 0; --i) {
-        max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
+      for (let i = data2.length - 1; i >= 0; --i) {
+        max3 = Math.max(max3, data2[i].size(this.resolveDataElementOptions(i)) / 2);
       }
       return max3 > 0 && max3;
     }
@@ -4297,15 +4297,15 @@ var rbmViz = (() => {
     linkScales() {
     }
     parse(start2, count) {
-      const data = this.getDataset().data;
+      const data2 = this.getDataset().data;
       const meta = this._cachedMeta;
       if (this._parsing === false) {
-        meta._parsed = data;
+        meta._parsed = data2;
       } else {
-        let getter = (i2) => +data[i2];
-        if (isObject(data[start2])) {
+        let getter = (i2) => +data2[i2];
+        if (isObject(data2[start2])) {
           const { key = "value" } = this._parsing;
-          getter = (i2) => +resolveObjectKey(data[i2], key);
+          getter = (i2) => +resolveObjectKey(data2[i2], key);
         }
         let i, ilen;
         for (i = start2, ilen = start2 + count; i < ilen; ++i) {
@@ -4515,10 +4515,10 @@ var rbmViz = (() => {
       legend: {
         labels: {
           generateLabels(chart) {
-            const data = chart.data;
-            if (data.labels.length && data.datasets.length) {
+            const data2 = chart.data;
+            if (data2.labels.length && data2.datasets.length) {
               const { labels: { pointStyle } } = chart.legend.options;
-              return data.labels.map((label, i) => {
+              return data2.labels.map((label, i) => {
                 const meta = chart.getDatasetMeta(0);
                 const style = meta.controller.getStyle(i);
                 return {
@@ -4628,12 +4628,12 @@ var rbmViz = (() => {
       const meta = this._cachedMeta;
       const dataset = meta.dataset;
       const border = dataset.options && dataset.options.borderWidth || 0;
-      const data = meta.data || [];
-      if (!data.length) {
+      const data2 = meta.data || [];
+      if (!data2.length) {
         return border;
       }
-      const firstPoint = data[0].size(this.resolveDataElementOptions(0));
-      const lastPoint = data[data.length - 1].size(this.resolveDataElementOptions(data.length - 1));
+      const firstPoint = data2[0].size(this.resolveDataElementOptions(0));
+      const lastPoint = data2[data2.length - 1].size(this.resolveDataElementOptions(data2.length - 1));
       return Math.max(border, firstPoint, lastPoint) / 2;
     }
     draw() {
@@ -4675,8 +4675,8 @@ var rbmViz = (() => {
         value
       };
     }
-    parseObjectData(meta, data, start2, count) {
-      return _parseObjectDataRadialScale.bind(this)(meta, data, start2, count);
+    parseObjectData(meta, data2, start2, count) {
+      return _parseObjectDataRadialScale.bind(this)(meta, data2, start2, count);
     }
     update(mode) {
       const arcs = this._cachedMeta.data;
@@ -4787,10 +4787,10 @@ var rbmViz = (() => {
       legend: {
         labels: {
           generateLabels(chart) {
-            const data = chart.data;
-            if (data.labels.length && data.datasets.length) {
+            const data2 = chart.data;
+            if (data2.labels.length && data2.datasets.length) {
               const { labels: { pointStyle } } = chart.legend.options;
-              return data.labels.map((label, i) => {
+              return data2.labels.map((label, i) => {
                 const meta = chart.getDatasetMeta(0);
                 const style = meta.controller.getStyle(i);
                 return {
@@ -4858,8 +4858,8 @@ var rbmViz = (() => {
         value: "" + vScale.getLabelForValue(parsed[vScale.axis])
       };
     }
-    parseObjectData(meta, data, start2, count) {
-      return _parseObjectDataRadialScale.bind(this)(meta, data, start2, count);
+    parseObjectData(meta, data2, start2, count) {
+      return _parseObjectDataRadialScale.bind(this)(meta, data2, start2, count);
     }
     update(mode) {
       const meta = this._cachedMeta;
@@ -5390,8 +5390,8 @@ var rbmViz = (() => {
       return this.ticks;
     }
     getLabels() {
-      const data = this.chart.data;
-      return this.options.labels || (this.isHorizontal() ? data.xLabels : data.yLabels) || data.labels || [];
+      const data2 = this.chart.data;
+      return this.options.labels || (this.isHorizontal() ? data2.xLabels : data2.yLabels) || data2.labels || [];
     }
     beforeLayout() {
       this._cache = {};
@@ -6594,21 +6594,21 @@ var rbmViz = (() => {
     }
     getMaxOverflow() {
       const meta = this._cachedMeta;
-      const data = meta.data || [];
+      const data2 = meta.data || [];
       if (!this.options.showLine) {
         let max3 = 0;
-        for (let i = data.length - 1; i >= 0; --i) {
-          max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
+        for (let i = data2.length - 1; i >= 0; --i) {
+          max3 = Math.max(max3, data2[i].size(this.resolveDataElementOptions(i)) / 2);
         }
         return max3 > 0 && max3;
       }
       const dataset = meta.dataset;
       const border = dataset.options && dataset.options.borderWidth || 0;
-      if (!data.length) {
+      if (!data2.length) {
         return border;
       }
-      const firstPoint = data[0].size(this.resolveDataElementOptions(0));
-      const lastPoint = data[data.length - 1].size(this.resolveDataElementOptions(data.length - 1));
+      const firstPoint = data2[0].size(this.resolveDataElementOptions(0));
+      const lastPoint = data2[data2.length - 1].size(this.resolveDataElementOptions(data2.length - 1));
       return Math.max(border, firstPoint, lastPoint) / 2;
     }
   };
@@ -6693,32 +6693,32 @@ var rbmViz = (() => {
     _date: DateAdapter
   };
   function binarySearch(metaset, axis, value, intersect) {
-    const { controller, data, _sorted } = metaset;
+    const { controller, data: data2, _sorted } = metaset;
     const iScale = controller._cachedMeta.iScale;
-    if (iScale && axis === iScale.axis && axis !== "r" && _sorted && data.length) {
+    if (iScale && axis === iScale.axis && axis !== "r" && _sorted && data2.length) {
       const lookupMethod = iScale._reversePixels ? _rlookupByKey : _lookupByKey;
       if (!intersect) {
-        return lookupMethod(data, axis, value);
+        return lookupMethod(data2, axis, value);
       } else if (controller._sharedOptions) {
-        const el = data[0];
+        const el = data2[0];
         const range = typeof el.getRange === "function" && el.getRange(axis);
         if (range) {
-          const start2 = lookupMethod(data, axis, value - range);
-          const end = lookupMethod(data, axis, value + range);
+          const start2 = lookupMethod(data2, axis, value - range);
+          const end = lookupMethod(data2, axis, value + range);
           return { lo: start2.lo, hi: end.hi };
         }
       }
     }
-    return { lo: 0, hi: data.length - 1 };
+    return { lo: 0, hi: data2.length - 1 };
   }
   function evaluateInteractionItems(chart, axis, position, handler, intersect) {
     const metasets = chart.getSortedVisibleDatasetMetas();
     const value = position[axis];
     for (let i = 0, ilen = metasets.length; i < ilen; ++i) {
-      const { index: index3, data } = metasets[i];
+      const { index: index3, data: data2 } = metasets[i];
       const { lo, hi } = binarySearch(metasets[i], axis, value, intersect);
       for (let j = lo; j <= hi; ++j) {
-        const element = data[j];
+        const element = data2[j];
         if (!element.skip) {
           handler(element, index3, j);
         }
@@ -6836,10 +6836,10 @@ var rbmViz = (() => {
         let items = options.intersect ? getIntersectItems(chart, position, axis, useFinalPosition, includeInvisible) : getNearestItems(chart, position, axis, false, useFinalPosition, includeInvisible);
         if (items.length > 0) {
           const datasetIndex = items[0].datasetIndex;
-          const data = chart.getDatasetMeta(datasetIndex).data;
+          const data2 = chart.getDatasetMeta(datasetIndex).data;
           items = [];
-          for (let i = 0; i < data.length; ++i) {
-            items.push({ element: data[i], datasetIndex, index: i });
+          for (let i = 0; i < data2.length; ++i) {
+            items.push({ element: data2[i], datasetIndex, index: i });
           }
         }
         return items;
@@ -7639,11 +7639,11 @@ var rbmViz = (() => {
     options.plugins = valueOrDefault(options.plugins, {});
     options.scales = mergeScaleConfig(config, options);
   }
-  function initData(data) {
-    data = data || {};
-    data.datasets = data.datasets || [];
-    data.labels = data.labels || [];
-    return data;
+  function initData(data2) {
+    data2 = data2 || {};
+    data2.datasets = data2.datasets || [];
+    data2.labels = data2.labels || [];
+    return data2;
   }
   function initConfig(config) {
     config = config || {};
@@ -7686,8 +7686,8 @@ var rbmViz = (() => {
     get data() {
       return this._config.data;
     }
-    set data(data) {
-      this._config.data = initData(data);
+    set data(data2) {
+      this._config.data = initData(data2);
     }
     get options() {
       return this._config.options;
@@ -7979,8 +7979,8 @@ var rbmViz = (() => {
     get data() {
       return this.config.data;
     }
-    set data(data) {
-      this.config.data = data;
+    set data(data2) {
+      this.config.data = data2;
     }
     get options() {
       return this._options;
@@ -9481,10 +9481,10 @@ var rbmViz = (() => {
     PointElement,
     BarElement
   });
-  function lttbDecimation(data, start2, count, availableWidth, options) {
+  function lttbDecimation(data2, start2, count, availableWidth, options) {
     const samples = options.samples || availableWidth;
     if (samples >= count) {
-      return data.slice(start2, start2 + count);
+      return data2.slice(start2, start2 + count);
     }
     const decimated = [];
     const bucketWidth = (count - 2) / (samples - 2);
@@ -9492,7 +9492,7 @@ var rbmViz = (() => {
     const endIndex = start2 + count - 1;
     let a = start2;
     let i, maxAreaPoint, maxArea, area, nextA;
-    decimated[sampledIndex++] = data[a];
+    decimated[sampledIndex++] = data2[a];
     for (i = 0; i < samples - 2; i++) {
       let avgX = 0;
       let avgY = 0;
@@ -9501,42 +9501,42 @@ var rbmViz = (() => {
       const avgRangeEnd = Math.min(Math.floor((i + 2) * bucketWidth) + 1, count) + start2;
       const avgRangeLength = avgRangeEnd - avgRangeStart;
       for (j = avgRangeStart; j < avgRangeEnd; j++) {
-        avgX += data[j].x;
-        avgY += data[j].y;
+        avgX += data2[j].x;
+        avgY += data2[j].y;
       }
       avgX /= avgRangeLength;
       avgY /= avgRangeLength;
       const rangeOffs = Math.floor(i * bucketWidth) + 1 + start2;
       const rangeTo = Math.min(Math.floor((i + 1) * bucketWidth) + 1, count) + start2;
-      const { x: pointAx, y: pointAy } = data[a];
+      const { x: pointAx, y: pointAy } = data2[a];
       maxArea = area = -1;
       for (j = rangeOffs; j < rangeTo; j++) {
         area = 0.5 * Math.abs(
-          (pointAx - avgX) * (data[j].y - pointAy) - (pointAx - data[j].x) * (avgY - pointAy)
+          (pointAx - avgX) * (data2[j].y - pointAy) - (pointAx - data2[j].x) * (avgY - pointAy)
         );
         if (area > maxArea) {
           maxArea = area;
-          maxAreaPoint = data[j];
+          maxAreaPoint = data2[j];
           nextA = j;
         }
       }
       decimated[sampledIndex++] = maxAreaPoint;
       a = nextA;
     }
-    decimated[sampledIndex++] = data[endIndex];
+    decimated[sampledIndex++] = data2[endIndex];
     return decimated;
   }
-  function minMaxDecimation(data, start2, count, availableWidth) {
+  function minMaxDecimation(data2, start2, count, availableWidth) {
     let avgX = 0;
     let countX = 0;
     let i, point, x, y, prevX, minIndex, maxIndex, startIndex, minY, maxY;
     const decimated = [];
     const endIndex = start2 + count - 1;
-    const xMin = data[start2].x;
-    const xMax = data[endIndex].x;
+    const xMin = data2[start2].x;
+    const xMax = data2[endIndex].x;
     const dx = xMax - xMin;
     for (i = start2; i < start2 + count; ++i) {
-      point = data[i];
+      point = data2[i];
       x = (point.x - xMin) / dx * availableWidth;
       y = point.y;
       const truncX = x | 0;
@@ -9556,19 +9556,19 @@ var rbmViz = (() => {
           const intermediateIndex2 = Math.max(minIndex, maxIndex);
           if (intermediateIndex1 !== startIndex && intermediateIndex1 !== lastIndex) {
             decimated.push({
-              ...data[intermediateIndex1],
+              ...data2[intermediateIndex1],
               x: avgX
             });
           }
           if (intermediateIndex2 !== startIndex && intermediateIndex2 !== lastIndex) {
             decimated.push({
-              ...data[intermediateIndex2],
+              ...data2[intermediateIndex2],
               x: avgX
             });
           }
         }
         if (i > 0 && lastIndex !== startIndex) {
-          decimated.push(data[lastIndex]);
+          decimated.push(data2[lastIndex]);
         }
         decimated.push(point);
         prevX = truncX;
@@ -9581,10 +9581,10 @@ var rbmViz = (() => {
   }
   function cleanDecimatedDataset(dataset) {
     if (dataset._decimated) {
-      const data = dataset._data;
+      const data2 = dataset._data;
       delete dataset._decimated;
       delete dataset._data;
-      Object.defineProperty(dataset, "data", { value: data });
+      Object.defineProperty(dataset, "data", { value: data2 });
     }
   }
   function cleanDecimatedData(chart) {
@@ -9623,7 +9623,7 @@ var rbmViz = (() => {
       chart.data.datasets.forEach((dataset, datasetIndex) => {
         const { _data, indexAxis } = dataset;
         const meta = chart.getDatasetMeta(datasetIndex);
-        const data = _data || dataset.data;
+        const data2 = _data || dataset.data;
         if (resolve([indexAxis, chart.options.indexAxis]) === "y") {
           return;
         }
@@ -9637,14 +9637,14 @@ var rbmViz = (() => {
         if (chart.options.parsing) {
           return;
         }
-        let { start: start2, count } = getStartAndCountOfVisiblePointsSimplified(meta, data);
+        let { start: start2, count } = getStartAndCountOfVisiblePointsSimplified(meta, data2);
         const threshold = options.threshold || 4 * availableWidth;
         if (count <= threshold) {
           cleanDecimatedDataset(dataset);
           return;
         }
         if (isNullOrUndef(_data)) {
-          dataset._data = data;
+          dataset._data = data2;
           delete dataset.data;
           Object.defineProperty(dataset, "data", {
             configurable: true,
@@ -9660,10 +9660,10 @@ var rbmViz = (() => {
         let decimated;
         switch (options.algorithm) {
           case "lttb":
-            decimated = lttbDecimation(data, start2, count, availableWidth, options);
+            decimated = lttbDecimation(data2, start2, count, availableWidth, options);
             break;
           case "min-max":
-            decimated = minMaxDecimation(data, start2, count, availableWidth);
+            decimated = minMaxDecimation(data2, start2, count, availableWidth);
             break;
           default:
             throw new Error(`Unsupported decimation algorithm '${options.algorithm}'`);
@@ -11170,7 +11170,7 @@ var rbmViz = (() => {
     }
     _createItems(options) {
       const active = this._active;
-      const data = this.chart.data;
+      const data2 = this.chart.data;
       const labelColors = [];
       const labelPointStyles = [];
       const labelTextColors = [];
@@ -11180,10 +11180,10 @@ var rbmViz = (() => {
         tooltipItems.push(createTooltipItem(this.chart, active[i]));
       }
       if (options.filter) {
-        tooltipItems = tooltipItems.filter((element, index3, array2) => options.filter(element, index3, array2, data));
+        tooltipItems = tooltipItems.filter((element, index3, array2) => options.filter(element, index3, array2, data2));
       }
       if (options.itemSort) {
-        tooltipItems = tooltipItems.sort((a, b) => options.itemSort(a, b, data));
+        tooltipItems = tooltipItems.sort((a, b) => options.itemSort(a, b, data2));
       }
       each(tooltipItems, (context) => {
         const scoped = overrideCallbacks(options.callbacks, context);
@@ -13148,12 +13148,12 @@ var rbmViz = (() => {
       if (timestamps.length) {
         return timestamps;
       }
-      const data = this.getDataTimestamps();
+      const data2 = this.getDataTimestamps();
       const label = this.getLabelTimestamps();
-      if (data.length && label.length) {
-        timestamps = this.normalize(data.concat(label));
+      if (data2.length && label.length) {
+        timestamps = this.normalize(data2.concat(label));
       } else {
-        timestamps = data.length ? data : label;
+        timestamps = data2.length ? data2 : label;
       }
       timestamps = this._cache.all = timestamps;
       return timestamps;
@@ -15074,12 +15074,12 @@ var rbmViz = (() => {
   function quantilesHinges(arr, length = arr.length) {
     return quantilesFivenum(arr, length);
   }
-  function createSortedData(data) {
+  function createSortedData(data2) {
     let valid = 0;
-    const { length } = data;
-    const vs = data instanceof Float64Array ? new Float64Array(length) : new Float32Array(length);
+    const { length } = data2;
+    const vs = data2 instanceof Float64Array ? new Float64Array(length) : new Float32Array(length);
     for (let i = 0; i < length; i += 1) {
-      const v = data[i];
+      const v = data2[i];
       if (v == null || Number.isNaN(v)) {
         continue;
       }
@@ -15106,8 +15106,8 @@ var rbmViz = (() => {
       s: validData
     };
   }
-  function withSortedData(data) {
-    if (data.length === 0) {
+  function withSortedData(data2) {
+    if (data2.length === 0) {
       return {
         min: Number.NaN,
         max: Number.NaN,
@@ -15115,13 +15115,13 @@ var rbmViz = (() => {
         s: []
       };
     }
-    const min3 = data[0];
-    const max3 = data[data.length - 1];
+    const min3 = data2[0];
+    const max3 = data2[data2.length - 1];
     return {
       min: min3,
       max: max3,
       missing: 0,
-      s: data
+      s: data2
     };
   }
   function computeWhiskers(s, valid, min3, max3, { eps, quantiles, coef, whiskersMode }) {
@@ -15186,7 +15186,7 @@ var rbmViz = (() => {
       variance
     };
   }
-  function boxplot(data, options = {}) {
+  function boxplot(data2, options = {}) {
     const fullOptions = {
       coef: 1.5,
       eps: 0.01,
@@ -15195,14 +15195,14 @@ var rbmViz = (() => {
       whiskersMode: "nearest",
       ...options
     };
-    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
+    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data2) : createSortedData(data2);
     const invalid = {
       min: Number.NaN,
       max: Number.NaN,
       mean: Number.NaN,
       missing,
       iqr: Number.NaN,
-      count: data.length,
+      count: data2.length,
       whiskerHigh: Number.NaN,
       whiskerLow: Number.NaN,
       outlier: [],
@@ -15213,14 +15213,14 @@ var rbmViz = (() => {
       items: [],
       kde: () => 0
     };
-    const valid = data.length - missing;
+    const valid = data2.length - missing;
     if (valid === 0) {
       return invalid;
     }
     const result = {
       min: min3,
       max: max3,
-      count: data.length,
+      count: data2.length,
       missing,
       items: s,
       ...computeStats(s, valid),
@@ -15952,7 +15952,7 @@ var rbmViz = (() => {
       scale.axis = bak;
       return { min: min3, max: max3 };
     }
-    parsePrimitiveData(meta, data, start2, count) {
+    parsePrimitiveData(meta, data2, start2, count) {
       const vScale = meta.vScale;
       const iScale = meta.iScale;
       const labels = iScale.getLabels();
@@ -15961,7 +15961,7 @@ var rbmViz = (() => {
         const index3 = i + start2;
         const parsed = {};
         parsed[iScale.axis] = iScale.parse(labels[index3], index3);
-        const stats = this._parseStats(data == null ? null : data[index3], this.options);
+        const stats = this._parseStats(data2 == null ? null : data2[index3], this.options);
         if (stats) {
           Object.assign(parsed, stats);
           parsed[vScale.axis] = stats.median;
@@ -15970,11 +15970,11 @@ var rbmViz = (() => {
       }
       return r;
     }
-    parseArrayData(meta, data, start2, count) {
-      return this.parsePrimitiveData(meta, data, start2, count);
+    parseArrayData(meta, data2, start2, count) {
+      return this.parsePrimitiveData(meta, data2, start2, count);
     }
-    parseObjectData(meta, data, start2, count) {
-      return this.parsePrimitiveData(meta, data, start2, count);
+    parseObjectData(meta, data2, start2, count) {
+      return this.parsePrimitiveData(meta, data2, start2, count);
     }
     getLabelAndValue(index3) {
       const r = super.getLabelAndValue(index3);
@@ -17274,6 +17274,28 @@ var rbmViz = (() => {
     return min3;
   }
 
+  // node_modules/d3-array/src/mean.js
+  function mean(values, valueof) {
+    let count = 0;
+    let sum = 0;
+    if (valueof === void 0) {
+      for (let value of values) {
+        if (value != null && (value = +value) >= value) {
+          ++count, sum += value;
+        }
+      }
+    } else {
+      let index3 = -1;
+      for (let value of values) {
+        if ((value = valueof(value, ++index3, values)) != null && (value = +value) >= value) {
+          ++count, sum += value;
+        }
+      }
+    }
+    if (count)
+      return sum / count;
+  }
+
   // node_modules/d3-dispatch/src/dispatch.js
   var noop2 = { value: () => {
   } };
@@ -17552,14 +17574,14 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-selection/src/selection/data.js
-  function bindIndex(parent, group2, enter, update, exit, data) {
-    var i = 0, node, groupLength = group2.length, dataLength = data.length;
+  function bindIndex(parent, group2, enter, update, exit, data2) {
+    var i = 0, node, groupLength = group2.length, dataLength = data2.length;
     for (; i < dataLength; ++i) {
       if (node = group2[i]) {
-        node.__data__ = data[i];
+        node.__data__ = data2[i];
         update[i] = node;
       } else {
-        enter[i] = new EnterNode(parent, data[i]);
+        enter[i] = new EnterNode(parent, data2[i]);
       }
     }
     for (; i < groupLength; ++i) {
@@ -17568,8 +17590,8 @@ var rbmViz = (() => {
       }
     }
   }
-  function bindKey(parent, group2, enter, update, exit, data, key) {
-    var i, node, nodeByKeyValue = /* @__PURE__ */ new Map(), groupLength = group2.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
+  function bindKey(parent, group2, enter, update, exit, data2, key) {
+    var i, node, nodeByKeyValue = /* @__PURE__ */ new Map(), groupLength = group2.length, dataLength = data2.length, keyValues = new Array(groupLength), keyValue;
     for (i = 0; i < groupLength; ++i) {
       if (node = group2[i]) {
         keyValues[i] = keyValue = key.call(node, node.__data__, i, group2) + "";
@@ -17581,13 +17603,13 @@ var rbmViz = (() => {
       }
     }
     for (i = 0; i < dataLength; ++i) {
-      keyValue = key.call(parent, data[i], i, data) + "";
+      keyValue = key.call(parent, data2[i], i, data2) + "";
       if (node = nodeByKeyValue.get(keyValue)) {
         update[i] = node;
-        node.__data__ = data[i];
+        node.__data__ = data2[i];
         nodeByKeyValue.delete(keyValue);
       } else {
-        enter[i] = new EnterNode(parent, data[i]);
+        enter[i] = new EnterNode(parent, data2[i]);
       }
     }
     for (i = 0; i < groupLength; ++i) {
@@ -17606,8 +17628,8 @@ var rbmViz = (() => {
     if (typeof value !== "function")
       value = constant_default(value);
     for (var m = groups2.length, update = new Array(m), enter = new Array(m), exit = new Array(m), j = 0; j < m; ++j) {
-      var parent = parents[j], group2 = groups2[j], groupLength = group2.length, data = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
-      bind(parent, group2, enterGroup, updateGroup, exitGroup, data, key);
+      var parent = parents[j], group2 = groups2[j], groupLength = group2.length, data2 = arraylike(value.call(parent, parent && parent.__data__, j, parents)), dataLength = data2.length, enterGroup = enter[j] = new Array(dataLength), updateGroup = update[j] = new Array(dataLength), exitGroup = exit[j] = new Array(groupLength);
+      bind(parent, group2, enterGroup, updateGroup, exitGroup, data2, key);
       for (var i0 = 0, i1 = 0, previous, next; i0 < dataLength; ++i0) {
         if (previous = enterGroup[i0]) {
           if (i0 >= i1)
@@ -17623,8 +17645,8 @@ var rbmViz = (() => {
     update._exit = exit;
     return update;
   }
-  function arraylike(data) {
-    return typeof data === "object" && "length" in data ? data : Array.from(data);
+  function arraylike(data2) {
+    return typeof data2 === "object" && "length" in data2 ? data2 : Array.from(data2);
   }
 
   // node_modules/d3-selection/src/selection/exit.js
@@ -20194,7 +20216,7 @@ var rbmViz = (() => {
 
   // src/barChart/structureData/mutate.js
   function mutate(_data_, config) {
-    const data = _data_.map((d) => {
+    const data2 = _data_.map((d) => {
       const datum2 = {
         ...d,
         x: d[config.x],
@@ -20205,7 +20227,7 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => b.y - a.y);
-    return data;
+    return data2;
   }
 
   // src/barChart/structureData/scriptableOptions/backgroundColor.js
@@ -20233,12 +20255,12 @@ var rbmViz = (() => {
 
   // src/barChart/structureData.js
   function structureData(_data_, config) {
-    const data = mutate(_data_, config);
+    const data2 = mutate(_data_, config);
     const datasets = [
       {
         type: "bar",
         label: "asdf",
-        data,
+        data: data2,
         ...scriptableOptions()
       }
     ];
@@ -20248,8 +20270,8 @@ var rbmViz = (() => {
   // src/util/getElementDatum.js
   function getElementDatum(activeElements, chart) {
     const element = activeElements[0];
-    const data = chart.data.datasets[element.datasetIndex].data;
-    const datum2 = data[element.index];
+    const data2 = chart.data.datasets[element.datasetIndex].data;
+    const datum2 = data2[element.index];
     return datum2;
   }
 
@@ -20313,10 +20335,10 @@ var rbmViz = (() => {
   }
 
   // src/util/formatResultTooltipContent.js
-  function formatResultTooltipContent(config, data) {
-    const datum2 = data.dataset.data[data.dataIndex];
+  function formatResultTooltipContent(config, data2) {
+    const datum2 = data2.dataset.data[data2.dataIndex];
     let content;
-    if (["bar", "line", "scatter"].includes(data.dataset.type)) {
+    if (["bar", "line", "scatter"].includes(data2.dataset.type)) {
       content = !config.isCount ? [
         `${config.group}: ${datum2.groupid}`,
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
@@ -20327,11 +20349,11 @@ var rbmViz = (() => {
         `${datum2.n_flagged} flagged ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`,
         `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
       ];
-    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
+    } else if (["boxplot", "violin"].includes(data2.dataset.type)) {
       const stats = ["mean", "median"].map(
-        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data2.formattedValue[stat]}`
       );
-      content = [data.label, ...stats];
+      content = [data2.label, ...stats];
     }
     return content;
   }
@@ -20496,6 +20518,10 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      interaction: {
+        intersect: false,
+        mode: "x"
+      },
       layout: {
         padding: {
           top: config.y === "metric" ? max(datasets[0].data, (d) => d.groupid.length) * 8 : null
@@ -20560,7 +20586,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot/structureData/mutate.js
   function mutate2(_data_, config) {
-    const data = _data_.map((d) => {
+    const data2 = _data_.map((d) => {
       const datum2 = {
         ...d,
         x: +d[config.x],
@@ -20574,7 +20600,7 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    return data;
+    return data2;
   }
 
   // src/scatterPlot/structureData/scriptableOptions/backgroundColor.js
@@ -20692,11 +20718,11 @@ var rbmViz = (() => {
 
   // src/scatterPlot/structureData.js
   function structureData2(_data_, config, _bounds_) {
-    const data = mutate2(_data_, config);
+    const data2 = mutate2(_data_, config);
     const datasets = [
       {
         type: "scatter",
-        data,
+        data: data2,
         label: "",
         ...scriptableOptions2()
       }
@@ -20754,7 +20780,7 @@ var rbmViz = (() => {
           tooltipModel.height = 0;
         }
       },
-      filter: (data) => data.dataset.type !== "line"
+      filter: (data2) => data2.dataset.type !== "line"
     };
   }
 
@@ -20838,6 +20864,9 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      interaction: {
+        mode: "point"
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
@@ -20890,7 +20919,7 @@ var rbmViz = (() => {
 
   // src/sparkline/structureData/mutate.js
   function mutate3(_data_, config) {
-    const data = _data_.map((d) => {
+    const data2 = _data_.map((d) => {
       const datum2 = {
         ...d,
         y: +d[config.y],
@@ -20898,7 +20927,7 @@ var rbmViz = (() => {
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
-    return data.slice(-config.nSnapshots);
+    return data2.slice(-config.nSnapshots);
   }
 
   // src/sparkline/structureData/scriptableOptions/borderColor.js
@@ -20933,15 +20962,15 @@ var rbmViz = (() => {
 
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
-    const data = mutate3(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
-      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
+    const data2 = mutate3(_data_, config);
+    const labels = data2.map((d) => d.snapshot_date);
+    const pointBackgroundColor = !isNaN(data2[0].stratum) ? data2.map((d) => config.colorScheme[d.stratum].color) : data2.map(
+      (d, i) => i < data2.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
     );
     const datasets = [
       {
         type: "line",
-        data: data.map((d, i) => {
+        data: data2.map((d, i) => {
           const datum2 = { ...d };
           datum2.x = i;
           datum2.y = +d[config.y];
@@ -20979,16 +21008,16 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/plugins/annotation/value.js
-  function annotations2(config, data) {
+  function annotations2(config, data2) {
     const xMin = 0;
-    const xMax = data.length - 1;
+    const xMax = data2.length - 1;
     const xValue = xMax + xMax / 50;
-    const yMin = min(data, (d) => +d[config.y]);
-    const yMax = max(data, (d) => +d[config.y]);
+    const yMin = min(data2, (d) => +d[config.y]);
+    const yMax = max(data2, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
-    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
-    const datum2 = data.slice(-1)[0];
+    const format2 = data2.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
+    const datum2 = data2.slice(-1)[0];
     const content = [format(format2)(datum2.y)];
     const value = {
       content,
@@ -21009,8 +21038,8 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/plugins/annotation.js
-  function annotations3(config, data) {
-    const value = annotations2(config, data);
+  function annotations3(config, data2) {
+    const value = annotations2(config, data2);
     const thresholds2 = thresholds(config);
     const annotations5 = {
       clip: false,
@@ -21034,8 +21063,8 @@ var rbmViz = (() => {
   function tooltip3(config) {
     return {
       callbacks: {
-        label: function(data) {
-          return `${data.label}: ${data.formattedValue}`;
+        label: function(data2) {
+          return `${data2.label}: ${data2.formattedValue}`;
         },
         title: () => null
       }
@@ -21053,12 +21082,12 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/getScales.js
-  function getScales3(config, data) {
+  function getScales3(config, data2) {
     const scales2 = getDefaultScales();
     scales2.x.display = false;
     scales2.x.type = config.xType;
-    const yMin = min(data, (d) => d.y);
-    const yMax = max(data, (d) => d.y);
+    const yMin = min(data2, (d) => d.y);
+    const yMax = max(data2, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     scales2.y.display = false;
     scales2.y.min = yMin - range * 0.35;
@@ -21134,16 +21163,16 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.type = "boxplot";
     defaults3.isCount = /flag|risk/.test(_config_.y);
     if (defaults3.isCount)
       defaults3.unit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
+    defaults3.type = defaults3.isCount ? "aggregate" : "boxplot";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = defaults3.isCount ? /flag/.test(_config_.y) && /risk/.test(_config_.y) ? `# At Risk or Flagged ${defaults3.unit}s` : /flag/.test(_config_.y) ? `# Flagged ${defaults3.unit}s` : /risk/.test(_config_.y) ? `# At Risk ${defaults3.unit}s` : "" : _config_[defaults3.y];
+    defaults3.yLabel = defaults3.isCount ? /flag/.test(_config_.y) && /risk/.test(_config_.y) ? `At Risk or Flagged ${defaults3.unit}s` : /flag/.test(_config_.y) ? `Flagged ${defaults3.unit}s` : /risk/.test(_config_.y) ? `At Risk ${defaults3.unit}s` : "" : _config_[defaults3.y];
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
@@ -21175,7 +21204,7 @@ var rbmViz = (() => {
     return labels;
   }
 
-  // src/timeSeries/structureData/line.js
+  // src/timeSeries/structureData/selectedGroupLine.js
   function selectedGroupLine(_data_, config, labels) {
     const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
       const datum2 = { ...d };
@@ -21247,6 +21276,29 @@ var rbmViz = (() => {
     return dataset;
   }
 
+  // src/timeSeries/structureData/aggregateLine.js
+  function aggregateGroupLine(_data_, config, labels) {
+    const aggregateData = rollup(
+      _data_,
+      (group2) => mean(group2, (d) => d[config.y]),
+      (d) => d[config.x]
+    );
+    const color3 = "#666666";
+    const backgroundColor4 = color2(color3);
+    backgroundColor4.opacity = 1;
+    const borderColor4 = color2(color3);
+    borderColor4.opacity = 0.25;
+    const dataset = {
+      backgroundColor: backgroundColor4,
+      borderColor: borderColor4,
+      data: [...aggregateData].map(([key, value], i) => ({ x: labels[i], y: value })),
+      label: "Study Average",
+      purpose: "aggregate",
+      type: "line"
+    };
+    return dataset;
+  }
+
   // src/timeSeries/structureData/boxplot.js
   function boxplot2(_data_, config) {
     const grouped = rollups(
@@ -21264,7 +21316,7 @@ var rbmViz = (() => {
       maxWhiskerThickness: 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
-      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
+      outlierRadius: 0,
       purpose: "distribution",
       type: "boxplot"
     };
@@ -21295,14 +21347,20 @@ var rbmViz = (() => {
   function structureData4(_data_, config) {
     _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(_data_, config);
-    let data;
+    let datasets;
+    const selectedGroupLine2 = selectedGroupLine(_data_, config, labels);
+    const flagged2 = flagged(_data_, config, labels);
+    const atRisk2 = atRisk(_data_, config, labels);
+    const aggregateLine = config.isCount ? aggregateGroupLine(_data_, config, labels) : null;
+    console.log(config.type);
     const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
     data = {
       labels,
       datasets: [
-        selectedGroupLine(_data_, config, labels),
-        flagged(_data_, config, labels),
-        atRisk(_data_, config, labels),
+        selectedGroupLine2,
+        flagged2,
+        atRisk2,
+        aggregateLine,
         distribution
       ].filter((dataset) => dataset !== null)
     };
@@ -21361,9 +21419,9 @@ var rbmViz = (() => {
         label: formatResultTooltipContent.bind(null, config),
         title: () => null
       },
-      filter: (data) => {
-        const datum2 = data.dataset.data[data.dataIndex];
-        return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+      filter: (data2) => {
+        const datum2 = data2.dataset.data[data2.dataIndex];
+        return !(config.selectedGroupIDs.includes(datum2.groupid) && data2.dataset.type === "scatter");
       }
     };
   }
@@ -21404,7 +21462,7 @@ var rbmViz = (() => {
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const data = structureData4(_data_, config);
+    const data2 = structureData4(_data_, config);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
@@ -21415,7 +21473,7 @@ var rbmViz = (() => {
     };
     const chart = new auto_default(canvas, {
       data: {
-        ...data,
+        ...data2,
         config,
         _data_
       },
