@@ -1,65 +1,65 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.2.0",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-14"
-    }
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.2.0",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "",
+		"gsm_analysis_date": "2022-11-14"
+	}
 ]
