@@ -5,8 +5,8 @@
 - [scatter plot](https://fluffy-disco-22959532.pages.github.io/examples/scatterPlot/)
 - [bar chart](https://fluffy-disco-22959532.pages.github.io/examples/barChart/)
 - [sparkline](https://fluffy-disco-22959532.pages.github.io/examples/sparkline/)
-- [time series (continuous outcome)](https://fluffy-disco-22959532.pages.github.io/examples/distributionOverTime/)
-- [time series (discrete outcome)](https://fluffy-disco-22959532.pages.github.io/examples/timeSeries/)
+- [time series (continuous outcome)](https://fluffy-disco-22959532.pages.github.io/examples/timeSeriesContinuous/)
+- [time series (discrete outcome)](https://fluffy-disco-22959532.pages.github.io/examples/timeSeriesDiscrete/)
 
 ## Installation
 `rbm-viz` is hosted on GitHub and accessible with `npm`:

@@ -19,7 +19,6 @@ export default function structureData(_data_, config) {
     const aggregateLine = config.isCount
         ? getAggregateLine(_data_, config, labels)
         : null;
-    console.log(config.type);
     const distribution =
         config.type === 'boxplot'
             ? getBoxplot(_data_, config, labels)

@@ -20,7 +20,7 @@ export default function atRisk(_data_, config, labels) {
         data: pointData,
         label: pointData.length ? 'At Risk' : '',
         purpose: 'scatter',
-        radius: 1.5,
+        radius: 2,
         type: 'scatter',
     };
 

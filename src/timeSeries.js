@@ -27,6 +27,9 @@ export default function timeSeries(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
+        //interaction: {
+        //    mode: 'index',
+        //},
         maintainAspectRatio: config.maintainAspectRatio,
         //onClick,
         //onHover,

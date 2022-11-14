@@ -20372,7 +20372,7 @@ var rbmViz = (() => {
       boxPadding: 5,
       boxWidth: 10,
       cornerRadius: 2,
-      caretPadding: 16,
+      caretPadding: 4,
       padding: 10,
       titleColor: "black",
       titleMarginBottom: 5,
@@ -21291,7 +21291,7 @@ var rbmViz = (() => {
       data: pointData,
       label: pointData.length ? "At Risk" : "",
       purpose: "scatter",
-      radius: 1.5,
+      radius: 2,
       type: "scatter"
     };
     return dataset;
@@ -21315,7 +21315,7 @@ var rbmViz = (() => {
       data: pointData,
       label: pointData.length ? "Flagged" : "",
       purpose: "scatter",
-      radius: 1.5,
+      radius: 2,
       type: "scatter"
     };
     return dataset;
@@ -21397,7 +21397,6 @@ var rbmViz = (() => {
     const flagged2 = flagged(_data_, config, labels);
     const atRisk2 = atRisk(_data_, config, labels);
     const aggregateLine = config.isCount ? aggregateGroupLine(_data_, config, labels) : null;
-    console.log(config.type);
     const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
     data = {
       labels,

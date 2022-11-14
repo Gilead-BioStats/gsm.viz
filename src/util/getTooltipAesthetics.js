@@ -12,7 +12,7 @@ export default function getTooltipAesthetics() {
         boxPadding: 5,
         boxWidth: 10,
         cornerRadius: 2,
-        caretPadding: 16,
+        caretPadding: 4,
         //displayColors: false,
         padding: 10,
         titleColor: 'black',
