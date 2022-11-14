@@ -19,7 +19,7 @@ Promise.all(dataPromises)
             selectedGroupIDs: '173',
         };
 
-        const flagCounts = datasets[1]
+        const flagCounts = datasets[1];
         //.filter(
         //    d => d.workflowid === workflowID
         //);

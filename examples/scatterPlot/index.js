@@ -14,13 +14,11 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         // data
-        const results = datasets[1].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const results = datasets[1].filter((d) => d.workflowid === workflowID);
 
         // configuration
         const workflow = datasets[0] // destructured assignment
-            .find(d => d.workflowid === workflowID);
+            .find((d) => d.workflowid === workflowID);
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -28,9 +26,7 @@ Promise.all(dataPromises)
             results[Math.floor(Math.random() * results.length)].groupid;
 
         // customization data
-        const bounds = datasets[2].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const bounds = datasets[2].filter((d) => d.workflowid === workflowID);
 
         // configuration
         // visualization

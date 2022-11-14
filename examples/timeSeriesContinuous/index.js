@@ -14,14 +14,10 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         // data
-        const results = datasets[0].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
         // configuration
-        const workflow = datasets[1].find(
-            (d) => d.workflowid === workflowID
-        );
+        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.selectedGroupIDs = '43';
         workflow.type = 'boxplot'; //'violin';
 

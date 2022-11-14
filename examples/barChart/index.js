@@ -14,13 +14,10 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         // data
-        const results = datasets[1].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const results = datasets[1].filter((d) => d.workflowid === workflowID);
 
         // configuration
-        const workflow = datasets[0]
-            .find(d => d.workflowid === workflowID);
+        const workflow = datasets[0].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
