@@ -13,7 +13,7 @@ export default function tooltip(config) {
                 if (data.length) {
                     const datum = data[0].dataset.data[data[0].dataIndex];
 
-                    return `${config.group}: ${datum.groupid}`;
+                    return `${config.group} ${datum.groupid}`;
                 }
             },
         },

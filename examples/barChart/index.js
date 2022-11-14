@@ -11,17 +11,17 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        // configuration
-        const [workflow] = datasets[0] // destructured assignment
-            .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
-        workflow.y = 'score';
+        const workflowID = 'kri0001';
 
-        // bar data
+        // data
         const results = datasets[1].filter(
-            (d) => d.workflowid === workflow.workflowid
+            (d) => d.workflowid === workflowID
         );
 
         // configuration
+        const workflow = datasets[0]
+            .find(d => d.workflowid === workflowID);
+        workflow.y = 'score';
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -30,7 +30,7 @@ Promise.all(dataPromises)
 
         // threshold annotations
         const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+            (d) => d.workflowid === workflowID
         );
 
         // visualization

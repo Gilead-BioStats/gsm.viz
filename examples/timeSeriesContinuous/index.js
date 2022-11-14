@@ -1,6 +1,6 @@
 const dataFiles = [
-    '../data/meta_workflow.csv',
     '../data/results_summary_over_time.csv',
+    '../data/meta_workflow.csv',
     '../data/meta_param.csv',
 ];
 
@@ -11,14 +11,21 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
+        const workflowID = 'kri0001';
+
         // data
-        const [workflow] = datasets[0] // destructured assignment that retrieves first workflow ID
-            .sort((a, b) => d3.ascending(a.workflowid, b.workflowid));
+        const results = datasets[0].filter(
+            (d) => d.workflowid === workflowID
+        );
+
+        // configuration
+        const workflow = datasets[1].find(
+            (d) => d.workflowid === workflowID
+        );
         workflow.selectedGroupIDs = '43';
         workflow.type = 'boxplot'; //'violin';
-        const results = datasets[1].filter(
-            (d) => d.workflowid === workflow.workflowid
-        );
+
+        // customization data
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );

@@ -16,9 +16,10 @@ export default function structureData(_data_, config) {
     const selectedGroupLine = getSelectedGroupLine(_data_, config, labels);
     const flagged = getFlagged(_data_, config, labels);
     const atRisk = getAtRisk(_data_, config, labels);
-    const aggregateLine = config.isCount
-        ? getAggregateLine(_data_, config, labels)
-        : null;
+    const aggregateLine =
+        config.dataType === 'discrete'
+            ? getAggregateLine(_data_, config, labels)
+            : null;
     const distribution =
         config.type === 'boxplot'
             ? getBoxplot(_data_, config, labels)
@@ -26,7 +27,7 @@ export default function structureData(_data_, config) {
             ? getViolin(_data_, config, labels)
             : null;
 
-    data = {
+    const data = {
         labels,
         datasets: [
             selectedGroupLine,

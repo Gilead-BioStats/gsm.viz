@@ -9,10 +9,18 @@ export default function tooltip(config) {
             label: formatResultTooltipContent.bind(null, config),
             title: (data) => {
                 if (data.length) {
-                    const prefix = config.group;
-                    const groupIDs = data.map((d,i) => d.dataset.data[d.dataIndex].groupid);
+                    const groupIDs = data.map(
+                        (d, i) => d.dataset.data[d.dataIndex].groupid
+                    );
 
-                    return `${prefix}${groupIDs.length > 1 ? 's' : ''}: ${groupIDs.join(', ')}`;
+                    return data
+                        .map(
+                            (d, i) =>
+                                `${config.group} ${
+                                    d.dataset.data[d.dataIndex].groupid
+                                }`
+                        )
+                        .join(', ');
                 }
             },
         },

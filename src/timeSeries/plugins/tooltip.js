@@ -3,18 +3,31 @@ import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
+
     return {
         callbacks: {
-            displayColors: (asdf) => console.log(asdf),
+            //displayColors: (asdf) => console.log(asdf),
             label: formatResultTooltipContent.bind(null, config),
-            labelPointStyle: () => ({ pointStyle: 'rect' }),
+            labelPointStyle: (data) => {
+                return {
+                    pointStyle: ['line', 'scatter'].includes(data.dataset.type)
+                        ? 'circle'
+                        : 'rect',
+                };
+            },
             title: (data) => {
                 if (data.length) {
                     const datum = data[0].dataset.data[data[0].dataIndex];
 
-                    return data[0].dataset.type !== 'boxplot'
-                        ? `${config.group}: ${datum.groupid}`
-                        : `${data[0].label} Distribution`;
+                    return ['boxplot', 'violin'].includes(
+                        data[0].dataset.type
+                    ) === false && data[0].dataset.purpose !== 'aggregate'
+                        ? `${config.group} ${datum.groupid} on ${data[0].label}`
+                        : ['boxplot', 'violin'].includes(data[0].dataset.type)
+                        ? `${config.group} Distribution on ${data[0].label}`
+                        : data[0].dataset.purpose === 'aggregate'
+                        ? `${config.group} Summary on ${data[0].label}`
+                        : null;
                 }
             },
         },
