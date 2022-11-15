@@ -20352,8 +20352,8 @@ var rbmViz = (() => {
       content = [...stats];
     } else if (config.dataType === "discrete") {
       content = data.dataset.purpose === "highlight" ? [
-        `${datum2.n_flagged} flagged ${config.discreteUnit}${datum2.n_flagged === 1 ? "" : "s"}`,
-        `${datum2.n_at_risk} at risk ${config.discreteUnit}${datum2.n_flagged === 1 ? "" : "s"}`
+        `${datum2.n_flagged} flagged ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} at risk ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
       ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? [
         `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
         ...datum2.counts.map(
@@ -21071,9 +21071,11 @@ var rbmViz = (() => {
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
-    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
     const datum2 = data.slice(-1)[0];
-    const content = [format(format2)(datum2.y)];
+    const content = [
+      format(format2)(datum2.y)
+    ];
     const value = {
       content,
       font: {

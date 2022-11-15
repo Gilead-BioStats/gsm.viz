@@ -32,10 +32,10 @@ export default function formatResultTooltipContent(config, data) {
             data.dataset.purpose === 'highlight'
                 ? [
                       `${datum.n_flagged} flagged ${config.discreteUnit}${
-                          datum.n_flagged === 1 ? '' : 's'
+                          +datum.n_flagged === 1 ? '' : 's'
                       }`,
                       `${datum.n_at_risk} at risk ${config.discreteUnit}${
-                          datum.n_flagged === 1 ? '' : 's'
+                          +datum.n_at_risk === 1 ? '' : 's'
                       }`,
                   ]
                 : data.dataset.purpose === 'aggregate' &&
