@@ -1,322 +1,848 @@
 [
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "-7",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "-5",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "3",
-        "default": "5",
-        "configurable": "TRUE"
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "4",
-        "default": "7",
-        "configurable": "TRUE"
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "poisson",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "-7",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "-5",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "3",
-        "default": "5",
-        "configurable": "TRUE"
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "4",
-        "default": "7",
-        "configurable": "TRUE"
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "poisson",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "-7",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "-5",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "3",
-        "default": "5",
-        "configurable": "TRUE"
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "4",
-        "default": "7",
-        "configurable": "TRUE"
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "poisson",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "-7",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "-5",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "3",
-        "default": "5",
-        "configurable": "TRUE"
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "4",
-        "default": "7",
-        "configurable": "TRUE"
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "poisson",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "0.01",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "0.05",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "kri0005",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "kri0005",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "fisher",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "0.01",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "0.05",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "kri0006",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "kri0006",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "fisher",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "0.01",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1.0",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "0.05",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.1.0",
-        "param": "strMethod",
-        "index": "",
-        "default": "fisher",
-        "configurable": "FALSE"
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
-        "workflowid": "kri0008",
-        "gsm_version": "1.1.0",
+        "workflowid": "kri0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "kri0007",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
         "param": "strGroup",
         "index": "",
         "default": "Site",
-        "configurable": "FALSE"
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
-        "workflowid": "kri0008",
-        "gsm_version": "1.1.0",
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "1",
-        "default": "0.01",
-        "configurable": "TRUE"
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
-        "workflowid": "kri0008",
-        "gsm_version": "1.1.0",
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
         "param": "vThreshold",
         "index": "2",
-        "default": "0.05",
-        "configurable": "TRUE"
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
-        "workflowid": "kri0008",
-        "gsm_version": "1.1.0",
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0001",
+        "gsm_version": "1.2.0",
         "param": "strMethod",
         "index": "",
-        "default": "fisher",
-        "configurable": "FALSE"
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0002",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0003",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0004",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0005",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0006",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Site",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "-3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "-2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "3",
+        "default": "2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "4",
+        "default": "3",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "cou0007",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "NormalApprox",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0003",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Study",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "0",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0003",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "5",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0003",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "qtl",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0003",
+        "gsm_version": "1.2.0",
+        "param": "strOutcome",
+        "index": "",
+        "default": "rate",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0007",
+        "gsm_version": "1.2.0",
+        "param": "strGroup",
+        "index": "",
+        "default": "Study",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "1",
+        "default": "0",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0007",
+        "gsm_version": "1.2.0",
+        "param": "vThreshold",
+        "index": "2",
+        "default": "0.2",
+        "configurable": "TRUE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0007",
+        "gsm_version": "1.2.0",
+        "param": "strMethod",
+        "index": "",
+        "default": "qtl",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
+    },
+    {
+        "workflowid": "qtl0007",
+        "gsm_version": "1.2.0",
+        "param": "strOutcome",
+        "index": "",
+        "default": "rate",
+        "configurable": "FALSE",
+        "gsm_analysis_date": "2022-11-14"
     }
 ]

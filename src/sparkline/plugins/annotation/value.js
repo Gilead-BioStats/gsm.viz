@@ -15,15 +15,17 @@ export default function annotations(config, data) {
     // Identify appropriate number format.
     const format = data.every((d) => +d[config.y] % 1 === 0)
         ? `d`
-        : range < 0.1
+        : config.y === 'metric' // range < 0.1
         ? `.3f`
-        : range < 1
-        ? `.2f`
+    //: range < 1
+    //  ? `.2f`
         : `.1f`;
 
     // content
     const datum = data.slice(-1)[0];
-    const content = [d3format(format)(datum.y)];
+    const content = [
+        d3format(format)(datum.y)
+    ];
 
     const value = {
         content,

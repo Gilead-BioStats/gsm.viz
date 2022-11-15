@@ -1,73 +1,42 @@
 import { ascending, flatRollup, mean } from 'd3';
 import getLabels from './structureData/getLabels';
-import line from './structureData/line';
-import atRisk from './structureData/atRisk';
-import flagged from './structureData/flagged';
-import aggregateLine from './structureData/aggregateLine';
-import boxplot from './structureData/boxplot';
-import violin from './structureData/violin';
+import getSelectedGroupLine from './structureData/selectedGroupLine';
+import getAtRisk from './structureData/atRisk';
+import getFlagged from './structureData/flagged';
+import getAggregateLine from './structureData/aggregateLine';
+import getBoxplot from './structureData/boxplot';
+import getViolin from './structureData/violin';
 
 export default function structureData(_data_, config) {
     _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
 
     const labels = getLabels(_data_, config);
 
-    let data;
-    //if (config.y === 'score') {
+    let datasets;
+    const selectedGroupLine = getSelectedGroupLine(_data_, config, labels);
+    const flagged = getFlagged(_data_, config, labels);
+    const atRisk = getAtRisk(_data_, config, labels);
+    const aggregateLine =
+        config.dataType === 'discrete'
+            ? getAggregateLine(_data_, config, labels)
+            : null;
     const distribution =
         config.type === 'boxplot'
-            ? boxplot(_data_, config, labels)
+            ? getBoxplot(_data_, config, labels)
             : config.type === 'violin'
-            ? violin(_data_, config, labels)
+            ? getViolin(_data_, config, labels)
             : null;
 
-    data = {
+    const data = {
         labels,
         datasets: [
-            line(_data_, config, labels),
-            flagged(_data_, config, labels),
-            atRisk(_data_, config, labels),
-            //aggregateLine(_data_, config, labels),
+            selectedGroupLine,
+            flagged,
+            atRisk,
+            aggregateLine,
             distribution,
         ].filter((dataset) => dataset !== null),
     };
-    //}
-
-    //if (/flag|risk/.test(config.y)) {
-    //    const lineData = _data_
-    //        .filter(d => config.selectedGroupIDs.includes(d.groupid))
-    //        .map((d, i) => {
-    //            const datum = { ...d };
-    //            datum.x = datum[config.x]; //labels
-    //            //.findIndex(label => label === datum[config.x]);
-    //            datum.y = +datum[config.y];
-    //            return datum;
-    //        });
-    //    const summaryData = flatRollup(
-    //        _data_,
-    //        group => mean(group, d => +d[config.y]),
-    //        d => d.snapshot_date
-    //    );
-    //    console.log(summaryData);
-
-    //    data = {
-    //        labels,
-    //        datasets: [
-    //            {
-    //                type: 'line',
-    //                data: lineData.map((d) => d.y),
-    //                backgroundColor: 'rgba(0,0,255,.75)',
-    //                borderColor: 'rgba(0,0,255,.25)',
-    //            },
-    //            {
-    //                type: 'line',
-    //                data: summaryData.map(d => d[1]),
-    //                backgroundColor: 'rgba(0,0,255,.75)',
-    //                borderColor: 'rgba(0,0,255,.25)',
-    //            },
-    //        ],
-    //    };
-    //}
 
     return data;
 }

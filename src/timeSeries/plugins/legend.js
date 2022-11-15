@@ -9,9 +9,8 @@ export default function legend(config) {
     return {
         display: true,
         labels: {
-            boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
-            boxWidth: 7,
-            filter: function (legendItem, chartData) {
+            boxHeight: 6,
+            filter: (legendItem, chartData) => {
                 return legendItem.text !== '';
             },
             // TODO: differentiate legend items with generateLabels
@@ -27,7 +26,7 @@ export default function legend(config) {
                     ? -1
                     : order;
             },
-            usePointStyle: /flag|at.risk/.test(config.y) === false,
+            usePointStyle: true, // return /flag|at.risk/.test(config.y) === false
         },
         onClick: () => null,
         position: 'top',

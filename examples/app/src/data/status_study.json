@@ -11,8 +11,10 @@
         "ta": "Oncology",
         "phase": "3",
         "status": "Active",
-        "fpfv": "1/1/2003",
-        "lplv": "6/1/2021",
-        "rbm_flag": "1"
+        "fpfv": "1/1/03",
+        "lpfv": "6/1/20",
+        "lplv": "6/1/21",
+        "rbm_flag": "1",
+        "gsm_analysis_date": "2022-11-14"
     }
 ]

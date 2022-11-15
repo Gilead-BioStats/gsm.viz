@@ -42,6 +42,9 @@ export default function scatterPlot(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
+        interaction: {
+            mode: 'point',
+        },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,

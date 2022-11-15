@@ -1,10 +1,28 @@
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
 export default function tooltip(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
+
     return {
         callbacks: {
             label: formatResultTooltipContent.bind(null, config),
-            title: () => null,
+            title: (data) => {
+                if (data.length) {
+                    const groupIDs = data.map(
+                        (d, i) => d.dataset.data[d.dataIndex].groupid
+                    );
+
+                    return data
+                        .map(
+                            (d, i) =>
+                                `${config.group} ${
+                                    d.dataset.data[d.dataIndex].groupid
+                                }`
+                        )
+                        .join(', ');
+                }
+            },
         },
         custom: function (tooltipModel) {
             // EXTENSION: filter is not enough! Hide tooltip frame
@@ -18,5 +36,6 @@ export default function tooltip(config) {
             }
         },
         filter: (data) => data.dataset.type !== 'line', // turns off tooltip for bounds
+        ...tooltipAesthetics,
     };
 }
