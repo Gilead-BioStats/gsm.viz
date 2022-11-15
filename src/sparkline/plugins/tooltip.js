@@ -8,7 +8,12 @@ export default function tooltip(config) {
     return {
         callbacks: {
             label: function (data) {
-                return `${data.label}: ${data.formattedValue}`;
+                const fmt = config.y === 'score'
+                    ? '.1f'
+                    : config.y === 'metric'
+                    ? '.3f'
+                    : ',d';
+                return `${data.label}: ${format(fmt)(data.parsed.y)}`;
             },
             labelPointStyle: () => ({ pointStyle: 'circle' }),
             title: () => null,
