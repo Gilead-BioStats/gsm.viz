@@ -28,7 +28,6 @@ export default function formatResultTooltipContent(config, data) {
     }
     // Handle discrete datum/aggregate.
     else if (config.dataType === 'discrete') {
-        console.log(datum);
         content =
             data.dataset.purpose === 'highlight'
                 ? [
@@ -41,12 +40,15 @@ export default function formatResultTooltipContent(config, data) {
                   ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'KRI'
-                ? datum.counts.map(
-                      (d) =>
-                          `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${
-                              d.pct
-                          }%) ${config.group}s`
-                  )
+                ? [
+                    `${format('.1f')(datum.y)} Average ${config.yLabel}`,
+                    ...datum.counts.map(
+                        (d) =>
+                            `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${
+                                d.pct
+                            }%) ${config.group}s`
+                    )
+                ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
                 ? `${datum.y} ${config.yLabel}` // TODO: display both at risk and flagged

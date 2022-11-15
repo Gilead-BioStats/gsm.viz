@@ -20351,13 +20351,15 @@ var rbmViz = (() => {
       );
       content = [...stats];
     } else if (config.dataType === "discrete") {
-      console.log(datum2);
       content = data.dataset.purpose === "highlight" ? [
         `${datum2.n_flagged} flagged ${config.discreteUnit}${datum2.n_flagged === 1 ? "" : "s"}`,
         `${datum2.n_at_risk} at risk ${config.discreteUnit}${datum2.n_flagged === 1 ? "" : "s"}`
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? datum2.counts.map(
-        (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
-      ) : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${datum2.y} ${config.yLabel}` : null;
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? [
+        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
+        ...datum2.counts.map(
+          (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
+        )
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${datum2.y} ${config.yLabel}` : null;
     }
     return content;
   }
