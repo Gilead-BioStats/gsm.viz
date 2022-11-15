@@ -11,8 +11,8 @@ export default function annotations(config) {
             yMax: x.threshold,
             borderColor: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
                 .color,
-            borderWidth: 2,
-            borderDash: [5],
+            borderWidth: 1,
+            borderDash: [2],
             label: {
                 rotation: 'auto',
                 position: Math.sign(+x.flag) === 1 ? 'end' : 'start',

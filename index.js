@@ -20309,8 +20309,8 @@ var rbmViz = (() => {
         yMin: x.threshold,
         yMax: x.threshold,
         borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-        borderWidth: 2,
-        borderDash: [5],
+        borderWidth: 1,
+        borderDash: [2],
         label: {
           rotation: "auto",
           position: Math.sign(+x.flag) === 1 ? "end" : "start",
@@ -21474,7 +21474,7 @@ var rbmViz = (() => {
           yMax: x.threshold,
           borderColor: color3.rgba + "",
           borderWidth: 1,
-          borderDash: [3]
+          borderDash: [2]
         };
         return annotation2;
       });
