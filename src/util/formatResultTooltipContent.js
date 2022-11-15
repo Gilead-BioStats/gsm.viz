@@ -21,7 +21,7 @@ export default function formatResultTooltipContent(config, data) {
         const stats = ['mean', 'min', 'q1', 'median', 'q3', 'max'].map(
             (stat) =>
                 `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${
-                    data.formattedValue[stat]
+                    format('.1f')(data.parsed[stat])
                 }`
         );
         content = [...stats];

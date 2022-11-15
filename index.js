@@ -20347,7 +20347,7 @@ var rbmViz = (() => {
       ];
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
       const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
-        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(".1f")(data.parsed[stat])}`
       );
       content = [...stats];
     } else if (config.dataType === "discrete") {
@@ -20785,7 +20785,7 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: 5,
+        boxHeight: 6,
         filter: function(legendItem, chartData) {
           return legendItem.text !== "";
         },
@@ -21277,12 +21277,13 @@ var rbmViz = (() => {
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
-      type: "line",
+      data: lineData,
       backgroundColor: backgroundColor4,
       borderColor: borderColor4,
-      data: lineData,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
-      purpose: "highlight"
+      purpose: "highlight",
+      radius: 3,
+      type: "line"
     };
     return dataset;
   }
@@ -21407,6 +21408,7 @@ var rbmViz = (() => {
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       outlierRadius: 0,
+      pointStyle: "rect",
       purpose: "distribution",
       type: "boxplot"
     };
@@ -21485,16 +21487,15 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
-        boxWidth: 7,
-        filter: function(legendItem, chartData) {
+        boxHeight: 6,
+        filter: (legendItem, chartData) => {
           return legendItem.text !== "";
         },
         sort: function(a, b, chartData) {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: /flag|at.risk/.test(config.y) === false
+        usePointStyle: true
       },
       onClick: () => null,
       position: "top"

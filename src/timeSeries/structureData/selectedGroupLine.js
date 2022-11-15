@@ -17,15 +17,16 @@ export default function selectedGroupLine(_data_, config, labels) {
     borderColor.opacity = 0.25;
 
     const dataset = {
-        type: 'line',
+        data: lineData,
         backgroundColor,
         borderColor,
-        data: lineData,
         label:
             config.selectedGroupIDs.length > 0
                 ? `${config.group} ${lineData[0]?.groupid}`
                 : '',
         purpose: 'highlight',
+        radius: 3,
+        type: 'line',
     };
 
     return dataset;
