@@ -6,13 +6,16 @@ import checkThresholds from '../util/checkThresholds';
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
-    defaults.type = 'boxplot';
-
-    defaults.isCount = /flag|risk/.test(_config_.y);
-    if (defaults.isCount)
-        defaults.unit = Object.keys(_data_[0]).includes('groupid')
+    defaults.dataType = /flag|risk/.test(_config_.y)
+        ? 'discrete'
+        : 'continuous';
+    if (defaults.dataType === 'discrete')
+        defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
             : 'Site';
+
+    defaults.type =
+        defaults.dataType === 'continuous' ? 'boxplot' : 'aggregate';
 
     // horizontal
     defaults.x = 'snapshot_date';
@@ -22,17 +25,16 @@ export default function configure(_config_, _data_, _thresholds_) {
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = defaults.isCount
-        ? (
-            /flag/.test(_config_.y) && /risk/.test(_config_.y)
-                ? `# At Risk or Flagged ${defaults.unit}s`
-                : /flag/.test(_config_.y)
-                ? `# Flagged ${defaults.unit}s`
-                : /risk/.test(_config_.y)
-                ? `# At Risk ${defaults.unit}s`
-                : ''
-        )
-        : _config_[defaults.y];
+    defaults.yLabel =
+        defaults.dataType === 'continuous'
+            ? _config_[defaults.y]
+            : /flag/.test(_config_.y) && /risk/.test(_config_.y)
+            ? `At Risk or Flagged ${defaults.discreteUnit}s`
+            : /flag/.test(_config_.y)
+            ? `Flagged ${defaults.discreteUnit}s`
+            : /risk/.test(_config_.y)
+            ? `At Risk ${defaults.discreteUnit}s`
+            : '';
 
     // color
     //defaults.color = 'flag';

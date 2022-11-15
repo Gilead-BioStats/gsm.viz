@@ -33,6 +33,10 @@ export default function barChart(
     const options = {
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
+        interaction: {
+            intersect: false,
+            mode: 'x',
+        },
         layout: {
             padding: {
                 top:

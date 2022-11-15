@@ -9,7 +9,8 @@
         "city": "city 1",
         "state": "state 1",
         "country": "US",
-        "invname": "Ashley, Malachai"
+        "invname": "Ashley, Malachai",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -21,7 +22,8 @@
         "city": "city 2",
         "state": "state 2",
         "country": "Japan",
-        "invname": "Milbry, Shayla"
+        "invname": "Milbry, Shayla",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -33,7 +35,8 @@
         "city": "city 3",
         "state": "state 3",
         "country": "US",
-        "invname": "Colunga, Yihang"
+        "invname": "Colunga, Yihang",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -45,7 +48,8 @@
         "city": "city 4",
         "state": "state 4",
         "country": "China",
-        "invname": "Meza, Robert John"
+        "invname": "Meza, Robert John",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -57,7 +61,8 @@
         "city": "city 5",
         "state": "state 5",
         "country": "US",
-        "invname": "Torres, Rebecca"
+        "invname": "Torres, Rebecca",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -69,7 +74,8 @@
         "city": "city 6",
         "state": "state 6",
         "country": "Japan",
-        "invname": "Johnson, Naazi Umaar"
+        "invname": "Johnson, Naazi Umaar",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -81,7 +87,8 @@
         "city": "city 7",
         "state": "state 7",
         "country": "Japan",
-        "invname": "Flood, Austin"
+        "invname": "Flood, Austin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -93,7 +100,8 @@
         "city": "city 8",
         "state": "state 8",
         "country": "China",
-        "invname": "al-Doud, Munjid"
+        "invname": "al-Doud, Munjid",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -105,7 +113,8 @@
         "city": "city 9",
         "state": "state 9",
         "country": "China",
-        "invname": "Wymore, Jonathan"
+        "invname": "Wymore, Jonathan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -117,7 +126,8 @@
         "city": "city 10",
         "state": "state 10",
         "country": "Japan",
-        "invname": "Gonzalez, Elias"
+        "invname": "Gonzalez, Elias",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -129,7 +139,8 @@
         "city": "city 11",
         "state": "state 11",
         "country": "Japan",
-        "invname": "Peterman, Sawhitney"
+        "invname": "Peterman, Sawhitney",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -141,7 +152,8 @@
         "city": "city 12",
         "state": "state 12",
         "country": "US",
-        "invname": "Williams, Marissa"
+        "invname": "Williams, Marissa",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -153,7 +165,8 @@
         "city": "city 13",
         "state": "state 13",
         "country": "US",
-        "invname": "Schrock, Aeryn"
+        "invname": "Schrock, Aeryn",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -165,7 +178,8 @@
         "city": "city 14",
         "state": "state 14",
         "country": "US",
-        "invname": "Holden, Tiara"
+        "invname": "Holden, Tiara",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -177,7 +191,8 @@
         "city": "city 15",
         "state": "state 15",
         "country": "China",
-        "invname": "Arellano, Anjana"
+        "invname": "Arellano, Anjana",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -189,7 +204,8 @@
         "city": "city 16",
         "state": "state 16",
         "country": "China",
-        "invname": "al-Taha, Jawhara"
+        "invname": "al-Taha, Jawhara",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -201,7 +217,8 @@
         "city": "city 17",
         "state": "state 17",
         "country": "China",
-        "invname": "Vargas, Perla"
+        "invname": "Vargas, Perla",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -213,7 +230,8 @@
         "city": "city 18",
         "state": "state 18",
         "country": "China",
-        "invname": "Wallace, Patrick"
+        "invname": "Wallace, Patrick",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -225,7 +243,8 @@
         "city": "city 19",
         "state": "state 19",
         "country": "Japan",
-        "invname": "Little, Shannon"
+        "invname": "Little, Shannon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -237,7 +256,8 @@
         "city": "city 20",
         "state": "state 20",
         "country": "US",
-        "invname": "el-Saade, Wajdi"
+        "invname": "el-Saade, Wajdi",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -249,7 +269,8 @@
         "city": "city 21",
         "state": "state 21",
         "country": "Japan",
-        "invname": "Hope, Michelle"
+        "invname": "Hope, Michelle",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -261,7 +282,8 @@
         "city": "city 22",
         "state": "state 22",
         "country": "US",
-        "invname": "Young, George"
+        "invname": "Young, George",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -273,7 +295,8 @@
         "city": "city 23",
         "state": "state 23",
         "country": "US",
-        "invname": "Milton, Asia"
+        "invname": "Milton, Asia",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -285,7 +308,8 @@
         "city": "city 24",
         "state": "state 24",
         "country": "US",
-        "invname": "Dockter, Callum"
+        "invname": "Dockter, Callum",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -297,7 +321,8 @@
         "city": "city 25",
         "state": "state 25",
         "country": "US",
-        "invname": "Abenes, Yesenia"
+        "invname": "Abenes, Yesenia",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -309,7 +334,8 @@
         "city": "city 26",
         "state": "state 26",
         "country": "China",
-        "invname": "Katsenelson, Quinten"
+        "invname": "Katsenelson, Quinten",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -321,7 +347,8 @@
         "city": "city 27",
         "state": "state 27",
         "country": "US",
-        "invname": "Medina, Cassandra"
+        "invname": "Medina, Cassandra",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -333,7 +360,8 @@
         "city": "city 28",
         "state": "state 28",
         "country": "US",
-        "invname": "Tran, Tram"
+        "invname": "Tran, Tram",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -345,7 +373,8 @@
         "city": "city 29",
         "state": "state 29",
         "country": "China",
-        "invname": "Emerson, Gregory"
+        "invname": "Emerson, Gregory",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -357,7 +386,8 @@
         "city": "city 30",
         "state": "state 30",
         "country": "China",
-        "invname": "Arnold, Elijah"
+        "invname": "Arnold, Elijah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -369,7 +399,8 @@
         "city": "city 31",
         "state": "state 31",
         "country": "China",
-        "invname": "Carranza, Rolando"
+        "invname": "Carranza, Rolando",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -381,7 +412,8 @@
         "city": "city 32",
         "state": "state 32",
         "country": "US",
-        "invname": "Didario, Kaylyn"
+        "invname": "Didario, Kaylyn",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -393,7 +425,8 @@
         "city": "city 33",
         "state": "state 33",
         "country": "Japan",
-        "invname": "el-Eid, Zubair"
+        "invname": "el-Eid, Zubair",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -405,7 +438,8 @@
         "city": "city 34",
         "state": "state 34",
         "country": "US",
-        "invname": "Sawyer, Trent"
+        "invname": "Sawyer, Trent",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -417,7 +451,8 @@
         "city": "city 35",
         "state": "state 35",
         "country": "Japan",
-        "invname": "Gallegos, Carsen"
+        "invname": "Gallegos, Carsen",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -429,7 +464,8 @@
         "city": "city 36",
         "state": "state 36",
         "country": "China",
-        "invname": "Wunder, Brittany"
+        "invname": "Wunder, Brittany",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -441,7 +477,8 @@
         "city": "city 37",
         "state": "state 37",
         "country": "China",
-        "invname": "el-Ghazi, Idrees"
+        "invname": "el-Ghazi, Idrees",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -453,7 +490,8 @@
         "city": "city 38",
         "state": "state 38",
         "country": "China",
-        "invname": "el-Bari, Shuraih"
+        "invname": "el-Bari, Shuraih",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -465,7 +503,8 @@
         "city": "city 39",
         "state": "state 39",
         "country": "China",
-        "invname": "Ortiz, William"
+        "invname": "Ortiz, William",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -477,7 +516,8 @@
         "city": "city 40",
         "state": "state 40",
         "country": "Japan",
-        "invname": "Thomas, Benjamin"
+        "invname": "Thomas, Benjamin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -489,7 +529,8 @@
         "city": "city 41",
         "state": "state 41",
         "country": "China",
-        "invname": "el-Hadi, Azeema"
+        "invname": "el-Hadi, Azeema",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -501,7 +542,8 @@
         "city": "city 42",
         "state": "state 42",
         "country": "US",
-        "invname": "Thomas, Zairus"
+        "invname": "Thomas, Zairus",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -513,7 +555,8 @@
         "city": "city 43",
         "state": "state 43",
         "country": "Japan",
-        "invname": "Harrington, Antone"
+        "invname": "Harrington, Antone",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -525,7 +568,8 @@
         "city": "city 44",
         "state": "state 44",
         "country": "China",
-        "invname": "Williams, Tkejah"
+        "invname": "Williams, Tkejah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -537,7 +581,8 @@
         "city": "city 45",
         "state": "state 45",
         "country": "US",
-        "invname": "Rel, Alyvia"
+        "invname": "Rel, Alyvia",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -549,7 +594,8 @@
         "city": "city 46",
         "state": "state 46",
         "country": "US",
-        "invname": "Pennington, Carla"
+        "invname": "Pennington, Carla",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -561,7 +607,8 @@
         "city": "city 47",
         "state": "state 47",
         "country": "Japan",
-        "invname": "Martinez, Mariah"
+        "invname": "Martinez, Mariah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -573,7 +620,8 @@
         "city": "city 48",
         "state": "state 48",
         "country": "China",
-        "invname": "Wright, Tyler"
+        "invname": "Wright, Tyler",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -585,7 +633,8 @@
         "city": "city 49",
         "state": "state 49",
         "country": "China",
-        "invname": "Vigil, Brady"
+        "invname": "Vigil, Brady",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -597,7 +646,8 @@
         "city": "city 50",
         "state": "state 50",
         "country": "Japan",
-        "invname": "Fryer, Kevin"
+        "invname": "Fryer, Kevin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -609,7 +659,8 @@
         "city": "city 51",
         "state": "state 51",
         "country": "Japan",
-        "invname": "Koob, Maxwell"
+        "invname": "Koob, Maxwell",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -621,7 +672,8 @@
         "city": "city 52",
         "state": "state 52",
         "country": "China",
-        "invname": "al-Sesay, Shakeela"
+        "invname": "al-Sesay, Shakeela",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -633,7 +685,8 @@
         "city": "city 53",
         "state": "state 53",
         "country": "China",
-        "invname": "Stephenson, Courtney"
+        "invname": "Stephenson, Courtney",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -645,7 +698,8 @@
         "city": "city 54",
         "state": "state 54",
         "country": "China",
-        "invname": "Mundo, Yavneeka"
+        "invname": "Mundo, Yavneeka",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -657,7 +711,8 @@
         "city": "city 55",
         "state": "state 55",
         "country": "China",
-        "invname": "Mena, Jasmine"
+        "invname": "Mena, Jasmine",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -669,7 +724,8 @@
         "city": "city 56",
         "state": "state 56",
         "country": "US",
-        "invname": "Payton, Sarah"
+        "invname": "Payton, Sarah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -681,7 +737,8 @@
         "city": "city 57",
         "state": "state 57",
         "country": "China",
-        "invname": "Gallegos, Johannah"
+        "invname": "Gallegos, Johannah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -693,7 +750,8 @@
         "city": "city 58",
         "state": "state 58",
         "country": "China",
-        "invname": "Worthington, Nicholas"
+        "invname": "Worthington, Nicholas",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -705,7 +763,8 @@
         "city": "city 59",
         "state": "state 59",
         "country": "China",
-        "invname": "Roop, Megan"
+        "invname": "Roop, Megan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -717,7 +776,8 @@
         "city": "city 60",
         "state": "state 60",
         "country": "China",
-        "invname": "Holmes, Rajae"
+        "invname": "Holmes, Rajae",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -729,7 +789,8 @@
         "city": "city 61",
         "state": "state 61",
         "country": "US",
-        "invname": "Garcia, Leanza"
+        "invname": "Garcia, Leanza",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -741,7 +802,8 @@
         "city": "city 62",
         "state": "state 62",
         "country": "Japan",
-        "invname": "Herndon, Alexandrina"
+        "invname": "Herndon, Alexandrina",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -753,7 +815,8 @@
         "city": "city 63",
         "state": "state 63",
         "country": "Japan",
-        "invname": "Cunningham, Alexsiss"
+        "invname": "Cunningham, Alexsiss",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -765,7 +828,8 @@
         "city": "city 64",
         "state": "state 64",
         "country": "China",
-        "invname": "Parker, Iesha"
+        "invname": "Parker, Iesha",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -777,7 +841,8 @@
         "city": "city 65",
         "state": "state 65",
         "country": "Japan",
-        "invname": "Saiz, Amy"
+        "invname": "Saiz, Amy",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -789,7 +854,8 @@
         "city": "city 66",
         "state": "state 66",
         "country": "Japan",
-        "invname": "el-Arafat, Abdut Tawwab"
+        "invname": "el-Arafat, Abdut Tawwab",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -801,7 +867,8 @@
         "city": "city 67",
         "state": "state 67",
         "country": "China",
-        "invname": "Brussel, Govanni"
+        "invname": "Brussel, Govanni",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -813,7 +880,8 @@
         "city": "city 68",
         "state": "state 68",
         "country": "Japan",
-        "invname": "Aebischer, Rebecca"
+        "invname": "Aebischer, Rebecca",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -825,7 +893,8 @@
         "city": "city 69",
         "state": "state 69",
         "country": "Japan",
-        "invname": "al-Huda, Tameema"
+        "invname": "al-Huda, Tameema",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -837,7 +906,8 @@
         "city": "city 70",
         "state": "state 70",
         "country": "US",
-        "invname": "Miller, Shemal"
+        "invname": "Miller, Shemal",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -849,7 +919,8 @@
         "city": "city 71",
         "state": "state 71",
         "country": "US",
-        "invname": "Espinosa, Brianna"
+        "invname": "Espinosa, Brianna",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -861,7 +932,8 @@
         "city": "city 72",
         "state": "state 72",
         "country": "US",
-        "invname": "Vo, Melissa"
+        "invname": "Vo, Melissa",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -873,7 +945,8 @@
         "city": "city 73",
         "state": "state 73",
         "country": "US",
-        "invname": "Solorzano, Sergio"
+        "invname": "Solorzano, Sergio",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -885,7 +958,8 @@
         "city": "city 74",
         "state": "state 74",
         "country": "Japan",
-        "invname": "Poppaw, Miranda"
+        "invname": "Poppaw, Miranda",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -897,7 +971,8 @@
         "city": "city 75",
         "state": "state 75",
         "country": "China",
-        "invname": "Smith, Jenai"
+        "invname": "Smith, Jenai",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -909,7 +984,8 @@
         "city": "city 76",
         "state": "state 76",
         "country": "Japan",
-        "invname": "Alvarado Lara, Kenneth"
+        "invname": "Alvarado Lara, Kenneth",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -921,7 +997,8 @@
         "city": "city 77",
         "state": "state 77",
         "country": "US",
-        "invname": "Murphy, Keilan"
+        "invname": "Murphy, Keilan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -933,7 +1010,8 @@
         "city": "city 78",
         "state": "state 78",
         "country": "US",
-        "invname": "Gonzales, Saige"
+        "invname": "Gonzales, Saige",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -945,7 +1023,8 @@
         "city": "city 79",
         "state": "state 79",
         "country": "China",
-        "invname": "Carpenter, Samuel"
+        "invname": "Carpenter, Samuel",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -957,7 +1036,8 @@
         "city": "city 80",
         "state": "state 80",
         "country": "US",
-        "invname": "Tillman, Solomon"
+        "invname": "Tillman, Solomon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -969,7 +1049,8 @@
         "city": "city 81",
         "state": "state 81",
         "country": "US",
-        "invname": "Mielke, Aaron"
+        "invname": "Mielke, Aaron",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -981,7 +1062,8 @@
         "city": "city 82",
         "state": "state 82",
         "country": "US",
-        "invname": "Lucas, Rebecca"
+        "invname": "Lucas, Rebecca",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -993,7 +1075,8 @@
         "city": "city 83",
         "state": "state 83",
         "country": "US",
-        "invname": "Roberts, Kamee"
+        "invname": "Roberts, Kamee",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1005,7 +1088,8 @@
         "city": "city 84",
         "state": "state 84",
         "country": "Japan",
-        "invname": "Castaneda, Kaitlyn"
+        "invname": "Castaneda, Kaitlyn",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1017,7 +1101,8 @@
         "city": "city 85",
         "state": "state 85",
         "country": "China",
-        "invname": "Tolan, Britnee"
+        "invname": "Tolan, Britnee",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1029,7 +1114,8 @@
         "city": "city 86",
         "state": "state 86",
         "country": "US",
-        "invname": "Turley-Rule, Timothy"
+        "invname": "Turley-Rule, Timothy",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1041,7 +1127,8 @@
         "city": "city 87",
         "state": "state 87",
         "country": "US",
-        "invname": "Stirgus, L'Trel"
+        "invname": "Stirgus, L'Trel",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1053,7 +1140,8 @@
         "city": "city 88",
         "state": "state 88",
         "country": "Japan",
-        "invname": "Rascon Orosco, Bryan"
+        "invname": "Rascon Orosco, Bryan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1065,7 +1153,8 @@
         "city": "city 89",
         "state": "state 89",
         "country": "Japan",
-        "invname": "Kireilis, Dakota"
+        "invname": "Kireilis, Dakota",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1077,7 +1166,8 @@
         "city": "city 90",
         "state": "state 90",
         "country": "Japan",
-        "invname": "el-Zaki, Hakam"
+        "invname": "el-Zaki, Hakam",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1089,7 +1179,8 @@
         "city": "city 91",
         "state": "state 91",
         "country": "China",
-        "invname": "Richardson, Thaddeus"
+        "invname": "Richardson, Thaddeus",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1101,7 +1192,8 @@
         "city": "city 92",
         "state": "state 92",
         "country": "China",
-        "invname": "Gamlin, Antonio"
+        "invname": "Gamlin, Antonio",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1113,7 +1205,8 @@
         "city": "city 93",
         "state": "state 93",
         "country": "China",
-        "invname": "Nand, Michael"
+        "invname": "Nand, Michael",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1125,7 +1218,8 @@
         "city": "city 94",
         "state": "state 94",
         "country": "Japan",
-        "invname": "al-Mattar, Aslam"
+        "invname": "al-Mattar, Aslam",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1137,7 +1231,8 @@
         "city": "city 95",
         "state": "state 95",
         "country": "China",
-        "invname": "Sharpless, Brianna"
+        "invname": "Sharpless, Brianna",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1149,7 +1244,8 @@
         "city": "city 96",
         "state": "state 96",
         "country": "China",
-        "invname": "Seto, Benjamin"
+        "invname": "Seto, Benjamin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1161,7 +1257,8 @@
         "city": "city 97",
         "state": "state 97",
         "country": "Japan",
-        "invname": "Domingues, Ka"
+        "invname": "Domingues, Ka",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1173,7 +1270,8 @@
         "city": "city 98",
         "state": "state 98",
         "country": "Japan",
-        "invname": "al-Selim, Aatika"
+        "invname": "al-Selim, Aatika",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1185,7 +1283,8 @@
         "city": "city 99",
         "state": "state 99",
         "country": "Japan",
-        "invname": "Li, Austin"
+        "invname": "Li, Austin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1197,7 +1296,8 @@
         "city": "city 100",
         "state": "state 100",
         "country": "US",
-        "invname": "Fiore, Stephen"
+        "invname": "Fiore, Stephen",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1209,7 +1309,8 @@
         "city": "city 101",
         "state": "state 101",
         "country": "China",
-        "invname": "Green, Keiley"
+        "invname": "Green, Keiley",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1221,7 +1322,8 @@
         "city": "city 102",
         "state": "state 102",
         "country": "China",
-        "invname": "Richards III, Angelica"
+        "invname": "Richards III, Angelica",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1233,7 +1335,8 @@
         "city": "city 103",
         "state": "state 103",
         "country": "US",
-        "invname": "Foley, Lisa"
+        "invname": "Foley, Lisa",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1245,7 +1348,8 @@
         "city": "city 104",
         "state": "state 104",
         "country": "Japan",
-        "invname": "el-Ghattas, Qamraaa"
+        "invname": "el-Ghattas, Qamraaa",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1257,7 +1361,8 @@
         "city": "city 105",
         "state": "state 105",
         "country": "Japan",
-        "invname": "Burkhardt, Nicolas"
+        "invname": "Burkhardt, Nicolas",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1269,7 +1374,8 @@
         "city": "city 106",
         "state": "state 106",
         "country": "China",
-        "invname": "Saeman, Alexander"
+        "invname": "Saeman, Alexander",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1281,7 +1387,8 @@
         "city": "city 107",
         "state": "state 107",
         "country": "Japan",
-        "invname": "Park, Mai"
+        "invname": "Park, Mai",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1293,7 +1400,8 @@
         "city": "city 108",
         "state": "state 108",
         "country": "China",
-        "invname": "Tieu, Wenda"
+        "invname": "Tieu, Wenda",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1305,7 +1413,8 @@
         "city": "city 109",
         "state": "state 109",
         "country": "US",
-        "invname": "Rodriguez, Samantha"
+        "invname": "Rodriguez, Samantha",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1317,7 +1426,8 @@
         "city": "city 110",
         "state": "state 110",
         "country": "China",
-        "invname": "Harrison, Jason"
+        "invname": "Harrison, Jason",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1329,7 +1439,8 @@
         "city": "city 111",
         "state": "state 111",
         "country": "US",
-        "invname": "Cross, Makenzie"
+        "invname": "Cross, Makenzie",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1341,7 +1452,8 @@
         "city": "city 112",
         "state": "state 112",
         "country": "Japan",
-        "invname": "Martinez, Genesis"
+        "invname": "Martinez, Genesis",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1353,7 +1465,8 @@
         "city": "city 113",
         "state": "state 113",
         "country": "Japan",
-        "invname": "el-Qadir, Ameer"
+        "invname": "el-Qadir, Ameer",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1365,7 +1478,8 @@
         "city": "city 114",
         "state": "state 114",
         "country": "US",
-        "invname": "Narayanswamy, Yal"
+        "invname": "Narayanswamy, Yal",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1377,7 +1491,8 @@
         "city": "city 115",
         "state": "state 115",
         "country": "China",
-        "invname": "Garcia, Daniel"
+        "invname": "Garcia, Daniel",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1389,7 +1504,8 @@
         "city": "city 116",
         "state": "state 116",
         "country": "US",
-        "invname": "Landis, Kelsey"
+        "invname": "Landis, Kelsey",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1401,7 +1517,8 @@
         "city": "city 117",
         "state": "state 117",
         "country": "Japan",
-        "invname": "Esquivel, Miranda"
+        "invname": "Esquivel, Miranda",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1413,7 +1530,8 @@
         "city": "city 118",
         "state": "state 118",
         "country": "China",
-        "invname": "Arellano, Kassondra"
+        "invname": "Arellano, Kassondra",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1425,7 +1543,8 @@
         "city": "city 119",
         "state": "state 119",
         "country": "Japan",
-        "invname": "Garcia, Ivette"
+        "invname": "Garcia, Ivette",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1437,7 +1556,8 @@
         "city": "city 120",
         "state": "state 120",
         "country": "Japan",
-        "invname": "Korth, Cait"
+        "invname": "Korth, Cait",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1449,7 +1569,8 @@
         "city": "city 121",
         "state": "state 121",
         "country": "US",
-        "invname": "Patch, Jesse"
+        "invname": "Patch, Jesse",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1461,7 +1582,8 @@
         "city": "city 122",
         "state": "state 122",
         "country": "US",
-        "invname": "Cruze, Christopher"
+        "invname": "Cruze, Christopher",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1473,7 +1595,8 @@
         "city": "city 123",
         "state": "state 123",
         "country": "China",
-        "invname": "Martinez, Cibella"
+        "invname": "Martinez, Cibella",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1485,7 +1608,8 @@
         "city": "city 124",
         "state": "state 124",
         "country": "China",
-        "invname": "Busch, Deanna"
+        "invname": "Busch, Deanna",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1497,7 +1621,8 @@
         "city": "city 125",
         "state": "state 125",
         "country": "China",
-        "invname": "Delosreyes, Jonathan"
+        "invname": "Delosreyes, Jonathan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1509,7 +1634,8 @@
         "city": "city 126",
         "state": "state 126",
         "country": "US",
-        "invname": "Martinez, Donovon"
+        "invname": "Martinez, Donovon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1521,7 +1647,8 @@
         "city": "city 127",
         "state": "state 127",
         "country": "US",
-        "invname": "Celano, Lauren"
+        "invname": "Celano, Lauren",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1533,7 +1660,8 @@
         "city": "city 128",
         "state": "state 128",
         "country": "US",
-        "invname": "Sidney, Brandon"
+        "invname": "Sidney, Brandon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1545,7 +1673,8 @@
         "city": "city 129",
         "state": "state 129",
         "country": "China",
-        "invname": "Mills, Hannah"
+        "invname": "Mills, Hannah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1557,7 +1686,8 @@
         "city": "city 130",
         "state": "state 130",
         "country": "US",
-        "invname": "Seacat, Jesus"
+        "invname": "Seacat, Jesus",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1569,7 +1699,8 @@
         "city": "city 131",
         "state": "state 131",
         "country": "Japan",
-        "invname": "Wilson, Henna"
+        "invname": "Wilson, Henna",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1581,7 +1712,8 @@
         "city": "city 132",
         "state": "state 132",
         "country": "China",
-        "invname": "el-Chahine, Musheer"
+        "invname": "el-Chahine, Musheer",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1593,7 +1725,8 @@
         "city": "city 133",
         "state": "state 133",
         "country": "Japan",
-        "invname": "Claridy, Iesha"
+        "invname": "Claridy, Iesha",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1605,7 +1738,8 @@
         "city": "city 134",
         "state": "state 134",
         "country": "Japan",
-        "invname": "Ho, Sam"
+        "invname": "Ho, Sam",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1617,7 +1751,8 @@
         "city": "city 135",
         "state": "state 135",
         "country": "China",
-        "invname": "Townsend, Logan"
+        "invname": "Townsend, Logan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1629,7 +1764,8 @@
         "city": "city 136",
         "state": "state 136",
         "country": "Japan",
-        "invname": "Cisneros, Moises"
+        "invname": "Cisneros, Moises",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1641,7 +1777,8 @@
         "city": "city 137",
         "state": "state 137",
         "country": "Japan",
-        "invname": "Caramillo, Shyvaughn"
+        "invname": "Caramillo, Shyvaughn",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1653,7 +1790,8 @@
         "city": "city 138",
         "state": "state 138",
         "country": "US",
-        "invname": "al-Salama, Faai Z"
+        "invname": "al-Salama, Faai Z",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1665,7 +1803,8 @@
         "city": "city 139",
         "state": "state 139",
         "country": "US",
-        "invname": "el-Ismail, Shaafia"
+        "invname": "el-Ismail, Shaafia",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1677,7 +1816,8 @@
         "city": "city 140",
         "state": "state 140",
         "country": "China",
-        "invname": "Murphy, Sara"
+        "invname": "Murphy, Sara",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1689,7 +1829,8 @@
         "city": "city 141",
         "state": "state 141",
         "country": "China",
-        "invname": "Porco, Tony"
+        "invname": "Porco, Tony",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1701,7 +1842,8 @@
         "city": "city 142",
         "state": "state 142",
         "country": "US",
-        "invname": "Muzeyen, Amina"
+        "invname": "Muzeyen, Amina",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1713,7 +1855,8 @@
         "city": "city 143",
         "state": "state 143",
         "country": "China",
-        "invname": "Brito, Ifhel"
+        "invname": "Brito, Ifhel",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1725,7 +1868,8 @@
         "city": "city 144",
         "state": "state 144",
         "country": "Japan",
-        "invname": "Noe, David"
+        "invname": "Noe, David",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1737,7 +1881,8 @@
         "city": "city 145",
         "state": "state 145",
         "country": "Japan",
-        "invname": "Banks, Desmond"
+        "invname": "Banks, Desmond",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1749,7 +1894,8 @@
         "city": "city 146",
         "state": "state 146",
         "country": "Japan",
-        "invname": "el-Abdalla, Haashim"
+        "invname": "el-Abdalla, Haashim",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1761,7 +1907,8 @@
         "city": "city 147",
         "state": "state 147",
         "country": "Japan",
-        "invname": "el-Omar, Shaqeeq"
+        "invname": "el-Omar, Shaqeeq",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1773,7 +1920,8 @@
         "city": "city 148",
         "state": "state 148",
         "country": "Japan",
-        "invname": "Battle, Ty'Lia"
+        "invname": "Battle, Ty'Lia",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1785,7 +1933,8 @@
         "city": "city 149",
         "state": "state 149",
         "country": "US",
-        "invname": "Thieman, Cheyan"
+        "invname": "Thieman, Cheyan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1797,7 +1946,8 @@
         "city": "city 150",
         "state": "state 150",
         "country": "Japan",
-        "invname": "Torres Orijel, Alejandro"
+        "invname": "Torres Orijel, Alejandro",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1809,7 +1959,8 @@
         "city": "city 151",
         "state": "state 151",
         "country": "US",
-        "invname": "Goldsberry, Desiree"
+        "invname": "Goldsberry, Desiree",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1821,7 +1972,8 @@
         "city": "city 152",
         "state": "state 152",
         "country": "Japan",
-        "invname": "Fann, Cassidy"
+        "invname": "Fann, Cassidy",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1833,7 +1985,8 @@
         "city": "city 153",
         "state": "state 153",
         "country": "China",
-        "invname": "Sampson, Jongwan"
+        "invname": "Sampson, Jongwan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1845,7 +1998,8 @@
         "city": "city 154",
         "state": "state 154",
         "country": "US",
-        "invname": "Dewine, Justin"
+        "invname": "Dewine, Justin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1857,7 +2011,8 @@
         "city": "city 155",
         "state": "state 155",
         "country": "Japan",
-        "invname": "Cordutsky, Christopher"
+        "invname": "Cordutsky, Christopher",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1869,7 +2024,8 @@
         "city": "city 156",
         "state": "state 156",
         "country": "US",
-        "invname": "Medina, Cindy"
+        "invname": "Medina, Cindy",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1881,7 +2037,8 @@
         "city": "city 157",
         "state": "state 157",
         "country": "China",
-        "invname": "Williams, Kailyn"
+        "invname": "Williams, Kailyn",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1893,7 +2050,8 @@
         "city": "city 158",
         "state": "state 158",
         "country": "US",
-        "invname": "Santos Madayag, Andrew"
+        "invname": "Santos Madayag, Andrew",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1905,7 +2063,8 @@
         "city": "city 159",
         "state": "state 159",
         "country": "China",
-        "invname": "Takahashi, Colin"
+        "invname": "Takahashi, Colin",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1917,7 +2076,8 @@
         "city": "city 160",
         "state": "state 160",
         "country": "China",
-        "invname": "el-Farag, Jameel"
+        "invname": "el-Farag, Jameel",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1929,7 +2089,8 @@
         "city": "city 161",
         "state": "state 161",
         "country": "China",
-        "invname": "Truskowski, Cienna"
+        "invname": "Truskowski, Cienna",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1941,7 +2102,8 @@
         "city": "city 162",
         "state": "state 162",
         "country": "Japan",
-        "invname": "Lor, Rio"
+        "invname": "Lor, Rio",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1953,7 +2115,8 @@
         "city": "city 163",
         "state": "state 163",
         "country": "US",
-        "invname": "el-Shakoor, Hamdaan"
+        "invname": "el-Shakoor, Hamdaan",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1965,7 +2128,8 @@
         "city": "city 164",
         "state": "state 164",
         "country": "China",
-        "invname": "Rivera, Brandon"
+        "invname": "Rivera, Brandon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1977,7 +2141,8 @@
         "city": "city 165",
         "state": "state 165",
         "country": "Japan",
-        "invname": "Smith, Hannah"
+        "invname": "Smith, Hannah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -1989,7 +2154,8 @@
         "city": "city 166",
         "state": "state 166",
         "country": "Japan",
-        "invname": "Glynn, Alemayehu"
+        "invname": "Glynn, Alemayehu",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2001,7 +2167,8 @@
         "city": "city 167",
         "state": "state 167",
         "country": "Japan",
-        "invname": "Bresciani, Demetrius"
+        "invname": "Bresciani, Demetrius",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2013,7 +2180,8 @@
         "city": "city 168",
         "state": "state 168",
         "country": "Japan",
-        "invname": "Brooks, Jamariah"
+        "invname": "Brooks, Jamariah",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2025,7 +2193,8 @@
         "city": "city 169",
         "state": "state 169",
         "country": "China",
-        "invname": "Braley, Shelby"
+        "invname": "Braley, Shelby",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2037,7 +2206,8 @@
         "city": "city 170",
         "state": "state 170",
         "country": "Japan",
-        "invname": "el-Asmar, Murshid"
+        "invname": "el-Asmar, Murshid",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2049,7 +2219,8 @@
         "city": "city 171",
         "state": "state 171",
         "country": "US",
-        "invname": "Lebel, Anthony"
+        "invname": "Lebel, Anthony",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2061,7 +2232,8 @@
         "city": "city 172",
         "state": "state 172",
         "country": "Japan",
-        "invname": "al-Ghazal, Razeen"
+        "invname": "al-Ghazal, Razeen",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2073,7 +2245,8 @@
         "city": "city 173",
         "state": "state 173",
         "country": "US",
-        "invname": "Pace, Shelley"
+        "invname": "Pace, Shelley",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2085,7 +2258,8 @@
         "city": "city 174",
         "state": "state 174",
         "country": "China",
-        "invname": "Gill, Deon"
+        "invname": "Gill, Deon",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2097,7 +2271,8 @@
         "city": "city 175",
         "state": "state 175",
         "country": "China",
-        "invname": "Ramirez, Jericca"
+        "invname": "Ramirez, Jericca",
+        "gsm_analysis_date": "2022-11-14"
     },
     {
         "studyid": "AA-AA-000-0000",
@@ -2109,6 +2284,7 @@
         "city": "city 176",
         "state": "state 176",
         "country": "China",
-        "invname": "el-Mansouri, Aasim"
+        "invname": "el-Mansouri, Aasim",
+        "gsm_analysis_date": "2022-11-14"
     }
 ]

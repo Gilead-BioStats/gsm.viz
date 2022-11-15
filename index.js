@@ -17274,6 +17274,28 @@ var rbmViz = (() => {
     return min3;
   }
 
+  // node_modules/d3-array/src/mean.js
+  function mean(values, valueof) {
+    let count = 0;
+    let sum = 0;
+    if (valueof === void 0) {
+      for (let value of values) {
+        if (value != null && (value = +value) >= value) {
+          ++count, sum += value;
+        }
+      }
+    } else {
+      let index3 = -1;
+      for (let value of values) {
+        if ((value = valueof(value, ++index3, values)) != null && (value = +value) >= value) {
+          ++count, sum += value;
+        }
+      }
+    }
+    if (count)
+      return sum / count;
+  }
+
   // node_modules/d3-dispatch/src/dispatch.js
   var noop2 = { value: () => {
   } };
@@ -20287,8 +20309,8 @@ var rbmViz = (() => {
         yMin: x.threshold,
         yMax: x.threshold,
         borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-        borderWidth: 2,
-        borderDash: [5],
+        borderWidth: 1,
+        borderDash: [2],
         label: {
           rotation: "auto",
           position: Math.sign(+x.flag) === 1 ? "end" : "start",
@@ -20316,33 +20338,77 @@ var rbmViz = (() => {
   function formatResultTooltipContent(config, data) {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
-    if (["bar", "line", "scatter"].includes(data.dataset.type)) {
-      content = !config.isCount ? [
-        `${config.group}: ${datum2.groupid}`,
+    if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
+      content = [
         `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
         `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(datum2.denominator)}`
-      ] : [
-        `${datum2.n_flagged} flagged ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`,
-        `${datum2.n_at_risk} at risk ${config.unit}${datum2.n_flagged === 1 ? "" : "s"}`
       ];
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
-      const stats = ["mean", "median"].map(
-        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${data.formattedValue[stat]}`
+      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(".1f")(data.parsed[stat])}`
       );
-      content = [data.label, ...stats];
+      content = [...stats];
+    } else if (config.dataType === "discrete") {
+      content = data.dataset.purpose === "highlight" ? [
+        `${datum2.n_flagged} flagged ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} at risk ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? [
+        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
+        ...datum2.counts.map(
+          (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
+        )
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${datum2.y} ${config.yLabel}` : null;
     }
     return content;
   }
 
+  // src/util/getTooltipAesthetics.js
+  function getTooltipAesthetics() {
+    return {
+      backgroundColor: "rgba(255,255,255,.85)",
+      bodyColor: "black",
+      bodyFont: {
+        family: "roboto",
+        size: 12,
+        weight: "bold"
+      },
+      borderColor: "black",
+      borderWidth: 1,
+      boxPadding: 5,
+      boxWidth: 10,
+      cornerRadius: 2,
+      caretPadding: 4,
+      padding: 10,
+      titleColor: "black",
+      titleMarginBottom: 5,
+      titleFont: {
+        family: "roboto",
+        lineHeight: 1.5,
+        size: 16,
+        weight: "bold"
+      },
+      usePointStyle: true
+    };
+  }
+
   // src/barChart/plugins/tooltip.js
   function tooltip(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
+    tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
-      }
+        labelPointStyle: () => ({ pointStyle: "rect" }),
+        title: (data) => {
+          if (data.length) {
+            const datum2 = data[0].dataset.data[data[0].dataIndex];
+            return `${config.group} ${datum2.groupid}`;
+          }
+        }
+      },
+      ...tooltipAesthetics
     };
   }
 
@@ -20496,6 +20562,10 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      interaction: {
+        intersect: false,
+        mode: "x"
+      },
       layout: {
         padding: {
           top: config.y === "metric" ? max(datasets[0].data, (d) => d.groupid.length) * 8 : null
@@ -20715,7 +20785,7 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: 5,
+        boxHeight: 6,
         filter: function(legendItem, chartData) {
           return legendItem.text !== "";
         },
@@ -20739,10 +20809,20 @@ var rbmViz = (() => {
 
   // src/scatterPlot/plugins/tooltip.js
   function tooltip2(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
+        title: (data) => {
+          if (data.length) {
+            const groupIDs = data.map(
+              (d, i) => d.dataset.data[d.dataIndex].groupid
+            );
+            return data.map(
+              (d, i) => `${config.group} ${d.dataset.data[d.dataIndex].groupid}`
+            ).join(", ");
+          }
+        }
       },
       custom: function(tooltipModel) {
         if (!tooltipModel.body || tooltipModel.body.length < 1) {
@@ -20754,7 +20834,8 @@ var rbmViz = (() => {
           tooltipModel.height = 0;
         }
       },
-      filter: (data) => data.dataset.type !== "line"
+      filter: (data) => data.dataset.type !== "line",
+      ...tooltipAesthetics
     };
   }
 
@@ -20838,6 +20919,9 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
+      interaction: {
+        mode: "point"
+      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
@@ -20987,9 +21071,11 @@ var rbmViz = (() => {
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
-    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : range < 0.1 ? `.3f` : range < 1 ? `.2f` : `.1f`;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
     const datum2 = data.slice(-1)[0];
-    const content = [format(format2)(datum2.y)];
+    const content = [
+      format(format2)(datum2.y)
+    ];
     const value = {
       content,
       font: {
@@ -21032,13 +21118,18 @@ var rbmViz = (() => {
 
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
+    tooltipAesthetics.padding = 5;
     return {
       callbacks: {
         label: function(data) {
-          return `${data.label}: ${data.formattedValue}`;
+          const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
+          return `${data.label}: ${format(fmt)(data.parsed.y)}`;
         },
+        labelPointStyle: () => ({ pointStyle: "circle" }),
         title: () => null
-      }
+      },
+      ...tooltipAesthetics
     };
   }
 
@@ -21134,16 +21225,16 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.type = "boxplot";
-    defaults3.isCount = /flag|risk/.test(_config_.y);
-    if (defaults3.isCount)
-      defaults3.unit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
+    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
+    if (defaults3.dataType === "discrete")
+      defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
+    defaults3.type = defaults3.dataType === "continuous" ? "boxplot" : "aggregate";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.xLabel = "Snapshot Date";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = defaults3.isCount ? /flag/.test(_config_.y) && /risk/.test(_config_.y) ? `# At Risk or Flagged ${defaults3.unit}s` : /flag/.test(_config_.y) ? `# Flagged ${defaults3.unit}s` : /risk/.test(_config_.y) ? `# At Risk ${defaults3.unit}s` : "" : _config_[defaults3.y];
+    defaults3.yLabel = defaults3.dataType === "continuous" ? _config_[defaults3.y] : /flag/.test(_config_.y) && /risk/.test(_config_.y) ? `At Risk or Flagged ${defaults3.discreteUnit}s` : /flag/.test(_config_.y) ? `Flagged ${defaults3.discreteUnit}s` : /risk/.test(_config_.y) ? `At Risk ${defaults3.discreteUnit}s` : "";
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
@@ -21175,7 +21266,7 @@ var rbmViz = (() => {
     return labels;
   }
 
-  // src/timeSeries/structureData/line.js
+  // src/timeSeries/structureData/selectedGroupLine.js
   function selectedGroupLine(_data_, config, labels) {
     const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
       const datum2 = { ...d };
@@ -21189,12 +21280,13 @@ var rbmViz = (() => {
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
-      type: "line",
+      data: lineData,
       backgroundColor: backgroundColor4,
       borderColor: borderColor4,
-      data: lineData,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
-      purpose: "highlight"
+      purpose: "highlight",
+      radius: 3,
+      type: "line"
     };
     return dataset;
   }
@@ -21217,7 +21309,7 @@ var rbmViz = (() => {
       data: pointData,
       label: pointData.length ? "At Risk" : "",
       purpose: "scatter",
-      radius: 1.5,
+      radius: 2,
       type: "scatter"
     };
     return dataset;
@@ -21241,8 +21333,62 @@ var rbmViz = (() => {
       data: pointData,
       label: pointData.length ? "Flagged" : "",
       purpose: "scatter",
-      radius: 1.5,
+      radius: 2,
       type: "scatter"
+    };
+    return dataset;
+  }
+
+  // src/timeSeries/structureData/aggregateLine.js
+  function aggregateGroupLine(_data_, config, labels) {
+    const aggregateData = rollup(
+      _data_,
+      (group2) => mean(group2, (d) => d[config.y]),
+      (d) => d[config.x]
+    );
+    const countsBySnapshot = rollup(
+      _data_,
+      (group2) => {
+        const N = group2.length;
+        return rollup(
+          group2,
+          (subgroup) => ({
+            n: subgroup.length,
+            N,
+            pct: Math.round(subgroup.length / N * 100 * 10) / 10
+          }),
+          (d) => d[config.y]
+        );
+      },
+      (d) => d[config.x]
+    );
+    const color3 = "#666666";
+    const backgroundColor4 = color2(color3);
+    backgroundColor4.opacity = 1;
+    const borderColor4 = color2(color3);
+    borderColor4.opacity = 0.25;
+    const dataset = {
+      backgroundColor: backgroundColor4,
+      borderColor: borderColor4,
+      data: [...aggregateData].map(([key, value], i) => {
+        const x = labels[i];
+        const y = value;
+        const counts = [...countsBySnapshot.get(labels[i])];
+        return {
+          x,
+          y,
+          counts: counts.map(([key1, value1]) => {
+            const countLookup = {
+              ...value1
+            };
+            countLookup[config.y] = key1;
+            return countLookup;
+          }).sort((a, b) => a[config.y] - b[config.y])
+        };
+      }),
+      label: "Study Average",
+      purpose: "aggregate",
+      type: "line"
     };
     return dataset;
   }
@@ -21264,7 +21410,8 @@ var rbmViz = (() => {
       maxWhiskerThickness: 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
-      outlierRadius: /^n_/.test(config.y) ? 2 : 0,
+      outlierRadius: 0,
+      pointStyle: "rect",
       purpose: "distribution",
       type: "boxplot"
     };
@@ -21295,14 +21442,19 @@ var rbmViz = (() => {
   function structureData4(_data_, config) {
     _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(_data_, config);
-    let data;
+    let datasets;
+    const selectedGroupLine2 = selectedGroupLine(_data_, config, labels);
+    const flagged2 = flagged(_data_, config, labels);
+    const atRisk2 = atRisk(_data_, config, labels);
+    const aggregateLine = config.dataType === "discrete" ? aggregateGroupLine(_data_, config, labels) : null;
     const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
-    data = {
+    const data = {
       labels,
       datasets: [
-        selectedGroupLine(_data_, config, labels),
-        flagged(_data_, config, labels),
-        atRisk(_data_, config, labels),
+        selectedGroupLine2,
+        flagged2,
+        atRisk2,
+        aggregateLine,
         distribution
       ].filter((dataset) => dataset !== null)
     };
@@ -21323,7 +21475,7 @@ var rbmViz = (() => {
           yMax: x.threshold,
           borderColor: color3.rgba + "",
           borderWidth: 1,
-          borderDash: [3]
+          borderDash: [2]
         };
         return annotation2;
       });
@@ -21338,16 +21490,15 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: /flag|at.risk/.test(config.y) ? 7 : 5,
-        boxWidth: 7,
-        filter: function(legendItem, chartData) {
+        boxHeight: 6,
+        filter: (legendItem, chartData) => {
           return legendItem.text !== "";
         },
         sort: function(a, b, chartData) {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: /flag|at.risk/.test(config.y) === false
+        usePointStyle: true
       },
       onClick: () => null,
       position: "top"
@@ -21356,15 +21507,29 @@ var rbmViz = (() => {
 
   // src/timeSeries/plugins/tooltip.js
   function tooltip4(config) {
+    const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
         label: formatResultTooltipContent.bind(null, config),
-        title: () => null
+        labelPointStyle: (data) => {
+          return {
+            pointStyle: ["line", "scatter"].includes(data.dataset.type) ? "circle" : "rect"
+          };
+        },
+        title: (data) => {
+          if (data.length) {
+            const datum2 = data[0].dataset.data[data[0].dataIndex];
+            return ["boxplot", "violin"].includes(
+              data[0].dataset.type
+            ) === false && data[0].dataset.purpose !== "aggregate" ? `${config.group} ${datum2.groupid} on ${data[0].label}` : ["boxplot", "violin"].includes(data[0].dataset.type) ? `${config.group} Distribution on ${data[0].label}` : data[0].dataset.purpose === "aggregate" ? `${config.group} Summary on ${data[0].label}` : null;
+          }
+        }
       },
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
         return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
-      }
+      },
+      ...tooltipAesthetics
     };
   }
 

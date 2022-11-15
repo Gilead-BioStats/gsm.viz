@@ -42,6 +42,7 @@ export default function rollupBounds(_bounds_, config) {
             const backgroundColor = d3color(color);
             backgroundColor.opacity = 0.75;
             group.backgroundColor = backgroundColor + '';
+
             group.borderDash = [2];
 
             //group.hidden = config.displayTrendLine === false && group.threshold === 0;
