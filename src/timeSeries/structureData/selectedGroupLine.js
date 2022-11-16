@@ -25,7 +25,7 @@ export default function selectedGroupLine(_data_, config, labels) {
                 ? `${config.group} ${lineData[0]?.groupid}`
                 : '',
         purpose: 'highlight',
-        radius: 3,
+        radius: 2.5,
         type: 'line',
     };
 

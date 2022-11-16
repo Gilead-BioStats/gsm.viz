@@ -21285,7 +21285,7 @@ var rbmViz = (() => {
       borderColor: borderColor4,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
       purpose: "highlight",
-      radius: 3,
+      radius: 2.5,
       type: "line"
     };
     return dataset;
@@ -21388,6 +21388,7 @@ var rbmViz = (() => {
       }),
       label: "Study Average",
       purpose: "aggregate",
+      radius: 2.5,
       type: "line"
     };
     return dataset;
@@ -21490,7 +21491,7 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: 6,
+        boxHeight: config.dataType === "continuous" ? 6 : 2,
         filter: (legendItem, chartData) => {
           return legendItem.text !== "";
         },
@@ -21498,7 +21499,7 @@ var rbmViz = (() => {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: true
+        usePointStyle: config.dataType === "continuous"
       },
       onClick: () => null,
       position: "top"

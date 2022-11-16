@@ -19,6 +19,7 @@ Promise.all(dataPromises)
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
+        workflow.thresholds = [-3,-2,2,3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -35,7 +36,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters
+            //parameters
         );
 
         // controls

@@ -55,6 +55,7 @@ export default function aggregateGroupLine(_data_, config, labels) {
         }),
         label: 'Study Average',
         purpose: 'aggregate',
+        radius: 2.5,
         type: 'line',
     };
 

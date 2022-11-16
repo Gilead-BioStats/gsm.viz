@@ -9,12 +9,10 @@ export default function legend(config) {
     return {
         display: true,
         labels: {
-            boxHeight: 6,
+            boxHeight: config.dataType === 'continuous' ? 6 : 2,
             filter: (legendItem, chartData) => {
                 return legendItem.text !== '';
             },
-            // TODO: differentiate legend items with generateLabels
-            // https://www.chartjs.org/docs/latest/configuration/legend.html#legend-item-interface
             //pointStyleWidth: 3,
             sort: function (a, b, chartData) {
                 const order =
@@ -26,7 +24,7 @@ export default function legend(config) {
                     ? -1
                     : order;
             },
-            usePointStyle: true, // return /flag|at.risk/.test(config.y) === false
+            usePointStyle: config.dataType === 'continuous',
         },
         onClick: () => null,
         position: 'top',
