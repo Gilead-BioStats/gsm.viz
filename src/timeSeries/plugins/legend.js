@@ -10,6 +10,7 @@ export default function legend(config) {
         display: true,
         labels: {
             boxHeight: config.dataType === 'continuous' ? 6 : 2,
+            boxWidth: 24,
             filter: (legendItem, chartData) => {
                 return legendItem.text !== '';
             },

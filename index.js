@@ -21284,6 +21284,7 @@ var rbmViz = (() => {
       backgroundColor: backgroundColor4,
       borderColor: borderColor4,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
+      pointStyle: "line",
       purpose: "highlight",
       radius: 2.5,
       type: "line"
@@ -21492,6 +21493,7 @@ var rbmViz = (() => {
       display: true,
       labels: {
         boxHeight: config.dataType === "continuous" ? 6 : 2,
+        boxWidth: 24,
         filter: (legendItem, chartData) => {
           return legendItem.text !== "";
         },
