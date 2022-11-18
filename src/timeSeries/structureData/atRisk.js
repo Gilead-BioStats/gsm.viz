@@ -19,6 +19,7 @@ export default function atRisk(_data_, config, labels) {
         backgroundColor: color.rgba + '',
         data: pointData,
         label: pointData.length ? 'At Risk' : '',
+        pointStyle: 'circle',
         purpose: 'scatter',
         radius: 2,
         type: 'scatter',

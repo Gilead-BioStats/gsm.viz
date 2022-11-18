@@ -21284,7 +21284,7 @@ var rbmViz = (() => {
       backgroundColor: backgroundColor4,
       borderColor: borderColor4,
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
-      pointStyle: "line",
+      pointStyle: "circle",
       purpose: "highlight",
       radius: 2.5,
       type: "line"
@@ -21309,6 +21309,7 @@ var rbmViz = (() => {
       backgroundColor: color3.rgba + "",
       data: pointData,
       label: pointData.length ? "At Risk" : "",
+      pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
       type: "scatter"
@@ -21333,6 +21334,7 @@ var rbmViz = (() => {
       backgroundColor: color3.rgba + "",
       data: pointData,
       label: pointData.length ? "Flagged" : "",
+      pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
       type: "scatter"
@@ -21388,6 +21390,7 @@ var rbmViz = (() => {
         };
       }),
       label: "Study Average",
+      pointStyle: "circle",
       purpose: "aggregate",
       radius: 2.5,
       type: "line"

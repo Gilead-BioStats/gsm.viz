@@ -1,5 +1,5 @@
 const dataFiles = [
-    '../data/results_summary_over_time.csv',
+    '../data/kri_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
 ];
