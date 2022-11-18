@@ -1,0 +1,44 @@
+[
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00392856508387802",
+		"gsm_analysis_date": "2022-11-18"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00418113170105405",
+		"gsm_analysis_date": "2022-11-18"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00392856508387802",
+		"gsm_analysis_date": "2022-11-18"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0784808384071743",
+		"gsm_analysis_date": "2022-11-18"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.110929929180543",
+		"gsm_analysis_date": "2022-11-18"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0784808384071743",
+		"gsm_analysis_date": "2022-11-18"
+	}
+]
