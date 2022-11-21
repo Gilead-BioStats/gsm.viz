@@ -10,6 +10,7 @@ export default function aggregateGroupLine(data, config, labels) {
         (d) => d[config.x]
     );
 
+    // TODO: add this conditionally
     const countsBySnapshot = rollup(
         data,
         (group) => {
@@ -34,7 +35,10 @@ export default function aggregateGroupLine(data, config, labels) {
     borderColor.opacity = 0.25;
 
     const dataset = {
-        backgroundColor,
+        backgroundColor: (d) => {
+            // TODO: conditionally assign color
+            return backgroundColor;
+        },
         borderColor,
         data: [...aggregateData].map(([key, value], i) => {
             const x = labels[i];
@@ -42,6 +46,7 @@ export default function aggregateGroupLine(data, config, labels) {
             const counts = [...countsBySnapshot.get(labels[i])];
 
             return {
+                ...data.find(d => d[config.x] === x),
                 x,
                 y,
                 counts: counts

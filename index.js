@@ -20090,16 +20090,19 @@ var rbmViz = (() => {
   }
 
   // src/util/mapThresholdsToFlags.js
-  function mapThresholdsToFlags(_thresholds_) {
-    const nonNegativeThresholds = [
-      ...new Set(_thresholds_.map((threshold) => Math.abs(threshold)))
-    ];
-    const negativeThresholds = nonNegativeThresholds.map(
-      (threshold) => -1 * threshold
-    );
-    const thresholds2 = [
-      .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
-    ].sort((a, b) => a - b);
+  function mapThresholdsToFlags(_thresholds_, complete = true) {
+    let thresholds2 = _thresholds_.map((threshold) => +threshold);
+    if (complete) {
+      const nonNegativeThresholds = [
+        ...new Set(_thresholds_.map((threshold) => Math.abs(threshold)))
+      ];
+      const negativeThresholds = nonNegativeThresholds.map(
+        (threshold) => -1 * threshold
+      );
+      thresholds2 = [
+        .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
+      ].sort((a, b) => a - b);
+    }
     const flags = thresholds2.map((threshold, i) => {
       const flag = i - Math.floor(thresholds2.length / 2);
       return {
@@ -20124,7 +20127,7 @@ var rbmViz = (() => {
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
     thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.default);
-    return mapThresholdsToFlags(thresholds2);
+    return mapThresholdsToFlags(thresholds2, thresholds2.some((threshold) => threshold < 0));
   }
 
   // src/barChart/configure.js
@@ -21378,13 +21381,16 @@ var rbmViz = (() => {
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
-      backgroundColor: backgroundColor4,
+      backgroundColor: (d) => {
+        return backgroundColor4;
+      },
       borderColor: borderColor4,
       data: [...aggregateData].map(([key, value], i) => {
         const x = labels[i];
         const y = value;
         const counts = [...countsBySnapshot.get(labels[i])];
         return {
+          ...data.find((d) => d[config.x] === x),
           x,
           y,
           counts: counts.map(([key1, value1]) => {
@@ -21478,7 +21484,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/distribution.js
   function distribution(data, config, labels) {
-    if (["boxplot", "violin"].includes(config.type))
+    if (!["boxplot", "violin"].includes(config.type))
       return null;
     const dataset = config.type === "boxplot" ? boxplot2(data, config, labels) : config.type === "violin" ? violin(data, config, labels) : null;
     return dataset;
@@ -21513,17 +21519,27 @@ var rbmViz = (() => {
     let annotations5 = null;
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
-        const color3 = colorScheme_default.find((y) => y.flag.includes(+x.flag));
-        color3.rgba.opacity = 0.5;
         const annotation2 = {
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.threshold,
           yMax: x.threshold,
-          borderColor: color3.rgba + "",
+          borderColor: colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
+        if (config.type === "aggregate")
+          annotation2.label = {
+            rotation: "auto",
+            position: Math.sign(+x.flag) === 1 ? "end" : "start",
+            color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+            backgroundColor: "white",
+            content: `QTL: ${config.thresholds[0].threshold}`,
+            display: true,
+            font: {
+              size: 12
+            }
+          };
         return annotation2;
       });
     }
@@ -21624,7 +21640,7 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       plugins: plugins5(config),
       responsive: true,
-      scales: getScales4(config)
+      scales: getScales4(config, _data_, _ci_)
     };
     const chart = new auto_default(canvas, {
       data: {

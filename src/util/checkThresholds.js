@@ -44,5 +44,5 @@ export default function checkThresholds(_config_, _thresholds_) {
         .filter((d) => d.param === 'vThreshold')
         .map((d) => d.default);
 
-    return mapThresholdsToFlags(thresholds);
+    return mapThresholdsToFlags(thresholds, thresholds.some(threshold => threshold < 0));
 }

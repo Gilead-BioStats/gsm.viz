@@ -26,7 +26,6 @@ Promise.all(dataPromises)
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.type = 'aggregate';
-        console.table(workflow);
 
         // customization data
         const parameters = datasets[2].filter(
