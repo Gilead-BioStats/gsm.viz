@@ -16,20 +16,12 @@ export default function configure(_config_, _data_, _thresholds_) {
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[defaults.y];
+    defaults.yLabel = _config_[_config_.y || defaults.y];
 
     // color
     defaults.color = 'flag';
     //defaults.colorScheme = colorScheme;
     defaults.colorLabel = _config_[defaults.color];
-
-    // numerator
-    defaults.num = 'numerator';
-    defaults.numeratorLabel = _config_[defaults.num];
-
-    // denominator
-    defaults.denom = 'denominator';
-    defaults.denominatorLabel = _config_[defaults.denom];
 
     // callbacks
     defaults.hoverCallback = (datum) => {};

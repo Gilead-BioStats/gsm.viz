@@ -14,14 +14,15 @@ export default function timeSeries(
     _element_,
     _data_,
     _config_ = {},
-    _thresholds_ = null
+    _thresholds_ = null,
+    _ci_ = null
 ) {
     // Update config.
     const config = configure(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
-    const data = structureData(_data_, config);
+    const data = structureData(_data_, config, _ci_);
 
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {

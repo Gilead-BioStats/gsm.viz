@@ -20136,13 +20136,9 @@ var rbmViz = (() => {
     defaults3.xLabel = _config_["group"];
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = _config_[defaults3.y];
+    defaults3.yLabel = _config_[_config_.y || defaults3.y];
     defaults3.color = "flag";
     defaults3.colorLabel = _config_[defaults3.color];
-    defaults3.num = "numerator";
-    defaults3.numeratorLabel = _config_[defaults3.num];
-    defaults3.denom = "denominator";
-    defaults3.denominatorLabel = _config_[defaults3.denom];
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -21260,15 +21256,24 @@ var rbmViz = (() => {
     return config;
   }
 
+  // src/timeSeries/structureData/mutate.js
+  function mutate4(_data_, config) {
+    return _data_.sort(
+      (a, b) => ascending(a[config.x], b[config.x])
+    );
+  }
+
   // src/timeSeries/structureData/getLabels.js
-  function getLabels(_data_, config) {
-    const labels = [...new Set(_data_.map((d) => d[config.x]))];
+  function getLabels(data, config) {
+    const labels = [...new Set(data.map((d) => d[config.x]))];
     return labels;
   }
 
   // src/timeSeries/structureData/selectedGroupLine.js
-  function selectedGroupLine(_data_, config, labels) {
-    const lineData = _data_.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
+  function selectedGroupLine(data, config, labels) {
+    if (config.selectedGroupIDs.length === 0)
+      return null;
+    const lineData = data.filter((d) => config.selectedGroupIDs.includes(d.groupid)).map((d, i) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21293,8 +21298,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/atRisk.js
-  function atRisk(_data_, config, labels) {
-    const pointData = _data_.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
+  function atRisk(data, config, labels) {
+    const pointData = data.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21318,8 +21323,8 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/flagged.js
-  function flagged(_data_, config, labels) {
-    const pointData = _data_.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
+  function flagged(data, config, labels) {
+    const pointData = data.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -21343,14 +21348,16 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/aggregateLine.js
-  function aggregateGroupLine(_data_, config, labels) {
+  function aggregateGroupLine(data, config, labels) {
+    if (config.type !== "aggregate")
+      return null;
     const aggregateData = rollup(
-      _data_,
+      data,
       (group2) => mean(group2, (d) => d[config.y]),
       (d) => d[config.x]
     );
     const countsBySnapshot = rollup(
-      _data_,
+      data,
       (group2) => {
         const N = group2.length;
         return rollup(
@@ -21398,10 +21405,36 @@ var rbmViz = (() => {
     return dataset;
   }
 
-  // src/timeSeries/structureData/boxplot.js
-  function boxplot2(_data_, config) {
+  // src/timeSeries/structureData/intervalLines.js
+  function intervalLines(_ci_, config, labels) {
+    if (_ci_ === null)
+      return [null];
+    const intervals = rollup(
+      _ci_.filter((d) => /ci/i.test(d.param)),
+      (group2) => +group2[0].value,
+      (d) => d.param,
+      (d) => d.snapshot_date
+    );
+    const datasets = [...intervals].map(([key, value], i) => {
+      return {
+        borderColor: "#666",
+        borderDash: [2],
+        borderWidth: 1,
+        data: [...value.values()],
+        label: "Confidence Interval",
+        pointStyle: "circle",
+        purpose: "aggregate",
+        radius: 0,
+        type: "line"
+      };
+    });
+    return datasets;
+  }
+
+  // src/timeSeries/structureData/distribution/boxplot.js
+  function boxplot2(data, config) {
     const grouped = rollups(
-      _data_,
+      data,
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
@@ -21423,10 +21456,10 @@ var rbmViz = (() => {
     return dataset;
   }
 
-  // src/timeSeries/structureData/violin.js
-  function violin(_data_, config) {
+  // src/timeSeries/structureData/distribution/violin.js
+  function violin(data, config) {
     const grouped = rollups(
-      _data_,
+      data,
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
@@ -21443,27 +21476,36 @@ var rbmViz = (() => {
     return dataset;
   }
 
+  // src/timeSeries/structureData/distribution.js
+  function distribution(data, config, labels) {
+    if (["boxplot", "violin"].includes(config.type))
+      return null;
+    const dataset = config.type === "boxplot" ? boxplot2(data, config, labels) : config.type === "violin" ? violin(data, config, labels) : null;
+    return dataset;
+  }
+
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config) {
-    _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
-    const labels = getLabels(_data_, config);
-    let datasets;
-    const selectedGroupLine2 = selectedGroupLine(_data_, config, labels);
-    const flagged2 = flagged(_data_, config, labels);
-    const atRisk2 = atRisk(_data_, config, labels);
-    const aggregateLine = config.dataType === "discrete" ? aggregateGroupLine(_data_, config, labels) : null;
-    const distribution = config.type === "boxplot" ? boxplot2(_data_, config, labels) : config.type === "violin" ? violin(_data_, config, labels) : null;
-    const data = {
+  function structureData4(_data_, config, _ci_) {
+    const data = mutate4(_data_, config);
+    const labels = getLabels(data, config);
+    const selectedGroupLine2 = selectedGroupLine(data, config, labels);
+    const flagged2 = flagged(data, config, labels);
+    const atRisk2 = atRisk(data, config, labels);
+    const aggregateLine = aggregateGroupLine(data, config, labels);
+    const intervalLines2 = intervalLines(_ci_, config, labels);
+    const distribution2 = distribution(data, config, labels);
+    const chartData = {
       labels,
       datasets: [
         selectedGroupLine2,
         flagged2,
         atRisk2,
         aggregateLine,
-        distribution
+        ...intervalLines2,
+        distribution2
       ].filter((dataset) => dataset !== null)
     };
-    return data;
+    return chartData;
   }
 
   // src/timeSeries/plugins/annotations.js
@@ -21495,7 +21537,7 @@ var rbmViz = (() => {
     return {
       display: true,
       labels: {
-        boxHeight: config.dataType === "continuous" ? 6 : 2,
+        boxHeight: 6,
         boxWidth: 24,
         filter: (legendItem, chartData) => {
           return legendItem.text !== "";
@@ -21504,7 +21546,7 @@ var rbmViz = (() => {
           const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
           return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
         },
-        usePointStyle: config.dataType === "continuous"
+        usePointStyle: true
       },
       onClick: () => null,
       position: "top"
@@ -21572,10 +21614,10 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _ci_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const data = structureData4(_data_, config);
+    const data = structureData4(_data_, config, _ci_);
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],

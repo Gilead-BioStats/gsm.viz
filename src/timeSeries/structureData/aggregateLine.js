@@ -1,14 +1,17 @@
 import { color as d3color, max, mean, rollup } from 'd3';
 
-export default function aggregateGroupLine(_data_, config, labels) {
+export default function aggregateGroupLine(data, config, labels) {
+    if (config.type !== 'aggregate')
+        return null;
+
     const aggregateData = rollup(
-        _data_,
+        data,
         (group) => mean(group, (d) => d[config.y]),
         (d) => d[config.x]
     );
 
     const countsBySnapshot = rollup(
-        _data_,
+        data,
         (group) => {
             const N = group.length;
             return rollup(

@@ -1,5 +1,5 @@
-export default function flagged(_data_, config, labels) {
-    const pointData = _data_
+export default function flagged(data, config, labels) {
+    const pointData = data
         .filter((d) => Math.abs(+d.flag) > 1)
         .map((d) => {
             const datum = { ...d };

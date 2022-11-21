@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
+    '../data/results_analysis_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -11,23 +12,30 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
+        const workflowID = 'qtl0004';
 
         datasets = datasets.map(dataset =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            dataset.filter((d) => /^qtl/.test(d.workflowid))
         );
 
         // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        const results = datasets[0].filter(
+            (d) => d.workflowid === workflowID
+        );
 
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.selectedGroupIDs = '43';
-        workflow.type = 'boxplot'; //'violin';
+        workflow.type = 'aggregate';
+        console.table(workflow);
 
         // customization data
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
+        );
+
+        // Additional analysis output
+        const analysis = datasets[3].filter(
+            (d) => d.workflowid === workflowID
         );
 
         // visualization
@@ -35,7 +43,8 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters
+            parameters,
+            _ci_ = analysis
         );
 
         site(datasets, true);

@@ -9,7 +9,7 @@ export default function legend(config) {
     return {
         display: true,
         labels: {
-            boxHeight: config.dataType === 'continuous' ? 6 : 2,
+            boxHeight: 6,
             boxWidth: 24,
             filter: (legendItem, chartData) => {
                 return legendItem.text !== '';
@@ -25,7 +25,7 @@ export default function legend(config) {
                     ? -1
                     : order;
             },
-            usePointStyle: config.dataType === 'continuous',
+            usePointStyle: true, // config.dataType === 'continuous',
         },
         onClick: () => null,
         position: 'top',

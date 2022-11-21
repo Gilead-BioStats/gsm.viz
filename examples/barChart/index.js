@@ -29,6 +29,7 @@ Promise.all(dataPromises)
         ];
         workflow.selectedGroupIDs =
             results[Math.floor(Math.random() * results.length)].groupid;
+        workflow.selectedGroupIDs = '145';
 
         // threshold annotations
         const parameters = datasets[2].filter(

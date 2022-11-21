@@ -1,7 +1,10 @@
 import { color as d3color } from 'd3';
 
-export default function selectedGroupLine(_data_, config, labels) {
-    const lineData = _data_
+export default function selectedGroupLine(data, config, labels) {
+    if (config.selectedGroupIDs.length === 0)
+        return null;
+
+    const lineData = data
         .filter((d) => config.selectedGroupIDs.includes(d.groupid))
         .map((d, i) => {
             const datum = { ...d };
