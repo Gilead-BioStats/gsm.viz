@@ -13,7 +13,7 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        datasets = datasets.map(dataset =>
+        datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 

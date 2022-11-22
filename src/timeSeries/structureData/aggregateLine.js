@@ -1,16 +1,12 @@
 import { color as d3color, max, mean, rollup } from 'd3';
 
-export default function aggregateGroupLine(data, config, labels) {
-    if (config.type !== 'aggregate')
-        return null;
-
+export default function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
         data,
         (group) => mean(group, (d) => d[config.y]),
         (d) => d[config.x]
     );
 
-    // TODO: add this conditionally
     const countsBySnapshot = rollup(
         data,
         (group) => {
@@ -35,10 +31,7 @@ export default function aggregateGroupLine(data, config, labels) {
     borderColor.opacity = 0.25;
 
     const dataset = {
-        backgroundColor: (d) => {
-            // TODO: conditionally assign color
-            return backgroundColor;
-        },
+        backgroundColor,
         borderColor,
         data: [...aggregateData].map(([key, value], i) => {
             const x = labels[i];
@@ -46,7 +39,7 @@ export default function aggregateGroupLine(data, config, labels) {
             const counts = [...countsBySnapshot.get(labels[i])];
 
             return {
-                ...data.find(d => d[config.x] === x),
+                ...data.find((d) => d[config.x] === x),
                 x,
                 y,
                 counts: counts

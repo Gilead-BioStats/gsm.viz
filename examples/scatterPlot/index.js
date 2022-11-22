@@ -13,14 +13,12 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        datasets = datasets.map(dataset =>
+        datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 
         // data
-        const results = datasets[1].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const results = datasets[1].filter((d) => d.workflowid === workflowID);
 
         // configuration
         const workflow = datasets[0] // destructured assignment

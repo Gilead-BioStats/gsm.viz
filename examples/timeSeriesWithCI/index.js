@@ -12,30 +12,26 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'qtl0004';
+        const workflowID = 'qtl0006';
 
-        datasets = datasets.map(dataset =>
+        datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^qtl/.test(d.workflowid))
         );
 
         // data
-        const results = datasets[0].filter(
-            (d) => d.workflowid === workflowID
-        );
+        const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.type = 'aggregate';
+        workflow.y = 'metric';
 
         // customization data
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
 
-        // Additional analysis output
-        const analysis = datasets[3].filter(
-            (d) => d.workflowid === workflowID
-        );
+        // additional analysis output
+        const analysis = datasets[3].filter((d) => d.workflowid === workflowID);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
@@ -43,8 +39,6 @@ Promise.all(dataPromises)
             results,
             workflow,
             parameters,
-            _ci_ = analysis
+            analysis
         );
-
-        site(datasets, true);
     });

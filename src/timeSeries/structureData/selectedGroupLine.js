@@ -1,8 +1,7 @@
 import { color as d3color } from 'd3';
 
 export default function selectedGroupLine(data, config, labels) {
-    if (config.selectedGroupIDs.length === 0)
-        return null;
+    if (config.selectedGroupIDs.length === 0) return null;
 
     const lineData = data
         .filter((d) => config.selectedGroupIDs.includes(d.groupid))

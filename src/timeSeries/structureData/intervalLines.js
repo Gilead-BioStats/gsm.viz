@@ -1,14 +1,13 @@
 import { color as d3color, max, mean, rollup } from 'd3';
 
-export default function intervalLines(_ci_, config, labels) {
-    if (_ci_ === null)
-        return [null];
+export default function intervalLines(_intervals_, config, labels) {
+    if (_intervals_ === null) return [null];
 
     const intervals = rollup(
-        _ci_.filter(d => /ci/i.test(d.param)),
-        group => +group[0].value,
-        d => d.param,
-        d => d.snapshot_date
+        _intervals_.filter((d) => /ci/i.test(d.param)),
+        (group) => +group[0].value,
+        (d) => d.param,
+        (d) => d.snapshot_date
     );
 
     const datasets = [...intervals].map(([key, value], i) => {
@@ -17,8 +16,8 @@ export default function intervalLines(_ci_, config, labels) {
             borderDash: [2],
             borderWidth: 1,
             data: [...value.values()],
-            label: 'Confidence Interval',
-            pointStyle: 'circle',
+            label: i === 0 ? 'Confidence Interval' : '',
+            pointStyle: 'line',
             purpose: 'aggregate',
             radius: 0,
             type: 'line',
