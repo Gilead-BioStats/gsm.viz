@@ -1,5 +1,5 @@
 {
-  "TODO": "add traffic-lighting to QTL module",
+  "TODO": "improve legend",
   "name": "rbm-viz",
   "version": "0.12.0",
   "description": "web-based data visualization for risk-based monitoring",
