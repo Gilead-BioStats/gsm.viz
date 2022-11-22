@@ -1,3122 +1,3122 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "4.13679382654082e-05",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00123393469986746",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "4.13679382654082e-05",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.4592581264399",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2003-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.000254207986742747",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00105533408187159",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.000254207986742747",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.00133162880417942",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.260280654195214",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.00133162880417942",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.000370793079351806",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.000937517160975949",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.000370793079351806",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.000632744932049419",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.131585858482766",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.000632744932049419",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.000811565842713719",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00136287355054155",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.000811565842713719",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.00324593092896603",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0930315322207255",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.00324593092896603",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00126044105916042",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00188416770653777",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00126044105916042",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.00725245642830306",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0985761639885322",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.00725245642830306",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2004-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00145963534551328",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00206879215505263",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00145963534551328",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0062299715383064",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.08517605297428",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0062299715383064",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.0016127174822622",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00215961266516247",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.0016127174822622",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.00478453632438639",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0659589749998664",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.00478453632438639",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00177501832790621",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00228007958680988",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00177501832790621",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.00979151854400054",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0684843673677633",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.00979151854400054",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00213711422426165",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00266165630871494",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00213711422426165",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0190595989786866",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0843179875655525",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0190595989786866",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2005-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00249950208098889",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00304007200994898",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00249950208098889",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0246072740843579",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0913688329910477",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0246072740843579",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00254411643905285",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00304833698453293",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00254411643905285",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0277337707600657",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0909128957804014",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0277337707600657",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00264752357044396",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00313293974333144",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00264752357044396",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0335595678791628",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0959028645962832",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0335595678791628",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00272822867826876",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00319978558136851",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00272822867826876",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0334949338064855",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0924359083539014",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0334949338064855",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2006-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00287661947422466",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00334740008091469",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00287661947422466",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0401836274970258",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.10110875261791",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0401836274970258",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00286110246865917",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00331002686070508",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00286110246865917",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0370588422776686",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.093467590275278",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0370588422776686",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00270448261985872",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00311372981632687",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00270448261985872",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0370926397872731",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0892529854381312",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0370926397872731",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00284383784448239",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00325407053500567",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00284383784448239",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0398099435879483",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0918162565083142",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0398099435879483",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2007-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00299742501516252",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00341344162665585",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00299742501516252",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0411006158572428",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.093000658875175",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0411006158572428",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00301892391742595",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00342010371300529",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00301892391742595",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0380492536653947",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0862630266846576",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0380492536653947",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00298587024753127",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00336972931674863",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00298587024753127",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0371035158294284",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0827349326781089",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0371035158294284",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00304485865270115",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00342323228651675",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00304485865270115",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0353212338168075",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0788471067531206",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0353212338168075",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2008-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00311343728793623",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00349087430168744",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00311343728793623",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0361405468551382",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0793410867079537",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0361405468551382",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00311883815266893",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00348513990492601",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00311883815266893",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0341767796647868",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0751179911318423",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0341767796647868",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00314607778682054",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00350414479084735",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00314607778682054",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.032292166778335",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0710556539274166",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.032292166778335",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00321275601667135",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00356893821321672",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00321275601667135",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0343434679854775",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0732666401739512",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0343434679854775",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2009-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00329878218156966",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00365408135152552",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00329878218156966",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0349524096264784",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0735288517069084",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0349524096264784",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00324739550852066",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00359003655898021",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00324739550852066",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0388102559465346",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0776560094255497",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0388102559465346",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00322872204111906",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00355968334625252",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00322872204111906",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.036211549513671",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0725510821253848",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.036211549513671",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.0032712201567838",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.0035990941720304",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.0032712201567838",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0376720005420785",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0738695476983879",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0376720005420785",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2010-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00338961845101421",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00372017420737254",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00338961845101421",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0383162608247175",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.074382802492862",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0383162608247175",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00339233744135049",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00371748347476555",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00339233744135049",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0395524539256524",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0753509757184396",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0395524539256524",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00332183917901195",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00363571946769569",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00332183917901195",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0409413929808086",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0760435771815352",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0409413929808086",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00339831420746694",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00371001313042658",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00339831420746694",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0428896063076881",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.077857374811114",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0428896063076881",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2011-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00347869617777335",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00379108757298871",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00347869617777335",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0443559167927504",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0793944536586082",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0443559167927504",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00350550313580221",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00381360022381363",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00350550313580221",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0517636414993364",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0882495242566568",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0517636414993364",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00349026954724806",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00379103480471152",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00349026954724806",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0516157190860363",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0871396150640034",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0516157190860363",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00353518954215594",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00383402663933404",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00353518954215594",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.052404588584379",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0876261220692829",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.052404588584379",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2012-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00360660093975919",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00390607157226951",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00360660093975919",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0526935338537967",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0877068171183424",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0526935338537967",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00359377198878454",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00388792046002803",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00359377198878454",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0520127271339077",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0862165316080094",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0520127271339077",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.0035395012420643",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00382518703587697",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.0035395012420643",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0517155182712673",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0850143881576748",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0517155182712673",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00360570224774445",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00389195268275213",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00360570224774445",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0509395577539731",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0837603484775963",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0509395577539731",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2013-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00363183370520395",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.003916548208386",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00363183370520395",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0500807811973283",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0823717025124565",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0500807811973283",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00364376765033352",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00392571557323245",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00364376765033352",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0507577014472024",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0828000502055756",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0507577014472024",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00362927032296418",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00390604345050377",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00362927032296418",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0517247053531331",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0834011749503382",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0517247053531331",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00365018802557206",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00392513488505898",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00365018802557206",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0534109811933447",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0851698062983183",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0534109811933447",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2014-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00367357719234885",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00394796297032531",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00367357719234885",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0529445346618195",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0844381049330321",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0529445346618195",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00364889680072655",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00391812909918592",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00364889680072655",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0530689872266296",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0840707561066592",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0530689872266296",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00363253658874657",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00389791179190825",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00363253658874657",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0525200024692797",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0829463676925252",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0525200024692797",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00365278899180513",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00391709876047365",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00365278899180513",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0518536141773535",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0819102470024796",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0518536141773535",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2015-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00365951791586538",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00392196212922222",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00365951791586538",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0511581425998285",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0808284582261238",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0511581425998285",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00365556357005749",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00391543504695423",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00365556357005749",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0502593600517853",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0794297458149663",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0502593600517853",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00361217613998211",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00386660061527267",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00361217613998211",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0494752080254705",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0779610563430577",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0494752080254705",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00362533388236742",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00387780043853282",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00362533388236742",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0507971986794383",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0792856537367811",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0507971986794383",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2016-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00363626651417361",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00388680743277587",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00363626651417361",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0514284442015823",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0797930167166761",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0514284442015823",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00364298710047718",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00389116520240767",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00364298710047718",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0525101985871705",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0807754642429215",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0525101985871705",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00358605289853774",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00382866456427865",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00358605289853774",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0509511411015937",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0784111928874461",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0509511411015937",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00363361858262046",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.0038767082572084",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00363361858262046",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0511309233326774",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0784750417451231",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0511309233326774",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2017-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00369759134964846",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00394276828571973",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00369759134964846",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0518235763351825",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0793157249574649",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0518235763351825",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00376657189462069",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00401397935236482",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00376657189462069",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0518235763351825",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0793157249574649",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0518235763351825",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.0038055653424976",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00405422464322422",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.0038055653424976",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0539047487716545",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0818346114546967",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0539047487716545",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00382856295752279",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00407795756699909",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00382856295752279",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0539047487716545",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0818346114546967",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0539047487716545",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2018-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00385156165796441",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00410168940577347",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00385156165796441",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0835113165922339",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-03-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00387256141124848",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00412335666691431",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00387256141124848",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0835113165922339",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-06-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00387556144879924",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00412645191716616",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00387556144879924",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0835113165922339",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-09-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "LowCI",
-        "value": "0.00387656146534752",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "UpCI",
-        "value": "0.00412748366322027",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "param": "Score",
-        "value": "0.00387656146534752",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "LowCI",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "UpCI",
-        "value": "0.0835113165922339",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "param": "Score",
-        "value": "0.0552947891796837",
-        "gsm_analysis_date": "2022-11-18",
-        "snapshot_date": "2019-12-01"
-    }
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "4.13679382654082e-05",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00123393469986746",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "4.13679382654082e-05",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.4592581264399",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0",
+		"gsm_analysis_date": "2003-12-01",
+		"snapshot_date": "2003-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.000254207986742747",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00105533408187159",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.000254207986742747",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.00133162880417942",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.260280654195214",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.00133162880417942",
+		"gsm_analysis_date": "2004-03-01",
+		"snapshot_date": "2004-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.000370793079351806",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.000937517160975949",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.000370793079351806",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.000632744932049419",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.131585858482766",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.000632744932049419",
+		"gsm_analysis_date": "2004-06-01",
+		"snapshot_date": "2004-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.000811565842713719",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00136287355054155",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.000811565842713719",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.00324593092896603",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0930315322207255",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.00324593092896603",
+		"gsm_analysis_date": "2004-09-01",
+		"snapshot_date": "2004-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00126044105916042",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00188416770653777",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00126044105916042",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.00725245642830306",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0985761639885322",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.00725245642830306",
+		"gsm_analysis_date": "2004-12-01",
+		"snapshot_date": "2004-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00145963534551328",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00206879215505263",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00145963534551328",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0062299715383064",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.08517605297428",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0062299715383064",
+		"gsm_analysis_date": "2005-03-01",
+		"snapshot_date": "2005-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.0016127174822622",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00215961266516247",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.0016127174822622",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.00478453632438639",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0659589749998664",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.00478453632438639",
+		"gsm_analysis_date": "2005-06-01",
+		"snapshot_date": "2005-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00177501832790621",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00228007958680988",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00177501832790621",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.00979151854400054",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0684843673677633",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.00979151854400054",
+		"gsm_analysis_date": "2005-09-01",
+		"snapshot_date": "2005-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00213711422426165",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00266165630871494",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00213711422426165",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0190595989786866",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0843179875655525",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0190595989786866",
+		"gsm_analysis_date": "2005-12-01",
+		"snapshot_date": "2005-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00249950208098889",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00304007200994898",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00249950208098889",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0246072740843579",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0913688329910477",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0246072740843579",
+		"gsm_analysis_date": "2006-03-01",
+		"snapshot_date": "2006-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00254411643905285",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00304833698453293",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00254411643905285",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0277337707600657",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0909128957804014",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0277337707600657",
+		"gsm_analysis_date": "2006-06-01",
+		"snapshot_date": "2006-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00264752357044396",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00313293974333144",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00264752357044396",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0335595678791628",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0959028645962832",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0335595678791628",
+		"gsm_analysis_date": "2006-09-01",
+		"snapshot_date": "2006-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00272822867826876",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00319978558136851",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00272822867826876",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0334949338064855",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0924359083539014",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0334949338064855",
+		"gsm_analysis_date": "2006-12-01",
+		"snapshot_date": "2006-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00287661947422466",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00334740008091469",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00287661947422466",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0401836274970258",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.10110875261791",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0401836274970258",
+		"gsm_analysis_date": "2007-03-01",
+		"snapshot_date": "2007-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00286110246865917",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00331002686070508",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00286110246865917",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0370588422776686",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.093467590275278",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0370588422776686",
+		"gsm_analysis_date": "2007-06-01",
+		"snapshot_date": "2007-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00270448261985872",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00311372981632687",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00270448261985872",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0370926397872731",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0892529854381312",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0370926397872731",
+		"gsm_analysis_date": "2007-09-01",
+		"snapshot_date": "2007-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00284383784448239",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00325407053500567",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00284383784448239",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0398099435879483",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0918162565083142",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0398099435879483",
+		"gsm_analysis_date": "2007-12-01",
+		"snapshot_date": "2007-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00299742501516252",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00341344162665585",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00299742501516252",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0411006158572428",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.093000658875175",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0411006158572428",
+		"gsm_analysis_date": "2008-03-01",
+		"snapshot_date": "2008-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00301892391742595",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00342010371300529",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00301892391742595",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0380492536653947",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0862630266846576",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0380492536653947",
+		"gsm_analysis_date": "2008-06-01",
+		"snapshot_date": "2008-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00298587024753127",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00336972931674863",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00298587024753127",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0371035158294284",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0827349326781089",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0371035158294284",
+		"gsm_analysis_date": "2008-09-01",
+		"snapshot_date": "2008-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00304485865270115",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00342323228651675",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00304485865270115",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0353212338168075",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0788471067531206",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0353212338168075",
+		"gsm_analysis_date": "2008-12-01",
+		"snapshot_date": "2008-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00311343728793623",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00349087430168744",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00311343728793623",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0361405468551382",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0793410867079537",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0361405468551382",
+		"gsm_analysis_date": "2009-03-01",
+		"snapshot_date": "2009-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00311883815266893",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00348513990492601",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00311883815266893",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0341767796647868",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0751179911318423",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0341767796647868",
+		"gsm_analysis_date": "2009-06-01",
+		"snapshot_date": "2009-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00314607778682054",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00350414479084735",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00314607778682054",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.032292166778335",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0710556539274166",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.032292166778335",
+		"gsm_analysis_date": "2009-09-01",
+		"snapshot_date": "2009-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00321275601667135",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00356893821321672",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00321275601667135",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0343434679854775",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0732666401739512",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0343434679854775",
+		"gsm_analysis_date": "2009-12-01",
+		"snapshot_date": "2009-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00329878218156966",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00365408135152552",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00329878218156966",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0349524096264784",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0735288517069084",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0349524096264784",
+		"gsm_analysis_date": "2010-03-01",
+		"snapshot_date": "2010-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00324739550852066",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00359003655898021",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00324739550852066",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0388102559465346",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0776560094255497",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0388102559465346",
+		"gsm_analysis_date": "2010-06-01",
+		"snapshot_date": "2010-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00322872204111906",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00355968334625252",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00322872204111906",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.036211549513671",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0725510821253848",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.036211549513671",
+		"gsm_analysis_date": "2010-09-01",
+		"snapshot_date": "2010-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.0032712201567838",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.0035990941720304",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.0032712201567838",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0376720005420785",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0738695476983879",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0376720005420785",
+		"gsm_analysis_date": "2010-12-01",
+		"snapshot_date": "2010-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00338961845101421",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00372017420737254",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00338961845101421",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0383162608247175",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.074382802492862",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0383162608247175",
+		"gsm_analysis_date": "2011-03-01",
+		"snapshot_date": "2011-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00339233744135049",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00371748347476555",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00339233744135049",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0395524539256524",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0753509757184396",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0395524539256524",
+		"gsm_analysis_date": "2011-06-01",
+		"snapshot_date": "2011-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00332183917901195",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00363571946769569",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00332183917901195",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0409413929808086",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0760435771815352",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0409413929808086",
+		"gsm_analysis_date": "2011-09-01",
+		"snapshot_date": "2011-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00339831420746694",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00371001313042658",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00339831420746694",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0428896063076881",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.077857374811114",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0428896063076881",
+		"gsm_analysis_date": "2011-12-01",
+		"snapshot_date": "2011-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00347869617777335",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00379108757298871",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00347869617777335",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0443559167927504",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0793944536586082",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0443559167927504",
+		"gsm_analysis_date": "2012-03-01",
+		"snapshot_date": "2012-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00350550313580221",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00381360022381363",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00350550313580221",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0517636414993364",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0882495242566568",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0517636414993364",
+		"gsm_analysis_date": "2012-06-01",
+		"snapshot_date": "2012-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00349026954724806",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00379103480471152",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00349026954724806",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0516157190860363",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0871396150640034",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0516157190860363",
+		"gsm_analysis_date": "2012-09-01",
+		"snapshot_date": "2012-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00353518954215594",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00383402663933404",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00353518954215594",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.052404588584379",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0876261220692829",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.052404588584379",
+		"gsm_analysis_date": "2012-12-01",
+		"snapshot_date": "2012-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00360660093975919",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00390607157226951",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00360660093975919",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0526935338537967",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0877068171183424",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0526935338537967",
+		"gsm_analysis_date": "2013-03-01",
+		"snapshot_date": "2013-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00359377198878454",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00388792046002803",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00359377198878454",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0520127271339077",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0862165316080094",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0520127271339077",
+		"gsm_analysis_date": "2013-06-01",
+		"snapshot_date": "2013-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.0035395012420643",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00382518703587697",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.0035395012420643",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0517155182712673",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0850143881576748",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0517155182712673",
+		"gsm_analysis_date": "2013-09-01",
+		"snapshot_date": "2013-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00360570224774445",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00389195268275213",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00360570224774445",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0509395577539731",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0837603484775963",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0509395577539731",
+		"gsm_analysis_date": "2013-12-01",
+		"snapshot_date": "2013-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00363183370520395",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.003916548208386",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00363183370520395",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0500807811973283",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0823717025124565",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0500807811973283",
+		"gsm_analysis_date": "2014-03-01",
+		"snapshot_date": "2014-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00364376765033352",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00392571557323245",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00364376765033352",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0507577014472024",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0828000502055756",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0507577014472024",
+		"gsm_analysis_date": "2014-06-01",
+		"snapshot_date": "2014-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00362927032296418",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00390604345050377",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00362927032296418",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0517247053531331",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0834011749503382",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0517247053531331",
+		"gsm_analysis_date": "2014-09-01",
+		"snapshot_date": "2014-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00365018802557206",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00392513488505898",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00365018802557206",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0534109811933447",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0851698062983183",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0534109811933447",
+		"gsm_analysis_date": "2014-12-01",
+		"snapshot_date": "2014-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00367357719234885",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00394796297032531",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00367357719234885",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0529445346618195",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0844381049330321",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0529445346618195",
+		"gsm_analysis_date": "2015-03-01",
+		"snapshot_date": "2015-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00364889680072655",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00391812909918592",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00364889680072655",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0530689872266296",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0840707561066592",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0530689872266296",
+		"gsm_analysis_date": "2015-06-01",
+		"snapshot_date": "2015-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00363253658874657",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00389791179190825",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00363253658874657",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0525200024692797",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0829463676925252",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0525200024692797",
+		"gsm_analysis_date": "2015-09-01",
+		"snapshot_date": "2015-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00365278899180513",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00391709876047365",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00365278899180513",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0518536141773535",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0819102470024796",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0518536141773535",
+		"gsm_analysis_date": "2015-12-01",
+		"snapshot_date": "2015-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00365951791586538",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00392196212922222",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00365951791586538",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0511581425998285",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0808284582261238",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0511581425998285",
+		"gsm_analysis_date": "2016-03-01",
+		"snapshot_date": "2016-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00365556357005749",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00391543504695423",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00365556357005749",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0502593600517853",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0794297458149663",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0502593600517853",
+		"gsm_analysis_date": "2016-06-01",
+		"snapshot_date": "2016-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00361217613998211",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00386660061527267",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00361217613998211",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0494752080254705",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0779610563430577",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0494752080254705",
+		"gsm_analysis_date": "2016-09-01",
+		"snapshot_date": "2016-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00362533388236742",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00387780043853282",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00362533388236742",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0507971986794383",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0792856537367811",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0507971986794383",
+		"gsm_analysis_date": "2016-12-01",
+		"snapshot_date": "2016-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00363626651417361",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00388680743277587",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00363626651417361",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0514284442015823",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0797930167166761",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0514284442015823",
+		"gsm_analysis_date": "2017-03-01",
+		"snapshot_date": "2017-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00364298710047718",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00389116520240767",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00364298710047718",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0525101985871705",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0807754642429215",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0525101985871705",
+		"gsm_analysis_date": "2017-06-01",
+		"snapshot_date": "2017-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00358605289853774",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00382866456427865",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00358605289853774",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0509511411015937",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0784111928874461",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0509511411015937",
+		"gsm_analysis_date": "2017-09-01",
+		"snapshot_date": "2017-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00363361858262046",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.0038767082572084",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00363361858262046",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0511309233326774",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0784750417451231",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0511309233326774",
+		"gsm_analysis_date": "2017-12-01",
+		"snapshot_date": "2017-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00369759134964846",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00394276828571973",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00369759134964846",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0518235763351825",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0793157249574649",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0518235763351825",
+		"gsm_analysis_date": "2018-03-01",
+		"snapshot_date": "2018-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00376657189462069",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00401397935236482",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00376657189462069",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0518235763351825",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0793157249574649",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0518235763351825",
+		"gsm_analysis_date": "2018-06-01",
+		"snapshot_date": "2018-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.0038055653424976",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00405422464322422",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.0038055653424976",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0539047487716545",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0818346114546967",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0539047487716545",
+		"gsm_analysis_date": "2018-09-01",
+		"snapshot_date": "2018-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00382856295752279",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00407795756699909",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00382856295752279",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0539047487716545",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0818346114546967",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0539047487716545",
+		"gsm_analysis_date": "2018-12-01",
+		"snapshot_date": "2018-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00385156165796441",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00410168940577347",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00385156165796441",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0835113165922339",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-03-01",
+		"snapshot_date": "2019-03-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00387256141124848",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00412335666691431",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00387256141124848",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0835113165922339",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-06-01",
+		"snapshot_date": "2019-06-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00387556144879924",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00412645191716616",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00387556144879924",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0835113165922339",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-09-01",
+		"snapshot_date": "2019-09-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "LowCI",
+		"value": "0.00387656146534752",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "UpCI",
+		"value": "0.00412748366322027",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"param": "Score",
+		"value": "0.00387656146534752",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "LowCI",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "UpCI",
+		"value": "0.0835113165922339",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"param": "Score",
+		"value": "0.0552947891796837",
+		"gsm_analysis_date": "2019-12-01",
+		"snapshot_date": "2019-12-01"
+	}
 ]
