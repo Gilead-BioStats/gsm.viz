@@ -1,5 +1,5 @@
-export default function getLabels(_data_, config) {
-    const labels = [...new Set(_data_.map((d) => d[config.x]))];
+export default function getLabels(data, config) {
+    const labels = [...new Set(data.map((d) => d[config.x]))];
 
     return labels;
 }

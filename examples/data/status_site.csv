@@ -1,177 +1,177 @@
-studyid,siteid,institution,status,enrolled_participants,start_date,city,state,country,invname,gsm_analysis_date
-AA-AA-000-0000,10,institution 1,Active,20,2006-04-12,city 1,state 1,US,"Ashley, Malachai",2022-11-14
-AA-AA-000-0000,100,institution 2,Active,2,2013-09-18,city 2,state 2,Japan,"Milbry, Shayla",2022-11-14
-AA-AA-000-0000,101,institution 3,Active,3,2008-07-18,city 3,state 3,US,"Colunga, Yihang",2022-11-14
-AA-AA-000-0000,102,institution 4,Active,3,2014-08-19,city 4,state 4,China,"Meza, Robert John",2022-11-14
-AA-AA-000-0000,103,institution 5,Active,4,2010-08-06,city 5,state 5,US,"Torres, Rebecca",2022-11-14
-AA-AA-000-0000,104,institution 6,Active,9,2005-10-23,city 6,state 6,Japan,"Johnson, Naazi Umaar",2022-11-14
-AA-AA-000-0000,105,institution 7,Active,3,2009-08-09,city 7,state 7,Japan,"Flood, Austin",2022-11-14
-AA-AA-000-0000,106,institution 8,Active,3,2006-07-14,city 8,state 8,China,"al-Doud, Munjid",2022-11-14
-AA-AA-000-0000,107,institution 9,Active,3,2009-09-07,city 9,state 9,China,"Wymore, Jonathan",2022-11-14
-AA-AA-000-0000,109,institution 10,Active,4,2013-05-09,city 10,state 10,Japan,"Gonzalez, Elias",2022-11-14
-AA-AA-000-0000,11,institution 11,Active,9,2007-07-14,city 11,state 11,Japan,"Peterman, Sawhitney",2022-11-14
-AA-AA-000-0000,110,institution 12,Active,1,2019-07-13,city 12,state 12,US,"Williams, Marissa",2022-11-14
-AA-AA-000-0000,111,institution 13,Active,2,2006-09-23,city 13,state 13,US,"Schrock, Aeryn",2022-11-14
-AA-AA-000-0000,112,institution 14,Active,2,2010-11-10,city 14,state 14,US,"Holden, Tiara",2022-11-14
-AA-AA-000-0000,113,institution 15,Active,8,2006-09-27,city 15,state 15,China,"Arellano, Anjana",2022-11-14
-AA-AA-000-0000,114,institution 16,Active,7,2006-09-01,city 16,state 16,China,"al-Taha, Jawhara",2022-11-14
-AA-AA-000-0000,115,institution 17,Active,3,2012-03-20,city 17,state 17,China,"Vargas, Perla",2022-11-14
-AA-AA-000-0000,116,institution 18,Active,3,2008-04-26,city 18,state 18,China,"Wallace, Patrick",2022-11-14
-AA-AA-000-0000,117,institution 19,Active,1,2019-08-07,city 19,state 19,Japan,"Little, Shannon",2022-11-14
-AA-AA-000-0000,118,institution 20,Active,17,2008-08-02,city 20,state 20,US,"el-Saade, Wajdi",2022-11-14
-AA-AA-000-0000,119,institution 21,Active,2,2007-08-08,city 21,state 21,Japan,"Hope, Michelle",2022-11-14
-AA-AA-000-0000,12,institution 22,Active,1,2006-08-23,city 22,state 22,US,"Young, George",2022-11-14
-AA-AA-000-0000,120,institution 23,Active,3,2014-08-10,city 23,state 23,US,"Milton, Asia",2022-11-14
-AA-AA-000-0000,121,institution 24,Active,6,2008-05-06,city 24,state 24,US,"Dockter, Callum",2022-11-14
-AA-AA-000-0000,122,institution 25,Active,9,2007-06-13,city 25,state 25,US,"Abenes, Yesenia",2022-11-14
-AA-AA-000-0000,123,institution 26,Active,1,2009-09-19,city 26,state 26,China,"Katsenelson, Quinten",2022-11-14
-AA-AA-000-0000,124,institution 27,Active,4,2008-09-15,city 27,state 27,US,"Medina, Cassandra",2022-11-14
-AA-AA-000-0000,126,institution 28,Active,1,2006-08-05,city 28,state 28,US,"Tran, Tram",2022-11-14
-AA-AA-000-0000,127,institution 29,Active,5,2008-07-07,city 29,state 29,China,"Emerson, Gregory",2022-11-14
-AA-AA-000-0000,128,institution 30,Active,5,2008-06-19,city 30,state 30,China,"Arnold, Elijah",2022-11-14
-AA-AA-000-0000,129,institution 31,Active,2,2014-08-04,city 31,state 31,China,"Carranza, Rolando",2022-11-14
-AA-AA-000-0000,13,institution 32,Active,8,2005-09-02,city 32,state 32,US,"Didario, Kaylyn",2022-11-14
-AA-AA-000-0000,130,institution 33,Active,3,2007-10-22,city 33,state 33,Japan,"el-Eid, Zubair",2022-11-14
-AA-AA-000-0000,131,institution 34,Active,7,2006-04-16,city 34,state 34,US,"Sawyer, Trent",2022-11-14
-AA-AA-000-0000,132,institution 35,Active,1,2013-08-20,city 35,state 35,Japan,"Gallegos, Carsen",2022-11-14
-AA-AA-000-0000,133,institution 36,Active,5,2010-07-31,city 36,state 36,China,"Wunder, Brittany",2022-11-14
-AA-AA-000-0000,134,institution 37,Active,6,2008-09-04,city 37,state 37,China,"el-Ghazi, Idrees",2022-11-14
-AA-AA-000-0000,135,institution 38,Active,5,2006-08-24,city 38,state 38,China,"el-Bari, Shuraih",2022-11-14
-AA-AA-000-0000,136,institution 39,Active,2,2006-09-21,city 39,state 39,China,"Ortiz, William",2022-11-14
-AA-AA-000-0000,137,institution 40,Active,7,2006-06-16,city 40,state 40,Japan,"Thomas, Benjamin",2022-11-14
-AA-AA-000-0000,138,institution 41,Active,6,2006-04-29,city 41,state 41,China,"el-Hadi, Azeema",2022-11-14
-AA-AA-000-0000,139,institution 42,Active,58,2006-06-03,city 42,state 42,US,"Thomas, Zairus",2022-11-14
-AA-AA-000-0000,14,institution 43,Active,1,2013-07-31,city 43,state 43,Japan,"Harrington, Antone",2022-11-14
-AA-AA-000-0000,140,institution 44,Active,69,2004-09-28,city 44,state 44,China,"Williams, Tkejah",2022-11-14
-AA-AA-000-0000,141,institution 45,Active,12,2007-07-04,city 45,state 45,US,"Rel, Alyvia",2022-11-14
-AA-AA-000-0000,142,institution 46,Active,4,2007-10-14,city 46,state 46,US,"Pennington, Carla",2022-11-14
-AA-AA-000-0000,143,institution 47,Active,28,2006-08-01,city 47,state 47,Japan,"Martinez, Mariah",2022-11-14
-AA-AA-000-0000,144,institution 48,Active,4,2011-06-09,city 48,state 48,China,"Wright, Tyler",2022-11-14
-AA-AA-000-0000,145,institution 49,Active,1,2012-03-21,city 49,state 49,China,"Vigil, Brady",2022-11-14
-AA-AA-000-0000,146,institution 50,Active,7,2006-07-15,city 50,state 50,Japan,"Fryer, Kevin",2022-11-14
-AA-AA-000-0000,147,institution 51,Active,5,2008-08-10,city 51,state 51,Japan,"Koob, Maxwell",2022-11-14
-AA-AA-000-0000,148,institution 52,Active,2,2008-08-06,city 52,state 52,China,"al-Sesay, Shakeela",2022-11-14
-AA-AA-000-0000,149,institution 53,Active,8,2008-07-16,city 53,state 53,China,"Stephenson, Courtney",2022-11-14
-AA-AA-000-0000,15,institution 54,Active,5,2005-09-09,city 54,state 54,China,"Mundo, Yavneeka",2022-11-14
-AA-AA-000-0000,150,institution 55,Active,2,2007-10-06,city 55,state 55,China,"Mena, Jasmine",2022-11-14
-AA-AA-000-0000,151,institution 56,Active,3,2008-09-21,city 56,state 56,US,"Payton, Sarah",2022-11-14
-AA-AA-000-0000,152,institution 57,Active,6,2007-07-26,city 57,state 57,China,"Gallegos, Johannah",2022-11-14
-AA-AA-000-0000,153,institution 58,Active,4,2007-06-02,city 58,state 58,China,"Worthington, Nicholas",2022-11-14
-AA-AA-000-0000,154,institution 59,Active,1,2015-06-04,city 59,state 59,China,"Roop, Megan",2022-11-14
-AA-AA-000-0000,155,institution 60,Active,10,2006-07-02,city 60,state 60,China,"Holmes, Rajae",2022-11-14
-AA-AA-000-0000,156,institution 61,Active,9,2006-10-28,city 61,state 61,US,"Garcia, Leanza",2022-11-14
-AA-AA-000-0000,157,institution 62,Active,7,2006-08-02,city 62,state 62,Japan,"Herndon, Alexandrina",2022-11-14
-AA-AA-000-0000,158,institution 63,Active,1,2011-07-27,city 63,state 63,Japan,"Cunningham, Alexsiss",2022-11-14
-AA-AA-000-0000,159,institution 64,Active,1,2013-03-14,city 64,state 64,China,"Parker, Iesha",2022-11-14
-AA-AA-000-0000,16,institution 65,Active,3,2006-08-10,city 65,state 65,Japan,"Saiz, Amy",2022-11-14
-AA-AA-000-0000,160,institution 66,Active,7,2009-07-30,city 66,state 66,Japan,"el-Arafat, Abdut Tawwab",2022-11-14
-AA-AA-000-0000,161,institution 67,Active,5,2013-12-19,city 67,state 67,China,"Brussel, Govanni",2022-11-14
-AA-AA-000-0000,162,institution 68,Active,2,2009-09-09,city 68,state 68,Japan,"Aebischer, Rebecca",2022-11-14
-AA-AA-000-0000,163,institution 69,Active,3,2007-07-08,city 69,state 69,Japan,"al-Huda, Tameema",2022-11-14
-AA-AA-000-0000,164,institution 70,Active,7,2006-07-22,city 70,state 70,US,"Miller, Shemal",2022-11-14
-AA-AA-000-0000,165,institution 71,Active,1,2011-06-20,city 71,state 71,US,"Espinosa, Brianna",2022-11-14
-AA-AA-000-0000,166,institution 72,Active,20,2005-10-08,city 72,state 72,US,"Vo, Melissa",2022-11-14
-AA-AA-000-0000,167,institution 73,Active,15,2006-08-04,city 73,state 73,US,"Solorzano, Sergio",2022-11-14
-AA-AA-000-0000,168,institution 74,Active,3,2008-07-23,city 74,state 74,Japan,"Poppaw, Miranda",2022-11-14
-AA-AA-000-0000,17,institution 75,Active,12,2006-06-17,city 75,state 75,China,"Smith, Jenai",2022-11-14
-AA-AA-000-0000,170,institution 76,Active,27,2006-09-08,city 76,state 76,Japan,"Alvarado Lara, Kenneth",2022-11-14
-AA-AA-000-0000,171,institution 77,Active,1,2007-09-27,city 77,state 77,US,"Murphy, Keilan",2022-11-14
-AA-AA-000-0000,172,institution 78,Active,28,2006-05-11,city 78,state 78,US,"Gonzales, Saige",2022-11-14
-AA-AA-000-0000,173,institution 79,Active,27,2006-05-17,city 79,state 79,China,"Carpenter, Samuel",2022-11-14
-AA-AA-000-0000,174,institution 80,Active,6,2006-08-12,city 80,state 80,US,"Tillman, Solomon",2022-11-14
-AA-AA-000-0000,175,institution 81,Active,1,2014-09-17,city 81,state 81,US,"Mielke, Aaron",2022-11-14
-AA-AA-000-0000,176,institution 82,Active,5,2007-07-22,city 82,state 82,US,"Lucas, Rebecca",2022-11-14
-AA-AA-000-0000,177,institution 83,Active,5,2006-09-04,city 83,state 83,US,"Roberts, Kamee",2022-11-14
-AA-AA-000-0000,178,institution 84,Active,2,2013-09-07,city 84,state 84,Japan,"Castaneda, Kaitlyn",2022-11-14
-AA-AA-000-0000,179,institution 85,Active,4,2008-06-11,city 85,state 85,China,"Tolan, Britnee",2022-11-14
-AA-AA-000-0000,18,institution 86,Active,2,2008-08-17,city 86,state 86,US,"Turley-Rule, Timothy",2022-11-14
-AA-AA-000-0000,180,institution 87,Active,1,2009-09-24,city 87,state 87,US,"Stirgus, L'Trel",2022-11-14
-AA-AA-000-0000,181,institution 88,Active,3,2011-07-28,city 88,state 88,Japan,"Rascon Orosco, Bryan",2022-11-14
-AA-AA-000-0000,182,institution 89,Active,2,2006-04-17,city 89,state 89,Japan,"Kireilis, Dakota",2022-11-14
-AA-AA-000-0000,183,institution 90,Active,2,2013-07-08,city 90,state 90,Japan,"el-Zaki, Hakam",2022-11-14
-AA-AA-000-0000,184,institution 91,Active,5,2012-04-08,city 91,state 91,China,"Richardson, Thaddeus",2022-11-14
-AA-AA-000-0000,185,institution 92,Active,2,2009-09-14,city 92,state 92,China,"Gamlin, Antonio",2022-11-14
-AA-AA-000-0000,186,institution 93,Active,5,2007-06-12,city 93,state 93,China,"Nand, Michael",2022-11-14
-AA-AA-000-0000,187,institution 94,Active,5,2006-09-30,city 94,state 94,Japan,"al-Mattar, Aslam",2022-11-14
-AA-AA-000-0000,188,institution 95,Active,3,2011-07-05,city 95,state 95,China,"Sharpless, Brianna",2022-11-14
-AA-AA-000-0000,189,institution 96,Active,28,2006-06-21,city 96,state 96,China,"Seto, Benjamin",2022-11-14
-AA-AA-000-0000,19,institution 97,Active,3,2012-05-23,city 97,state 97,Japan,"Domingues, Ka",2022-11-14
-AA-AA-000-0000,190,institution 98,Active,7,2005-06-13,city 98,state 98,Japan,"al-Selim, Aatika",2022-11-14
-AA-AA-000-0000,20,institution 99,Active,1,2009-08-01,city 99,state 99,Japan,"Li, Austin",2022-11-14
-AA-AA-000-0000,22,institution 100,Active,5,2008-09-10,city 100,state 100,US,"Fiore, Stephen",2022-11-14
-AA-AA-000-0000,23,institution 101,Active,5,2007-05-19,city 101,state 101,China,"Green, Keiley",2022-11-14
-AA-AA-000-0000,25,institution 102,Active,3,2010-05-11,city 102,state 102,China,"Richards III, Angelica",2022-11-14
-AA-AA-000-0000,26,institution 103,Active,7,2006-07-14,city 103,state 103,US,"Foley, Lisa",2022-11-14
-AA-AA-000-0000,27,institution 104,Active,4,2008-09-21,city 104,state 104,Japan,"el-Ghattas, Qamraaa",2022-11-14
-AA-AA-000-0000,28,institution 105,Active,5,2005-06-08,city 105,state 105,Japan,"Burkhardt, Nicolas",2022-11-14
-AA-AA-000-0000,29,institution 106,Active,7,2007-10-09,city 106,state 106,China,"Saeman, Alexander",2022-11-14
-AA-AA-000-0000,3,institution 107,Active,2,2009-07-25,city 107,state 107,Japan,"Park, Mai",2022-11-14
-AA-AA-000-0000,30,institution 108,Active,7,2006-08-29,city 108,state 108,China,"Tieu, Wenda",2022-11-14
-AA-AA-000-0000,31,institution 109,Active,1,2006-07-18,city 109,state 109,US,"Rodriguez, Samantha",2022-11-14
-AA-AA-000-0000,32,institution 110,Active,3,2008-10-30,city 110,state 110,China,"Harrison, Jason",2022-11-14
-AA-AA-000-0000,33,institution 111,Active,1,2008-10-23,city 111,state 111,US,"Cross, Makenzie",2022-11-14
-AA-AA-000-0000,34,institution 112,Active,8,2009-06-19,city 112,state 112,Japan,"Martinez, Genesis",2022-11-14
-AA-AA-000-0000,35,institution 113,Active,5,2006-07-16,city 113,state 113,Japan,"el-Qadir, Ameer",2022-11-14
-AA-AA-000-0000,36,institution 114,Active,1,2010-10-10,city 114,state 114,US,"Narayanswamy, Yal",2022-11-14
-AA-AA-000-0000,38,institution 115,Active,1,2017-07-26,city 115,state 115,China,"Garcia, Daniel",2022-11-14
-AA-AA-000-0000,39,institution 116,Active,4,2005-12-02,city 116,state 116,US,"Landis, Kelsey",2022-11-14
-AA-AA-000-0000,4,institution 117,Active,9,2006-09-10,city 117,state 117,Japan,"Esquivel, Miranda",2022-11-14
-AA-AA-000-0000,40,institution 118,Active,3,2010-05-12,city 118,state 118,China,"Arellano, Kassondra",2022-11-14
-AA-AA-000-0000,41,institution 119,Active,2,2008-07-07,city 119,state 119,Japan,"Garcia, Ivette",2022-11-14
-AA-AA-000-0000,42,institution 120,Active,1,2012-08-02,city 120,state 120,Japan,"Korth, Cait",2022-11-14
-AA-AA-000-0000,43,institution 121,Active,33,2004-07-26,city 121,state 121,US,"Patch, Jesse",2022-11-14
-AA-AA-000-0000,44,institution 122,Active,4,2009-08-06,city 122,state 122,US,"Cruze, Christopher",2022-11-14
-AA-AA-000-0000,45,institution 123,Active,1,2017-09-03,city 123,state 123,China,"Martinez, Cibella",2022-11-14
-AA-AA-000-0000,46,institution 124,Active,2,2004-02-15,city 124,state 124,China,"Busch, Deanna",2022-11-14
-AA-AA-000-0000,47,institution 125,Active,3,2008-05-24,city 125,state 125,China,"Delosreyes, Jonathan",2022-11-14
-AA-AA-000-0000,48,institution 126,Active,1,2010-05-02,city 126,state 126,US,"Martinez, Donovon",2022-11-14
-AA-AA-000-0000,49,institution 127,Active,4,2006-10-22,city 127,state 127,US,"Celano, Lauren",2022-11-14
-AA-AA-000-0000,5,institution 128,Active,43,2007-10-17,city 128,state 128,US,"Sidney, Brandon",2022-11-14
-AA-AA-000-0000,50,institution 129,Active,8,2007-07-24,city 129,state 129,China,"Mills, Hannah",2022-11-14
-AA-AA-000-0000,51,institution 130,Active,11,2007-10-10,city 130,state 130,US,"Seacat, Jesus",2022-11-14
-AA-AA-000-0000,52,institution 131,Active,3,2011-10-14,city 131,state 131,Japan,"Wilson, Henna",2022-11-14
-AA-AA-000-0000,53,institution 132,Active,3,2006-01-17,city 132,state 132,China,"el-Chahine, Musheer",2022-11-14
-AA-AA-000-0000,54,institution 133,Active,17,2006-07-08,city 133,state 133,Japan,"Claridy, Iesha",2022-11-14
-AA-AA-000-0000,55,institution 134,Active,1,2015-10-26,city 134,state 134,Japan,"Ho, Sam",2022-11-14
-AA-AA-000-0000,56,institution 135,Active,25,2006-07-25,city 135,state 135,China,"Townsend, Logan",2022-11-14
-AA-AA-000-0000,57,institution 136,Active,2,2006-08-27,city 136,state 136,Japan,"Cisneros, Moises",2022-11-14
-AA-AA-000-0000,58,institution 137,Active,20,2007-06-22,city 137,state 137,Japan,"Caramillo, Shyvaughn",2022-11-14
-AA-AA-000-0000,59,institution 138,Active,8,2006-07-21,city 138,state 138,US,"al-Salama, Faai Z",2022-11-14
-AA-AA-000-0000,6,institution 139,Active,1,2007-06-28,city 139,state 139,US,"el-Ismail, Shaafia",2022-11-14
-AA-AA-000-0000,60,institution 140,Active,4,2007-07-16,city 140,state 140,China,"Murphy, Sara",2022-11-14
-AA-AA-000-0000,61,institution 141,Active,15,2006-06-20,city 141,state 141,China,"Porco, Tony",2022-11-14
-AA-AA-000-0000,62,institution 142,Active,34,2006-06-07,city 142,state 142,US,"Muzeyen, Amina",2022-11-14
-AA-AA-000-0000,63,institution 143,Active,10,2006-08-05,city 143,state 143,China,"Brito, Ifhel",2022-11-14
-AA-AA-000-0000,64,institution 144,Active,4,2011-08-11,city 144,state 144,Japan,"Noe, David",2022-11-14
-AA-AA-000-0000,65,institution 145,Active,1,2011-10-02,city 145,state 145,Japan,"Banks, Desmond",2022-11-14
-AA-AA-000-0000,66,institution 146,Active,1,2018-08-25,city 146,state 146,Japan,"el-Abdalla, Haashim",2022-11-14
-AA-AA-000-0000,67,institution 147,Active,11,2007-06-08,city 147,state 147,Japan,"el-Omar, Shaqeeq",2022-11-14
-AA-AA-000-0000,68,institution 148,Active,4,2008-05-17,city 148,state 148,Japan,"Battle, Ty'Lia",2022-11-14
-AA-AA-000-0000,69,institution 149,Active,12,2006-07-26,city 149,state 149,US,"Thieman, Cheyan",2022-11-14
-AA-AA-000-0000,7,institution 150,Active,9,2007-08-16,city 150,state 150,Japan,"Torres Orijel, Alejandro",2022-11-14
-AA-AA-000-0000,70,institution 151,Active,3,2007-07-22,city 151,state 151,US,"Goldsberry, Desiree",2022-11-14
-AA-AA-000-0000,71,institution 152,Active,10,2006-07-20,city 152,state 152,Japan,"Fann, Cassidy",2022-11-14
-AA-AA-000-0000,72,institution 153,Active,1,2009-11-21,city 153,state 153,China,"Sampson, Jongwan",2022-11-14
-AA-AA-000-0000,73,institution 154,Active,4,2013-08-28,city 154,state 154,US,"Dewine, Justin",2022-11-14
-AA-AA-000-0000,75,institution 155,Active,10,2009-08-08,city 155,state 155,Japan,"Cordutsky, Christopher",2022-11-14
-AA-AA-000-0000,76,institution 156,Active,12,2006-08-06,city 156,state 156,US,"Medina, Cindy",2022-11-14
-AA-AA-000-0000,77,institution 157,Active,17,2006-08-19,city 157,state 157,China,"Williams, Kailyn",2022-11-14
-AA-AA-000-0000,78,institution 158,Active,1,2019-09-16,city 158,state 158,US,"Santos Madayag, Andrew",2022-11-14
-AA-AA-000-0000,8,institution 159,Active,23,2007-07-23,city 159,state 159,China,"Takahashi, Colin",2022-11-14
-AA-AA-000-0000,80,institution 160,Active,5,2008-10-23,city 160,state 160,China,"el-Farag, Jameel",2022-11-14
-AA-AA-000-0000,81,institution 161,Active,4,2012-11-26,city 161,state 161,China,"Truskowski, Cienna",2022-11-14
-AA-AA-000-0000,82,institution 162,Active,2,2016-08-25,city 162,state 162,Japan,"Lor, Rio",2022-11-14
-AA-AA-000-0000,83,institution 163,Active,7,2006-11-21,city 163,state 163,US,"el-Shakoor, Hamdaan",2022-11-14
-AA-AA-000-0000,84,institution 164,Active,3,2008-08-23,city 164,state 164,China,"Rivera, Brandon",2022-11-14
-AA-AA-000-0000,85,institution 165,Active,13,2007-07-28,city 165,state 165,Japan,"Smith, Hannah",2022-11-14
-AA-AA-000-0000,86,institution 166,Active,22,2007-08-29,city 166,state 166,Japan,"Glynn, Alemayehu",2022-11-14
-AA-AA-000-0000,87,institution 167,Active,1,2008-10-04,city 167,state 167,Japan,"Bresciani, Demetrius",2022-11-14
-AA-AA-000-0000,89,institution 168,Active,6,2011-10-22,city 168,state 168,Japan,"Brooks, Jamariah",2022-11-14
-AA-AA-000-0000,9,institution 169,Active,2,2011-06-29,city 169,state 169,China,"Braley, Shelby",2022-11-14
-AA-AA-000-0000,91,institution 170,Active,16,2006-08-16,city 170,state 170,Japan,"el-Asmar, Murshid",2022-11-14
-AA-AA-000-0000,92,institution 171,Active,15,2006-04-06,city 171,state 171,US,"Lebel, Anthony",2022-11-14
-AA-AA-000-0000,94,institution 172,Active,36,2006-04-29,city 172,state 172,Japan,"al-Ghazal, Razeen",2022-11-14
-AA-AA-000-0000,96,institution 173,Active,4,2006-05-08,city 173,state 173,US,"Pace, Shelley",2022-11-14
-AA-AA-000-0000,97,institution 174,Active,5,2006-07-27,city 174,state 174,China,"Gill, Deon",2022-11-14
-AA-AA-000-0000,98,institution 175,Active,2,2006-08-02,city 175,state 175,China,"Ramirez, Jericca",2022-11-14
-AA-AA-000-0000,99,institution 176,Active,1,2019-09-01,city 176,state 176,China,"el-Mansouri, Aasim",2022-11-14
+studyid,siteid,institution,status,enrolled_participants,start_date,city,state,country,invname,protocol_row_id,site_num,site_row_id,pi_number,pi_last_name,pi_first_name,is_satellite,gsm_analysis_date
+AA-AA-000-0000,10,city 1 Medical Center,Active,20,2006-04-12,city 1,state 1,China,"Torres, Ariel",1-1G9113,10,123-1234-0X126,0X126,Torres,Ariel,FALSE,2022-11-18
+AA-AA-000-0000,100,city 1 Medical Center,Active,2,2013-09-18,city 1,state 1,Japan,"Spangler, Cheyenne",1-1G9113,100,123-1234-X060X,X060X,Spangler,Cheyenne,FALSE,2022-11-18
+AA-AA-000-0000,101,city 1 Medical Center,Active,3,2008-07-18,city 1,state 1,US,"Broughton, Macallyson",1-1G9113,101,123-1234-0X174,0X174,Broughton,Macallyson,FALSE,2022-11-18
+AA-AA-000-0000,102,city 1 Medical Center,Active,3,2014-08-19,city 1,state 1,US,"Lester, Asa",1-1G9113,102,123-1234-0X073,0X073,Lester,Asa,FALSE,2022-11-18
+AA-AA-000-0000,103,city 1 Medical Center,Active,4,2010-08-06,city 1,state 1,Japan,"Salazar, Manaal",1-1G9113,103,123-1234-0X176,0X176,Salazar,Manaal,TRUE,2022-11-18
+AA-AA-000-0000,104,city 1 Medical Center,Active,9,2005-10-23,city 1,state 1,US,"Rollins, Dominico",1-1G9113,104,123-1234-0X140,0X140,Rollins,Dominico,FALSE,2022-11-18
+AA-AA-000-0000,105,city 1 Medical Center,Active,3,2009-08-09,city 1,state 1,US,"Terry, Brandon",1-1G9113,105,123-1234-0X179,0X179,Terry,Brandon,FALSE,2022-11-18
+AA-AA-000-0000,106,city 1 Medical Center,Active,3,2006-07-14,city 1,state 1,US,"Porter, Gabriella",1-1G9113,106,123-1234-0X040,0X040,Porter,Gabriella,FALSE,2022-11-18
+AA-AA-000-0000,107,city 1 Medical Center,Active,3,2009-09-07,city 1,state 1,US,"Lopez, Peter",1-1G9113,107,123-1234-0X072,0X072,Lopez,Peter,FALSE,2022-11-18
+AA-AA-000-0000,109,city 1 Medical Center,Active,4,2013-05-09,city 1,state 1,China,"Pascual, Brandon",1-1G9113,109,123-1234-0X127,0X127,Pascual,Brandon,FALSE,2022-11-18
+AA-AA-000-0000,11,city 1 Medical Center,Active,9,2007-07-14,city 1,state 1,China,"Ashcroft-Bitsilly, Michael",1-1G9113,11,123-1234-0X156,0X156,Ashcroft-Bitsilly,Michael,FALSE,2022-11-18
+AA-AA-000-0000,110,city 1 Medical Center,Active,1,2019-07-13,city 1,state 1,China,"al-Rais, Trang",1-1G9113,110,123-1234-0X181,0X181,al-Rais,Trang,FALSE,2022-11-18
+AA-AA-000-0000,111,city 1 Medical Center,Active,2,2006-09-23,city 1,state 1,US,"Mancilla, Yueh-Ya",1-1G9113,111,123-1234-0X114,0X114,Mancilla,Yueh-Ya,TRUE,2022-11-18
+AA-AA-000-0000,112,city 1 Medical Center,Active,2,2010-11-10,city 1,state 1,Japan,"el-Dia, Trevor",1-1G9113,112,123-1234-0X118,0X118,el-Dia,Trevor,FALSE,2022-11-18
+AA-AA-000-0000,113,city 1 Medical Center,Active,8,2006-09-27,city 1,state 1,China,"al-Hasen, Brittany",1-1G9113,113,123-1234-X187X,X187X,al-Hasen,Brittany,FALSE,2022-11-18
+AA-AA-000-0000,114,city 1 Medical Center,Active,7,2006-09-01,city 1,state 1,US,"el-Shaker, Aatika",1-1G9113,114,123-1234-0X016,0X016,el-Shaker,Aatika,FALSE,2022-11-18
+AA-AA-000-0000,115,city 1 Medical Center,Active,3,2012-03-20,city 1,state 1,US,"el-Mostafa, Sabriyya",1-1G9113,115,123-1234-0X037,0X037,el-Mostafa,Sabriyya,TRUE,2022-11-18
+AA-AA-000-0000,116,city 1 Medical Center,Active,3,2008-04-26,city 1,state 1,China,"Patalan, Alexander",1-1G9113,116,123-1234-0X105,0X105,Patalan,Alexander,FALSE,2022-11-18
+AA-AA-000-0000,117,city 1 Medical Center,Active,1,2019-08-07,city 1,state 1,China,"al-Badour, Nazeeha",1-1G9113,117,123-1234-0X092,0X092,al-Badour,Nazeeha,FALSE,2022-11-18
+AA-AA-000-0000,118,city 1 Medical Center,Active,17,2008-08-02,city 1,state 1,US,"Farr, Mujaahida",1-1G9113,118,123-1234-0X076,0X076,Farr,Mujaahida,TRUE,2022-11-18
+AA-AA-000-0000,119,city 1 Medical Center,Active,2,2007-08-08,city 1,state 1,China,"Keese, Ashlee",1-1G9113,119,123-1234-0X134,0X134,Keese,Ashlee,FALSE,2022-11-18
+AA-AA-000-0000,12,city 1 Medical Center,Active,1,2006-08-23,city 1,state 1,US,"al-Mussa, Shaleena",1-1G9113,12,123-1234-0X085,0X085,al-Mussa,Shaleena,FALSE,2022-11-18
+AA-AA-000-0000,120,city 1 Medical Center,Active,3,2014-08-10,city 1,state 1,China,"Kanack, Andres",1-1G9113,120,123-1234-0X169,0X169,Kanack,Andres,FALSE,2022-11-18
+AA-AA-000-0000,121,city 1 Medical Center,Active,6,2008-05-06,city 1,state 1,US,"Strock, Nicholas",1-1G9113,121,123-1234-0X120,0X120,Strock,Nicholas,FALSE,2022-11-18
+AA-AA-000-0000,122,city 1 Medical Center,Active,9,2007-06-13,city 1,state 1,China,"Bocanegra, Aquilah",1-1G9113,122,123-1234-0X018,0X018,Bocanegra,Aquilah,FALSE,2022-11-18
+AA-AA-000-0000,123,city 1 Medical Center,Active,1,2009-09-19,city 1,state 1,Japan,"Ha, Mariah",1-1G9113,123,123-1234-0X078,0X078,Ha,Mariah,FALSE,2022-11-18
+AA-AA-000-0000,124,city 1 Medical Center,Active,4,2008-09-15,city 1,state 1,US,"Truong, Christopher",1-1G9113,124,123-1234-0X029,0X029,Truong,Christopher,FALSE,2022-11-18
+AA-AA-000-0000,126,city 1 Medical Center,Active,1,2006-08-05,city 1,state 1,China,"Schmidt, Joseph",1-1G9113,126,123-1234-0X099,0X099,Schmidt,Joseph,FALSE,2022-11-18
+AA-AA-000-0000,127,city 1 Medical Center,Active,5,2008-07-07,city 1,state 1,Japan,"Ford, Saaya",1-1G9113,127,123-1234-0X043,0X043,Ford,Saaya,FALSE,2022-11-18
+AA-AA-000-0000,128,city 1 Medical Center,Active,5,2008-06-19,city 1,state 1,Japan,"Lesley, Nkaujiaong",1-1G9113,128,123-1234-0X149,0X149,Lesley,Nkaujiaong,TRUE,2022-11-18
+AA-AA-000-0000,129,city 1 Medical Center,Active,2,2014-08-04,city 1,state 1,China,"Friedrich, Anna",1-1G9113,129,123-1234-0X048,0X048,Friedrich,Anna,TRUE,2022-11-18
+AA-AA-000-0000,13,city 1 Medical Center,Active,8,2005-09-02,city 1,state 1,China,"Gonzalez, Crystal",1-1G9113,13,123-1234-0X077,0X077,Gonzalez,Crystal,FALSE,2022-11-18
+AA-AA-000-0000,130,city 1 Medical Center,Active,3,2007-10-22,city 1,state 1,Japan,"al-Radi, Carissa",1-1G9113,130,123-1234-0X010,0X010,al-Radi,Carissa,FALSE,2022-11-18
+AA-AA-000-0000,131,city 1 Medical Center,Active,7,2006-04-16,city 1,state 1,China,"Smith, Eric",1-1G9113,131,123-1234-0X025,0X025,Smith,Eric,FALSE,2022-11-18
+AA-AA-000-0000,132,city 1 Medical Center,Active,1,2013-08-20,city 1,state 1,China,"Gonzales, Aqsa",1-1G9113,132,123-1234-0X028,0X028,Gonzales,Aqsa,FALSE,2022-11-18
+AA-AA-000-0000,133,city 1 Medical Center,Active,5,2010-07-31,city 1,state 1,Japan,"el-Massoud, Musaddiq",1-1G9113,133,123-1234-0X042,0X042,el-Massoud,Musaddiq,FALSE,2022-11-18
+AA-AA-000-0000,134,city 1 Medical Center,Active,6,2008-09-04,city 1,state 1,US,"Aragon, Hailey",1-1G9113,134,123-1234-0X057,0X057,Aragon,Hailey,FALSE,2022-11-18
+AA-AA-000-0000,135,city 1 Medical Center,Active,5,2006-08-24,city 1,state 1,Japan,"Garnett, Alix",1-1G9113,135,123-1234-0X142,0X142,Garnett,Alix,FALSE,2022-11-18
+AA-AA-000-0000,136,city 1 Medical Center,Active,2,2006-09-21,city 1,state 1,US,"Cleckley, Zakariyya",1-1G9113,136,123-1234-0X110,0X110,Cleckley,Zakariyya,FALSE,2022-11-18
+AA-AA-000-0000,137,city 1 Medical Center,Active,7,2006-06-16,city 1,state 1,China,"Gonzales, Lindsey",1-1G9113,137,123-1234-0X086,0X086,Gonzales,Lindsey,FALSE,2022-11-18
+AA-AA-000-0000,138,city 1 Medical Center,Active,6,2006-04-29,city 1,state 1,US,"Kapoor, Tateh",1-1G9113,138,123-1234-0X184,0X184,Kapoor,Tateh,FALSE,2022-11-18
+AA-AA-000-0000,139,city 1 Medical Center,Active,58,2006-06-03,city 1,state 1,US,"Agenar, Angelo",1-1G9113,139,123-1234-0X052,0X052,Agenar,Angelo,FALSE,2022-11-18
+AA-AA-000-0000,14,city 1 Medical Center,Active,1,2013-07-31,city 1,state 1,US,"Taylor, Bianca",1-1G9113,14,123-1234-0X033,0X033,Taylor,Bianca,FALSE,2022-11-18
+AA-AA-000-0000,140,city 1 Medical Center,Active,69,2004-09-28,city 1,state 1,US,"Vangoey, Cydnie",1-1G9113,140,123-1234-0X161,0X161,Vangoey,Cydnie,FALSE,2022-11-18
+AA-AA-000-0000,141,city 1 Medical Center,Active,12,2007-07-04,city 1,state 1,China,"Tran, Raelina",1-1G9113,141,123-1234-0X180,0X180,Tran,Raelina,FALSE,2022-11-18
+AA-AA-000-0000,142,city 1 Medical Center,Active,4,2007-10-14,city 1,state 1,US,"Gonzales, Benjamin",1-1G9113,142,123-1234-0X095,0X095,Gonzales,Benjamin,FALSE,2022-11-18
+AA-AA-000-0000,143,city 1 Medical Center,Active,28,2006-08-01,city 1,state 1,US,"Voss, Hamdoona",1-1G9113,143,123-1234-0X153,0X153,Voss,Hamdoona,FALSE,2022-11-18
+AA-AA-000-0000,144,city 1 Medical Center,Active,4,2011-06-09,city 1,state 1,China,"Jiron, Essence",1-1G9113,144,123-1234-0X164,0X164,Jiron,Essence,FALSE,2022-11-18
+AA-AA-000-0000,145,city 1 Medical Center,Active,1,2012-03-21,city 1,state 1,US,"el-Yusuf, Christine",1-1G9113,145,123-1234-0X173,0X173,el-Yusuf,Christine,FALSE,2022-11-18
+AA-AA-000-0000,146,city 1 Medical Center,Active,7,2006-07-15,city 1,state 1,US,"Jenkins, Ashuka",1-1G9113,146,123-1234-0X188,0X188,Jenkins,Ashuka,FALSE,2022-11-18
+AA-AA-000-0000,147,city 1 Medical Center,Active,5,2008-08-10,city 1,state 1,US,"Gonzales, Carlos",1-1G9113,147,123-1234-0X036,0X036,Gonzales,Carlos,FALSE,2022-11-18
+AA-AA-000-0000,148,city 1 Medical Center,Active,2,2008-08-06,city 1,state 1,China,"Gallegos-Neiberger, Caroline",1-1G9113,148,123-1234-0X186,0X186,Gallegos-Neiberger,Caroline,FALSE,2022-11-18
+AA-AA-000-0000,149,city 1 Medical Center,Active,8,2008-07-16,city 1,state 1,US,"Dabit, Derrick",1-1G9113,149,123-1234-0X075,0X075,Dabit,Derrick,FALSE,2022-11-18
+AA-AA-000-0000,15,city 1 Medical Center,Active,5,2005-09-09,city 1,state 1,China,"Kimler, Marceen",1-1G9113,15,123-1234-0X039,0X039,Kimler,Marceen,FALSE,2022-11-18
+AA-AA-000-0000,150,city 1 Medical Center,Active,2,2007-10-06,city 1,state 1,China,"Vargas Padilla, Darien",1-1G9113,150,123-1234-0X054,0X054,Vargas Padilla,Darien,FALSE,2022-11-18
+AA-AA-000-0000,151,city 1 Medical Center,Active,3,2008-09-21,city 1,state 1,China,"Pinch, Haileigh",1-1G9113,151,123-1234-0X168,0X168,Pinch,Haileigh,FALSE,2022-11-18
+AA-AA-000-0000,152,city 1 Medical Center,Active,6,2007-07-26,city 1,state 1,Japan,"el-Allam, Felicity",1-1G9113,152,123-1234-0X013,0X013,el-Allam,Felicity,FALSE,2022-11-18
+AA-AA-000-0000,153,city 1 Medical Center,Active,4,2007-06-02,city 1,state 1,China,"al-Nouri, Caerra",1-1G9113,153,123-1234-0X089,0X089,al-Nouri,Caerra,FALSE,2022-11-18
+AA-AA-000-0000,154,city 1 Medical Center,Active,1,2015-06-04,city 1,state 1,Japan,"el-Attar, Kristie",1-1G9113,154,123-1234-0X090,0X090,el-Attar,Kristie,FALSE,2022-11-18
+AA-AA-000-0000,155,city 1 Medical Center,Active,10,2006-07-02,city 1,state 1,US,"Pond, Qu Onu",1-1G9113,155,123-1234-0X125,0X125,Pond,Qu Onu,TRUE,2022-11-18
+AA-AA-000-0000,156,city 1 Medical Center,Active,9,2006-10-28,city 1,state 1,China,"Arellano, Talia",1-1G9113,156,123-1234-0X157,0X157,Arellano,Talia,FALSE,2022-11-18
+AA-AA-000-0000,157,city 1 Medical Center,Active,7,2006-08-02,city 1,state 1,US,"Pinto, Justin",1-1G9113,157,123-1234-0X063,0X063,Pinto,Justin,FALSE,2022-11-18
+AA-AA-000-0000,158,city 1 Medical Center,Active,1,2011-07-27,city 1,state 1,Japan,"Gray, Louisa",1-1G9113,158,123-1234-0X183,0X183,Gray,Louisa,FALSE,2022-11-18
+AA-AA-000-0000,159,city 1 Medical Center,Active,1,2013-03-14,city 1,state 1,Japan,"Rodriguez-Cruz, Kevin",1-1G9113,159,123-1234-0X121,0X121,Rodriguez-Cruz,Kevin,TRUE,2022-11-18
+AA-AA-000-0000,16,city 1 Medical Center,Active,3,2006-08-10,city 1,state 1,US,"Suess, Christina",1-1G9113,16,123-1234-0X148,0X148,Suess,Christina,FALSE,2022-11-18
+AA-AA-000-0000,160,city 1 Medical Center,Active,7,2009-07-30,city 1,state 1,Japan,"el-Agha, Mu,Aawiya",1-1G9113,160,123-1234-0X096,0X096,el-Agha,"Mu,Aawiya",FALSE,2022-11-18
+AA-AA-000-0000,161,city 1 Medical Center,Active,5,2013-12-19,city 1,state 1,Japan,"Gallegos, Mansoor",1-1G9113,161,123-1234-0X011,0X011,Gallegos,Mansoor,FALSE,2022-11-18
+AA-AA-000-0000,162,city 1 Medical Center,Active,2,2009-09-09,city 1,state 1,US,"Mccracken, Byung",1-1G9113,162,123-1234-0X049,0X049,Mccracken,Byung,FALSE,2022-11-18
+AA-AA-000-0000,163,city 1 Medical Center,Active,3,2007-07-08,city 1,state 1,US,"Garrison, Raquel",1-1G9113,163,123-1234-0X031,0X031,Garrison,Raquel,FALSE,2022-11-18
+AA-AA-000-0000,164,city 1 Medical Center,Active,7,2006-07-22,city 1,state 1,China,"Campa, April",1-1G9113,164,123-1234-0X162,0X162,Campa,April,FALSE,2022-11-18
+AA-AA-000-0000,165,city 1 Medical Center,Active,1,2011-06-20,city 1,state 1,Japan,"Tran, Briana",1-1G9113,165,123-1234-0X131,0X131,Tran,Briana,FALSE,2022-11-18
+AA-AA-000-0000,166,city 1 Medical Center,Active,20,2005-10-08,city 1,state 1,US,"Solis, Safwa",1-1G9113,166,123-1234-0X102,0X102,Solis,Safwa,FALSE,2022-11-18
+AA-AA-000-0000,167,city 1 Medical Center,Active,15,2006-08-04,city 1,state 1,US,"Foster, Tracee",1-1G9113,167,123-1234-0X059,0X059,Foster,Tracee,FALSE,2022-11-18
+AA-AA-000-0000,168,city 1 Medical Center,Active,3,2008-07-23,city 1,state 1,China,"Orio, Shaqeeqa",1-1G9113,168,123-1234-0X189,0X189,Orio,Shaqeeqa,TRUE,2022-11-18
+AA-AA-000-0000,17,city 1 Medical Center,Active,12,2006-06-17,city 1,state 1,China,"Hoffpauir, Adam",1-1G9113,17,123-1234-0X171,0X171,Hoffpauir,Adam,FALSE,2022-11-18
+AA-AA-000-0000,170,city 1 Medical Center,Active,27,2006-09-08,city 1,state 1,US,"Vigo, Edeyanira",1-1G9113,170,123-1234-0X087,0X087,Vigo,Edeyanira,FALSE,2022-11-18
+AA-AA-000-0000,171,city 1 Medical Center,Active,1,2007-09-27,city 1,state 1,US,"Nguyen, Abdul Wadood",1-1G9113,171,123-1234-0X109,0X109,Nguyen,Abdul Wadood,FALSE,2022-11-18
+AA-AA-000-0000,172,city 1 Medical Center,Active,28,2006-05-11,city 1,state 1,Japan,"el-Vaziri, Theador",1-1G9113,172,123-1234-0X163,0X163,el-Vaziri,Theador,FALSE,2022-11-18
+AA-AA-000-0000,173,city 1 Medical Center,Active,27,2006-05-17,city 1,state 1,US,"Salas Dominguez, Dominick",1-1G9113,173,123-1234-0X124,0X124,Salas Dominguez,Dominick,TRUE,2022-11-18
+AA-AA-000-0000,174,city 1 Medical Center,Active,6,2006-08-12,city 1,state 1,US,"al-Miah, Carsyn",1-1G9113,174,123-1234-0X051,0X051,al-Miah,Carsyn,FALSE,2022-11-18
+AA-AA-000-0000,175,city 1 Medical Center,Active,1,2014-09-17,city 1,state 1,US,"Zamora, John",1-1G9113,175,123-1234-X067X,X067X,Zamora,John,FALSE,2022-11-18
+AA-AA-000-0000,176,city 1 Medical Center,Active,5,2007-07-22,city 1,state 1,US,"Hill, Joan",1-1G9113,176,123-1234-0X106,0X106,Hill,Joan,FALSE,2022-11-18
+AA-AA-000-0000,177,city 1 Medical Center,Active,5,2006-09-04,city 1,state 1,US,"Hamlin, Ivy",1-1G9113,177,123-1234-0X020,0X020,Hamlin,Ivy,FALSE,2022-11-18
+AA-AA-000-0000,178,city 1 Medical Center,Active,2,2013-09-07,city 1,state 1,US,"el-Kaber, Darrell",1-1G9113,178,123-1234-0X144,0X144,el-Kaber,Darrell,FALSE,2022-11-18
+AA-AA-000-0000,179,city 1 Medical Center,Active,4,2008-06-11,city 1,state 1,US,"Lee, Omar",1-1G9113,179,123-1234-0X021,0X021,Lee,Omar,FALSE,2022-11-18
+AA-AA-000-0000,18,city 1 Medical Center,Active,2,2008-08-17,city 1,state 1,US,"al-Sesay, Ana",1-1G9113,18,123-1234-0X068,0X068,al-Sesay,Ana,FALSE,2022-11-18
+AA-AA-000-0000,180,city 1 Medical Center,Active,1,2009-09-24,city 1,state 1,Japan,"Harrison, Audreana",1-1G9113,180,123-1234-0X061,0X061,Harrison,Audreana,FALSE,2022-11-18
+AA-AA-000-0000,181,city 1 Medical Center,Active,3,2011-07-28,city 1,state 1,US,"Robb, Muslih",1-1G9113,181,123-1234-0X001,0X001,Robb,Muslih,FALSE,2022-11-18
+AA-AA-000-0000,182,city 1 Medical Center,Active,2,2006-04-17,city 1,state 1,US,"Guevara, Rubin",1-1G9113,182,123-1234-0X117,0X117,Guevara,Rubin,FALSE,2022-11-18
+AA-AA-000-0000,183,city 1 Medical Center,Active,2,2013-07-08,city 1,state 1,China,"Hutchinson, Jocelyn",1-1G9113,183,123-1234-0X030,0X030,Hutchinson,Jocelyn,FALSE,2022-11-18
+AA-AA-000-0000,184,city 1 Medical Center,Active,5,2012-04-08,city 1,state 1,US,"Martinez, Aayaat",1-1G9113,184,123-1234-0X123,0X123,Martinez,Aayaat,FALSE,2022-11-18
+AA-AA-000-0000,185,city 1 Medical Center,Active,2,2009-09-14,city 1,state 1,Japan,"Harrison, Jose",1-1G9113,185,123-1234-0X007,0X007,Harrison,Jose,FALSE,2022-11-18
+AA-AA-000-0000,186,city 1 Medical Center,Active,5,2007-06-12,city 1,state 1,US,"al-Mussa, Janiro",1-1G9113,186,123-1234-0X064,0X064,al-Mussa,Janiro,FALSE,2022-11-18
+AA-AA-000-0000,187,city 1 Medical Center,Active,5,2006-09-30,city 1,state 1,US,"Cousins, Xin Hong",1-1G9113,187,123-1234-0X119,0X119,Cousins,Xin Hong,FALSE,2022-11-18
+AA-AA-000-0000,188,city 1 Medical Center,Active,3,2011-07-05,city 1,state 1,Japan,"Garcia, Intisaar",1-1G9113,188,123-1234-0X166,0X166,Garcia,Intisaar,FALSE,2022-11-18
+AA-AA-000-0000,189,city 1 Medical Center,Active,28,2006-06-21,city 1,state 1,US,"Depoyster, Annestaisia",1-1G9113,189,123-1234-0X093,0X093,Depoyster,Annestaisia,FALSE,2022-11-18
+AA-AA-000-0000,19,city 1 Medical Center,Active,3,2012-05-23,city 1,state 1,US,"Black, Cynthia",1-1G9113,19,123-1234-0X138,0X138,Black,Cynthia,TRUE,2022-11-18
+AA-AA-000-0000,190,city 1 Medical Center,Active,7,2005-06-13,city 1,state 1,US,"Arshad, Sulaimaan",1-1G9113,190,123-1234-0X005,0X005,Arshad,Sulaimaan,FALSE,2022-11-18
+AA-AA-000-0000,20,city 1 Medical Center,Active,1,2009-08-01,city 1,state 1,US,"Landry, Kasey",1-1G9113,20,123-1234-X185X,X185X,Landry,Kasey,FALSE,2022-11-18
+AA-AA-000-0000,22,city 1 Medical Center,Active,5,2008-09-10,city 1,state 1,US,"Choi, Aranda",1-1G9113,22,123-1234-0X132,0X132,Choi,Aranda,FALSE,2022-11-18
+AA-AA-000-0000,23,city 1 Medical Center,Active,5,2007-05-19,city 1,state 1,China,"Grant-Perry, Makayla",1-1G9113,23,123-1234-0X107,0X107,Grant-Perry,Makayla,FALSE,2022-11-18
+AA-AA-000-0000,25,city 1 Medical Center,Active,3,2010-05-11,city 1,state 1,Japan,"Yazzie, Aaron",1-1G9113,25,123-1234-0X041,0X041,Yazzie,Aaron,FALSE,2022-11-18
+AA-AA-000-0000,26,city 1 Medical Center,Active,7,2006-07-14,city 1,state 1,US,"Batchelder, Savanna",1-1G9113,26,123-1234-0X152,0X152,Batchelder,Savanna,FALSE,2022-11-18
+AA-AA-000-0000,27,city 1 Medical Center,Active,4,2008-09-21,city 1,state 1,China,"Wilde, Naasiruddeen",1-1G9113,27,123-1234-0X113,0X113,Wilde,Naasiruddeen,FALSE,2022-11-18
+AA-AA-000-0000,28,city 1 Medical Center,Active,5,2005-06-08,city 1,state 1,US,"al-Mona, Andrew",1-1G9113,28,123-1234-0X103,0X103,al-Mona,Andrew,FALSE,2022-11-18
+AA-AA-000-0000,29,city 1 Medical Center,Active,7,2007-10-09,city 1,state 1,Japan,"el-Ameen, Latisha",1-1G9113,29,123-1234-0X116,0X116,el-Ameen,Latisha,FALSE,2022-11-18
+AA-AA-000-0000,3,city 1 Medical Center,Active,2,2009-07-25,city 1,state 1,US,"el-Khalifa, Fuaada",1-1G9113,3,123-1234-0X139,0X139,el-Khalifa,Fuaada,TRUE,2022-11-18
+AA-AA-000-0000,30,city 1 Medical Center,Active,7,2006-08-29,city 1,state 1,Japan,"Browne, Wyatt",1-1G9113,30,123-1234-0X100,0X100,Browne,Wyatt,FALSE,2022-11-18
+AA-AA-000-0000,31,city 1 Medical Center,Active,1,2006-07-18,city 1,state 1,US,"Lipps, Marcus",1-1G9113,31,123-1234-0X066,0X066,Lipps,Marcus,FALSE,2022-11-18
+AA-AA-000-0000,32,city 1 Medical Center,Active,3,2008-10-30,city 1,state 1,Japan,"Gomez, Shane",1-1G9113,32,123-1234-0X079,0X079,Gomez,Shane,FALSE,2022-11-18
+AA-AA-000-0000,33,city 1 Medical Center,Active,1,2008-10-23,city 1,state 1,Japan,"Esquibel, Shakoora",1-1G9113,33,123-1234-0X141,0X141,Esquibel,Shakoora,FALSE,2022-11-18
+AA-AA-000-0000,34,city 1 Medical Center,Active,8,2009-06-19,city 1,state 1,Japan,"Ramirez, Kailey",1-1G9113,34,123-1234-0X082,0X082,Ramirez,Kailey,FALSE,2022-11-18
+AA-AA-000-0000,35,city 1 Medical Center,Active,5,2006-07-16,city 1,state 1,Japan,"Mansfield, Elle-Han",1-1G9113,35,123-1234-0X012,0X012,Mansfield,Elle-Han,FALSE,2022-11-18
+AA-AA-000-0000,36,city 1 Medical Center,Active,1,2010-10-10,city 1,state 1,US,"John, Jose",1-1G9113,36,123-1234-0X115,0X115,John,Jose,FALSE,2022-11-18
+AA-AA-000-0000,38,city 1 Medical Center,Active,1,2017-07-26,city 1,state 1,China,"Pinar, Austin",1-1G9113,38,123-1234-0X165,0X165,Pinar,Austin,FALSE,2022-11-18
+AA-AA-000-0000,39,city 1 Medical Center,Active,4,2005-12-02,city 1,state 1,Japan,"Horton, Drew",1-1G9113,39,123-1234-0X045,0X045,Horton,Drew,FALSE,2022-11-18
+AA-AA-000-0000,4,city 1 Medical Center,Active,9,2006-09-10,city 1,state 1,US,"Anderson, Taamir",1-1G9113,4,123-1234-X044X,X044X,Anderson,Taamir,FALSE,2022-11-18
+AA-AA-000-0000,40,city 1 Medical Center,Active,3,2010-05-12,city 1,state 1,US,"Lamping, Tad",1-1G9113,40,123-1234-0X147,0X147,Lamping,Tad,TRUE,2022-11-18
+AA-AA-000-0000,41,city 1 Medical Center,Active,2,2008-07-07,city 1,state 1,US,"Ronquillo, Alejandra",1-1G9113,41,123-1234-0X098,0X098,Ronquillo,Alejandra,FALSE,2022-11-18
+AA-AA-000-0000,42,city 1 Medical Center,Active,1,2012-08-02,city 1,state 1,US,"el-Hoque, Grace",1-1G9113,42,123-1234-0X008,0X008,el-Hoque,Grace,FALSE,2022-11-18
+AA-AA-000-0000,43,city 1 Medical Center,Active,33,2004-07-26,city 1,state 1,US,"Flores, Sufyaan",1-1G9113,43,123-1234-0X159,0X159,Flores,Sufyaan,TRUE,2022-11-18
+AA-AA-000-0000,44,city 1 Medical Center,Active,4,2009-08-06,city 1,state 1,China,"Keys, Isiah",1-1G9113,44,123-1234-0X108,0X108,Keys,Isiah,FALSE,2022-11-18
+AA-AA-000-0000,45,city 1 Medical Center,Active,1,2017-09-03,city 1,state 1,US,"Handley, Kelsey",1-1G9113,45,123-1234-0X136,0X136,Handley,Kelsey,FALSE,2022-11-18
+AA-AA-000-0000,46,city 1 Medical Center,Active,2,2004-02-15,city 1,state 1,US,"Phouansavanh, Francine",1-1G9113,46,123-1234-0X058,0X058,Phouansavanh,Francine,FALSE,2022-11-18
+AA-AA-000-0000,47,city 1 Medical Center,Active,3,2008-05-24,city 1,state 1,China,"Davis Jr, Robert",1-1G9113,47,123-1234-0X062,0X062,Davis Jr,Robert,FALSE,2022-11-18
+AA-AA-000-0000,48,city 1 Medical Center,Active,1,2010-05-02,city 1,state 1,Japan,"Longwolf, Angelique",1-1G9113,48,123-1234-0X190,0X190,Longwolf,Angelique,FALSE,2022-11-18
+AA-AA-000-0000,49,city 1 Medical Center,Active,4,2006-10-22,city 1,state 1,US,"al-Daoud, Ami",1-1G9113,49,123-1234-0X046,0X046,al-Daoud,Ami,FALSE,2022-11-18
+AA-AA-000-0000,5,city 1 Medical Center,Active,43,2007-10-17,city 1,state 1,US,"al-Koroma, Amanda",1-1G9113,5,123-1234-0X167,0X167,al-Koroma,Amanda,TRUE,2022-11-18
+AA-AA-000-0000,50,city 1 Medical Center,Active,8,2007-07-24,city 1,state 1,US,"el-Salih, Yushan",1-1G9113,50,123-1234-0X143,0X143,el-Salih,Yushan,FALSE,2022-11-18
+AA-AA-000-0000,51,city 1 Medical Center,Active,11,2007-10-10,city 1,state 1,US,"Correa, Evan",1-1G9113,51,123-1234-0X088,0X088,Correa,Evan,FALSE,2022-11-18
+AA-AA-000-0000,52,city 1 Medical Center,Active,3,2011-10-14,city 1,state 1,US,"al-Nawaz, Ghaaliya",1-1G9113,52,123-1234-0X022,0X022,al-Nawaz,Ghaaliya,FALSE,2022-11-18
+AA-AA-000-0000,53,city 1 Medical Center,Active,3,2006-01-17,city 1,state 1,China,"Martinez, April",1-1G9113,53,123-1234-0X015,0X015,Martinez,April,TRUE,2022-11-18
+AA-AA-000-0000,54,city 1 Medical Center,Active,17,2006-07-08,city 1,state 1,US,"el-Mousa, Saalim",1-1G9113,54,123-1234-0X080,0X080,el-Mousa,Saalim,TRUE,2022-11-18
+AA-AA-000-0000,55,city 1 Medical Center,Active,1,2015-10-26,city 1,state 1,US,"Tull, Rayyaan",1-1G9113,55,123-1234-0X050,0X050,Tull,Rayyaan,FALSE,2022-11-18
+AA-AA-000-0000,56,city 1 Medical Center,Active,25,2006-07-25,city 1,state 1,US,"Som, Josiah",1-1G9113,56,123-1234-0X014,0X014,Som,Josiah,FALSE,2022-11-18
+AA-AA-000-0000,57,city 1 Medical Center,Active,2,2006-08-27,city 1,state 1,US,"Jung, Tawfeeqa",1-1G9113,57,123-1234-0X055,0X055,Jung,Tawfeeqa,FALSE,2022-11-18
+AA-AA-000-0000,58,city 1 Medical Center,Active,20,2007-06-22,city 1,state 1,China,"Ostrom, Diego",1-1G9113,58,123-1234-0X091,0X091,Ostrom,Diego,FALSE,2022-11-18
+AA-AA-000-0000,59,city 1 Medical Center,Active,8,2006-07-21,city 1,state 1,US,"al-Yusuf, Elizabeth",1-1G9113,59,123-1234-0X182,0X182,al-Yusuf,Elizabeth,FALSE,2022-11-18
+AA-AA-000-0000,6,city 1 Medical Center,Active,1,2007-06-28,city 1,state 1,US,"Johnson, Austin",1-1G9113,6,123-1234-0X172,0X172,Johnson,Austin,FALSE,2022-11-18
+AA-AA-000-0000,60,city 1 Medical Center,Active,4,2007-07-16,city 1,state 1,US,"Herlin, Tyler",1-1G9113,60,123-1234-0X170,0X170,Herlin,Tyler,FALSE,2022-11-18
+AA-AA-000-0000,61,city 1 Medical Center,Active,15,2006-06-20,city 1,state 1,China,"Poveromo, Jack",1-1G9113,61,123-1234-0X151,0X151,Poveromo,Jack,FALSE,2022-11-18
+AA-AA-000-0000,62,city 1 Medical Center,Active,34,2006-06-07,city 1,state 1,US,"Avena, Maren",1-1G9113,62,123-1234-0X023,0X023,Avena,Maren,FALSE,2022-11-18
+AA-AA-000-0000,63,city 1 Medical Center,Active,10,2006-08-05,city 1,state 1,Japan,"Martinez, Moses",1-1G9113,63,123-1234-0X129,0X129,Martinez,Moses,FALSE,2022-11-18
+AA-AA-000-0000,64,city 1 Medical Center,Active,4,2011-08-11,city 1,state 1,Japan,"al-Sultana, Trevon",1-1G9113,64,123-1234-0X006,0X006,al-Sultana,Trevon,FALSE,2022-11-18
+AA-AA-000-0000,65,city 1 Medical Center,Active,1,2011-10-02,city 1,state 1,China,"Pope, Hilario",1-1G9113,65,123-1234-0X133,0X133,Pope,Hilario,FALSE,2022-11-18
+AA-AA-000-0000,66,city 1 Medical Center,Active,1,2018-08-25,city 1,state 1,US,"Crowe, Kendall",1-1G9113,66,123-1234-0X177,0X177,Crowe,Kendall,FALSE,2022-11-18
+AA-AA-000-0000,67,city 1 Medical Center,Active,11,2007-06-08,city 1,state 1,US,"Kessenich, Tyler",1-1G9113,67,123-1234-0X178,0X178,Kessenich,Tyler,TRUE,2022-11-18
+AA-AA-000-0000,68,city 1 Medical Center,Active,4,2008-05-17,city 1,state 1,China,"al-Sani, Mary",1-1G9113,68,123-1234-0X155,0X155,al-Sani,Mary,FALSE,2022-11-18
+AA-AA-000-0000,69,city 1 Medical Center,Active,12,2006-07-26,city 1,state 1,US,"Culhane, Autumn",1-1G9113,69,123-1234-0X038,0X038,Culhane,Autumn,FALSE,2022-11-18
+AA-AA-000-0000,7,city 1 Medical Center,Active,9,2007-08-16,city 1,state 1,China,"Burroughs-Chock, Selena",1-1G9113,7,123-1234-0X130,0X130,Burroughs-Chock,Selena,FALSE,2022-11-18
+AA-AA-000-0000,70,city 1 Medical Center,Active,3,2007-07-22,city 1,state 1,US,"Cooley, Carson",1-1G9113,70,123-1234-0X056,0X056,Cooley,Carson,FALSE,2022-11-18
+AA-AA-000-0000,71,city 1 Medical Center,Active,10,2006-07-20,city 1,state 1,China,"el-Aman, Lathan",1-1G9113,71,123-1234-0X083,0X083,el-Aman,Lathan,FALSE,2022-11-18
+AA-AA-000-0000,72,city 1 Medical Center,Active,1,2009-11-21,city 1,state 1,China,"Flood, Tori",1-1G9113,72,123-1234-0X101,0X101,Flood,Tori,FALSE,2022-11-18
+AA-AA-000-0000,73,city 1 Medical Center,Active,4,2013-08-28,city 1,state 1,Japan,"Ello, April",1-1G9113,73,123-1234-0X069,0X069,Ello,April,FALSE,2022-11-18
+AA-AA-000-0000,75,city 1 Medical Center,Active,10,2009-08-08,city 1,state 1,China,"Owens, Olivia",1-1G9113,75,123-1234-0X027,0X027,Owens,Olivia,FALSE,2022-11-18
+AA-AA-000-0000,76,city 1 Medical Center,Active,12,2006-08-06,city 1,state 1,US,"James, Ryan",1-1G9113,76,123-1234-0X104,0X104,James,Ryan,FALSE,2022-11-18
+AA-AA-000-0000,77,city 1 Medical Center,Active,17,2006-08-19,city 1,state 1,US,"el-Salameh, Austin",1-1G9113,77,123-1234-0X122,0X122,el-Salameh,Austin,FALSE,2022-11-18
+AA-AA-000-0000,78,city 1 Medical Center,Active,1,2019-09-16,city 1,state 1,US,"Biolchini, Abrina",1-1G9113,78,123-1234-0X002,0X002,Biolchini,Abrina,FALSE,2022-11-18
+AA-AA-000-0000,8,city 1 Medical Center,Active,23,2007-07-23,city 1,state 1,US,"Cloud, Ian",1-1G9113,8,123-1234-0X154,0X154,Cloud,Ian,FALSE,2022-11-18
+AA-AA-000-0000,80,city 1 Medical Center,Active,5,2008-10-23,city 1,state 1,China,"Thompson, Troslyn",1-1G9113,80,123-1234-0X097,0X097,Thompson,Troslyn,TRUE,2022-11-18
+AA-AA-000-0000,81,city 1 Medical Center,Active,4,2012-11-26,city 1,state 1,China,"Liggett, Joseph",1-1G9113,81,123-1234-0X160,0X160,Liggett,Joseph,FALSE,2022-11-18
+AA-AA-000-0000,82,city 1 Medical Center,Active,2,2016-08-25,city 1,state 1,Japan,"Hager, Hafsa",1-1G9113,82,123-1234-0X135,0X135,Hager,Hafsa,FALSE,2022-11-18
+AA-AA-000-0000,83,city 1 Medical Center,Active,7,2006-11-21,city 1,state 1,Japan,"Rinard, Najwa",1-1G9113,83,123-1234-0X024,0X024,Rinard,Najwa,FALSE,2022-11-18
+AA-AA-000-0000,84,city 1 Medical Center,Active,3,2008-08-23,city 1,state 1,China,"Touch, Brandon",1-1G9113,84,123-1234-0X004,0X004,Touch,Brandon,FALSE,2022-11-18
+AA-AA-000-0000,85,city 1 Medical Center,Active,13,2007-07-28,city 1,state 1,US,"Drake, Leonard",1-1G9113,85,123-1234-0X003,0X003,Drake,Leonard,FALSE,2022-11-18
+AA-AA-000-0000,86,city 1 Medical Center,Active,22,2007-08-29,city 1,state 1,US,"el-Saladin, Viola",1-1G9113,86,123-1234-0X035,0X035,el-Saladin,Viola,FALSE,2022-11-18
+AA-AA-000-0000,87,city 1 Medical Center,Active,1,2008-10-04,city 1,state 1,US,"Yeadon, Zakiyya",1-1G9113,87,123-1234-0X034,0X034,Yeadon,Zakiyya,FALSE,2022-11-18
+AA-AA-000-0000,89,city 1 Medical Center,Active,6,2011-10-22,city 1,state 1,Japan,"Wilson, Justin",1-1G9113,89,123-1234-0X137,0X137,Wilson,Justin,FALSE,2022-11-18
+AA-AA-000-0000,9,city 1 Medical Center,Active,2,2011-06-29,city 1,state 1,Japan,"Luong, Nina Angelica",1-1G9113,9,123-1234-0X084,0X084,Luong,Nina Angelica,FALSE,2022-11-18
+AA-AA-000-0000,91,city 1 Medical Center,Active,16,2006-08-16,city 1,state 1,US,"Gonzalez, Bibek",1-1G9113,91,123-1234-0X175,0X175,Gonzalez,Bibek,FALSE,2022-11-18
+AA-AA-000-0000,92,city 1 Medical Center,Active,15,2006-04-06,city 1,state 1,US,"el-Samra, Omar",1-1G9113,92,123-1234-0X026,0X026,el-Samra,Omar,FALSE,2022-11-18
+AA-AA-000-0000,94,city 1 Medical Center,Active,36,2006-04-29,city 1,state 1,US,"Hill, Jordan",1-1G9113,94,123-1234-0X065,0X065,Hill,Jordan,FALSE,2022-11-18
+AA-AA-000-0000,96,city 1 Medical Center,Active,4,2006-05-08,city 1,state 1,China,"Hendee, Dhareef",1-1G9113,96,123-1234-0X081,0X081,Hendee,Dhareef,FALSE,2022-11-18
+AA-AA-000-0000,97,city 1 Medical Center,Active,5,2006-07-27,city 1,state 1,US,"al-Mussa, Derika",1-1G9113,97,123-1234-0X094,0X094,al-Mussa,Derika,FALSE,2022-11-18
+AA-AA-000-0000,98,city 1 Medical Center,Active,2,2006-08-02,city 1,state 1,Japan,"Moran, Myles",1-1G9113,98,123-1234-0X074,0X074,Moran,Myles,FALSE,2022-11-18
+AA-AA-000-0000,99,city 1 Medical Center,Active,1,2019-09-01,city 1,state 1,Japan,"Ruvalcaba, Alexandra",1-1G9113,99,123-1234-0X047,0X047,Ruvalcaba,Alexandra,FALSE,2022-11-18

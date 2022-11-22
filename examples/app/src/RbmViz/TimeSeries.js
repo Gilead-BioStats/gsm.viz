@@ -6,14 +6,20 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const TimeSeries = ({ data, config, thresholds }) => {
+const TimeSeries = ({ data, config, thresholds, intervals }) => {
     const container = useRef(null);
 
     useEffect(() => {
         if (container.current) {
-            rbm.timeSeries(container.current, data, config, thresholds);
+            rbm.timeSeries(
+                container.current,
+                data,
+                config,
+                thresholds,
+                intervals
+            );
         }
-    }, [data, config, thresholds]);
+    }, [data, config, thresholds, intervals]);
 
     return (
         <div
@@ -28,12 +34,14 @@ TimeSeries.propTypes = {
     data: PropTypes.array,
     config: PropTypes.object,
     thresholds: PropTypes.array,
+    intervals: PropTypes.array,
 };
 
 TimeSeries.defaultProps = {
     data: [],
     config: {},
     thresholds: [],
+    intervals: [],
 };
 
 export { TimeSeries };

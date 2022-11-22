@@ -6,8 +6,8 @@ export default function mutate(_data_, config) {
                 x: d[config.x],
                 y: +d[config.y],
                 stratum: +d[config.color],
-                numerator: +d[config.num],
-                denominator: +d[config.denom],
+                //numerator: +d[config.num],
+                //denominator: +d[config.denom],
             };
 
             return datum;

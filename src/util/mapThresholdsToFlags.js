@@ -1,14 +1,17 @@
-export default function mapThresholdsToFlags(_thresholds_) {
+export default function mapThresholdsToFlags(_thresholds_, complete = true) {
     // Capture complete set of thresholds, even when only a partial set exists in the data.
-    const nonNegativeThresholds = [
-        ...new Set(_thresholds_.map((threshold) => Math.abs(threshold))),
-    ];
-    const negativeThresholds = nonNegativeThresholds.map(
-        (threshold) => -1 * threshold
-    );
-    const thresholds = [
-        ...new Set([...nonNegativeThresholds, ...negativeThresholds]),
-    ].sort((a, b) => a - b);
+    let thresholds = _thresholds_.map((threshold) => +threshold);
+    if (complete) {
+        const nonNegativeThresholds = [
+            ...new Set(_thresholds_.map((threshold) => Math.abs(threshold))),
+        ];
+        const negativeThresholds = nonNegativeThresholds.map(
+            (threshold) => -1 * threshold
+        );
+        thresholds = [
+            ...new Set([...nonNegativeThresholds, ...negativeThresholds]),
+        ].sort((a, b) => a - b);
+    }
 
     // Define sequence centered at 0.
     const flags = thresholds.map((threshold, i) => {

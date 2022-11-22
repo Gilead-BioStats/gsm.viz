@@ -1,7 +1,7 @@
 [
     {
         "workflowid": "kri0001",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "AE",
         "metric": "Non-serious AE Reporting Rate",
@@ -12,11 +12,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.ae, rawplus.subj",
         "data_filters": "Non-Serious, TreatmentEmergent",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0002",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "SAE",
         "metric": "SAE Reporting Rate",
@@ -27,11 +27,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.ae, rawplus.subj",
         "data_filters": "Serious, TreatmentEmergent",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0003",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "PD",
         "metric": "Non-important Protocol Deviation Rate",
@@ -42,11 +42,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.pd, rawplus.subj",
         "data_filters": "Non-Important",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0004",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "IPD",
         "metric": "Important Protocol Deviation Rate",
@@ -57,11 +57,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.pd, rawplus.subj",
         "data_filters": "Important",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0005",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "LAB",
         "metric": "G3 or higher Lab Abnormality Rate",
@@ -72,11 +72,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.lb, rawplus.subj",
         "data_filters": "Treatment emergent, Grade >= 3",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0006",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "SUB",
         "metric": "Subject Discontinuation",
@@ -87,11 +87,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.subj",
         "data_filters": "",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "kri0007",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Site",
         "abbreviation": "TRT",
         "metric": "Subject Treatment Discontinuation",
@@ -102,11 +102,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.subj",
         "data_filters": "",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0001",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "AE",
         "metric": "Non-serious AE Reporting Rate",
@@ -117,11 +117,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.ae, rawplus.subj",
         "data_filters": "Non-Serious, TreatmentEmergent",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0002",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "SAE",
         "metric": "SAE Reporting Rate",
@@ -132,11 +132,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.ae, rawplus.subj",
         "data_filters": "Serious, TreatmentEmergent",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0003",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "PD",
         "metric": "Non-important Protocol Deviation Rate",
@@ -147,11 +147,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.pd, rawplus.subj",
         "data_filters": "Non-Important",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0004",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "IPD",
         "metric": "Important Protocol Deviation Rate",
@@ -162,11 +162,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.pd, rawplus.subj",
         "data_filters": "Important",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0005",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "LAB",
         "metric": "G3 or higher Lab Abnormality Rate",
@@ -177,11 +177,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.lb, rawplus.subj",
         "data_filters": "Treatment emergent, Grade >= 3",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0006",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "SUB",
         "metric": "Subject Discontinuation",
@@ -192,11 +192,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.subj",
         "data_filters": "",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
         "workflowid": "cou0007",
-        "gsm_version": "1.2.0",
+        "gsm_version": "1.3.1",
         "group": "Country",
         "abbreviation": "TRT",
         "metric": "Subject Treatment Discontinuation",
@@ -207,11 +207,11 @@
         "score": "Adjusted Z-Score",
         "data_inputs": "rawplus.subj",
         "data_filters": "",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
-        "workflowid": "qtl0003",
-        "gsm_version": "1.2.0",
+        "workflowid": "qtl0004",
+        "gsm_version": "1.3.1",
         "group": "Study",
         "abbreviation": "IPD",
         "metric": "Important Protocol Deviation Rate",
@@ -222,13 +222,13 @@
         "score": "Poisson Confidence Interval - Lower Bound",
         "data_inputs": "rawplus.pd, rawplus.subj",
         "data_filters": "Important",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     },
     {
-        "workflowid": "qtl0007",
-        "gsm_version": "1.2.0",
+        "workflowid": "qtl0006",
+        "gsm_version": "1.3.1",
         "group": "Study",
-        "abbreviation": "TRT",
+        "abbreviation": "SUB",
         "metric": "Subject Discontinuation",
         "numerator": "Subjects Discontinued",
         "denominator": "Total Subjects",
@@ -237,6 +237,6 @@
         "score": "Binomial Confidence Interval - Lower Bound",
         "data_inputs": "rawplus.subj",
         "data_filters": "",
-        "gsm_analysis_date": "2022-11-14"
+        "gsm_analysis_date": "2022-11-18"
     }
 ]

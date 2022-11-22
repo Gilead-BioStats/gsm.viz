@@ -13,17 +13,23 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
+        datasets = datasets.map((dataset) =>
+            dataset.filter((d) => /^kri/.test(d.workflowid))
+        );
+
         // data
         const results = datasets[1].filter((d) => d.workflowid === workflowID);
 
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
+        workflow.thresholds = [-3, -2, 2, 3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
         workflow.selectedGroupIDs =
             results[Math.floor(Math.random() * results.length)].groupid;
+        workflow.selectedGroupIDs = '145';
 
         // threshold annotations
         const parameters = datasets[2].filter(
@@ -34,8 +40,8 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters
+            workflow
+            //parameters
         );
 
         // controls
