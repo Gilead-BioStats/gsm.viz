@@ -12,6 +12,10 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowid = kri(datasets, true);
 
+        datasets = datasets.map((dataset) =>
+            dataset.filter((d) => /^kri/.test(d.workflowid))
+        );
+
         // data
         const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         const results = datasets[0].filter(

@@ -20,9 +20,9 @@ export default function formatResultTooltipContent(config, data) {
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {
         const stats = ['mean', 'min', 'q1', 'median', 'q3', 'max'].map(
             (stat) =>
-                `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${
-                    format('.1f')(data.parsed[stat])
-                }`
+                `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
+                    '.1f'
+                )(data.parsed[stat])}`
         );
         content = [...stats];
     }
@@ -41,14 +41,14 @@ export default function formatResultTooltipContent(config, data) {
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'KRI'
                 ? [
-                    `${format('.1f')(datum.y)} Average ${config.yLabel}`,
-                    ...datum.counts.map(
-                        (d) =>
-                            `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${
-                                d.pct
-                            }%) ${config.group}s`
-                    )
-                ]
+                      `${format('.1f')(datum.y)} Average ${config.yLabel}`,
+                      ...datum.counts.map(
+                          (d) =>
+                              `${d[config.y]} ${config.yLabel}: ${d.n}/${
+                                  d.N
+                              } (${d.pct}%) ${config.group}s`
+                      ),
+                  ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
                 ? `${datum.y} ${config.yLabel}` // TODO: display both at risk and flagged

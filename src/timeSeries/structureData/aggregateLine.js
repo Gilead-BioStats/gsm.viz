@@ -1,14 +1,14 @@
 import { color as d3color, max, mean, rollup } from 'd3';
 
-export default function aggregateGroupLine(_data_, config, labels) {
+export default function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
-        _data_,
+        data,
         (group) => mean(group, (d) => d[config.y]),
         (d) => d[config.x]
     );
 
     const countsBySnapshot = rollup(
-        _data_,
+        data,
         (group) => {
             const N = group.length;
             return rollup(
@@ -39,6 +39,7 @@ export default function aggregateGroupLine(_data_, config, labels) {
             const counts = [...countsBySnapshot.get(labels[i])];
 
             return {
+                ...data.find((d) => d[config.x] === x),
                 x,
                 y,
                 counts: counts
@@ -54,7 +55,9 @@ export default function aggregateGroupLine(_data_, config, labels) {
             };
         }),
         label: 'Study Average',
+        pointStyle: 'circle',
         purpose: 'aggregate',
+        radius: 2.5,
         type: 'line',
     };
 

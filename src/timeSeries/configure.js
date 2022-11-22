@@ -1,5 +1,6 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
+import coalesce from '../util/coalesce';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 
@@ -9,32 +10,26 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
+
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
             : 'Site';
 
     defaults.type =
-        defaults.dataType === 'continuous' ? 'boxplot' : 'aggregate';
+        defaults.dataType === 'discrete'
+            ? 'aggregate'
+            : /^qtl/.test(_config_?.workflowid)
+            ? 'identity'
+            : 'boxplot';
 
     // horizontal
     defaults.x = 'snapshot_date';
     defaults.xType = 'category';
-    defaults.xLabel = 'Snapshot Date';
 
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel =
-        defaults.dataType === 'continuous'
-            ? _config_[defaults.y]
-            : /flag/.test(_config_.y) && /risk/.test(_config_.y)
-            ? `At Risk or Flagged ${defaults.discreteUnit}s`
-            : /flag/.test(_config_.y)
-            ? `Flagged ${defaults.discreteUnit}s`
-            : /risk/.test(_config_.y)
-            ? `At Risk ${defaults.discreteUnit}s`
-            : '';
 
     // color
     //defaults.color = 'flag';
@@ -66,6 +61,20 @@ export default function configure(_config_, _data_, _thresholds_) {
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
+
+    config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+    config.yLabel = coalesce(
+        _config_.yLabel,
+        config.dataType === 'continuous'
+            ? config[config.y]
+            : /flag/.test(config.y) && /risk/.test(config.y)
+            ? `At Risk or Flagged ${config.discreteUnit}s`
+            : /flag/.test(config.y)
+            ? `Flagged ${config.discreteUnit}s`
+            : /risk/.test(config.y)
+            ? `At Risk ${config.discreteUnit}s`
+            : ''
+    );
 
     return config;
 }

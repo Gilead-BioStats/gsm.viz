@@ -7,8 +7,11 @@ import resultsAll from './data/results_summary';
 import boundsAll from './data/results_bounds';
 import parametersAll from './data/meta_param';
 import resultsOverTimeAll from './data/results_summary_over_time';
-import flagCountsByKRIAll from './data/flag_counts_by_kri';
+//import flagCountsByKRIAll from './data/flag_counts_by_kri';
 import flagCountsByGroupAll from './data/flag_counts_by_group';
+
+//import analysisAll from './data/results_analysis';
+import analysisOverTimeAll from './data/results_analysis_over_time';
 
 const App = () => {
     const workflow = workflows[0];
@@ -25,7 +28,7 @@ const App = () => {
     const resultsOverTime = resultsOverTimeAll.filter(
         (d) => d.workflowid === workflow.workflowid
     );
-    const flagCountsByKRI = flagCountsByKRIAll;
+    //const flagCountsByKRI = flagCountsByKRIAll;
     //    .filter(
     //    (d) => d.workflowid === workflow.workflowid
     //);
@@ -42,6 +45,22 @@ const App = () => {
     const workflowSparkline = { ...workflow };
     workflow.nSnapshots = 25;
 
+    // QTL time series
+    const workflowQTL = workflows.find(
+        (workflow) => workflow.workflowid === 'qtl0006'
+    );
+    workflowQTL.y = 'metric';
+    const resultsOverTimeQTL = resultsOverTimeAll.filter(
+        (d) => d.workflowid === workflowQTL.workflowid
+    );
+    const parametersQTL = parametersAll.filter(
+        (d) => d.workflowid === workflowQTL.workflowid
+    );
+    const analysisOverTimeQTL = analysisOverTimeAll.filter(
+        (d) => d.workflowid === workflowQTL.workflowid
+    );
+
+    // sparklines
     const groupIDs = [...new Set(resultsOverTime.map((d) => d.groupid))].filter(
         () => Math.random() < 0.15
     );
@@ -83,6 +102,12 @@ const App = () => {
                 data={resultsOverTime}
                 config={workflowTimeSeries}
                 thresholds={parameters}
+            />
+            <TimeSeries
+                data={resultsOverTimeQTL}
+                config={workflowQTL}
+                thresholds={parametersQTL}
+                intervals={analysisOverTimeQTL}
             />
             {sparklines}
             <TimeSeries
