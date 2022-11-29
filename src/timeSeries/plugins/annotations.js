@@ -4,7 +4,6 @@ export default function annotations(config) {
     let annotations = null;
 
     if (config.thresholds) {
-        console.log('...');
         annotations = config.thresholds.map((x, i) => {
             const annotation = {
                 drawTime: 'beforeDatasetsDraw',

@@ -7,21 +7,28 @@ import checkThresholds from '../util/checkThresholds';
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
-    defaults.dataType = /flag|risk/.test(_config_.y)
+    console.log(this.dataType);
+    defaults.dataType = this.dataType !== undefined
+        ? this.dataType
+        : /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
+    console.log(defaults.dataType);
 
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
             : 'Site';
 
-    defaults.type =
-        defaults.dataType === 'discrete'
-            ? 'aggregate'
-            : /^qtl/.test(_config_?.workflowid)
-            ? 'identity'
-            : 'boxplot';
+    console.log(this.type);
+    defaults.type = this.type !== undefined
+        ? this.type
+        : defaults.dataType === 'discrete'
+        ? 'aggregate'
+        : /^qtl/.test(_config_?.workflowid)
+        ? 'identity'
+        : 'boxplot';
+    console.log(defaults.type);
 
     // horizontal
     defaults.x = 'snapshot_date';

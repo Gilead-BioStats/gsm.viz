@@ -21225,10 +21225,14 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
+    console.log(this.dataType);
+    defaults3.dataType = this.dataType !== void 0 ? this.dataType : /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
+    console.log(defaults3.dataType);
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
-    defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
+    console.log(this.type);
+    defaults3.type = this.type !== void 0 ? this.type : defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
+    console.log(defaults3.type);
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.y = "score";
@@ -21568,7 +21572,6 @@ var rbmViz = (() => {
   function annotations4(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      console.log("...");
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
           drawTime: "beforeDatasetsDraw",
@@ -21711,7 +21714,7 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    const config = configure6(_config_, _data_, _thresholds_);
+    const config = configure6.call(this, _config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
     const options = {
@@ -21748,10 +21751,78 @@ var rbmViz = (() => {
     Violin
   );
   var rbmViz = {
-    barChart,
-    scatterPlot,
-    sparkline,
-    timeSeries
+    barChart: barChart.bind({
+      x: "groupid",
+      y: "score",
+      chartType: "bar",
+      dataType: "continuous"
+    }),
+    barChartMetric: barChart.bind({
+      x: "groupid",
+      y: "metric",
+      chartType: "bar",
+      dataType: "continuous"
+    }),
+    barChartScore: barChart.bind({
+      x: "groupid",
+      y: "score",
+      chartType: "bar",
+      dataType: "continuous"
+    }),
+    scatterPlot: scatterPlot.bind({
+      x: "denominator",
+      y: "numerator",
+      chartType: "scatter",
+      dataType: "discrete"
+    }),
+    sparkline: sparkline.bind({
+      x: "snapshot_date",
+      y: "score",
+      chartType: "line",
+      dataType: "continuous"
+    }),
+    sparklineMetric: sparkline.bind({
+      x: "snapshot_date",
+      y: "metric",
+      chartType: "line",
+      dataType: "continuous"
+    }),
+    sparklineScore: sparkline.bind({
+      x: "snapshot_date",
+      y: "score",
+      chartType: "line",
+      dataType: "continuous"
+    }),
+    sparklineDiscrete: sparkline.bind({
+      x: "snapshot_date",
+      y: "n_at_risk_or_flagged",
+      chartType: "line",
+      dataType: "discrete"
+    }),
+    timeSeries: timeSeries.bind({
+      x: "snapshot_date",
+      y: "score",
+      chartType: "boxplot",
+      dataType: "continuous"
+    }),
+    timeSeriesScore: timeSeries.bind({
+      x: "snapshot_date",
+      y: "score",
+      chartType: "boxplot",
+      dataType: "continuous"
+    }),
+    timeSeriesDiscrete: timeSeries.bind({
+      x: "snapshot_date",
+      y: "n_at_risk_or_flagged",
+      chartType: "line",
+      dataType: "discrete"
+    }),
+    timeSeriesQTL: timeSeries.bind({
+      x: "snapshot_date",
+      y: "metric",
+      chartType: "identity",
+      dataType: "continuous"
+    })
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);

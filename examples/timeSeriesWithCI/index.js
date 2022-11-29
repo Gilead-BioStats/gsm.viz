@@ -33,8 +33,17 @@ Promise.all(dataPromises)
         // additional analysis output
         const analysis = datasets[3].filter((d) => d.workflowid === workflowID);
 
+        const gismoData = {
+            result: {
+                data: results,
+                workflow: workflow,
+                thresholds: parameters,
+                analysis: analysis,
+            },
+        };
+
         // visualization
-        const instance = rbmViz.default.timeSeries(
+        const instance = rbmViz.default.timeSeriesQTL(
             document.getElementById('container'),
             results,
             workflow,

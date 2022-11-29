@@ -16,7 +16,7 @@ export default function timeSeries(
     _intervals_ = null
 ) {
     // Update config.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure.call(this, _config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
