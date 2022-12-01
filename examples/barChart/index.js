@@ -23,14 +23,14 @@ Promise.all(dataPromises)
 
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
-        workflow.y = 'score';
+        workflow.y = 'metric';
         //workflow.thresholds = [-3, -2, 2, 3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
-        workflow.selectedGroupIDs =
-            results[Math.floor(Math.random() * results.length)].groupid;
-        workflow.selectedGroupIDs = '145';
+        //workflow.selectedGroupIDs =
+        //    results[Math.floor(Math.random() * results.length)].groupid;
+        //workflow.selectedGroupIDs = '145';
 
         // threshold annotations
         const parameters = datasets[2].filter(

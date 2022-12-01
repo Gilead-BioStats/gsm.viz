@@ -20245,13 +20245,21 @@ var rbmViz = (() => {
   // src/barChart/structureData.js
   function structureData(_data_, config) {
     const data = mutate(_data_, config);
+    console.log(colorScheme_default);
     const datasets = [
       {
         type: "bar",
         data,
+        label: "",
         ...scriptableOptions(),
-        minBarLength: 2
-      }
+        minBarLength: 2,
+        grouped: false
+      },
+      ...colorScheme_default.map((color3) => ({
+        type: "bar",
+        label: color3.description,
+        backgroundColor: color3.color
+      }))
     ];
     return datasets;
   }
@@ -20319,7 +20327,13 @@ var rbmViz = (() => {
   // src/barChart/plugins/legend.js
   function legend(config) {
     return {
-      display: false
+      display: !config.thresholds,
+      labels: {
+        filter: function(item, chart) {
+          return item.text !== "";
+        }
+      },
+      position: "top"
     };
   }
 
@@ -21344,19 +21358,33 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = "#1890FF";
+    const color3 = "#666666";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
       data: lineData,
-      backgroundColor: backgroundColor4,
-      borderColor: borderColor4,
+      backgroundColor: function(d) {
+        const color4 = config.colorScheme.find(
+          (color5) => color5.flag.includes(+d.raw?.flag)
+        );
+        if (color4 !== void 0)
+          color4.rgba.opacity = 0.5;
+        return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
+      },
+      borderColor: function(d) {
+        const color4 = config.colorScheme.find(
+          (color5) => color5.flag.includes(+d.raw?.flag)
+        );
+        if (color4 !== void 0)
+          color4.rgba.opacity = 1;
+        return color4 !== void 0 ? "black" : borderColor4;
+      },
       label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
       pointStyle: "circle",
       purpose: "highlight",
-      radius: 2.5,
+      radius: 3,
       type: "line"
     };
     return dataset;

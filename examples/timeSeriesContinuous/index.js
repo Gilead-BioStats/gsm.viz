@@ -22,7 +22,7 @@ Promise.all(dataPromises)
 
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.selectedGroupIDs = '43';
+        workflow.selectedGroupIDs = '83';
         workflow.type = 'boxplot'; //'violin';
 
         // customization data
