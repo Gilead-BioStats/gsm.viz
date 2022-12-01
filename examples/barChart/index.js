@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/results_summary.csv',
     '../data/meta_param.csv',
+    '../data/status_param_over_time.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -23,7 +24,7 @@ Promise.all(dataPromises)
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
-        workflow.thresholds = [-3, -2, 2, 3];
+        //workflow.thresholds = [-3, -2, 2, 3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -35,13 +36,23 @@ Promise.all(dataPromises)
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflowID
         );
+        const customParameters = datasets[3].filter(
+            (d) => d.workflowid === workflowID && d.snapshot_date === '2019-12-01'
+        );
+        parameters.forEach(parameter => {
+            const customParameter = customParameters.find(customParameter => (
+                customParameter.workflowid === parameter.workflowid && customParameter.index === parameter.index
+            ));
+            if (customParameter !== undefined)
+                parameter.default = customParameter.value;
+        });
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow
-            //parameters
+            workflow,
+            parameters
         );
 
         // controls

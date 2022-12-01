@@ -20092,17 +20092,6 @@ var rbmViz = (() => {
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_, complete = true) {
     let thresholds2 = _thresholds_.map((threshold) => +threshold);
-    if (complete) {
-      const nonNegativeThresholds = [
-        ...new Set(_thresholds_.map((threshold) => Math.abs(threshold)))
-      ];
-      const negativeThresholds = nonNegativeThresholds.map(
-        (threshold) => -1 * threshold
-      );
-      thresholds2 = [
-        .../* @__PURE__ */ new Set([...nonNegativeThresholds, ...negativeThresholds])
-      ].sort((a, b) => a - b);
-    }
     const flags = thresholds2.map((threshold, i) => {
       const flag = i - Math.floor(thresholds2.length / 2);
       return {
@@ -20259,9 +20248,9 @@ var rbmViz = (() => {
     const datasets = [
       {
         type: "bar",
-        label: "asdf",
         data,
-        ...scriptableOptions()
+        ...scriptableOptions(),
+        minBarLength: 2
       }
     ];
     return datasets;
