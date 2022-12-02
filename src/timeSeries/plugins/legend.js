@@ -4,12 +4,15 @@ export default function legend(config) {
     const legendOrder = colorScheme
         .sort((a, b) => a.order - b.order)
         .map((color) => color.description);
+    legendOrder.unshift('Confidence Interval');
+    legendOrder.unshift('Study Average');
     legendOrder.unshift('Site Distribution');
 
     if (config.group === 'Study')
         return {
             display: true,
             labels: {
+                boxHeight: 7,
                 filter: (legendItem, chartData) => {
                     return legendItem.text !== '';
                 },
@@ -22,9 +25,10 @@ export default function legend(config) {
                             //boxWidth: 12,
                             datasetIndex: i,
                             fillStyle: dataset.backgroundColor,
+                            lineWidth:
+                                dataset.label !== 'Study Average' ? 1 : 3,
                             lineDash: dataset.borderDash,
                             //lineHeight: 6,
-                            //lineWidth: 4,
                             pointStyle: dataset.pointStyle,
                             //pointStyleWidth: 24,
                             strokeStyle: dataset.borderColor,
@@ -52,8 +56,9 @@ export default function legend(config) {
         return {
             display: true,
             labels: {
-                boxHeight: 6,
-                boxWidth: 24,
+                boxHeight: 7,
+                lineWidth: 10,
+                borderWidth: 10,
                 filter: (legendItem, chartData) => {
                     return legendItem.text !== '';
                 },

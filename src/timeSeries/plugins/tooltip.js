@@ -6,7 +6,6 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            //displayColors: (asdf) => console.log(asdf),
             label: formatResultTooltipContent.bind(null, config),
             labelPointStyle: (data) => {
                 return {
@@ -34,6 +33,7 @@ export default function tooltip(config) {
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 
+            // Avoid duplicate display of tooltip.
             return !(
                 config.selectedGroupIDs.includes(datum.groupid) &&
                 data.dataset.type === 'scatter'

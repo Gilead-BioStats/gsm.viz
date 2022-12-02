@@ -14,9 +14,9 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'qtl0006';
 
-        datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^qtl/.test(d.workflowid))
-        );
+        //datasets = datasets.map((dataset) =>
+        //    dataset.filter((d) => /^qtl/.test(d.workflowid))
+        //);
 
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
@@ -32,6 +32,15 @@ Promise.all(dataPromises)
 
         // additional analysis output
         const analysis = datasets[3].filter((d) => d.workflowid === workflowID);
+
+        const gismoData = {
+            result: {
+                data: results,
+                workflow: workflow,
+                thresholds: parameters,
+                analysis: analysis,
+            },
+        };
 
         // visualization
         const instance = rbmViz.default.timeSeries(
