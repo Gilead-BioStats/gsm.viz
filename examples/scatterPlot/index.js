@@ -26,8 +26,8 @@ Promise.all(dataPromises)
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
-        workflow.selectedGroupIDs =
-            results[Math.floor(Math.random() * results.length)].groupid;
+        //workflow.selectedGroupIDs =
+        //    results[Math.floor(Math.random() * results.length)].groupid;
 
         // customization data
         const bounds = datasets[2].filter((d) => d.workflowid === workflowID);

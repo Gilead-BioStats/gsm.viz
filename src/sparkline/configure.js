@@ -34,6 +34,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.nSnapshots = 5;
     defaults.displayThresholds = false;
 
+    // TODO: figure out why thresholds bombs on KRI switch in example.
     const config = configureAll(defaults, _config_, {
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });

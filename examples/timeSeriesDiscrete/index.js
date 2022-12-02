@@ -33,4 +33,6 @@ Promise.all(dataPromises)
             flagCounts,
             workflow
         );
+
+        site(datasets, true);
     });

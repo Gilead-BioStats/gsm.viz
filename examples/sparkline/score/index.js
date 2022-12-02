@@ -11,11 +11,11 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowid = kri(datasets, true);
-
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
+
+        const workflowid = kri(datasets, true);
 
         // data
         const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
