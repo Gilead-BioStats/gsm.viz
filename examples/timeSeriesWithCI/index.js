@@ -14,9 +14,9 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'qtl0006';
 
-        datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^qtl/.test(d.workflowid))
-        );
+        //datasets = datasets.map((dataset) =>
+        //    dataset.filter((d) => /^qtl/.test(d.workflowid))
+        //);
 
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
@@ -43,7 +43,7 @@ Promise.all(dataPromises)
         };
 
         // visualization
-        const instance = rbmViz.default.timeSeriesQTL(
+        const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             workflow,

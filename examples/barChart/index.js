@@ -2,7 +2,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/results_summary.csv',
     '../data/meta_param.csv',
-    '../data/status_param_over_time.csv'
+    '../data/status_param_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -23,7 +23,7 @@ Promise.all(dataPromises)
 
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
-        workflow.y = 'metric';
+        workflow.y = 'score';
         //workflow.thresholds = [-3, -2, 2, 3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
@@ -37,12 +37,15 @@ Promise.all(dataPromises)
             (d) => d.workflowid === workflowID
         );
         const customParameters = datasets[3].filter(
-            (d) => d.workflowid === workflowID && d.snapshot_date === '2019-12-01'
+            (d) =>
+                d.workflowid === workflowID && d.snapshot_date === '2019-12-01'
         );
-        parameters.forEach(parameter => {
-            const customParameter = customParameters.find(customParameter => (
-                customParameter.workflowid === parameter.workflowid && customParameter.index === parameter.index
-            ));
+        parameters.forEach((parameter) => {
+            const customParameter = customParameters.find(
+                (customParameter) =>
+                    customParameter.workflowid === parameter.workflowid &&
+                    customParameter.index === parameter.index
+            );
             if (customParameter !== undefined)
                 parameter.default = customParameter.value;
         });

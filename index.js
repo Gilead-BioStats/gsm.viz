@@ -20245,7 +20245,6 @@ var rbmViz = (() => {
   // src/barChart/structureData.js
   function structureData(_data_, config) {
     const data = mutate(_data_, config);
-    console.log(colorScheme_default);
     const datasets = [
       {
         type: "bar",
@@ -21228,14 +21227,10 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    console.log(this.dataType);
-    defaults3.dataType = this.dataType !== void 0 ? this.dataType : /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
-    console.log(defaults3.dataType);
+    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
-    console.log(this.type);
-    defaults3.type = this.type !== void 0 ? this.type : defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
-    console.log(defaults3.type);
+    defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.y = "score";
@@ -21313,7 +21308,7 @@ var rbmViz = (() => {
           y
         };
       }),
-      label: "Study Average",
+      label: "",
       pointStyle: "circle",
       purpose: "aggregate",
       radius: 2.5,
@@ -21358,9 +21353,9 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = "#666666";
+    const color3 = "black";
     const backgroundColor4 = color2(color3);
-    backgroundColor4.opacity = 1;
+    backgroundColor4.opacity = 0.5;
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
@@ -21381,7 +21376,7 @@ var rbmViz = (() => {
           color4.rgba.opacity = 1;
         return color4 !== void 0 ? "black" : borderColor4;
       },
-      label: config.selectedGroupIDs.length > 0 ? `${config.group} ${lineData[0]?.groupid}` : "",
+      label: "",
       pointStyle: "circle",
       purpose: "highlight",
       radius: 3,
@@ -21406,7 +21401,7 @@ var rbmViz = (() => {
       borderColor: color3.color,
       backgroundColor: color3.rgba + "",
       data: pointData,
-      label: pointData.length ? "At Risk" : "",
+      label: "",
       pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
@@ -21431,7 +21426,7 @@ var rbmViz = (() => {
       borderColor: color3.color,
       backgroundColor: color3.rgba + "",
       data: pointData,
-      label: pointData.length ? "Flagged" : "",
+      label: "",
       pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
@@ -21541,7 +21536,7 @@ var rbmViz = (() => {
           }).sort((a, b) => a[config.y] - b[config.y])
         };
       }),
-      label: "Study Average",
+      label: "",
       pointStyle: "circle",
       purpose: "aggregate",
       radius: 2.5,
@@ -21557,25 +21552,81 @@ var rbmViz = (() => {
     let datasets = [];
     if (config.hasOwnProperty("workflowid") && config.dataType !== "discrete") {
       if (/^qtl/.test(config.workflowid)) {
-        console.log("qtl");
         datasets = [
           identityLine(data, config, labels),
-          ...intervalLines(_intervals_, config, labels)
+          ...intervalLines(_intervals_, config, labels),
+          {
+            type: "scatter",
+            label: "Study Average",
+            pointStyle: "line",
+            pointStyleWidth: 24,
+            boxWidth: 24,
+            backgroundColor: "rgba(0,0,0,.5)",
+            borderColor: "rgba(0,0,0,.25)",
+            borderWidth: 3
+          },
+          ...colorScheme_default.map((color3) => ({
+            type: "bar",
+            label: color3.description,
+            backgroundColor: color3.color,
+            borderColor: color3.color
+          }))
         ];
       } else {
-        console.log("kri");
         datasets = [
           selectedGroupLine(data, config, labels),
+          {
+            type: "scatter",
+            label: config.selectedGroupIDs.length > 0 ? `${config.group} ${config.selectedGroupIDs[0]}` : "",
+            pointStyle: "line",
+            pointStyleWidth: 24,
+            boxWidth: 24,
+            backgroundColor: "rgba(0,0,0,.5)",
+            borderColor: "rgba(0,0,0,.5)",
+            borderWidth: 3
+          },
+          ...colorScheme_default.map((color3) => ({
+            type: "bar",
+            label: !(color3.description === "Within Thresholds" && config.selectedGroupIDs.length === 0) ? color3.description : "",
+            backgroundColor: color3.color
+          })),
           flagged(data, config, labels),
           atRisk(data, config, labels),
           distribution(data, config, labels)
         ];
       }
     } else if (config.dataType === "discrete") {
-      console.log("discrete");
       datasets = [
-        selectedGroupLine(data, config, labels),
-        aggregateLine(data, config, labels)
+        config.selectedGroupIDs.length > 0 ? {
+          ...selectedGroupLine(data, config, labels),
+          backgroundColor: "#1890FF",
+          borderColor: (d) => {
+            return d.raw !== void 0 ? "black" : "#1890FF";
+          }
+        } : null,
+        {
+          type: "scatter",
+          label: config.selectedGroupIDs.length > 0 ? `${config.group} ${config.selectedGroupIDs[0]}` : "",
+          pointStyle: "line",
+          pointStyleWidth: 24,
+          boxWidth: 24,
+          backgroundColor: "#1890FF",
+          borderColor: (d) => {
+            return d.raw !== void 0 ? "black" : "#1890FF";
+          },
+          borderWidth: 3
+        },
+        aggregateLine(data, config, labels),
+        {
+          type: "scatter",
+          label: "Study Average",
+          pointStyle: "line",
+          pointStyleWidth: 24,
+          boxWidth: 24,
+          backgroundColor: "rgba(0,0,0,.5)",
+          borderColor: "rgba(0,0,0,.25)",
+          borderWidth: 3
+        }
       ];
     }
     const chartData = {
@@ -21622,11 +21673,14 @@ var rbmViz = (() => {
   // src/timeSeries/plugins/legend.js
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
+    legendOrder.unshift("Confidence Interval");
+    legendOrder.unshift("Study Average");
     legendOrder.unshift("Site Distribution");
     if (config.group === "Study")
       return {
         display: true,
         labels: {
+          boxHeight: 7,
           filter: (legendItem, chartData) => {
             return legendItem.text !== "";
           },
@@ -21634,6 +21688,7 @@ var rbmViz = (() => {
             return {
               datasetIndex: i,
               fillStyle: dataset.backgroundColor,
+              lineWidth: dataset.label !== "Study Average" ? 1 : 3,
               lineDash: dataset.borderDash,
               pointStyle: dataset.pointStyle,
               strokeStyle: dataset.borderColor,
@@ -21653,8 +21708,9 @@ var rbmViz = (() => {
       return {
         display: true,
         labels: {
-          boxHeight: 6,
-          boxWidth: 24,
+          boxHeight: 7,
+          lineWidth: 10,
+          borderWidth: 10,
           filter: (legendItem, chartData) => {
             return legendItem.text !== "";
           },
@@ -21731,7 +21787,7 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    const config = configure6.call(this, _config_, _data_, _thresholds_);
+    const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
     const options = {

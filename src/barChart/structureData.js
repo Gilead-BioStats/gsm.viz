@@ -15,7 +15,6 @@ export default function structureData(_data_, config) {
     // Update data.
     const data = mutate(_data_, config);
 
-    console.log(colorScheme);
     const datasets = [
         {
             type: 'bar',
@@ -25,11 +24,11 @@ export default function structureData(_data_, config) {
             minBarLength: 2,
             grouped: false,
         },
-        ...colorScheme.map(color => ({
+        ...colorScheme.map((color) => ({
             type: 'bar',
             label: color.description,
             backgroundColor: color.color,
-        }))
+        })),
     ];
 
     return datasets;

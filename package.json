@@ -1,7 +1,7 @@
 {
-  "TODO": "add traffic-lighting to highlighted site in continous time series",
+  "TODO": "",
   "name": "rbm-viz",
-  "version": "0.12.1",
+  "version": "0.13.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",

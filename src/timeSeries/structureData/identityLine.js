@@ -34,7 +34,7 @@ export default function identityLine(data, config, labels) {
                 y,
             };
         }),
-        label: 'Study Average',
+        label: '',
         pointStyle: 'circle',
         purpose: 'aggregate',
         radius: 2.5,
