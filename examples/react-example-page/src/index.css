@@ -1,0 +1,135 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:display=swap');
+
+body {
+  font-family: Roboto;
+}
+
+nav {
+  background-color: #1f5156;
+  height: 80px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  font-size: 1.2rem;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  margin-right: 20px;
+}
+
+nav li {
+  float: left;
+}
+
+nav li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid #1f5156;
+}
+
+nav li a:hover {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid white;
+}
+
+
+@media screen and (max-width: 960px) {
+  
+  .nav-menu {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-top: 1pxsolid #fff;
+    position: absolute;
+    top: 80px;
+    left: -110%;
+    opacity: 1;
+    transition: all 0.5s ease;
+  }
+
+  .nav-menu.active {
+    background: #1f5156;
+    left: 0px;
+    opacity: 1;
+    transition: all 0.5s ease;
+    z-index: 1;
+  }
+  .nav-item .active {
+    color: #ffdd40;
+    border: none;
+  }
+  .nav-links {
+    padding: 1.5rem;
+    width: 100%;
+    display: table;
+  }
+
+  .nav-icon {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(-100%, 60%);
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ffdd40;
+  }
+}
+
+.dropdown {
+  position: relative;
+}
+
+.menu {
+  position: absolute;
+
+  list-style-type: none;
+  margin: 5px 0;
+  padding: 0;
+
+  border: 1px solid grey;
+  width: 150px;
+}
+
+.menu > li {
+  margin: 0;
+
+  background-color: white;
+}
+
+.menu > li:hover {
+  background-color: lightgray;
+}
+
+.menu > li > button {
+  width: 100%;
+  height: 100%;
+  text-align: left;
+
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 5px;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
