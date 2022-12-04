@@ -1,0 +1,31 @@
+.controlContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+}
+
+.plotTutorial {
+    margin-top: 50px;
+}
+
+.plotContainer {
+    margin: 50px auto;
+    width: 70%;
+}
+
+h2 {
+    text-align: center;
+}
+
+.plot-and-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.code {
+    margin: 0 auto;
+}

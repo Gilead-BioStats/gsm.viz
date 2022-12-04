@@ -10,7 +10,6 @@ body {
 }
 
 nav {
-  background-color: #1f5156;
   height: 80px;
   display: flex;
   justify-content: right;
@@ -19,6 +18,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 20;
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
 }
 
 nav ul {
@@ -35,20 +35,20 @@ nav li {
 
 nav li a {
   display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  border-bottom: 1px solid #1f5156;
-}
-
-nav li a:hover {
-  display: block;
-  color: white;
+  color: black;
   text-align: center;
   padding: 14px 16px;
   text-decoration: none;
   border-bottom: 1px solid white;
+}
+
+nav li a:hover {
+  display: block;
+  color: black;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  border-bottom: 1px solid black;
 }
 
 

@@ -8,14 +8,17 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import "./BarChart.css"
 
 import resultsAll from '../data/results_summary';
+import parametersAll from '../data/meta_param';
 
 const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const BarChart = ({ data, config, thresholds }) => {
+const BarChart = ({config}) => {
+
     const container = useRef(null);
 
     const filterResults = (kri) => {
@@ -24,18 +27,32 @@ const BarChart = ({ data, config, thresholds }) => {
         )
     }
 
+    const filterParameters = (kri) => {
+        return parametersAll.filter((d) => d.workflowid === kri)
+    }
+
     const [kri, setKri] = React.useState('kri0001');
     const [results, setResults] = React.useState(filterResults(kri))
     const [yaxis, setYaxis] = React.useState('score')
-
+    const [isThreshold, setIsThreshold] = React.useState(true)
+    const [parameters, setParameters] = React.useState(filterParameters(kri))
+    const [thresholds, setThreshold] = React.useState(parameters)
+   
     const handleKriChange = (event: SelectChangeEvent) => {
       setKri(event.target.value);
       setResults(filterResults(kri))
+      setParameters(filterParameters(kri))
     };
 
     const handleYaxisChange = (event: SelectChangeEvent) => {
         setYaxis(event.target.value)
     };
+
+    const handleThresholdCheck = (event) => {
+        setIsThreshold(event.target.checked);
+        !isThreshold ? setThreshold(parameters) : setThreshold(null)
+    };
+    
 
     useEffect(() => {
         if (container.current) {
@@ -45,7 +62,11 @@ const BarChart = ({ data, config, thresholds }) => {
     
 
     return (
-        <div>
+        <div className='plotTutorial'>
+            <h2>Bar Chart</h2>
+            <div className="plot-and-text">
+            <div className='plotContainer'>
+            <div className='controlContainer'>
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-standard-label">KRI</InputLabel>
             <Select
@@ -79,29 +100,40 @@ const BarChart = ({ data, config, thresholds }) => {
                 </Select>
             </FormControl>
 
-            <FormControlLabel control={<Checkbox defaultChecked />} label="Threshold" />
+            <FormControlLabel 
+                control={<Checkbox checked={isThreshold} onChange={handleThresholdCheck} />} 
+                label="Threshold" 
+            />
+
             <Button variant="outlined">Download</Button>
             <Button variant="outlined">Kill</Button>
+            </div>
+            
 
             <div
                 ref={container}
                 key={generateKey()}
-                style={{ width: '100%', height: '25vh', display: 'inline-block' }}
+                style={{ width: '100%', height: '50vh', display: 'inline-block' }}
             ></div>
         </div>
+        <pre className='code'>
+            barChart(blah blah)
+        </pre>
+        </div>
+     </div>
     );
 };
 
 BarChart.propTypes = {
     //data: PropTypes.array,
     config: PropTypes.object,
-    thresholds: PropTypes.array,
+    //thresholds: PropTypes.array,
 };
 
 BarChart.defaultProps = {
     //data: [],
     config: {},
-    thresholds: [],
+    //thresholds: [],
 };
 
 export default BarChart;
