@@ -21646,17 +21646,15 @@ var rbmViz = (() => {
           type: "line",
           yMin: x.threshold,
           yMax: x.threshold,
-          borderColor: colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+          borderColor: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.type === "identity")
+        if (config.type === "identity") {
           annotation2.label = {
             rotation: "auto",
-            position: Math.sign(+x.flag) === 1 ? "end" : "start",
-            color: colorScheme_default.filter(
-              (y) => y.flag.includes(+x.flag)
-            )[0].color,
+            position: Math.sign(+x.flag) >= 0 ? "end" : "start",
+            color: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
             content: `QTL: ${config.thresholds[0].threshold}`,
             display: true,
@@ -21664,6 +21662,7 @@ var rbmViz = (() => {
               size: 12
             }
           };
+        }
         return annotation2;
       });
     }

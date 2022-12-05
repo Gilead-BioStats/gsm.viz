@@ -10,19 +10,22 @@ export default function annotations(config) {
                 type: 'line',
                 yMin: x.threshold,
                 yMax: x.threshold,
-                borderColor: colorScheme.find((y) => y.flag.includes(+x.flag))
-                    .color,
+                borderColor: config.group === 'Study'
+                    ? '#FD9432'
+                    : colorScheme.find((y) => y.flag.includes(+x.flag))
+                        .color,
                 borderWidth: 1,
                 borderDash: [2],
             };
 
-            if (config.type === 'identity')
+            if (config.type === 'identity') {
                 annotation.label = {
                     rotation: 'auto',
-                    position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
-                    color: colorScheme.filter((y) =>
-                        y.flag.includes(+x.flag)
-                    )[0].color,
+                    position: Math.sign(+x.flag) >= 0 ? 'end' : 'start',
+                    color: config.group === 'Study'
+                        ? '#FD9432'
+                        : colorScheme.find((y) => y.flag.includes(+x.flag))
+                            .color,
                     backgroundColor: 'white',
                     content: `QTL: ${config.thresholds[0].threshold}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
                     display: true, //Math.sign(+x.flag) === 1,
@@ -30,6 +33,7 @@ export default function annotations(config) {
                         size: 12,
                     },
                 };
+            }
 
             return annotation;
         });
