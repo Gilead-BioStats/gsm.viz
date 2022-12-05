@@ -56,6 +56,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // miscellaneous
     defaults.group = 'Site';
+    defaults.aggregateLabel = 'Study';
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     defaults.displayBoxplots = true;

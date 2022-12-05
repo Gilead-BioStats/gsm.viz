@@ -17,6 +17,7 @@ Promise.all(dataPromises)
         const workflow = {
             y: 'n_at_risk_or_flagged',
             selectedGroupIDs: '173',
+            //aggregateLabel: 'Country',
         };
 
         const flagCounts = datasets[1];

@@ -20342,8 +20342,12 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = [
-        `${config.group === "Study" ? "QTL" : "KRI"} Score: ${format(".1f")(datum2.score)} (${config.score})`,
-        `${config.group === "Study" ? "QTL" : "KRI"} Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Score: ${format(".1f")(
+          datum2.score
+        )} (${config.score})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Value: ${format(".3f")(
+          datum2.metric
+        )} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(datum2.denominator)}`
       ];
@@ -21242,6 +21246,7 @@ var rbmViz = (() => {
       console.log(datum2);
     };
     defaults3.group = "Site";
+    defaults3.aggregateLabel = "Study";
     defaults3.maintainAspectRatio = false;
     defaults3.displayBoxplots = true;
     defaults3.displayViolins = false;
@@ -21619,7 +21624,7 @@ var rbmViz = (() => {
         aggregateLine(data, config, labels),
         {
           type: "scatter",
-          label: "Study Average",
+          label: `${config.aggregateLabel} Average`,
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -21673,7 +21678,7 @@ var rbmViz = (() => {
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
-    legendOrder.unshift("Study Average");
+    legendOrder.unshift(`${config.aggregateLabel} Average`);
     legendOrder.unshift("Site Distribution");
     if (config.group === "Study")
       return {

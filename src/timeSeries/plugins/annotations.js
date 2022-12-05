@@ -10,10 +10,11 @@ export default function annotations(config) {
                 type: 'line',
                 yMin: x.threshold,
                 yMax: x.threshold,
-                borderColor: config.group === 'Study'
-                    ? '#FD9432'
-                    : colorScheme.find((y) => y.flag.includes(+x.flag))
-                        .color,
+                borderColor:
+                    config.group === 'Study'
+                        ? '#FD9432'
+                        : colorScheme.find((y) => y.flag.includes(+x.flag))
+                              .color,
                 borderWidth: 1,
                 borderDash: [2],
             };
@@ -22,10 +23,11 @@ export default function annotations(config) {
                 annotation.label = {
                     rotation: 'auto',
                     position: Math.sign(+x.flag) >= 0 ? 'end' : 'start',
-                    color: config.group === 'Study'
-                        ? '#FD9432'
-                        : colorScheme.find((y) => y.flag.includes(+x.flag))
-                            .color,
+                    color:
+                        config.group === 'Study'
+                            ? '#FD9432'
+                            : colorScheme.find((y) => y.flag.includes(+x.flag))
+                                  .color,
                     backgroundColor: 'white',
                     content: `QTL: ${config.thresholds[0].threshold}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
                     display: true, //Math.sign(+x.flag) === 1,
