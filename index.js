@@ -20342,8 +20342,8 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = [
-        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
-        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Score: ${format(".1f")(datum2.score)} (${config.score})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(datum2.denominator)}`
       ];

@@ -10,8 +10,8 @@ export default function formatResultTooltipContent(config, data) {
     ) {
         content = [
             //`${config.group}: ${datum.groupid}`,
-            `KRI Score: ${format('.1f')(datum.score)} (${config.score})`,
-            `KRI Value: ${format('.3f')(datum.metric)} (${config.metric})`,
+            `${config.group === 'Study' ? 'QTL' : 'KRI'} Score: ${format('.1f')(datum.score)} (${config.score})`,
+            `${config.group === 'Study' ? 'QTL' : 'KRI'} Value: ${format('.3f')(datum.metric)} (${config.metric})`,
             `${config.numerator}: ${format(',')(datum.numerator)}`,
             `${config.denominator}: ${format(',')(datum.denominator)}`,
         ];
