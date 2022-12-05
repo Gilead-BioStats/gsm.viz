@@ -17,6 +17,7 @@ export default function getScales(config, datasets) {
     // y
     scales.y.title.text = config.yLabel;
     scales.y.type = config.yType;
+    scales.y.offset = true;
 
     return scales;
 }

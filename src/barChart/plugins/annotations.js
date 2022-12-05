@@ -5,27 +5,32 @@ export default function annotations(config) {
 
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => ({
-            drawTime: 'beforeDatasetsDraw',
-            type: 'line',
-            yMin: x.threshold,
-            yMax: x.threshold,
+            adjustScaleRange: true,
+            //clip: false,
+            //drawTime: 'beforeDatasetsDraw',
             borderColor: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
                 .color,
-            borderWidth: 1,
             borderDash: [2],
+            borderWidth: 1,
             label: {
-                rotation: 'auto',
-                position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
+                backgroundColor: 'white',
                 color: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
                     .color,
-                backgroundColor: 'white',
                 content: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
                     .description,
                 display: true, //Math.sign(+x.flag) === 1,
+                //drawTime: 'afterDatasetsDraw',
                 font: {
                     size: 12,
                 },
+                position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
+                rotation: 'auto',
+                yValue: x.threshold,
+                yAdjust: 0,
             },
+            type: 'line',
+            yMin: x.threshold,
+            yMax: x.threshold,
         }));
     }
 

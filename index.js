@@ -20300,24 +20300,26 @@ var rbmViz = (() => {
     let annotations5 = null;
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => ({
-        drawTime: "beforeDatasetsDraw",
-        type: "line",
-        yMin: x.threshold,
-        yMax: x.threshold,
+        adjustScaleRange: true,
         borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-        borderWidth: 1,
         borderDash: [2],
+        borderWidth: 1,
         label: {
-          rotation: "auto",
-          position: Math.sign(+x.flag) === 1 ? "end" : "start",
-          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
           backgroundColor: "white",
+          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
           content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
           display: true,
           font: {
             size: 12
-          }
-        }
+          },
+          position: Math.sign(+x.flag) === 1 ? "end" : "start",
+          rotation: "auto",
+          yValue: x.threshold,
+          yAdjust: 0
+        },
+        type: "line",
+        yMin: x.threshold,
+        yMax: x.threshold
       }));
     }
     return annotations5;
@@ -20491,6 +20493,7 @@ var rbmViz = (() => {
     scales2.x.type = config.xType;
     scales2.y.title.text = config.yLabel;
     scales2.y.type = config.yType;
+    scales2.y.offset = true;
     return scales2;
   }
 
