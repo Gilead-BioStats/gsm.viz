@@ -1,29 +1,49 @@
-export default function mapThresholdsToFlags(_thresholds_, complete = true) {
-    // Capture complete set of thresholds, even when only a partial set exists in the data.
-    let thresholds = _thresholds_
+import { ascending, descending } from 'd3';
+
+export default function mapThresholdsToFlags(_thresholds_) {
+    // Capture complete set of thresholds.
+    const thresholds = _thresholds_
         .map((threshold) => +threshold)
-        .sort(d3.ascending);
+        .sort(ascending);
 
-    //if (complete) {
-    //    const nonNegativeThresholds = [
-    //        ...new Set(_thresholds_.map((threshold) => Math.abs(threshold))),
-    //    ];
-    //    const negativeThresholds = nonNegativeThresholds.map(
-    //        (threshold) => -1 * threshold
-    //    );
-    //    thresholds = [
-    //        ...new Set([...nonNegativeThresholds, ...negativeThresholds]),
-    //    ].sort((a, b) => a - b);
-    //}
-
-    // Define sequence centered at 0.
-    const flags = thresholds.map((threshold, i) => {
-        const flag = i - Math.floor(thresholds.length / 2);
+    // Sort negative thresholds in descending order to impute corresponding flag.
+    const negativeThresholds = thresholds.filter(
+        threshold => threshold < 0
+    ).sort(descending);
+    const negativeFlags = negativeThresholds.map((threshold, i) => {
         return {
             threshold,
-            flag: flag + (thresholds.length % 2 === 0 && flag >= 0), // Hack that
+            flag: -(i + 1),
         };
     });
+
+    // Sort positive thresholds in ascending order to impute corresponding flag.
+    const positiveThresholds = thresholds.filter(
+        threshold => threshold > 0
+    ).sort(ascending);
+    const positiveFlags = positiveThresholds.map((threshold, i) => {
+        return {
+            threshold,
+            flag: (i + 1),
+        };
+    });
+
+    // If zero threshold exists, set flag to 0.
+    const zeroFlag = thresholds.filter(
+        threshold => threshold === 0
+    ).map(threshold => {
+        return {
+            threshold,
+            flag: 0
+        };
+    });
+
+    // Combine negative and positive thresholds/flags.
+    const flags = [
+        ...negativeFlags,
+        ...zeroFlag,
+        ...positiveFlags,
+    ].sort((a,b) => a.flag - b.flag);
 
     return flags;
 }

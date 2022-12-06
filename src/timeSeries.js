@@ -2,6 +2,8 @@ import configure from './timeSeries/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './timeSeries/structureData';
 
+import onHover from './util/onHover';
+import onClick from './util/onClick';
 import plugins from './timeSeries/plugins';
 import getScales from './timeSeries/getScales';
 
@@ -28,6 +30,8 @@ export default function timeSeries(
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
         maintainAspectRatio: config.maintainAspectRatio,
+        onClick,
+        onHover,
         plugins: plugins(config),
         responsive: true,
         scales: getScales(config, _data_),

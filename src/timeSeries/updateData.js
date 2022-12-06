@@ -1,6 +1,7 @@
 import configure from './configure';
 import structureData from './structureData';
 import plugins from './plugins';
+import getScales from './getScales';
 
 /**
  * Update chart configuration and redraw chart.
@@ -27,6 +28,7 @@ export default function updateData(
         _data_,
     };
 
+    chart.options.scales = getScales(config);
     chart.options.plugins = plugins(config);
 
     chart.update();
