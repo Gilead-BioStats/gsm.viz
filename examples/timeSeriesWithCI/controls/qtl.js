@@ -23,10 +23,10 @@ const qtl = function (workflow, datasets, setup = false) {
             const workflow = datasets[1].find(
                 (d) => d.workflowid === event.target.value
             );
+            workflow.y = 'metric';
             const parameters = datasets[2].filter(
                 (d) => d.workflowid === event.target.value
             );
-            console.table(parameters);
             const analysis = datasets[3].filter(
                 (d) => d.workflowid === event.target.value
             );

@@ -43,6 +43,9 @@ export default function configure(_config_, _data_, _thresholds_) {
     config.annotation = ['metric', 'score'].includes(config.y)
         ? 'numerator'
         : config.y;
+    config.dataType = ['metric', 'score'].includes(config.y)
+        ? 'continuous'
+        : 'discrete';
 
     return config;
 }

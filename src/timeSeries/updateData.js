@@ -1,5 +1,6 @@
 import configure from './configure';
 import structureData from './structureData';
+import plugins from './plugins';
 
 /**
  * Update chart configuration and redraw chart.
@@ -18,7 +19,7 @@ export default function updateData(chart, _data_, _config_, _parameters_ = null,
         _parameters_
     );
 
-     chart.data = {
+    chart.data = {
         ...structureData(
             _data_,
             config,
@@ -27,6 +28,8 @@ export default function updateData(chart, _data_, _config_, _parameters_ = null,
         config,
         _data_
     };
+
+    chart.options.plugins = plugins(config);
 
     chart.update();
 }

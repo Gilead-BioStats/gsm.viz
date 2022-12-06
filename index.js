@@ -20983,6 +20983,7 @@ var rbmViz = (() => {
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
+    config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
     return config;
   }
 
@@ -21131,16 +21132,19 @@ var rbmViz = (() => {
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
     const tooltipAesthetics = getTooltipAesthetics();
-    tooltipAesthetics.padding = 5;
+    tooltipAesthetics.padding = 4;
+    tooltipAesthetics.caretSize = 0;
     return {
       callbacks: {
         label: function(data) {
           const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
-          return `${data.label}: ${format(fmt)(data.parsed.y)}`;
+          const date = d3.timeFormat("'%y %b %d")(d3.timeParse("%Y-%m-%d")(data.label));
+          return config.dataType === "continuous" ? `${date}: ${format(fmt)(data.parsed.y)}` : [`${date}: ${format(fmt)(data.raw.n_flagged)} flagged`, `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`];
         },
-        labelPointStyle: () => ({ pointStyle: "circle" }),
-        title: () => null
+        title: () => null,
+        footer: () => null
       },
+      displayColors: config.dataType === "continuous",
       ...tooltipAesthetics
     };
   }
@@ -21801,6 +21805,7 @@ var rbmViz = (() => {
       config,
       _data_
     };
+    chart.options.plugins = plugins5(config);
     chart.update();
   }
 
