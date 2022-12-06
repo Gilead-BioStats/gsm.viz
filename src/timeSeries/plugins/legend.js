@@ -5,7 +5,7 @@ export default function legend(config) {
         .sort((a, b) => a.order - b.order)
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
-    legendOrder.unshift('Study Average');
+    legendOrder.unshift(`${config.aggregateLabel} Average`);
     legendOrder.unshift('Site Distribution');
 
     if (config.group === 'Study')

@@ -20091,7 +20091,7 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_, complete = true) {
-    let thresholds2 = _thresholds_.map((threshold) => +threshold);
+    let thresholds2 = _thresholds_.map((threshold) => +threshold).sort(d3.ascending);
     const flags = thresholds2.map((threshold, i) => {
       const flag = i - Math.floor(thresholds2.length / 2);
       return {
@@ -20299,25 +20299,34 @@ var rbmViz = (() => {
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.map((x, i) => ({
-        drawTime: "beforeDatasetsDraw",
-        type: "line",
-        yMin: x.threshold,
-        yMax: x.threshold,
-        borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-        borderWidth: 1,
+      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => ({
+        adjustScaleRange: false,
+        borderColor: colorScheme_default.filter(
+          (y) => y.flag.includes(+x.flag)
+        )[0].color,
         borderDash: [2],
+        borderWidth: 1,
         label: {
-          rotation: "auto",
-          position: Math.sign(+x.flag) === 1 ? "end" : "start",
-          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
           backgroundColor: "white",
-          content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
+          color: colorScheme_default.filter(
+            (y) => y.flag.includes(+x.flag)
+          )[0].color,
+          content: colorScheme_default.filter(
+            (y) => y.flag.includes(+x.flag)
+          )[0].description,
           display: true,
           font: {
             size: 12
-          }
-        }
+          },
+          padding: 2,
+          position: Math.sign(+x.flag) === 1 ? "end" : "start",
+          rotation: "auto",
+          yValue: x.threshold,
+          yAdjust: 0
+        },
+        type: "line",
+        yMin: x.threshold,
+        yMax: x.threshold
       }));
     }
     return annotations5;
@@ -20342,8 +20351,12 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = [
-        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
-        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Score: ${format(".1f")(
+          datum2.score
+        )} (${config.score})`,
+        `${config.group === "Study" ? "QTL" : "KRI"} Value: ${format(".3f")(
+          datum2.metric
+        )} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(datum2.denominator)}`
       ];
@@ -20363,7 +20376,7 @@ var rbmViz = (() => {
         ...datum2.counts.map(
           (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
         )
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${datum2.y} ${config.yLabel}` : null;
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
     }
     return content;
   }
@@ -20432,7 +20445,8 @@ var rbmViz = (() => {
   function plugins2(config) {
     const plugins6 = {
       annotation: {
-        annotations: annotations(config)
+        annotations: annotations(config),
+        clip: true
       },
       datalabels: chartLabels(config),
       legend: legend(config),
@@ -20487,6 +20501,7 @@ var rbmViz = (() => {
     scales2.x.type = config.xType;
     scales2.y.title.text = config.yLabel;
     scales2.y.type = config.yType;
+    scales2.y.offset = true;
     return scales2;
   }
 
@@ -20565,6 +20580,7 @@ var rbmViz = (() => {
     const datasets = structureData(_data_, config);
     const options = {
       animation: false,
+      clip: false,
       events: ["click", "mousemove", "mouseout"],
       interaction: {
         intersect: false,
@@ -20973,6 +20989,7 @@ var rbmViz = (() => {
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
+    config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
     return config;
   }
 
@@ -21121,16 +21138,24 @@ var rbmViz = (() => {
   // src/sparkline/plugins/tooltip.js
   function tooltip3(config) {
     const tooltipAesthetics = getTooltipAesthetics();
-    tooltipAesthetics.padding = 5;
+    tooltipAesthetics.padding = 4;
+    tooltipAesthetics.caretSize = 0;
     return {
       callbacks: {
         label: function(data) {
           const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
-          return `${data.label}: ${format(fmt)(data.parsed.y)}`;
+          const date = d3.timeFormat("'%y %b %d")(
+            d3.timeParse("%Y-%m-%d")(data.label)
+          );
+          return config.dataType === "continuous" ? `${date}: ${format(fmt)(data.parsed.y)}` : [
+            `${date}: ${format(fmt)(data.raw.n_flagged)} flagged`,
+            `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`
+          ];
         },
-        labelPointStyle: () => ({ pointStyle: "circle" }),
-        title: () => null
+        title: () => null,
+        footer: () => null
       },
+      displayColors: config.dataType === "continuous",
       ...tooltipAesthetics
     };
   }
@@ -21242,6 +21267,7 @@ var rbmViz = (() => {
       console.log(datum2);
     };
     defaults3.group = "Site";
+    defaults3.aggregateLabel = "Study";
     defaults3.maintainAspectRatio = false;
     defaults3.displayBoxplots = true;
     defaults3.displayViolins = false;
@@ -21619,7 +21645,7 @@ var rbmViz = (() => {
         aggregateLine(data, config, labels),
         {
           type: "scatter",
-          label: "Study Average",
+          label: `${config.aggregateLabel} Average`,
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -21642,21 +21668,20 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
+          adjustScaleRange: config.group === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.threshold,
           yMax: x.threshold,
-          borderColor: colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+          borderColor: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.type === "identity")
+        if (config.type === "identity") {
           annotation2.label = {
             rotation: "auto",
-            position: Math.sign(+x.flag) === 1 ? "end" : "start",
-            color: colorScheme_default.filter(
-              (y) => y.flag.includes(+x.flag)
-            )[0].color,
+            position: Math.sign(+x.flag) >= 0 ? "end" : "start",
+            color: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
             content: `QTL: ${config.thresholds[0].threshold}`,
             display: true,
@@ -21664,6 +21689,7 @@ var rbmViz = (() => {
               size: 12
             }
           };
+        }
         return annotation2;
       });
     }
@@ -21674,7 +21700,7 @@ var rbmViz = (() => {
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
-    legendOrder.unshift("Study Average");
+    legendOrder.unshift(`${config.aggregateLabel} Average`);
     legendOrder.unshift("Site Distribution");
     if (config.group === "Study")
       return {
@@ -21745,6 +21771,7 @@ var rbmViz = (() => {
           }
         }
       },
+      displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
         return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
@@ -21772,6 +21799,18 @@ var rbmViz = (() => {
     scales2.y.title.text = config.yLabel;
     scales2.y.type = config.yType;
     return scales2;
+  }
+
+  // src/timeSeries/updateData.js
+  function updateData4(chart, _data_, _config_, _parameters_ = null, _analysis_ = null) {
+    const config = configure6(_config_, _data_, _parameters_);
+    chart.data = {
+      ...structureData4(_data_, config, _analysis_),
+      config,
+      _data_
+    };
+    chart.options.plugins = plugins5(config);
+    chart.update();
   }
 
   // src/timeSeries/updateSelectedGroupIDs.js
@@ -21807,6 +21846,7 @@ var rbmViz = (() => {
       options
     });
     chart.helpers = {
+      updateData: updateData4.bind(chart),
       updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart)
     };
     canvas.chart = chart;

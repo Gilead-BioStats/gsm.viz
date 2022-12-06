@@ -10,8 +10,12 @@ export default function formatResultTooltipContent(config, data) {
     ) {
         content = [
             //`${config.group}: ${datum.groupid}`,
-            `KRI Score: ${format('.1f')(datum.score)} (${config.score})`,
-            `KRI Value: ${format('.3f')(datum.metric)} (${config.metric})`,
+            `${config.group === 'Study' ? 'QTL' : 'KRI'} Score: ${format('.1f')(
+                datum.score
+            )} (${config.score})`,
+            `${config.group === 'Study' ? 'QTL' : 'KRI'} Value: ${format('.3f')(
+                datum.metric
+            )} (${config.metric})`,
             `${config.numerator}: ${format(',')(datum.numerator)}`,
             `${config.denominator}: ${format(',')(datum.denominator)}`,
         ];
@@ -51,7 +55,7 @@ export default function formatResultTooltipContent(config, data) {
                   ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
-                ? `${datum.y} ${config.yLabel}` // TODO: display both at risk and flagged
+                ? `${format('.1f')(datum.y)} ${config.yLabel}` // TODO: display both at risk and flagged
                 : null;
     }
 

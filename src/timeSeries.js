@@ -6,6 +6,7 @@ import plugins from './timeSeries/plugins';
 import getScales from './timeSeries/getScales';
 
 import Chart from 'chart.js/auto';
+import updateData from './timeSeries/updateData';
 import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
 
 export default function timeSeries(
@@ -42,6 +43,7 @@ export default function timeSeries(
     });
 
     chart.helpers = {
+        updateData: updateData.bind(chart),
         updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart),
     };
 

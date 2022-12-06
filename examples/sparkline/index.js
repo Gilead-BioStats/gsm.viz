@@ -14,7 +14,7 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
-        const groupID = '75';
+        const groupID = '28';
         const results = datasets[0]
             .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
             .slice(35, 45);
