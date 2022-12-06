@@ -20301,13 +20301,19 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => ({
         adjustScaleRange: false,
-        borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
+        borderColor: colorScheme_default.filter(
+          (y) => y.flag.includes(+x.flag)
+        )[0].color,
         borderDash: [2],
         borderWidth: 1,
         label: {
           backgroundColor: "white",
-          color: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
-          content: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].description,
+          color: colorScheme_default.filter(
+            (y) => y.flag.includes(+x.flag)
+          )[0].color,
+          content: colorScheme_default.filter(
+            (y) => y.flag.includes(+x.flag)
+          )[0].description,
           display: true,
           font: {
             size: 12
@@ -21138,8 +21144,13 @@ var rbmViz = (() => {
       callbacks: {
         label: function(data) {
           const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
-          const date = d3.timeFormat("'%y %b %d")(d3.timeParse("%Y-%m-%d")(data.label));
-          return config.dataType === "continuous" ? `${date}: ${format(fmt)(data.parsed.y)}` : [`${date}: ${format(fmt)(data.raw.n_flagged)} flagged`, `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`];
+          const date = d3.timeFormat("'%y %b %d")(
+            d3.timeParse("%Y-%m-%d")(data.label)
+          );
+          return config.dataType === "continuous" ? `${date}: ${format(fmt)(data.parsed.y)}` : [
+            `${date}: ${format(fmt)(data.raw.n_flagged)} flagged`,
+            `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`
+          ];
         },
         title: () => null,
         footer: () => null
@@ -21760,6 +21771,7 @@ var rbmViz = (() => {
           }
         }
       },
+      displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
         return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
@@ -21791,17 +21803,9 @@ var rbmViz = (() => {
 
   // src/timeSeries/updateData.js
   function updateData4(chart, _data_, _config_, _parameters_ = null, _analysis_ = null) {
-    const config = configure6(
-      _config_,
-      _data_,
-      _parameters_
-    );
+    const config = configure6(_config_, _data_, _parameters_);
     chart.data = {
-      ...structureData4(
-        _data_,
-        config,
-        _analysis_
-      ),
+      ...structureData4(_data_, config, _analysis_),
       config,
       _data_
     };

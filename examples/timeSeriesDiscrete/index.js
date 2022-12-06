@@ -20,19 +20,18 @@ Promise.all(dataPromises)
         });
         let flagCounts = datasets[0];
         if (by === 'kri')
-            flagCounts = flagCounts.filter(
-                d => d.workflowid === workflowID
-            );
+            flagCounts = flagCounts.filter((d) => d.workflowid === workflowID);
 
         // config
-        const config = by === 'kri'
-            ? datasets[1].find(
-                workflow => workflow.workflowid === workflowID
-            )
-            : {
-                selectedGroupIDs: '173',
-                //aggregateLabel: 'Country',
-            };
+        const config =
+            by === 'kri'
+                ? datasets[1].find(
+                      (workflow) => workflow.workflowid === workflowID
+                  )
+                : {
+                      selectedGroupIDs: '173',
+                      //aggregateLabel: 'Country',
+                  };
         config.y = 'n_at_risk_or_flagged';
 
         // visualization
@@ -42,13 +41,12 @@ Promise.all(dataPromises)
             config
         );
 
-        if (by === 'kri')
-            kri(config, datasets, true);
+        if (by === 'kri') kri(config, datasets, true);
         else
             document.getElementById('kri').parentElement.style.display = 'none';
 
-        if (by === 'group')
-            site(datasets, true);
+        if (by === 'group') site(datasets, true);
         else
-            document.getElementById('groupid').parentElement.style.display = 'none';
+            document.getElementById('groupid').parentElement.style.display =
+                'none';
     });

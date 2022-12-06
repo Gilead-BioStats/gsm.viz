@@ -15,19 +15,20 @@ export default function tooltip(config) {
                         : config.y === 'metric'
                         ? '.3f'
                         : ',d';
-                const date = d3.timeFormat('\'%y %b %d')(d3.timeParse('%Y-%m-%d')(data.label));
-                return config.dataType ===  'continuous'
+                const date = d3.timeFormat("'%y %b %d")(
+                    d3.timeParse('%Y-%m-%d')(data.label)
+                );
+                return config.dataType === 'continuous'
                     ? `${date}: ${format(fmt)(data.parsed.y)}`
-                    : [`${date}: ${
-                        format(fmt)(data.raw.n_flagged)
-                    } flagged`, `${date}: ${
-                        format(fmt)(data.raw.n_at_risk)
-                    } at risk`];
+                    : [
+                          `${date}: ${format(fmt)(data.raw.n_flagged)} flagged`,
+                          `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`,
+                      ];
             },
             title: () => null,
             footer: () => null,
         },
-        displayColors: config.dataType ===  'continuous',
+        displayColors: config.dataType === 'continuous',
         ...tooltipAesthetics,
     };
 }

@@ -5,20 +5,23 @@ export default function annotations(config) {
 
     if (config.thresholds) {
         annotations = config.thresholds
-            .sort((a,b) => Math.abs(a.threshold) - Math.abs(b.threshold))
+            .sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold))
             .map((x, i) => ({
                 adjustScaleRange: false,
-                borderColor: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                    .color,
+                borderColor: colorScheme.filter((y) =>
+                    y.flag.includes(+x.flag)
+                )[0].color,
                 borderDash: [2],
                 borderWidth: 1,
                 label: {
                     backgroundColor: 'white',
-                    color: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                        .color,
-                    content: colorScheme.filter((y) => y.flag.includes(+x.flag))[0]
-                        .description,
-                    display: true,//Math.sign(+x.flag) === 1,
+                    color: colorScheme.filter((y) =>
+                        y.flag.includes(+x.flag)
+                    )[0].color,
+                    content: colorScheme.filter((y) =>
+                        y.flag.includes(+x.flag)
+                    )[0].description,
+                    display: true, //Math.sign(+x.flag) === 1,
                     //drawTime: 'afterDatasetsDraw',
                     font: {
                         size: 12,

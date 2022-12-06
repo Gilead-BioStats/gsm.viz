@@ -1,6 +1,8 @@
 export default function mapThresholdsToFlags(_thresholds_, complete = true) {
     // Capture complete set of thresholds, even when only a partial set exists in the data.
-    let thresholds = _thresholds_.map((threshold) => +threshold).sort(d3.ascending);
+    let thresholds = _thresholds_
+        .map((threshold) => +threshold)
+        .sort(d3.ascending);
 
     //if (complete) {
     //    const nonNegativeThresholds = [

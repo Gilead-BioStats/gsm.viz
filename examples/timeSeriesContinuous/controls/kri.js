@@ -28,7 +28,12 @@ const kri = function (workflow, datasets, setup = false) {
             );
             workflow.selectedGroupIDs = [site()];
 
-            instance.helpers.updateData(instance, results, workflow, parameters);
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                parameters
+            );
         });
     }
 

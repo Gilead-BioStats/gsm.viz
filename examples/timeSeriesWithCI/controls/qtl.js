@@ -31,7 +31,13 @@ const qtl = function (workflow, datasets, setup = false) {
                 (d) => d.workflowid === event.target.value
             );
 
-            instance.helpers.updateData(instance, results, workflow, parameters, analysis);
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                parameters,
+                analysis
+            );
         });
     }
 

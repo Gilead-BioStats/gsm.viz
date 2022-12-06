@@ -12,21 +12,19 @@ import plugins from './plugins';
  * @param {Array} _analysis_ - additional statistical output where each array item is an object of key-value pairs
  *
  */
-export default function updateData(chart, _data_, _config_, _parameters_ = null, _analysis_ = null) {
-    const config = configure(
-        _config_,
-        _data_,
-        _parameters_
-    );
+export default function updateData(
+    chart,
+    _data_,
+    _config_,
+    _parameters_ = null,
+    _analysis_ = null
+) {
+    const config = configure(_config_, _data_, _parameters_);
 
     chart.data = {
-        ...structureData(
-            _data_,
-            config,
-            _analysis_
-        ),
+        ...structureData(_data_, config, _analysis_),
         config,
-        _data_
+        _data_,
     };
 
     chart.options.plugins = plugins(config);
