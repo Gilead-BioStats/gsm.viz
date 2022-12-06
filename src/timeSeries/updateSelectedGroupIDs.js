@@ -4,9 +4,7 @@ import structureData from './structureData';
 /**
  * Update chart configuration and redraw chart.
  *
- * @param {Object} chart - Chart.js chart object
- * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} selectedGroupIDs - array of group IDs to highlight in chart
  *
  */
 export default function updateSelectedGroupIDs(selectedGroupIDs) {

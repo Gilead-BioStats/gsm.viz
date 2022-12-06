@@ -30,6 +30,7 @@ export default function tooltip(config) {
                 }
             },
         },
+        displayColors: config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 
