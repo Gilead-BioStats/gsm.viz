@@ -55,7 +55,7 @@ export default function formatResultTooltipContent(config, data) {
                   ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
-                ? `${datum.y} ${config.yLabel}` // TODO: display both at risk and flagged
+                ? `${format('.1f')(datum.y)} ${config.yLabel}` // TODO: display both at risk and flagged
                 : null;
     }
 

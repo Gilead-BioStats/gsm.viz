@@ -7,8 +7,7 @@ export default function plugins(config) {
     const plugins = {
         annotation: {
             annotations: annotations(config),
-            //clip: false,
-            //drawTime: 'beforeDraw',
+            clip: true,
         },
         datalabels: chartLabels(config),
         legend: legend(config),

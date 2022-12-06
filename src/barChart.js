@@ -32,6 +32,7 @@ export default function barChart(
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
         animation: false,
+        clip: false,
         events: ['click', 'mousemove', 'mouseout'],
         interaction: {
             intersect: false,

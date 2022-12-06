@@ -6,6 +6,7 @@ export default function annotations(config) {
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => {
             const annotation = {
+                adjustScaleRange: config.group === 'Study',
                 drawTime: 'beforeDatasetsDraw',
                 type: 'line',
                 yMin: x.threshold,

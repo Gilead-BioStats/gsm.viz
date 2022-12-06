@@ -20,15 +20,13 @@ const kri = function (workflow, datasets, setup = false) {
             const workflow = datasets[1].find(
                 (d) => d.workflowid === event.target.value
             );
+            workflow.y = 'n_at_risk_or_flagged';
+            workflow.selectedGroupIDs = [site()];
             const results = datasets[0].filter(
                 (d) => d.workflowid === workflow.workflowid
             );
-            const parameters = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            workflow.selectedGroupIDs = [site()];
 
-            instance.helpers.updateData(instance, results, workflow, parameters);
+            instance.helpers.updateData(instance, results, workflow);
         });
     }
 

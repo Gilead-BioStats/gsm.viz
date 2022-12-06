@@ -38,5 +38,6 @@ Promise.all(dataPromises)
             parameters
         );
 
+        kri(workflow, datasets, true);
         site(datasets, true);
     });

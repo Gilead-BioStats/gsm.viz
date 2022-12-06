@@ -20091,7 +20091,7 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_, complete = true) {
-    let thresholds2 = _thresholds_.map((threshold) => +threshold);
+    let thresholds2 = _thresholds_.map((threshold) => +threshold).sort(d3.ascending);
     const flags = thresholds2.map((threshold, i) => {
       const flag = i - Math.floor(thresholds2.length / 2);
       return {
@@ -20299,8 +20299,8 @@ var rbmViz = (() => {
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.map((x, i) => ({
-        adjustScaleRange: true,
+      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => ({
+        adjustScaleRange: false,
         borderColor: colorScheme_default.filter((y) => y.flag.includes(+x.flag))[0].color,
         borderDash: [2],
         borderWidth: 1,
@@ -20312,6 +20312,7 @@ var rbmViz = (() => {
           font: {
             size: 12
           },
+          padding: 2,
           position: Math.sign(+x.flag) === 1 ? "end" : "start",
           rotation: "auto",
           yValue: x.threshold,
@@ -20369,7 +20370,7 @@ var rbmViz = (() => {
         ...datum2.counts.map(
           (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
         )
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${datum2.y} ${config.yLabel}` : null;
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
     }
     return content;
   }
@@ -20438,7 +20439,8 @@ var rbmViz = (() => {
   function plugins2(config) {
     const plugins6 = {
       annotation: {
-        annotations: annotations(config)
+        annotations: annotations(config),
+        clip: true
       },
       datalabels: chartLabels(config),
       legend: legend(config),
@@ -20572,6 +20574,7 @@ var rbmViz = (() => {
     const datasets = structureData(_data_, config);
     const options = {
       animation: false,
+      clip: false,
       events: ["click", "mousemove", "mouseout"],
       interaction: {
         intersect: false,
@@ -21650,6 +21653,7 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
+          adjustScaleRange: config.group === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.threshold,
@@ -21781,6 +21785,25 @@ var rbmViz = (() => {
     return scales2;
   }
 
+  // src/timeSeries/updateData.js
+  function updateData4(chart, _data_, _config_, _parameters_ = null, _analysis_ = null) {
+    const config = configure6(
+      _config_,
+      _data_,
+      _parameters_
+    );
+    chart.data = {
+      ...structureData4(
+        _data_,
+        config,
+        _analysis_
+      ),
+      config,
+      _data_
+    };
+    chart.update();
+  }
+
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = selectedGroupIDs;
@@ -21814,6 +21837,7 @@ var rbmViz = (() => {
       options
     });
     chart.helpers = {
+      updateData: updateData4.bind(chart),
       updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart)
     };
     canvas.chart = chart;
