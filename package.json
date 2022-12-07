@@ -1,5 +1,5 @@
 {
-  "TODO": "add threshold mirroring algorithm back for scatter plot",
+  "TODO": "",
   "name": "rbm-viz",
   "version": "0.13.2",
   "description": "web-based data visualization for risk-based monitoring",
