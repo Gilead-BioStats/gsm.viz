@@ -39,7 +39,7 @@ export default function configure(_config_, _data_) {
         ),
     });
 
-    config.xLabel = coalesce(_config_.xLabel, config['group']);
+    config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
 
     return config;

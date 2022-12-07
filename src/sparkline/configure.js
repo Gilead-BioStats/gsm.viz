@@ -46,7 +46,7 @@ export default function configure(_config_, _data_, _thresholds_) {
         ? 'continuous'
         : 'discrete';
 
-    config.xLabel = coalesce(_config_.xLabel, config['group']);
+    config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
 
     return config;

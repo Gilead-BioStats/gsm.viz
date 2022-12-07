@@ -21446,7 +21446,7 @@ var rbmViz = (() => {
         _data_
       )
     });
-    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     return config;
   }
@@ -21791,7 +21791,7 @@ var rbmViz = (() => {
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
-    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     return config;
   }
@@ -22071,6 +22071,7 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
+    defaults3.group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
