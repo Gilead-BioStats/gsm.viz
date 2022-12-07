@@ -14,7 +14,7 @@ import getAggregateLine from './structureData/aggregateLine';
 
 import colorScheme from '../util/colorScheme';
 export default function structureData(_data_, config, _intervals_) {
-    const data = mutate(_data_, config);
+    const data = mutate(_data_, config, _intervals_);
 
     // x-axis labels
     const labels = getLabels(data, config);

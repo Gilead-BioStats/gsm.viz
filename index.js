@@ -21153,11 +21153,20 @@ var rbmViz = (() => {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
-      content = [
-        `${config.group === "Study" ? "QTL" : "KRI"} Score: ${format(".1f")(
+      content = config.group === "Study" ? [
+        `${config.yLabel}: ${format(".2f")(
+          datum2.metric
+        )}`,
+        `Confidence Interval: (${format(".2f")(
+          datum2.lowerCI
+        )}, ${format(".2f")(datum2.upperCI)})`,
+        `${config.numerator}: ${format(",")(datum2.numerator)}`,
+        `${config.denominator}: ${format(",")(datum2.denominator)}`
+      ] : [
+        `KRI Score: ${format(".1f")(
           datum2.score
         )} (${config.score})`,
-        `${config.group === "Study" ? "QTL" : "KRI"} Value: ${format(".3f")(
+        `KRI Value: ${format(".3f")(
           datum2.metric
         )} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
@@ -22091,8 +22100,22 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config) {
-    return _data_.sort((a, b) => ascending(a[config.x], b[config.x]));
+  function mutate4(_data_, config, _intervals_) {
+    return _data_.map((d) => {
+      const datum2 = { ...d };
+      if (_intervals_ !== null) {
+        const intervals = _intervals_.filter(
+          (interval2) => interval2.snapshot_date === datum2.snapshot_date
+        );
+        datum2.lowerCI = intervals.find(
+          (interval2) => interval2.param === "LowCI"
+        )?.value;
+        datum2.upperCI = intervals.find(
+          (interval2) => interval2.param === "UpCI"
+        )?.value;
+      }
+      return datum2;
+    }).sort((a, b) => ascending(a[config.x], b[config.x]));
   }
 
   // src/timeSeries/structureData/getLabels.js
@@ -22158,6 +22181,7 @@ var rbmViz = (() => {
         borderDash: [2],
         borderWidth: 1,
         data: [...value.values()],
+        hoverRadius: 0,
         label: i === 0 ? "Confidence Interval" : "",
         pointStyle: "line",
         purpose: "aggregate",
@@ -22372,7 +22396,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config, _intervals_) {
-    const data = mutate4(_data_, config);
+    const data = mutate4(_data_, config, _intervals_);
     const labels = getLabels(data, config);
     let datasets = [];
     if (config.hasOwnProperty("workflowid") && config.dataType !== "discrete") {
@@ -22573,7 +22597,7 @@ var rbmViz = (() => {
       displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        return typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
       },
       ...tooltipAesthetics
     };
