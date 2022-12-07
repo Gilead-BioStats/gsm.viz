@@ -9,27 +9,30 @@ export default function formatResultTooltipContent(config, data) {
         ['bar', 'line', 'scatter'].includes(data.dataset.type) &&
         config.dataType !== 'discrete'
     ) {
-        content = config.group === 'Study'
-            ? [
-                `${config.yLabel}: ${format('.2f')(
-                    datum.metric
-                )}`,
-                `Confidence Interval: (${format('.2f')(
-                    datum.lowerCI
-                )}, ${format('.2f')(datum.upperCI)})`,
-                `${config.numerator}: ${format(',')(datum.numerator)}`,
-                `${config.denominator}: ${format(',')(datum.denominator)}`,
-            ]
-            : [
-                `KRI Score: ${format('.1f')(
-                    datum.score
-                )} (${config.score})`,
-                `KRI Value: ${format('.3f')(
-                    datum.metric
-                )} (${config.metric})`,
-                `${config.numerator}: ${format(',')(datum.numerator)}`,
-                `${config.denominator}: ${format(',')(datum.denominator)}`,
-            ];
+        content =
+            config.group === 'Study'
+                ? [
+                      `${config.yLabel}: ${format('.2f')(datum.metric)}`,
+                      `Confidence Interval: (${format('.2f')(
+                          datum.lowerCI
+                      )}, ${format('.2f')(datum.upperCI)})`,
+                      `${config.numerator}: ${format(',')(datum.numerator)}`,
+                      `${config.denominator}: ${format(',')(
+                          datum.denominator
+                      )}`,
+                  ]
+                : [
+                      `KRI Score: ${format('.1f')(datum.score)} (${
+                          config.score
+                      })`,
+                      `KRI Value: ${format('.3f')(datum.metric)} (${
+                          config.metric
+                      })`,
+                      `${config.numerator}: ${format(',')(datum.numerator)}`,
+                      `${config.denominator}: ${format(',')(
+                          datum.denominator
+                      )}`,
+                  ];
     }
     // Handle distribution data.
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {

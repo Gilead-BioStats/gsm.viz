@@ -21154,23 +21154,21 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = config.group === "Study" ? [
-        `${config.yLabel}: ${format(".2f")(
-          datum2.metric
-        )}`,
+        `${config.yLabel}: ${format(".2f")(datum2.metric)}`,
         `Confidence Interval: (${format(".2f")(
           datum2.lowerCI
         )}, ${format(".2f")(datum2.upperCI)})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(datum2.denominator)}`
+        `${config.denominator}: ${format(",")(
+          datum2.denominator
+        )}`
       ] : [
-        `KRI Score: ${format(".1f")(
-          datum2.score
-        )} (${config.score})`,
-        `KRI Value: ${format(".3f")(
-          datum2.metric
-        )} (${config.metric})`,
+        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
+        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(datum2.denominator)}`
+        `${config.denominator}: ${format(",")(
+          datum2.denominator
+        )}`
       ];
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
       const stats = ["mean", "min", "q1", "median", "q3", "max"].map(

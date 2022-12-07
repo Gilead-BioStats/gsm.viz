@@ -35,9 +35,12 @@ export default function tooltip(config) {
             const datum = data.dataset.data[data.dataIndex];
 
             // Avoid duplicate display of tooltip.
-            return typeof datum === 'object' && !(
-                config.selectedGroupIDs.includes(datum.groupid) &&
-                data.dataset.type === 'scatter'
+            return (
+                typeof datum === 'object' &&
+                !(
+                    config.selectedGroupIDs.includes(datum.groupid) &&
+                    data.dataset.type === 'scatter'
+                )
             );
         },
         ...tooltipAesthetics,
