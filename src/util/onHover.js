@@ -6,7 +6,7 @@ export default function onHover(event, activeElements, chart) {
     //if (activeElements.length)
     //    console.log(chart.data.datasets[activeElements[0].datasetIndex]);
 
-    // TODO: fire event in time series when 
+    // TODO: fire event in time series when
     if (
         activeElements.length &&
         chart.data.datasets[activeElements[0].datasetIndex].type === config.type

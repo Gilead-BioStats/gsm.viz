@@ -20877,37 +20877,29 @@ var rbmViz = (() => {
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
     const thresholds2 = _thresholds_.map((threshold) => +threshold).sort(ascending);
-    const negativeThresholds = thresholds2.filter(
-      (threshold) => threshold < 0
-    ).sort(descending);
+    const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
     const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
         threshold,
         flag: -(i + 1)
       };
     });
-    const positiveThresholds = thresholds2.filter(
-      (threshold) => threshold > 0
-    ).sort(ascending);
+    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
     const positiveFlags = positiveThresholds.map((threshold, i) => {
       return {
         threshold,
         flag: i + 1
       };
     });
-    const zeroFlag = thresholds2.filter(
-      (threshold) => threshold === 0
-    ).map((threshold) => {
+    const zeroFlag = thresholds2.filter((threshold) => threshold === 0).map((threshold) => {
       return {
         threshold,
         flag: 0
       };
     });
-    const flags = [
-      ...negativeFlags,
-      ...zeroFlag,
-      ...positiveFlags
-    ].sort((a, b) => a.flag - b.flag);
+    const flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
+      (a, b) => a.flag - b.flag
+    );
     return flags;
   }
 
@@ -20937,10 +20929,8 @@ var rbmViz = (() => {
     defaults3.type = "bar";
     defaults3.x = "groupid";
     defaults3.xType = "category";
-    defaults3.xLabel = _config_["group"];
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = _config_[_config_.y || defaults3.y];
     defaults3.color = "flag";
     defaults3.colorLabel = _config_[defaults3.color];
     defaults3.hoverCallback = (datum2) => {
@@ -20957,6 +20947,8 @@ var rbmViz = (() => {
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
+    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     return config;
   }
 
@@ -21435,10 +21427,8 @@ var rbmViz = (() => {
     defaults3.type = "scatter";
     defaults3.x = "denominator";
     defaults3.xType = "logarithmic";
-    defaults3.xLabel = _config_[defaults3.x];
     defaults3.y = "numerator";
     defaults3.yType = "linear";
-    defaults3.yLabel = _config_[defaults3.y];
     defaults3.color = "flag";
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
@@ -21456,6 +21446,8 @@ var rbmViz = (() => {
         _data_
       )
     });
+    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     return config;
   }
 
@@ -21555,9 +21547,7 @@ var rbmViz = (() => {
         },
         (d) => d.threshold
       );
-      const flags = mapThresholdsToFlags(
-        boundUps.map((bound) => bound[0])
-      );
+      const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
       const bounds = boundUps.map((bound, i) => {
         const group2 = bound[1];
         group2.threshold = +bound[0];
@@ -21784,10 +21774,8 @@ var rbmViz = (() => {
     defaults3.type = "line";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
-    defaults3.xLabel = _config_[defaults3.x];
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.yLabel = _config_[defaults3.y];
     defaults3.color = "flag";
     defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
@@ -21803,6 +21791,8 @@ var rbmViz = (() => {
     });
     config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
     config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
+    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     return config;
   }
 
@@ -22068,6 +22058,8 @@ var rbmViz = (() => {
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
+    else
+      defaults3.discreteUnit = null;
     defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
@@ -22079,15 +22071,8 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
-    defaults3.group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.maintainAspectRatio = false;
-    defaults3.displayBoxplots = true;
-    defaults3.displayViolins = false;
-    defaults3.displayAtRisk = true;
-    defaults3.displayFlagged = true;
-    defaults3.displayThresholds = true;
-    defaults3.displayTrendLine = true;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,

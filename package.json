@@ -14,7 +14,8 @@
     "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
     "local": "live-server --ignore=node_modules --wait=250 .",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
-    "test": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
+    "test": "jest",
+    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
   },
   "repository": {
     "type": "git",
@@ -49,7 +50,7 @@
     "babel-jest": "^29.1.2",
     "csvtojson": "^2.0.10",
     "esbuild": "^0.15.10",
-    "jest": "^29.1.2",
+    "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.1.2",
     "jsdoc": "^3.6.11",
     "live-server": "^1.2.2",

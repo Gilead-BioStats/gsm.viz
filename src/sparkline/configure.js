@@ -2,6 +2,7 @@ import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
+import coalesce from '../util/coalesce';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
@@ -11,12 +12,10 @@ export default function configure(_config_, _data_, _thresholds_) {
     // horizontal
     defaults.x = 'snapshot_date';
     defaults.xType = 'category';
-    defaults.xLabel = _config_[defaults.x];
 
     // vertical
     defaults.y = 'score';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[defaults.y];
 
     // color
     defaults.color = 'flag';
@@ -46,6 +45,9 @@ export default function configure(_config_, _data_, _thresholds_) {
     config.dataType = ['metric', 'score'].includes(config.y)
         ? 'continuous'
         : 'discrete';
+
+    config.xLabel = coalesce(_config_.xLabel, config['group']);
+    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
 
     return config;
 }

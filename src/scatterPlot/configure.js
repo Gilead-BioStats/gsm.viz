@@ -1,6 +1,7 @@
 import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
+import coalesce from '../util/coalesce';
 
 export default function configure(_config_, _data_) {
     const defaults = {};
@@ -10,12 +11,10 @@ export default function configure(_config_, _data_) {
     // horizontal
     defaults.x = 'denominator';
     defaults.xType = 'logarithmic';
-    defaults.xLabel = _config_[defaults.x];
 
     // vertical
     defaults.y = 'numerator';
     defaults.yType = 'linear';
-    defaults.yLabel = _config_[defaults.y];
 
     // color
     defaults.color = 'flag';
@@ -39,6 +38,9 @@ export default function configure(_config_, _data_) {
             _data_
         ),
     });
+
+    config.xLabel = coalesce(_config_.xLabel, config['group']);
+    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
 
     return config;
 }

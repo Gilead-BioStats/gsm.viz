@@ -20,6 +20,7 @@ export default function configure(_config_, _data_, _thresholds_) {
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
             : 'Site';
+    else defaults.discreteUnit = null;
 
     defaults.type =
         defaults.dataType === 'discrete'
@@ -55,16 +56,16 @@ export default function configure(_config_, _data_, _thresholds_) {
     };
 
     // miscellaneous
-    defaults.group = 'Site';
+    //defaults.group = 'Site';
     defaults.aggregateLabel = 'Study';
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
-    defaults.displayBoxplots = true;
-    defaults.displayViolins = false;
-    defaults.displayAtRisk = true;
-    defaults.displayFlagged = true;
-    defaults.displayThresholds = true;
-    defaults.displayTrendLine = true;
+    //defaults.displayBoxplots = true;
+    //defaults.displayViolins = false;
+    //defaults.displayAtRisk = true;
+    //defaults.displayFlagged = true;
+    //defaults.displayThresholds = true;
+    //defaults.displayTrendLine = true;
 
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
