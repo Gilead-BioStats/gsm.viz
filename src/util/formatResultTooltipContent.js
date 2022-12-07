@@ -12,10 +12,10 @@ export default function formatResultTooltipContent(config, data) {
         content =
             config.group === 'Study'
                 ? [
-                      `${config.yLabel}: ${format('.2f')(datum.metric)}`,
-                      `Confidence Interval: (${format('.2f')(
+                      `${config.yLabel}: ${format('.3f')(datum.metric)}`,
+                      `Confidence Interval: (${format('.3f')(
                           datum.lowerCI
-                      )}, ${format('.2f')(datum.upperCI)})`,
+                      )}, ${format('.3f')(datum.upperCI)})`,
                       `${config.numerator}: ${format(',')(datum.numerator)}`,
                       `${config.denominator}: ${format(',')(
                           datum.denominator

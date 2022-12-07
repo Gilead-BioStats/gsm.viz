@@ -21154,10 +21154,10 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = config.group === "Study" ? [
-        `${config.yLabel}: ${format(".2f")(datum2.metric)}`,
-        `Confidence Interval: (${format(".2f")(
+        `${config.yLabel}: ${format(".3f")(datum2.metric)}`,
+        `Confidence Interval: (${format(".3f")(
           datum2.lowerCI
-        )}, ${format(".2f")(datum2.upperCI)})`,
+        )}, ${format(".3f")(datum2.upperCI)})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(
           datum2.denominator
@@ -22101,7 +22101,7 @@ var rbmViz = (() => {
   function mutate4(_data_, config, _intervals_) {
     return _data_.map((d) => {
       const datum2 = { ...d };
-      if (_intervals_ !== null) {
+      if ([void 0, null].includes(_intervals_) === false) {
         const intervals = _intervals_.filter(
           (interval2) => interval2.snapshot_date === datum2.snapshot_date
         );

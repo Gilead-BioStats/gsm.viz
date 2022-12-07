@@ -5,7 +5,7 @@ export default function mutate(_data_, config, _intervals_) {
         .map((d) => {
             const datum = { ...d };
 
-            if (_intervals_ !== null) {
+            if ([undefined, null].includes(_intervals_) === false) {
                 const intervals = _intervals_.filter(
                     (interval) => interval.snapshot_date === datum.snapshot_date
                 );
