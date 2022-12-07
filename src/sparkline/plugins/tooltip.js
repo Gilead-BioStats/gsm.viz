@@ -1,4 +1,4 @@
-import { format } from 'd3';
+import { format, timeFormat, timeParse } from 'd3';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
 export default function tooltip(config) {
@@ -15,8 +15,8 @@ export default function tooltip(config) {
                         : config.y === 'metric'
                         ? '.3f'
                         : ',d';
-                const date = d3.timeFormat("'%y %b %d")(
-                    d3.timeParse('%Y-%m-%d')(data.label)
+                const date = timeFormat("'%y %b %d")(
+                    timeParse('%Y-%m-%d')(data.label)
                 );
                 return config.dataType === 'continuous'
                     ? `${date}: ${format(fmt)(data.parsed.y)}`

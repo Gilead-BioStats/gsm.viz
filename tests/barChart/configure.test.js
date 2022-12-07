@@ -1,14 +1,14 @@
-import data from '../examples/data/results_summary_over_time.json';
-import metadata from '../examples/data/meta_workflow.json';
-import parameters from '../examples/data/meta_param.json';
+import data from '../../examples/data/results_summary_over_time.json';
+import metadata from '../../examples/data/meta_workflow.json';
+import parameters from '../../examples/data/meta_param.json';
 
-import configure from '../src/barChart/configure';
+import configure from '../../src/barChart/configure';
 
-import structureData from '../src/barChart/structureData';
-import getScales from '../src/barChart/getScales';
-import annotations from '../src/barChart/plugins/annotations';
-import legend from '../src/barChart/plugins/legend';
-import tooltip from '../src/barChart/plugins/tooltip';
+import structureData from '../../src/barChart/structureData';
+import getScales from '../../src/barChart/getScales';
+import annotations from '../../src/barChart/plugins/annotations';
+import legend from '../../src/barChart/plugins/legend';
+import tooltip from '../../src/barChart/plugins/tooltip';
 
 const workflowID = 'kri0001';
 const dataSubset = data.filter((d) => d.workflowid === workflowID);

@@ -16,6 +16,7 @@ export default function intervalLines(_intervals_, config, labels) {
             borderDash: [2],
             borderWidth: 1,
             data: [...value.values()],
+            hoverRadius: 0,
             label: i === 0 ? 'Confidence Interval' : '',
             pointStyle: 'line',
             purpose: 'aggregate',
