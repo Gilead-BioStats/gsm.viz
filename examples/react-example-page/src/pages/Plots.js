@@ -1,20 +1,14 @@
-import BarChart from "../Components/BarChart"
+import BarChartContainer from "../Components/BarChartContainer/BarChartContainer"
 
-import workflows from "../data/meta_workflow"
-
+// const BarCharContainer
 const Plots = () => {
-
-  const workflow = workflows[0];
-
-  const workflowScoreBars = { ...workflow };
-
-    return (
+    
+  return (
       <div>
-        <BarChart
-                config={workflowScoreBars}
-            />
+        <BarChartContainer />
       </div>
     );
+
 };
 
 export default Plots;
