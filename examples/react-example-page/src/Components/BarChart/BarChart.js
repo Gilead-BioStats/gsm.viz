@@ -11,8 +11,8 @@ const BarChart = ({ data, config, thresholds, setInstance }) => {
 
     useEffect(() => {
         if (container.current) {
-            //const inst = 
-            rbm.barChart(container.current, data, config, thresholds)
+            const inst = rbm.barChart(container.current, data, config, thresholds)
+            console.log(inst)
             //setInstance(inst)
         }
     }, [data, config, thresholds, setInstance]);
