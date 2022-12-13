@@ -20804,19 +20804,19 @@ var rbmViz = (() => {
     {
       color: "#52C41A",
       order: 0,
-      description: "Within Thresholds",
+      description: "No Flag",
       flag: [0]
     },
     {
-      color: "#FADB14",
+      color: "#FFBF00",
       order: 1,
-      description: "At Risk",
+      description: "Amber Flag",
       flag: [-1, 1]
     },
     {
-      color: "#FF4D4F",
+      color: "#ff0040",
       order: 2,
-      description: "Flagged",
+      description: "Red Flag",
       flag: [-2, 2]
     }
   ];
@@ -20916,10 +20916,9 @@ var rbmViz = (() => {
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.default);
+    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => +d.value);
     return mapThresholdsToFlags(
-      thresholds2,
-      thresholds2.some((threshold) => threshold < 0)
+      thresholds2
     );
   }
 
@@ -21385,6 +21384,7 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    console.log(_thresholds_);
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);

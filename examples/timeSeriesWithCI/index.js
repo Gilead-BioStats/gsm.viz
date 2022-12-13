@@ -1,7 +1,8 @@
 const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
+    '../data/meta_param.csv', // default parameters
+    '../data/status_param.csv', // custom parameters
     '../data/results_analysis_over_time.csv',
 ];
 
@@ -18,20 +19,21 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^qtl/.test(d.workflowid))
         );
 
-        // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        // analysis results
+        const results = filterOnWorkflowID(datasets[0], workflowID);
 
-        // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
+        // chart configuration
+        const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'metric';
 
-        // customization data
-        const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+        // threshold annotations
+        const parameters = mergeParameters(
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
 
         // additional analysis output
-        const analysis = datasets[3].filter((d) => d.workflowid === workflowID);
+        const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
@@ -39,7 +41,7 @@ Promise.all(dataPromises)
             results,
             workflow,
             parameters,
-            analysis
+            resultsVertical
         );
 
         qtl(workflow, datasets, true);

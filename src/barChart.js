@@ -22,6 +22,7 @@ export default function barChart(
     _config_ = {},
     _thresholds_ = null
 ) {
+    console.log(_thresholds_);
     // Update config.
     const config = configure(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);

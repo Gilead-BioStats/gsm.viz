@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
+    '../data/status_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -17,17 +18,18 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 
-        // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        // analysis results
+        const results = filterOnWorkflowID(datasets[0], workflowID);
 
-        // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
+        // chart configuration
+        const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.selectedGroupIDs = '190';
         workflow.type = 'boxplot'; //'violin';
 
-        // customization data
-        const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+        // threshold annotations
+        const parameters = mergeParameters(
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
 
         // visualization

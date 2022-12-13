@@ -43,10 +43,9 @@ export default function checkThresholds(_config_, _thresholds_) {
     // Filter workflow thresholds and get associated metadata.
     thresholds = _thresholds_
         .filter((d) => d.param === 'vThreshold')
-        .map((d) => d.default);
+        .map((d) => +d.value);
 
     return mapThresholdsToFlags(
-        thresholds,
-        thresholds.some((threshold) => threshold < 0)
+        thresholds
     );
 }
