@@ -38,7 +38,7 @@ const App = () => {
     const workflowMetricBars = { ...workflow };
     workflowMetricBars.y = 'metric';
     const workflowScatterPlot = { ...workflow };
-    workflowScatterPlot.clickCallback = () => console.log('clickt!');
+    //workflowScatterPlot.clickCallback = () => console.log('clickt!');
     const workflowTimeSeries = { ...workflow };
     const workflowFlagCounts = { ...workflow };
     workflowFlagCounts.y = 'n_flagged';
