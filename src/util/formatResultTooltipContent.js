@@ -49,10 +49,10 @@ export default function formatResultTooltipContent(config, data) {
         content =
             data.dataset.purpose === 'highlight'
                 ? [
-                      `${datum.n_flagged} flagged ${config.discreteUnit}${
+                      `${datum.n_flagged} Red ${config.discreteUnit}${
                           +datum.n_flagged === 1 ? '' : 's'
                       }`,
-                      `${datum.n_at_risk} at risk ${config.discreteUnit}${
+                      `${datum.n_at_risk} Amber ${config.discreteUnit}${
                           +datum.n_at_risk === 1 ? '' : 's'
                       }`,
                   ]
@@ -69,7 +69,7 @@ export default function formatResultTooltipContent(config, data) {
                   ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
-                ? `${format('.1f')(datum.y)} ${config.yLabel}` // TODO: display both at risk and flagged
+                ? `${format('.1f')(datum.y)} ${config.yLabel}` // TODO: display both amber and red flags
                 : null;
     }
 

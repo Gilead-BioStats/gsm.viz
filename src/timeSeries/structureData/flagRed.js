@@ -1,6 +1,6 @@
-export default function atRisk(data, config, labels) {
+export default function flagRed(data, config, labels) {
     const pointData = data
-        .filter((d) => Math.abs(+d.flag) === 1)
+        .filter((d) => Math.abs(+d.flag) > 1)
         .map((d) => {
             const datum = { ...d };
             datum.x = datum[config.x]; //labels
@@ -10,7 +10,7 @@ export default function atRisk(data, config, labels) {
         });
 
     const color = config.colorScheme.find((color) =>
-        color.flag.some((flag) => Math.abs(flag) === 1)
+        color.flag.some((flag) => Math.abs(flag) > 1)
     );
     color.rgba.opacity = 0.5;
 

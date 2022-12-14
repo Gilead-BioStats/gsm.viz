@@ -15,15 +15,13 @@ export default function tooltip(config) {
                         : config.y === 'metric'
                         ? '.3f'
                         : ',d';
-                const date = timeFormat("'%y %b %d")(
-                    timeParse('%Y-%m-%d')(data.label)
-                );
+
                 return config.dataType === 'continuous'
-                    ? `${date}: ${format(fmt)(data.parsed.y)}`
-                    : [
-                          `${date}: ${format(fmt)(data.raw.n_flagged)} flagged`,
-                          `${date}: ${format(fmt)(data.raw.n_at_risk)} at risk`,
-                      ];
+                    ? `${data.label}: ${format(fmt)(data.parsed.y)}`
+                    : //[
+                        `${data.label}: ${format(fmt)(data.raw.n_flagged)} red / ${format(fmt)(data.raw.n_at_risk)} amber`
+                        //`${data.label}: ${format(fmt)(data.raw.n_at_risk)} amber`,
+                    //];
             },
             title: () => null,
             footer: () => null,

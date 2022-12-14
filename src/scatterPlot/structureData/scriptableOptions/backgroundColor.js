@@ -9,9 +9,10 @@ export default function backgroundColor(context, options) {
     if (dataset.type === 'scatter') {
         const color = config.colorScheme[datum.stratum].rgba;
         color.opacity =
-            config.selectedGroupIDs.includes(datum.groupid) |
-            (config.selectedGroupIDs.length === 0)
+            config.selectedGroupIDs.includes(datum.groupid)
                 ? 1
+                : (config.selectedGroupIDs.length === 0)
+                ? .5
                 : 0.25;
         return color + '';
     }

@@ -46,7 +46,7 @@ Promise.all(dataPromises)
             document.getElementById('flag-counts-by-kri'),
             flagCountsByKRI,
             {
-                ...workflow,
+                nSnapshots: workflow.nSnapshots,
                 y: 'n_flagged',
             }
         );
@@ -55,7 +55,7 @@ Promise.all(dataPromises)
             document.getElementById('flag-counts-by-group'),
             flagCountsByGroup,
             {
-                ...workflow,
+                nSnapshots: workflow.nSnapshots,
                 y: 'n_flagged',
             }
         );
