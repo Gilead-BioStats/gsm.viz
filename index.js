@@ -20320,35 +20320,38 @@ var rbmViz = (() => {
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => ({
-        adjustScaleRange: false,
-        borderColor: colorScheme_default.filter(
+      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => {
+        const content = colorScheme_default.find(
           (y) => y.flag.includes(+x.flag)
-        )[0].color,
-        borderDash: [2],
-        borderWidth: 1,
-        label: {
-          backgroundColor: "white",
-          color: colorScheme_default.filter(
+        ).description;
+        return {
+          adjustScaleRange: false,
+          borderColor: colorScheme_default.filter(
             (y) => y.flag.includes(+x.flag)
           )[0].color,
-          content: `${Math.sign(+x.flag) === 1 ? "\u2191" : Math.sign(+x.flag) === -1 ? "\u2193" : ""} ${colorScheme_default.filter(
-            (y) => y.flag.includes(+x.flag)
-          )[0].description}`,
-          display: true,
-          font: {
-            size: 12
+          borderDash: [2],
+          borderWidth: 1,
+          label: {
+            backgroundColor: "white",
+            color: colorScheme_default.filter(
+              (y) => y.flag.includes(+x.flag)
+            )[0].color,
+            content: Math.sign(+x.flag) === 1 ? `${content} \u2191` : `\u2193 ${content}`,
+            display: true,
+            font: {
+              size: 12
+            },
+            padding: 2,
+            position: Math.sign(+x.flag) === 1 ? "end" : "start",
+            rotation: "auto",
+            yValue: x.threshold,
+            yAdjust: 0
           },
-          padding: 2,
-          position: Math.sign(+x.flag) === 1 ? "end" : "start",
-          rotation: "auto",
-          yValue: x.threshold,
-          yAdjust: 0
-        },
-        type: "line",
-        yMin: x.threshold,
-        yMax: x.threshold
-      }));
+          type: "line",
+          yMin: x.threshold,
+          yMax: x.threshold
+        };
+      });
     }
     return annotations5;
   }

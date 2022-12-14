@@ -8,10 +8,7 @@ export default function borderColor(context, options) {
 
     if (dataset.type === 'scatter') {
         const color = config.colorScheme[datum.stratum].rgba;
-        color.opacity =
-                (config.selectedGroupIDs.length === 0)
-                ? 1
-                : 0.5;
+        color.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
         return config.selectedGroupIDs.includes(datum.groupid)
             ? 'black'
             : color + '';

@@ -5,7 +5,8 @@ export default function onHover(event, activeElements, chart) {
 
     if (
         activeElements.length &&
-        chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)
+        chart.data.datasets[activeElements[0].datasetIndex].type ===
+            (config.tooltipType || config.type)
     ) {
         const datum = getElementDatum(activeElements, chart);
         config.hoverEvent.data = datum;
