@@ -11,6 +11,7 @@ import './BarChartContainer.css';
 
 // const BarCharContainer
 const BarChartContainer = () => {
+
     const filterResults = (kri) => {
         return resultsAll.filter((d) => d.workflowid === kri);
     };
@@ -19,8 +20,14 @@ const BarChartContainer = () => {
         return parametersAll.filter((d) => d.workflowid === kri);
     };
 
+    
+    const filterWorkflow = (kri) => {
+      workflows.find(d => d.workflowid === kri)
+  }
+
+
     const [kri, setKri] = useState('kri0001');
-    const [workflow, setWorkflow] = useState({ ...workflows });
+    const [workflow, setWorkflow] = useState(filterWorkflow(kri));
     const [results, setResults] = useState(filterResults(kri));
     const [parameters, setParameters] = useState(filterParameters(kri));
     const [thresholds, setThresholds] = useState(parameters);
@@ -41,6 +48,7 @@ const BarChartContainer = () => {
                         workflow={workflow}
                         filterParameters={filterParameters}
                         filterResults={filterResults}
+                        filterWorkflow={filterWorkflow}
                         setThresholds={setThresholds}
                         instance={instance}
                     />
