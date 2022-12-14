@@ -18,9 +18,9 @@ export default function annotations(config) {
                     color: colorScheme.filter((y) =>
                         y.flag.includes(+x.flag)
                     )[0].color,
-                    content: colorScheme.filter((y) =>
+                    content: `${Math.sign(+x.flag) === 1 ? '↑' : Math.sign(+x.flag) === -1 ? '↓' : ''} ${colorScheme.filter((y) =>
                         y.flag.includes(+x.flag)
-                    )[0].description,
+                    )[0].description}`,
                     display: true, //Math.sign(+x.flag) === 1,
                     //drawTime: 'afterDatasetsDraw',
                     font: {

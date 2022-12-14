@@ -5,7 +5,7 @@ export default function onClick(event, activeElements, chart) {
 
     if (
         activeElements.length &&
-        chart.data.datasets[activeElements[0].datasetIndex].type === config.type
+        chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)
     ) {
         const datum = getElementDatum(activeElements, chart);
         delete config.clickEvent.data;

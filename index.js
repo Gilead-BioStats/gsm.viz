@@ -20295,7 +20295,7 @@ var rbmViz = (() => {
   // src/util/onClick.js
   function onClick(event, activeElements, chart) {
     const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)) {
       const datum2 = getElementDatum(activeElements, chart);
       delete config.clickEvent.data;
       config.clickEvent.data = datum2;
@@ -20306,7 +20306,7 @@ var rbmViz = (() => {
   // src/util/onHover.js
   function onHover(event, activeElements, chart) {
     const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === config.type) {
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)) {
       const datum2 = getElementDatum(activeElements, chart);
       config.hoverEvent.data = datum2;
       chart.canvas.dispatchEvent(config.hoverEvent);
@@ -20332,9 +20332,9 @@ var rbmViz = (() => {
           color: colorScheme_default.filter(
             (y) => y.flag.includes(+x.flag)
           )[0].color,
-          content: colorScheme_default.filter(
+          content: `${Math.sign(+x.flag) === 1 ? "\u2191" : Math.sign(+x.flag) === -1 ? "\u2193" : ""} ${colorScheme_default.filter(
             (y) => y.flag.includes(+x.flag)
-          )[0].description,
+          )[0].description}`,
           display: true,
           font: {
             size: 12
@@ -21284,6 +21284,7 @@ var rbmViz = (() => {
     else
       defaults3.discreteUnit = null;
     defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
+    defaults3.tooltipType = "scatter";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.y = "score";

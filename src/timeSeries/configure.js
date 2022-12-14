@@ -28,6 +28,7 @@ export default function configure(_config_, _data_, _thresholds_) {
             : /^qtl/.test(_config_?.workflowid)
             ? 'identity'
             : 'boxplot';
+    defaults.tooltipType = 'scatter';
     //defaults.type = this.type !== undefined
     //    ? this.type
     //    : defaults.dataType === 'discrete'
