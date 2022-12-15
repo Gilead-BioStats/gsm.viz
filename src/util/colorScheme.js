@@ -4,7 +4,7 @@ const colorScheme = [
     {
         color: '#52C41A',
         order: 0,
-        description: 'No Flag',
+        description: 'Green Flag',
         flag: [0],
     },
     {

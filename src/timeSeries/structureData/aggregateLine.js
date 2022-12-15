@@ -11,6 +11,7 @@ export default function aggregateLine(data, config, labels) {
         data,
         (group) => {
             const N = group.length;
+
             return rollup(
                 group,
                 (subgroup) => ({

@@ -1,5 +1,3 @@
-const selectWorkflowID = function(data, workflowID) {
-    return data.find(
-        (d) => d.workflowid === workflowID
-    );
+const selectWorkflowID = function (data, workflowID) {
+    return data.find((d) => d.workflowid === workflowID);
 };

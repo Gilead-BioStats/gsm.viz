@@ -30,7 +30,6 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[3], workflowID)
         );
 
-
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),

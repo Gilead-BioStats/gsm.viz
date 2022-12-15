@@ -28,6 +28,7 @@ export default function configure(_config_, _data_, _thresholds_) {
             : /^qtl/.test(_config_?.workflowid)
             ? 'identity'
             : 'boxplot';
+    defaults.tooltipType = 'scatter';
     //defaults.type = this.type !== undefined
     //    ? this.type
     //    : defaults.dataType === 'discrete'
@@ -62,8 +63,8 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.maintainAspectRatio = false;
     //defaults.displayBoxplots = true;
     //defaults.displayViolins = false;
-    //defaults.displayAtRisk = true;
-    //defaults.displayFlagged = true;
+    //defaults.displayAmberFlags = true;
+    //defaults.displayRedFlags = true;
     //defaults.displayThresholds = true;
     //defaults.displayTrendLine = true;
 
@@ -82,11 +83,11 @@ export default function configure(_config_, _data_, _thresholds_) {
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
-            ? `At Risk or Flagged ${config.discreteUnit}s`
+            ? `Red or Amber ${config.discreteUnit}s`
             : /flag/.test(config.y)
-            ? `Flagged ${config.discreteUnit}s`
+            ? `Red ${config.discreteUnit}s`
             : /risk/.test(config.y)
-            ? `At Risk ${config.discreteUnit}s`
+            ? `Amber ${config.discreteUnit}s`
             : ''
     );
 

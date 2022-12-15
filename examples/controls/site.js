@@ -9,9 +9,9 @@ const site = function (datasets, setup = false) {
         option.innerHTML = 'None';
         siteDropdown.appendChild(option);
 
-        const groupIDs = [
-            ...new Set(datasets[0].map((d) => d.groupid))
-        ].sort((a, b) => a - b);
+        const groupIDs = [...new Set(datasets[0].map((d) => d.groupid))].sort(
+            (a, b) => a - b
+        );
 
         for (i in groupIDs) {
             const option = document.createElement('option');

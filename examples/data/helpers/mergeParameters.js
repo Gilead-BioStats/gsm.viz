@@ -1,4 +1,4 @@
-const mergeParameters = function(defaultParameters, customParameters) {
+const mergeParameters = function (defaultParameters, customParameters) {
     const parameters = defaultParameters.map((defaultParameter) => {
         const parameter = { ...defaultParameter };
 
@@ -8,9 +8,10 @@ const mergeParameters = function(defaultParameters, customParameters) {
                 customParameter.index === parameter.index
         );
 
-        parameter.value = customParameter !== undefined
-            ? customParameter.value
-            : parameter.default;
+        parameter.value =
+            customParameter !== undefined
+                ? customParameter.value
+                : parameter.default;
 
         delete parameter.default;
         delete parameter.configurable;

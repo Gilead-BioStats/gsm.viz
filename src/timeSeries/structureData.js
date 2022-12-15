@@ -6,8 +6,8 @@ import getIdentityLine from './structureData/identityLine';
 import getIntervalLines from './structureData/intervalLines';
 
 import getSelectedGroupLine from './structureData/selectedGroupLine';
-import getAtRisk from './structureData/atRisk';
-import getFlagged from './structureData/flagged';
+import getFlagAmber from './structureData/flagAmber';
+import getFlagRed from './structureData/flagRed';
 import getDistribution from './structureData/distribution';
 
 import getAggregateLine from './structureData/aggregateLine';
@@ -69,8 +69,8 @@ export default function structureData(_data_, config, _intervals_) {
                         : '',
                     backgroundColor: color.color,
                 })),
-                getFlagged(data, config, labels),
-                getAtRisk(data, config, labels),
+                getFlagRed(data, config, labels),
+                getFlagAmber(data, config, labels),
                 getDistribution(data, config, labels),
             ];
         }
