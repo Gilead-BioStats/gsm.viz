@@ -1,36 +1,33 @@
 import BarChart from '../BarChart/BarChart';
 import BarChartControls from '../BarChartControls/BarChartControls';
 import CodeChunk from '../CodeChunk/CodeChunk';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
+// data
 import resultsAll from '../../data/results_summary.json';
 import parametersAll from '../../data/meta_param';
 import workflows from '../../data/meta_workflow';
 
 import './BarChartContainer.css';
 
-// const BarCharContainer
 const BarChartContainer = () => {
+    const [kri, setKri] = useState('kri0001');
 
     const filterResults = (kri) => {
         return resultsAll.filter((d) => d.workflowid === kri);
     };
+    
+    const filterWorkflow = (kri) => {
+        return workflows.find(d => d.workflowid === kri);
+    }
 
     const filterParameters = (kri) => {
         return parametersAll.filter((d) => d.workflowid === kri);
     };
 
-    
-    const filterWorkflow = (kri) => {
-      workflows.find(d => d.workflowid === kri)
-  }
-
-
-    const [kri, setKri] = useState('kri0001');
-    const [workflow, setWorkflow] = useState(filterWorkflow(kri));
     const [results, setResults] = useState(filterResults(kri));
-    const [parameters, setParameters] = useState(filterParameters(kri));
-    const [thresholds, setThresholds] = useState(parameters);
+    const [workflow, setWorkflow] = useState(filterWorkflow(kri));
+    const [thresholds, setThresholds] = useState(filterParameters(kri));
     const [instance, setInstance] = useState(null);
 
     return (
@@ -41,17 +38,22 @@ const BarChartContainer = () => {
                     <BarChartControls
                         kri={kri}
                         setKri={setKri}
-                        setWorkflow={setWorkflow}
+
                         setResults={setResults}
-                        setParameters={setParameters}
-                        parameters={parameters}
+                        setWorkflow={setWorkflow}
+                        setThresholds={setThresholds}
+
+                        results={results}
                         workflow={workflow}
+                        thresholds={thresholds}
+
                         filterParameters={filterParameters}
                         filterResults={filterResults}
                         filterWorkflow={filterWorkflow}
-                        setThresholds={setThresholds}
+
                         instance={instance}
                     />
+
                     <BarChart
                         data={results}
                         config={workflow}
@@ -61,7 +63,7 @@ const BarChartContainer = () => {
                 </div>
 
                 <div className="chart-right">
-                    <CodeChunk obj={"rbmVis.BarChar('test')"} />
+                    <CodeChunk obj={"rbmViz.BarChart('test')"} />
                 </div>
             </div>
         </div>

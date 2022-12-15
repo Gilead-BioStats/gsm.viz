@@ -1,55 +1,66 @@
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./BarChartControls.css"
 
+// TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const BarChartControls = ({
     kri,
     setKri,
-    setWorkflow,
+
     setResults,
-    setParameters,
-    parameters,
+    setWorkflow,
+    setThresholds,
+
+    results,
     workflow,
-    filterParameters,
+    thresholds,
+
     filterResults,
     filterWorkflow,
-    setThresholds,
+    filterParameters,
+
     instance
 }) => {
-
-    const changeYaxis = (workflow, yaxis) => {
-        workflow.y = yaxis
-        return workflow
-    }
-    
-    const [yaxisToggle, setYaxisToggle] = useState('score')
-    const [isThreshold, setIsThreshold] = useState(true)
-
-    const handleKriChange = (event: SelectChangeEvent) => {
+    // observe KRI dropdown
+    const handleKriChange = (event) => {
         setKri(event.target.value);
+        console.log(kri); // updated KRI is NOT observed here
+    };
+  
+    useEffect(() => {
+        console.log('new kri', kri); // updated KRI IS observed here
         setResults(filterResults(kri))
-        setParameters(filterParameters(kri))
         setWorkflow(filterWorkflow(kri))
-    };
-  
+        setThresholds(filterParameters(kri))
+    }, [kri]);
 
-    // 1. re-filter the workflow 
-    const handleYaxisToggleChange = (event: SelectChangeEvent) => {
+    // observe y-axis dropdown
+    const [yaxisToggle, setYaxisToggle] = useState('score');
+    const handleYaxisToggleChange = (event) => {
         setYaxisToggle(event.target.value)
-        setWorkflow(changeYaxis(workflow, yaxisToggle))
-        console.log(workflow)
     };
+
+    useEffect(() => {
+        console.log(yaxisToggle);
+        setWorkflow({workflow, ...{y: yaxisToggle}});
+    }, [yaxisToggle]); // syntax warning: something about useCallback
   
+    // observe threshold toggle
+    const [isThreshold, setIsThreshold] = useState(true);
     const handleThresholdCheck = (event) => {
         setIsThreshold(event.target.checked);
-        !isThreshold ? setThresholds(parameters) : setThresholds(null)
     };
+
+    useEffect(() => {
+        console.log(isThreshold);
+        setThresholds(isThreshold ? filterParameters(kri) : null);
+    }, [isThreshold]);
 
     return(
         <div className='control-container'>
