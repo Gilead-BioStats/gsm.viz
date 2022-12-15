@@ -14,11 +14,16 @@ const colorScheme = [
         flag: [-1, 1],
     },
     {
-        //color: '#FF4D4F',
         color: '#ff0040',
         order: 2,
         description: 'Red Flag',
         flag: [-2, 2],
+    },
+    {
+        color: '#aaaaaa',
+        order: 3,
+        description: 'No Flag',
+        flag: [undefined, null, NaN],
     },
 ];
 

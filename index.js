@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20039,6 +20038,12 @@ var rbmViz = (() => {
       order: 2,
       description: "Red Flag",
       flag: [-2, 2]
+    },
+    {
+      color: "#aaaaaa",
+      order: 3,
+      description: "No Flag",
+      flag: [void 0, null, NaN]
     }
   ];
   colorScheme.forEach((color3) => {
@@ -20138,9 +20143,7 @@ var rbmViz = (() => {
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
     thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => +d.value);
-    return mapThresholdsToFlags(
-      thresholds2
-    );
+    return mapThresholdsToFlags(thresholds2);
   }
 
   // src/barChart/configure.js
@@ -20689,7 +20692,7 @@ var rbmViz = (() => {
         ...d,
         x: +d[config.x],
         y: +d[config.y],
-        stratum: Math.abs(+d[config.color])
+        stratum: [NaN, null, void 0, ""].includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => {
@@ -20831,6 +20834,11 @@ var rbmViz = (() => {
     if (bounds !== void 0)
       bounds.forEach((bound) => {
         datasets.push(bound);
+      });
+    if (data.some((d) => ["", NaN, null, void 0].includes(d.flag)))
+      datasets.push({
+        type: "line",
+        label: "No Flag"
       });
     return datasets;
   }
@@ -21089,7 +21097,8 @@ var rbmViz = (() => {
           return datum2;
         }),
         pointBackgroundColor,
-        ...scriptableOptions3()
+        ...scriptableOptions3(),
+        spanGaps: true
       }
     ];
     datasets.labels = labels;
@@ -21450,6 +21459,7 @@ var rbmViz = (() => {
       pointStyle: "circle",
       purpose: "highlight",
       radius: 3,
+      spanGaps: true,
       type: "line"
     };
     return dataset;

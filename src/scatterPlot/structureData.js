@@ -33,5 +33,11 @@ export default function structureData(_data_, config, _bounds_) {
             datasets.push(bound);
         });
 
+    if (data.some(d => ['', NaN, null, undefined].includes(d.flag)))
+        datasets.push({
+            type: 'line',
+            label: 'No Flag',
+        });
+
     return datasets;
 }

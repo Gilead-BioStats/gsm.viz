@@ -13,6 +13,7 @@ export default function backgroundColor(context, options) {
             : config.selectedGroupIDs.length === 0
             ? 0.5
             : 0.25;
+
         return color + '';
     }
 }

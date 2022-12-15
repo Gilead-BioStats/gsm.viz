@@ -42,6 +42,7 @@ export default function selectedGroupLine(data, config, labels) {
         pointStyle: 'circle',
         purpose: 'highlight',
         radius: 3,
+        spanGaps: true,
         type: 'line',
     };
 

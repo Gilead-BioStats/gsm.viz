@@ -18,6 +18,11 @@ Promise.all(dataPromises)
         const results = datasets[0]
             .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
             .slice(35, 45);
+        results.forEach(d => {
+            d.score = Math.random() < .25
+                ? NaN
+                : +d.score;
+        });
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.nSnapshots = 10;
         const flagCountsByKRI = datasets[2].filter(

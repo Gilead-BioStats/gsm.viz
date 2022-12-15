@@ -34,6 +34,7 @@ export default function structureData(_data_, config) {
             pointBackgroundColor,
             //label: '',
             ...scriptableOptions(),
+            spanGaps: true
         },
     ];
 

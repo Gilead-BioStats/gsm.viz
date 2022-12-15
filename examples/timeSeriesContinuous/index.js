@@ -20,6 +20,9 @@ Promise.all(dataPromises)
 
         // analysis results
         const results = filterOnWorkflowID(datasets[0], workflowID);
+        results.forEach(d => {
+            d.score = Math.random() < .25 ? NaN : +d.score;
+        });
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
