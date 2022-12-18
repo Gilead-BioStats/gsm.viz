@@ -11,13 +11,14 @@ export default function thresholds(config) {
             color.rgba.opacity = 0.5;
 
             const annotation = {
-                drawTime: 'beforeDatasetsDraw',
+                //drawTime: 'beforeDatasetsDraw',
                 type: 'line',
                 yMin: threshold.threshold,
                 yMax: threshold.threshold,
                 borderColor: color.rgba + '',
                 borderWidth: 1,
             };
+            console.log(annotation);
 
             return annotation;
         });

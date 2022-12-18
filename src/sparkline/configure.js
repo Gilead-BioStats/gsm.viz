@@ -48,6 +48,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    console.log(config.thresholds);
 
     return config;
 }

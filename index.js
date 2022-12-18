@@ -21034,6 +21034,7 @@ var rbmViz = (() => {
     config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    console.log(config.thresholds);
     return config;
   }
 
@@ -21115,13 +21116,13 @@ var rbmViz = (() => {
         );
         color3.rgba.opacity = 0.5;
         const annotation2 = {
-          drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: threshold.threshold,
           yMax: threshold.threshold,
           borderColor: color3.rgba + "",
           borderWidth: 1
         };
+        console.log(annotation2);
         return annotation2;
       });
     }
@@ -21138,7 +21139,7 @@ var rbmViz = (() => {
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
-    const datum2 = data.slice(-1)[0];
+    const datum2 = data.filter((d) => [null, void 0, NaN, ""].includes(d.y) === false).slice(-1)[0];
     const content = [format(format2)(datum2.y)];
     const value = {
       content,
@@ -21220,8 +21221,8 @@ var rbmViz = (() => {
     const yMax = max(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     scales2.y.display = false;
-    scales2.y.min = yMin - range * 0.35;
-    scales2.y.max = yMax + range * 0.35;
+    scales2.y.min = config.yMin !== void 0 ? config.yMin : yMin - range * 0.35;
+    scales2.y.max = config.yMax !== void 0 ? config.yMax : yMax + range * 0.35;
     scales2.y.type = config.yType;
     return scales2;
   }
@@ -21448,12 +21449,7 @@ var rbmViz = (() => {
         return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
       },
       borderColor: function(d) {
-        const color4 = config.colorScheme.find(
-          (color5) => color5.flag.includes(+d.raw?.flag)
-        );
-        if (color4 !== void 0)
-          color4.rgba.opacity = 1;
-        return color4 !== void 0 ? "black" : borderColor4;
+        return d.type === "data" ? "black" : borderColor4;
       },
       label: "",
       pointStyle: "circle",

@@ -1,9 +1,10 @@
 const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
+    '../data/meta_param.csv',
+    '../data/status_param.csv',
     '../data/flag_counts_by_kri.csv',
     '../data/flag_counts_by_group.csv',
-    '../data/meta_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -14,7 +15,10 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
-        const groupID = '28';
+        const groupIDs = [
+            ...new Set(datasets[0].map(d => d.groupid))
+        ];
+        const groupID = groupIDs[Math.floor(groupIDs.length*Math.random())]; // '28';
         const results = datasets[0]
             .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
             .slice(35, 45);
@@ -25,10 +29,18 @@ Promise.all(dataPromises)
         });
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.nSnapshots = 10;
-        const flagCountsByKRI = datasets[2].filter(
+        workflow.displayThresholds = true;
+
+        // threshold annotations
+        const parameters = mergeParameters(
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
+        );
+
+        const flagCountsByKRI = datasets[4].filter(
             (d) => d.workflowid === workflowID
         );
-        const flagCountsByGroup = datasets[3].filter(
+        const flagCountsByGroup = datasets[5].filter(
             (d) => d.groupid === groupID
         );
 
@@ -39,7 +51,7 @@ Promise.all(dataPromises)
                 ...workflow,
                 y: 'score',
             },
-            datasets[4].filter((d) => d.workflowid === workflowID)
+            parameters,
         );
 
         rbmViz.default.sparkline(document.getElementById('metric'), results, {

@@ -22,7 +22,9 @@ export default function annotations(config, data) {
           `.1f`;
 
     // content
-    const datum = data.slice(-1)[0];
+    const datum = data
+        .filter(d => [null, undefined, NaN, ''].includes(d.y) === false)
+        .slice(-1)[0];
     const content = [d3format(format)(datum.y)];
 
     const value = {

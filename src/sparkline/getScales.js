@@ -17,8 +17,8 @@ export default function getScales(config, data) {
 
     // y
     scales.y.display = false;
-    scales.y.min = yMin - range * 0.35;
-    scales.y.max = yMax + range * 0.35;
+    scales.y.min = config.yMin !== undefined ? config.yMin : yMin - range * 0.35;
+    scales.y.max = config.yMax !== undefined ? config.yMax : yMax + range * 0.35;
     scales.y.type = config.yType;
 
     return scales;

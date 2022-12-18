@@ -60,7 +60,6 @@ export default function sparkline(
             config,
         },
         options,
-        //plugins: [ChartDataLabels],
     });
 
     canvas.chart = chart;

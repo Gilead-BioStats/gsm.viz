@@ -1,4 +1,4 @@
-import { color as d3color } from 'd3';
+import { color as d3color, max } from 'd3';
 
 export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;
@@ -29,13 +29,8 @@ export default function selectedGroupLine(data, config, labels) {
             return color !== undefined ? color.rgba + '' : backgroundColor;
         },
         borderColor: function (d) {
-            const color = config.colorScheme.find((color) =>
-                color.flag.includes(+d.raw?.flag)
-            );
-            if (color !== undefined) color.rgba.opacity = 1;
-
-            return color !== undefined
-                ? 'black' //color.rgba + ''
+            return d.type === 'data'
+                ? 'black'
                 : borderColor;
         },
         label: '',
