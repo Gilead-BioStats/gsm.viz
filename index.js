@@ -20136,7 +20136,7 @@ var rbmViz = (() => {
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.default);
+    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => +d.value);
     return mapThresholdsToFlags(
       thresholds2,
       thresholds2.some((threshold) => threshold < 0)
@@ -21179,7 +21179,9 @@ var rbmViz = (() => {
       callbacks: {
         label: function(data) {
           const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
-          return config.dataType === "continuous" ? `${data.label}: ${format(fmt)(data.parsed.y)}` : `${data.label}: ${format(fmt)(data.raw.n_flagged)} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
+          return config.dataType === "continuous" ? `${data.label}: ${format(fmt)(data.parsed.y)}` : `${data.label}: ${format(fmt)(
+            data.raw.n_flagged
+          )} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
         },
         title: () => null,
         footer: () => null
@@ -21306,8 +21308,7 @@ var rbmViz = (() => {
         null,
         _config_.selectedGroupIDs,
         _data_
-      ),
-      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
+      )
     });
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(
@@ -21868,7 +21869,7 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    const config = configure6(_config_, _data_, _thresholds_);
+    const config = configure6(_config_, _data_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
     const options = {
@@ -21877,10 +21878,40 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins5(config),
       responsive: true,
       scales: getScales4(config, _data_)
     };
+    const thresholds2 = [...rollup(
+      _thresholds_.filter((d) => d.param === "vThreshold"),
+      (group2) => {
+        const flags = checkThresholds({}, group2);
+        flags.forEach((flag) => {
+          flag.gsm_analysis_date = group2[0].gsm_analysis_date;
+          flag.snapshot_date = group2[0].snapshot_date;
+          flag.x = flag.gsm_analysis_date;
+          flag.y = flag.threshold;
+          flag.color = colorScheme_default.find((color3) => color3.flag.includes(flag.flag));
+        });
+        return flags;
+      },
+      (d) => d.gsm_analysis_date
+    )].flatMap((d) => d[1]);
+    const thresholdData = [...rollup(
+      thresholds2,
+      (group2) => ({
+        borderColor: group2[0].color.color,
+        borderDash: [2],
+        borderWidth: 1,
+        data: group2,
+        type: "line",
+        radius: 0
+      }),
+      (d) => d.flag
+    )].map((d) => d[1]);
+    data.datasets = [
+      ...data.datasets,
+      ...thresholdData
+    ];
     const chart = new auto_default(canvas, {
       data: {
         ...data,
