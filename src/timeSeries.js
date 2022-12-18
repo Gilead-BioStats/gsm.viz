@@ -61,6 +61,7 @@ export default function timeSeries(
         d => d.gsm_analysis_date
     )].flatMap(d => d[1]);
 
+    // TODO: fix legend and tooltips
     const thresholdData = [...rollup(
         thresholds,
         group => ({
@@ -71,6 +72,7 @@ export default function timeSeries(
             borderDash: [2],
             borderWidth: 1,
             data: group,
+            stepped: 'before', // 'after'
             type: 'line',
             radius: 0,
         }),

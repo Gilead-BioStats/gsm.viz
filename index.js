@@ -21903,6 +21903,7 @@ var rbmViz = (() => {
         borderDash: [2],
         borderWidth: 1,
         data: group2,
+        stepped: "before",
         type: "line",
         radius: 0
       }),
