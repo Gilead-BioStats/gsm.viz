@@ -1,8 +1,8 @@
 const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv', // default parameters
-    '../data/status_param.csv', // custom parameters
+    '../data/meta_param.csv',
+    '../data/status_param_over_time.csv',
     '../data/results_analysis_over_time.csv',
 ];
 
@@ -31,6 +31,10 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)
         );
+        //const parameters = mergeParameters(
+        //    datasets[2].filter(d => d.workflowid === workflowID),
+        //    datasets[3].filter(d => d.workflowid === workflowID)
+        //);
 
         // additional analysis output
         const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);

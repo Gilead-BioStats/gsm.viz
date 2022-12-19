@@ -2,7 +2,7 @@ const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
-    '../data/status_param.csv',
+    '../data/status_param_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -31,8 +31,8 @@ Promise.all(dataPromises)
 
         // threshold annotations
         const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
+            datasets[2].filter((d) => d.workflowid === workflowID),
+            datasets[3].filter((d) => d.workflowid === workflowID)
         );
 
         // visualization

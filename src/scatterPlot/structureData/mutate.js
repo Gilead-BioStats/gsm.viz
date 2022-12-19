@@ -5,7 +5,7 @@ export default function mutate(_data_, config) {
                 ...d,
                 x: +d[config.x],
                 y: +d[config.y],
-                stratum: [NaN, null, undefined, ''].includes(d[config.color])
+                stratum: isNaN(parseFloat(d[config.color]))
                     ? 3
                     : Math.abs(+d[config.color]),
             };

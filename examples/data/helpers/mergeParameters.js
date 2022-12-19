@@ -1,23 +1,41 @@
 const mergeParameters = function (defaultParameters, customParameters) {
-    const parameters = defaultParameters.map((defaultParameter) => {
-        const parameter = { ...defaultParameter };
+    const dates = [
+        ...new Set(
+            customParameters.map((parameter) => parameter.gsm_analysis_date)
+        ),
+    ];
 
-        const customParameter = customParameters.find(
-            (customParameter) =>
-                customParameter.workflowid === parameter.workflowid &&
-                customParameter.index === parameter.index
-        );
+    const parametersOverTime = dates
+        .map((date) => {
+            const parameters = defaultParameters.map((defaultParameter) => {
+                const customParameter = customParameters.find(
+                    (customParameter) =>
+                        customParameter.gsm_analysis_date === date &&
+                        customParameter.workflowid ===
+                            defaultParameter.workflowid &&
+                        customParameter.index === defaultParameter.index
+                );
 
-        parameter.value =
-            customParameter !== undefined
-                ? customParameter.value
-                : parameter.default;
+                const parameter = {
+                    ...defaultParameter,
+                    ...customParameter,
+                };
 
-        delete parameter.default;
-        delete parameter.configurable;
+                parameter.gsm_analysis_date = date;
+                parameter.snapshot_date = date;
+                parameter.value =
+                    customParameter !== undefined
+                        ? customParameter.value
+                        : defaultParameter.default;
+                delete parameter.default;
+                delete parameter.configurable;
 
-        return parameter;
-    });
+                return parameter;
+            });
 
-    return parameters;
+            return parameters;
+        })
+        .flatMap((parameters) => parameters);
+
+    return parametersOverTime;
 };

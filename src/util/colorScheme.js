@@ -23,7 +23,7 @@ const colorScheme = [
         color: '#aaaaaa',
         order: 3,
         description: 'No Flag',
-        flag: [undefined, null, NaN],
+        flag: [undefined, null, NaN, '', 'NA'],
     },
 ];
 
