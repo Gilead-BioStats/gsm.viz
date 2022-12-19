@@ -27,9 +27,12 @@ Promise.all(dataPromises)
         workflow.type = 'boxplot'; //'violin';
 
         // customization data
+        //const parameters = datasets[2].filter(
+        //    (d) => d.workflowid === workflow.workflowid
+        //);
         const parameters = mergeParameters(
-            datasets[2].filter(d => d.workflowid === workflowID),
-            datasets[3].filter(d => d.workflowid === workflowID)
+            datasets[2].filter((d) => d.workflowid === workflowID),
+            datasets[3].filter((d) => d.workflowid === workflowID)
         );
 
         // visualization

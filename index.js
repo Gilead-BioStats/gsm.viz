@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20038,6 +20039,12 @@ var rbmViz = (() => {
       order: 2,
       description: "Red Flag",
       flag: [-2, 2]
+    },
+    {
+      color: "#aaaaaa",
+      order: 3,
+      description: "No Flag",
+      flag: [void 0, null, NaN, ""]
     }
   ];
   colorScheme.forEach((color3) => {
@@ -20126,6 +20133,8 @@ var rbmViz = (() => {
   // src/util/checkThresholds.js
   function checkThresholds(_config_, _thresholds_) {
     let thresholds2 = _config_.thresholds;
+    if (_config_.variableThresholds)
+      return null;
     if (_config_.y === "metric" && !/^qtl/.test(_config_.workflowid))
       return null;
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
@@ -20136,7 +20145,7 @@ var rbmViz = (() => {
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
       return null;
-    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => +d.value);
+    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.value !== void 0 ? +d.value : +d.default);
     return mapThresholdsToFlags(
       thresholds2,
       thresholds2.some((threshold) => threshold < 0)
@@ -20688,7 +20697,7 @@ var rbmViz = (() => {
         ...d,
         x: +d[config.x],
         y: +d[config.y],
-        stratum: Math.abs(+d[config.color])
+        stratum: [NaN, null, void 0, ""].includes(+d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => {
@@ -20697,6 +20706,7 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
+    console.log(new Set(data.map((d) => d.stratum)));
     return data;
   }
 
@@ -21303,12 +21313,16 @@ var rbmViz = (() => {
     defaults3.group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.maintainAspectRatio = false;
+    _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
+      (threshold) => threshold.gsm_analysis_date !== _thresholds_[0].gsm_analysis_date
+    ) : false;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
         _data_
-      )
+      ),
+      thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(
@@ -21869,50 +21883,54 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    const config = configure6(_config_, _data_);
+    const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
+    if (Array.isArray(_thresholds_)) {
+      const thresholds2 = [...rollup(
+        _thresholds_.filter((d) => d.param === "vThreshold"),
+        (group2) => {
+          const flags = checkThresholds({}, group2);
+          flags.forEach((flag) => {
+            flag.gsm_analysis_date = group2[0].gsm_analysis_date;
+            flag.snapshot_date = group2[0].snapshot_date;
+            flag.x = flag.gsm_analysis_date;
+            flag.y = flag.threshold;
+            flag.color = colorScheme_default.find((color3) => color3.flag.includes(flag.flag));
+          });
+          return flags;
+        },
+        (d) => d.gsm_analysis_date
+      )].flatMap((d) => d[1]);
+      const thresholdData = [...rollup(
+        thresholds2,
+        (group2) => ({
+          borderColor: group2[0].color.color,
+          borderDash: [2],
+          borderWidth: 1,
+          data: group2,
+          label: "",
+          radius: 0,
+          stepped: "before",
+          type: "line"
+        }),
+        (d) => d.flag
+      )].map((d) => d[1]);
+      data.datasets = [
+        ...data.datasets,
+        ...thresholdData
+      ];
+    }
     const options = {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
+      plugins: plugins5(config),
       responsive: true,
       scales: getScales4(config, _data_)
     };
-    const thresholds2 = [...rollup(
-      _thresholds_.filter((d) => d.param === "vThreshold"),
-      (group2) => {
-        const flags = checkThresholds({}, group2);
-        flags.forEach((flag) => {
-          flag.gsm_analysis_date = group2[0].gsm_analysis_date;
-          flag.snapshot_date = group2[0].snapshot_date;
-          flag.x = flag.gsm_analysis_date;
-          flag.y = flag.threshold;
-          flag.color = colorScheme_default.find((color3) => color3.flag.includes(flag.flag));
-        });
-        return flags;
-      },
-      (d) => d.gsm_analysis_date
-    )].flatMap((d) => d[1]);
-    const thresholdData = [...rollup(
-      thresholds2,
-      (group2) => ({
-        borderColor: group2[0].color.color,
-        borderDash: [2],
-        borderWidth: 1,
-        data: group2,
-        stepped: "before",
-        type: "line",
-        radius: 0
-      }),
-      (d) => d.flag
-    )].map((d) => d[1]);
-    data.datasets = [
-      ...data.datasets,
-      ...thresholdData
-    ];
     const chart = new auto_default(canvas, {
       data: {
         ...data,

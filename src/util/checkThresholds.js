@@ -3,6 +3,8 @@ import mapThresholdsToFlags from './mapThresholdsToFlags';
 export default function checkThresholds(_config_, _thresholds_) {
     let thresholds = _config_.thresholds;
 
+    if (_config_.variableThresholds) return null;
+
     // TODO: remove hard code check for 'metric'
     // KRI metric is not associated with any thresholds
     if (_config_.y === 'metric' && !/^qtl/.test(_config_.workflowid))
@@ -43,7 +45,7 @@ export default function checkThresholds(_config_, _thresholds_) {
     // Filter workflow thresholds and get associated metadata.
     thresholds = _thresholds_
         .filter((d) => d.param === 'vThreshold')
-        .map((d) => +d.value);
+        .map((d) => (d.value !== undefined ? +d.value : +d.default));
 
     return mapThresholdsToFlags(
         thresholds,

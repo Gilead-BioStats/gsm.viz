@@ -68,13 +68,21 @@ export default function configure(_config_, _data_, _thresholds_) {
     //defaults.displayThresholds = true;
     //defaults.displayTrendLine = true;
 
+    _config_.variableThresholds = Array.isArray(_thresholds_)
+        ? _thresholds_.some(
+              (threshold) =>
+                  threshold.gsm_analysis_date !==
+                  _thresholds_[0].gsm_analysis_date
+          )
+        : false;
+
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
             _config_.selectedGroupIDs,
             _data_
         ),
-        //thresholds: checkThresholds.bind(null, _config_, _thresholds_),
+        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
