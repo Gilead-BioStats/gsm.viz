@@ -23,6 +23,7 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
+        workflow.y = 'score';
 
         // threshold annotations
         const parameters = mergeParameters(

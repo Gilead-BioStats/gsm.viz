@@ -15,6 +15,7 @@ import { rollup } from 'd3';
 import checkThresholds from './util/checkThresholds';
 import mapThresholdsToFlags from './util/mapThresholdsToFlags';
 import colorScheme from './util/colorScheme';
+import displayWhiteBackground from './util/displayWhiteBackground';
 
 export default function timeSeries(
     _element_,
@@ -95,6 +96,9 @@ export default function timeSeries(
             _data_,
         },
         options,
+        plugins: [
+            displayWhiteBackground()
+        ],
     });
 
     chart.helpers = {

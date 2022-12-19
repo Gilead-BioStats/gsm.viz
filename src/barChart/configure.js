@@ -43,6 +43,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     config.xLabel = coalesce(_config_.xLabel, config['group']);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
 
     return config;
 }

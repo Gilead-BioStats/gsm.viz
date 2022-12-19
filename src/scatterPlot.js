@@ -6,6 +6,7 @@ import onHover from './util/onHover';
 import onClick from './util/onClick';
 import plugins from './scatterPlot/plugins';
 import getScales from './scatterPlot/getScales';
+import displayWhiteBackground from './util/displayWhiteBackground';
 
 import Chart from 'chart.js/auto';
 import updateData from './scatterPlot/updateData';
@@ -58,6 +59,9 @@ export default function scatterPlot(
             config,
         },
         options,
+        plugins: [
+            displayWhiteBackground()
+        ],
     });
 
     canvas.chart = chart;

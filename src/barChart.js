@@ -9,6 +9,7 @@ import onClick from './util/onClick';
 import onHover from './util/onHover';
 import plugins from './barChart/plugins';
 import getScales from './barChart/getScales';
+import displayWhiteBackground from './util/displayWhiteBackground';
 
 import Chart from 'chart.js/auto';
 import updateData from './barChart/updateData';
@@ -63,7 +64,10 @@ export default function barChart(
         },
         metadata: 'test',
         options,
-        plugins: [ChartDataLabels],
+        plugins: [
+            ChartDataLabels,
+            displayWhiteBackground()
+        ],
     });
 
     chart.helpers = {

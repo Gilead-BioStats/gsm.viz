@@ -20174,6 +20174,7 @@ var rbmViz = (() => {
     });
     config.xLabel = coalesce(_config_.xLabel, config["group"]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
     return config;
   }
 
@@ -20543,6 +20544,22 @@ var rbmViz = (() => {
     return scales2;
   }
 
+  // src/util/displayWhiteBackground.js
+  function displayWhiteBackground() {
+    const plugin2 = {
+      id: "customCanvasBackgroundColor",
+      beforeDraw: (chart, args, options) => {
+        const { ctx } = chart;
+        ctx.save();
+        ctx.globalCompositeOperation = "destination-over";
+        ctx.fillStyle = options.color || "white";
+        ctx.fillRect(0, 0, chart.width, chart.height);
+        ctx.restore();
+      }
+    };
+    return plugin2;
+  }
+
   // node_modules/chart.js/auto/auto.mjs
   Chart.register(...registerables);
   var auto_default = Chart;
@@ -20645,7 +20662,10 @@ var rbmViz = (() => {
       },
       metadata: "test",
       options,
-      plugins: [plugin]
+      plugins: [
+        plugin,
+        displayWhiteBackground()
+      ]
     });
     chart.helpers = {
       updateData,
@@ -20684,6 +20704,7 @@ var rbmViz = (() => {
     });
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
     return config;
   }
 
@@ -20999,7 +21020,10 @@ var rbmViz = (() => {
         datasets,
         config
       },
-      options
+      options,
+      plugins: [
+        displayWhiteBackground()
+      ]
     });
     canvas.chart = chart;
     chart.helpers = {
@@ -21332,6 +21356,7 @@ var rbmViz = (() => {
       _config_.yLabel,
       config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${config.discreteUnit}s` : /flag/.test(config.y) ? `Red ${config.discreteUnit}s` : /risk/.test(config.y) ? `Amber ${config.discreteUnit}s` : ""
     );
+    config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
     return config;
   }
 
@@ -21939,7 +21964,10 @@ var rbmViz = (() => {
         config,
         _data_
       },
-      options
+      options,
+      plugins: [
+        displayWhiteBackground()
+      ]
     });
     chart.helpers = {
       updateData: updateData4.bind(chart),

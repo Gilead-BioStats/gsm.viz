@@ -98,6 +98,7 @@ export default function configure(_config_, _data_, _thresholds_) {
             ? `Amber ${config.discreteUnit}s`
             : ''
     );
+    config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
 
     return config;
 }
