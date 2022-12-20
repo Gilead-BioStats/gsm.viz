@@ -12,7 +12,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0002",
@@ -27,7 +27,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0003",
@@ -42,7 +42,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0004",
@@ -57,7 +57,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0005",
@@ -72,7 +72,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0006",
@@ -87,7 +87,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0007",
@@ -102,7 +102,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0008",
@@ -117,7 +117,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0009",
@@ -132,7 +132,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0010",
@@ -147,7 +147,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0011",
@@ -162,7 +162,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "kri0012",
@@ -177,7 +177,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0001",
@@ -192,7 +192,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0002",
@@ -207,7 +207,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0003",
@@ -222,7 +222,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0004",
@@ -237,7 +237,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0005",
@@ -252,7 +252,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0006",
@@ -267,7 +267,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0007",
@@ -282,7 +282,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0008",
@@ -297,7 +297,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0009",
@@ -312,7 +312,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0010",
@@ -327,7 +327,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0011",
@@ -342,7 +342,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "cou0012",
@@ -357,7 +357,7 @@
 		"score": "Adjusted Z-Score",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "qtl0004",
@@ -372,7 +372,7 @@
 		"score": "Poisson Confidence Interval - Lower Bound",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	},
 	{
 		"workflowid": "qtl0006",
@@ -387,6 +387,6 @@
 		"score": "Binomial Confidence Interval - Lower Bound",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
+		"gsm_analysis_date": "2022-12-20T18:58:42.162293Z"
 	}
 ]
