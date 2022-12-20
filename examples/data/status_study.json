@@ -1,6 +1,6 @@
 [
 	{
-		"studyid": "AA-AA-000-0000",
+		"studyid": "Protocol Title",
 		"enrolled_sites": "176",
 		"enrolled_participants": "1301",
 		"planned_sites": "190",
@@ -18,12 +18,13 @@
 		"lplv": "2021-06-01 00:00:00",
 		"rbm_flag": "Y",
 		"protocol_row_id": "1-1G9113",
+		"protocol_number": "AA-AA-000-0000",
 		"protocol_type": "Investigator Sponsored",
 		"est_fpfv": "2003-01-01 00:00:00",
 		"est_lplv": "2021-06-01 00:00:00",
 		"est_lpfv": "2020-06-01 00:00:00",
 		"product": "Product",
 		"protocol_product_number": "123",
-		"gsm_analysis_date": "2022-11-22"
+		"gsm_analysis_date": "2022-12-20T18:25:33.201425Z"
 	}
 ]
