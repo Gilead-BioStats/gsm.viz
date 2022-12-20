@@ -1,524 +1,524 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "0.01",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "0.2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0001",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0002",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0003",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0004",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0005",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0006",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "1",
-        "value": "-3",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "2",
-        "value": "-2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "3",
-        "value": "2",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0007",
-        "gsm_version": "1.3.2",
-        "param": "vThreshold",
-        "index": "4",
-        "value": "3",
-        "gsm_analysis_date": "2022-11-22"
-    }
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "0.01",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "0.2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0001",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0002",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0003",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0004",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0005",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0006",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "1",
+		"value": "-3",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "2",
+		"value": "-2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "3",
+		"value": "2",
+		"gsm_analysis_date": "2022-11-22"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0007",
+		"gsm_version": "1.3.2",
+		"param": "vThreshold",
+		"index": "4",
+		"value": "3",
+		"gsm_analysis_date": "2022-11-22"
+	}
 ]
