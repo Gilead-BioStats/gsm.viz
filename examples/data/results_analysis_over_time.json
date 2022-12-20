@@ -51,7 +51,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.000254207986742747",
+		"value": "3.82155860705171e-05",
 		"gsm_analysis_date": "2004-03-01",
 		"snapshot_date": "2004-03-01"
 	},
@@ -59,7 +59,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00105533408187159",
+		"value": "0.00054155741983707",
 		"gsm_analysis_date": "2004-03-01",
 		"snapshot_date": "2004-03-01"
 	},
@@ -67,7 +67,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.000254207986742747",
+		"value": "3.82155860705171e-05",
 		"gsm_analysis_date": "2004-03-01",
 		"snapshot_date": "2004-03-01"
 	},
@@ -99,7 +99,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.000370793079351806",
+		"value": "0.000188198473570347",
 		"gsm_analysis_date": "2004-06-01",
 		"snapshot_date": "2004-06-01"
 	},
@@ -107,7 +107,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.000937517160975949",
+		"value": "0.000636221356972621",
 		"gsm_analysis_date": "2004-06-01",
 		"snapshot_date": "2004-06-01"
 	},
@@ -115,7 +115,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.000370793079351806",
+		"value": "0.000188198473570347",
 		"gsm_analysis_date": "2004-06-01",
 		"snapshot_date": "2004-06-01"
 	},
@@ -147,7 +147,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.000811565842713719",
+		"value": "0.00014602195242605",
 		"gsm_analysis_date": "2004-09-01",
 		"snapshot_date": "2004-09-01"
 	},
@@ -155,7 +155,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00136287355054155",
+		"value": "0.000430309577894838",
 		"gsm_analysis_date": "2004-09-01",
 		"snapshot_date": "2004-09-01"
 	},
@@ -163,7 +163,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.000811565842713719",
+		"value": "0.00014602195242605",
 		"gsm_analysis_date": "2004-09-01",
 		"snapshot_date": "2004-09-01"
 	},
@@ -195,7 +195,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00126044105916042",
+		"value": "0.00021358413174231",
 		"gsm_analysis_date": "2004-12-01",
 		"snapshot_date": "2004-12-01"
 	},
@@ -203,7 +203,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00188416770653777",
+		"value": "0.000515991206889411",
 		"gsm_analysis_date": "2004-12-01",
 		"snapshot_date": "2004-12-01"
 	},
@@ -211,7 +211,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00126044105916042",
+		"value": "0.00021358413174231",
 		"gsm_analysis_date": "2004-12-01",
 		"snapshot_date": "2004-12-01"
 	},
@@ -243,7 +243,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00145963534551328",
+		"value": "0.000213819888294843",
 		"gsm_analysis_date": "2005-03-01",
 		"snapshot_date": "2005-03-01"
 	},
@@ -251,7 +251,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00206879215505263",
+		"value": "0.000487741118053662",
 		"gsm_analysis_date": "2005-03-01",
 		"snapshot_date": "2005-03-01"
 	},
@@ -259,7 +259,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00145963534551328",
+		"value": "0.000213819888294843",
 		"gsm_analysis_date": "2005-03-01",
 		"snapshot_date": "2005-03-01"
 	},
@@ -291,7 +291,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.0016127174822622",
+		"value": "0.000194355543811586",
 		"gsm_analysis_date": "2005-06-01",
 		"snapshot_date": "2005-06-01"
 	},
@@ -299,7 +299,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00215961266516247",
+		"value": "0.000416784291232641",
 		"gsm_analysis_date": "2005-06-01",
 		"snapshot_date": "2005-06-01"
 	},
@@ -307,7 +307,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.0016127174822622",
+		"value": "0.000194355543811586",
 		"gsm_analysis_date": "2005-06-01",
 		"snapshot_date": "2005-06-01"
 	},
@@ -339,7 +339,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00177501832790621",
+		"value": "0.000207564453566298",
 		"gsm_analysis_date": "2005-09-01",
 		"snapshot_date": "2005-09-01"
 	},
@@ -347,7 +347,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00228007958680988",
+		"value": "0.000406339145422124",
 		"gsm_analysis_date": "2005-09-01",
 		"snapshot_date": "2005-09-01"
 	},
@@ -355,7 +355,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00177501832790621",
+		"value": "0.000207564453566298",
 		"gsm_analysis_date": "2005-09-01",
 		"snapshot_date": "2005-09-01"
 	},
@@ -387,7 +387,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00213711422426165",
+		"value": "0.000257736977653611",
 		"gsm_analysis_date": "2005-12-01",
 		"snapshot_date": "2005-12-01"
 	},
@@ -395,7 +395,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00266165630871494",
+		"value": "0.00046346409873669",
 		"gsm_analysis_date": "2005-12-01",
 		"snapshot_date": "2005-12-01"
 	},
@@ -403,7 +403,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00213711422426165",
+		"value": "0.000257736977653611",
 		"gsm_analysis_date": "2005-12-01",
 		"snapshot_date": "2005-12-01"
 	},
@@ -435,7 +435,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00249950208098889",
+		"value": "0.000272408049883458",
 		"gsm_analysis_date": "2006-03-01",
 		"snapshot_date": "2006-03-01"
 	},
@@ -443,7 +443,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00304007200994898",
+		"value": "0.000473134788230507",
 		"gsm_analysis_date": "2006-03-01",
 		"snapshot_date": "2006-03-01"
 	},
@@ -451,7 +451,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00249950208098889",
+		"value": "0.000272408049883458",
 		"gsm_analysis_date": "2006-03-01",
 		"snapshot_date": "2006-03-01"
 	},
@@ -483,7 +483,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00254411643905285",
+		"value": "0.000280573131309223",
 		"gsm_analysis_date": "2006-06-01",
 		"snapshot_date": "2006-06-01"
 	},
@@ -491,7 +491,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00304833698453293",
+		"value": "0.000467155244124018",
 		"gsm_analysis_date": "2006-06-01",
 		"snapshot_date": "2006-06-01"
 	},
@@ -499,7 +499,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00254411643905285",
+		"value": "0.000280573131309223",
 		"gsm_analysis_date": "2006-06-01",
 		"snapshot_date": "2006-06-01"
 	},
@@ -531,7 +531,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00264752357044396",
+		"value": "0.000274755243577239",
 		"gsm_analysis_date": "2006-09-01",
 		"snapshot_date": "2006-09-01"
 	},
@@ -539,7 +539,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00313293974333144",
+		"value": "0.000448551434824388",
 		"gsm_analysis_date": "2006-09-01",
 		"snapshot_date": "2006-09-01"
 	},
@@ -547,7 +547,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00264752357044396",
+		"value": "0.000274755243577239",
 		"gsm_analysis_date": "2006-09-01",
 		"snapshot_date": "2006-09-01"
 	},
@@ -579,7 +579,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00272822867826876",
+		"value": "0.000278473088835569",
 		"gsm_analysis_date": "2006-12-01",
 		"snapshot_date": "2006-12-01"
 	},
@@ -587,7 +587,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00319978558136851",
+		"value": "0.000445225096937571",
 		"gsm_analysis_date": "2006-12-01",
 		"snapshot_date": "2006-12-01"
 	},
@@ -595,7 +595,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00272822867826876",
+		"value": "0.000278473088835569",
 		"gsm_analysis_date": "2006-12-01",
 		"snapshot_date": "2006-12-01"
 	},
@@ -627,7 +627,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00287661947422466",
+		"value": "0.000280735824302758",
 		"gsm_analysis_date": "2007-03-01",
 		"snapshot_date": "2007-03-01"
 	},
@@ -635,7 +635,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00334740008091469",
+		"value": "0.00044325035766394",
 		"gsm_analysis_date": "2007-03-01",
 		"snapshot_date": "2007-03-01"
 	},
@@ -643,7 +643,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00287661947422466",
+		"value": "0.000280735824302758",
 		"gsm_analysis_date": "2007-03-01",
 		"snapshot_date": "2007-03-01"
 	},
@@ -675,7 +675,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00286110246865917",
+		"value": "0.000302389715124811",
 		"gsm_analysis_date": "2007-06-01",
 		"snapshot_date": "2007-06-01"
 	},
@@ -683,7 +683,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00331002686070508",
+		"value": "0.000462230986591288",
 		"gsm_analysis_date": "2007-06-01",
 		"snapshot_date": "2007-06-01"
 	},
@@ -691,7 +691,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00286110246865917",
+		"value": "0.000302389715124811",
 		"gsm_analysis_date": "2007-06-01",
 		"snapshot_date": "2007-06-01"
 	},
@@ -723,7 +723,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00270448261985872",
+		"value": "0.000283224713455194",
 		"gsm_analysis_date": "2007-09-01",
 		"snapshot_date": "2007-09-01"
 	},
@@ -731,7 +731,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00311372981632687",
+		"value": "0.000427938158442151",
 		"gsm_analysis_date": "2007-09-01",
 		"snapshot_date": "2007-09-01"
 	},
@@ -739,7 +739,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00270448261985872",
+		"value": "0.000283224713455194",
 		"gsm_analysis_date": "2007-09-01",
 		"snapshot_date": "2007-09-01"
 	},
@@ -771,7 +771,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00284383784448239",
+		"value": "0.00029401570390066",
 		"gsm_analysis_date": "2007-12-01",
 		"snapshot_date": "2007-12-01"
 	},
@@ -779,7 +779,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00325407053500567",
+		"value": "0.000437728161887811",
 		"gsm_analysis_date": "2007-12-01",
 		"snapshot_date": "2007-12-01"
 	},
@@ -787,7 +787,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00284383784448239",
+		"value": "0.00029401570390066",
 		"gsm_analysis_date": "2007-12-01",
 		"snapshot_date": "2007-12-01"
 	},
@@ -819,7 +819,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00299742501516252",
+		"value": "0.000319069897942969",
 		"gsm_analysis_date": "2008-03-01",
 		"snapshot_date": "2008-03-01"
 	},
@@ -827,7 +827,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00341344162665585",
+		"value": "0.000466268448121591",
 		"gsm_analysis_date": "2008-03-01",
 		"snapshot_date": "2008-03-01"
 	},
@@ -835,7 +835,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00299742501516252",
+		"value": "0.000319069897942969",
 		"gsm_analysis_date": "2008-03-01",
 		"snapshot_date": "2008-03-01"
 	},
@@ -867,7 +867,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00301892391742595",
+		"value": "0.000330575093307096",
 		"gsm_analysis_date": "2008-06-01",
 		"snapshot_date": "2008-06-01"
 	},
@@ -875,7 +875,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00342010371300529",
+		"value": "0.000473872131623225",
 		"gsm_analysis_date": "2008-06-01",
 		"snapshot_date": "2008-06-01"
 	},
@@ -883,7 +883,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00301892391742595",
+		"value": "0.000330575093307096",
 		"gsm_analysis_date": "2008-06-01",
 		"snapshot_date": "2008-06-01"
 	},
@@ -915,7 +915,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00298587024753127",
+		"value": "0.000336643700944488",
 		"gsm_analysis_date": "2008-09-01",
 		"snapshot_date": "2008-09-01"
 	},
@@ -923,7 +923,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00336972931674863",
+		"value": "0.000475240948777442",
 		"gsm_analysis_date": "2008-09-01",
 		"snapshot_date": "2008-09-01"
 	},
@@ -931,7 +931,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00298587024753127",
+		"value": "0.000336643700944488",
 		"gsm_analysis_date": "2008-09-01",
 		"snapshot_date": "2008-09-01"
 	},
@@ -963,7 +963,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00304485865270115",
+		"value": "0.000350199311725525",
 		"gsm_analysis_date": "2008-12-01",
 		"snapshot_date": "2008-12-01"
 	},
@@ -971,7 +971,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00342323228651675",
+		"value": "0.000487738975667357",
 		"gsm_analysis_date": "2008-12-01",
 		"snapshot_date": "2008-12-01"
 	},
@@ -979,7 +979,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00304485865270115",
+		"value": "0.000350199311725525",
 		"gsm_analysis_date": "2008-12-01",
 		"snapshot_date": "2008-12-01"
 	},
@@ -1011,7 +1011,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00311343728793623",
+		"value": "0.000364312719901026",
 		"gsm_analysis_date": "2009-03-01",
 		"snapshot_date": "2009-03-01"
 	},
@@ -1019,7 +1019,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00349087430168744",
+		"value": "0.000502367404048991",
 		"gsm_analysis_date": "2009-03-01",
 		"snapshot_date": "2009-03-01"
 	},
@@ -1027,7 +1027,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00311343728793623",
+		"value": "0.000364312719901026",
 		"gsm_analysis_date": "2009-03-01",
 		"snapshot_date": "2009-03-01"
 	},
@@ -1059,7 +1059,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00311883815266893",
+		"value": "0.00036253083349173",
 		"gsm_analysis_date": "2009-06-01",
 		"snapshot_date": "2009-06-01"
 	},
@@ -1067,7 +1067,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00348513990492601",
+		"value": "0.000495856693829308",
 		"gsm_analysis_date": "2009-06-01",
 		"snapshot_date": "2009-06-01"
 	},
@@ -1075,7 +1075,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00311883815266893",
+		"value": "0.00036253083349173",
 		"gsm_analysis_date": "2009-06-01",
 		"snapshot_date": "2009-06-01"
 	},
@@ -1107,7 +1107,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00314607778682054",
+		"value": "0.000371610666365533",
 		"gsm_analysis_date": "2009-09-01",
 		"snapshot_date": "2009-09-01"
 	},
@@ -1115,7 +1115,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00350414479084735",
+		"value": "0.000502646986517416",
 		"gsm_analysis_date": "2009-09-01",
 		"snapshot_date": "2009-09-01"
 	},
@@ -1123,7 +1123,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00314607778682054",
+		"value": "0.000371610666365533",
 		"gsm_analysis_date": "2009-09-01",
 		"snapshot_date": "2009-09-01"
 	},
@@ -1155,7 +1155,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00321275601667135",
+		"value": "0.000378510429066346",
 		"gsm_analysis_date": "2009-12-01",
 		"snapshot_date": "2009-12-01"
 	},
@@ -1163,7 +1163,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00356893821321672",
+		"value": "0.000508510085668719",
 		"gsm_analysis_date": "2009-12-01",
 		"snapshot_date": "2009-12-01"
 	},
@@ -1171,7 +1171,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00321275601667135",
+		"value": "0.000378510429066346",
 		"gsm_analysis_date": "2009-12-01",
 		"snapshot_date": "2009-12-01"
 	},
@@ -1203,7 +1203,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00329878218156966",
+		"value": "0.000382646587014944",
 		"gsm_analysis_date": "2010-03-01",
 		"snapshot_date": "2010-03-01"
 	},
@@ -1211,7 +1211,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00365408135152552",
+		"value": "0.000511201221307587",
 		"gsm_analysis_date": "2010-03-01",
 		"snapshot_date": "2010-03-01"
 	},
@@ -1219,7 +1219,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00329878218156966",
+		"value": "0.000382646587014944",
 		"gsm_analysis_date": "2010-03-01",
 		"snapshot_date": "2010-03-01"
 	},
@@ -1251,7 +1251,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00324739550852066",
+		"value": "0.00037837548550621",
 		"gsm_analysis_date": "2010-06-01",
 		"snapshot_date": "2010-06-01"
 	},
@@ -1259,7 +1259,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00359003655898021",
+		"value": "0.000502462437998566",
 		"gsm_analysis_date": "2010-06-01",
 		"snapshot_date": "2010-06-01"
 	},
@@ -1267,7 +1267,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00324739550852066",
+		"value": "0.00037837548550621",
 		"gsm_analysis_date": "2010-06-01",
 		"snapshot_date": "2010-06-01"
 	},
@@ -1299,7 +1299,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00322872204111906",
+		"value": "0.00038080880823558",
 		"gsm_analysis_date": "2010-09-01",
 		"snapshot_date": "2010-09-01"
 	},
@@ -1307,7 +1307,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00355968334625252",
+		"value": "0.000501147765825502",
 		"gsm_analysis_date": "2010-09-01",
 		"snapshot_date": "2010-09-01"
 	},
@@ -1315,7 +1315,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00322872204111906",
+		"value": "0.00038080880823558",
 		"gsm_analysis_date": "2010-09-01",
 		"snapshot_date": "2010-09-01"
 	},
@@ -1347,7 +1347,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.0032712201567838",
+		"value": "0.000390036236445662",
 		"gsm_analysis_date": "2010-12-01",
 		"snapshot_date": "2010-12-01"
 	},
@@ -1355,7 +1355,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.0035990941720304",
+		"value": "0.000509707538312773",
 		"gsm_analysis_date": "2010-12-01",
 		"snapshot_date": "2010-12-01"
 	},
@@ -1363,7 +1363,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.0032712201567838",
+		"value": "0.000390036236445662",
 		"gsm_analysis_date": "2010-12-01",
 		"snapshot_date": "2010-12-01"
 	},
@@ -1395,7 +1395,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00338961845101421",
+		"value": "0.000401687516014092",
 		"gsm_analysis_date": "2011-03-01",
 		"snapshot_date": "2011-03-01"
 	},
@@ -1403,7 +1403,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00372017420737254",
+		"value": "0.000521831532835028",
 		"gsm_analysis_date": "2011-03-01",
 		"snapshot_date": "2011-03-01"
 	},
@@ -1411,7 +1411,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00338961845101421",
+		"value": "0.000401687516014092",
 		"gsm_analysis_date": "2011-03-01",
 		"snapshot_date": "2011-03-01"
 	},
@@ -1443,7 +1443,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00339233744135049",
+		"value": "0.000410220489681548",
 		"gsm_analysis_date": "2011-06-01",
 		"snapshot_date": "2011-06-01"
 	},
@@ -1451,7 +1451,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00371748347476555",
+		"value": "0.000529400075125475",
 		"gsm_analysis_date": "2011-06-01",
 		"snapshot_date": "2011-06-01"
 	},
@@ -1459,7 +1459,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00339233744135049",
+		"value": "0.000410220489681548",
 		"gsm_analysis_date": "2011-06-01",
 		"snapshot_date": "2011-06-01"
 	},
@@ -1491,7 +1491,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00332183917901195",
+		"value": "0.000404382505620917",
 		"gsm_analysis_date": "2011-09-01",
 		"snapshot_date": "2011-09-01"
 	},
@@ -1499,7 +1499,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00363571946769569",
+		"value": "0.000519706920244303",
 		"gsm_analysis_date": "2011-09-01",
 		"snapshot_date": "2011-09-01"
 	},
@@ -1507,7 +1507,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00332183917901195",
+		"value": "0.000404382505620917",
 		"gsm_analysis_date": "2011-09-01",
 		"snapshot_date": "2011-09-01"
 	},
@@ -1539,7 +1539,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00339831420746694",
+		"value": "0.000415229521796773",
 		"gsm_analysis_date": "2011-12-01",
 		"snapshot_date": "2011-12-01"
 	},
@@ -1547,7 +1547,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00371001313042658",
+		"value": "0.000529787124817123",
 		"gsm_analysis_date": "2011-12-01",
 		"snapshot_date": "2011-12-01"
 	},
@@ -1555,7 +1555,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00339831420746694",
+		"value": "0.000415229521796773",
 		"gsm_analysis_date": "2011-12-01",
 		"snapshot_date": "2011-12-01"
 	},
@@ -1587,7 +1587,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00347869617777335",
+		"value": "0.000420903755834251",
 		"gsm_analysis_date": "2012-03-01",
 		"snapshot_date": "2012-03-01"
 	},
@@ -1595,7 +1595,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00379108757298871",
+		"value": "0.000535083988393897",
 		"gsm_analysis_date": "2012-03-01",
 		"snapshot_date": "2012-03-01"
 	},
@@ -1603,7 +1603,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00347869617777335",
+		"value": "0.000420903755834251",
 		"gsm_analysis_date": "2012-03-01",
 		"snapshot_date": "2012-03-01"
 	},
@@ -1635,7 +1635,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00350550313580221",
+		"value": "0.000417742865483605",
 		"gsm_analysis_date": "2012-06-01",
 		"snapshot_date": "2012-06-01"
 	},
@@ -1643,7 +1643,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00381360022381363",
+		"value": "0.000529452225812622",
 		"gsm_analysis_date": "2012-06-01",
 		"snapshot_date": "2012-06-01"
 	},
@@ -1651,7 +1651,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00350550313580221",
+		"value": "0.000417742865483605",
 		"gsm_analysis_date": "2012-06-01",
 		"snapshot_date": "2012-06-01"
 	},
@@ -1683,7 +1683,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00349026954724806",
+		"value": "0.000412300216300765",
 		"gsm_analysis_date": "2012-09-01",
 		"snapshot_date": "2012-09-01"
 	},
@@ -1691,7 +1691,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00379103480471152",
+		"value": "0.000520811612457629",
 		"gsm_analysis_date": "2012-09-01",
 		"snapshot_date": "2012-09-01"
 	},
@@ -1699,7 +1699,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00349026954724806",
+		"value": "0.000412300216300765",
 		"gsm_analysis_date": "2012-09-01",
 		"snapshot_date": "2012-09-01"
 	},
@@ -1731,7 +1731,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00353518954215594",
+		"value": "0.000411078878886327",
 		"gsm_analysis_date": "2012-12-01",
 		"snapshot_date": "2012-12-01"
 	},
@@ -1739,7 +1739,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00383402663933404",
+		"value": "0.000518016349609702",
 		"gsm_analysis_date": "2012-12-01",
 		"snapshot_date": "2012-12-01"
 	},
@@ -1747,7 +1747,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00353518954215594",
+		"value": "0.000411078878886327",
 		"gsm_analysis_date": "2012-12-01",
 		"snapshot_date": "2012-12-01"
 	},
@@ -1779,7 +1779,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00360660093975919",
+		"value": "0.000413713943036826",
 		"gsm_analysis_date": "2013-03-01",
 		"snapshot_date": "2013-03-01"
 	},
@@ -1787,7 +1787,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00390607157226951",
+		"value": "0.00052011739724093",
 		"gsm_analysis_date": "2013-03-01",
 		"snapshot_date": "2013-03-01"
 	},
@@ -1795,7 +1795,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00360660093975919",
+		"value": "0.000413713943036826",
 		"gsm_analysis_date": "2013-03-01",
 		"snapshot_date": "2013-03-01"
 	},
@@ -1827,7 +1827,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00359377198878454",
+		"value": "0.000412100852586757",
 		"gsm_analysis_date": "2013-06-01",
 		"snapshot_date": "2013-06-01"
 	},
@@ -1835,7 +1835,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00388792046002803",
+		"value": "0.000516529666856115",
 		"gsm_analysis_date": "2013-06-01",
 		"snapshot_date": "2013-06-01"
 	},
@@ -1843,7 +1843,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00359377198878454",
+		"value": "0.000412100852586757",
 		"gsm_analysis_date": "2013-06-01",
 		"snapshot_date": "2013-06-01"
 	},
@@ -1875,7 +1875,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.0035395012420643",
+		"value": "0.000415204975772509",
 		"gsm_analysis_date": "2013-09-01",
 		"snapshot_date": "2013-09-01"
 	},
@@ -1883,7 +1883,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00382518703587697",
+		"value": "0.000517644827030522",
 		"gsm_analysis_date": "2013-09-01",
 		"snapshot_date": "2013-09-01"
 	},
@@ -1891,7 +1891,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.0035395012420643",
+		"value": "0.000415204975772509",
 		"gsm_analysis_date": "2013-09-01",
 		"snapshot_date": "2013-09-01"
 	},
@@ -1923,7 +1923,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00360570224774445",
+		"value": "0.000424178312756205",
 		"gsm_analysis_date": "2013-12-01",
 		"snapshot_date": "2013-12-01"
 	},
@@ -1931,7 +1931,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00389195268275213",
+		"value": "0.0005268844063144",
 		"gsm_analysis_date": "2013-12-01",
 		"snapshot_date": "2013-12-01"
 	},
@@ -1939,7 +1939,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00360570224774445",
+		"value": "0.000424178312756205",
 		"gsm_analysis_date": "2013-12-01",
 		"snapshot_date": "2013-12-01"
 	},
@@ -1971,7 +1971,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00363183370520395",
+		"value": "0.000429976261540008",
 		"gsm_analysis_date": "2014-03-01",
 		"snapshot_date": "2014-03-01"
 	},
@@ -1979,7 +1979,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.003916548208386",
+		"value": "0.000532380338872888",
 		"gsm_analysis_date": "2014-03-01",
 		"snapshot_date": "2014-03-01"
 	},
@@ -1987,7 +1987,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00363183370520395",
+		"value": "0.000429976261540008",
 		"gsm_analysis_date": "2014-03-01",
 		"snapshot_date": "2014-03-01"
 	},
@@ -2019,7 +2019,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00364376765033352",
+		"value": "0.000432082881672199",
 		"gsm_analysis_date": "2014-06-01",
 		"snapshot_date": "2014-06-01"
 	},
@@ -2027,7 +2027,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00392571557323245",
+		"value": "0.000533513166053993",
 		"gsm_analysis_date": "2014-06-01",
 		"snapshot_date": "2014-06-01"
 	},
@@ -2035,7 +2035,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00364376765033352",
+		"value": "0.000432082881672199",
 		"gsm_analysis_date": "2014-06-01",
 		"snapshot_date": "2014-06-01"
 	},
@@ -2067,7 +2067,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00362927032296418",
+		"value": "0.000436962074709031",
 		"gsm_analysis_date": "2014-09-01",
 		"snapshot_date": "2014-09-01"
 	},
@@ -2075,7 +2075,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00390604345050377",
+		"value": "0.000537182322316373",
 		"gsm_analysis_date": "2014-09-01",
 		"snapshot_date": "2014-09-01"
 	},
@@ -2083,7 +2083,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00362927032296418",
+		"value": "0.000436962074709031",
 		"gsm_analysis_date": "2014-09-01",
 		"snapshot_date": "2014-09-01"
 	},
@@ -2115,7 +2115,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00365018802557206",
+		"value": "0.000443647156377725",
 		"gsm_analysis_date": "2014-12-01",
 		"snapshot_date": "2014-12-01"
 	},
@@ -2123,7 +2123,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00392513488505898",
+		"value": "0.000543597622769605",
 		"gsm_analysis_date": "2014-12-01",
 		"snapshot_date": "2014-12-01"
 	},
@@ -2131,7 +2131,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00365018802557206",
+		"value": "0.000443647156377725",
 		"gsm_analysis_date": "2014-12-01",
 		"snapshot_date": "2014-12-01"
 	},
@@ -2163,7 +2163,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00367357719234885",
+		"value": "0.000440399860711629",
 		"gsm_analysis_date": "2015-03-01",
 		"snapshot_date": "2015-03-01"
 	},
@@ -2171,7 +2171,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00394796297032531",
+		"value": "0.000539473681704442",
 		"gsm_analysis_date": "2015-03-01",
 		"snapshot_date": "2015-03-01"
 	},
@@ -2179,7 +2179,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00367357719234885",
+		"value": "0.000440399860711629",
 		"gsm_analysis_date": "2015-03-01",
 		"snapshot_date": "2015-03-01"
 	},
@@ -2211,7 +2211,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00364889680072655",
+		"value": "0.000435328983070514",
 		"gsm_analysis_date": "2015-06-01",
 		"snapshot_date": "2015-06-01"
 	},
@@ -2219,7 +2219,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00391812909918592",
+		"value": "0.000532275028822876",
 		"gsm_analysis_date": "2015-06-01",
 		"snapshot_date": "2015-06-01"
 	},
@@ -2227,7 +2227,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00364889680072655",
+		"value": "0.000435328983070514",
 		"gsm_analysis_date": "2015-06-01",
 		"snapshot_date": "2015-06-01"
 	},
@@ -2259,7 +2259,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00363253658874657",
+		"value": "0.000435357211725109",
 		"gsm_analysis_date": "2015-09-01",
 		"snapshot_date": "2015-09-01"
 	},
@@ -2267,7 +2267,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00389791179190825",
+		"value": "0.000531081690346598",
 		"gsm_analysis_date": "2015-09-01",
 		"snapshot_date": "2015-09-01"
 	},
@@ -2275,7 +2275,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00363253658874657",
+		"value": "0.000435357211725109",
 		"gsm_analysis_date": "2015-09-01",
 		"snapshot_date": "2015-09-01"
 	},
@@ -2307,7 +2307,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00365278899180513",
+		"value": "0.000437579811408524",
 		"gsm_analysis_date": "2015-12-01",
 		"snapshot_date": "2015-12-01"
 	},
@@ -2315,7 +2315,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00391709876047365",
+		"value": "0.000532863738480241",
 		"gsm_analysis_date": "2015-12-01",
 		"snapshot_date": "2015-12-01"
 	},
@@ -2323,7 +2323,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00365278899180513",
+		"value": "0.000437579811408524",
 		"gsm_analysis_date": "2015-12-01",
 		"snapshot_date": "2015-12-01"
 	},
@@ -2355,7 +2355,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00365951791586538",
+		"value": "0.000438604377320014",
 		"gsm_analysis_date": "2016-03-01",
 		"snapshot_date": "2016-03-01"
 	},
@@ -2363,7 +2363,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00392196212922222",
+		"value": "0.000533205518048845",
 		"gsm_analysis_date": "2016-03-01",
 		"snapshot_date": "2016-03-01"
 	},
@@ -2371,7 +2371,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00365951791586538",
+		"value": "0.000438604377320014",
 		"gsm_analysis_date": "2016-03-01",
 		"snapshot_date": "2016-03-01"
 	},
@@ -2403,7 +2403,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00365556357005749",
+		"value": "0.000435055461516799",
 		"gsm_analysis_date": "2016-06-01",
 		"snapshot_date": "2016-06-01"
 	},
@@ -2411,7 +2411,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00391543504695423",
+		"value": "0.000528388624491532",
 		"gsm_analysis_date": "2016-06-01",
 		"snapshot_date": "2016-06-01"
 	},
@@ -2419,7 +2419,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00365556357005749",
+		"value": "0.000435055461516799",
 		"gsm_analysis_date": "2016-06-01",
 		"snapshot_date": "2016-06-01"
 	},
@@ -2451,7 +2451,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00361217613998211",
+		"value": "0.00042856343092076",
 		"gsm_analysis_date": "2016-09-01",
 		"snapshot_date": "2016-09-01"
 	},
@@ -2459,7 +2459,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00386660061527267",
+		"value": "0.000519775481221952",
 		"gsm_analysis_date": "2016-09-01",
 		"snapshot_date": "2016-09-01"
 	},
@@ -2467,7 +2467,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00361217613998211",
+		"value": "0.00042856343092076",
 		"gsm_analysis_date": "2016-09-01",
 		"snapshot_date": "2016-09-01"
 	},
@@ -2499,7 +2499,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00362533388236742",
+		"value": "0.000427971062818489",
 		"gsm_analysis_date": "2016-12-01",
 		"snapshot_date": "2016-12-01"
 	},
@@ -2507,7 +2507,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00387780043853282",
+		"value": "0.0005182291640865",
 		"gsm_analysis_date": "2016-12-01",
 		"snapshot_date": "2016-12-01"
 	},
@@ -2515,7 +2515,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00362533388236742",
+		"value": "0.000427971062818489",
 		"gsm_analysis_date": "2016-12-01",
 		"snapshot_date": "2016-12-01"
 	},
@@ -2547,7 +2547,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00363626651417361",
+		"value": "0.000427569228802512",
 		"gsm_analysis_date": "2017-03-01",
 		"snapshot_date": "2017-03-01"
 	},
@@ -2555,7 +2555,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00388680743277587",
+		"value": "0.000516936870839368",
 		"gsm_analysis_date": "2017-03-01",
 		"snapshot_date": "2017-03-01"
 	},
@@ -2563,7 +2563,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00363626651417361",
+		"value": "0.000427569228802512",
 		"gsm_analysis_date": "2017-03-01",
 		"snapshot_date": "2017-03-01"
 	},
@@ -2595,7 +2595,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00364298710047718",
+		"value": "0.000428016995606904",
 		"gsm_analysis_date": "2017-06-01",
 		"snapshot_date": "2017-06-01"
 	},
@@ -2603,7 +2603,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00389116520240767",
+		"value": "0.000516471244688469",
 		"gsm_analysis_date": "2017-06-01",
 		"snapshot_date": "2017-06-01"
 	},
@@ -2611,7 +2611,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00364298710047718",
+		"value": "0.000428016995606904",
 		"gsm_analysis_date": "2017-06-01",
 		"snapshot_date": "2017-06-01"
 	},
@@ -2643,7 +2643,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00358605289853774",
+		"value": "0.000418574656075098",
 		"gsm_analysis_date": "2017-09-01",
 		"snapshot_date": "2017-09-01"
 	},
@@ -2651,7 +2651,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00382866456427865",
+		"value": "0.000504756355080279",
 		"gsm_analysis_date": "2017-09-01",
 		"snapshot_date": "2017-09-01"
 	},
@@ -2659,7 +2659,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00358605289853774",
+		"value": "0.000418574656075098",
 		"gsm_analysis_date": "2017-09-01",
 		"snapshot_date": "2017-09-01"
 	},
@@ -2691,7 +2691,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00363361858262046",
+		"value": "0.000423633054063774",
 		"gsm_analysis_date": "2017-12-01",
 		"snapshot_date": "2017-12-01"
 	},
@@ -2699,7 +2699,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.0038767082572084",
+		"value": "0.000509901610810626",
 		"gsm_analysis_date": "2017-12-01",
 		"snapshot_date": "2017-12-01"
 	},
@@ -2707,7 +2707,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00363361858262046",
+		"value": "0.000423633054063774",
 		"gsm_analysis_date": "2017-12-01",
 		"snapshot_date": "2017-12-01"
 	},
@@ -2739,7 +2739,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00369759134964846",
+		"value": "0.000431389505272157",
 		"gsm_analysis_date": "2018-03-01",
 		"snapshot_date": "2018-03-01"
 	},
@@ -2747,7 +2747,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00394276828571973",
+		"value": "0.000518398881039056",
 		"gsm_analysis_date": "2018-03-01",
 		"snapshot_date": "2018-03-01"
 	},
@@ -2755,7 +2755,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00369759134964846",
+		"value": "0.000431389505272157",
 		"gsm_analysis_date": "2018-03-01",
 		"snapshot_date": "2018-03-01"
 	},
@@ -2787,7 +2787,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00376657189462069",
+		"value": "0.000433329116391469",
 		"gsm_analysis_date": "2018-06-01",
 		"snapshot_date": "2018-06-01"
 	},
@@ -2795,7 +2795,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00401397935236482",
+		"value": "0.000520522701858613",
 		"gsm_analysis_date": "2018-06-01",
 		"snapshot_date": "2018-06-01"
 	},
@@ -2803,7 +2803,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00376657189462069",
+		"value": "0.000433329116391469",
 		"gsm_analysis_date": "2018-06-01",
 		"snapshot_date": "2018-06-01"
 	},
@@ -2835,7 +2835,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.0038055653424976",
+		"value": "0.000437208927682327",
 		"gsm_analysis_date": "2018-09-01",
 		"snapshot_date": "2018-09-01"
 	},
@@ -2843,7 +2843,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00405422464322422",
+		"value": "0.000524769756294334",
 		"gsm_analysis_date": "2018-09-01",
 		"snapshot_date": "2018-09-01"
 	},
@@ -2851,7 +2851,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.0038055653424976",
+		"value": "0.000437208927682327",
 		"gsm_analysis_date": "2018-09-01",
 		"snapshot_date": "2018-09-01"
 	},
@@ -2883,7 +2883,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00382856295752279",
+		"value": "0.000440119296661955",
 		"gsm_analysis_date": "2018-12-01",
 		"snapshot_date": "2018-12-01"
 	},
@@ -2891,7 +2891,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00407795756699909",
+		"value": "0.000527954538201894",
 		"gsm_analysis_date": "2018-12-01",
 		"snapshot_date": "2018-12-01"
 	},
@@ -2899,7 +2899,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00382856295752279",
+		"value": "0.000440119296661955",
 		"gsm_analysis_date": "2018-12-01",
 		"snapshot_date": "2018-12-01"
 	},
@@ -2931,7 +2931,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00385156165796441",
+		"value": "0.000440119296661955",
 		"gsm_analysis_date": "2019-03-01",
 		"snapshot_date": "2019-03-01"
 	},
@@ -2939,7 +2939,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00410168940577347",
+		"value": "0.000527954538201894",
 		"gsm_analysis_date": "2019-03-01",
 		"snapshot_date": "2019-03-01"
 	},
@@ -2947,7 +2947,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00385156165796441",
+		"value": "0.000440119296661955",
 		"gsm_analysis_date": "2019-03-01",
 		"snapshot_date": "2019-03-01"
 	},
@@ -2979,7 +2979,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00387256141124848",
+		"value": "0.000441089516075215",
 		"gsm_analysis_date": "2019-06-01",
 		"snapshot_date": "2019-06-01"
 	},
@@ -2987,7 +2987,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00412335666691431",
+		"value": "0.000529016036050083",
 		"gsm_analysis_date": "2019-06-01",
 		"snapshot_date": "2019-06-01"
 	},
@@ -2995,7 +2995,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00387256141124848",
+		"value": "0.000441089516075215",
 		"gsm_analysis_date": "2019-06-01",
 		"snapshot_date": "2019-06-01"
 	},
@@ -3027,7 +3027,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00387556144879924",
+		"value": "0.000443030098621157",
 		"gsm_analysis_date": "2019-09-01",
 		"snapshot_date": "2019-09-01"
 	},
@@ -3035,7 +3035,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00412645191716616",
+		"value": "0.000531138888470937",
 		"gsm_analysis_date": "2019-09-01",
 		"snapshot_date": "2019-09-01"
 	},
@@ -3043,7 +3043,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00387556144879924",
+		"value": "0.000443030098621157",
 		"gsm_analysis_date": "2019-09-01",
 		"snapshot_date": "2019-09-01"
 	},
@@ -3075,7 +3075,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "LowCI",
-		"value": "0.00387656146534752",
+		"value": "0.000443030098621157",
 		"gsm_analysis_date": "2019-12-01",
 		"snapshot_date": "2019-12-01"
 	},
@@ -3083,7 +3083,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "UpCI",
-		"value": "0.00412748366322027",
+		"value": "0.000531138888470937",
 		"gsm_analysis_date": "2019-12-01",
 		"snapshot_date": "2019-12-01"
 	},
@@ -3091,7 +3091,7 @@
 		"studyid": "AA-AA-000-0000",
 		"workflowid": "qtl0004",
 		"param": "Score",
-		"value": "0.00387656146534752",
+		"value": "0.000443030098621157",
 		"gsm_analysis_date": "2019-12-01",
 		"snapshot_date": "2019-12-01"
 	},
