@@ -21,16 +21,16 @@ Promise.all(dataPromises)
         // data
         const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         const results = datasets[0].filter(
-            (d) => d.workflowid === workflowID && groupids.includes(d.groupid) && d.snapshot_date <= '2009-12-01'
+            (d) => d.workflowid === workflowID && groupids.includes(d.groupid)
         );
 
         // configuration
         const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
         workflow.y = 'score';
-        workflow.nSnapshots = 5;
+        workflow.nSnapshots = 100;
         //workflow.yMin = d3.min(results, d => +d[workflow.y]);
         //workflow.yMax = d3.max(results, d => +d[workflow.y]);
-        workflow.displayThresholds = true;
+        //workflow.displayThresholds = true;
 
         // threshold annotations
         const parameters = mergeParameters(

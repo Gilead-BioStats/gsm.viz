@@ -36,6 +36,7 @@ const kri = function (datasets, setup = false, workflowID = null) {
                 const config = { ...workflow };
                 config.y = chart.data.config.y;
                 config.nSnapshots = chart.data.config.nSnapshots;
+                config.thresholds = null;
 
                 chart.helpers.updateData(
                     chart,

@@ -21060,7 +21060,6 @@ var rbmViz = (() => {
     config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
-    console.log(config.thresholds);
     return config;
   }
 
