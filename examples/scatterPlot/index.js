@@ -19,6 +19,9 @@ Promise.all(dataPromises)
 
         // data
         const results = datasets[1].filter((d) => d.workflowid === workflowID);
+        results.forEach((result) => {
+            if (Math.random() < 0.05) result.flag = 'NA';
+        });
 
         // configuration
         const workflow = datasets[0] // destructured assignment

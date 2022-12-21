@@ -19,6 +19,12 @@ const colorScheme = [
         description: 'Red Flag',
         flag: [-2, 2],
     },
+    {
+        color: '#aaaaaa',
+        order: 3,
+        description: 'No Flag',
+        flag: [undefined, null, NaN, ''],
+    },
 ];
 
 colorScheme.forEach((color) => {

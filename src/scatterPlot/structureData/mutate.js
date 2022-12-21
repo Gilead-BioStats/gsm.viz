@@ -5,7 +5,10 @@ export default function mutate(_data_, config) {
                 ...d,
                 x: +d[config.x],
                 y: +d[config.y],
-                stratum: Math.abs(+d[config.color]),
+                //stratum: Math.abs(+d[config.color]),
+                stratum: [NaN, null, undefined, ''].includes(+d[config.color])
+                    ? 3
+                    : Math.abs(+d[config.color]),
             };
 
             return datum;
@@ -17,6 +20,7 @@ export default function mutate(_data_, config) {
 
             return aSelected ? 1 : bSelected ? -1 : stratum;
         });
+    console.log(new Set(data.map((d) => d.stratum)));
 
     return data;
 }
