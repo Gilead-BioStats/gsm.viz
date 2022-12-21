@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21887,39 +21886,42 @@ var rbmViz = (() => {
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
     if (Array.isArray(_thresholds_)) {
-      const thresholds2 = [...rollup(
-        _thresholds_.filter((d) => d.param === "vThreshold"),
-        (group2) => {
-          const flags = checkThresholds({}, group2);
-          flags.forEach((flag) => {
-            flag.gsm_analysis_date = group2[0].gsm_analysis_date;
-            flag.snapshot_date = group2[0].snapshot_date;
-            flag.x = flag.gsm_analysis_date;
-            flag.y = flag.threshold;
-            flag.color = colorScheme_default.find((color3) => color3.flag.includes(flag.flag));
-          });
-          return flags;
-        },
-        (d) => d.gsm_analysis_date
-      )].flatMap((d) => d[1]);
-      const thresholdData = [...rollup(
-        thresholds2,
-        (group2) => ({
-          borderColor: group2[0].color.color,
-          borderDash: [2],
-          borderWidth: 1,
-          data: group2,
-          label: "",
-          radius: 0,
-          stepped: "before",
-          type: "line"
-        }),
-        (d) => d.flag
-      )].map((d) => d[1]);
-      data.datasets = [
-        ...data.datasets,
-        ...thresholdData
-      ];
+      const thresholds2 = [
+        ...rollup(
+          _thresholds_.filter((d) => d.param === "vThreshold"),
+          (group2) => {
+            const flags = checkThresholds({}, group2);
+            flags.forEach((flag) => {
+              flag.gsm_analysis_date = group2[0].gsm_analysis_date;
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.x = flag.gsm_analysis_date;
+              flag.y = flag.threshold;
+              flag.color = colorScheme_default.find(
+                (color3) => color3.flag.includes(flag.flag)
+              );
+            });
+            return flags;
+          },
+          (d) => d.gsm_analysis_date
+        )
+      ].flatMap((d) => d[1]);
+      const thresholdData = [
+        ...rollup(
+          thresholds2,
+          (group2) => ({
+            borderColor: group2[0].color.color,
+            borderDash: [2],
+            borderWidth: 1,
+            data: group2,
+            label: "",
+            radius: 0,
+            stepped: "before",
+            type: "line"
+          }),
+          (d) => d.flag
+        )
+      ].map((d) => d[1]);
+      data.datasets = [...data.datasets, ...thresholdData];
     }
     const options = {
       animation: false,
