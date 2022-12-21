@@ -8,16 +8,13 @@ export default function backgroundColor(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'bar') {
-        const threshold = colorScheme.find((x) =>
-            x.flag.includes(datum.stratum)
-        );
-        const color = threshold.rgba;
-        color.opacity =
+        const color = colorScheme[datum.stratum];
+        color.rgba.opacity =
             config.selectedGroupIDs.includes(datum.groupid) |
             (config.selectedGroupIDs.length === 0)
                 ? 1
                 : 0.25;
 
-        return color + '';
+        return color.rgba + '';
     }
 }

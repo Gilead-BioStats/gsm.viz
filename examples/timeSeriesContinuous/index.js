@@ -14,15 +14,17 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
-        );
+        datasets = datasets.map((dataset) => {
+            dataset.forEach(d => {
+                if (d.hasOwnProperty('gsm_analysis_date'))
+                    d.gsm_analysis_date = d.gsm_analysis_date.substring(0, 10);
+            });
+
+            return dataset.filter((d) => /^kri/.test(d.workflowid))
+        });
 
         // analysis results
         const results = filterOnWorkflowID(datasets[0], workflowID);
-        results.forEach(d => {
-            d.score = Math.random() < .25 ? NaN : +d.score;
-        });
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);

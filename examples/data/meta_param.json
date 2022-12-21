@@ -3,10 +3,10 @@
 		"workflowid": "kri0001",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0001",
@@ -15,7 +15,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0001",
@@ -24,7 +24,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0001",
@@ -33,7 +33,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0001",
@@ -42,25 +42,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0001",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
@@ -69,7 +69,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
@@ -78,7 +78,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
@@ -87,7 +87,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
@@ -96,25 +96,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
@@ -123,7 +123,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
@@ -132,7 +132,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
@@ -141,7 +141,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
@@ -150,25 +150,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
@@ -177,7 +177,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
@@ -186,7 +186,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
@@ -195,7 +195,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
@@ -204,25 +204,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
@@ -231,7 +231,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
@@ -240,7 +240,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
@@ -249,7 +249,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
@@ -258,25 +258,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
@@ -285,7 +285,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
@@ -294,7 +294,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
@@ -303,7 +303,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
@@ -312,25 +312,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
@@ -339,7 +339,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
@@ -348,7 +348,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
@@ -357,7 +357,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
@@ -366,25 +366,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
@@ -393,7 +393,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
@@ -402,7 +402,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
@@ -411,7 +411,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
@@ -420,25 +420,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
@@ -447,7 +447,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
@@ -456,7 +456,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
@@ -465,7 +465,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
@@ -474,25 +474,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
@@ -501,7 +501,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
@@ -510,7 +510,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
@@ -519,7 +519,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
@@ -528,25 +528,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
@@ -555,7 +555,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
@@ -564,7 +564,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
@@ -573,7 +573,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
@@ -582,25 +582,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Site",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
@@ -609,7 +609,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
@@ -618,7 +618,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
@@ -627,7 +627,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
@@ -636,25 +636,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
@@ -663,7 +663,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
@@ -672,7 +672,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
@@ -681,7 +681,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
@@ -690,25 +690,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
@@ -717,7 +717,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
@@ -726,7 +726,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
@@ -735,7 +735,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
@@ -744,25 +744,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
@@ -771,7 +771,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
@@ -780,7 +780,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
@@ -789,7 +789,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
@@ -798,25 +798,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
@@ -825,7 +825,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
@@ -834,7 +834,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
@@ -843,7 +843,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
@@ -852,25 +852,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
@@ -879,7 +879,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
@@ -888,7 +888,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
@@ -897,7 +897,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
@@ -906,25 +906,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
@@ -933,7 +933,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
@@ -942,7 +942,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
@@ -951,7 +951,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
@@ -960,25 +960,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
@@ -987,7 +987,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
@@ -996,7 +996,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
@@ -1005,7 +1005,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
@@ -1014,25 +1014,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
@@ -1041,7 +1041,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
@@ -1050,7 +1050,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
@@ -1059,7 +1059,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
@@ -1068,25 +1068,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
@@ -1095,7 +1095,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
@@ -1104,7 +1104,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
@@ -1113,7 +1113,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
@@ -1122,25 +1122,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
@@ -1149,7 +1149,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
@@ -1158,7 +1158,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
@@ -1167,7 +1167,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
@@ -1176,25 +1176,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
@@ -1203,7 +1203,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
@@ -1212,7 +1212,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
@@ -1221,7 +1221,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
@@ -1230,25 +1230,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Country",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
@@ -1257,7 +1257,7 @@
 		"index": "1",
 		"default": "-3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
@@ -1266,7 +1266,7 @@
 		"index": "2",
 		"default": "-2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
@@ -1275,7 +1275,7 @@
 		"index": "3",
 		"default": "2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
@@ -1284,25 +1284,25 @@
 		"index": "4",
 		"default": "3",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "NormalApprox",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0004",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Study",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0004",
@@ -1311,34 +1311,34 @@
 		"index": "1",
 		"default": "0.01",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0004",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "qtl",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0004",
 		"gsm_version": "1.4.1",
 		"param": "strOutcome",
-		"index": "",
+		"index": "NA",
 		"default": "rate",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0006",
 		"gsm_version": "1.4.1",
 		"param": "strGroup",
-		"index": "",
+		"index": "NA",
 		"default": "Study",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0006",
@@ -1347,24 +1347,24 @@
 		"index": "1",
 		"default": "0.2",
 		"configurable": "TRUE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0006",
 		"gsm_version": "1.4.1",
 		"param": "strMethod",
-		"index": "",
+		"index": "NA",
 		"default": "qtl",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0006",
 		"gsm_version": "1.4.1",
 		"param": "strOutcome",
-		"index": "",
+		"index": "NA",
 		"default": "rate",
 		"configurable": "FALSE",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	}
 ]

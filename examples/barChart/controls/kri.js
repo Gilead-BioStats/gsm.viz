@@ -17,20 +17,22 @@ const kri = function (workflow, datasets, setup = false) {
 
         kriDropdown.value = workflow.workflowid;
         kriDropdown.addEventListener('change', (event) => {
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === event.target.value
-            );
-            const results = datasets[1].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            const parameters = document.getElementById('threshold').checked
-                ? datasets[2].filter(
-                      (d) => d.workflowid === workflow.workflowid
-                  )
-                : null;
+            // analysis results
+            const results = filterOnWorkflowID(datasets[0], event.target.value);
 
-            workflow.selectedGroupIDs = site();
+            // chart configuration
+            const workflow = selectWorkflowID(datasets[1], event.target.value);
             workflow.y = yaxis();
+            workflow.selectedGroupIDs = site();
+
+            // threshold annotations
+            const parameters = document.getElementById('threshold').checked
+                ? mergeParameters(
+                    filterOnWorkflowID(datasets[2], event.target.value),
+                    filterOnWorkflowID(datasets[3], event.target.value)
+                ) : null;
+
+
             instance.helpers.updateData(
                 instance,
                 results,

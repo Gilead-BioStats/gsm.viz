@@ -17150,6 +17150,10 @@ var rbmViz = (() => {
     }
   };
 
+  // src/util/falsy.js
+  var falsy = [void 0, null, NaN, "", "NA"];
+  var falsy_default = falsy;
+
   // node_modules/d3-array/src/ascending.js
   function ascending(a, b) {
     return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
@@ -20043,7 +20047,7 @@ var rbmViz = (() => {
       color: "#aaaaaa",
       order: 3,
       description: "No Flag",
-      flag: [void 0, null, NaN, "", "NA"]
+      flag: falsy_default
     }
   ];
   colorScheme.forEach((color3) => {
@@ -20238,8 +20242,8 @@ var rbmViz = (() => {
       const datum2 = {
         ...d,
         x: d[config.x],
-        y: +d[config.y],
-        stratum: +d[config.color]
+        y: falsy_default.includes(d[config.y]) ? 0 : +d[config.y],
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => b.y - a.y);
@@ -20253,12 +20257,9 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "bar") {
-      const threshold = colorScheme_default.find(
-        (x) => x.flag.includes(datum2.stratum)
-      );
-      const color3 = threshold.rgba;
-      color3.opacity = config.selectedGroupIDs.includes(datum2.groupid) | config.selectedGroupIDs.length === 0 ? 1 : 0.25;
-      return color3 + "";
+      const color3 = colorScheme_default[datum2.stratum];
+      color3.rgba.opacity = config.selectedGroupIDs.includes(datum2.groupid) | config.selectedGroupIDs.length === 0 ? 1 : 0.25;
+      return color3.rgba + "";
     }
   }
 
@@ -20632,7 +20633,6 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
-    console.log(_thresholds_);
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
@@ -21071,7 +21071,7 @@ var rbmViz = (() => {
       const datum2 = {
         ...d,
         y: +d[config.y],
-        stratum: Math.abs(+d[config.color])
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
@@ -21110,8 +21110,10 @@ var rbmViz = (() => {
 
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
+    console.log(_data_);
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
+    console.log(data);
     const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
       (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
     );
@@ -21883,10 +21885,49 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _parameters_ = null, _analysis_ = null) {
-    const config = configure6(_config_, _data_, _parameters_);
+  function updateData4(chart, _data_, _config_, _thresholds_ = null, _analysis_ = null) {
+    const config = configure6(_config_, _data_, _thresholds_);
+    const data = structureData4(_data_, config, _analysis_);
+    if (Array.isArray(_thresholds_)) {
+      const thresholds2 = [
+        ...rollup(
+          _thresholds_.filter((d) => d.param === "vThreshold"),
+          (group2) => {
+            const flags = checkThresholds({}, group2);
+            flags.forEach((flag) => {
+              flag.gsm_analysis_date = group2[0].gsm_analysis_date;
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.x = flag.gsm_analysis_date;
+              flag.y = flag.threshold;
+              flag.color = colorScheme_default.find(
+                (color3) => color3.flag.includes(flag.flag)
+              );
+            });
+            return flags;
+          },
+          (d) => d.gsm_analysis_date
+        )
+      ].flatMap((d) => d[1]);
+      const thresholdData = [
+        ...rollup(
+          thresholds2,
+          (group2) => ({
+            borderColor: group2[0].color.color,
+            borderDash: [2],
+            borderWidth: 1,
+            data: group2,
+            label: "",
+            radius: 0,
+            stepped: "before",
+            type: "line"
+          }),
+          (d) => d.flag
+        )
+      ].map((d) => d[1]);
+      data.datasets = [...data.datasets, ...thresholdData];
+    }
     chart.data = {
-      ...structureData4(_data_, config, _analysis_),
+      ...data,
       config,
       _data_
     };

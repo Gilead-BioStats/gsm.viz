@@ -1,3 +1,4 @@
+import falsy from './falsy';
 import { color as d3color } from 'd3';
 
 const colorScheme = [
@@ -23,7 +24,7 @@ const colorScheme = [
         color: '#aaaaaa',
         order: 3,
         description: 'No Flag',
-        flag: [undefined, null, NaN, '', 'NA'],
+        flag: falsy,
     },
 ];
 

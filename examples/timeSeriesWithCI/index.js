@@ -15,9 +15,14 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'qtl0006';
 
-        datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^qtl/.test(d.workflowid))
-        );
+        datasets = datasets.map((dataset) => {
+            dataset.forEach(d => {
+                if (d.hasOwnProperty('gsm_analysis_date'))
+                    d.gsm_analysis_date = d.gsm_analysis_date.substring(0, 10);
+            });
+
+            return dataset.filter((d) => /^qtl/.test(d.workflowid))
+        });
 
         // analysis results
         const results = filterOnWorkflowID(datasets[0], workflowID);
@@ -31,10 +36,6 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)
         );
-        //const parameters = mergeParameters(
-        //    datasets[2].filter(d => d.workflowid === workflowID),
-        //    datasets[3].filter(d => d.workflowid === workflowID)
-        //);
 
         // additional analysis output
         const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);

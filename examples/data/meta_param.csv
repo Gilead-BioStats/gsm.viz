@@ -1,153 +1,153 @@
-workflowid,gsm_version,param,index,default,configurable,gsm_analysis_date
-kri0001,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0001,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0001,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0001,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0001,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0001,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0002,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0003,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0004,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0005,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0006,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0007,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0008,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0009,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0010,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0011,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,strGroup,,Site,FALSE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-kri0012,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0001,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0002,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0003,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0004,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0005,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0006,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0007,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0008,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0009,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0010,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0011,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,strGroup,,Country,FALSE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,vThreshold,1,-3,TRUE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,vThreshold,2,-2,TRUE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,vThreshold,3,2,TRUE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,vThreshold,4,3,TRUE,2022-12-20T21:24:49.209561Z
-cou0012,1.4.1,strMethod,,NormalApprox,FALSE,2022-12-20T21:24:49.209561Z
-qtl0004,1.4.1,strGroup,,Study,FALSE,2022-12-20T21:24:49.209561Z
-qtl0004,1.4.1,vThreshold,1,0.01,TRUE,2022-12-20T21:24:49.209561Z
-qtl0004,1.4.1,strMethod,,qtl,FALSE,2022-12-20T21:24:49.209561Z
-qtl0004,1.4.1,strOutcome,,rate,FALSE,2022-12-20T21:24:49.209561Z
-qtl0006,1.4.1,strGroup,,Study,FALSE,2022-12-20T21:24:49.209561Z
-qtl0006,1.4.1,vThreshold,1,0.2,TRUE,2022-12-20T21:24:49.209561Z
-qtl0006,1.4.1,strMethod,,qtl,FALSE,2022-12-20T21:24:49.209561Z
-qtl0006,1.4.1,strOutcome,,rate,FALSE,2022-12-20T21:24:49.209561Z
+"workflowid","gsm_version","param","index","default","configurable","gsm_analysis_date"
+"kri0001","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0001","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0001","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0001","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0001","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0001","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0002","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0002","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0002","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0002","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0002","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0002","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0003","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0003","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0003","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0003","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0003","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0003","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0004","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0004","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0004","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0004","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0004","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0004","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0005","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0005","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0005","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0005","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0005","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0005","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0006","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0006","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0006","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0006","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0006","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0006","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0007","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0007","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0007","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0007","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0007","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0007","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0008","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0008","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0008","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0008","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0008","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0008","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0009","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0009","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0009","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0009","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0009","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0009","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0010","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0010","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0010","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0010","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0010","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0010","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0011","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0011","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0011","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0011","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0011","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0011","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"kri0012","1.4.1","strGroup",NA,"Site",FALSE,2022-12-21 10:29:10
+"kri0012","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"kri0012","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"kri0012","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"kri0012","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"kri0012","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0001","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0001","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0001","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0001","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0001","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0001","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0002","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0002","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0002","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0002","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0002","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0002","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0003","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0003","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0003","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0003","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0003","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0003","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0004","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0004","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0004","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0004","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0004","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0004","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0005","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0005","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0005","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0005","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0005","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0005","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0006","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0006","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0006","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0006","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0006","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0006","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0007","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0007","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0007","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0007","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0007","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0007","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0008","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0008","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0008","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0008","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0008","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0008","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0009","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0009","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0009","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0009","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0009","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0009","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0010","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0010","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0010","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0010","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0010","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0010","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0011","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0011","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0011","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0011","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0011","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0011","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"cou0012","1.4.1","strGroup",NA,"Country",FALSE,2022-12-21 10:29:10
+"cou0012","1.4.1","vThreshold",1,"-3",TRUE,2022-12-21 10:29:10
+"cou0012","1.4.1","vThreshold",2,"-2",TRUE,2022-12-21 10:29:10
+"cou0012","1.4.1","vThreshold",3,"2",TRUE,2022-12-21 10:29:10
+"cou0012","1.4.1","vThreshold",4,"3",TRUE,2022-12-21 10:29:10
+"cou0012","1.4.1","strMethod",NA,"NormalApprox",FALSE,2022-12-21 10:29:10
+"qtl0004","1.4.1","strGroup",NA,"Study",FALSE,2022-12-21 10:29:10
+"qtl0004","1.4.1","vThreshold",1,"0.01",TRUE,2022-12-21 10:29:10
+"qtl0004","1.4.1","strMethod",NA,"qtl",FALSE,2022-12-21 10:29:10
+"qtl0004","1.4.1","strOutcome",NA,"rate",FALSE,2022-12-21 10:29:10
+"qtl0006","1.4.1","strGroup",NA,"Study",FALSE,2022-12-21 10:29:10
+"qtl0006","1.4.1","vThreshold",1,"0.2",TRUE,2022-12-21 10:29:10
+"qtl0006","1.4.1","strMethod",NA,"qtl",FALSE,2022-12-21 10:29:10
+"qtl0006","1.4.1","strOutcome",NA,"rate",FALSE,2022-12-21 10:29:10

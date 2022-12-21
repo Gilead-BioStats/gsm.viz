@@ -23,11 +23,14 @@ Promise.all(dataPromises)
         const results = datasets[0].filter(
             (d) => d.workflowid === workflowID && groupids.includes(d.groupid)
         );
+        results.forEach(d => {
+            if (Math.random() < .25) d.score = 'NA';
+        });
 
         // configuration
         const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
         workflow.y = 'score';
-        workflow.nSnapshots = 100;
+        workflow.nSnapshots = 10;
         //workflow.yMin = d3.min(results, d => +d[workflow.y]);
         //workflow.yMax = d3.max(results, d => +d[workflow.y]);
         //workflow.displayThresholds = true;

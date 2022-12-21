@@ -9,10 +9,10 @@
 		"denominator": "Days on Treatment",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0002",
@@ -24,10 +24,10 @@
 		"denominator": "Days on Treatment",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0003",
@@ -39,10 +39,10 @@
 		"denominator": "Days in Study",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0004",
@@ -54,10 +54,10 @@
 		"denominator": "Days in Study",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0005",
@@ -69,10 +69,10 @@
 		"denominator": "Total Lab Samples",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0006",
@@ -84,10 +84,10 @@
 		"denominator": "Total Subjects",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0007",
@@ -99,10 +99,10 @@
 		"denominator": "Total Subjects",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0008",
@@ -114,10 +114,10 @@
 		"denominator": "Total Data Points",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0009",
@@ -129,10 +129,10 @@
 		"denominator": "Total Queries",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0010",
@@ -144,10 +144,10 @@
 		"denominator": "Total Data Pages",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0011",
@@ -159,10 +159,10 @@
 		"denominator": "Total Data Points",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "kri0012",
@@ -174,10 +174,10 @@
 		"denominator": "Total Screened",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0001",
@@ -189,10 +189,10 @@
 		"denominator": "Days on Treatment",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0002",
@@ -204,10 +204,10 @@
 		"denominator": "Days on Treatment",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0003",
@@ -219,10 +219,10 @@
 		"denominator": "Days in Study",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0004",
@@ -234,10 +234,10 @@
 		"denominator": "Days in Study",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0005",
@@ -249,10 +249,10 @@
 		"denominator": "Total Lab Samples",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0006",
@@ -264,10 +264,10 @@
 		"denominator": "Total Subjects",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0007",
@@ -279,10 +279,10 @@
 		"denominator": "Total Subjects",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0008",
@@ -294,10 +294,10 @@
 		"denominator": "Total Data Points",
 		"outcome": "Rate",
 		"model": "Normal Approximation (Rate)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0009",
@@ -309,10 +309,10 @@
 		"denominator": "Total Queries",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0010",
@@ -324,10 +324,10 @@
 		"denominator": "Total Data Pages",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0011",
@@ -339,10 +339,10 @@
 		"denominator": "Total Data Points",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "cou0012",
@@ -354,10 +354,10 @@
 		"denominator": "Total Screened",
 		"outcome": "Percent",
 		"model": "Normal Approximation (Percent)",
-		"score": "Adjusted Z-Score",
+		"score": "Adjusted Z-Score ",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0004",
@@ -372,7 +372,7 @@
 		"score": "Poisson Confidence Interval - Lower Bound",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	},
 	{
 		"workflowid": "qtl0006",
@@ -387,6 +387,6 @@
 		"score": "Binomial Confidence Interval - Lower Bound",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
-		"gsm_analysis_date": "2022-12-20T21:24:49.209561Z"
+		"gsm_analysis_date": "2022-12-21 10:29:10"
 	}
 ]

@@ -10,7 +10,7 @@ const site = function (datasets, setup = false) {
         siteDropdown.appendChild(option);
 
         const groupIDs = Array.from(
-            new Set(datasets[1].map((d) => d.groupid)).values()
+            new Set(datasets[0].map((d) => d.groupid)).values()
         ).sort((a, b) => a - b);
 
         for (i in groupIDs) {
