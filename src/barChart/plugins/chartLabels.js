@@ -16,9 +16,10 @@ export default function chartLabels(config) {
                 : 'end',
         //clip: true,
         color: 'black',
-        display: (context) =>
-            context.chart.getDatasetMeta(0).data[1].width >=
-            context.chart.options.font.size - 3,
+        display: (context) => {
+            return context.chart.getDatasetMeta(0).data[0].width >=
+                context.chart.options.font.size - 3;
+        },
         formatter: (value, context) =>
             context.chart.data.labels[context.dataIndex],
         rotation: -90,
