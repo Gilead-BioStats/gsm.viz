@@ -1,7 +1,7 @@
 {
   "TODO": "",
   "name": "rbm-viz",
-  "version": "0.13.3",
+  "version": "0.13.4",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",

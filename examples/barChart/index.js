@@ -20,11 +20,14 @@ Promise.all(dataPromises)
 
         // data
         const results = datasets[1].filter((d) => d.workflowid === workflowID);
+        results.forEach((result) => {
+            if (Math.random() < 0.05) result.flag = 'NA';
+        });
 
         // configuration
         const workflow = datasets[0].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
-        workflow.thresholds = [3, -2, 2, -3];
+        //workflow.thresholds = [3, -2, 2, -3];
         const groupIDs = [
             ...new Set(results.map((result) => result.groupid)).values(),
         ];
@@ -46,9 +49,10 @@ Promise.all(dataPromises)
                     customParameter.workflowid === parameter.workflowid &&
                     customParameter.index === parameter.index
             );
-            if (customParameter !== undefined)
-                parameter.default = customParameter.value;
+            //parameter.value = parameter.default;
+            //delete parameter.default;
         });
+        console.log(parameters);
 
         // visualization
         const instance = rbmViz.default.barChart(
