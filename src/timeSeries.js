@@ -96,9 +96,7 @@ export default function timeSeries(
             _data_,
         },
         options,
-        plugins: [
-            displayWhiteBackground()
-        ],
+        plugins: [displayWhiteBackground()],
     });
 
     chart.helpers = {

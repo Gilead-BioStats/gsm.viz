@@ -59,9 +59,7 @@ export default function scatterPlot(
             config,
         },
         options,
-        plugins: [
-            displayWhiteBackground()
-        ],
+        plugins: [displayWhiteBackground()],
     });
 
     canvas.chart = chart;

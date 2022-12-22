@@ -6,9 +6,7 @@ export default function mutate(_data_, config) {
             const datum = {
                 ...d,
                 x: d[config.x],
-                y: falsy.includes(d[config.y])
-                    ? 0
-                    : +d[config.y],
+                y: falsy.includes(d[config.y]) ? 0 : +d[config.y],
                 stratum: falsy.includes(d[config.color])
                     ? 3
                     : Math.abs(+d[config.color]),

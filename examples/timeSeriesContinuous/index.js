@@ -15,21 +15,20 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) => {
-            dataset.forEach(d => {
+            dataset.forEach((d) => {
                 if (d.hasOwnProperty('gsm_analysis_date'))
                     d.gsm_analysis_date = d.gsm_analysis_date.substring(0, 10);
             });
 
-            return dataset.filter((d) => /^kri/.test(d.workflowid))
+            return dataset.filter((d) => /^kri/.test(d.workflowid));
         });
 
         // analysis results
         let results = filterOnWorkflowID(datasets[0], workflowID);
-        results.forEach((d,i) => {
-            if (i%4 === 0)
-                d.score = 'NA';
+        results.forEach((d, i) => {
+            if (i % 4 === 0) d.score = 'NA';
         });
-        results = results.filter(d => d.score !== 'NA');
+        results = results.filter((d) => d.score !== 'NA');
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);

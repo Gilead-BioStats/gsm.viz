@@ -17,8 +17,10 @@ export default function chartLabels(config) {
         //clip: true,
         color: 'black',
         display: (context) => {
-            return context.chart.getDatasetMeta(0).data[0].width >=
-                context.chart.options.font.size - 3;
+            return (
+                context.chart.getDatasetMeta(0).data[0].width >=
+                context.chart.options.font.size - 3
+            );
         },
         formatter: (value, context) =>
             context.chart.data.labels[context.dataIndex],

@@ -28,10 +28,10 @@ const kri = function (workflow, datasets, setup = false) {
             // threshold annotations
             const parameters = document.getElementById('threshold').checked
                 ? mergeParameters(
-                    filterOnWorkflowID(datasets[2], event.target.value),
-                    filterOnWorkflowID(datasets[3], event.target.value)
-                ) : null;
-
+                      filterOnWorkflowID(datasets[2], event.target.value),
+                      filterOnWorkflowID(datasets[3], event.target.value)
+                  )
+                : null;
 
             instance.helpers.updateData(
                 instance,

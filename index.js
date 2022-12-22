@@ -20664,10 +20664,7 @@ var rbmViz = (() => {
       },
       metadata: "test",
       options,
-      plugins: [
-        plugin,
-        displayWhiteBackground()
-      ]
+      plugins: [plugin, displayWhiteBackground()]
     });
     chart.helpers = {
       updateData,
@@ -21023,9 +21020,7 @@ var rbmViz = (() => {
         config
       },
       options,
-      plugins: [
-        displayWhiteBackground()
-      ]
+      plugins: [displayWhiteBackground()]
     });
     canvas.chart = chart;
     chart.helpers = {
@@ -22006,9 +22001,7 @@ var rbmViz = (() => {
         _data_
       },
       options,
-      plugins: [
-        displayWhiteBackground()
-      ]
+      plugins: [displayWhiteBackground()]
     });
     chart.helpers = {
       updateData: updateData4.bind(chart),

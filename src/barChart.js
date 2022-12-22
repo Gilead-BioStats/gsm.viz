@@ -63,10 +63,7 @@ export default function barChart(
         },
         metadata: 'test',
         options,
-        plugins: [
-            ChartDataLabels,
-            displayWhiteBackground()
-        ],
+        plugins: [ChartDataLabels, displayWhiteBackground()],
     });
 
     chart.helpers = {

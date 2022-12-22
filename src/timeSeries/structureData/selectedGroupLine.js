@@ -29,9 +29,7 @@ export default function selectedGroupLine(data, config, labels) {
             return color !== undefined ? color.rgba + '' : backgroundColor;
         },
         borderColor: function (d) {
-            return d.type === 'data'
-                ? 'black'
-                : borderColor;
+            return d.type === 'data' ? 'black' : borderColor;
         },
         label: '',
         pointStyle: 'circle',

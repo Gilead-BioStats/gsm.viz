@@ -15,17 +15,13 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
-        const groupIDs = [
-            ...new Set(datasets[0].map(d => d.groupid))
-        ];
-        const groupID = groupIDs[Math.floor(groupIDs.length*Math.random())]; // '28';
+        const groupIDs = [...new Set(datasets[0].map((d) => d.groupid))];
+        const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())]; // '28';
         const results = datasets[0]
             .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
             .slice(35, 45);
-        results.forEach(d => {
-            d.score = Math.random() < .25
-                ? NaN
-                : +d.score;
+        results.forEach((d) => {
+            d.score = Math.random() < 0.25 ? NaN : +d.score;
         });
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.nSnapshots = 10;
@@ -51,7 +47,7 @@ Promise.all(dataPromises)
                 ...workflow,
                 y: 'score',
             },
-            parameters,
+            parameters
         );
 
         rbmViz.default.sparkline(document.getElementById('metric'), results, {
