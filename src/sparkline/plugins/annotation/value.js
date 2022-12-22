@@ -25,7 +25,7 @@ export default function annotations(config, data) {
     const datum = data
         .filter(d => [null, undefined, NaN, ''].includes(d.y) === false)
         .slice(-1)[0];
-    const content = [d3format(format)(datum.y)];
+    const content = [d3format(format)(datum?.y)];
 
     const value = {
         content,

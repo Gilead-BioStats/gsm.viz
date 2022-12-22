@@ -24,7 +24,12 @@ Promise.all(dataPromises)
         });
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        let results = filterOnWorkflowID(datasets[0], workflowID);
+        results.forEach((d,i) => {
+            if (i%4 === 0)
+                d.score = 'NA';
+        });
+        results = results.filter(d => d.score !== 'NA');
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);

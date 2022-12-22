@@ -21110,11 +21110,10 @@ var rbmViz = (() => {
 
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
-    console.log(_data_);
     const data = mutate3(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
     console.log(data);
-    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
+    const labels = data.map((d) => d.snapshot_date);
+    const pointBackgroundColor = !isNaN(data[0]?.stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
       (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
     );
     const datasets = [
@@ -21169,7 +21168,7 @@ var rbmViz = (() => {
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
     const datum2 = data.filter((d) => [null, void 0, NaN, ""].includes(d.y) === false).slice(-1)[0];
-    const content = [format(format2)(datum2.y)];
+    const content = [format(format2)(datum2?.y)];
     const value = {
       content,
       font: {

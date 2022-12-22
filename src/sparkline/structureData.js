@@ -12,12 +12,11 @@ import scriptableOptions from './structureData/scriptableOptions';
  * @returns {Array} data formatted for consumption by Chart.js
  */
 export default function structureData(_data_, config) {
-    console.log(_data_);
     // Update data.
     const data = mutate(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
     console.log(data);
-    const pointBackgroundColor = !isNaN(data[0].stratum)
+    const labels = data.map((d) => d.snapshot_date);
+    const pointBackgroundColor = !isNaN(data[0]?.stratum)
         ? data.map((d) => config.colorScheme[d.stratum].color)
         : data.map((d, i) =>
               i < data.length - 1 ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.5)'

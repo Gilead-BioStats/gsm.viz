@@ -19,13 +19,9 @@ Promise.all(dataPromises)
         const workflowID = kri(datasets, true);
 
         // data
-        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         const results = datasets[0].filter(
-            (d) => d.workflowid === workflowID && groupids.includes(d.groupid)
+            (d) => d.workflowid === workflowID
         );
-        results.forEach(d => {
-            if (Math.random() < .25) d.score = 'NA';
-        });
 
         // configuration
         const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
@@ -33,7 +29,6 @@ Promise.all(dataPromises)
         workflow.nSnapshots = 10;
         //workflow.yMin = d3.min(results, d => +d[workflow.y]);
         //workflow.yMax = d3.max(results, d => +d[workflow.y]);
-        //workflow.displayThresholds = true;
 
         // threshold annotations
         const parameters = mergeParameters(
@@ -42,6 +37,7 @@ Promise.all(dataPromises)
         );
 
         // loop over group IDs
+        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         for (const i in groupids) {
             const groupid = groupids[i];
 
