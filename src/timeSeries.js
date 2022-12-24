@@ -1,3 +1,4 @@
+import checkInputs from './data/checkInputs';
 import configure from './timeSeries/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './timeSeries/structureData';
@@ -24,6 +25,35 @@ export default function timeSeries(
     _thresholds_ = null,
     _intervals_ = null
 ) {
+    checkInputs({
+        parameter: '_data_',
+        argument: _data_,
+        schemaName: 'results',
+        module: 'timeSeries'
+    });
+
+    checkInputs({
+        parameter: '_config_',
+        argument: _config_,
+        schemaName: 'analysisMetadata',
+        module: 'timeSeries'
+    });
+
+    checkInputs({
+        parameter: '_thresholds_',
+        argument: _thresholds_,
+        schemaName: 'analysisParameters',
+        module: 'timeSeries'
+    });
+
+    if (_intervals_ !== null)
+        checkInputs({
+            parameter: '_intervals_',
+            argument: _intervals_,
+            schemaName: 'resultsVertical',
+            module: 'timeSeries'
+        });
+
     // Update config.
     const config = configure(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);

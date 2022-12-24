@@ -17150,6 +17150,452 @@ var rbmViz = (() => {
     }
   };
 
+  // src/data/schema/analysisMetadata.json
+  var analysisMetadata_default = {
+    title: "KRI Analysis Metadata",
+    description: "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    version: "0.14.0",
+    type: "object",
+    properties: {
+      workflowid: {
+        title: "Workflow ID",
+        description: "Unique workflow identifier",
+        type: "string",
+        required: false
+      },
+      group: {
+        title: "Grouping Variable",
+        description: "Grouping variable of analysis, one of Site, Country, or Study",
+        type: "string",
+        required: true
+      },
+      numerator: {
+        title: "KRI Numerator",
+        description: "Unit of KRI numerator",
+        type: "string",
+        required: true,
+        key: false
+      },
+      denominator: {
+        title: "KRI Denominator",
+        description: "Unit of KRI denominator",
+        type: "string",
+        required: true,
+        key: false
+      },
+      metric: {
+        title: "KRI Metric",
+        description: "Unit of KRI metric",
+        type: "string",
+        required: true,
+        key: false
+      },
+      outcome: {
+        title: "KRI Type",
+        description: "Type of KRI metric",
+        type: "string",
+        required: true,
+        key: false
+      },
+      score: {
+        title: "KRI Score",
+        description: "Unit of KRI score",
+        type: "string",
+        required: true,
+        key: false
+      },
+      model: {
+        title: "KRI Score Method",
+        description: "Statistical model used to evaluate KRI",
+        type: "string",
+        required: true,
+        key: false
+      },
+      abbreviation: {
+        title: "Abbreviation",
+        description: "KRI abbreviation",
+        type: "string",
+        required: true,
+        key: false
+      },
+      data_inputs: {
+        title: "Input Data Domains",
+        description: "Data domains used to evaluate KRI",
+        type: "string",
+        required: false,
+        key: false
+      },
+      data_filters: {
+        title: "Subsets",
+        description: "Subsets applied to input data domains",
+        type: "string",
+        required: false,
+        key: false
+      },
+      gsm_analysis_date: {
+        title: "Analysis Date",
+        description: "Date of analysis",
+        type: "string",
+        required: false,
+        key: false
+      },
+      gsm_version: {
+        title: "{gsm} Version",
+        description: "{gsm} version when analysis ran",
+        type: "string",
+        required: false,
+        key: false
+      }
+    }
+  };
+
+  // src/data/schema/analysisParameters.json
+  var analysisParameters_default = {
+    title: "KRI Analysis Parameters",
+    description: "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        param: {
+          title: "Analysis Parameter",
+          description: "Analysis parameter",
+          type: "string",
+          required: true,
+          key: true
+        },
+        index: {
+          title: "Parameter Index",
+          description: "Index of analysis parameter",
+          type: "number",
+          required: false,
+          key: true
+        },
+        value: {
+          title: "Parameter Value",
+          description: "Parameter value",
+          type: "string",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: true,
+          key: false
+        },
+        gsm_version: {
+          title: "{gsm} Version",
+          description: "{gsm} version when analysis ran",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/results.json
+  var results_default = {
+    title: "Standard KRI Analysis Output",
+    description: "JSON schema of input data to barChart and scatterPlot modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        groupid: {
+          title: "Group ID",
+          description: "Unique group identifier",
+          type: "string",
+          required: true,
+          key: true
+        },
+        numerator: {
+          title: "Numerator",
+          description: "Numerator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        denominator: {
+          title: "Denominator",
+          description: "Denominator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        metric: {
+          title: "KRI Metric",
+          description: "KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        score: {
+          title: "KRI Score",
+          description: "KRI score",
+          type: "number",
+          required: true,
+          key: false
+        },
+        flag: {
+          title: "Flag Status",
+          description: "Flag assigned given KRI score and specified thresholds",
+          type: "number",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/resultsPredicted.json
+  var resultsPredicted_default = {
+    title: "Predicted KRI Analysis Output",
+    description: "JSON schema of predicted input data to scatterPlot module",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        threshold: {
+          title: "Threshold",
+          description: "Directional factor of predicted results",
+          type: "number",
+          required: true,
+          key: true
+        },
+        numerator: {
+          title: "Predicted Numerator",
+          description: "Predicted numerator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        denominator: {
+          title: "Predicted Denominator",
+          description: "Predicted denominator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        log_denominator: {
+          title: "Predicted Denominator (log)",
+          description: "Predicted Denominator of KRI metric (log)",
+          type: "number",
+          required: false,
+          key: false
+        },
+        metric: {
+          title: "Predicted KRI Metric",
+          description: "Predicted KRI metric (numerator/denominator)",
+          type: "number",
+          required: false,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/resultsVertical.json
+  var resultsVertical_default = {
+    title: "Additional KRI Analysis Output",
+    description: "JSON schema of ancillary input data to timeSeries module",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        param: {
+          title: "Analysis Parameter",
+          description: "Analysis parameter",
+          type: "string",
+          required: true,
+          key: true
+        },
+        value: {
+          title: "Analysis Result",
+          description: "Analysis result",
+          type: "number",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: true,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/index.js
+  var schema = {
+    analysisMetadata: analysisMetadata_default,
+    analysisParameters: analysisParameters_default,
+    results: results_default,
+    resultsPredicted: resultsPredicted_default,
+    resultsVertical: resultsVertical_default
+  };
+  var schema_default = schema;
+
+  // src/data/checkInputs/getType.js
+  function getType(variable) {
+    let variableType = typeof variable;
+    if (variable instanceof Array)
+      variableType = "array";
+    if (variable instanceof Map)
+      variableType = "map";
+    if (variable instanceof Set)
+      variableType = "set";
+    if (variable instanceof Function)
+      variableType = "function";
+    return variableType;
+  }
+
+  // src/data/checkInputs/checkProps.js
+  function checkProps({
+    obj,
+    properties,
+    parameter = null,
+    module = null,
+    i = null
+  }) {
+    const actualProps = Object.keys(obj);
+    const expectedProps = Object.keys(properties);
+    const requiredProps = expectedProps.filter(
+      (prop) => properties[prop].required
+    );
+    for (const prop of requiredProps) {
+      if (actualProps.includes(prop) === false) {
+        let message = `Missing property: [ ${prop} ] expected but not found`;
+        if (i !== null)
+          message = `${message} in item ${i}`;
+        if (parameter !== null)
+          message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
+        if (module !== null)
+          message = `${message} to [ ${module}() ]`;
+        throw `${message}.`;
+      }
+    }
+  }
+
+  // src/data/checkInputs.js
+  function checkInputs({
+    parameter,
+    argument,
+    schemaName,
+    module
+  }) {
+    const schema2 = schema_default[schemaName];
+    const argumentType = getType(argument);
+    if (argumentType !== schema2.type) {
+      throw `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
+    }
+    if (schema2.type === "array") {
+      argument.forEach((item, i) => {
+        const itemType = getType(item);
+        if (itemType !== schema2.items.type) {
+          throw `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`;
+        }
+        if (schema2.items.type === "object") {
+          const properties = schema2.items.properties;
+          checkProps({
+            obj: item,
+            properties,
+            parameter,
+            module,
+            i
+          });
+        }
+      });
+    }
+    if (schema2.type === "object") {
+      const properties = schema2.properties;
+      checkProps({
+        obj: argument,
+        properties,
+        parameter,
+        module
+      });
+    }
+  }
+
   // src/util/falsy.js
   var falsy = [void 0, null, NaN, "", "NA"];
   var falsy_default = falsy;
@@ -20633,6 +21079,24 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+    checkInputs({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: "results",
+      module: "barChart"
+    });
+    checkInputs({
+      parameter: "_config_",
+      argument: _config_,
+      schemaName: "analysisMetadata",
+      module: "barChart"
+    });
+    checkInputs({
+      parameter: "_thresholds_",
+      argument: _thresholds_,
+      schemaName: "analysisParameters",
+      module: "barChart"
+    });
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
@@ -20999,6 +21463,24 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
+    checkInputs({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: "results",
+      module: "scatterPlot"
+    });
+    checkInputs({
+      parameter: "_config_",
+      argument: _config_,
+      schemaName: "analysisMetadata",
+      module: "scatterPlot"
+    });
+    checkInputs({
+      parameter: "_bounds_",
+      argument: _bounds_,
+      schemaName: "resultsPredicted",
+      module: "scatterPlot"
+    });
     const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData2(_data_, config, _bounds_);
@@ -21943,6 +22425,31 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
+    checkInputs({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: "results",
+      module: "timeSeries"
+    });
+    checkInputs({
+      parameter: "_config_",
+      argument: _config_,
+      schemaName: "analysisMetadata",
+      module: "timeSeries"
+    });
+    checkInputs({
+      parameter: "_thresholds_",
+      argument: _thresholds_,
+      schemaName: "analysisParameters",
+      module: "timeSeries"
+    });
+    if (_intervals_ !== null)
+      checkInputs({
+        parameter: "_intervals_",
+        argument: _intervals_,
+        schemaName: "resultsVertical",
+        module: "timeSeries"
+      });
     const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);

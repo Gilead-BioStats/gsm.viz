@@ -1,5 +1,5 @@
 {
-  "TODO": "",
+  "TODO": "add data schema for discrete time series",
   "name": "rbm-viz",
   "version": "0.14.0",
   "description": "web-based data visualization for risk-based monitoring",

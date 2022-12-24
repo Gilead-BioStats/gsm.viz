@@ -1,0 +1,60 @@
+{
+    "title": "KRI Analysis Parameters",
+    "description": "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "studyid": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "workflowid": {
+                "title": "Workflow ID",
+                "description": "Unique workflow identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "param": {
+                "title": "Analysis Parameter",
+                "description": "Analysis parameter",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "index": {
+                "title": "Parameter Index",
+                "description": "Index of analysis parameter",
+                "type": "number",
+                "required": false,
+                "key": true
+            },
+            "value": {
+                "title": "Parameter Value",
+                "description": "Parameter value",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "gsm_analysis_date": {
+                "title": "Analysis Date",
+                "description": "Date of analysis",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "gsm_version": {
+                "title": "{gsm} Version",
+                "description": "{gsm} version when analysis ran",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}
