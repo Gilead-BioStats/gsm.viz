@@ -8,9 +8,9 @@ import resultsAll from '../../data/results_summary.json';
 import parametersAll from '../../data/meta_param';
 import workflows from '../../data/meta_workflow';
 
-import './BarChartContainer.css';
+import './ScatterPlotContainer.css';
 
-const BarChartContainer = () => {
+const ScatterPlotContainer = () => {
     const [kri, setKri] = useState('kri0001');
 
     const filterResults = (kri) => {
@@ -32,7 +32,7 @@ const BarChartContainer = () => {
 
     return (
         <div className="chart-container">
-            <h2>Bar Chart</h2>
+            <h2>Scatter Plot</h2>
             <div className="chart-grid">
                 <div className="chart-left">
                     <BarChartControls
@@ -70,4 +70,4 @@ const BarChartContainer = () => {
     );
 };
 
-export default BarChartContainer;
+export default ScatterPlotContainer;

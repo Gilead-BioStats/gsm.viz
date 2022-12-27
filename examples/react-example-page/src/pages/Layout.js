@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const Layout = (props) => {
+const Layout = ({setPlot}) => {
+
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -11,7 +12,8 @@ const Layout = (props) => {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleClose = () => {
+    const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setPlot(event.currentTarget.innerText)
         setAnchorEl(null);
     };
 
@@ -42,23 +44,14 @@ const Layout = (props) => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <Link to="/plots">
-                                <MenuItem onClick={handleClose}>
+                            <Link to="/plots" style={{ textDecoration: 'none', color: 'inherit' }} >
+                                <MenuItem  onClick={handleClose}>
                                     BarChart
                                 </MenuItem>
+                                <MenuItem  onClick={handleClose}>
+                                    ScatterPlot
+                                </MenuItem>
                             </Link>
-                            {/*
-                <Link to="/plots">
-                    <MenuItem onClick={handleClose}>
-                        BarChart
-                    </MenuItem>
-                </Link>
-                <Link to="/plots">
-                    <MenuItem onClick={handleClose}>
-                        BarChart
-                    </MenuItem>
-                </Link>
-                */}
                         </Menu>
                     </li>
                     <li>

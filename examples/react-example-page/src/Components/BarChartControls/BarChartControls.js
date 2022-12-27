@@ -30,15 +30,13 @@ const BarChartControls = ({
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
-        console.log(kri); // updated KRI is NOT observed here
     };
   
     useEffect(() => {
-        console.log('new kri', kri); // updated KRI IS observed here
         setResults(filterResults(kri))
         setWorkflow(filterWorkflow(kri))
         setThresholds(filterParameters(kri))
-    }, [kri]);
+    }, [kri, setResults, setWorkflow, setThresholds, filterResults, filterWorkflow, filterParameters]);
 
     // observe y-axis dropdown
     const [yaxisToggle, setYaxisToggle] = useState('score');
@@ -47,9 +45,8 @@ const BarChartControls = ({
     };
 
     useEffect(() => {
-        console.log(yaxisToggle);
         setWorkflow({workflow, ...{y: yaxisToggle}});
-    }, [yaxisToggle]); // syntax warning: something about useCallback
+    }, [yaxisToggle, setWorkflow , workflow]); // syntax warning: something about useCallback
   
     // observe threshold toggle
     const [isThreshold, setIsThreshold] = useState(true);
@@ -58,9 +55,8 @@ const BarChartControls = ({
     };
 
     useEffect(() => {
-        console.log(isThreshold);
         setThresholds(isThreshold ? filterParameters(kri) : null);
-    }, [isThreshold]);
+    }, [isThreshold, setThresholds, filterParameters, kri]);
 
     return(
         <div className='control-container'>

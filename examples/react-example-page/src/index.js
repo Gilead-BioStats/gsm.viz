@@ -5,15 +5,19 @@ import About from './pages/About';
 import Plots from './pages/Plots';
 import Contact from './pages/Contact';
 import NoPage from './pages/NoPage';
+import React, { useState } from 'react';
 import './index.css';
 
 export default function App() {
+
+    const [plot, setPlot] = useState("BarChart")
+
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route path="/" element={<Layout setPlot={setPlot}/>}>
                     <Route index element={<About />} />
-                    <Route path="plots" element={<Plots />} />
+                    <Route path="plots" element={<Plots plot={plot}/>} />
                     <Route path="contact" element={<Contact />} />
                     <Route path="*" element={<NoPage />} />
                 </Route>

@@ -1,11 +1,15 @@
 import BarChartContainer from '../Components/BarChartContainer/BarChartContainer';
+import ScatterPlotContainer from '../Components/ScatterPlotContainer/ScatterPlotContainer';
+import { Switch, Case } from "../utils/Switch"
 
-// const BarCharContainer
-const Plots = () => {
+const Plots = ({plot}) => {
+
     return (
-        <div>
-            <BarChartContainer />
-        </div>
+        <Switch test={plot}>
+            <Case value="BarChart"><BarChartContainer/></Case>
+            <Case value="ScatterPlot"><ScatterPlotContainer/></Case>
+            <Case default>Plot not included yet!</Case>
+        </Switch>
     );
 };
 
