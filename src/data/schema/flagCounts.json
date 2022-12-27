@@ -1,9 +1,60 @@
 {
-    "studyid": "AA-AA-000-0000",
-    "groupid": "1",
-    "workflowid": "cou0001",
-    "snapshot_date": "2009-03-01",
-    "n": "1",
-    "n_at_risk": "",
-    "n_flagged": ""
+    "title": "Standard KRI Analysis Output",
+    "description": "JSON schema of input data to barChart and scatterPlot modules",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "studyid": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "groupid": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "workflowid": {
+                "title": "Workflow ID",
+                "description": "Unique workflow identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "n": {
+                "title": "# of Groups/KRIs",
+                "description": "Total number of assessed groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "n_at_risk": {
+                "title": "# of Amber Groups/KRIs",
+                "description": "Number of amber groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "n_flagged": {
+                "title": "# of Red Groups/KRIs",
+                "description": "Number of red groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "snapshot_date": {
+                "title": "Snapshot Date",
+                "description": "Date of data snapshot",
+                "type": "string",
+                "required": true,
+                "key": true
+            }
+        }
+    }
 }

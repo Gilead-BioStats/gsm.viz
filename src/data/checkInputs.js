@@ -3,12 +3,31 @@ import getType from './checkInputs/getType';
 import checkProps from './checkInputs/checkProps';
 
 export default function checkInputs({
-    parameter,
-    argument,
-    schemaName,
-    module
+    parameter = null,
+    argument = null,
+    schemaName = null,
+    module = null,
+    verbose = false
 }) {
     const schema = schemata[schemaName];
+
+    if (argument === null) {
+        if (verbose)
+            console.log(`[ ${ parameter } ] unspecified. Terminating execution of [ checkInputs() ].`);
+
+        return;
+    }
+
+    if (schemaName === 'flagCounts') {
+        if (Object.keys(argument[0]).includes('groupid'))
+            delete schema.items.properties.workflowid;
+
+        if (Object.keys(argument[0]).includes('workflowid'))
+            delete schema.items.properties.groupid;
+    }
+    console.log(parameter);
+    console.log(schemaName);
+    console.log(schema);
 
     // check data type of argument
     const argumentType = getType(argument);

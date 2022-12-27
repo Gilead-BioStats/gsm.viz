@@ -17311,6 +17311,68 @@ var rbmViz = (() => {
     }
   };
 
+  // src/data/schema/flagCounts.json
+  var flagCounts_default = {
+    title: "Standard KRI Analysis Output",
+    description: "JSON schema of input data to barChart and scatterPlot modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        groupid: {
+          title: "Group ID",
+          description: "Unique group identifier",
+          type: "string",
+          required: true,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: true,
+          key: true
+        },
+        n: {
+          title: "# of Groups/KRIs",
+          description: "Total number of assessed groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_at_risk: {
+          title: "# of Amber Groups/KRIs",
+          description: "Number of amber groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_flagged: {
+          title: "# of Red Groups/KRIs",
+          description: "Number of red groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        snapshot_date: {
+          title: "Snapshot Date",
+          description: "Date of data snapshot",
+          type: "string",
+          required: true,
+          key: true
+        }
+      }
+    }
+  };
+
   // src/data/schema/results.json
   var results_default = {
     title: "Standard KRI Analysis Output",
@@ -17508,6 +17570,7 @@ var rbmViz = (() => {
   var schema = {
     analysisMetadata: analysisMetadata_default,
     analysisParameters: analysisParameters_default,
+    flagCounts: flagCounts_default,
     results: results_default,
     resultsPredicted: resultsPredicted_default,
     resultsVertical: resultsVertical_default
@@ -17557,12 +17620,27 @@ var rbmViz = (() => {
 
   // src/data/checkInputs.js
   function checkInputs({
-    parameter,
-    argument,
-    schemaName,
-    module
+    parameter = null,
+    argument = null,
+    schemaName = null,
+    module = null,
+    verbose = false
   }) {
     const schema2 = schema_default[schemaName];
+    if (argument === null) {
+      if (verbose)
+        console.log(`[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`);
+      return;
+    }
+    if (schemaName === "flagCounts") {
+      if (Object.keys(argument[0]).includes("groupid"))
+        delete schema2.items.properties.workflowid;
+      if (Object.keys(argument[0]).includes("workflowid"))
+        delete schema2.items.properties.groupid;
+    }
+    console.log(parameter);
+    console.log(schemaName);
+    console.log(schema2);
     const argumentType = getType(argument);
     if (argumentType !== schema2.type) {
       throw `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
@@ -22425,15 +22503,16 @@ var rbmViz = (() => {
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInputs({
       parameter: "_data_",
       argument: _data_,
-      schemaName: "results",
+      schemaName: discrete ? "flagCounts" : "results",
       module: "timeSeries"
     });
     checkInputs({
       parameter: "_config_",
-      argument: _config_,
+      argument: discrete ? null : _config_,
       schemaName: "analysisMetadata",
       module: "timeSeries"
     });
@@ -22443,13 +22522,12 @@ var rbmViz = (() => {
       schemaName: "analysisParameters",
       module: "timeSeries"
     });
-    if (_intervals_ !== null)
-      checkInputs({
-        parameter: "_intervals_",
-        argument: _intervals_,
-        schemaName: "resultsVertical",
-        module: "timeSeries"
-      });
+    checkInputs({
+      parameter: "_intervals_",
+      argument: _intervals_,
+      schemaName: "resultsVertical",
+      module: "timeSeries"
+    });
     const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
