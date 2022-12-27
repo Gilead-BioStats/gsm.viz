@@ -25,9 +25,6 @@ export default function checkInputs({
         if (Object.keys(argument[0]).includes('workflowid'))
             delete schema.items.properties.groupid;
     }
-    console.log(parameter);
-    console.log(schemaName);
-    console.log(schema);
 
     // check data type of argument
     const argumentType = getType(argument);

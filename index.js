@@ -17638,9 +17638,6 @@ var rbmViz = (() => {
       if (Object.keys(argument[0]).includes("workflowid"))
         delete schema2.items.properties.groupid;
     }
-    console.log(parameter);
-    console.log(schemaName);
-    console.log(schema2);
     const argumentType = getType(argument);
     if (argumentType !== schema2.type) {
       throw `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
