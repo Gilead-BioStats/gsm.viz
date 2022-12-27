@@ -43,7 +43,9 @@ export default function scatterPlot(
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
         interaction: {
-            mode: 'point',
+            axis: 'xy',
+            intersect: false,
+            mode: 'nearest',
         },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
@@ -69,7 +71,7 @@ export default function scatterPlot(
         //triggerTooltip,
     };
 
-    triggerTooltip(chart);
+    //triggerTooltip(chart);
 
     return chart;
 }

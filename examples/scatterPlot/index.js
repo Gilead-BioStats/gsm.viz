@@ -11,7 +11,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
+        const workflowID = 'kri0006';
 
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
@@ -19,9 +19,6 @@ Promise.all(dataPromises)
 
         // data
         const results = datasets[1].filter((d) => d.workflowid === workflowID);
-        results.forEach((result) => {
-            if (Math.random() < 0.05) result.flag = 'NA';
-        });
 
         // configuration
         const workflow = datasets[0] // destructured assignment

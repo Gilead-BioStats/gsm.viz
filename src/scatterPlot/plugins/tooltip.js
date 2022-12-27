@@ -1,24 +1,43 @@
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import { ascending } from 'd3';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
     return {
         callbacks: {
-            label: formatResultTooltipContent.bind(null, config),
+            label: d => {
+                const content = formatResultTooltipContent(config, d);
+
+                // prevent display of duplicate tooltip content
+                return d.raw.duplicate ? '' : content;
+            },
             title: (data) => {
                 if (data.length) {
-                    const groupIDs = data.map(
-                        (d, i) => d.dataset.data[d.dataIndex].groupid
-                    );
+                    const numericGroupIDs = data.every(d => /^\d+$/.test(d.raw.groupid));
 
                     return data
+                        .sort(
+                            (a,b) => {
+                                const selected = (
+                                    config.selectedGroupIDs.includes(b.raw.groupid) -
+                                    config.selectedGroupIDs.includes(a.raw.groupid)
+                                );
+
+                                const alphanumeric = numericGroupIDs
+                                    ? ascending(+a.raw.groupid, +b.raw.groupid)
+                                    : ascending(a.raw.groupid, b.raw.groupid);
+
+                                return selected || alphanumeric;
+                            }
+                        )
                         .map(
                             (d, i) =>
-                                `${config.group} ${
-                                    d.dataset.data[d.dataIndex].groupid
-                                }`
+                                i === 0
+                                    ? `${config.group}${data.length > 1 ? 's' : ''} ${
+                                        d.dataset.data[d.dataIndex].groupid
+                                    }` : d.dataset.data[d.dataIndex].groupid
                         )
                         .join(', ');
                 }

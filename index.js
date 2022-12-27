@@ -20705,7 +20705,23 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    console.log(new Set(data.map((d) => d.stratum)));
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
+    rollup(
+      data,
+      (group2) => {
+        group2.sort(
+          (a, b) => {
+            const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
+            const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+            return selected !== 0 ? selected : groupid;
+          }
+        ).forEach((d, i) => {
+          d.duplicate = i > 0;
+        });
+      },
+      (d) => d.x,
+      (d) => d.y
+    );
     return data;
   }
 
@@ -20876,14 +20892,21 @@ var rbmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
-        label: formatResultTooltipContent.bind(null, config),
+        label: (d) => {
+          const content = formatResultTooltipContent(config, d);
+          return d.raw.duplicate ? "" : content;
+        },
         title: (data) => {
           if (data.length) {
-            const groupIDs = data.map(
-              (d, i) => d.dataset.data[d.dataIndex].groupid
-            );
-            return data.map(
-              (d, i) => `${config.group} ${d.dataset.data[d.dataIndex].groupid}`
+            const numericGroupIDs = data.every((d) => /^\d+$/.test(d.raw.groupid));
+            return data.sort(
+              (a, b) => {
+                const selected = config.selectedGroupIDs.includes(b.raw.groupid) - config.selectedGroupIDs.includes(a.raw.groupid);
+                const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
+                return selected || alphanumeric;
+              }
+            ).map(
+              (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
             ).join(", ");
           }
         }
@@ -20939,8 +20962,7 @@ var rbmViz = (() => {
     chart.options.plugins = plugins3(config);
     chart.options.scales = getScales2(config);
     chart.data.config = config;
-    if (update)
-      chart.update();
+    chart.update();
     triggerTooltip(chart);
     return config;
   }
@@ -20984,7 +21006,9 @@ var rbmViz = (() => {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
       interaction: {
-        mode: "point"
+        axis: "xy",
+        intersect: false,
+        mode: "nearest"
       },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
@@ -21005,7 +21029,6 @@ var rbmViz = (() => {
       updateConfig: updateConfig2,
       updateOption: updateOption2
     };
-    triggerTooltip(chart);
     return chart;
   }
 
