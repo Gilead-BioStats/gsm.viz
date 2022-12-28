@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21029,6 +21030,7 @@ var rbmViz = (() => {
       updateConfig: updateConfig2,
       updateOption: updateOption2
     };
+    triggerTooltip(chart);
     return chart;
   }
 

@@ -23,30 +23,29 @@ export default function mutate(_data_, config) {
             return aSelected ? 1 : bSelected ? -1 : stratum;
         });
 
-    const numericGroupIDs = data.every(d => /^\d+$/.test(d.groupid));
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
 
     rollup(
         data,
-        group => {
-            group.sort(
-                (a,b) => {
-                    const selected = (
+        (group) => {
+            group
+                .sort((a, b) => {
+                    const selected =
                         config.selectedGroupIDs.includes(b.groupid) -
-                        config.selectedGroupIDs.includes(a.groupid)
-                    );
+                        config.selectedGroupIDs.includes(a.groupid);
 
                     const groupid = numericGroupIDs
                         ? ascending(+a.groupid, +b.groupid)
                         : ascending(a.groupid, b.groupid);
 
                     return selected !== 0 ? selected : groupid;
-                }
-            ).forEach((d,i) => {
-                d.duplicate = i > 0;
-            });
+                })
+                .forEach((d, i) => {
+                    d.duplicate = i > 0;
+                });
         },
-        d => d.x,
-        d => d.y
+        (d) => d.x,
+        (d) => d.y
     );
 
     return data;

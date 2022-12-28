@@ -7,7 +7,7 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            label: d => {
+            label: (d) => {
                 const content = formatResultTooltipContent(config, d);
 
                 // prevent display of duplicate tooltip content
@@ -15,29 +15,30 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    const numericGroupIDs = data.every(d => /^\d+$/.test(d.raw.groupid));
+                    const numericGroupIDs = data.every((d) =>
+                        /^\d+$/.test(d.raw.groupid)
+                    );
 
                     return data
-                        .sort(
-                            (a,b) => {
-                                const selected = (
-                                    config.selectedGroupIDs.includes(b.raw.groupid) -
-                                    config.selectedGroupIDs.includes(a.raw.groupid)
-                                );
+                        .sort((a, b) => {
+                            const selected =
+                                config.selectedGroupIDs.includes(
+                                    b.raw.groupid
+                                ) -
+                                config.selectedGroupIDs.includes(a.raw.groupid);
 
-                                const alphanumeric = numericGroupIDs
-                                    ? ascending(+a.raw.groupid, +b.raw.groupid)
-                                    : ascending(a.raw.groupid, b.raw.groupid);
+                            const alphanumeric = numericGroupIDs
+                                ? ascending(+a.raw.groupid, +b.raw.groupid)
+                                : ascending(a.raw.groupid, b.raw.groupid);
 
-                                return selected || alphanumeric;
-                            }
-                        )
-                        .map(
-                            (d, i) =>
-                                i === 0
-                                    ? `${config.group}${data.length > 1 ? 's' : ''} ${
-                                        d.dataset.data[d.dataIndex].groupid
-                                    }` : d.dataset.data[d.dataIndex].groupid
+                            return selected || alphanumeric;
+                        })
+                        .map((d, i) =>
+                            i === 0
+                                ? `${config.group}${
+                                      data.length > 1 ? 's' : ''
+                                  } ${d.dataset.data[d.dataIndex].groupid}`
+                                : d.dataset.data[d.dataIndex].groupid
                         )
                         .join(', ');
                 }

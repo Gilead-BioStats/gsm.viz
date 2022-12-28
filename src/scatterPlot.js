@@ -71,7 +71,7 @@ export default function scatterPlot(
         //triggerTooltip,
     };
 
-    //triggerTooltip(chart);
+    triggerTooltip(chart);
 
     return chart;
 }
