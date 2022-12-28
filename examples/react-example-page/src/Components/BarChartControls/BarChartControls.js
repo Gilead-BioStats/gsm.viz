@@ -27,23 +27,18 @@ const BarChartControls = ({
 
     instance
 }) => {
-
-    // TODO - this is being run too many times?
-    console.log(instance)
-
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
         console.log(kri); // updated KRI is NOT observed here
     };
   
-    // higher level setter that controls all three
     useEffect(() => {
         console.log('new kri', kri); // updated KRI IS observed here
         setResults(filterResults(kri))
         setWorkflow(filterWorkflow(kri))
         setThresholds(filterParameters(kri))
-    }, [kri]); // eslint-disable-line
+    }, [kri]); //eslint-disable-line
 
     // observe y-axis dropdown
     const [yaxisToggle, setYaxisToggle] = useState('score');
@@ -54,7 +49,7 @@ const BarChartControls = ({
     useEffect(() => {
         console.log(yaxisToggle);
         setWorkflow({workflow, ...{y: yaxisToggle}});
-    }, [yaxisToggle]); // eslint-disable-line -- syntax warning: something about useCallback
+    }, [yaxisToggle]); //eslint-disable-line -- syntax warning: something about useCallback
   
     // observe threshold toggle
     const [isThreshold, setIsThreshold] = useState(true);
@@ -65,7 +60,7 @@ const BarChartControls = ({
     useEffect(() => {
         console.log(isThreshold);
         setThresholds(isThreshold ? filterParameters(kri) : null);
-    }, [isThreshold]); // eslint-disable-line
+    }, [isThreshold]); //eslint-disable-line
 
     return(
         <div className='control-container'>

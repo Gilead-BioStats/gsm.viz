@@ -10,22 +10,21 @@ import workflows from '../../data/meta_workflow';
 
 import './BarChartContainer.css';
 
-const filterResults = (kri) => {
-    return resultsAll.filter((d) => d.workflowid === kri);
-};
-
-const filterWorkflow = (kri) => {
-    return workflows.find(d => d.workflowid === kri);
-}
-
-const filterParameters = (kri) => {
-    return parametersAll.filter((d) => d.workflowid === kri);
-};
-
 const BarChartContainer = () => {
-
-
     const [kri, setKri] = useState('kri0001');
+
+    const filterResults = (kri) => {
+        return resultsAll.filter((d) => d.workflowid === kri);
+    };
+    
+    const filterWorkflow = (kri) => {
+        return workflows.find(d => d.workflowid === kri);
+    }
+
+    const filterParameters = (kri) => {
+        return parametersAll.filter((d) => d.workflowid === kri);
+    };
+
     const [results, setResults] = useState(filterResults(kri));
     const [workflow, setWorkflow] = useState(filterWorkflow(kri));
     const [thresholds, setThresholds] = useState(filterParameters(kri));
