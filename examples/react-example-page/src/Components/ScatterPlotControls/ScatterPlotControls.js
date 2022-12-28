@@ -2,70 +2,66 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
-import React, { useState, useEffect } from 'react'
-import "./BarChartControls.css"
+import React, { useEffect, useState } from 'react'
+import "./ScatterPlotControls.css"
 
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
-const BarChartControls = ({
+const ScatterPlotControls = ({
     kri,
+    instance,
+
     setKri,
-
-    setResults,
     setWorkflow,
-    setThresholds,
-
-    results,
-    workflow,
-    thresholds,
+    setResults,
+    setBounds,
 
     filterResults,
-    filterWorkflow,
-    filterParameters,
-
-    instance
+    filterBounds,
+    filterWorkflow
 }) => {
 
-    // TODO - this is being run too many times?
+    const [yaxisToggle, setYaxisToggle] = useState('logarithmic')
+
+    // TODO this is running three times?
     console.log(instance)
 
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
-        console.log(kri); // updated KRI is NOT observed here
     };
-  
-    // higher level setter that controls all three
-    useEffect(() => {
-        console.log('new kri', kri); // updated KRI IS observed here
-        setResults(filterResults(kri))
-        setWorkflow(filterWorkflow(kri))
-        setThresholds(filterParameters(kri))
-    }, [kri]); // eslint-disable-line
 
     // observe y-axis dropdown
-    const [yaxisToggle, setYaxisToggle] = useState('score');
+
     const handleYaxisToggleChange = (event) => {
         setYaxisToggle(event.target.value)
     };
 
     useEffect(() => {
-        console.log(yaxisToggle);
-        setWorkflow({workflow, ...{y: yaxisToggle}});
-    }, [yaxisToggle]); // eslint-disable-line -- syntax warning: something about useCallback
-  
-    // observe threshold toggle
-    const [isThreshold, setIsThreshold] = useState(true);
-    const handleThresholdCheck = (event) => {
-        setIsThreshold(event.target.checked);
-    };
+        setResults(filterResults(kri))
+        setWorkflow(filterWorkflow(kri))
+        setBounds(filterBounds(kri))
+    }, [kri]); // eslint-disable-line
+
+
+     // change the xaxis title
+            if (yaxisToggle === 'linear') {
+                instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text.replace(' (Log Scale)', '')
+            } else {
+                instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text + ' (Log Scale)'
+            }
+
 
     useEffect(() => {
-        console.log(isThreshold);
-        setThresholds(isThreshold ? filterParameters(kri) : null);
-    }, [isThreshold]); // eslint-disable-line
+        if (instance !== null) {
+            console.log(instance)
+            // change the actual scale
+            instance.config.options.scales.x.type = yaxisToggle
+
+            //instance.update() 
+        }
+    }, [yaxisToggle]); // eslint-disable-line
+
 
     return(
         <div className='control-container'>
@@ -89,7 +85,7 @@ const BarChartControls = ({
         </FormControl>
 
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-        <InputLabel id="yaxis-control">Y-Axis</InputLabel>
+        <InputLabel id="yaxis-control">X-Axis Type</InputLabel>
         <Select
          labelId="yaxis-control-label"
          id="yacis-control-label"
@@ -97,20 +93,16 @@ const BarChartControls = ({
          onChange={handleYaxisToggleChange}
          label="yaxis"
          >
-            <MenuItem value={"score"}>score</MenuItem>
-            <MenuItem value={"metric"}>metric</MenuItem>
+            <MenuItem value={"logarithmic"}>log</MenuItem>
+            <MenuItem value={"linear"}>linear</MenuItem>
             </Select>
         </FormControl>
-
-        <FormControlLabel 
-            control={<Checkbox checked={isThreshold} onChange={handleThresholdCheck} />} 
-            label="Threshold" 
-        />
 
         <a href={instance?.toBase64Image()} download={'barchart.png'}>Download</a>
         <Button variant="outlined">Kill</Button>
         </div>
     )
+
 }
 
-export default BarChartControls;
+export default ScatterPlotControls;

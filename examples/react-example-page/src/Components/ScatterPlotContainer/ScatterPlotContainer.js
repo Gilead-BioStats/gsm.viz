@@ -1,12 +1,12 @@
-import BarChart from '../BarChart/BarChart';
-import BarChartControls from '../BarChartControls/BarChartControls';
+import ScatterPlot from '../ScatterPlot/ScatterPlot';
+import ScatterPlotControls from '../ScatterPlotControls/ScatterPlotControls';
 import CodeChunk from '../CodeChunk/CodeChunk';
 import React, { useState } from 'react';
 
 // data
 import resultsAll from '../../data/results_summary.json';
-import parametersAll from '../../data/meta_param';
 import workflows from '../../data/meta_workflow';
+import boundsAll from '../../data/results_bounds'
 
 import './ScatterPlotContainer.css';
 
@@ -21,49 +21,46 @@ const ScatterPlotContainer = () => {
         return workflows.find(d => d.workflowid === kri);
     }
 
-    const filterParameters = (kri) => {
-        return parametersAll.filter((d) => d.workflowid === kri);
-    };
+    const filterBounds = (kri) => {
+        return boundsAll.filter((d) => d.workflowid === kri)
+    }
 
     const [results, setResults] = useState(filterResults(kri));
     const [workflow, setWorkflow] = useState(filterWorkflow(kri));
-    const [thresholds, setThresholds] = useState(filterParameters(kri));
+    const [bounds, setBounds] = useState(filterBounds(kri));
     const [instance, setInstance] = useState(null);
+ 
 
     return (
         <div className="chart-container">
             <h2>Scatter Plot</h2>
             <div className="chart-grid">
                 <div className="chart-left">
-                    <BarChartControls
+
+                        <ScatterPlotControls
                         kri={kri}
-                        setKri={setKri}
-
-                        setResults={setResults}
-                        setWorkflow={setWorkflow}
-                        setThresholds={setThresholds}
-
-                        results={results}
-                        workflow={workflow}
-                        thresholds={thresholds}
-
-                        filterParameters={filterParameters}
-                        filterResults={filterResults}
-                        filterWorkflow={filterWorkflow}
-
                         instance={instance}
+
+                        setKri={setKri}
+                        setWorkflow={setWorkflow}
+                        setResults={setResults}
+                        setBounds={setBounds}
+
+                        filterResults={filterResults}
+                        filterBounds={filterBounds}
+                        filterWorkflow={filterWorkflow}
                     />
 
-                    <BarChart
+                    <ScatterPlot
                         data={results}
                         config={workflow}
-                        thresholds={thresholds}
+                        bounds={bounds}
                         setInstance={setInstance}
                     />
                 </div>
 
                 <div className="chart-right">
-                    <CodeChunk obj={"rbmViz.BarChart('test')"} />
+                    <CodeChunk obj={"rbmViz.scatterPlot('test')"} />
                 </div>
             </div>
         </div>
