@@ -1,5 +1,5 @@
 {
-  "TODO": "add traffic-lighting to discrete sparkline",
+  "TODO": "add unit tests for each data schema",
   "name": "rbm-viz",
   "version": "0.14.0",
   "description": "web-based data visualization for risk-based monitoring",
