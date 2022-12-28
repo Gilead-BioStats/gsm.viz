@@ -16,7 +16,8 @@
     "local": "live-server --ignore=node_modules --wait=250 .",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
     "test": "jest",
-    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
+    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
+    "transpile": "babel index.js > index.es5.js"
   },
   "repository": {
     "type": "git",
@@ -47,8 +48,9 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.3",
-    "@babel/preset-env": "^7.19.3",
+    "@babel/cli": "^7.20.7",
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
     "babel-jest": "^29.1.2",
     "csvtojson": "^2.0.10",
     "esbuild": "^0.15.10",

@@ -17,23 +17,11 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 
-<<<<<<< HEAD
         // analysis results
         const results = filterOnWorkflowID(datasets[0], workflowID);
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-=======
-        // data
-        const results = datasets[1].filter((d) => d.workflowid === workflowID);
-
-        // configuration
-        const workflow = datasets[0] // destructured assignment
-            .find((d) => d.workflowid === workflowID);
-        const groupIDs = [
-            ...new Set(results.map((result) => result.groupid)).values(),
-        ];
->>>>>>> main
 
         // threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);
