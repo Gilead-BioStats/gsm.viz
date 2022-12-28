@@ -13,7 +13,7 @@ export default function annotations(config) {
                 yMax: x.threshold,
                 borderColor:
                     config.group === 'Study'
-                        ? '#FD9432'
+                        ? colorScheme.amberRed.color
                         : colorScheme.find((y) => y.flag.includes(+x.flag))
                               .color,
                 borderWidth: 1,
@@ -26,7 +26,7 @@ export default function annotations(config) {
                     position: Math.sign(+x.flag) >= 0 ? 'end' : 'start',
                     color:
                         config.group === 'Study'
-                            ? '#FD9432'
+                            ? colorScheme.amberRed.color
                             : colorScheme.find((y) => y.flag.includes(+x.flag))
                                   .color,
                     backgroundColor: 'white',

@@ -15,17 +15,13 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
-        const groupIDs = [...new Set(datasets[0].map((d) => d.groupid))];
-        const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())]; // '28';
-        const results = datasets[0]
-            .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
-            .slice(35, 45);
-        results.forEach((d) => {
-            d.score = Math.random() < 0.25 ? NaN : +d.score;
-        });
+        let results = datasets[0]
+            .filter((d) => d.workflowid === workflowID)
+        const groupIDs = [...new Set(results.map((d) => d.groupid))];
+        const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())];
+        results = results.filter(d => d.groupid === groupID);
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.nSnapshots = 10;
-        workflow.displayThresholds = true;
+        workflow.nSnapshots = 25;
 
         // threshold annotations
         const parameters = mergeParameters(

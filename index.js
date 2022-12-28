@@ -20576,6 +20576,18 @@ var rbmViz = (() => {
   colorScheme.forEach((color3) => {
     color3.rgba = color2(color3.color);
   });
+  var amber = colorScheme.find((color3) => color3.flag.includes(1));
+  var red = colorScheme.find((color3) => color3.flag.includes(2));
+  colorScheme.amberRed = {
+    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round((amber.rgba.g + red.rgba.g) / 2)},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
+    order: -1,
+    description: "Amber or Red Flag",
+    flag: [
+      ...amber.flag,
+      ...red.flag
+    ].sort(ascending)
+  };
+  colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
 
   // src/util/coalesce.js
@@ -21690,7 +21702,6 @@ var rbmViz = (() => {
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
-    console.log(data);
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = !isNaN(data[0]?.stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
       (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
@@ -21729,7 +21740,6 @@ var rbmViz = (() => {
           borderColor: color3.rgba + "",
           borderWidth: 1
         };
-        console.log(annotation2);
         return annotation2;
       });
     }
@@ -22283,12 +22293,13 @@ var rbmViz = (() => {
         ];
       }
     } else if (config.dataType === "discrete") {
+      const color3 = config.yLabel === "Red or Amber KRIs" ? colorScheme_default.amberRed.color : config.yLabel === "Red KRIs" ? colorScheme_default.find((color4) => /red/i.test(color4.description)).color : config.yLabel === "Amber KRIs" ? colorScheme_default.find((color4) => /amber/i.test(color4.description)).color : "#1890FF";
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
           ...selectedGroupLine(data, config, labels),
-          backgroundColor: "#1890FF",
+          backgroundColor: color3,
           borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
+            return d.raw !== void 0 ? "black" : color3;
           }
         } : null,
         {
@@ -22334,7 +22345,7 @@ var rbmViz = (() => {
           type: "line",
           yMin: x.threshold,
           yMax: x.threshold,
-          borderColor: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+          borderColor: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
@@ -22342,7 +22353,7 @@ var rbmViz = (() => {
           annotation2.label = {
             rotation: "auto",
             position: Math.sign(+x.flag) >= 0 ? "end" : "start",
-            color: config.group === "Study" ? "#FD9432" : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+            color: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
             content: `QTL: ${config.thresholds[0].threshold}`,
             display: true,
@@ -22566,7 +22577,7 @@ var rbmViz = (() => {
               flag.snapshot_date = group2[0].snapshot_date;
               flag.x = flag.gsm_analysis_date;
               flag.y = flag.threshold;
-              flag.color = colorScheme_default.find(
+              flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
                 (color3) => color3.flag.includes(flag.flag)
               );
             });
