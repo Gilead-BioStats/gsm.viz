@@ -43,7 +43,9 @@ export default function scatterPlot(
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
         interaction: {
-            mode: 'point',
+            axis: 'xy',
+            intersect: false,
+            mode: 'nearest',
         },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,

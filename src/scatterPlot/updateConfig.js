@@ -25,7 +25,8 @@ export default function updateConfig(chart, _config_, update = false) {
 
     chart.data.config = config;
 
-    if (update) chart.update();
+    //if (update)
+    chart.update();
 
     triggerTooltip(chart);
 
