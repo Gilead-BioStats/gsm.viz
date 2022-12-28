@@ -38,6 +38,7 @@ describe('configuration', () => {
                 'dataType',
                 'discreteUnit',
                 'type',
+                'tooltipType',
 
                 'x',
                 'xType',
@@ -57,6 +58,7 @@ describe('configuration', () => {
 
                 'selectedGroupIDs',
                 'thresholds',
+                'variableThresholds',
             ].sort()
         );
     });

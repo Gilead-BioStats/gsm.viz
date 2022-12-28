@@ -35,21 +35,21 @@ export default function scatterPlot(
         parameter: '_data_',
         argument: _data_,
         schemaName: 'results',
-        module: 'scatterPlot'
+        module: 'scatterPlot',
     });
 
     checkInputs({
         parameter: '_config_',
         argument: _config_,
         schemaName: 'analysisMetadata',
-        module: 'scatterPlot'
+        module: 'scatterPlot',
     });
 
     checkInputs({
         parameter: '_bounds_',
         argument: _bounds_,
         schemaName: 'resultsPredicted',
-        module: 'scatterPlot'
+        module: 'scatterPlot',
     });
 
     // Update config.
@@ -66,7 +66,9 @@ export default function scatterPlot(
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
         interaction: {
-            mode: 'point',
+            axis: 'xy',
+            intersect: false,
+            mode: 'nearest',
         },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,

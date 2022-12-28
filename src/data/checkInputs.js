@@ -7,13 +7,15 @@ export default function checkInputs({
     argument = null,
     schemaName = null,
     module = null,
-    verbose = false
+    verbose = false,
 }) {
     const schema = schemata[schemaName];
 
     if (argument === null) {
         if (verbose)
-            console.log(`[ ${ parameter } ] unspecified. Terminating execution of [ checkInputs() ].`);
+            console.log(
+                `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
+            );
 
         return;
     }
@@ -29,15 +31,7 @@ export default function checkInputs({
     // check data type of argument
     const argumentType = getType(argument);
     if (argumentType !== schema.type) {
-        throw `Incorrect data type: [ ${
-            schema.type
-        } ] expected but [ ${
-            argumentType
-        } ] detected for [ ${
-            parameter
-        } ] argument to [ ${
-            module
-        }() ].`;
+        throw `Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
     }
 
     // check items in array
@@ -47,17 +41,7 @@ export default function checkInputs({
             const itemType = getType(item);
 
             if (itemType !== schema.items.type) {
-                throw `Incorrect data type: [ ${
-                    schema.items.type
-                } ] expected but [ ${
-                    itemType
-                } ] detected for item ${
-                    i
-                } of [ ${
-                    parameter
-                } ] argument to [ ${
-                    module
-                }() ].`
+                throw `Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`;
             }
 
             // check properties in object
@@ -68,7 +52,7 @@ export default function checkInputs({
                     properties,
                     parameter,
                     module,
-                    i
+                    i,
                 });
             }
         });
@@ -81,7 +65,7 @@ export default function checkInputs({
             obj: argument,
             properties,
             parameter,
-            module
+            module,
         });
     }
 }

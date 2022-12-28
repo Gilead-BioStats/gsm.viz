@@ -28,21 +28,21 @@ export default function barChart(
         parameter: '_data_',
         argument: _data_,
         schemaName: 'results',
-        module: 'barChart'
+        module: 'barChart',
     });
 
     checkInputs({
         parameter: '_config_',
         argument: _config_,
         schemaName: 'analysisMetadata',
-        module: 'barChart'
+        module: 'barChart',
     });
 
     checkInputs({
         parameter: '_thresholds_',
         argument: _thresholds_,
         schemaName: 'analysisParameters',
-        module: 'barChart'
+        module: 'barChart',
     });
 
     // Update config.

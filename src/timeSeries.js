@@ -25,35 +25,34 @@ export default function timeSeries(
     _thresholds_ = null,
     _intervals_ = null
 ) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i
-        .test(_config_.y);
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
 
     checkInputs({
         parameter: '_data_',
         argument: _data_,
         schemaName: discrete ? 'flagCounts' : 'results',
-        module: 'timeSeries'
+        module: 'timeSeries',
     });
 
     checkInputs({
         parameter: '_config_',
         argument: discrete ? null : _config_,
         schemaName: 'analysisMetadata',
-        module: 'timeSeries'
+        module: 'timeSeries',
     });
 
     checkInputs({
         parameter: '_thresholds_',
         argument: _thresholds_,
         schemaName: 'analysisParameters',
-        module: 'timeSeries'
+        module: 'timeSeries',
     });
 
     checkInputs({
         parameter: '_intervals_',
         argument: _intervals_,
         schemaName: 'resultsVertical',
-        module: 'timeSeries'
+        module: 'timeSeries',
     });
 
     // Update config.
