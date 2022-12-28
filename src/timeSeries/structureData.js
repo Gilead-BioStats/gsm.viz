@@ -76,13 +76,16 @@ export default function structureData(_data_, config, _intervals_) {
             ];
         }
     } else if (config.dataType === 'discrete') {
-        const color = config.yLabel === 'Red or Amber KRIs'
-            ? colorScheme.amberRed.color
-            : config.yLabel === 'Red KRIs'
-            ? colorScheme.find(color => /red/i.test(color.description)).color
-            : config.yLabel === 'Amber KRIs'
-            ? colorScheme.find(color => /amber/i.test(color.description)).color
-            : '#1890FF';
+        const color =
+            config.yLabel === 'Red or Amber KRIs'
+                ? colorScheme.amberRed.color
+                : config.yLabel === 'Red KRIs'
+                ? colorScheme.find((color) => /red/i.test(color.description))
+                      .color
+                : config.yLabel === 'Amber KRIs'
+                ? colorScheme.find((color) => /amber/i.test(color.description))
+                      .color
+                : '#1890FF';
 
         datasets = [
             config.selectedGroupIDs.length > 0

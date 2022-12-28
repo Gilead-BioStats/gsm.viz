@@ -74,11 +74,12 @@ export default function timeSeries(
                         flag.snapshot_date = group[0].snapshot_date;
                         flag.x = flag.gsm_analysis_date;
                         flag.y = flag.threshold;
-                        flag.color = flags.length === 1
-                            ? colorScheme.amberRed
-                            : colorScheme.find((color) =>
-                                color.flag.includes(flag.flag)
-                            );
+                        flag.color =
+                            flags.length === 1
+                                ? colorScheme.amberRed
+                                : colorScheme.find((color) =>
+                                      color.flag.includes(flag.flag)
+                                  );
                     });
 
                     return flags;

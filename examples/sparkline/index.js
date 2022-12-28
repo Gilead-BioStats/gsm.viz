@@ -14,22 +14,24 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowIDs = d3.range(12)
+        const workflowIDs = d3
+            .range(12)
             .map((i) => 'kri' + d3.format('04d')(i + 1));
-        const workflowID = workflowIDs[Math.floor(workflowIDs.length * Math.random())];
+        const workflowID =
+            workflowIDs[Math.floor(workflowIDs.length * Math.random())];
 
         // continuous outcome: KRI results
         let results = filterOnWorkflowID(datasets[0], workflowID);
 
         const groupIDs = [...new Set(results.map((d) => d.groupid))];
         const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())];
-        results = results.filter(d => d.groupid === groupID);
+        results = results.filter((d) => d.groupid === groupID);
 
         // discrete outcome: flag counts by KRI
         const flagCountsByKRI = datasets[4].filter(
             (d) => d.workflowid === workflowID
         );
-        flagCountsByKRI.forEach(d => {
+        flagCountsByKRI.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 
@@ -37,7 +39,7 @@ Promise.all(dataPromises)
         const flagCountsByGroup = datasets[5].filter(
             (d) => d.groupid === groupID
         );
-        flagCountsByGroup.forEach(d => {
+        flagCountsByGroup.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 
@@ -68,13 +70,19 @@ Promise.all(dataPromises)
         });
 
         // discrete outcomes
-        const discreteOutcomes = ['n_at_risk', 'n_flagged', 'n_at_risk_or_flagged'];
+        const discreteOutcomes = [
+            'n_at_risk',
+            'n_flagged',
+            'n_at_risk_or_flagged',
+        ];
         rbmViz.default.sparkline(
             document.getElementById('flag-counts-by-kri'),
             flagCountsByKRI,
             {
                 nSnapshots: workflow.nSnapshots,
-                y: discreteOutcomes[Math.floor(discreteOutcomes.length*Math.random())]
+                y: discreteOutcomes[
+                    Math.floor(discreteOutcomes.length * Math.random())
+                ],
             }
         );
 
@@ -83,7 +91,9 @@ Promise.all(dataPromises)
             flagCountsByGroup,
             {
                 nSnapshots: workflow.nSnapshots,
-                y: discreteOutcomes[Math.floor(discreteOutcomes.length*Math.random())]
+                y: discreteOutcomes[
+                    Math.floor(discreteOutcomes.length * Math.random())
+                ],
             }
         );
     });

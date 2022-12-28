@@ -24,9 +24,12 @@ export default function structureData(_data_, config) {
         return config.dataType === 'continuous'
             ? config.colorScheme[d.stratum].color
             : config.y === 'n_at_risk'
-            ? config.colorScheme.find(color => /amber/i.test(color.description)).color
+            ? config.colorScheme.find((color) =>
+                  /amber/i.test(color.description)
+              ).color
             : config.y === 'n_flagged'
-            ? config.colorScheme.find(color => /red/i.test(color.description)).color
+            ? config.colorScheme.find((color) => /red/i.test(color.description))
+                  .color
             : config.y === 'n_at_risk_or_flagged'
             ? config.colorScheme.amberRed.color
             : '#1890FF';

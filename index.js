@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20580,13 +20579,12 @@ var rbmViz = (() => {
   var amber = colorScheme.find((color3) => color3.flag.includes(1));
   var red = colorScheme.find((color3) => color3.flag.includes(2));
   colorScheme.amberRed = {
-    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round((amber.rgba.g + red.rgba.g) / 2)},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
+    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+      (amber.rgba.g + red.rgba.g) / 2
+    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: "Amber or Red Flag",
-    flag: [
-      ...amber.flag,
-      ...red.flag
-    ].sort(ascending)
+    flag: [...amber.flag, ...red.flag].sort(ascending)
   };
   colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
@@ -21705,7 +21703,9 @@ var rbmViz = (() => {
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = data.map((d, i) => {
-      return config.dataType === "continuous" ? config.colorScheme[d.stratum].color : config.y === "n_at_risk" ? config.colorScheme.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? config.colorScheme.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? config.colorScheme.amberRed.color : "#1890FF";
+      return config.dataType === "continuous" ? config.colorScheme[d.stratum].color : config.y === "n_at_risk" ? config.colorScheme.find(
+        (color3) => /amber/i.test(color3.description)
+      ).color : config.y === "n_flagged" ? config.colorScheme.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? config.colorScheme.amberRed.color : "#1890FF";
     });
     const datasets = [
       {

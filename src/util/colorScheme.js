@@ -33,24 +33,17 @@ colorScheme.forEach((color) => {
 });
 
 // Calculate average of amber and red colors.
-const amber = colorScheme.find(color => color.flag.includes(1));
-const red = colorScheme.find(color => color.flag.includes(2));
+const amber = colorScheme.find((color) => color.flag.includes(1));
+const red = colorScheme.find((color) => color.flag.includes(2));
 
 colorScheme.amberRed = {
-    color: `rgb(${
-        Math.round((amber.rgba.r + red.rgba.r)/2)
-    },${
-        Math.round((amber.rgba.g + red.rgba.g)/2)
-    },${
-        Math.round((amber.rgba.b + red.rgba.b)/2)
-    })`,
+    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+        (amber.rgba.g + red.rgba.g) / 2
+    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: 'Amber or Red Flag',
-    flag: [
-        ...amber.flag,
-        ...red.flag
-    ].sort(ascending)
+    flag: [...amber.flag, ...red.flag].sort(ascending),
 };
-colorScheme.amberRed.rgba = d3color(colorScheme.amberRed.color)
+colorScheme.amberRed.rgba = d3color(colorScheme.amberRed.color);
 
 export default colorScheme;
