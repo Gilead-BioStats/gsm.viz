@@ -21703,9 +21703,9 @@ var rbmViz = (() => {
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0]?.stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
-      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
-    );
+    const pointBackgroundColor = data.map((d, i) => {
+      return config.dataType === "continuous" ? config.colorScheme[d.stratum].color : config.y === "n_at_risk" ? config.colorScheme.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? config.colorScheme.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? config.colorScheme.amberRed.color : "#1890FF";
+    });
     const datasets = [
       {
         type: "line",

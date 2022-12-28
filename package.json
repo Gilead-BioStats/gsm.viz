@@ -6,7 +6,7 @@
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
-    "build": "npm run bundle && npm run format && npm run test",
+    "build": "npm run bundle && npm run format && npm run transpile && npm run test",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
     "csv-to-json": "node examples/data/helpers/csv-to-json && cp examples/data/*.json examples/app/src/data",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
