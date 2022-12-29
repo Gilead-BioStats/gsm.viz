@@ -27,8 +27,11 @@ const ScatterPlotContainer = () => {
 
     const [kri, setKri] = useState('kri0001');
     const [instance, setInstance] = useState(null);
+    const [selectedGroup, setSelectedGroup] = useState('')
+    
     const [xAxis, setXaxis] = useState({
-        type: 'logarithmic'
+        type: 'logarithmic',
+        isLog: true
     })
 
     const [params, setParams] = useState({
@@ -36,7 +39,6 @@ const ScatterPlotContainer = () => {
         workflow: filterWorkflow(kri),
         bounds: filterBounds(kri)
     })
-
 
     return (
         <div className="chart-container">
@@ -48,10 +50,13 @@ const ScatterPlotContainer = () => {
                         kri={kri}
                         params={params}
                         instance={instance}
+                        results={params.results}
+                        selectedGroup={selectedGroup}
 
                         setKri={setKri}
                         setParams={setParams}
                         setXaxis={setXaxis}
+                        setSelectedGroup={setSelectedGroup}
 
                         filterResults={filterResults}
                         filterBounds={filterBounds}
@@ -63,6 +68,7 @@ const ScatterPlotContainer = () => {
                         config={params.workflow}
                         bounds={params.bounds}
                         xAxis={xAxis}
+                        selectedGroup={selectedGroup}
                         setInstance={setInstance}
                     />
                 </div>

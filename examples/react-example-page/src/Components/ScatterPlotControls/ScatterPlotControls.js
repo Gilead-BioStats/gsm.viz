@@ -6,14 +6,24 @@ import Button from '@mui/material/Button';
 import React, { useEffect, useState } from 'react'
 import "./ScatterPlotControls.css"
 
+const uniqueGroups = (results) => {
+    return results.map((result) => Math.floor(result.groupid))
+                  .filter(function (x, i, a) {  return a.indexOf(x) === i;  })
+                  .sort((a, b) =>  a - b)
+                  .map(d => d + "")
+}
+
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const ScatterPlotControls = ({
     kri,
     instance,
+    results,
+    selectedGroup,
 
     setKri,
     setParams,
     setXaxis,
+    setSelectedGroup,
 
     filterResults,
     filterBounds,
@@ -21,10 +31,17 @@ const ScatterPlotControls = ({
 }) => {
 
     const [xaxisToggle, setXaxisToggle] = useState('logarithmic')
+    const [groups, setGroups] = useState(uniqueGroups(results))
+    console.log(groups)
 
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
+    };
+
+    // observe KRI dropdown
+     const handleSiteChange = (event) => {
+        setSelectedGroup(event.target.value);
     };
 
     // observe y-axis dropdown
@@ -43,6 +60,8 @@ const ScatterPlotControls = ({
             workflow: filterWorkflow(kri),
             bounds: filterBounds(kri)
         })
+        // TODO check that this is getting re-rendered
+        setGroups(uniqueGroups(results))
     }, [kri]); // eslint-disable-line
 
     return(
@@ -64,6 +83,24 @@ const ScatterPlotControls = ({
             <MenuItem value={"kri0006"}>kri0006</MenuItem>
             <MenuItem value={"kri0007"}>kri0007</MenuItem>
             </Select>
+        </FormControl>
+
+        <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
+        <InputLabel id="demo-simple-select-standard-label">Highlighted Site</InputLabel>
+        <Select
+         labelId="highlighted-scatter-site-label"
+         id="highlighted-scatter-site"
+         value={selectedGroup}
+         onChange={handleSiteChange}
+         label="kri"
+         >
+            
+        {
+          groups.map((value, index) => {
+            return <MenuItem key={index} value={value}>{value}</MenuItem>
+          })
+        }
+        </Select>
         </FormControl>
 
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
