@@ -9,12 +9,12 @@ import "./ScatterPlotControls.css"
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const ScatterPlotControls = ({
     kri,
+    params,
     instance,
 
     setKri,
-    setWorkflow,
-    setResults,
-    setBounds,
+    setParams,
+    setXaxis,
 
     filterResults,
     filterBounds,
@@ -35,29 +35,35 @@ const ScatterPlotControls = ({
 
     const handleYaxisToggleChange = (event) => {
         setYaxisToggle(event.target.value)
+        setXaxis({
+            type: event.target.value,
+            isLog: event.target.value === 'logarithmic'
+        })
     };
 
     useEffect(() => {
-        setResults(filterResults(kri))
-        setWorkflow(filterWorkflow(kri))
-        setBounds(filterBounds(kri))
+        setParams({
+            results: filterResults(kri),
+            workflow: filterWorkflow(kri),
+            bounds: filterBounds(kri)
+        })
     }, [kri]); // eslint-disable-line
 
 
-     // change the xaxis title
-            if (yaxisToggle === 'linear') {
-                instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text.replace(' (Log Scale)', '')
-            } else {
-                instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text + ' (Log Scale)'
-            }
-
 
     useEffect(() => {
+
         if (instance !== null) {
             console.log(instance)
             // change the actual scale
             instance.config.options.scales.x.type = yaxisToggle
 
+     // change the xaxis title
+     if (yaxisToggle === 'linear') {
+        instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text.replace(' (Log Scale)', '')
+    } else {
+        instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text + ' (Log Scale)'
+    }
             //instance.update() 
         }
     }, [yaxisToggle]); // eslint-disable-line

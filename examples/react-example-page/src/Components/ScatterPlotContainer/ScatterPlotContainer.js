@@ -10,26 +10,33 @@ import boundsAll from '../../data/results_bounds'
 
 import './ScatterPlotContainer.css';
 
+const filterResults = (kri) => {
+    return resultsAll.filter((d) => d.workflowid === kri);
+};
+
+const filterWorkflow = (kri) => {
+    return workflows.find(d => d.workflowid === kri);
+}
+
+const filterBounds = (kri) => {
+    return boundsAll.filter((d) => d.workflowid === kri)
+}
+
+
 const ScatterPlotContainer = () => {
+
     const [kri, setKri] = useState('kri0001');
-
-    const filterResults = (kri) => {
-        return resultsAll.filter((d) => d.workflowid === kri);
-    };
-    
-    const filterWorkflow = (kri) => {
-        return workflows.find(d => d.workflowid === kri);
-    }
-
-    const filterBounds = (kri) => {
-        return boundsAll.filter((d) => d.workflowid === kri)
-    }
-
-    const [results, setResults] = useState(filterResults(kri));
-    const [workflow, setWorkflow] = useState(filterWorkflow(kri));
-    const [bounds, setBounds] = useState(filterBounds(kri));
     const [instance, setInstance] = useState(null);
- 
+    const [xAxis, setXaxis] = useState({
+        type: 'logarithmic'
+    })
+
+    const [params, setParams] = useState({
+        results: filterResults(kri),
+        workflow: filterWorkflow(kri),
+        bounds: filterBounds(kri)
+    })
+
 
     return (
         <div className="chart-container">
@@ -39,12 +46,12 @@ const ScatterPlotContainer = () => {
 
                         <ScatterPlotControls
                         kri={kri}
+                        params={params}
                         instance={instance}
 
                         setKri={setKri}
-                        setWorkflow={setWorkflow}
-                        setResults={setResults}
-                        setBounds={setBounds}
+                        setParams={setParams}
+                        setXaxis={setXaxis}
 
                         filterResults={filterResults}
                         filterBounds={filterBounds}
@@ -52,9 +59,10 @@ const ScatterPlotContainer = () => {
                     />
 
                     <ScatterPlot
-                        data={results}
-                        config={workflow}
-                        bounds={bounds}
+                        data={params.results}
+                        config={params.workflow}
+                        bounds={params.bounds}
+                        xAxis={xAxis}
                         setInstance={setInstance}
                     />
                 </div>
