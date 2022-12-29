@@ -13,17 +13,12 @@ const BarChartControls = ({
     kri,
     setKri,
 
-    setResults,
-    setWorkflow,
-    setThresholds,
+    params,
+    setParams,
 
-    results,
-    workflow,
-    thresholds,
-
+    filterThresholds,
     filterResults,
     filterWorkflow,
-    filterParameters,
 
     instance
 }) => {
@@ -34,10 +29,11 @@ const BarChartControls = ({
     };
   
     useEffect(() => {
-        console.log('new kri', kri); // updated KRI IS observed here
-        setResults(filterResults(kri))
-        setWorkflow(filterWorkflow(kri))
-        setThresholds(filterParameters(kri))
+        setParams({
+            results: filterResults(kri),
+            workflow: filterWorkflow(kri),
+            thresholds: filterThresholds(kri)
+        })
     }, [kri]); //eslint-disable-line
 
     // observe y-axis dropdown
@@ -47,8 +43,13 @@ const BarChartControls = ({
     };
 
     useEffect(() => {
-        console.log(yaxisToggle);
-        setWorkflow({workflow, ...{y: yaxisToggle}});
+        let workflow = params.workflow
+        let current_workflow = { workflow, ...{y: yaxisToggle}}
+        setParams({
+            results: params.results,
+            workflow: current_workflow,
+            thresholds: params.thresholds
+        })
     }, [yaxisToggle]); //eslint-disable-line -- syntax warning: something about useCallback
   
     // observe threshold toggle
@@ -59,7 +60,11 @@ const BarChartControls = ({
 
     useEffect(() => {
         console.log(isThreshold);
-        setThresholds(isThreshold ? filterParameters(kri) : null);
+        setParams({
+            results: params.results,
+            workflow: params.workflow,
+            thresholds: isThreshold ? filterThresholds(kri) : null
+        })
     }, [isThreshold]); //eslint-disable-line
 
     return(

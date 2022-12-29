@@ -10,24 +10,27 @@ import workflows from '../../data/meta_workflow';
 
 import './BarChartContainer.css';
 
+const filterResults = (kri) => {
+    return resultsAll.filter((d) => d.workflowid === kri);
+};
+
+const filterWorkflow = (kri) => {
+    return workflows.find(d => d.workflowid === kri);
+}
+
+const filterThresholds = (kri) => {
+    return parametersAll.filter((d) => d.workflowid === kri);
+};
+
 const BarChartContainer = () => {
     const [kri, setKri] = useState('kri0001');
 
-    const filterResults = (kri) => {
-        return resultsAll.filter((d) => d.workflowid === kri);
-    };
-    
-    const filterWorkflow = (kri) => {
-        return workflows.find(d => d.workflowid === kri);
-    }
+    const [params, setParams] = useState({
+        results: filterResults(kri),
+        workflow: filterWorkflow(kri),
+        thresholds: filterThresholds(kri)
+    })
 
-    const filterParameters = (kri) => {
-        return parametersAll.filter((d) => d.workflowid === kri);
-    };
-
-    const [results, setResults] = useState(filterResults(kri));
-    const [workflow, setWorkflow] = useState(filterWorkflow(kri));
-    const [thresholds, setThresholds] = useState(filterParameters(kri));
     const [instance, setInstance] = useState(null);
 
     return (
@@ -39,15 +42,10 @@ const BarChartContainer = () => {
                         kri={kri}
                         setKri={setKri}
 
-                        setResults={setResults}
-                        setWorkflow={setWorkflow}
-                        setThresholds={setThresholds}
+                        params={params}
+                        setParams={setParams}
 
-                        results={results}
-                        workflow={workflow}
-                        thresholds={thresholds}
-
-                        filterParameters={filterParameters}
+                        filterThresholds={filterThresholds}
                         filterResults={filterResults}
                         filterWorkflow={filterWorkflow}
 
@@ -55,9 +53,7 @@ const BarChartContainer = () => {
                     />
 
                     <BarChart
-                        data={results}
-                        config={workflow}
-                        thresholds={thresholds}
+                        params={params}
                         setInstance={setInstance}
                     />
                 </div>

@@ -8,11 +8,14 @@ const generateKey = () => {
 };
 */
 
-const BarChart = ({ data, config, thresholds, setInstance }) => {
+const BarChart = ({ params, setInstance }) => {
+
     const container = useRef(null);
+    let [data, config, thresholds] = Object.values(params)
 
     useEffect(() => {
         if (container.current) {
+            console.log(config)
             const inst = rbm.barChart(container.current, data, config, thresholds)
             setInstance(inst)
         }
