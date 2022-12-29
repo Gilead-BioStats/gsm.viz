@@ -137,8 +137,12 @@ const BarChartControls = ({
             label="Threshold" 
         />
 
-        <a href={instance?.toBase64Image()} download={'barchart.png'}>Download</a>
-        <Button variant="outlined">Kill</Button>
+        <Button variant="outlined">
+            <a href={instance?.toBase64Image()} download={'barchart.png'} style={{textDecoration: 'none', color: 'inherit'}}>Download</a>
+        </Button>
+
+        {/* <Button variant="outlined">Kill</Button> */}
+        
         </div>
     )
 }
