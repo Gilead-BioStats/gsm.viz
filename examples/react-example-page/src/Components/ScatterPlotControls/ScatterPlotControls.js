@@ -9,7 +9,6 @@ import "./ScatterPlotControls.css"
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const ScatterPlotControls = ({
     kri,
-    params,
     instance,
 
     setKri,
@@ -21,10 +20,7 @@ const ScatterPlotControls = ({
     filterWorkflow
 }) => {
 
-    const [yaxisToggle, setYaxisToggle] = useState('logarithmic')
-
-    // TODO this is running three times?
-    console.log(instance)
+    const [xaxisToggle, setXaxisToggle] = useState('logarithmic')
 
     // observe KRI dropdown
     const handleKriChange = (event) => {
@@ -33,8 +29,8 @@ const ScatterPlotControls = ({
 
     // observe y-axis dropdown
 
-    const handleYaxisToggleChange = (event) => {
-        setYaxisToggle(event.target.value)
+    const handleXaxisToggleChange = (event) => {
+        setXaxisToggle(event.target.value)
         setXaxis({
             type: event.target.value,
             isLog: event.target.value === 'logarithmic'
@@ -48,26 +44,6 @@ const ScatterPlotControls = ({
             bounds: filterBounds(kri)
         })
     }, [kri]); // eslint-disable-line
-
-
-
-    useEffect(() => {
-
-        if (instance !== null) {
-            console.log(instance)
-            // change the actual scale
-            instance.config.options.scales.x.type = yaxisToggle
-
-     // change the xaxis title
-     if (yaxisToggle === 'linear') {
-        instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text.replace(' (Log Scale)', '')
-    } else {
-        instance.config.options.scales.x.title.text = instance.config.options.scales.x.title.text + ' (Log Scale)'
-    }
-            //instance.update() 
-        }
-    }, [yaxisToggle]); // eslint-disable-line
-
 
     return(
         <div className='control-container'>
@@ -93,10 +69,10 @@ const ScatterPlotControls = ({
         <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="yaxis-control">X-Axis Type</InputLabel>
         <Select
-         labelId="yaxis-control-label"
-         id="yacis-control-label"
-         value={yaxisToggle}
-         onChange={handleYaxisToggleChange}
+         labelId="xaxis-control-label"
+         id="xaxis-control-label"
+         value={xaxisToggle}
+         onChange={handleXaxisToggleChange}
          label="yaxis"
          >
             <MenuItem value={"logarithmic"}>log</MenuItem>
