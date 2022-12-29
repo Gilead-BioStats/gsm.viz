@@ -22,6 +22,10 @@ const BarChartControls = ({
 
     instance
 }) => {
+
+    const [yaxisToggle, setYaxisToggle] = useState('score');
+    const [isThreshold, setIsThreshold] = useState(true);
+
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
@@ -29,43 +33,32 @@ const BarChartControls = ({
     };
   
     useEffect(() => {
+
+        let results = filterResults(kri)
+
+        let workflow = filterWorkflow(kri)
+        workflow = { workflow, ...{y: yaxisToggle}}
+
+        let thresholds =  isThreshold ? filterThresholds(kri) : null
+ 
         setParams({
-            results: filterResults(kri),
-            workflow: filterWorkflow(kri),
-            thresholds: filterThresholds(kri)
+            results: results,
+            workflow: workflow,
+            thresholds: thresholds
         })
-    }, [kri]); //eslint-disable-line
+    }, [kri, yaxisToggle, isThreshold]); //eslint-disable-line
 
     // observe y-axis dropdown
-    const [yaxisToggle, setYaxisToggle] = useState('score');
+
     const handleYaxisToggleChange = (event) => {
         setYaxisToggle(event.target.value)
     };
 
-    useEffect(() => {
-        let workflow = params.workflow
-        let current_workflow = { workflow, ...{y: yaxisToggle}}
-        setParams({
-            results: params.results,
-            workflow: current_workflow,
-            thresholds: params.thresholds
-        })
-    }, [yaxisToggle]); //eslint-disable-line -- syntax warning: something about useCallback
   
     // observe threshold toggle
-    const [isThreshold, setIsThreshold] = useState(true);
     const handleThresholdCheck = (event) => {
         setIsThreshold(event.target.checked);
     };
-
-    useEffect(() => {
-        console.log(isThreshold);
-        setParams({
-            results: params.results,
-            workflow: params.workflow,
-            thresholds: isThreshold ? filterThresholds(kri) : null
-        })
-    }, [isThreshold]); //eslint-disable-line
 
     return(
         <div className='control-container'>
