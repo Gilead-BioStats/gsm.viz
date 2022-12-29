@@ -8,7 +8,7 @@ const generateKey = () => {
 };
 */
 
-const BarChart = ({ params, setInstance }) => {
+const BarChart = ({ params, selectedGroup, setInstance }) => {
 
     const container = useRef(null);
     let [data, config, thresholds] = Object.values(params)
@@ -16,9 +16,11 @@ const BarChart = ({ params, setInstance }) => {
     useEffect(() => {
         if (container.current) {
             const inst = rbm.barChart(container.current, data, config, thresholds)
+            inst.data.config.selectedGroupIDs = selectedGroup
+            inst.update()
             setInstance(inst)
         }
-    }, [data, config, thresholds, setInstance]);
+    }, [data, config, thresholds, setInstance, selectedGroup]);
 
     return (
         <div

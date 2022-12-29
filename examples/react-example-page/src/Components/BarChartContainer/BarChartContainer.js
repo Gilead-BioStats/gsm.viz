@@ -32,6 +32,7 @@ const BarChartContainer = () => {
     })
 
     const [instance, setInstance] = useState(null);
+    const [selectedGroup, setSelectedGroup] = useState('')
 
     return (
         <div className="chart-container">
@@ -42,8 +43,11 @@ const BarChartContainer = () => {
                         kri={kri}
                         setKri={setKri}
 
-                        params={params}
                         setParams={setParams}
+                        results={params.results}
+
+                        selectedGroup={selectedGroup}
+                        setSelectedGroup={setSelectedGroup}
 
                         filterThresholds={filterThresholds}
                         filterResults={filterResults}
@@ -54,6 +58,7 @@ const BarChartContainer = () => {
 
                     <BarChart
                         params={params}
+                        selectedGroup={selectedGroup}
                         setInstance={setInstance}
                     />
                 </div>

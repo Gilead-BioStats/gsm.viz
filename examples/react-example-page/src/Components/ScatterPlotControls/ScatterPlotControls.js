@@ -32,7 +32,6 @@ const ScatterPlotControls = ({
 
     const [xaxisToggle, setXaxisToggle] = useState('logarithmic')
     const [groups, setGroups] = useState(uniqueGroups(results))
-    console.log(groups)
 
     // observe KRI dropdown
     const handleKriChange = (event) => {
@@ -94,7 +93,7 @@ const ScatterPlotControls = ({
          onChange={handleSiteChange}
          label="kri"
          >
-            
+          <MenuItem value=""><em>None</em></MenuItem>
         {
           groups.map((value, index) => {
             return <MenuItem key={index} value={value}>{value}</MenuItem>
