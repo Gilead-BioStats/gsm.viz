@@ -57,9 +57,11 @@ const Layout = ({setPlot}) => {
                             </Link>
                         </Menu>
                     </li>
-                    <li>
+                    {/*
+                        <li>
                         <Link to="/contact">Contact</Link>
                     </li>
+                    */}
                 </ul>
             </nav>
 

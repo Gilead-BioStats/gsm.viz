@@ -1,6 +1,8 @@
+import "./CodeChunk.css"
+
 const CodeChunk = ({ obj }) => {
     return (
-        <pre>
+        <pre className="code">
             <code>{obj}</code>
         </pre>
     );

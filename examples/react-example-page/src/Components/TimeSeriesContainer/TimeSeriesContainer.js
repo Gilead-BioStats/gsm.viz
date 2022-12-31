@@ -49,6 +49,12 @@ const TimeSeriesContainer = () => {
         setTimeSeriesType(event.target.value)
     }
 
+    let pseudocode = `rbmViz.timeSeries(document.getElementById(container), 
+    data, 
+    workflow,
+    params
+)`
+
     return (
         <div className="chart-container-ts">
             <h2 className="chart-title">Time Series</h2>
@@ -97,7 +103,7 @@ const TimeSeriesContainer = () => {
                 </div>
 
                 <div className="chart-right">
-                    <CodeChunk obj={"rbmViz.timeSeries('test')"} />
+                    <CodeChunk obj={pseudocode} />
                 </div>
             </div>
         </div>
