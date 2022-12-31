@@ -42,7 +42,7 @@ const ScatterPlotContainer = () => {
 
     return (
         <div className="chart-container">
-            <h2>Scatter Plot</h2>
+            <h2 className="chart-title">Scatter Plot</h2>
             <div className="chart-grid">
                 <div className="chart-left">
 

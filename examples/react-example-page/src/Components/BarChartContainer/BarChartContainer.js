@@ -36,7 +36,7 @@ const BarChartContainer = () => {
 
     return (
         <div className="chart-container">
-            <h2>Bar Chart</h2>
+            <h2 className="chart-title">Bar Chart</h2>
             <div className="chart-grid">
                 <div className="chart-left">
                     <BarChartControls

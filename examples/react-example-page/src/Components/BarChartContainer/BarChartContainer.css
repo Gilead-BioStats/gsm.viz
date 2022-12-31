@@ -11,3 +11,7 @@ h2 {
     grid-template-columns: 1fr 250px;
     align-items: center;
 }
+
+.chart-title {
+    margin-bottom: 60px;
+}
