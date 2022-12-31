@@ -1,6 +1,7 @@
 import BarChartContainer from '../Components/BarChartContainer/BarChartContainer';
 import ScatterPlotContainer from '../Components/ScatterPlotContainer/ScatterPlotContainer';
-import { Switch, Case } from "../utils/Switch"
+import TimeSeriesContainer from '../Components/TimeSeriesContainer/TimeSeriesContainer';
+import { Switch, Case } from "../utils/Switch";
 
 const Plots = ({plot}) => {
 
@@ -8,6 +9,7 @@ const Plots = ({plot}) => {
         <Switch test={plot}>
             <Case value="BarChart"><BarChartContainer/></Case>
             <Case value="ScatterPlot"><ScatterPlotContainer/></Case>
+            <Case value="TimeSeries"><TimeSeriesContainer/></Case>
             <Case default>Plot not included yet!</Case>
         </Switch>
     );
