@@ -14,7 +14,7 @@ export default function checkProps({
 
     for (const prop of requiredProps) {
         if (actualProps.includes(prop) === false) {
-            let message = `Missing property: [ ${prop} ] expected but not found`;
+            let message = `Missing property: [ ${prop} ] property expected but not found`;
 
             if (i !== null) message = `${message} in item ${i}`;
 
@@ -25,7 +25,7 @@ export default function checkProps({
 
             if (module !== null) message = `${message} to [ ${module}() ]`;
 
-            throw `${message}.`;
+            throw new Error(`${message}.`);
         }
     }
 }

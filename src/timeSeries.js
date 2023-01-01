@@ -1,4 +1,4 @@
-import checkInputs from './data/checkInputs';
+import checkInput from './data/checkInput';
 import configure from './timeSeries/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './timeSeries/structureData';
@@ -27,28 +27,28 @@ export default function timeSeries(
 ) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
 
-    checkInputs({
+    checkInput({
         parameter: '_data_',
         argument: _data_,
         schemaName: discrete ? 'flagCounts' : 'results',
         module: 'timeSeries',
     });
 
-    checkInputs({
+    checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
         schemaName: 'analysisMetadata',
         module: 'timeSeries',
     });
 
-    checkInputs({
+    checkInput({
         parameter: '_thresholds_',
         argument: _thresholds_,
         schemaName: 'analysisParameters',
         module: 'timeSeries',
     });
 
-    checkInputs({
+    checkInput({
         parameter: '_intervals_',
         argument: _intervals_,
         schemaName: 'resultsVertical',

@@ -1,4 +1,4 @@
-import checkInputs from './data/checkInputs';
+import checkInput from './data/checkInput';
 import configure from './scatterPlot/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './scatterPlot/structureData';
@@ -31,21 +31,21 @@ export default function scatterPlot(
     _config_ = {},
     _bounds_ = null
 ) {
-    checkInputs({
+    checkInput({
         parameter: '_data_',
         argument: _data_,
         schemaName: 'results',
         module: 'scatterPlot',
     });
 
-    checkInputs({
+    checkInput({
         parameter: '_config_',
         argument: _config_,
         schemaName: 'analysisMetadata',
         module: 'scatterPlot',
     });
 
-    checkInputs({
+    checkInput({
         parameter: '_bounds_',
         argument: _bounds_,
         schemaName: 'resultsPredicted',

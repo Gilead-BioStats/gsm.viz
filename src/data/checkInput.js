@@ -1,14 +1,42 @@
 import schemata from './schema/index';
-import getType from './checkInputs/getType';
-import checkProps from './checkInputs/checkProps';
+import getType from './checkInput/getType';
+import checkProps from './checkInput/checkProps';
 
-export default function checkInputs({
+/**
+ * Check argument to module against corresponding schema.
+ * @constructor
+ * @param {Object} input - Input to module.
+ * @param {string} input.parameter - Name of module parameter
+ * @param {Object|Array} input.argument - Argument passed to module
+ * @param {string} input.schemaName - Name of schema against which to check argument
+ * @param {string} input.module - Name of module that receives argument
+ * @param {boolean} input.verbose - Print diagnostic messages to the console
+ */
+export default function checkInput({
     parameter = null,
     argument = null,
     schemaName = null,
     module = null,
     verbose = false,
 }) {
+    if (argument === null) {
+        if (verbose)
+            console.log(
+                `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
+            );
+
+        return;
+    }
+
+    if (schemaName === null) {
+        if (verbose)
+            console.log(
+                `[ ${schemaName} ] unspecified. Terminating execution of [ checkInputs() ].`
+            );
+
+        return;
+    }
+
     const schema = schemata[schemaName];
 
     if (argument === null) {
@@ -31,7 +59,7 @@ export default function checkInputs({
     // check data type of argument
     const argumentType = getType(argument);
     if (argumentType !== schema.type) {
-        throw `Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
+        throw new Error(`Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`);
     }
 
     // check items in array
@@ -41,7 +69,7 @@ export default function checkInputs({
             const itemType = getType(item);
 
             if (itemType !== schema.items.type) {
-                throw `Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`;
+                throw new Error(`Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`);
             }
 
             // check properties in object
@@ -68,4 +96,6 @@ export default function checkInputs({
             module,
         });
     }
+
+    return argument;
 }

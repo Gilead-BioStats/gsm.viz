@@ -1,6 +1,7 @@
 import analysisMetadata from './analysisMetadata.json';
 import analysisParameters from './analysisParameters.json';
-import flagCounts from './flagCounts.json';
+import flagCountsByGroup from './flagCountsByGroup.json';
+import flagCountsByKRI from './flagCountsByKRI.json';
 import results from './results.json';
 import resultsPredicted from './resultsPredicted.json';
 import resultsVertical from './resultsVertical.json';
@@ -8,7 +9,8 @@ import resultsVertical from './resultsVertical.json';
 const schema = {
     analysisMetadata,
     analysisParameters,
-    flagCounts,
+    flagCountsByGroup,
+    flagCountsByKRI,
     results,
     resultsPredicted,
     resultsVertical,

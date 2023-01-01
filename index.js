@@ -17194,7 +17194,7 @@ var rbmViz = (() => {
         title: "KRI Type",
         description: "Type of KRI metric",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       score: {
@@ -17208,14 +17208,14 @@ var rbmViz = (() => {
         title: "KRI Score Method",
         description: "Statistical model used to evaluate KRI",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       abbreviation: {
         title: "Abbreviation",
         description: "KRI abbreviation",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       data_inputs: {
@@ -17311,10 +17311,10 @@ var rbmViz = (() => {
     }
   };
 
-  // src/data/schema/flagCounts.json
-  var flagCounts_default = {
-    title: "Standard KRI Analysis Output",
-    description: "JSON schema of input data to barChart and scatterPlot modules",
+  // src/data/schema/flagCountsByGroup.json
+  var flagCountsByGroup_default = {
+    title: "Flag Counts by Group",
+    description: "JSON schema of discrete input data to timeSeries modules",
     version: "0.14.0",
     type: "array",
     items: {
@@ -17332,6 +17332,55 @@ var rbmViz = (() => {
           description: "Unique group identifier",
           type: "string",
           required: true,
+          key: true,
+          condition: ""
+        },
+        n: {
+          title: "# of Groups/KRIs",
+          description: "Total number of assessed groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_at_risk: {
+          title: "# of Amber Groups/KRIs",
+          description: "Number of amber groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_flagged: {
+          title: "# of Red Groups/KRIs",
+          description: "Number of red groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        snapshot_date: {
+          title: "Snapshot Date",
+          description: "Date of data snapshot",
+          type: "string",
+          required: true,
+          key: true
+        }
+      }
+    }
+  };
+
+  // src/data/schema/flagCountsByKRI.json
+  var flagCountsByKRI_default = {
+    title: "Flag Counts by KRI",
+    description: "JSON schema of discrete input data to timeSeries modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
           key: true
         },
         workflowid: {
@@ -17500,13 +17549,6 @@ var rbmViz = (() => {
           required: false,
           key: false
         },
-        metric: {
-          title: "Predicted KRI Metric",
-          description: "Predicted KRI metric (numerator/denominator)",
-          type: "number",
-          required: false,
-          key: false
-        },
         gsm_analysis_date: {
           title: "Analysis Date",
           description: "Date of analysis",
@@ -17570,14 +17612,15 @@ var rbmViz = (() => {
   var schema = {
     analysisMetadata: analysisMetadata_default,
     analysisParameters: analysisParameters_default,
-    flagCounts: flagCounts_default,
+    flagCountsByGroup: flagCountsByGroup_default,
+    flagCountsByKRI: flagCountsByKRI_default,
     results: results_default,
     resultsPredicted: resultsPredicted_default,
     resultsVertical: resultsVertical_default
   };
   var schema_default = schema;
 
-  // src/data/checkInputs/getType.js
+  // src/data/checkInput/getType.js
   function getType(variable) {
     let variableType = typeof variable;
     if (variable instanceof Array)
@@ -17591,7 +17634,7 @@ var rbmViz = (() => {
     return variableType;
   }
 
-  // src/data/checkInputs/checkProps.js
+  // src/data/checkInput/checkProps.js
   function checkProps({
     obj,
     properties,
@@ -17606,26 +17649,40 @@ var rbmViz = (() => {
     );
     for (const prop of requiredProps) {
       if (actualProps.includes(prop) === false) {
-        let message = `Missing property: [ ${prop} ] expected but not found`;
+        let message = `Missing property: [ ${prop} ] property expected but not found`;
         if (i !== null)
           message = `${message} in item ${i}`;
         if (parameter !== null)
           message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
         if (module !== null)
           message = `${message} to [ ${module}() ]`;
-        throw `${message}.`;
+        throw new Error(`${message}.`);
       }
     }
   }
 
-  // src/data/checkInputs.js
-  function checkInputs({
+  // src/data/checkInput.js
+  function checkInput({
     parameter = null,
     argument = null,
     schemaName = null,
     module = null,
     verbose = false
   }) {
+    if (argument === null) {
+      if (verbose)
+        console.log(
+          `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
+        );
+      return;
+    }
+    if (schemaName === null) {
+      if (verbose)
+        console.log(
+          `[ ${schemaName} ] unspecified. Terminating execution of [ checkInputs() ].`
+        );
+      return;
+    }
     const schema2 = schema_default[schemaName];
     if (argument === null) {
       if (verbose)
@@ -17642,13 +17699,13 @@ var rbmViz = (() => {
     }
     const argumentType = getType(argument);
     if (argumentType !== schema2.type) {
-      throw `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`;
+      throw new Error(`Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`);
     }
     if (schema2.type === "array") {
       argument.forEach((item, i) => {
         const itemType = getType(item);
         if (itemType !== schema2.items.type) {
-          throw `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`;
+          throw new Error(`Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`);
         }
         if (schema2.items.type === "object") {
           const properties = schema2.items.properties;
@@ -17671,6 +17728,7 @@ var rbmViz = (() => {
         module
       });
     }
+    return argument;
   }
 
   // src/util/falsy.js
@@ -21167,19 +21225,19 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
-    checkInputs({
+    checkInput({
       parameter: "_data_",
       argument: _data_,
       schemaName: "results",
       module: "barChart"
     });
-    checkInputs({
+    checkInput({
       parameter: "_config_",
       argument: _config_,
       schemaName: "analysisMetadata",
       module: "barChart"
     });
-    checkInputs({
+    checkInput({
       parameter: "_thresholds_",
       argument: _thresholds_,
       schemaName: "analysisParameters",
@@ -21574,19 +21632,19 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
-    checkInputs({
+    checkInput({
       parameter: "_data_",
       argument: _data_,
       schemaName: "results",
       module: "scatterPlot"
     });
-    checkInputs({
+    checkInput({
       parameter: "_config_",
       argument: _config_,
       schemaName: "analysisMetadata",
       module: "scatterPlot"
     });
-    checkInputs({
+    checkInput({
       parameter: "_bounds_",
       argument: _bounds_,
       schemaName: "resultsPredicted",
@@ -22540,25 +22598,25 @@ var rbmViz = (() => {
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
-    checkInputs({
+    checkInput({
       parameter: "_data_",
       argument: _data_,
       schemaName: discrete ? "flagCounts" : "results",
       module: "timeSeries"
     });
-    checkInputs({
+    checkInput({
       parameter: "_config_",
       argument: discrete ? null : _config_,
       schemaName: "analysisMetadata",
       module: "timeSeries"
     });
-    checkInputs({
+    checkInput({
       parameter: "_thresholds_",
       argument: _thresholds_,
       schemaName: "analysisParameters",
       module: "timeSeries"
     });
-    checkInputs({
+    checkInput({
       parameter: "_intervals_",
       argument: _intervals_,
       schemaName: "resultsVertical",
