@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20558,15 +20557,22 @@ var rbmViz = (() => {
       tooltip5.setActiveElements([], { x: 0, y: 0 });
     }
     if (chart.data.config.selectedGroupIDs.length > 0) {
-      const pointIndex = chart.data.datasets[0].data.findIndex(
+      const data = chart.data.datasets[0].data;
+      const point = data.find(
         (d) => chart.data.config.selectedGroupIDs.includes(d.groupid)
       );
-      tooltip5.setActiveElements([
-        {
+      const overlappingPoints = data.filter(
+        (d) => d.x === point.x && d.y === point.y
+      );
+      const pointIndices = data.filter(
+        (d, i) => overlappingPoints.includes(d)
+      ).map(
+        (d, i) => ({
           datasetIndex: 0,
-          index: pointIndex
-        }
-      ]);
+          index: data.findIndex((d1, i2) => d1 === d)
+        })
+      );
+      tooltip5.setActiveElements(pointIndices);
     }
     chart.update();
   }
@@ -20900,7 +20906,7 @@ var rbmViz = (() => {
             const numericGroupIDs = data.every(
               (d) => /^\d+$/.test(d.raw.groupid)
             );
-            return data.sort((a, b) => {
+            const groupIDs = data.sort((a, b) => {
               const selected = config.selectedGroupIDs.includes(
                 b.raw.groupid
               ) - config.selectedGroupIDs.includes(a.raw.groupid);
@@ -20908,7 +20914,9 @@ var rbmViz = (() => {
               return selected || alphanumeric;
             }).map(
               (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
-            ).join(", ");
+            );
+            console.log(groupIDs.length);
+            return groupIDs.length <= 3 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
           }
         }
       },
@@ -21007,9 +21015,7 @@ var rbmViz = (() => {
       animation: false,
       events: ["click", "mousemove", "mouseout"],
       interaction: {
-        axis: "xy",
-        intersect: false,
-        mode: "nearest"
+        mode: "point"
       },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
