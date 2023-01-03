@@ -52,7 +52,13 @@ const Layout = ({setPlot}) => {
                                     ScatterPlot
                                 </MenuItem>
                                 <MenuItem  onClick={handleClose}>
-                                    TimeSeries
+                                    TimeSeries (Continuous)
+                                </MenuItem>
+                                <MenuItem  onClick={handleClose}>
+                                    TimeSeries (Discrete)
+                                </MenuItem>
+                                <MenuItem  onClick={handleClose}>
+                                    TimeSeries (CI)
                                 </MenuItem>
                             </Link>
                         </Menu>

@@ -1,0 +1,24 @@
+h2 {
+    text-align: center;
+}
+
+.chart-container-ts {
+    margin-top: 50px;
+    margin-left: 40px;
+}
+
+.chart-grid-ts {
+    display: grid;
+    grid-template-columns: 0.9fr 250px;
+    /* grid-template-columns: 0.5fr 2fr 0.5fr; */
+    /* grid-template-columns: 1fr 250px; */
+    align-items: center;
+}
+
+.timeseries-type {
+    /* margin-left: 40px; */
+}
+
+.chart-title {
+    margin-bottom: 60px;
+}

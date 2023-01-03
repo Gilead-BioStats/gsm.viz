@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import rbm from 'rbm-viz';
 import PropTypes from 'prop-types';
 
-const ScatterPlot = ({ data, config, parameters, setInstance}) => {
+const TSContinuous = ({ data, config, parameters, setInstance}) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -25,16 +25,16 @@ const ScatterPlot = ({ data, config, parameters, setInstance}) => {
     );
 };
 
-ScatterPlot.propTypes = {
+TSContinuous.propTypes = {
     data: PropTypes.array,
     config: PropTypes.object,
     parameters: PropTypes.array,
 };
 
-ScatterPlot.defaultProps = {
+TSContinuous.defaultProps = {
     data: [],
     config: {},
     parameters: []
 };
 
-export default ScatterPlot;
+export default TSContinuous;

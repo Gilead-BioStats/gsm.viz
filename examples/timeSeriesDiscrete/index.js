@@ -27,6 +27,9 @@ Promise.all(dataPromises)
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 
+        console.log(workflow)
+        console.log(flagCounts)
+
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),

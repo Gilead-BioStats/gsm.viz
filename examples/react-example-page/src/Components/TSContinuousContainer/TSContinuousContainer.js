@@ -1,19 +1,21 @@
-import TimeSeries from '../TimeSeries/TimeSeries'
-import TimeSeriesControls from '../TimeSeriesControls/TimeSeriesControls';
+import TSContinuous from '../TSContinuous/TSContinuous'
+import TSContinuousControls from '../TSContinuousControls/TSContinuous.Controls'
 import CodeChunk from '../CodeChunk/CodeChunk';
 import React, { useState } from 'react';
+/*
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel'
 import FormControlLabel from '@mui/material/FormControlLabel';
 import RadioGroup from '@mui/material/RadioGroup';
 import Radio from '@mui/material/Radio';
+*/
 
 // data
 import resultsAll from "../../data/results_summary_over_time"
 import workflows from '../../data/meta_workflow';
 import metaAll from '../../data/meta_param';
 
-import './TimeSeriesContainer.css';
+import './TSContinuousContainer.css';
 
 const filterResults = (kri) => {
     return resultsAll.filter((d) => /^kri/.test(d.workflowid))
@@ -32,12 +34,12 @@ const filterMeta = (kri) => {
 }
 
 
-const TimeSeriesContainer = () => {
+const TSContinuousContainer = () => {
 
     const [kri, setKri] = useState('kri0001');
     const [instance, setInstance] = useState(null);
     const [selectedGroup, setSelectedGroup] = useState('43')
-    const [timeSeriesType, setTimeSeriesType] = useState('continuous')
+    // const [timeSeriesType, setTimeSeriesType] = useState('continuous')
 
     const [params, setParams] = useState({
         results: filterResults(kri),
@@ -45,11 +47,14 @@ const TimeSeriesContainer = () => {
         parameters : filterMeta(kri)
     })
     
+    /*
     const handleTimeSeriesType = (event) => {
         setTimeSeriesType(event.target.value)
     }
+    */
 
-    let pseudocode = `rbmViz.timeSeries(document.getElementById(container), 
+    let pseudocode = `rbmViz.timeSeries(
+    document.getElementById(container), 
     data, 
     workflow,
     params
@@ -57,9 +62,11 @@ const TimeSeriesContainer = () => {
 
     return (
         <div className="chart-container-ts">
-            <h2 className="chart-title">Time Series</h2>
+            <h2 className="chart-title">Time Series (Continuous)</h2>
             <div className="chart-grid-ts">
                 
+                {
+                /*
                 <div class="timeseries-type">
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
@@ -76,10 +83,12 @@ const TimeSeriesContainer = () => {
                     </RadioGroup>
                 </FormControl>
                 </div>
+                */
+                }
 
                 <div className="chart-left">
 
-                <TimeSeriesControls
+                <TSContinuousControls
                         kri={kri}
                         instance={instance}
                         results={params.results}
@@ -94,7 +103,7 @@ const TimeSeriesContainer = () => {
                         filterWorkflow={filterWorkflow}
                     />
                     
-                    <TimeSeries
+                    <TSContinuous
                         data={params.results}
                         config={params.workflow}
                         parameters={params.parameters}
@@ -110,4 +119,4 @@ const TimeSeriesContainer = () => {
     );
 };
 
-export default TimeSeriesContainer;
+export default TSContinuousContainer;
