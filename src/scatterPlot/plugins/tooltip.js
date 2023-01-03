@@ -19,7 +19,7 @@ export default function tooltip(config) {
                         /^\d+$/.test(d.raw.groupid)
                     );
 
-                    return data
+                    const groupIDs = data
                         .sort((a, b) => {
                             const selected =
                                 config.selectedGroupIDs.includes(
@@ -39,8 +39,14 @@ export default function tooltip(config) {
                                       data.length > 1 ? 's' : ''
                                   } ${d.dataset.data[d.dataIndex].groupid}`
                                 : d.dataset.data[d.dataIndex].groupid
-                        )
-                        .join(', ');
+                        );
+                    console.log(groupIDs.length);
+
+                    return groupIDs.length <= 3
+                        ? groupIDs.join(', ')
+                        : `${groupIDs.slice(0, 3).join(', ')} and ${
+                              groupIDs.length - 3
+                          } more`;
                 }
             },
         },
