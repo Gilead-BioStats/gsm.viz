@@ -1,12 +1,12 @@
 {
   "TODO": "",
   "name": "rbm-viz",
-  "version": "0.13.4",
+  "version": "0.13.6",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
-    "build": "npm run bundle && npm run format && npm run test",
+    "build": "npm run bundle && npm run format && npm run transpile && npm run test",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
@@ -15,7 +15,8 @@
     "local": "live-server --ignore=node_modules --wait=250 .",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
     "test": "jest",
-    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom"
+    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
+    "transpile": "babel index.js > index.es5.js"
   },
   "repository": {
     "type": "git",
@@ -45,6 +46,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.20.7",
     "@babel/core": "^7.19.3",
     "@babel/preset-env": "^7.19.3",
     "babel-jest": "^29.1.2",
