@@ -66,9 +66,9 @@ export default function scatterPlot(
         animation: false,
         events: ['click', 'mousemove', 'mouseout'],
         interaction: {
-            axis: 'xy',
-            intersect: false,
-            mode: 'nearest',
+            //axis: 'xy',
+            //intersect: false,
+            mode: 'point', // point, nearest, index, dataset, x, y
         },
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
