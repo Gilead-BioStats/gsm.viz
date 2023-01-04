@@ -9,9 +9,9 @@ import resultsAll from '../../data/flag_counts_by_group';
 import './TSDiscreteContainer.css';
 
 const filterResults = () => {
-    return resultsAll.forEach((d) => {
-        d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
-    });
+    return resultsAll.map((object) => {
+        return {...object, n_at_risk_or_flagged: +object.n_at_risk + +object.n_flagged}
+    })
 };
 
 const filterWorkflow = (selectedGroup) => {
@@ -25,7 +25,7 @@ const TSDiscreteContainer = () => {
     const [selectedGroup, setSelectedGroup] = useState('173')
 
     const [params, setParams] = useState({
-        results: resultsAll,
+        results: filterResults(),
         workflow: filterWorkflow(selectedGroup),
     })
     
