@@ -14,13 +14,15 @@ describe('flag counts schema', () => {
     });
 
     test('type of flag counts schema items matches data type of flag counts items', () => {
-        const flagCount = flagCounts[Math.floor(flagCounts.length*Math.random())];
+        const flagCount =
+            flagCounts[Math.floor(flagCounts.length * Math.random())];
 
         expect(typeof flagCount).toBe(schema.items.type);
     });
 
     test('properties of flag counts schema items match properties of flag counts items', () => {
-        const flagCount = flagCounts[Math.floor(flagCounts.length*Math.random())];
+        const flagCount =
+            flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties).sort();
 

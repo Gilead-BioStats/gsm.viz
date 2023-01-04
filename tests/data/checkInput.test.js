@@ -6,17 +6,17 @@ describe('checkInput identifies required and optional properties', () => {
     test('a missing required analysis metadata property throws an error', () => {
         const analysisMetadata = data[0];
         const requiredProps = Object.keys(schema.properties).filter(
-            key => schema.properties[key].required === true
+            (key) => schema.properties[key].required === true
         );
 
         for (const prop of requiredProps) {
             const incompleteAnalysisMetadata = { ...analysisMetadata };
-            delete incompleteAnalysisMetadata[ prop ];
+            delete incompleteAnalysisMetadata[prop];
 
-            expect(
-                () => checkInput({
+            expect(() =>
+                checkInput({
                     argument: incompleteAnalysisMetadata,
-                    schemaName: 'analysisMetadata'
+                    schemaName: 'analysisMetadata',
                 })
             ).toThrow(Error);
         }
@@ -25,17 +25,17 @@ describe('checkInput identifies required and optional properties', () => {
     test('a missing optional analysis metadata property returns argument', () => {
         const analysisMetadata = data[0];
         const requiredProps = Object.keys(schema.properties).filter(
-            key => schema.properties[key].required === false
+            (key) => schema.properties[key].required === false
         );
 
         for (const prop of requiredProps) {
             const incompleteAnalysisMetadata = { ...analysisMetadata };
-            delete incompleteAnalysisMetadata[ prop ];
+            delete incompleteAnalysisMetadata[prop];
 
             expect(
                 checkInput({
                     argument: incompleteAnalysisMetadata,
-                    schemaName: 'analysisMetadata'
+                    schemaName: 'analysisMetadata',
                 })
             ).toStrictEqual(incompleteAnalysisMetadata);
         }

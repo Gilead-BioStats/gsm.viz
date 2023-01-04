@@ -59,7 +59,9 @@ export default function checkInput({
     // check data type of argument
     const argumentType = getType(argument);
     if (argumentType !== schema.type) {
-        throw new Error(`Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`);
+        throw new Error(
+            `Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
+        );
     }
 
     // check items in array
@@ -69,7 +71,9 @@ export default function checkInput({
             const itemType = getType(item);
 
             if (itemType !== schema.items.type) {
-                throw new Error(`Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`);
+                throw new Error(
+                    `Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
+                );
             }
 
             // check properties in object

@@ -17699,13 +17699,17 @@ var rbmViz = (() => {
     }
     const argumentType = getType(argument);
     if (argumentType !== schema2.type) {
-      throw new Error(`Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`);
+      throw new Error(
+        `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
+      );
     }
     if (schema2.type === "array") {
       argument.forEach((item, i) => {
         const itemType = getType(item);
         if (itemType !== schema2.items.type) {
-          throw new Error(`Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`);
+          throw new Error(
+            `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
+          );
         }
         if (schema2.items.type === "object") {
           const properties = schema2.items.properties;
@@ -21544,7 +21548,6 @@ var rbmViz = (() => {
             }).map(
               (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
             );
-            console.log(groupIDs.length);
             return groupIDs.length <= 3 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
           }
         }

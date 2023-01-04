@@ -14,13 +14,15 @@ describe('additional analysis results schema', () => {
     });
 
     test('type of additional analysis results schema items matches data type of additional analysis results items', () => {
-        const resultVertical = resultsVertical[Math.floor(resultsVertical.length*Math.random())];
+        const resultVertical =
+            resultsVertical[Math.floor(resultsVertical.length * Math.random())];
 
         expect(typeof resultVertical).toBe(schema.items.type);
     });
 
     test('properties of additional analysis results schema items match properties of additional analysis results items', () => {
-        const resultVertical = resultsVertical[Math.floor(resultsVertical.length*Math.random())];
+        const resultVertical =
+            resultsVertical[Math.floor(resultsVertical.length * Math.random())];
         const propsResult = Object.keys(resultVertical).sort();
         const propsSchema = Object.keys(schema.items.properties).sort();
 
