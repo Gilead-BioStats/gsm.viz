@@ -20574,15 +20574,18 @@ var rbmViz = (() => {
       tooltip5.setActiveElements([], { x: 0, y: 0 });
     }
     if (chart.data.config.selectedGroupIDs.length > 0) {
-      const pointIndex = chart.data.datasets[0].data.findIndex(
+      const data = chart.data.datasets[0].data;
+      const point = data.find(
         (d) => chart.data.config.selectedGroupIDs.includes(d.groupid)
       );
-      tooltip5.setActiveElements([
-        {
-          datasetIndex: 0,
-          index: pointIndex
-        }
-      ]);
+      const overlappingPoints = data.filter(
+        (d) => d.x === point.x && d.y === point.y
+      );
+      const pointIndices = data.filter((d, i) => overlappingPoints.includes(d)).map((d, i) => ({
+        datasetIndex: 0,
+        index: data.findIndex((d1, i2) => d1 === d)
+      }));
+      tooltip5.setActiveElements(pointIndices);
     }
     chart.update();
   }
@@ -20723,6 +20726,21 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
+    rollup(
+      data,
+      (group2) => {
+        group2.sort((a, b) => {
+          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
+          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+          return selected !== 0 ? selected : groupid;
+        }).forEach((d, i) => {
+          d.duplicate = i > 0;
+        });
+      },
+      (d) => d.x,
+      (d) => d.y
+    );
     return data;
   }
 
@@ -20898,15 +20916,26 @@ var rbmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
-        label: formatResultTooltipContent.bind(null, config),
+        label: (d) => {
+          const content = formatResultTooltipContent(config, d);
+          return d.raw.duplicate ? "" : content;
+        },
         title: (data) => {
           if (data.length) {
-            const groupIDs = data.map(
-              (d, i) => d.dataset.data[d.dataIndex].groupid
+            const numericGroupIDs = data.every(
+              (d) => /^\d+$/.test(d.raw.groupid)
             );
-            return data.map(
-              (d, i) => `${config.group} ${d.dataset.data[d.dataIndex].groupid}`
-            ).join(", ");
+            const groupIDs = data.sort((a, b) => {
+              const selected = config.selectedGroupIDs.includes(
+                b.raw.groupid
+              ) - config.selectedGroupIDs.includes(a.raw.groupid);
+              const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
+              return selected || alphanumeric;
+            }).map(
+              (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
+            );
+            console.log(groupIDs.length);
+            return groupIDs.length <= 3 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
           }
         }
       },
@@ -20961,8 +20990,7 @@ var rbmViz = (() => {
     chart.options.plugins = plugins3(config);
     chart.options.scales = getScales2(config);
     chart.data.config = config;
-    if (update)
-      chart.update();
+    chart.update();
     triggerTooltip(chart);
     return config;
   }
