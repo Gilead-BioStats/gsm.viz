@@ -1,5 +1,6 @@
 import mutate from './structureData/mutate';
 import scriptableOptions from './structureData/scriptableOptions';
+import colorScheme from '../util/colorScheme';
 
 /**
  * Given input data returns an array of arrays, each of which map to one or more graphical elements
@@ -17,10 +18,17 @@ export default function structureData(_data_, config) {
     const datasets = [
         {
             type: 'bar',
-            label: 'asdf',
             data,
+            label: '',
             ...scriptableOptions(),
+            minBarLength: 2,
+            grouped: false,
         },
+        ...colorScheme.map((color) => ({
+            type: 'bar',
+            label: color.description,
+            backgroundColor: color.color,
+        })),
     ];
 
     return datasets;

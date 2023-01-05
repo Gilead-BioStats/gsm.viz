@@ -2,19 +2,37 @@ import { format } from 'd3';
 
 export default function formatResultTooltipContent(config, data) {
     const datum = data.dataset.data[data.dataIndex];
+
     let content;
     // Handle continuous datum.
     if (
         ['bar', 'line', 'scatter'].includes(data.dataset.type) &&
         config.dataType !== 'discrete'
     ) {
-        content = [
-            //`${config.group}: ${datum.groupid}`,
-            `KRI Score: ${format('.1f')(datum.score)} (${config.score})`,
-            `KRI Value: ${format('.3f')(datum.metric)} (${config.metric})`,
-            `${config.numerator}: ${format(',')(datum.numerator)}`,
-            `${config.denominator}: ${format(',')(datum.denominator)}`,
-        ];
+        content =
+            config.group === 'Study'
+                ? [
+                      `${config.yLabel}: ${format('.3f')(datum.metric)}`,
+                      `Confidence Interval: (${format('.3f')(
+                          datum.lowerCI
+                      )}, ${format('.3f')(datum.upperCI)})`,
+                      `${config.numerator}: ${format(',')(datum.numerator)}`,
+                      `${config.denominator}: ${format(',')(
+                          datum.denominator
+                      )}`,
+                  ]
+                : [
+                      `KRI Score: ${format('.1f')(datum.score)} (${
+                          config.score
+                      })`,
+                      `KRI Value: ${format('.3f')(datum.metric)} (${
+                          config.metric
+                      })`,
+                      `${config.numerator}: ${format(',')(datum.numerator)}`,
+                      `${config.denominator}: ${format(',')(
+                          datum.denominator
+                      )}`,
+                  ];
     }
     // Handle distribution data.
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {
@@ -31,10 +49,10 @@ export default function formatResultTooltipContent(config, data) {
         content =
             data.dataset.purpose === 'highlight'
                 ? [
-                      `${datum.n_flagged} flagged ${config.discreteUnit}${
+                      `${datum.n_flagged} Red ${config.discreteUnit}${
                           +datum.n_flagged === 1 ? '' : 's'
                       }`,
-                      `${datum.n_at_risk} at risk ${config.discreteUnit}${
+                      `${datum.n_at_risk} Amber ${config.discreteUnit}${
                           +datum.n_at_risk === 1 ? '' : 's'
                       }`,
                   ]
@@ -51,7 +69,7 @@ export default function formatResultTooltipContent(config, data) {
                   ]
                 : data.dataset.purpose === 'aggregate' &&
                   config.discreteUnit === 'Site'
-                ? `${datum.y} ${config.yLabel}` // TODO: display both at risk and flagged
+                ? `${format('.1f')(datum.y)} ${config.yLabel}` // TODO: display both amber and red flags
                 : null;
     }
 

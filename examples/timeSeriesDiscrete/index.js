@@ -1,7 +1,8 @@
+const by = 'group'; // 'kri'
+
 const dataFiles = [
+    `../data/flag_counts_by_${by}.csv`,
     '../data/meta_workflow.csv',
-    '../data/flag_counts_by_group.csv',
-    //'../data/flag_counts_by_kri.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -14,26 +15,41 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         // data
-        const workflow = {
-            y: 'n_at_risk_or_flagged',
-            selectedGroupIDs: '173',
-        };
-
-        const flagCounts = datasets[1];
-        //.filter(
-        //    d => d.workflowid === workflowID
-        //);
-        flagCounts.forEach((d) => {
+        datasets[0].forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
+        let flagCounts = datasets[0];
+        if (by === 'kri')
+            flagCounts = flagCounts.filter((d) => d.workflowid === workflowID);
 
-        console.log(workflow)
-        console.log(flagCounts)
+        // config
+        const config =
+            by === 'kri'
+                ? datasets[1].find(
+                      (workflow) => workflow.workflowid === workflowID
+                  )
+                : {
+                      selectedGroupIDs: '173',
+                      //aggregateLabel: 'Country',
+                  };
+        config.y = 'n_at_risk_or_flagged';
+
+        console.log(workflow);
+        console.log(flagCounts);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             flagCounts,
-            workflow
+            config
         );
+
+        if (by === 'kri') kri(config, datasets, true);
+        else
+            document.getElementById('kri').parentElement.style.display = 'none';
+
+        if (by === 'group') site(datasets, true);
+        else
+            document.getElementById('groupid').parentElement.style.display =
+                'none';
     });

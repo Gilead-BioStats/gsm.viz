@@ -11,6 +11,7 @@ export default function aggregateLine(data, config, labels) {
         data,
         (group) => {
             const N = group.length;
+
             return rollup(
                 group,
                 (subgroup) => ({
@@ -54,7 +55,7 @@ export default function aggregateLine(data, config, labels) {
                     .sort((a, b) => a[config.y] - b[config.y]),
             };
         }),
-        label: 'Study Average',
+        label: '',
         pointStyle: 'circle',
         purpose: 'aggregate',
         radius: 2.5,

@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
+    '../data/status_param_over_time.csv',
     '../data/results_analysis_over_time.csv',
 ];
 
@@ -18,7 +19,7 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^qtl/.test(d.workflowid))
         );
 
-        console.log(datasets)
+        console.log(datasets);
 
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
@@ -31,9 +32,13 @@ Promise.all(dataPromises)
         const parameters = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
+        //const parameters = mergeParameters(
+        //    datasets[2].filter(d => d.workflowid === workflowID),
+        //    datasets[3].filter(d => d.workflowid === workflowID)
+        //);
 
         // additional analysis output
-        const analysis = datasets[3].filter((d) => d.workflowid === workflowID);
+        const analysis = datasets[4].filter((d) => d.workflowid === workflowID);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
@@ -43,4 +48,6 @@ Promise.all(dataPromises)
             parameters,
             analysis
         );
+
+        qtl(workflow, datasets, true);
     });

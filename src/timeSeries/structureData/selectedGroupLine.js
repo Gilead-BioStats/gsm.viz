@@ -12,23 +12,36 @@ export default function selectedGroupLine(data, config, labels) {
             return datum;
         });
 
-    const color = '#1890FF';
+    const color = 'black';
     const backgroundColor = d3color(color);
-    backgroundColor.opacity = 1;
+    backgroundColor.opacity = 0.5;
     const borderColor = d3color(color);
     borderColor.opacity = 0.25;
 
     const dataset = {
         data: lineData,
-        backgroundColor,
-        borderColor,
-        label:
-            config.selectedGroupIDs.length > 0
-                ? `${config.group} ${lineData[0]?.groupid}`
-                : '',
+        backgroundColor: function (d) {
+            const color = config.colorScheme.find((color) =>
+                color.flag.includes(+d.raw?.flag)
+            );
+            if (color !== undefined) color.rgba.opacity = 0.5;
+
+            return color !== undefined ? color.rgba + '' : backgroundColor;
+        },
+        borderColor: function (d) {
+            const color = config.colorScheme.find((color) =>
+                color.flag.includes(+d.raw?.flag)
+            );
+            if (color !== undefined) color.rgba.opacity = 1;
+
+            return color !== undefined
+                ? 'black' //color.rgba + ''
+                : borderColor;
+        },
+        label: '',
         pointStyle: 'circle',
         purpose: 'highlight',
-        radius: 2.5,
+        radius: 3,
         type: 'line',
     };
 

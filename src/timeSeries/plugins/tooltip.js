@@ -6,7 +6,6 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            //displayColors: (asdf) => console.log(asdf),
             label: formatResultTooltipContent.bind(null, config),
             labelPointStyle: (data) => {
                 return {
@@ -31,12 +30,17 @@ export default function tooltip(config) {
                 }
             },
         },
+        displayColors: config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 
-            return !(
-                config.selectedGroupIDs.includes(datum.groupid) &&
-                data.dataset.type === 'scatter'
+            // Avoid duplicate display of tooltip.
+            return (
+                typeof datum === 'object' &&
+                !(
+                    config.selectedGroupIDs.includes(datum.groupid) &&
+                    data.dataset.type === 'scatter'
+                )
             );
         },
         ...tooltipAesthetics,

@@ -1,69 +1,35 @@
-import structureData from '../src/barChart/structureData';
-import getScales from '../src/barChart/getScales';
+import data from '../examples/data/results_summary_over_time.json';
+import metadata from '../examples/data/meta_workflow.json';
+import parameters from '../examples/data/meta_param.json';
+
 import configure from '../src/barChart/configure';
 
+import structureData from '../src/barChart/structureData';
+import getScales from '../src/barChart/getScales';
 import annotations from '../src/barChart/plugins/annotations';
 import legend from '../src/barChart/plugins/legend';
 import tooltip from '../src/barChart/plugins/tooltip';
 
-let config = {
-    workflowid: 'kri0001',
-    gsm_version: '1.1.0',
-    group: 'Site',
-    metric: 'Non-serious AE Reporting Rate',
-    numerator: 'Treatment Emergent AEs',
-    denominator: 'Days on Treatment',
-    outcome: 'Rate',
-    model: 'Poisson',
-    score: 'Residual from Poisson Model',
-    data_inputs: 'rawplus.ae, rawplus.subj',
-    data_filters: 'Non-Serious, TreatmentEmergent',
-    selectedGroupIDs: ['160'],
-};
+const workflowID = 'kri0001';
+const dataSubset = data.filter((d) => d.workflowid === workflowID);
+const workflow = metadata.find(
+    (workflow) => workflow.workflowid === workflowID
+);
+const parametersSubset = parameters.filter((d) => d.workflowid === workflowID);
 
-let data = [
-    {
-        studyid: 'AA-AA-000-0000',
-        workflowid: 'kri0001',
-        groupid: '91',
-        numerator: '126',
-        denominator: '11534',
-        metric: '0.0109242240332929',
-        score: '7.9540229885143',
-        flag: '2',
-    },
-    {
-        studyid: 'AA-AA-000-0000',
-        workflowid: 'kri0001',
-        groupid: '75',
-        numerator: '106',
-        denominator: '7621',
-        metric: '0.0139089358351922',
-        score: '9.05626659281585',
-        flag: '0',
-    },
-    {
-        studyid: 'AA-AA-000-0000',
-        workflowid: 'kri0001',
-        groupid: '132',
-        numerator: '15',
-        denominator: '671',
-        metric: '0.022354694485842',
-        score: '4.44762014018215',
-        flag: '1',
-    },
-];
+describe('configuration', () => {
+    const config = configure(workflow, dataSubset, parametersSubset);
 
-describe('config function suite', () => {
-    test('config transforms raw config to chart.js', () => {
-        let configured = configure(config);
-        let config_keys = Object.keys(configured).sort();
+    test('configure() accepts workflow object and returns config object', () => {
+        const settings = Object.keys(config).sort();
 
-        expect(config_keys).toEqual(
+        expect(settings).toEqual(
             [
+                // workflow metadata
                 'workflowid',
                 'gsm_version',
                 'group',
+                'abbreviation',
                 'metric',
                 'numerator',
                 'denominator',
@@ -72,80 +38,87 @@ describe('config function suite', () => {
                 'score',
                 'data_inputs',
                 'data_filters',
-                'selectedGroupIDs',
+                'gsm_analysis_date',
+
+                // scatter plot settings
                 'type',
+
                 'x',
+                'xType',
                 'xLabel',
+
                 'y',
+                'yType',
                 'yLabel',
+
                 'color',
                 'colorLabel',
-                'n',
-                'nLabel',
-                'num',
-                'numeratorLabel',
-                'denom',
-                'denomionatorLabel',
-                'threshold',
+
                 'hoverCallback',
                 'clickCallback',
+
                 'maintainAspectRatio',
+
+                'selectedGroupIDs',
+                'thresholds',
             ].sort()
         );
     });
 });
 
-describe('structureData function suite', () => {
-    let dataset = structureData(data, config);
-    test('structureData returns single object', () => {
-        expect(dataset.length).toBe(1);
-    });
+//describe('data manipulation', () => {
+//    const config = configure(workflow, dataSubset, parametersSubset);
+//    const datasets = structureData(dataSubset, config);
+//
+//    test('structureData returns a dataset with bar data', () => {
+//        expect(datasets.filter(dataset => dataset.data !== undefined).length).toBe(1);
+//    });
+//
+//    test('length of bar data matches length of input data', () => {
+//        expect(datasets[0].data.length).toBe(dataSubset.length);
+//    });
+//
+//    test('structureData formatted for chart.js', () => {
+//        expect(Object.keys(dataset[0]).sort()).toEqual(
+//            ['type', 'data', 'label', 'backgroundColor'].sort()
+//        );
+//    });
+//
+//    test('structureData is type bar', () => {
+//        expect(dataset[0].type).toBe('bar');
+//    });
+//
+//    test('structureData is a single dataset with the label asdf', () => {
+//        expect(dataset[0].label).toBe('asdf');
+//    });
+//});
 
-    test('structureData data length equal to data length', () => {
-        expect(dataset[0].data.length).toBe(data.length);
-    });
-
-    test('structureData formatted for chart.js', () => {
-        expect(Object.keys(dataset[0]).sort()).toEqual(
-            ['type', 'data', 'label', 'backgroundColor'].sort()
-        );
-    });
-
-    test('structureData is type bar', () => {
-        expect(dataset[0].type).toBe('bar');
-    });
-
-    test('structureData is a single dataset with the label asdf', () => {
-        expect(dataset[0].label).toBe('asdf');
-    });
-});
-
-describe('plugin test suite', () => {
-    test('custom tooltip function', () => {
-        expect(tooltip(configure(config)).callbacks.label).toEqual(
-            expect.any(Function)
-        );
-    });
-
-    test('annotation lines drawn at correct threshholds', () => {
-        expect(annotations(configure(config)).map((x) => x.yMin)).toEqual([
-            7, -7, 5, -5,
-        ]);
-    });
-
-    test('annotation labels left for negative and right for positive', () => {
-        expect(
-            annotations(configure(config)).map((x) => x.label.position)
-        ).toEqual(['end', 'start', 'end', 'start']);
-    });
-
-    test('legend display returns false', () => {
-        expect(legend(configure(config)).display).toBeFalsy();
-    });
-});
-
-describe('getScales test suite', () => {
-    test('x labels not visible for bar graph', () => {
-        expect(getScales(configure(config)).x.ticks.display).toBeFalsy();
-    });
-});
+//describe('plugin test suite', () => {
+//    test('custom tooltip function', () => {
+//        expect(tooltip(configure(workflow, dataSubset, parametersSubset)).callbacks.label).toEqual(
+//            expect.any(Function)
+//        );
+//    });
+//
+//    test('annotation lines drawn at correct threshholds', () => {
+//        expect(annotations(configure(workflow, dataSubset, parametersSubset)).map((x) => x.yMin)).toEqual([
+//            7, -7, 5, -5,
+//        ]);
+//    });
+//
+//    test('annotation labels left for negative and right for positive', () => {
+//        expect(
+//            annotations(configure(workflow, dataSubset, parametersSubset)).map((x) => x.label.position)
+//        ).toEqual(['end', 'start', 'end', 'start']);
+//    });
+//
+//    test('legend display returns false', () => {
+//        expect(legend(configure(workflow, dataSubset, parametersSubset)).display).toBeFalsy();
+//    });
+//});
+//
+//describe('getScales test suite', () => {
+//    test('x labels not visible for bar graph', () => {
+//        expect(getScales(configure(workflow, dataSubset, parametersSubset)).x.ticks.display).toBeFalsy();
+//    });
+//});

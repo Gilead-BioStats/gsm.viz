@@ -9,16 +9,20 @@ const generateKey = () => {
 */
 
 const BarChart = ({ params, selectedGroup, setInstance }) => {
-
     const container = useRef(null);
-    let [data, config, thresholds] = Object.values(params)
+    let [data, config, thresholds] = Object.values(params);
 
     useEffect(() => {
         if (container.current) {
-            const inst = rbm.barChart(container.current, data, config, thresholds)
-            inst.data.config.selectedGroupIDs = selectedGroup
-            inst.update()
-            setInstance(inst)
+            const inst = rbm.barChart(
+                container.current,
+                data,
+                config,
+                thresholds
+            );
+            inst.data.config.selectedGroupIDs = selectedGroup;
+            inst.update();
+            setInstance(inst);
         }
     }, [data, config, thresholds, setInstance, selectedGroup]);
 

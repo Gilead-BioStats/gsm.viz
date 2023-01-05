@@ -1,9 +1,10 @@
-import { format } from 'd3';
+import { format, timeFormat, timeParse } from 'd3';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
-    tooltipAesthetics.padding = 5;
+    tooltipAesthetics.padding = 4;
+    tooltipAesthetics.caretSize = 0;
 
     return {
         callbacks: {
@@ -14,11 +15,20 @@ export default function tooltip(config) {
                         : config.y === 'metric'
                         ? '.3f'
                         : ',d';
-                return `${data.label}: ${format(fmt)(data.parsed.y)}`;
+
+                return config.dataType === 'continuous'
+                    ? `${data.label}: ${format(fmt)(data.parsed.y)}`
+                    : //[
+                      `${data.label}: ${format(fmt)(
+                          data.raw.n_flagged
+                      )} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
+                //`${data.label}: ${format(fmt)(data.raw.n_at_risk)} amber`,
+                //];
             },
-            labelPointStyle: () => ({ pointStyle: 'circle' }),
             title: () => null,
+            footer: () => null,
         },
+        displayColors: config.dataType === 'continuous',
         ...tooltipAesthetics,
     };
 }

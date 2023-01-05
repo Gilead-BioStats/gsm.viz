@@ -4,20 +4,26 @@ const colorScheme = [
     {
         color: '#52C41A',
         order: 0,
-        description: 'Within Thresholds',
+        description: 'Green Flag',
         flag: [0],
     },
     {
-        color: '#FADB14',
+        color: '#FFBF00',
         order: 1,
-        description: 'At Risk',
+        description: 'Amber Flag',
         flag: [-1, 1],
     },
     {
         color: '#FF4D4F',
         order: 2,
-        description: 'Flagged',
+        description: 'Red Flag',
         flag: [-2, 2],
+    },
+    {
+        color: '#aaaaaa',
+        order: 3,
+        description: 'No Flag',
+        flag: [undefined, null, NaN, ''],
     },
 ];
 

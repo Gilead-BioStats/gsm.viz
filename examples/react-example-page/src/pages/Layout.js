@@ -3,8 +3,7 @@ import React, { useState } from 'react';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const Layout = ({setPlot}) => {
-
+const Layout = ({ setPlot }) => {
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
 
@@ -13,7 +12,7 @@ const Layout = ({setPlot}) => {
     };
 
     const handleClose = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setPlot(event.currentTarget.innerText)
+        setPlot(event.currentTarget.innerText);
         setAnchorEl(null);
     };
 
@@ -44,20 +43,26 @@ const Layout = ({setPlot}) => {
                                 'aria-labelledby': 'basic-button',
                             }}
                         >
-                            <Link to="/plots" style={{ textDecoration: 'none', color: 'inherit' }} >
-                                <MenuItem  onClick={handleClose}>
+                            <Link
+                                to="/plots"
+                                style={{
+                                    textDecoration: 'none',
+                                    color: 'inherit',
+                                }}
+                            >
+                                <MenuItem onClick={handleClose}>
                                     BarChart
                                 </MenuItem>
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem onClick={handleClose}>
                                     ScatterPlot
                                 </MenuItem>
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem onClick={handleClose}>
                                     TimeSeries (Continuous)
                                 </MenuItem>
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem onClick={handleClose}>
                                     TimeSeries (Discrete)
                                 </MenuItem>
-                                <MenuItem  onClick={handleClose}>
+                                <MenuItem onClick={handleClose}>
                                     TimeSeries (CI)
                                 </MenuItem>
                             </Link>

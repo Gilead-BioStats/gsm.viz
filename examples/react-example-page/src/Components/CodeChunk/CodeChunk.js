@@ -1,4 +1,4 @@
-import "./CodeChunk.css"
+import './CodeChunk.css';
 
 const CodeChunk = ({ obj }) => {
     return (

@@ -14,7 +14,7 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
-        const groupID = '75';
+        const groupID = '28';
         const results = datasets[0]
             .filter((d) => d.workflowid === workflowID && d.groupid === groupID)
             .slice(35, 45);
@@ -26,6 +26,8 @@ Promise.all(dataPromises)
         const flagCountsByGroup = datasets[3].filter(
             (d) => d.groupid === groupID
         );
+
+        console.log(flagCountsByKRI)
 
         rbmViz.default.sparkline(
             document.getElementById('score'),
@@ -46,7 +48,7 @@ Promise.all(dataPromises)
             document.getElementById('flag-counts-by-kri'),
             flagCountsByKRI,
             {
-                ...workflow,
+                nSnapshots: workflow.nSnapshots,
                 y: 'n_flagged',
             }
         );
@@ -55,7 +57,7 @@ Promise.all(dataPromises)
             document.getElementById('flag-counts-by-group'),
             flagCountsByGroup,
             {
-                ...workflow,
+                nSnapshots: workflow.nSnapshots,
                 y: 'n_flagged',
             }
         );

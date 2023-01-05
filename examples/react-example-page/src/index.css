@@ -19,6 +19,7 @@ nav {
     top: 0;
     z-index: 20;
     box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%);
+    background: white;
 }
 
 nav ul {
@@ -153,4 +154,26 @@ nav li a:hover {
     padding: 14px 16px;
     text-decoration: none;
     border-bottom: 1px solid black;
+}
+
+
+.markdown {
+    width: max-content;
+    margin: 0 auto;
+    padding: 50px;
+    line-height: 1.8rem;
+}
+
+.markdown h2 {
+    text-align: left;
+    padding-top: 50px;
+    margin-bottom: 1.8rem;
+}
+
+.markdown pre,
+.markdown code {
+    background: #f8f8f8;
+    padding: 8px 12px;
+    margin: 1.8rem 0px;
+    border-radius: 5px;
 }

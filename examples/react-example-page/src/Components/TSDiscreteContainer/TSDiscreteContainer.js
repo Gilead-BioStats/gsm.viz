@@ -1,5 +1,5 @@
-import TSDiscrete from '../TSDiscrete/TSDiscrete'
-import TSDiscreteControls from '../TSDiscreteControls/TSDiscreteControls'
+import TSDiscrete from '../TSDiscrete/TSDiscrete';
+import TSDiscreteControls from '../TSDiscreteControls/TSDiscreteControls';
 import CodeChunk from '../CodeChunk/CodeChunk';
 import React, { useState } from 'react';
 
@@ -10,26 +10,27 @@ import './TSDiscreteContainer.css';
 
 const filterResults = () => {
     return resultsAll.map((object) => {
-        return {...object, n_at_risk_or_flagged: +object.n_at_risk + +object.n_flagged}
-    })
+        return {
+            ...object,
+            n_at_risk_or_flagged: +object.n_at_risk + +object.n_flagged,
+        };
+    });
 };
 
 const filterWorkflow = (selectedGroup) => {
-    return {y: 'n_at_risk_or_flagged', selectedGroupIDs: selectedGroup}
-}
-
+    return { y: 'n_at_risk_or_flagged', selectedGroupIDs: selectedGroup };
+};
 
 const TSDiscreteContainer = () => {
-
     const [instance, setInstance] = useState(null);
-    const [selectedGroup, setSelectedGroup] = useState('173')
+    const [selectedGroup, setSelectedGroup] = useState('173');
 
     const [params, setParams] = useState({
         results: filterResults(),
         workflow: filterWorkflow(selectedGroup),
-    })
-    
-    console.log(params.results)
+    });
+
+    console.log(params.results);
 
     let pseudocode = `rbmViz.timeSeries(
     document.getElementById(container), 
@@ -38,28 +39,23 @@ const TSDiscreteContainer = () => {
         y: 'n_at_risk_or_flagged', 
         selectedGroupIDs: selectedGroup
     }
-)`
+)`;
 
     return (
         <div className="chart-container-ts">
             <h2 className="chart-title">Time Series (Discrete)</h2>
             <div className="chart-grid-ts">
-                
-
                 <div className="chart-left">
-
-                <TSDiscreteControls
+                    <TSDiscreteControls
                         instance={instance}
                         results={params.results}
                         selectedGroup={selectedGroup}
-
                         setParams={setParams}
                         setSelectedGroup={setSelectedGroup}
-
                         filterResults={filterResults}
                         filterWorkflow={filterWorkflow}
                     />
-                    
+
                     <TSDiscrete
                         data={params.results}
                         config={params.workflow}

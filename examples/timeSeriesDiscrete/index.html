@@ -9,9 +9,24 @@
         <script src="https://unpkg.com/chart.js@3"></script>
         <script src="https://unpkg.com/@sgratzl/chartjs-chart-boxplot@3"></script>
         <script src="../../index.js"></script>
+        <script src="../controls/getChart.js"></script>
+        <script src="./controls/kri.js"></script>
+        <script src="./controls/site.js"></script>
     </head>
 
     <body>
+        <div id="controls">
+            <fieldset>
+                <legend>KRI</legend>
+                <select id="kri"></select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Highlighted Site</legend>
+                <select id="groupid"></select>
+            </fieldset>
+        </div>
+
         <div id="container">
             <canvas id="canvas"></canvas>
         </div>

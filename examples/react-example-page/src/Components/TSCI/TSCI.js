@@ -2,17 +2,22 @@ import React, { useRef, useEffect } from 'react';
 import rbm from 'rbm-viz';
 import PropTypes from 'prop-types';
 
-const TSCI = ({ data, config, parameters, analysis, setInstance}) => {
+const TSCI = ({ data, config, parameters, analysis, setInstance }) => {
     const container = useRef(null);
 
     useEffect(() => {
         if (container.current) {
-            
-            const inst = rbm.timeSeries(container.current, data, config, parameters, analysis)
+            const inst = rbm.timeSeries(
+                container.current,
+                data,
+                config,
+                parameters,
+                analysis
+            );
 
             // TODO - Paritosh said we might not need this, looks like we do? Why?
-            inst.update()
-            setInstance(inst)
+            inst.update();
+            setInstance(inst);
         }
     }, [data, config, parameters, analysis, setInstance]);
 
@@ -36,7 +41,7 @@ TSCI.defaultProps = {
     data: [],
     config: {},
     parameters: [],
-    analysis: []
+    analysis: [],
 };
 
 export default TSCI;

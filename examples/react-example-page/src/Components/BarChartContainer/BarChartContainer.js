@@ -15,8 +15,8 @@ const filterResults = (kri) => {
 };
 
 const filterWorkflow = (kri) => {
-    return workflows.find(d => d.workflowid === kri);
-}
+    return workflows.find((d) => d.workflowid === kri);
+};
 
 const filterThresholds = (kri) => {
     return parametersAll.filter((d) => d.workflowid === kri);
@@ -28,11 +28,18 @@ const BarChartContainer = () => {
     const [params, setParams] = useState({
         results: filterResults(kri),
         workflow: filterWorkflow(kri),
-        thresholds: filterThresholds(kri)
-    })
+        thresholds: filterThresholds(kri),
+    });
 
     const [instance, setInstance] = useState(null);
-    const [selectedGroup, setSelectedGroup] = useState('')
+    const [selectedGroup, setSelectedGroup] = useState('');
+
+    let pseudocode = `rbmViz.scatterPlot(
+        document.getElementById(container), 
+        data, 
+        workflow,
+        threshold
+    )`;
 
     return (
         <div className="chart-container">
@@ -40,19 +47,16 @@ const BarChartContainer = () => {
             <div className="chart-grid">
                 <div className="chart-left">
                     <BarChartControls
+                        allKRIs ={workflows.filter((d) => /^kri/.test(d.workflowid))}
                         kri={kri}
                         setKri={setKri}
-
                         setParams={setParams}
                         results={params.results}
-
                         selectedGroup={selectedGroup}
                         setSelectedGroup={setSelectedGroup}
-
                         filterThresholds={filterThresholds}
                         filterResults={filterResults}
                         filterWorkflow={filterWorkflow}
-
                         instance={instance}
                     />
 
@@ -64,7 +68,7 @@ const BarChartContainer = () => {
                 </div>
 
                 <div className="chart-right">
-                    <CodeChunk obj={"rbmViz.BarChart('test')"} />
+                    <CodeChunk obj={pseudocode} />
                 </div>
             </div>
         </div>

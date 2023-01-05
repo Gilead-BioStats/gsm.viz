@@ -10,11 +10,17 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
+    //defaults.dataType = this.dataType !== undefined
+    //    ? this.dataType
+    //    : /flag|risk/.test(_config_.y)
+    //    ? 'discrete'
+    //    : 'continuous';
 
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
             ? 'KRI'
             : 'Site';
+    else defaults.discreteUnit = null;
 
     defaults.type =
         defaults.dataType === 'discrete'
@@ -22,6 +28,14 @@ export default function configure(_config_, _data_, _thresholds_) {
             : /^qtl/.test(_config_?.workflowid)
             ? 'identity'
             : 'boxplot';
+    defaults.tooltipType = 'scatter';
+    //defaults.type = this.type !== undefined
+    //    ? this.type
+    //    : defaults.dataType === 'discrete'
+    //    ? 'aggregate'
+    //    : /^qtl/.test(_config_?.workflowid)
+    //    ? 'identity'
+    //    : 'boxplot';
 
     // horizontal
     defaults.x = 'snapshot_date';
@@ -44,14 +58,23 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // miscellaneous
     defaults.group = 'Site';
+    defaults.aggregateLabel = 'Study';
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
-    defaults.displayBoxplots = true;
-    defaults.displayViolins = false;
-    defaults.displayAtRisk = true;
-    defaults.displayFlagged = true;
-    defaults.displayThresholds = true;
-    defaults.displayTrendLine = true;
+    //defaults.displayBoxplots = true;
+    //defaults.displayViolins = false;
+    //defaults.displayAmberFlags = true;
+    //defaults.displayRedFlags = true;
+    //defaults.displayThresholds = true;
+    //defaults.displayTrendLine = true;
+
+    _config_.variableThresholds = Array.isArray(_thresholds_)
+        ? _thresholds_.some(
+              (threshold) =>
+                  threshold.gsm_analysis_date !==
+                  _thresholds_[0].gsm_analysis_date
+          )
+        : false;
 
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
@@ -68,11 +91,11 @@ export default function configure(_config_, _data_, _thresholds_) {
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
-            ? `At Risk or Flagged ${config.discreteUnit}s`
+            ? `Red or Amber ${config.discreteUnit}s`
             : /flag/.test(config.y)
-            ? `Flagged ${config.discreteUnit}s`
+            ? `Red ${config.discreteUnit}s`
             : /risk/.test(config.y)
-            ? `At Risk ${config.discreteUnit}s`
+            ? `Amber ${config.discreteUnit}s`
             : ''
     );
 

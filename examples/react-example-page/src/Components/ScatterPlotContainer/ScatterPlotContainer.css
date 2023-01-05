@@ -4,11 +4,12 @@ h2 {
 
 .chart-container {
     margin-top: 50px;
+    margin-left: 40px;
 }
 
 .chart-grid {
     display: grid;
-    grid-template-columns: 1fr 250px;
+    grid-template-columns: 0.9fr 250px;
     align-items: center;
 }
 

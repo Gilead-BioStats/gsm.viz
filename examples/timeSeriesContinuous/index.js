@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
+    '../data/status_param_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -13,7 +14,7 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        console.log(datasets)
+        console.log(datasets);
 
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
@@ -22,18 +23,22 @@ Promise.all(dataPromises)
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
-        console.log(results)
+        console.log(results);
 
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.selectedGroupIDs = '43';
+        workflow.selectedGroupIDs = '190';
         workflow.type = 'boxplot'; //'violin';
 
-        console.log(workflow)
+        console.log(workflow);
 
         // customization data
-        const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+        //const parameters = datasets[2].filter(
+        //    (d) => d.workflowid === workflow.workflowid
+        //);
+        const parameters = mergeParameters(
+            datasets[2].filter((d) => d.workflowid === workflowID),
+            datasets[3].filter((d) => d.workflowid === workflowID)
         );
 
         // visualization
@@ -44,5 +49,6 @@ Promise.all(dataPromises)
             parameters
         );
 
+        kri(workflow, datasets, true);
         site(datasets, true);
     });

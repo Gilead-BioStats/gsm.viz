@@ -1,5 +1,5 @@
-import TSContinuous from '../TSContinuous/TSContinuous'
-import TSContinuousControls from '../TSContinuousControls/TSContinuous.Controls'
+import TSContinuous from '../TSContinuous/TSContinuous';
+import TSContinuousControls from '../TSContinuousControls/TSContinuous.Controls';
 import CodeChunk from '../CodeChunk/CodeChunk';
 import React, { useState } from 'react';
 /*
@@ -11,42 +11,46 @@ import Radio from '@mui/material/Radio';
 */
 
 // data
-import resultsAll from "../../data/results_summary_over_time"
+import resultsAll from '../../data/results_summary_over_time';
 import workflows from '../../data/meta_workflow';
 import metaAll from '../../data/meta_param';
 
 import './TSContinuousContainer.css';
 
 const filterResults = (kri) => {
-    return resultsAll.filter((d) => /^kri/.test(d.workflowid))
-                     .filter((d) => d.workflowid === kri);
+    return resultsAll
+        .filter((d) => /^kri/.test(d.workflowid))
+        .filter((d) => d.workflowid === kri);
 };
 
 const filterWorkflow = (kri, selectedGroup) => {
-    let workflow = workflows.filter((d) => /^kri/.test(d.workflowid))
-                            .find(d => d.workflowid === kri)
-    return {...workflow, ...{type: 'boxplot', selectedGroupIDs: selectedGroup}}
-}
+    let workflow = workflows
+        .filter((d) => /^kri/.test(d.workflowid))
+        .find((d) => d.workflowid === kri);
+    return {
+        ...workflow,
+        ...{ type: 'boxplot', selectedGroupIDs: selectedGroup },
+    };
+};
 
 const filterMeta = (kri) => {
-    return metaAll.filter((d) => /^kri/.test(d.workflowid))
-                  .filter((d) => d.workflowid === kri)
-}
-
+    return metaAll
+        .filter((d) => /^kri/.test(d.workflowid))
+        .filter((d) => d.workflowid === kri);
+};
 
 const TSContinuousContainer = () => {
-
     const [kri, setKri] = useState('kri0001');
     const [instance, setInstance] = useState(null);
-    const [selectedGroup, setSelectedGroup] = useState('43')
+    const [selectedGroup, setSelectedGroup] = useState('43');
     // const [timeSeriesType, setTimeSeriesType] = useState('continuous')
 
     const [params, setParams] = useState({
         results: filterResults(kri),
         workflow: filterWorkflow(kri, selectedGroup),
-        parameters : filterMeta(kri)
-    })
-    
+        parameters: filterMeta(kri),
+    });
+
     /*
     const handleTimeSeriesType = (event) => {
         setTimeSeriesType(event.target.value)
@@ -58,15 +62,13 @@ const TSContinuousContainer = () => {
     data, 
     workflow,
     params
-)`
+)`;
 
     return (
         <div className="chart-container-ts">
             <h2 className="chart-title">Time Series (Continuous)</h2>
             <div className="chart-grid-ts">
-                
-                {
-                /*
+                {/*
                 <div class="timeseries-type">
                 <FormControl>
                     <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
@@ -83,26 +85,23 @@ const TSContinuousContainer = () => {
                     </RadioGroup>
                 </FormControl>
                 </div>
-                */
-                }
+                */}
 
                 <div className="chart-left">
-
-                <TSContinuousControls
+                    <TSContinuousControls
+                        allKris={workflows.filter((d) => /^kri/.test(d.workflowid))}
                         kri={kri}
                         instance={instance}
                         results={params.results}
                         selectedGroup={selectedGroup}
-
                         setKri={setKri}
                         setParams={setParams}
                         setSelectedGroup={setSelectedGroup}
-
                         filterResults={filterResults}
                         filterMeta={filterMeta}
                         filterWorkflow={filterWorkflow}
                     />
-                    
+
                     <TSContinuous
                         data={params.results}
                         config={params.workflow}
