@@ -20019,6 +20019,10 @@ var rbmViz = (() => {
     return node.__zoom;
   }
 
+  // src/util/falsy.js
+  var falsy = [void 0, null, NaN, "", "NA"];
+  var falsy_default = falsy;
+
   // src/util/colorScheme.js
   var colorScheme = [
     {
@@ -20043,7 +20047,7 @@ var rbmViz = (() => {
       color: "#aaaaaa",
       order: 3,
       description: "No Flag",
-      flag: [void 0, null, NaN, ""]
+      flag: falsy_default
     }
   ];
   colorScheme.forEach((color3) => {
@@ -20240,8 +20244,8 @@ var rbmViz = (() => {
       const datum2 = {
         ...d,
         x: d[config.x],
-        y: +d[config.y],
-        stratum: +d[config.color]
+        y: falsy_default.includes(d[config.y]) ? 0 : +d[config.y],
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => b.y - a.y);
@@ -20255,12 +20259,9 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "bar") {
-      const threshold = colorScheme_default.find(
-        (x) => x.flag.includes(datum2.stratum)
-      );
-      const color3 = threshold.rgba;
+      const color3 = colorScheme_default[datum2.stratum];
       color3.opacity = config.selectedGroupIDs.includes(datum2.groupid) | config.selectedGroupIDs.length === 0 ? 1 : 0.25;
-      return color3 + "";
+      return color3.rgba + "";
     }
   }
 
@@ -20648,7 +20649,6 @@ var rbmViz = (() => {
         _thresholds_,
         _data_
       },
-      metadata: "test",
       options,
       plugins: [plugin]
     });
@@ -20911,7 +20911,6 @@ var rbmViz = (() => {
             }).map(
               (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
             );
-            console.log(groupIDs.length);
             return groupIDs.length <= 3 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
           }
         }
@@ -21070,7 +21069,7 @@ var rbmViz = (() => {
       const datum2 = {
         ...d,
         y: +d[config.y],
-        stratum: Math.abs(+d[config.color])
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
@@ -21111,9 +21110,11 @@ var rbmViz = (() => {
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0].stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
-      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
-    );
+    const pointBackgroundColor = data.map((d, i) => {
+      return config.dataType === "continuous" ? config.colorScheme[d.stratum].color : config.y === "n_at_risk" ? config.colorScheme.find(
+        (color3) => /amber/i.test(color3.description)
+      ).color : config.y === "n_flagged" ? config.colorScheme.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? "#FD9432" : "#1890FF";
+    });
     const datasets = [
       {
         type: "line",
@@ -21124,7 +21125,8 @@ var rbmViz = (() => {
           return datum2;
         }),
         pointBackgroundColor,
-        ...scriptableOptions3()
+        ...scriptableOptions3(),
+        spanGaps: true
       }
     ];
     datasets.labels = labels;
@@ -21164,8 +21166,8 @@ var rbmViz = (() => {
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
-    const datum2 = data.slice(-1)[0];
-    const content = [format(format2)(datum2.y)];
+    const datum2 = data.filter((d) => falsy_default.includes(d.y) === false).slice(-1)[0];
+    const content = [format(format2)(datum2?.y)];
     const value = {
       content,
       font: {
@@ -21465,7 +21467,7 @@ var rbmViz = (() => {
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 0.5;
     const borderColor4 = color2(color3);
-    borderColor4.opacity = 0.25;
+    borderColor4.opacity = 0.5;
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
@@ -21477,17 +21479,13 @@ var rbmViz = (() => {
         return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
       },
       borderColor: function(d) {
-        const color4 = config.colorScheme.find(
-          (color5) => color5.flag.includes(+d.raw?.flag)
-        );
-        if (color4 !== void 0)
-          color4.rgba.opacity = 1;
-        return color4 !== void 0 ? "black" : borderColor4;
+        return d.type === "data" ? "black" : borderColor4;
       },
       label: "",
       pointStyle: "circle",
       purpose: "highlight",
       radius: 3,
+      spanGaps: true,
       type: "line"
     };
     return dataset;
@@ -21619,10 +21617,10 @@ var rbmViz = (() => {
       },
       (d) => d[config.x]
     );
-    const color3 = "#666666";
+    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
-    const borderColor4 = color2(color3);
+    const borderColor4 = color2("#aaaaaa");
     borderColor4.opacity = 0.25;
     const dataset = {
       backgroundColor: backgroundColor4,
@@ -21707,10 +21705,11 @@ var rbmViz = (() => {
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
           ...selectedGroupLine(data, config, labels),
-          backgroundColor: "#1890FF",
-          borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
-          }
+          backgroundColor: /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? colorScheme_default.find(
+            (color3) => color3.flag.includes(1)
+          ).color : /flagged/.test(config.y) ? colorScheme_default.find(
+            (color3) => color3.flag.includes(2)
+          ).color : "#aaaaaa"
         } : null,
         {
           type: "scatter",
@@ -21718,10 +21717,8 @@ var rbmViz = (() => {
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
-          backgroundColor: "#1890FF",
-          borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
-          },
+          backgroundColor: "rgba(0,0,0,.5)",
+          borderColor: "rgba(0,0,0,.5)",
           borderWidth: 3
         },
         aggregateLine(data, config, labels),
@@ -21856,7 +21853,7 @@ var rbmViz = (() => {
       displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
       },
       ...tooltipAesthetics
     };
@@ -21936,13 +21933,16 @@ var rbmViz = (() => {
         ...rollup(
           thresholds2,
           (group2) => ({
+            adjustScaleRange: false,
             borderColor: group2[0].color.color,
             borderDash: [2],
             borderWidth: 1,
             data: group2,
+            hoverRadius: 0,
             label: "",
-            radius: 0,
-            stepped: "before",
+            purpose: "annotation",
+            pointRadius: 0,
+            stepped: "middle",
             type: "line"
           }),
           (d) => d.flag
