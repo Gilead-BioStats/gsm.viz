@@ -1,3 +1,4 @@
+import falsy from '../../util/falsy';
 import { ascending } from 'd3';
 
 export default function mutate(_data_, config) {
@@ -7,7 +8,9 @@ export default function mutate(_data_, config) {
                 ...d,
                 //x: +d[config.x],
                 y: +d[config.y],
-                stratum: Math.abs(+d[config.color]),
+                stratum: falsy.includes(d[config.color])
+                    ? 3
+                    : Math.abs(+d[config.color]),
             };
 
             return datum;

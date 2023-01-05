@@ -52,7 +52,6 @@ Promise.all(dataPromises)
             //parameter.value = parameter.default;
             //delete parameter.default;
         });
-        console.log(parameters);
 
         // visualization
         const instance = rbmViz.default.barChart(
