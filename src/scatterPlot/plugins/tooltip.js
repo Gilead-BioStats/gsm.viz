@@ -40,7 +40,6 @@ export default function tooltip(config) {
                                   } ${d.dataset.data[d.dataIndex].groupid}`
                                 : d.dataset.data[d.dataIndex].groupid
                         );
-                    console.log(groupIDs.length);
 
                     return groupIDs.length <= 3
                         ? groupIDs.join(', ')

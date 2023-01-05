@@ -1,146 +1,236 @@
 [
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0001",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0002",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0003",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0004",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0005",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0006",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "kri0007",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0004",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "qtl0006",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0001",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0002",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0003",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0004",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0005",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0006",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    },
-    {
-        "studyid": "AA-AA-000-0000",
-        "workflowid": "cou0007",
-        "gsm_version": "1.3.2",
-        "active": "TRUE",
-        "status": "TRUE",
-        "notes": "",
-        "gsm_analysis_date": "2022-11-22"
-    }
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0001",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0002",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0003",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0004",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0005",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0006",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0007",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0008",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0009",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0010",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0011",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "kri0012",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0001",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0002",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0003",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0004",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0005",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0006",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0007",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0008",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0009",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0010",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0011",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "cou0012",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0004",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	},
+	{
+		"studyid": "AA-AA-000-0000",
+		"workflowid": "qtl0006",
+		"gsm_version": "1.4.1",
+		"active": "TRUE",
+		"status": "TRUE",
+		"notes": "NA",
+		"gsm_analysis_date": "2023-01-04 19:06:08"
+	}
 ]

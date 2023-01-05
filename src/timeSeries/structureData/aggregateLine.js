@@ -25,10 +25,17 @@ export default function aggregateLine(data, config, labels) {
         (d) => d[config.x]
     );
 
-    const color = '#666666';
+    const color =
+        /at.risk/.test(config.y) && /flagged/.test(config.y)
+            ? '#FD9432'
+            : /at.risk/.test(config.y)
+            ? config.colorScheme.find((color) => color.flag.includes(1)).color
+            : /flagged/.test(config.y)
+            ? config.colorScheme.find((color) => color.flag.includes(2)).color
+            : '#aaaaaa';
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 1;
-    const borderColor = d3color(color);
+    const borderColor = d3color('#aaaaaa');
     borderColor.opacity = 0.25;
 
     const dataset = {
