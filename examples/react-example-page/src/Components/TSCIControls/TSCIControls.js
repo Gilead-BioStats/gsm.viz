@@ -2,9 +2,9 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
 import React, { useEffect } from 'react';
 import './TSCIControls.css';
+import DownloadChart from '../DownloadChart/DownloadChart';
 
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const TSCIControls = ({
@@ -56,16 +56,7 @@ const TSCIControls = ({
                     })}
                 </Select>
             </FormControl>
-
-            <Button variant="outlined">
-                <a
-                    href={instance?.toBase64Image()}
-                    download={'barchart.png'}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                    Download
-                </a>
-            </Button>
+            <DownloadChart instance={instance}/>
 
             {/* <Button variant="outlined">Kill</Button> */}
         </div>

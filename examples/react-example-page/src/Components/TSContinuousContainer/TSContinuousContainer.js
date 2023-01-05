@@ -2,13 +2,6 @@ import TSContinuous from '../TSContinuous/TSContinuous';
 import TSContinuousControls from '../TSContinuousControls/TSContinuous.Controls';
 import CodeChunk from '../CodeChunk/CodeChunk';
 import React, { useState } from 'react';
-/*
-import FormControl from '@mui/material/FormControl';
-import FormLabel from '@mui/material/FormLabel'
-import FormControlLabel from '@mui/material/FormControlLabel';
-import RadioGroup from '@mui/material/RadioGroup';
-import Radio from '@mui/material/Radio';
-*/
 
 // data
 import resultsAll from '../../data/results_summary_over_time';
@@ -51,12 +44,6 @@ const TSContinuousContainer = () => {
         parameters: filterMeta(kri),
     });
 
-    /*
-    const handleTimeSeriesType = (event) => {
-        setTimeSeriesType(event.target.value)
-    }
-    */
-
     let pseudocode = `rbmViz.timeSeries(
     document.getElementById(container), 
     data, 
@@ -68,28 +55,9 @@ const TSContinuousContainer = () => {
         <div className="chart-container-ts">
             <h2 className="chart-title">Time Series (Continuous)</h2>
             <div className="chart-grid-ts">
-                {/*
-                <div class="timeseries-type">
-                <FormControl>
-                    <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
-                    <RadioGroup
-                    aria-labelledby="demo-radio-buttons-group-label"
-                    defaultValue="continuous"
-                    value={timeSeriesType}
-                    onChange={handleTimeSeriesType}
-                    name="radio-buttons-group"
-                >
-                    <FormControlLabel value="continuous" control={<Radio />} label="Continuous" />
-                    <FormControlLabel value="disecrete" control={<Radio />} label="Discrete" />
-                    <FormControlLabel value="confidence" control={<Radio />} label="Confidence Interval" />
-                    </RadioGroup>
-                </FormControl>
-                </div>
-                */}
 
                 <div className="chart-left">
                     <TSContinuousControls
-                        allKris={workflows.filter((d) => /^kri/.test(d.workflowid))}
                         kri={kri}
                         instance={instance}
                         results={params.results}

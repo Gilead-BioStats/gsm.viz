@@ -4,9 +4,11 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Button from '@mui/material/Button';
 import React, { useState, useEffect } from 'react';
 import './BarChartControls.css';
+import KRI from "../KRI/KRI"
+import HighlightedSites from '../HighlightedSites/HighlightedSites';
+import DownloadChart from '../DownloadChart/DownloadChart';
 
 const uniqueGroups = (results) => {
     return results
@@ -20,7 +22,6 @@ const uniqueGroups = (results) => {
 
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const BarChartControls = ({
-    allKRIs,
     kri,
     setKri,
 
@@ -39,17 +40,6 @@ const BarChartControls = ({
     const [yaxisToggle, setYaxisToggle] = useState('score');
     const [isThreshold, setIsThreshold] = useState(true);
     const [groups, setGroups] = useState(uniqueGroups(results));
-
-    // observe KRI dropdown
-    const handleKriChange = (event) => {
-        setKri(event.target.value);
-        console.log(kri); // updated KRI is NOT observed here
-    };
-
-    // observe KRI dropdown
-    const handleSiteChange = (event) => {
-        setSelectedGroup(event.target.value);
-    };
 
     useEffect(() => {
         let results = filterResults(kri);
@@ -79,55 +69,10 @@ const BarChartControls = ({
         setIsThreshold(event.target.checked);
     };
 
-    console.log(allKRIs)
-
     return (
         <div className="control-container">
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
-                <InputLabel id="demo-simple-select-standard-label">
-                    KRI
-                </InputLabel>
-                <Select
-                    labelId="demo-simple-select-standard-label"
-                    id="demo-simple-select-standard"
-                    value={kri}
-                    onChange={handleKriChange}
-                    label="kri"
-                >
-                    {allKRIs.map((d, index) => {
-                        return (
-                            <MenuItem key={index} value={d.workflowid}>
-                                {d.metric}
-                            </MenuItem>
-                        );
-                    })}
-
-                </Select>
-            </FormControl>
-
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
-                <InputLabel id="demo-simple-select-standard-label">
-                    Highlighted Site
-                </InputLabel>
-                <Select
-                    labelId="highlighted-scatter-site-label"
-                    id="highlighted-scatter-site"
-                    value={selectedGroup}
-                    onChange={handleSiteChange}
-                    label="kri"
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    {groups.map((value, index) => {
-                        return (
-                            <MenuItem key={index} value={value}>
-                                {value}
-                            </MenuItem>
-                        );
-                    })}
-                </Select>
-            </FormControl>
+            <KRI kri={kri} setKri={setKri}/>
+            <HighlightedSites selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} groups={groups}/>
 
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="yaxis-control">Y-Axis</InputLabel>
@@ -153,15 +98,7 @@ const BarChartControls = ({
                 label="Threshold"
             />
 
-            <Button variant="outlined">
-                <a
-                    href={instance?.toBase64Image()}
-                    download={'barchart.png'}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                    Download
-                </a>
-            </Button>
+            <DownloadChart instance={instance}/>
 
             {/* <Button variant="outlined">Kill</Button> */}
         </div>

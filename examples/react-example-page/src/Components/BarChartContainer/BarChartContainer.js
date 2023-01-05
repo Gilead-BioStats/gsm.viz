@@ -47,7 +47,6 @@ const BarChartContainer = () => {
             <div className="chart-grid">
                 <div className="chart-left">
                     <BarChartControls
-                        allKRIs ={workflows.filter((d) => /^kri/.test(d.workflowid))}
                         kri={kri}
                         setKri={setKri}
                         setParams={setParams}

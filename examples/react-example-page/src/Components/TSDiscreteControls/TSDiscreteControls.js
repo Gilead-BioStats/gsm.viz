@@ -1,9 +1,6 @@
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Button from '@mui/material/Button';
+import HighlightedSites from '../HighlightedSites/HighlightedSites';
 import React, { useEffect, useState } from 'react';
+import DownloadChart from '../DownloadChart/DownloadChart';
 import './TSDiscreteControls.css';
 
 const uniqueGroups = (results) => {
@@ -30,11 +27,6 @@ const TSDiscreteControls = ({
 }) => {
     const [groups, setGroups] = useState(uniqueGroups(results));
 
-    // observe KRI dropdown
-    const handleSiteChange = (event) => {
-        setSelectedGroup(event.target.value);
-    };
-
     useEffect(() => {
         setParams({
             results: results,
@@ -46,39 +38,8 @@ const TSDiscreteControls = ({
 
     return (
         <div className="control-container">
-            <FormControl variant="standard" sx={{ m: 1, minWidth: 150 }}>
-                <InputLabel id="demo-simple-select-standard-label">
-                    Highlighted Site
-                </InputLabel>
-                <Select
-                    labelId="highlighted-scatter-site-label"
-                    id="highlighted-scatter-site"
-                    value={selectedGroup}
-                    onChange={handleSiteChange}
-                    label="kri"
-                >
-                    <MenuItem value="">
-                        <em>None</em>
-                    </MenuItem>
-                    {groups.map((value, index) => {
-                        return (
-                            <MenuItem key={index} value={value}>
-                                {value}
-                            </MenuItem>
-                        );
-                    })}
-                </Select>
-            </FormControl>
-
-            <Button variant="outlined">
-                <a
-                    href={instance?.toBase64Image()}
-                    download={'barchart.png'}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                >
-                    Download
-                </a>
-            </Button>
+            <HighlightedSites selectedGroup={selectedGroup} setSelectedGroup={setSelectedGroup} groups={groups}/>
+            <DownloadChart instance={instance}/>
 
             {/* <Button variant="outlined">Kill</Button> */}
         </div>

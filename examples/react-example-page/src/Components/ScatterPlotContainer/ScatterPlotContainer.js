@@ -51,7 +51,6 @@ const ScatterPlotContainer = () => {
             <div className="chart-grid">
                 <div className="chart-left">
                     <ScatterPlotControls
-                        allKris={workflows.filter((d) => /^kri/.test(d.workflowid))}
                         kri={kri}
                         params={params}
                         instance={instance}
