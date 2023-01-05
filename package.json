@@ -1,7 +1,7 @@
 {
-  "TODO": "update list of sites in scatter plot tooltip to print only 'sites 1, 2, 3, and x more'",
+  "TODO": "",
   "name": "rbm-viz",
-  "version": "0.13.7",
+  "version": "0.13.8",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",

@@ -20564,14 +20564,10 @@ var rbmViz = (() => {
       const overlappingPoints = data.filter(
         (d) => d.x === point.x && d.y === point.y
       );
-      const pointIndices = data.filter(
-        (d, i) => overlappingPoints.includes(d)
-      ).map(
-        (d, i) => ({
-          datasetIndex: 0,
-          index: data.findIndex((d1, i2) => d1 === d)
-        })
-      );
+      const pointIndices = data.filter((d, i) => overlappingPoints.includes(d)).map((d, i) => ({
+        datasetIndex: 0,
+        index: data.findIndex((d1, i2) => d1 === d)
+      }));
       tooltip5.setActiveElements(pointIndices);
     }
     chart.update();
