@@ -19,6 +19,7 @@ export default function checkInput({
     module = null,
     verbose = false,
 }) {
+    console.log(arguments)
     if (argument === null) {
         if (verbose)
             console.log(

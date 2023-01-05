@@ -17669,6 +17669,7 @@ var rbmViz = (() => {
     module = null,
     verbose = false
   }) {
+    console.log(arguments);
     if (argument === null) {
       if (verbose)
         console.log(
