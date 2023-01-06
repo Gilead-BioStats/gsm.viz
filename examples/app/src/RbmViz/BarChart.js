@@ -6,7 +6,7 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const BarChart = ({ data, config, thresholds }) => {
+const BarChart = ({ data, config, thresholds, width = '33%', height = '20vw' }) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const BarChart = ({ data, config, thresholds }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '33%', height: '25vh', display: 'inline-block' }}
+            style={{ width, height, display: 'inline-block' }}
         ></div>
     );
 };

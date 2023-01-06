@@ -6,7 +6,7 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const ScatterPlot = ({ data, config, bounds }) => {
+const ScatterPlot = ({ data, config, bounds, width = '33%', height = '20vw' }) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -19,7 +19,7 @@ const ScatterPlot = ({ data, config, bounds }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '33%', height: '25vh', display: 'inline-block' }}
+            style={{ width, height, display: 'inline-block' }}
         ></div>
     );
 };
