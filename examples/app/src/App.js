@@ -117,14 +117,26 @@ const App = () => {
                 thresholds={parametersOverTimeQTL}
                 intervals={resultsVerticalOverTimeQTL}
             />
-            {sparklines}
+            <div>
+                {sparklines}
+            </div>
             <TimeSeries
                 data={flagCountsByGroup}
                 config={timeSeriesDiscreteByGroupConfig}
+                style={{
+                    width: '50%',
+                    height: '25vw',
+                    display: 'inline-block'
+                }}
             />
             <TimeSeries
                 data={flagCountsByKRI}
                 config={timeSeriesDiscreteByKRIConfig}
+                style={{
+                    width: '50%',
+                    height: '25vw',
+                    display: 'inline-block'
+                }}
             />
         </>
     );
