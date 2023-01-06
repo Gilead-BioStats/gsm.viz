@@ -24,11 +24,14 @@ Promise.all(dataPromises)
 
             // data
             const data = flagCounts.filter((d) => d.groupid === groupID);
+            data.forEach((d) => {
+                d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
+            });
 
             // configuration
             const config = {};
             config.x = 'snapshot_date';
-            config.y = 'n_flagged';
+            config.y = 'n_at_risk_or_flagged';
             config.color = null;
             config.nSnapshots = 25;
 

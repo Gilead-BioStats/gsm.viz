@@ -14,13 +14,21 @@ import scriptableOptions from './structureData/scriptableOptions';
 export default function structureData(_data_, config) {
     // Update data.
     const data = mutate(_data_, config);
-    console.log(data);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0]?.stratum)
-        ? data.map((d) => config.colorScheme[d.stratum].color)
-        : data.map((d, i) =>
-              i < data.length - 1 ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.5)'
-          );
+    const pointBackgroundColor = data.map((d, i) => {
+        return config.dataType === 'continuous'
+            ? config.colorScheme[d.stratum].color
+            : config.y === 'n_at_risk'
+            ? config.colorScheme.find((color) =>
+                  /amber/i.test(color.description)
+              ).color
+            : config.y === 'n_flagged'
+            ? config.colorScheme.find((color) => /red/i.test(color.description))
+                  .color
+            : config.y === 'n_at_risk_or_flagged'
+            ? '#FD9432'
+            : '#1890FF';
+    });
 
     const datasets = [
         {

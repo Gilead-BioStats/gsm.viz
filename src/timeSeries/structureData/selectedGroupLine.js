@@ -16,7 +16,7 @@ export default function selectedGroupLine(data, config, labels) {
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 0.5;
     const borderColor = d3color(color);
-    borderColor.opacity = 0.25;
+    borderColor.opacity = 0.5;
 
     const dataset = {
         data: lineData,

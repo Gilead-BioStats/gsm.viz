@@ -20665,7 +20665,6 @@ var rbmViz = (() => {
         _thresholds_,
         _data_
       },
-      metadata: "test",
       options,
       plugins: [plugin, displayWhiteBackground()]
     });
@@ -20934,7 +20933,6 @@ var rbmViz = (() => {
             }).map(
               (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
             );
-            console.log(groupIDs.length);
             return groupIDs.length <= 3 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
           }
         }
@@ -21134,11 +21132,12 @@ var rbmViz = (() => {
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
-    console.log(data);
     const labels = data.map((d) => d.snapshot_date);
-    const pointBackgroundColor = !isNaN(data[0]?.stratum) ? data.map((d) => config.colorScheme[d.stratum].color) : data.map(
-      (d, i) => i < data.length - 1 ? "rgba(0, 0, 0, 0.1)" : "rgba(0, 0, 0, 0.5)"
-    );
+    const pointBackgroundColor = data.map((d, i) => {
+      return config.dataType === "continuous" ? config.colorScheme[d.stratum].color : config.y === "n_at_risk" ? config.colorScheme.find(
+        (color3) => /amber/i.test(color3.description)
+      ).color : config.y === "n_flagged" ? config.colorScheme.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? "#FD9432" : "#1890FF";
+    });
     const datasets = [
       {
         type: "line",
@@ -21190,7 +21189,7 @@ var rbmViz = (() => {
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
-    const datum2 = data.filter((d) => [null, void 0, NaN, ""].includes(d.y) === false).slice(-1)[0];
+    const datum2 = data.filter((d) => falsy_default.includes(d.y) === false).slice(-1)[0];
     const content = [format(format2)(datum2?.y)];
     const value = {
       content,
@@ -21492,7 +21491,7 @@ var rbmViz = (() => {
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 0.5;
     const borderColor4 = color2(color3);
-    borderColor4.opacity = 0.25;
+    borderColor4.opacity = 0.5;
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
@@ -21642,10 +21641,10 @@ var rbmViz = (() => {
       },
       (d) => d[config.x]
     );
-    const color3 = "#666666";
+    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
-    const borderColor4 = color2(color3);
+    const borderColor4 = color2("#aaaaaa");
     borderColor4.opacity = 0.25;
     const dataset = {
       backgroundColor: backgroundColor4,
@@ -21730,10 +21729,11 @@ var rbmViz = (() => {
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
           ...selectedGroupLine(data, config, labels),
-          backgroundColor: "#1890FF",
-          borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
-          }
+          backgroundColor: /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? colorScheme_default.find(
+            (color3) => color3.flag.includes(1)
+          ).color : /flagged/.test(config.y) ? colorScheme_default.find(
+            (color3) => color3.flag.includes(2)
+          ).color : "#aaaaaa"
         } : null,
         {
           type: "scatter",
@@ -21741,10 +21741,8 @@ var rbmViz = (() => {
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
-          backgroundColor: "#1890FF",
-          borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
-          },
+          backgroundColor: "rgba(0,0,0,.5)",
+          borderColor: "rgba(0,0,0,.5)",
           borderWidth: 3
         },
         aggregateLine(data, config, labels),
@@ -21879,7 +21877,7 @@ var rbmViz = (() => {
       displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
       },
       ...tooltipAesthetics
     };
@@ -21998,13 +21996,16 @@ var rbmViz = (() => {
         ...rollup(
           thresholds2,
           (group2) => ({
+            adjustScaleRange: false,
             borderColor: group2[0].color.color,
             borderDash: [2],
             borderWidth: 1,
             data: group2,
+            hoverRadius: 0,
             label: "",
-            radius: 0,
-            stepped: "before",
+            purpose: "annotation",
+            pointRadius: 0,
+            stepped: "middle",
             type: "line"
           }),
           (d) => d.flag
