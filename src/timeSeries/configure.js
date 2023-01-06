@@ -86,16 +86,19 @@ export default function configure(_config_, _data_, _thresholds_) {
     });
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+    const discreteUnits = config.dataType === 'discrete'
+        ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
+        : '';
     config.yLabel = coalesce(
         _config_.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
-            ? `Red or Amber ${config.discreteUnit}s`
+            ? `Red or Amber ${discreteUnits}`
             : /flag/.test(config.y)
-            ? `Red ${config.discreteUnit}s`
+            ? `Red ${discreteUnits}`
             : /risk/.test(config.y)
-            ? `Amber ${config.discreteUnit}s`
+            ? `Amber ${discreteUnits}`
             : ''
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;

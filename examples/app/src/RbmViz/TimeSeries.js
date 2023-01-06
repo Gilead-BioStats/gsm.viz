@@ -6,7 +6,17 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const TimeSeries = ({ data, config, thresholds, intervals }) => {
+const TimeSeries = ({
+    data,
+    config,
+    thresholds,
+    intervals,
+    style = {
+        width: '100%',
+        height: '50vh',
+        display: 'block'
+    }
+}) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -25,7 +35,7 @@ const TimeSeries = ({ data, config, thresholds, intervals }) => {
         <div
             ref={container}
             key={generateKey()}
-            style={{ width: '100%', height: '50vh', display: 'block' }}
+            style={{ ...style }}
         ></div>
     );
 };

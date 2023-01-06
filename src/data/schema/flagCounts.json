@@ -1,0 +1,69 @@
+{
+    "title": "Flag Counts",
+    "description": "JSON schema of discrete input data to timeSeries modules",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "studyid": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "groupid": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true,
+                "alternate": "workflowid"
+            },
+            "workflowid": {
+                "title": "Workflow ID",
+                "description": "Unique workflow identifier",
+                "type": "string",
+                "required": true,
+                "key": true,
+                "alternate": "workflowid"
+            },
+            "n": {
+                "title": "# of Groups/KRIs",
+                "description": "Total number of assessed groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "n_at_risk": {
+                "title": "# of Amber Groups/KRIs",
+                "description": "Number of amber groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "n_flagged": {
+                "title": "# of Red Groups/KRIs",
+                "description": "Number of red groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "n_at_risk_or_flagged": {
+                "title": "# of Amber of Red Groups/KRIs",
+                "description": "Number of amber or red groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "snapshot_date": {
+                "title": "Snapshot Date",
+                "description": "Date of data snapshot",
+                "type": "string",
+                "required": true,
+                "key": true
+            }
+        }
+    }
+}

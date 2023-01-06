@@ -1,4 +1,4 @@
-const by = 'group'; // 'kri'
+const by = 'kri'; // 'kri'
 
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
@@ -25,12 +25,14 @@ Promise.all(dataPromises)
         // config
         const config =
             by === 'kri'
-                ? datasets[1].find(
-                      (workflow) => workflow.workflowid === workflowID
-                  )
+                ? {
+                      ...datasets[1].find(
+                          (workflow) => workflow.workflowid === workflowID
+                      ),
+                    //discreteUnit: 'Country',
+                  }
                 : {
                       selectedGroupIDs: '173',
-                      //aggregateLabel: 'Country',
                   };
         config.y = 'n_at_risk_or_flagged';
 

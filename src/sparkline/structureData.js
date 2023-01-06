@@ -26,7 +26,7 @@ export default function structureData(_data_, config) {
             ? config.colorScheme.find((color) => /red/i.test(color.description))
                   .color
             : config.y === 'n_at_risk_or_flagged'
-            ? '#FD9432'
+            ? config.colorScheme.amberRed.color
             : '#1890FF';
     });
 

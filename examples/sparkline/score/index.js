@@ -20,6 +20,17 @@ Promise.all(dataPromises)
 
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        console.table(
+            [
+                ...d3.rollup(
+                    results,
+                    (group) => new Set(group.map((d) => d.flag)).size,
+                    (d) => d.groupid
+                ),
+            ]
+                .filter(([key, value]) => value > 1)
+                .sort(([ak, av], [bk, bv]) => bv - av)
+        );
 
         // configuration
         const workflow = datasets[1].filter((d) => d.workflowid === workflowID);

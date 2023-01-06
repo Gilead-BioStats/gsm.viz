@@ -18,7 +18,6 @@ export default function thresholds(config) {
                 borderColor: color.rgba + '',
                 borderWidth: 1,
             };
-            console.log(annotation);
 
             return annotation;
         });
