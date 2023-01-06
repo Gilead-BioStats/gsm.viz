@@ -1,5 +1,5 @@
 {
-  "TODO": "figure out data schema for flag counts by group/KRI",
+  "TODO": "",
   "name": "rbm-viz",
   "version": "0.14.0",
   "description": "web-based data visualization for risk-based monitoring",

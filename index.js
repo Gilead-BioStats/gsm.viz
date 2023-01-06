@@ -17364,6 +17364,13 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
+        n_at_risk_or_flagged: {
+          title: "# of Amber of Red Groups/KRIs",
+          description: "Number of amber or red groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
         snapshot_date: {
           title: "Snapshot Date",
           description: "Date of data snapshot",
@@ -21958,9 +21965,10 @@ var rbmViz = (() => {
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
+    const discreteUnits = config.dataType === "discrete" ? `${config.discreteUnit.replace(/y$/, "ie")}s` : "";
     config.yLabel = coalesce(
       _config_.yLabel,
-      config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${config.discreteUnit}s` : /flag/.test(config.y) ? `Red ${config.discreteUnit}s` : /risk/.test(config.y) ? `Amber ${config.discreteUnit}s` : ""
+      config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
     return config;

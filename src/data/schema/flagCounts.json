@@ -50,6 +50,13 @@
                 "required": true,
                 "key": false
             },
+            "n_at_risk_or_flagged": {
+                "title": "# of Amber of Red Groups/KRIs",
+                "description": "Number of amber or red groups/KRIs",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
             "snapshot_date": {
                 "title": "Snapshot Date",
                 "description": "Date of data snapshot",
