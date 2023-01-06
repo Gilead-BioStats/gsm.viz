@@ -17311,9 +17311,9 @@ var rbmViz = (() => {
     }
   };
 
-  // src/data/schema/flagCountsByGroup.json
-  var flagCountsByGroup_default = {
-    title: "Flag Counts by Group",
+  // src/data/schema/flagCounts.json
+  var flagCounts_default = {
+    title: "Flag Counts",
     description: "JSON schema of discrete input data to timeSeries modules",
     version: "0.14.0",
     type: "array",
@@ -17333,62 +17333,15 @@ var rbmViz = (() => {
           type: "string",
           required: true,
           key: true,
-          condition: ""
-        },
-        n: {
-          title: "# of Groups/KRIs",
-          description: "Total number of assessed groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        n_at_risk: {
-          title: "# of Amber Groups/KRIs",
-          description: "Number of amber groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        n_flagged: {
-          title: "# of Red Groups/KRIs",
-          description: "Number of red groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        snapshot_date: {
-          title: "Snapshot Date",
-          description: "Date of data snapshot",
-          type: "string",
-          required: true,
-          key: true
-        }
-      }
-    }
-  };
-
-  // src/data/schema/flagCountsByKRI.json
-  var flagCountsByKRI_default = {
-    title: "Flag Counts by KRI",
-    description: "JSON schema of discrete input data to timeSeries modules",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
+          alternate: "workflowid"
         },
         workflowid: {
           title: "Workflow ID",
           description: "Unique workflow identifier",
           type: "string",
           required: true,
-          key: true
+          key: true,
+          alternate: "workflowid"
         },
         n: {
           title: "# of Groups/KRIs",
@@ -17612,8 +17565,7 @@ var rbmViz = (() => {
   var schema = {
     analysisMetadata: analysisMetadata_default,
     analysisParameters: analysisParameters_default,
-    flagCountsByGroup: flagCountsByGroup_default,
-    flagCountsByKRI: flagCountsByKRI_default,
+    flagCounts: flagCounts_default,
     results: results_default,
     resultsPredicted: resultsPredicted_default,
     resultsVertical: resultsVertical_default
@@ -17647,16 +17599,21 @@ var rbmViz = (() => {
     const requiredProps = expectedProps.filter(
       (prop) => properties[prop].required
     );
-    for (const prop of requiredProps) {
-      if (actualProps.includes(prop) === false) {
-        let message = `Missing property: [ ${prop} ] property expected but not found`;
-        if (i !== null)
-          message = `${message} in item ${i}`;
-        if (parameter !== null)
-          message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
-        if (module !== null)
-          message = `${message} to [ ${module}() ]`;
-        throw new Error(`${message}.`);
+    const alternateProps = expectedProps.filter(
+      (prop) => properties[prop].alternate !== void 0
+    );
+    for (const requiredProp of requiredProps) {
+      if (actualProps.includes(requiredProp) === false) {
+        if (actualProps.some((actualProp) => alternateProps.includes(actualProp)) === false) {
+          let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
+          if (i !== null)
+            message = `${message} in item ${i}`;
+          if (parameter !== null)
+            message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
+          if (module !== null)
+            message = `${message} to [ ${module}() ]`;
+          throw new Error(`${message}.`);
+        }
       }
     }
   }
@@ -17669,7 +17626,6 @@ var rbmViz = (() => {
     module = null,
     verbose = false
   }) {
-    console.log(arguments);
     if (argument === null) {
       if (verbose)
         console.log(
@@ -17691,12 +17647,6 @@ var rbmViz = (() => {
           `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
         );
       return;
-    }
-    if (schemaName === "flagCounts") {
-      if (Object.keys(argument[0]).includes("groupid"))
-        delete schema2.items.properties.workflowid;
-      if (Object.keys(argument[0]).includes("workflowid"))
-        delete schema2.items.properties.groupid;
     }
     const argumentType = getType(argument);
     if (argumentType !== schema2.type) {
@@ -21280,7 +21230,6 @@ var rbmViz = (() => {
         _thresholds_,
         _data_
       },
-      metadata: "test",
       options,
       plugins: [plugin, displayWhiteBackground()]
     });
@@ -21822,7 +21771,7 @@ var rbmViz = (() => {
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
-    const datum2 = data.filter((d) => [null, void 0, NaN, ""].includes(d.y) === false).slice(-1)[0];
+    const datum2 = data.filter((d) => falsy_default.includes(d.y) === false).slice(-1)[0];
     const content = [format(format2)(datum2?.y)];
     const value = {
       content,
@@ -22124,7 +22073,7 @@ var rbmViz = (() => {
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 0.5;
     const borderColor4 = color2(color3);
-    borderColor4.opacity = 0.25;
+    borderColor4.opacity = 0.5;
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
@@ -22274,10 +22223,10 @@ var rbmViz = (() => {
       },
       (d) => d[config.x]
     );
-    const color3 = "#666666";
+    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
-    const borderColor4 = color2(color3);
+    const borderColor4 = color2("#aaaaaa");
     borderColor4.opacity = 0.25;
     const dataset = {
       backgroundColor: backgroundColor4,
@@ -22374,10 +22323,8 @@ var rbmViz = (() => {
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
-          backgroundColor: "#1890FF",
-          borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : "#1890FF";
-          },
+          backgroundColor: "rgba(0,0,0,.5)",
+          borderColor: "rgba(0,0,0,.5)",
           borderWidth: 3
         },
         aggregateLine(data, config, labels),
@@ -22512,7 +22459,7 @@ var rbmViz = (() => {
       displayColors: config.dataType !== "discrete",
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
       },
       ...tooltipAesthetics
     };
@@ -22656,13 +22603,16 @@ var rbmViz = (() => {
         ...rollup(
           thresholds2,
           (group2) => ({
+            adjustScaleRange: false,
             borderColor: group2[0].color.color,
             borderDash: [2],
             borderWidth: 1,
             data: group2,
+            hoverRadius: 0,
             label: "",
-            radius: 0,
-            stepped: "before",
+            purpose: "annotation",
+            pointRadius: 0,
+            stepped: "middle",
             type: "line"
           }),
           (d) => d.flag

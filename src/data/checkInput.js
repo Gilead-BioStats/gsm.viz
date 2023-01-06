@@ -19,7 +19,6 @@ export default function checkInput({
     module = null,
     verbose = false,
 }) {
-    console.log(arguments)
     if (argument === null) {
         if (verbose)
             console.log(
@@ -47,14 +46,6 @@ export default function checkInput({
             );
 
         return;
-    }
-
-    if (schemaName === 'flagCounts') {
-        if (Object.keys(argument[0]).includes('groupid'))
-            delete schema.items.properties.workflowid;
-
-        if (Object.keys(argument[0]).includes('workflowid'))
-            delete schema.items.properties.groupid;
     }
 
     // check data type of argument

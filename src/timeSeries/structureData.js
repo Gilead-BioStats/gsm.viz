@@ -92,6 +92,18 @@ export default function structureData(_data_, config, _intervals_) {
                 ? {
                       ...getSelectedGroupLine(data, config, labels),
                       backgroundColor: color,
+                    //  backgroundColor:
+                    //      /at.risk/.test(config.y) && /flagged/.test(config.y)
+                    //          ? '#FD9432'
+                    //          : /at.risk/.test(config.y)
+                    //          ? colorScheme.find((color) =>
+                    //                color.flag.includes(1)
+                    //            ).color
+                    //          : /flagged/.test(config.y)
+                    //          ? colorScheme.find((color) =>
+                    //                color.flag.includes(2)
+                    //            ).color
+                    //          : '#aaaaaa',
                       borderColor: (d) => {
                           return d.raw !== undefined ? 'black' : color;
                       },
@@ -106,12 +118,10 @@ export default function structureData(_data_, config, _intervals_) {
                 pointStyle: 'line',
                 pointStyleWidth: 24,
                 boxWidth: 24,
-                backgroundColor: '#1890FF',
-                borderColor: (d) => {
-                    return d.raw !== undefined ? 'black' : '#1890FF';
-                },
+                backgroundColor: 'rgba(0,0,0,.5)',
+                borderColor: 'rgba(0,0,0,.5)',
                 borderWidth: 3,
-            },
+            }, // legend item for selected group ID line
             getAggregateLine(data, config, labels),
             {
                 type: 'scatter',
@@ -122,7 +132,7 @@ export default function structureData(_data_, config, _intervals_) {
                 backgroundColor: 'rgba(0,0,0,.5)',
                 borderColor: 'rgba(0,0,0,.25)',
                 borderWidth: 3,
-            },
+            }, // legend item for aggregate line
         ];
     }
 

@@ -1,4 +1,4 @@
-const by = 'group'; // 'kri'
+const by = 'kri'; // 'kri'
 
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,

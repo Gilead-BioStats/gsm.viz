@@ -11,21 +11,28 @@ export default function checkProps({
     const requiredProps = expectedProps.filter(
         (prop) => properties[prop].required
     );
+    const alternateProps = expectedProps.filter(
+        (prop) => properties[prop].alternate !== undefined
+    );
 
-    for (const prop of requiredProps) {
-        if (actualProps.includes(prop) === false) {
-            let message = `Missing property: [ ${prop} ] property expected but not found`;
+    for (const requiredProp of requiredProps) {
+        // check that actual properties include required property
+        if (actualProps.includes(requiredProp) === false) {
+            // for required properties with alternates check that actual props includes alternate prop
+            if (actualProps.some(actualProp => alternateProps.includes(actualProp)) === false) {
+                let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
 
-            if (i !== null) message = `${message} in item ${i}`;
+                if (i !== null) message = `${message} in item ${i}`;
 
-            if (parameter !== null)
-                message = `${message} ${
-                    i === null ? 'in' : 'of'
-                } [ ${parameter} ] argument`;
+                if (parameter !== null)
+                    message = `${message} ${
+                        i === null ? 'in' : 'of'
+                    } [ ${parameter} ] argument`;
 
-            if (module !== null) message = `${message} to [ ${module}() ]`;
+                if (module !== null) message = `${message} to [ ${module}() ]`;
 
-            throw new Error(`${message}.`);
+                throw new Error(`${message}.`);
+            }
         }
     }
 }

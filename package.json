@@ -8,16 +8,16 @@
   "scripts": {
     "build": "npm run bundle && npm run format && npm run transpile && npm run test",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
-    "csv-to-json": "node examples/data/helpers/csv-to-json && cp examples/data/*.json examples/app/src/data",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
     "local": "live-server --ignore=examples/app,examples/data,examples/react-example-page,node_modules --wait=250 .",
-    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
     "test": "jest",
     "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
-    "transpile": "babel index.js > index.es5.js"
+    "transpile": "babel index.js > index.es5.js",
+    "update-data": "node examples/data/helpers/csv-to-json.js && cp examples/data/*.json examples/app/src/data",
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch"
   },
   "repository": {
     "type": "git",

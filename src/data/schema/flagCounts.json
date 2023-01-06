@@ -1,5 +1,5 @@
 {
-    "title": "Flag Counts by KRI",
+    "title": "Flag Counts",
     "description": "JSON schema of discrete input data to timeSeries modules",
     "version": "0.14.0",
     "type": "array",
@@ -13,12 +13,21 @@
                 "required": false,
                 "key": true
             },
+            "groupid": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true,
+                "alternate": "workflowid"
+            },
             "workflowid": {
                 "title": "Workflow ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": true,
-                "key": true
+                "key": true,
+                "alternate": "workflowid"
             },
             "n": {
                 "title": "# of Groups/KRIs",
