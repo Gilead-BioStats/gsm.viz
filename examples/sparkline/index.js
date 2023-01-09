@@ -27,6 +27,8 @@ Promise.all(dataPromises)
             (d) => d.groupid === groupID
         );
 
+        console.log(flagCountsByKRI)
+
         rbmViz.default.sparkline(
             document.getElementById('score'),
             results,

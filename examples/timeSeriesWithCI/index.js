@@ -19,6 +19,8 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^qtl/.test(d.workflowid))
         );
 
+        console.log(datasets);
+
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
 

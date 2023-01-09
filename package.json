@@ -8,6 +8,7 @@
   "scripts": {
     "build": "npm run bundle && npm run format && npm run transpile && npm run test",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
+    "deploy": "npm --prefix app run deploy",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
@@ -52,6 +53,7 @@
     "babel-jest": "^29.1.2",
     "csvtojson": "^2.0.10",
     "esbuild": "^0.15.10",
+    "gh-pages": "^4.0.0",
     "jest": "^29.3.1",
     "jest-environment-jsdom": "^29.1.2",
     "jsdoc": "^3.6.11",

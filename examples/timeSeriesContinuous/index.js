@@ -14,6 +14,8 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
+        console.log(datasets);
+
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
@@ -21,10 +23,14 @@ Promise.all(dataPromises)
         // data
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
+        console.log(results);
+
         // configuration
         const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.selectedGroupIDs = '190';
         workflow.type = 'boxplot'; //'violin';
+
+        console.log(workflow);
 
         // customization data
         //const parameters = datasets[2].filter(
