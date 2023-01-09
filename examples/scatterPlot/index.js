@@ -11,7 +11,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0006';
+        const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))

@@ -16,7 +16,7 @@ export default function selectedGroupLine(data, config, labels) {
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 0.5;
     const borderColor = d3color(color);
-    borderColor.opacity = 0.25;
+    borderColor.opacity = 0.5;
 
     const dataset = {
         data: lineData,
@@ -29,19 +29,13 @@ export default function selectedGroupLine(data, config, labels) {
             return color !== undefined ? color.rgba + '' : backgroundColor;
         },
         borderColor: function (d) {
-            const color = config.colorScheme.find((color) =>
-                color.flag.includes(+d.raw?.flag)
-            );
-            if (color !== undefined) color.rgba.opacity = 1;
-
-            return color !== undefined
-                ? 'black' //color.rgba + ''
-                : borderColor;
+            return d.type === 'data' ? 'black' : borderColor;
         },
         label: '',
         pointStyle: 'circle',
         purpose: 'highlight',
         radius: 3,
+        spanGaps: true,
         type: 'line',
     };
 

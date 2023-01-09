@@ -1,7 +1,7 @@
 {
-  "TODO": "update list of sites in scatter plot tooltip to print only 'sites 1, 2, 3, and x more'",
+  "TODO": "",
   "name": "rbm-viz",
-  "version": "0.13.7",
+  "version": "0.13.8",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
-    "local": "live-server --ignore=node_modules --wait=250 .",
+    "local": "live-server --ignore=examples/app,examples/data,examples/react-example-page,node_modules --wait=250 .",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
     "test": "jest",
     "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
