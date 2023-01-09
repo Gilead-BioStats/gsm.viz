@@ -16,11 +16,6 @@ Promise.all(dataPromises)
         const workflowID = 'qtl0006';
 
         datasets = datasets.map((dataset) => {
-            dataset.forEach((d) => {
-                if (d.hasOwnProperty('gsm_analysis_date'))
-                    d.gsm_analysis_date = d.gsm_analysis_date.substring(0, 10);
-            });
-
             return dataset.filter((d) => /^qtl/.test(d.workflowid));
         });
 
@@ -50,4 +45,6 @@ Promise.all(dataPromises)
         );
 
         qtl(workflow, datasets, true);
+
+
     });

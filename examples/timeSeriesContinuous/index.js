@@ -3,6 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param_over_time.csv',
+
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -14,31 +15,21 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        datasets = datasets.map((dataset) => {
-            dataset.forEach((d) => {
-                if (d.hasOwnProperty('gsm_analysis_date'))
-                    d.gsm_analysis_date = d.gsm_analysis_date.substring(0, 10);
-            });
-
-            return dataset.filter((d) => /^kri/.test(d.workflowid));
-        });
+        datasets = datasets.map((dataset) =>
+            dataset.filter((d) => /^kri/.test(d.workflowid))
+        );
 
         // analysis results
-        let results = filterOnWorkflowID(datasets[0], workflowID);
-        results.forEach((d, i) => {
-            if (i % 4 === 0) d.score = 'NA';
-        });
-        results = results.filter((d) => d.score !== 'NA');
+        const results = filterOnWorkflowID(datasets[0], workflowID);
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.selectedGroupIDs = '190';
-        workflow.type = 'boxplot'; //'violin';
 
         // threshold annotations
         const parameters = mergeParameters(
-            datasets[2].filter((d) => d.workflowid === workflowID),
-            datasets[3].filter((d) => d.workflowid === workflowID)
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
 
         // visualization

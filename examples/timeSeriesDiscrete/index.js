@@ -36,6 +36,9 @@ Promise.all(dataPromises)
                   };
         config.y = 'n_at_risk_or_flagged';
 
+        console.log(workflow);
+        console.log(flagCounts);
+
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),

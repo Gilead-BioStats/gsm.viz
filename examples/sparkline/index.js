@@ -53,7 +53,7 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[3], workflowID)
         );
 
-        // continuous ouutcomes
+        // continuous outcomes
         rbmViz.default.sparkline(
             document.getElementById('score'),
             results,
