@@ -43,9 +43,9 @@ export default function tooltip(config) {
 
                     return groupIDs.length <= 4
                         ? groupIDs.join(', ')
-                        : `${groupIDs.slice(0, 3).join(', ')} and ${
+                        : `${groupIDs.slice(0, 3).join(', ')} and [ ${
                               groupIDs.length - 3
-                          } more`;
+                          } ] more`;
                 }
             },
         },

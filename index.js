@@ -21505,7 +21505,7 @@ var rbmViz = (() => {
             }).map(
               (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
             );
-            return groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and ${groupIDs.length - 3} more`;
+            return groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more`;
           }
         }
       },
