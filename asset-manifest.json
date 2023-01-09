@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/rbm-viz/static/css/main.5993dd80.css",
+    "main.js": "/rbm-viz/static/js/main.29c3338e.js",
+    "index.html": "/rbm-viz/index.html",
+    "main.5993dd80.css.map": "/rbm-viz/static/css/main.5993dd80.css.map",
+    "main.29c3338e.js.map": "/rbm-viz/static/js/main.29c3338e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5993dd80.css",
+    "static/js/main.29c3338e.js"
+  ]
+}
