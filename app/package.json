@@ -10,7 +10,7 @@
         "@testing-library/react": "^13.4.0",
         "@testing-library/user-event": "^13.5.0",
         "markdown-to-jsx": "^7.1.8",
-        "rbm-viz": "../..",
+        "rbm-viz": "..",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-markdown": "^8.0.4",
@@ -19,10 +19,12 @@
         "web-vitals": "^2.1.4"
     },
     "scripts": {
-        "start": "react-scripts start",
         "build": "react-scripts build",
-        "test": "react-scripts test",
-        "eject": "react-scripts eject"
+        "deploy": "gh-pages -d build",
+        "eject": "react-scripts eject",
+        "predeploy": "npm run build",
+        "start": "react-scripts start",
+        "test": "react-scripts test"
     },
     "eslintConfig": {
         "extends": [
@@ -44,6 +46,7 @@
     },
     "devDependencies": {
         "css-loader": "^6.7.2",
+        "gh-pages": "^4.0.0",
         "react-router-dom": "^6.4.4",
         "style-loader": "^3.3.1"
     }
