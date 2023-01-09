@@ -45,6 +45,4 @@ Promise.all(dataPromises)
         );
 
         qtl(workflow, datasets, true);
-
-
     });

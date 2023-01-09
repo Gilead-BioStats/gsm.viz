@@ -1,4 +1,4 @@
-const by = 'kri'; // 'kri'
+const by = 'group'; // 'kri'
 
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
@@ -35,9 +35,6 @@ Promise.all(dataPromises)
                       selectedGroupIDs: '173',
                   };
         config.y = 'n_at_risk_or_flagged';
-
-        console.log(workflow);
-        console.log(flagCounts);
 
         // visualization
         const instance = rbmViz.default.timeSeries(

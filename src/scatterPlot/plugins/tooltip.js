@@ -41,7 +41,7 @@ export default function tooltip(config) {
                                 : d.dataset.data[d.dataIndex].groupid
                         );
 
-                    return groupIDs.length <= 3
+                    return groupIDs.length <= 4
                         ? groupIDs.join(', ')
                         : `${groupIDs.slice(0, 3).join(', ')} and ${
                               groupIDs.length - 3
