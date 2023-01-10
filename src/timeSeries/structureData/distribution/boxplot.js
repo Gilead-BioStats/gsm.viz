@@ -27,6 +27,8 @@ export default function boxplot(data, config) {
             : `${config.group} Distribution`,
         //outlierColor: '#999999',
         outlierRadius: 0, ///^n_/.test(config.y) ? 2 : 0,
+        pointRadius: 0,
+        radius: 0,
         //padding: 10,
         pointStyle: 'rect',
         purpose: 'distribution',

@@ -24,7 +24,7 @@ export default function selectedGroupLine(data, config, labels) {
             const color = config.colorScheme.find((color) =>
                 color.flag.includes(+d.raw?.flag)
             );
-            if (color !== undefined) color.rgba.opacity = 0.5;
+            if (color !== undefined) color.rgba.opacity = 0.75;
 
             return color !== undefined ? color.rgba + '' : backgroundColor;
         },

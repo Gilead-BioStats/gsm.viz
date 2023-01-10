@@ -22087,7 +22087,7 @@ var rbmViz = (() => {
           (color5) => color5.flag.includes(+d.raw?.flag)
         );
         if (color4 !== void 0)
-          color4.rgba.opacity = 0.5;
+          color4.rgba.opacity = 0.75;
         return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
       },
       borderColor: function(d) {
@@ -22171,6 +22171,8 @@ var rbmViz = (() => {
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       outlierRadius: 0,
+      pointRadius: 0,
+      radius: 0,
       pointStyle: "rect",
       purpose: "distribution",
       type: "boxplot"
@@ -22582,7 +22584,7 @@ var rbmViz = (() => {
       schemaName: "resultsVertical",
       module: "timeSeries"
     });
-    const config = configure6(_config_, _data_, _thresholds_);
+    const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
     if (Array.isArray(_thresholds_)) {

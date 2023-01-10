@@ -57,7 +57,7 @@ export default function timeSeries(
     });
 
     // Update config.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
