@@ -1,4 +1,5 @@
 import { format as d3format, max, min } from 'd3';
+import falsy from '../../../util/falsy';
 
 export default function annotations(config, data) {
     // horizontal position
@@ -22,8 +23,10 @@ export default function annotations(config, data) {
           `.1f`;
 
     // content
-    const datum = data.slice(-1)[0];
-    const content = [d3format(format)(datum.y)];
+    const datum = data
+        .filter((d) => falsy.includes(d.y) === false)
+        .slice(-1)[0];
+    const content = [d3format(format)(datum?.y)];
 
     const value = {
         content,

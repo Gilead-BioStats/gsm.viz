@@ -36,6 +36,7 @@ export default function tooltip(config) {
 
             // Avoid duplicate display of tooltip.
             return (
+                data.dataset.purpose !== 'annotation' &&
                 typeof datum === 'object' &&
                 !(
                     config.selectedGroupIDs.includes(datum.groupid) &&

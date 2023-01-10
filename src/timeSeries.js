@@ -57,6 +57,7 @@ export default function timeSeries(
             ...rollup(
                 thresholds,
                 (group) => ({
+                    adjustScaleRange: false,
                     borderColor: group[0].color.color,
                     //function (d) {
                     //    return d.color.color;
@@ -64,9 +65,11 @@ export default function timeSeries(
                     borderDash: [2],
                     borderWidth: 1,
                     data: group,
+                    hoverRadius: 0,
                     label: '',
-                    radius: 0,
-                    stepped: 'before', // 'after'
+                    purpose: 'annotation',
+                    pointRadius: 0,
+                    stepped: 'middle', // 'before', 'middle', 'after'
                     type: 'line',
                 }),
                 (d) => d.flag

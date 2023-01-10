@@ -60,7 +60,6 @@ export default function barChart(
             _thresholds_,
             _data_,
         },
-        metadata: 'test',
         options,
         plugins: [ChartDataLabels],
     });
