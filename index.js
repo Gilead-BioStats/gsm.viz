@@ -20938,7 +20938,7 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = config.group === "Study" ? [
-        `${config.yLabel}: ${format(".3f")(datum2.metric)}`,
+        `${config.yLabel}: ${falsy_default.includes(datum2.metric) ? "\u2014" : format(".3f")(datum2.metric)}`,
         `Confidence Interval: (${format(".3f")(
           datum2.lowerCI
         )}, ${format(".3f")(datum2.upperCI)})`,
@@ -20947,8 +20947,8 @@ var rbmViz = (() => {
           datum2.denominator
         )}`
       ] : [
-        `KRI Score: ${format(".1f")(datum2.score)} (${config.score})`,
-        `KRI Value: ${format(".3f")(datum2.metric)} (${config.metric})`,
+        `KRI Score: ${falsy_default.includes(datum2.score) ? "\u2014" : format(".1f")(datum2.score)} (${config.score})`,
+        `KRI Value: ${falsy_default.includes(datum2.metric) ? "\u2014" : format(".3f")(datum2.metric)} (${config.metric})`,
         `${config.numerator}: ${format(",")(datum2.numerator)}`,
         `${config.denominator}: ${format(",")(
           datum2.denominator
@@ -22322,7 +22322,7 @@ var rbmViz = (() => {
           ...selectedGroupLine(data, config, labels),
           backgroundColor: color3,
           borderColor: (d) => {
-            return d.raw !== void 0 ? "black" : color3;
+            return d.raw !== void 0 ? "black" : "#aaa";
           }
         } : null,
         {

@@ -92,20 +92,8 @@ export default function structureData(_data_, config, _intervals_) {
                 ? {
                       ...getSelectedGroupLine(data, config, labels),
                       backgroundColor: color,
-                    //  backgroundColor:
-                    //      /at.risk/.test(config.y) && /flagged/.test(config.y)
-                    //          ? '#FD9432'
-                    //          : /at.risk/.test(config.y)
-                    //          ? colorScheme.find((color) =>
-                    //                color.flag.includes(1)
-                    //            ).color
-                    //          : /flagged/.test(config.y)
-                    //          ? colorScheme.find((color) =>
-                    //                color.flag.includes(2)
-                    //            ).color
-                    //          : '#aaaaaa',
                       borderColor: (d) => {
-                          return d.raw !== undefined ? 'black' : color;
+                          return d.raw !== undefined ? 'black' : '#aaa';
                       },
                   }
                 : null,
