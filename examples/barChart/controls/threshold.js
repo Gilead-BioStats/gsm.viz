@@ -4,22 +4,21 @@ const threshold = function (workflow, datasets, setup = false) {
     const thresholdToggle = document.getElementById('threshold');
 
     thresholdToggle.addEventListener('change', (event) => {
-        const kriDropdown = document.querySelector('#kri').value;
-        // need to know state of threshold
-        const isThreshold = thresholdToggle.checked;
+        const workflowID = kri();
+        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const workflow = selectWorkflowID(datasets[1], workflowID);
 
-        const workflow = datasets[0].find((d) => d.workflowid === kriDropdown);
-        const results = datasets[1].filter((d) => d.workflowid === kriDropdown);
+        // threshold annotations
+        const parameters =
+            workflow.y === 'score' &&
+            document.getElementById('threshold').checked
+                ? mergeParameters(
+                        filterOnWorkflowID(datasets[2], workflowID),
+                        filterOnWorkflowID(datasets[3], workflowID)
+                    )
+                : null;
 
-        let thresholds = null;
-        if (isThreshold) {
-            thresholds = datasets[2].filter(
-                (d) => d.workflowid === kriDropdown
-            );
-        }
-
-        //thresholds = false
-        workflow.selectedGroupIDs = site() === 'None' ? [] : [site()];
-        instance.helpers.updateData(instance, results, workflow, thresholds);
+        workflow.selectedGroupIDs = site();
+        instance.helpers.updateData(instance, results, workflow, parameters);
     });
 };

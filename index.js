@@ -20692,8 +20692,6 @@ var rbmViz = (() => {
     let thresholds2 = _config_.thresholds;
     if (_config_.variableThresholds)
       return null;
-    if (_config_.y === "metric" && !/^qtl/.test(_config_.workflowid))
-      return null;
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every(
@@ -21931,14 +21929,14 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _thresholds_) {
+  function configure6(_config_, _data_, _thresholds_, _intervals_) {
     const defaults3 = {};
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
     else
       defaults3.discreteUnit = null;
-    defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : /^qtl/.test(_config_?.workflowid) ? "identity" : "boxplot";
+    defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : _intervals_ !== null ? "identity" : "boxplot";
     defaults3.tooltipType = "scatter";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
@@ -22270,8 +22268,8 @@ var rbmViz = (() => {
     const data = mutate4(_data_, config, _intervals_);
     const labels = getLabels(data, config);
     let datasets = [];
-    if (config.hasOwnProperty("workflowid") && config.dataType !== "discrete") {
-      if (/^qtl/.test(config.workflowid)) {
+    if (config.dataType !== "discrete") {
+      if (_intervals_ !== null) {
         datasets = [
           identityLine(data, config, labels),
           ...intervalLines(_intervals_, config, labels),

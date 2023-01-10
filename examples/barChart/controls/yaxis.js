@@ -25,8 +25,8 @@ const yaxis = function (workflow, datasets, setup = false) {
                 workflow.y === 'score' &&
                 document.getElementById('threshold').checked
                     ? mergeParameters(
-                          filterOnWorkflowID(datasets[2], event.target.value),
-                          filterOnWorkflowID(datasets[3], event.target.value)
+                          filterOnWorkflowID(datasets[2], workflowID),
+                          filterOnWorkflowID(datasets[3], workflowID)
                       )
                     : null;
 

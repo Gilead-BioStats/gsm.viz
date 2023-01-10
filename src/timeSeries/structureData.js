@@ -22,8 +22,8 @@ export default function structureData(_data_, config, _intervals_) {
 
     // datasets
     let datasets = [];
-    if (config.hasOwnProperty('workflowid') && config.dataType !== 'discrete') {
-        if (/^qtl/.test(config.workflowid)) {
+    if (config.dataType !== 'discrete') {
+        if (_intervals_ !== null) {
             datasets = [
                 getIdentityLine(data, config, labels),
                 ...getIntervalLines(_intervals_, config, labels),

@@ -4,7 +4,7 @@ import coalesce from '../util/coalesce';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
 
     defaults.dataType = /flag|risk/.test(_config_.y)
@@ -25,7 +25,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.type =
         defaults.dataType === 'discrete'
             ? 'aggregate'
-            : /^qtl/.test(_config_?.workflowid)
+            : _intervals_ !== null
             ? 'identity'
             : 'boxplot';
     defaults.tooltipType = 'scatter';
@@ -33,7 +33,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     //    ? this.type
     //    : defaults.dataType === 'discrete'
     //    ? 'aggregate'
-    //    : /^qtl/.test(_config_?.workflowid)
+    //        : _intervals_ !== null
     //    ? 'identity'
     //    : 'boxplot';
 
