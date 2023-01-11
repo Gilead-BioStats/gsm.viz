@@ -19,7 +19,7 @@ const KRI = ({kri, setKri}) => {
     return (
             <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
                 <InputLabel id="demo-simple-select-standard-label">
-                    KRI + Country
+                    KRI
                 </InputLabel>
                 <Select
                     labelId="demo-simple-select-standard-label"
