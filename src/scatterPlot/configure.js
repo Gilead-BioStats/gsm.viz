@@ -6,8 +6,6 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 export default function configure(_config_, _data_) {
     const defaults = {};
 
-    defaults.type = 'scatter';
-
     // horizontal
     defaults.x = 'denominator';
     defaults.xType = 'logarithmic';

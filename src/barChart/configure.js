@@ -7,8 +7,6 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
-    defaults.type = 'bar';
-
     // horizontal
     defaults.x = 'groupid';
     defaults.xType = 'category';

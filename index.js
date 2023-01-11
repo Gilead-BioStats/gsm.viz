@@ -20680,7 +20680,6 @@ var rbmViz = (() => {
   // src/barChart/configure.js
   function configure3(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.type = "bar";
     defaults3.x = "groupid";
     defaults3.xType = "category";
     defaults3.y = "score";
@@ -21269,7 +21268,6 @@ var rbmViz = (() => {
   // src/scatterPlot/configure.js
   function configure4(_config_, _data_) {
     const defaults3 = {};
-    defaults3.type = "scatter";
     defaults3.x = "denominator";
     defaults3.xType = "logarithmic";
     defaults3.y = "numerator";
@@ -21656,7 +21654,6 @@ var rbmViz = (() => {
   // src/sparkline/configure.js
   function configure5(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.type = "line";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.y = "score";
@@ -21677,6 +21674,7 @@ var rbmViz = (() => {
     config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Sparkline of ${config.yLabel} by ${config.xLabel}`;
     return config;
   }
 
