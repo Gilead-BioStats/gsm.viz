@@ -1,3 +1,4 @@
+// TODO: figure out why on KRI change legend disappears when y-axis is set to metric.
 // Add event listener to KRI dropdown.
 const kri = function (workflow, datasets, setup = false) {
     const instance = getChart();

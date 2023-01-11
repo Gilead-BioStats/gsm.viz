@@ -1,4 +1,3 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import coalesce from '../util/coalesce';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
@@ -28,9 +27,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.yType = 'linear';
 
     // color
-    //defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
-    //defaults.colorLabel = _config_[defaults.color];
+    defaults.color = 'flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -54,8 +51,8 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
               (threshold) =>
-                  threshold.gsm_analysis_date !==
-                  _thresholds_[0].gsm_analysis_date
+                  threshold.snapshot_date !==
+                  _thresholds_[0].snapshot_date
           )
         : false;
 

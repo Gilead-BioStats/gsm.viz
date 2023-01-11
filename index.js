@@ -7500,8 +7500,8 @@ var rbmViz = (() => {
     _createDescriptors(chart, all) {
       const config = chart && chart.config;
       const options = valueOrDefault(config.options && config.options.plugins, {});
-      const plugins3 = allPlugins(config);
-      return options === false && !all ? [] : createDescriptors(chart, plugins3, options, all);
+      const plugins2 = allPlugins(config);
+      return options === false && !all ? [] : createDescriptors(chart, plugins2, options, all);
     }
     _notifyStateChanges(chart) {
       const previousDescriptors = this._oldCache || [];
@@ -7513,20 +7513,20 @@ var rbmViz = (() => {
   };
   function allPlugins(config) {
     const localIds = {};
-    const plugins3 = [];
+    const plugins2 = [];
     const keys = Object.keys(registry.plugins.items);
     for (let i = 0; i < keys.length; i++) {
-      plugins3.push(registry.getPlugin(keys[i]));
+      plugins2.push(registry.getPlugin(keys[i]));
     }
     const local = config.plugins || [];
     for (let i = 0; i < local.length; i++) {
       const plugin2 = local[i];
-      if (plugins3.indexOf(plugin2) === -1) {
-        plugins3.push(plugin2);
+      if (plugins2.indexOf(plugin2) === -1) {
+        plugins2.push(plugin2);
         localIds[plugin2.id] = true;
       }
     }
-    return { plugins: plugins3, localIds };
+    return { plugins: plugins2, localIds };
   }
   function getOpts(options, all) {
     if (!all && options === false) {
@@ -7537,10 +7537,10 @@ var rbmViz = (() => {
     }
     return options;
   }
-  function createDescriptors(chart, { plugins: plugins3, localIds }, options, all) {
+  function createDescriptors(chart, { plugins: plugins2, localIds }, options, all) {
     const result = [];
     const context = chart.getContext();
-    for (const plugin2 of plugins3) {
+    for (const plugin2 of plugins2) {
       const id2 = plugin2.id;
       const opts = getOpts(options[id2], all);
       if (opts === null) {
@@ -17301,7 +17301,7 @@ var rbmViz = (() => {
           title: "Analysis Date",
           description: "Date of analysis",
           type: "string",
-          required: true,
+          required: false,
           key: false
         },
         gsm_version: {
@@ -17374,13 +17374,6 @@ var rbmViz = (() => {
           type: "number",
           required: true,
           key: false
-        },
-        snapshot_date: {
-          title: "Snapshot Date",
-          description: "Date of data snapshot",
-          type: "string",
-          required: true,
-          key: true
         }
       }
     }
@@ -17565,11 +17558,20 @@ var rbmViz = (() => {
           title: "Analysis Date",
           description: "Date of analysis",
           type: "string",
-          required: true,
+          required: false,
           key: false
         }
       }
     }
+  };
+
+  // src/data/schema/snapshotDate.json
+  var snapshotDate_default = {
+    title: "Snapshot Date",
+    description: "Date of data snapshot",
+    type: "string",
+    required: true,
+    key: true
   };
 
   // src/data/schema/index.js
@@ -17579,7 +17581,8 @@ var rbmViz = (() => {
     flagCounts: flagCounts_default,
     results: results_default,
     resultsPredicted: resultsPredicted_default,
-    resultsVertical: resultsVertical_default
+    resultsVertical: resultsVertical_default,
+    snapshotDate: snapshotDate_default
   };
   var schema_default = schema;
 
@@ -17652,6 +17655,9 @@ var rbmViz = (() => {
       return;
     }
     const schema2 = schema_default[schemaName];
+    if (module === "timeSeries" && ["flagCounts", "results", "resultsVertical"].includes(schemaName)) {
+      schema2.items.properties.snapshot_date = schema_default.snapshotDate;
+    }
     if (argument === null) {
       if (verbose)
         console.log(
@@ -21052,7 +21058,7 @@ var rbmViz = (() => {
 
   // src/barChart/getPlugins.js
   function getPlugins(config) {
-    const getPlugins4 = {
+    const getPlugins5 = {
       annotation: {
         annotations: annotations(config),
         clip: true
@@ -21062,7 +21068,7 @@ var rbmViz = (() => {
       title: title(config),
       tooltip: tooltip(config)
     };
-    return getPlugins4;
+    return getPlugins5;
   }
 
   // src/util/getDefaultScales.js
@@ -21161,10 +21167,10 @@ var rbmViz = (() => {
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
       _thresholds_
     );
-    const plugins3 = getPlugins(config);
+    const plugins2 = getPlugins(config);
     const scales2 = getScales(config);
     chart.data.config = config;
-    chart.options.plugins = plugins3;
+    chart.options.plugins = plugins2;
     chart.options.scales = scales2;
     if (updateChart)
       chart.update();
@@ -21541,12 +21547,12 @@ var rbmViz = (() => {
 
   // src/scatterPlot/getPlugins.js
   function getPlugins2(config) {
-    const plugins3 = {
+    const plugins2 = {
       legend: legend2(config),
       title: title2(config),
       tooltip: tooltip2(config)
     };
-    return plugins3;
+    return plugins2;
   }
 
   // src/scatterPlot/getScales.js
@@ -21572,10 +21578,10 @@ var rbmViz = (() => {
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "scatter").data
     );
-    const plugins3 = getPlugins2(config);
+    const plugins2 = getPlugins2(config);
     const scales2 = getScales2(config);
     chart.data.config = config;
-    chart.options.plugins = plugins3;
+    chart.options.plugins = plugins2;
     chart.options.scales = scales2;
     if (updateChart)
       chart.update();
@@ -21841,12 +21847,12 @@ var rbmViz = (() => {
 
   // src/sparkline/getPlugins.js
   function getPlugins3(config, _data_) {
-    const plugins3 = {
+    const plugins2 = {
       annotation: annotations3(config, _data_),
       legend: legend3(config),
       tooltip: tooltip3(config)
     };
-    return plugins3;
+    return plugins2;
   }
 
   // src/sparkline/getScales.js
@@ -21937,7 +21943,7 @@ var rbmViz = (() => {
     defaults3.xType = "category";
     defaults3.y = "score";
     defaults3.yType = "linear";
-    defaults3.colorScheme = colorScheme_default;
+    defaults3.color = "flag";
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -21948,7 +21954,7 @@ var rbmViz = (() => {
     defaults3.annotateThreshold = _thresholds_ !== null;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
-      (threshold) => threshold.gsm_analysis_date !== _thresholds_[0].gsm_analysis_date
+      (threshold) => threshold.snapshot_date !== _thresholds_[0].snapshot_date
     ) : false;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
@@ -22010,7 +22016,7 @@ var rbmViz = (() => {
         if (d.type === "dataset") {
           return backgroundColor4;
         } else {
-          return config.colorScheme.find(
+          return colorScheme_default.find(
             (color4) => color4.flag.includes(+d.raw.flag)
           ).color;
         }
@@ -22081,7 +22087,7 @@ var rbmViz = (() => {
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
-        const color4 = config.colorScheme.find(
+        const color4 = colorScheme_default.find(
           (color5) => color5.flag.includes(+d.raw?.flag)
         );
         if (color4 !== void 0)
@@ -22109,7 +22115,7 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = config.colorScheme.find(
+    const color3 = colorScheme_default.find(
       (color4) => color4.flag.some((flag) => Math.abs(flag) === 1)
     );
     color3.rgba.opacity = 0.5;
@@ -22136,7 +22142,7 @@ var rbmViz = (() => {
       datum2.y = +datum2[config.y];
       return datum2;
     });
-    const color3 = config.colorScheme.find(
+    const color3 = colorScheme_default.find(
       (color4) => color4.flag.some((flag) => Math.abs(flag) > 1)
     );
     color3.rgba.opacity = 0.5;
@@ -22162,10 +22168,6 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
-    const color3 = config.colorScheme.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
-    );
-    color3.rgba.opacity = 0.5;
     const dataset = {
       data: grouped.map((d) => d[1]),
       maxBarThickness: 7,
@@ -22174,9 +22176,9 @@ var rbmViz = (() => {
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       outlierRadius: 0,
       pointRadius: 0,
-      radius: 0,
       pointStyle: "rect",
       purpose: "distribution",
+      radius: 0,
       type: "boxplot"
     };
     return dataset;
@@ -22189,10 +22191,6 @@ var rbmViz = (() => {
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
-    const color3 = config.colorScheme.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) === 0)
-    );
-    color3.rgba.opacity = 0.5;
     const dataset = {
       data: grouped.map((d) => d[1]),
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
@@ -22233,7 +22231,7 @@ var rbmViz = (() => {
       },
       (d) => d[config.x]
     );
-    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? "#FD9432" : /at.risk/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? config.colorScheme.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
+    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? colorScheme_default.amberRed.color : /at.risk/.test(config.y) ? colorScheme_default.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? colorScheme_default.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
     const borderColor4 = color2("#aaaaaa");
@@ -22357,7 +22355,7 @@ var rbmViz = (() => {
     return chartData;
   }
 
-  // src/timeSeries/plugins/annotations.js
+  // src/timeSeries/getPlugins/annotations.js
   function annotations4(config) {
     let annotations5 = null;
     if (config.thresholds) {
@@ -22391,12 +22389,12 @@ var rbmViz = (() => {
     return annotations5;
   }
 
-  // src/timeSeries/plugins/legend.js
+  // src/timeSeries/getPlugins/legend.js
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift("Site Distribution");
+    legendOrder.unshift(`${config.group} Distribution`);
     if (config.group === "Study")
       return {
         display: true,
@@ -22446,7 +22444,7 @@ var rbmViz = (() => {
       };
   }
 
-  // src/timeSeries/plugins/tooltip.js
+  // src/timeSeries/getPlugins/tooltip.js
   function tooltip4(config) {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
@@ -22475,8 +22473,8 @@ var rbmViz = (() => {
     };
   }
 
-  // src/timeSeries/plugins.js
-  function plugins2(config) {
+  // src/timeSeries/getPlugins.js
+  function getPlugins4(config) {
     return {
       annotation: {
         annotations: annotations4(config)
@@ -22507,9 +22505,9 @@ var rbmViz = (() => {
           (group2) => {
             const flags = checkThresholds({}, group2);
             flags.forEach((flag) => {
-              flag.gsm_analysis_date = group2[0].gsm_analysis_date;
               flag.snapshot_date = group2[0].snapshot_date;
-              flag.x = flag.gsm_analysis_date;
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.x = flag.snapshot_date;
               flag.y = flag.threshold;
               flag.color = colorScheme_default.find(
                 (color3) => color3.flag.includes(flag.flag)
@@ -22517,7 +22515,7 @@ var rbmViz = (() => {
             });
             return flags;
           },
-          (d) => d.gsm_analysis_date
+          (d) => d.snapshot_date
         )
       ].flatMap((d) => d[1]);
       const thresholdData = [
@@ -22544,7 +22542,7 @@ var rbmViz = (() => {
       _data_
     };
     chart.options.scales = getScales4(config);
-    chart.options.plugins = plugins2(config);
+    chart.options.plugins = getPlugins4(config);
     chart.update();
   }
 
@@ -22596,9 +22594,9 @@ var rbmViz = (() => {
           (group2) => {
             const flags = checkThresholds({}, group2);
             flags.forEach((flag) => {
-              flag.gsm_analysis_date = group2[0].gsm_analysis_date;
               flag.snapshot_date = group2[0].snapshot_date;
-              flag.x = flag.gsm_analysis_date;
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.x = flag.snapshot_date;
               flag.y = flag.threshold;
               flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
                 (color3) => color3.flag.includes(flag.flag)
@@ -22606,7 +22604,7 @@ var rbmViz = (() => {
             });
             return flags;
           },
-          (d) => d.gsm_analysis_date
+          (d) => d.snapshot_date
         )
       ].flatMap((d) => d[1]);
       const thresholdData = [
@@ -22632,11 +22630,10 @@ var rbmViz = (() => {
     }
     const options = {
       animation: false,
-      events: ["click", "mousemove", "mouseout"],
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins2(config),
+      plugins: getPlugins4(config),
       responsive: true,
       scales: getScales4(config, _data_)
     };
@@ -22644,16 +22641,19 @@ var rbmViz = (() => {
       data: {
         ...data,
         config,
-        _data_
+        _data_,
+        _config_,
+        _thresholds_,
+        _intervals_
       },
       options,
       plugins: [displayWhiteBackground()]
     });
+    canvas.chart = chart;
     chart.helpers = {
       updateData: updateData4.bind(chart),
       updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart)
     };
-    canvas.chart = chart;
     return chart;
   }
 

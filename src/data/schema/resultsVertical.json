@@ -38,7 +38,7 @@
                 "title": "Analysis Date",
                 "description": "Date of analysis",
                 "type": "string",
-                "required": true,
+                "required": false,
                 "key": false
             }
         }

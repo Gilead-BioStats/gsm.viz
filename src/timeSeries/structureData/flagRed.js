@@ -1,3 +1,5 @@
+import colorScheme from '../../util/colorScheme';
+
 export default function flagRed(data, config, labels) {
     const pointData = data
         .filter((d) => Math.abs(+d.flag) > 1)
@@ -9,7 +11,7 @@ export default function flagRed(data, config, labels) {
             return datum;
         });
 
-    const color = config.colorScheme.find((color) =>
+    const color = colorScheme.find((color) =>
         color.flag.some((flag) => Math.abs(flag) > 1)
     );
     color.rgba.opacity = 0.5;

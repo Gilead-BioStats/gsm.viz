@@ -39,6 +39,11 @@ export default function checkInput({
 
     const schema = schemata[schemaName];
 
+    // Add snapshot date to cross-section schema for time series module.
+    if (module === 'timeSeries' && ['flagCounts', 'results', 'resultsVertical'].includes(schemaName)) {
+        schema.items.properties.snapshot_date = schemata.snapshotDate;
+    }
+
     if (argument === null) {
         if (verbose)
             console.log(

@@ -1,10 +1,10 @@
+import { rollup } from 'd3';
 import configure from './configure';
 import structureData from './structureData';
-import plugins from './plugins';
-import getScales from './getScales';
-import { rollup } from 'd3';
 import checkThresholds from '../util/checkThresholds';
 import colorScheme from '../util/colorScheme';
+import getPlugins from './getPlugins';
+import getScales from './getScales';
 
 /**
  * Update chart configuration and redraw chart.
@@ -27,6 +27,7 @@ export default function updateData(
 
     const data = structureData(_data_, config, _analysis_);
 
+    // TODO: move this crap to structureData
     if (Array.isArray(_thresholds_)) {
         const thresholds = [
             ...rollup(
@@ -35,9 +36,9 @@ export default function updateData(
                     const flags = checkThresholds({}, group);
 
                     flags.forEach((flag) => {
-                        flag.gsm_analysis_date = group[0].gsm_analysis_date;
                         flag.snapshot_date = group[0].snapshot_date;
-                        flag.x = flag.gsm_analysis_date;
+                        flag.snapshot_date = group[0].snapshot_date;
+                        flag.x = flag.snapshot_date;
                         flag.y = flag.threshold;
                         flag.color = colorScheme.find((color) =>
                             color.flag.includes(flag.flag)
@@ -46,7 +47,7 @@ export default function updateData(
 
                     return flags;
                 },
-                (d) => d.gsm_analysis_date
+                (d) => d.snapshot_date
             ),
         ].flatMap((d) => d[1]);
 
@@ -79,8 +80,9 @@ export default function updateData(
         _data_,
     };
 
+    // might matter that scales come before plugins
     chart.options.scales = getScales(config);
-    chart.options.plugins = plugins(config);
+    chart.options.plugins = getPlugins(config);
 
     chart.update();
 }

@@ -1,0 +1,7 @@
+{
+    "title": "Snapshot Date",
+    "description": "Date of data snapshot",
+    "type": "string",
+    "required": true,
+    "key": true
+}

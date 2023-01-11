@@ -4,6 +4,7 @@ import flagCounts from './flagCounts.json';
 import results from './results.json';
 import resultsPredicted from './resultsPredicted.json';
 import resultsVertical from './resultsVertical.json';
+import snapshotDate from './snapshotDate.json';
 
 const schema = {
     analysisMetadata,
@@ -12,6 +13,7 @@ const schema = {
     results,
     resultsPredicted,
     resultsVertical,
+    snapshotDate,
 };
 
 export default schema;

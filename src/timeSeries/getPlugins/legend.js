@@ -6,7 +6,7 @@ export default function legend(config) {
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift('Site Distribution');
+    legendOrder.unshift(`${config.group} Distribution`);
 
     if (config.group === 'Study')
         return {
@@ -19,18 +19,12 @@ export default function legend(config) {
                 generateLabels: (chart) =>
                     chart.data.datasets.map((dataset, i) => {
                         return {
-                            //borderDash: [2],
-                            //borderWidth: 4,
-                            //boxHeight: 6,
-                            //boxWidth: 12,
                             datasetIndex: i,
                             fillStyle: dataset.backgroundColor,
                             lineWidth:
                                 dataset.label !== 'Study Average' ? 1 : 3,
                             lineDash: dataset.borderDash,
-                            //lineHeight: 6,
                             pointStyle: dataset.pointStyle,
-                            //pointStyleWidth: 24,
                             strokeStyle: dataset.borderColor,
                             text: dataset.label,
                         };
@@ -47,7 +41,7 @@ export default function legend(config) {
                         ? -1
                         : order;
                 },
-                usePointStyle: true, // config.dataType === 'continuous',
+                usePointStyle: true,
             },
             onClick: () => null,
             position: 'top',
@@ -74,7 +68,7 @@ export default function legend(config) {
                         ? -1
                         : order;
                 },
-                usePointStyle: true, // config.dataType === 'continuous',
+                usePointStyle: true,
             },
             onClick: () => null,
             position: 'top',
