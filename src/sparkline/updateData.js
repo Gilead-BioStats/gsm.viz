@@ -1,7 +1,6 @@
 import updateConfig from './updateConfig';
 import structureData from './structureData';
-import addCustomHoverEvent from '../util/addCanvas/addCustomHoverEvent';
-import addCustomClickEvent from '../util/addCanvas/addCustomClickEvent';
+import addCustomEvent from '../util/addCanvas/addCustomEvent';
 import plugins from './plugins';
 import getScales from './getScales';
 import { min, max } from 'd3';
@@ -15,19 +14,30 @@ import { min, max } from 'd3';
  *
  */
 export default function updateData(chart, _data_, _config_) {
+    // Maintain preexisting event listener callbacks to avoid attaching duplicate event listeners.
+    const hoverCallbackWrapper = chart.data.config.hoverCallbackWrapper;
+    _config_.hoverCallbackWrapper = hoverCallbackWrapper;
+
+    const clickCallbackWrapper = chart.data.config.clickCallbackWrapper;
+    _config_.clickCallbackWrapper = clickCallbackWrapper;
+
+    // Update chart configuration and datasets.
     chart.data.config = updateConfig(chart, _config_);
     chart.data.datasets = structureData(_data_, chart.data.config);
 
     // TODO: figure out why these events have to be redefined on data change
-    chart.data.config.hoverEvent = addCustomHoverEvent(
+    chart.data.config.hoverEvent = addCustomEvent(
         chart.canvas,
-        chart.data.config.hoverCallback
+        hoverCallbackWrapper,
+        'hover'
     );
-    chart.data.config.clickEvent = addCustomClickEvent(
+    chart.data.config.clickEvent = addCustomEvent(
         chart.canvas,
-        chart.data.config.clickCallback
+        clickCallbackWrapper,
+        'click'
     );
 
+    // Update chart plugins and scales.
     chart.options.plugins = plugins(
         chart.data.config,
         chart.data.datasets[0].data

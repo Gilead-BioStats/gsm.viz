@@ -19,6 +19,8 @@ export default function structureData(_data_, config) {
         {
             type: 'bar',
             data,
+            listenClick: true,
+            listenHover: true,
             label: '',
             ...scriptableOptions(),
             minBarLength: 2,

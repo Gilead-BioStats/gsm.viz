@@ -22,6 +22,8 @@ export default function structureData(_data_, config, _bounds_) {
             type: 'scatter',
             data,
             label: '',
+            listenClick: true,
+            listenHover: true,
             ...scriptableOptions(),
         },
     ];

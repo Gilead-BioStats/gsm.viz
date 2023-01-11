@@ -3,6 +3,7 @@ import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 import coalesce from '../util/coalesce';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
@@ -44,6 +45,12 @@ export default function configure(_config_, _data_, _thresholds_) {
     config.xLabel = coalesce(_config_.xLabel, config['group']);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
+
+    // If callbacks already exist maintain them.
+    if (config.hoverCallbackWrapper === undefined)
+        config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === undefined)
+        config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
 
     return config;
 }

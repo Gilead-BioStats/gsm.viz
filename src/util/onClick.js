@@ -1,16 +1,16 @@
 import getElementDatum from '../util/getElementDatum';
 
 export default function onClick(event, activeElements, chart) {
-    const config = chart.data.config;
+    const canvas = chart.canvas;
 
+    // Trigger click event callback (config.clickCallback) on mouseover of graphical element that
+    // supports click events.
     if (
         activeElements.length &&
-        chart.data.datasets[activeElements[0].datasetIndex].type ===
-            (config.tooltipType || config.type)
+        chart.data.datasets[activeElements[0].datasetIndex].listenClick === true
     ) {
         const datum = getElementDatum(activeElements, chart);
-        delete config.clickEvent.data;
-        config.clickEvent.data = datum;
-        chart.canvas.dispatchEvent(config.clickEvent);
+        canvas.clickEvent.data = datum;
+        canvas.dispatchEvent(canvas.clickEvent);
     }
 }

@@ -63,7 +63,7 @@ export default function timeSeries(
     // Define array of input datasets to chart.
     const data = structureData(_data_, config, _intervals_);
 
-    if (Array.isArray(_thresholds_)) {
+    if (Array.isArray(_thresholds_) && config.variableThresholds) {
         const thresholds = [
             ...rollup(
                 _thresholds_.filter((d) => d.param === 'vThreshold'),

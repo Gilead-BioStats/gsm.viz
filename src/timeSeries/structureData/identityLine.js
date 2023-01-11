@@ -35,6 +35,8 @@ export default function identityLine(data, config, labels) {
             };
         }),
         label: '',
+        listenHover: true,
+        listenClick: true,
         pointStyle: 'circle',
         purpose: 'aggregate',
         radius: 2.5,

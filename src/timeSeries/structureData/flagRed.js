@@ -19,6 +19,8 @@ export default function flagRed(data, config, labels) {
         backgroundColor: color.rgba + '',
         data: pointData,
         label: '',
+        listenHover: true,
+        listenClick: true,
         pointStyle: 'circle',
         purpose: 'scatter',
         radius: 2,

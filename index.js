@@ -20704,6 +20704,16 @@ var rbmViz = (() => {
     return mapThresholdsToFlags(thresholds2);
   }
 
+  // src/util/addCanvas/getCallbackWrapper.js
+  function getCallbackWrapper(callback2) {
+    const callbackWrapper = function(event) {
+      const pointDatum = event.data;
+      callback2(pointDatum);
+      return pointDatum;
+    };
+    return callbackWrapper;
+  }
+
   // src/barChart/configure.js
   function configure3(_config_, _data_, _thresholds_) {
     const defaults3 = {};
@@ -20731,37 +20741,29 @@ var rbmViz = (() => {
     config.xLabel = coalesce(_config_.xLabel, config["group"]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
+    if (config.hoverCallbackWrapper === void 0)
+      config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === void 0)
+      config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
     return config;
   }
 
-  // src/util/addCanvas/addCustomHoverEvent.js
-  function addCustomHoverEvent(canvas, callback2) {
-    const hoverEvent = new Event("hover-event");
-    canvas.addEventListener(
-      "hover-event",
-      (event) => {
-        const pointDatum = event.data;
-        callback2(pointDatum);
-        return pointDatum;
-      },
+  // src/util/addCanvas/addCustomEvent.js
+  function addCustomEvent(canvas, callback2, eventType) {
+    const callbackWrapper = getCallbackWrapper(callback2);
+    const eventID = `${eventType}-event`;
+    canvas.removeEventListener(
+      eventID,
+      callback2,
       false
     );
-    return hoverEvent;
-  }
-
-  // src/util/addCanvas/addCustomClickEvent.js
-  function addCustomClickEvent(canvas, callback2) {
-    const clickEvent = new Event("click-event");
+    const customEvent = new Event(eventID);
     canvas.addEventListener(
-      "click-event",
-      (event) => {
-        const pointDatum = event.data;
-        callback2(pointDatum);
-        return pointDatum;
-      },
+      eventID,
+      callback2,
       false
     );
-    return clickEvent;
+    return customEvent;
   }
 
   // src/util/addCanvas.js
@@ -20783,8 +20785,8 @@ var rbmViz = (() => {
       }
       canvas = newCanvas;
     }
-    config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
-    config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
+    canvas.hoverEvent = addCustomEvent(canvas, config.hoverCallbackWrapper, "hover");
+    canvas.clickEvent = addCustomEvent(canvas, config.clickCallbackWrapper, "click");
     return canvas;
   }
 
@@ -20829,6 +20831,8 @@ var rbmViz = (() => {
       {
         type: "bar",
         data,
+        listenClick: true,
+        listenHover: true,
         label: "",
         ...scriptableOptions(),
         minBarLength: 2,
@@ -20853,22 +20857,21 @@ var rbmViz = (() => {
 
   // src/util/onClick.js
   function onClick(event, activeElements, chart) {
-    const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)) {
+    const canvas = chart.canvas;
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenClick === true) {
       const datum2 = getElementDatum(activeElements, chart);
-      delete config.clickEvent.data;
-      config.clickEvent.data = datum2;
-      chart.canvas.dispatchEvent(config.clickEvent);
+      canvas.clickEvent.data = datum2;
+      canvas.dispatchEvent(canvas.clickEvent);
     }
   }
 
   // src/util/onHover.js
   function onHover(event, activeElements, chart) {
-    const config = chart.data.config;
-    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].type === (config.tooltipType || config.type)) {
+    const canvas = chart.canvas;
+    if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenHover === true) {
       const datum2 = getElementDatum(activeElements, chart);
-      config.hoverEvent.data = datum2;
-      chart.canvas.dispatchEvent(config.hoverEvent);
+      canvas.hoverEvent.data = datum2;
+      canvas.dispatchEvent(canvas.hoverEvent);
       event.native.target.style.cursor = "pointer";
     } else {
       event.native.target.style.cursor = "default";
@@ -21160,14 +21163,20 @@ var rbmViz = (() => {
 
   // src/barChart/updateData.js
   function updateData(chart, _data_, _config_, _thresholds_) {
+    const hoverCallbackWrapper = chart.data.config.hoverCallbackWrapper;
+    _config_.hoverCallbackWrapper = hoverCallbackWrapper;
+    const clickCallbackWrapper = chart.data.config.clickCallbackWrapper;
+    _config_.clickCallbackWrapper = clickCallbackWrapper;
     chart.data.config = updateConfig(chart, _config_, _thresholds_);
-    chart.data.config.hoverEvent = addCustomHoverEvent(
+    chart.data.config.hoverEvent = addCustomEvent(
       chart.canvas,
-      chart.data.config.hoverCallback
+      hoverCallbackWrapper,
+      "hover"
     );
-    chart.data.config.clickEvent = addCustomClickEvent(
+    chart.data.config.clickEvent = addCustomEvent(
       chart.canvas,
-      chart.data.config.clickCallback
+      clickCallbackWrapper,
+      "click"
     );
     chart.data.datasets = structureData(_data_, chart.data.config);
     chart.update();
@@ -21276,6 +21285,10 @@ var rbmViz = (() => {
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
+    if (config.hoverCallbackWrapper === void 0)
+      config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === void 0)
+      config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
     return config;
   }
 
@@ -21436,6 +21449,8 @@ var rbmViz = (() => {
         type: "scatter",
         data,
         label: "",
+        listenClick: true,
+        listenHover: true,
         ...scriptableOptions2()
       }
     ];
@@ -21550,31 +21565,29 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateConfig.js
-  function updateConfig2(chart, _config_, update = false) {
+  function updateConfig2(chart, _config_, updateChart = true, updateTooltip = true) {
     const config = configure4(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "scatter").data
     );
-    chart.options.plugins = plugins3(config);
-    chart.options.scales = getScales2(config);
+    const plugins6 = plugins3(config);
+    const scales2 = getScales2(config);
     chart.data.config = config;
-    chart.update();
-    triggerTooltip(chart);
+    chart.options.plugins = plugins6;
+    chart.options.scales = scales2;
+    if (updateChart)
+      chart.update();
+    if (updateTooltip)
+      triggerTooltip(chart);
     return config;
   }
 
   // src/scatterPlot/updateData.js
   function updateData2(chart, _data_, _config_, _bounds_) {
-    chart.data.config = updateConfig2(chart, _config_);
-    chart.data.config.hoverEvent = addCustomHoverEvent(
-      chart.canvas,
-      chart.data.config.hoverCallback
-    );
-    chart.data.config.clickEvent = addCustomClickEvent(
-      chart.canvas,
-      chart.data.config.clickCallback
-    );
-    chart.data.datasets = structureData2(_data_, chart.data.config, _bounds_);
+    const config = updateConfig2(chart, _config_, false, false);
+    const datasets = structureData2(_data_, config, _bounds_);
+    chart.data.config = config;
+    chart.data.datasets = datasets;
     chart.update();
     triggerTooltip(chart);
   }
@@ -21875,15 +21888,21 @@ var rbmViz = (() => {
 
   // src/sparkline/updateData.js
   function updateData3(chart, _data_, _config_) {
+    const hoverCallbackWrapper = chart.data.config.hoverCallbackWrapper;
+    _config_.hoverCallbackWrapper = hoverCallbackWrapper;
+    const clickCallbackWrapper = chart.data.config.clickCallbackWrapper;
+    _config_.clickCallbackWrapper = clickCallbackWrapper;
     chart.data.config = updateConfig3(chart, _config_);
     chart.data.datasets = structureData3(_data_, chart.data.config);
-    chart.data.config.hoverEvent = addCustomHoverEvent(
+    chart.data.config.hoverEvent = addCustomEvent(
       chart.canvas,
-      chart.data.config.hoverCallback
+      hoverCallbackWrapper,
+      "hover"
     );
-    chart.data.config.clickEvent = addCustomClickEvent(
+    chart.data.config.clickEvent = addCustomEvent(
       chart.canvas,
-      chart.data.config.clickCallback
+      clickCallbackWrapper,
+      "click"
     );
     chart.options.plugins = plugins4(
       chart.data.config,
@@ -21936,8 +21955,7 @@ var rbmViz = (() => {
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("groupid") ? "KRI" : "Site";
     else
       defaults3.discreteUnit = null;
-    defaults3.type = defaults3.dataType === "discrete" ? "aggregate" : _intervals_ !== null ? "identity" : "boxplot";
-    defaults3.tooltipType = "scatter";
+    defaults3.distributionDisplay = "boxplot";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
     defaults3.y = "score";
@@ -21950,6 +21968,7 @@ var rbmViz = (() => {
     };
     defaults3.group = "Site";
     defaults3.aggregateLabel = "Study";
+    defaults3.annotateThreshold = _thresholds_ !== null;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
       (threshold) => threshold.gsm_analysis_date !== _thresholds_[0].gsm_analysis_date
@@ -22030,6 +22049,8 @@ var rbmViz = (() => {
         };
       }),
       label: "",
+      listenHover: true,
+      listenClick: true,
       pointStyle: "circle",
       purpose: "aggregate",
       radius: 2.5,
@@ -22120,6 +22141,8 @@ var rbmViz = (() => {
       backgroundColor: color3.rgba + "",
       data: pointData,
       label: "",
+      listenHover: true,
+      listenClick: true,
       pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
@@ -22145,6 +22168,8 @@ var rbmViz = (() => {
       backgroundColor: color3.rgba + "",
       data: pointData,
       label: "",
+      listenHover: true,
+      listenClick: true,
       pointStyle: "circle",
       purpose: "scatter",
       radius: 2,
@@ -22202,9 +22227,9 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/distribution.js
   function distribution(data, config, labels) {
-    if (!["boxplot", "violin"].includes(config.type))
+    if (!["boxplot", "violin"].includes(config.distributionDisplay))
       return null;
-    const dataset = config.type === "boxplot" ? boxplot2(data, config, labels) : config.type === "violin" ? violin(data, config, labels) : null;
+    const dataset = config.distributionDisplay === "boxplot" ? boxplot2(data, config, labels) : config.distributionDisplay === "violin" ? violin(data, config, labels) : null;
     return dataset;
   }
 
@@ -22370,7 +22395,7 @@ var rbmViz = (() => {
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.type === "identity") {
+        if (config.annotateThreshold === true && config.group === "Study") {
           annotation2.label = {
             rotation: "auto",
             position: Math.sign(+x.flag) >= 0 ? "end" : "start",
@@ -22587,7 +22612,7 @@ var rbmViz = (() => {
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
     const data = structureData4(_data_, config, _intervals_);
-    if (Array.isArray(_thresholds_)) {
+    if (Array.isArray(_thresholds_) && config.variableThresholds) {
       const thresholds2 = [
         ...rollup(
           _thresholds_.filter((d) => d.param === "vThreshold"),

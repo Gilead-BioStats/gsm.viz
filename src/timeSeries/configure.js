@@ -10,11 +10,6 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
-    //defaults.dataType = this.dataType !== undefined
-    //    ? this.dataType
-    //    : /flag|risk/.test(_config_.y)
-    //    ? 'discrete'
-    //    : 'continuous';
 
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
@@ -22,20 +17,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
             : 'Site';
     else defaults.discreteUnit = null;
 
-    defaults.type =
-        defaults.dataType === 'discrete'
-            ? 'aggregate'
-            : _intervals_ !== null
-            ? 'identity'
-            : 'boxplot';
-    defaults.tooltipType = 'scatter';
-    //defaults.type = this.type !== undefined
-    //    ? this.type
-    //    : defaults.dataType === 'discrete'
-    //    ? 'aggregate'
-    //        : _intervals_ !== null
-    //    ? 'identity'
-    //    : 'boxplot';
+    defaults.distributionDisplay = 'boxplot';
 
     // horizontal
     defaults.x = 'snapshot_date';
@@ -59,6 +41,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     // miscellaneous
     defaults.group = 'Site';
     defaults.aggregateLabel = 'Study';
+    defaults.annotateThreshold = _thresholds_ !== null;
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     //defaults.displayBoxplots = true;

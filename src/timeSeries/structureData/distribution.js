@@ -2,12 +2,12 @@ import getBoxplot from './distribution/boxplot';
 import getViolin from './distribution/violin';
 
 export default function distribution(data, config, labels) {
-    if (!['boxplot', 'violin'].includes(config.type)) return null;
+    if (!['boxplot', 'violin'].includes(config.distributionDisplay)) return null;
 
     const dataset =
-        config.type === 'boxplot'
+        config.distributionDisplay === 'boxplot'
             ? getBoxplot(data, config, labels)
-            : config.type === 'violin'
+            : config.distributionDisplay === 'violin'
             ? getViolin(data, config, labels)
             : null;
 
