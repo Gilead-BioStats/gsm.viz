@@ -31,7 +31,7 @@ const KRI = ({kri, setKri}) => {
                     {allKris.map((d, index) => {
                         return (
                             <MenuItem key={index} value={d.workflowid}>
-                                {d.metric} ({d.workflowid})
+                                {d.metric} by {d.group}
                             </MenuItem>
                         );
                     })}
