@@ -1,20 +1,29 @@
+// TODO: move threshold definitions to structureData
+import { rollup } from 'd3';
+import checkThresholds from './util/checkThresholds';
+import colorScheme from './util/colorScheme';
+
+// Chart.js
+import Chart from 'chart.js/auto';
+
+// check inputs > configure > add canvas, structure data
+import checkInput from './data/checkInput';
 import configure from './timeSeries/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './timeSeries/structureData';
 
+// Chart.js options
 import onHover from './util/onHover';
 import onClick from './util/onClick';
-import plugins from './timeSeries/plugins';
+import getPlugins from './timeSeries/getPlugins';
 import getScales from './timeSeries/getScales';
 
-import Chart from 'chart.js/auto';
+// custom plugins
+import displayWhiteBackground from './util/displayWhiteBackground';
+
+// update meethods
 import updateData from './timeSeries/updateData';
 import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
-
-import { rollup } from 'd3';
-import checkThresholds from './util/checkThresholds';
-import mapThresholdsToFlags from './util/mapThresholdsToFlags';
-import colorScheme from './util/colorScheme';
 
 export default function timeSeries(
     _element_,
@@ -23,14 +32,45 @@ export default function timeSeries(
     _thresholds_ = null,
     _intervals_ = null
 ) {
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+
+    checkInput({
+        parameter: '_data_',
+        argument: _data_,
+        schemaName: discrete ? 'flagCounts' : 'results',
+        module: 'timeSeries',
+    });
+
+    checkInput({
+        parameter: '_config_',
+        argument: discrete ? null : _config_,
+        schemaName: 'analysisMetadata',
+        module: 'timeSeries',
+    });
+
+    checkInput({
+        parameter: '_thresholds_',
+        argument: _thresholds_,
+        schemaName: 'analysisParameters',
+        module: 'timeSeries',
+    });
+
+    checkInput({
+        parameter: '_intervals_',
+        argument: _intervals_,
+        schemaName: 'resultsVertical',
+        module: 'timeSeries',
+    });
+
     // Update config.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
 
     // Define array of input datasets to chart.
     const data = structureData(_data_, config, _intervals_);
 
-    if (Array.isArray(_thresholds_)) {
+    // TODO: move this crap to structureData
+    if (Array.isArray(_thresholds_) && config.variableThresholds) {
         const thresholds = [
             ...rollup(
                 _thresholds_.filter((d) => d.param === 'vThreshold'),
@@ -38,18 +78,21 @@ export default function timeSeries(
                     const flags = checkThresholds({}, group);
 
                     flags.forEach((flag) => {
-                        flag.gsm_analysis_date = group[0].gsm_analysis_date;
                         flag.snapshot_date = group[0].snapshot_date;
-                        flag.x = flag.gsm_analysis_date;
+                        flag.snapshot_date = group[0].snapshot_date;
+                        flag.x = flag.snapshot_date;
                         flag.y = flag.threshold;
-                        flag.color = colorScheme.find((color) =>
-                            color.flag.includes(flag.flag)
-                        );
+                        flag.color =
+                            flags.length === 1
+                                ? colorScheme.amberRed
+                                : colorScheme.find((color) =>
+                                      color.flag.includes(flag.flag)
+                                  );
                     });
 
                     return flags;
                 },
-                (d) => d.gsm_analysis_date
+                (d) => d.snapshot_date
             ),
         ].flatMap((d) => d[1]);
 
@@ -82,30 +125,36 @@ export default function timeSeries(
     // Define plugins (title, tooltip) and scales (x, y).
     const options = {
         animation: false,
-        events: ['click', 'mousemove', 'mouseout'],
         maintainAspectRatio: config.maintainAspectRatio,
         onClick,
         onHover,
-        plugins: plugins(config),
+        plugins: getPlugins(config),
         responsive: true,
         scales: getScales(config, _data_),
     };
 
+    // Instantiate Chart.js chart object.
     const chart = new Chart(canvas, {
         data: {
             ...data,
             config,
             _data_,
+            _config_,
+            _thresholds_,
+            _intervals_,
         },
         options,
+        plugins: [displayWhiteBackground()],
     });
 
+    // Attach chart object to canvas element.
+    canvas.chart = chart;
+
+    // Attach update methods to chart object.
     chart.helpers = {
         updateData: updateData.bind(chart),
         updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart),
     };
-
-    canvas.chart = chart;
 
     return chart;
 }

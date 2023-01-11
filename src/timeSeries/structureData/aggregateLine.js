@@ -1,4 +1,5 @@
 import { color as d3color, max, mean, rollup } from 'd3';
+import colorScheme from '../../util/colorScheme';
 
 export default function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
@@ -27,11 +28,11 @@ export default function aggregateLine(data, config, labels) {
 
     const color =
         /at.risk/.test(config.y) && /flagged/.test(config.y)
-            ? '#FD9432'
+            ? colorScheme.amberRed.color
             : /at.risk/.test(config.y)
-            ? config.colorScheme.find((color) => color.flag.includes(1)).color
+            ? colorScheme.find((color) => color.flag.includes(1)).color
             : /flagged/.test(config.y)
-            ? config.colorScheme.find((color) => color.flag.includes(2)).color
+            ? colorScheme.find((color) => color.flag.includes(2)).color
             : '#aaaaaa';
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 1;

@@ -35,11 +35,6 @@ describe('configuration', () => {
                 'gsm_analysis_date',
 
                 // time series settings
-                'dataType',
-                'discreteUnit',
-                'type',
-                'tooltipType',
-
                 'x',
                 'xType',
                 'xLabel',
@@ -48,14 +43,20 @@ describe('configuration', () => {
                 'yType',
                 'yLabel',
 
-                'colorScheme',
+                'color',
 
                 'hoverCallback',
+                'hoverCallbackWrapper',
                 'clickCallback',
+                'clickCallbackWrapper',
 
+                'annotateThreshold',
                 'aggregateLabel',
+                'chartName',
+                'dataType',
+                'discreteUnit',
+                'distributionDisplay',
                 'maintainAspectRatio',
-
                 'selectedGroupIDs',
                 'thresholds',
                 'variableThresholds',

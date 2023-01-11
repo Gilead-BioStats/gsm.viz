@@ -6,38 +6,35 @@ const yaxis = function (workflow, datasets, setup = false) {
         const instance = getChart();
         yAxisDropdown.value = workflow.y;
         yAxisDropdown.addEventListener('change', (event) => {
-            const kriDropdown = document.querySelector('#kri').value;
-            const isThreshold = document.getElementById('threshold').checked;
+            const workflowID = kri();
 
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === kriDropdown
-            );
-            workflow.y = yaxis();
-            const results = datasets[1].filter(
-                (d) => d.workflowid === kriDropdown
+            datasets = datasets.map((dataset) =>
+                dataset.filter((d) => /^kri/.test(d.workflowid))
             );
 
-            let thresholds = null;
-            if (isThreshold) {
-                thresholds = datasets[2].filter(
-                    (d) => d.workflowid === kriDropdown
-                );
-            }
+            // analysis results
+            const results = filterOnWorkflowID(datasets[0], workflowID);
 
-            // disable threshold when metric selected
-            if (workflow.y === 'metric') {
-                document.getElementById('threshold').disabled = true;
-            } else {
-                document.getElementById('threshold').disabled = false;
-            }
+            // chart configuration
+            const workflow = selectWorkflowID(datasets[1], workflowID);
+            workflow.y = event.target.value;
+            workflow.selectedGroupIDs = site();
 
-            //thresholds = false
-            workflow.selectedGroupIDs = site() === 'None' ? [] : site();
+            // threshold annotations
+            const parameters =
+                workflow.y === 'score' &&
+                document.getElementById('threshold').checked
+                    ? mergeParameters(
+                          filterOnWorkflowID(datasets[2], workflowID),
+                          filterOnWorkflowID(datasets[3], workflowID)
+                      )
+                    : null;
+
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
-                thresholds
+                parameters
             );
         });
     }

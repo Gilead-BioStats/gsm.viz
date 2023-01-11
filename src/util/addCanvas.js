@@ -1,6 +1,4 @@
-import { Chart } from 'chart.js';
-import addCustomHoverEvent from './addCanvas/addCustomHoverEvent';
-import addCustomClickEvent from './addCanvas/addCustomClickEvent';
+import addCustomEvent from './addCanvas/addCustomEvent';
 
 export default function addCanvas(_element_, config) {
     let canvas;
@@ -37,8 +35,16 @@ export default function addCanvas(_element_, config) {
     }
 
     // TODO: figure out how to add this functionality in config rather than canvas
-    config.hoverEvent = addCustomHoverEvent(canvas, config.hoverCallback);
-    config.clickEvent = addCustomClickEvent(canvas, config.clickCallback);
+    canvas.hoverEvent = addCustomEvent(
+        canvas,
+        config.hoverCallbackWrapper,
+        'hover'
+    );
+    canvas.clickEvent = addCustomEvent(
+        canvas,
+        config.clickCallbackWrapper,
+        'click'
+    );
 
     return canvas;
 }

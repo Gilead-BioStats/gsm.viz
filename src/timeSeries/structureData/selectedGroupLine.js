@@ -1,4 +1,5 @@
-import { color as d3color } from 'd3';
+import { color as d3color, max } from 'd3';
+import colorScheme from '../../util/colorScheme';
 
 export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;
@@ -21,10 +22,10 @@ export default function selectedGroupLine(data, config, labels) {
     const dataset = {
         data: lineData,
         backgroundColor: function (d) {
-            const color = config.colorScheme.find((color) =>
+            const color = colorScheme.find((color) =>
                 color.flag.includes(+d.raw?.flag)
             );
-            if (color !== undefined) color.rgba.opacity = 0.5;
+            if (color !== undefined) color.rgba.opacity = 0.75;
 
             return color !== undefined ? color.rgba + '' : backgroundColor;
         },

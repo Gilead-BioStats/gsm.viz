@@ -35,8 +35,6 @@ describe('configuration', () => {
                 'gsm_analysis_date',
 
                 // scatter plot settings
-                'type',
-
                 'x',
                 'xType',
                 'xLabel',
@@ -46,15 +44,16 @@ describe('configuration', () => {
                 'yLabel',
 
                 'color',
-                'colorScheme',
 
                 'hoverCallback',
+                'hoverCallbackWrapper',
                 'clickCallback',
+                'clickCallbackWrapper',
 
+                'chartName',
                 'displayTitle',
                 'displayTrendLine',
                 'maintainAspectRatio',
-
                 'selectedGroupIDs',
             ].sort()
         );

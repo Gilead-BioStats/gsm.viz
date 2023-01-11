@@ -1,8 +1,7 @@
 import updateConfig from './updateConfig';
 import structureData from './structureData';
-import addCustomHoverEvent from '../util/addCanvas/addCustomHoverEvent';
-import addCustomClickEvent from '../util/addCanvas/addCustomClickEvent';
-import plugins from './plugins';
+import addCustomEvent from '../util/addCanvas/addCustomEvent';
+import getPlugins from './getPlugins';
 import getScales from './getScales';
 import { min, max } from 'd3';
 
@@ -15,20 +14,12 @@ import { min, max } from 'd3';
  *
  */
 export default function updateData(chart, _data_, _config_) {
+    // Update chart configuration and datasets.
     chart.data.config = updateConfig(chart, _config_);
     chart.data.datasets = structureData(_data_, chart.data.config);
 
-    // TODO: figure out why these events have to be redefined on data change
-    chart.data.config.hoverEvent = addCustomHoverEvent(
-        chart.canvas,
-        chart.data.config.hoverCallback
-    );
-    chart.data.config.clickEvent = addCustomClickEvent(
-        chart.canvas,
-        chart.data.config.clickCallback
-    );
-
-    chart.options.plugins = plugins(
+    // Update chart plugins and scales.
+    chart.options.plugins = getPlugins(
         chart.data.config,
         chart.data.datasets[0].data
     );

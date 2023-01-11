@@ -5,11 +5,6 @@ export default function checkThresholds(_config_, _thresholds_) {
 
     if (_config_.variableThresholds) return null;
 
-    // TODO: remove hard code check for 'metric'
-    // KRI metric is not associated with any thresholds
-    if (_config_.y === 'metric' && !/^qtl/.test(_config_.workflowid))
-        return null;
-
     // TODO: flag groups given user-defined thresholds
     // user-defined thresholds
     if (
@@ -47,8 +42,5 @@ export default function checkThresholds(_config_, _thresholds_) {
         .filter((d) => d.param === 'vThreshold')
         .map((d) => (d.value !== undefined ? +d.value : +d.default));
 
-    return mapThresholdsToFlags(
-        thresholds,
-        thresholds.some((threshold) => threshold < 0)
-    );
+    return mapThresholdsToFlags(thresholds);
 }

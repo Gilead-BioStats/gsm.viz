@@ -1,11 +1,11 @@
 // dependencies
-import { Chart, LinearScale, CategoryScale } from 'chart.js';
+import { CategoryScale, Chart, LinearScale } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
 import {
-    BoxPlotController,
     BoxAndWiskers,
-    ViolinController,
+    BoxPlotController,
     Violin,
+    ViolinController,
 } from '@sgratzl/chartjs-chart-boxplot';
 
 // modules
@@ -16,14 +16,15 @@ import timeSeries from './timeSeries';
 
 Chart.register(
     annotationPlugin,
+    BoxAndWiskers,
+    BoxPlotController,
     CategoryScale,
     LinearScale,
-    BoxPlotController,
-    BoxAndWiskers,
-    ViolinController,
-    Violin
+    Violin,
+    ViolinController
 );
 
+// TODO: implement class-based modules
 const rbmViz = {
     // bar chart
     barChart: barChart.bind({

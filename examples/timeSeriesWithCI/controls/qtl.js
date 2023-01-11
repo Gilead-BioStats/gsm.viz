@@ -17,26 +17,30 @@ const qtl = function (workflow, datasets, setup = false) {
 
         qtlDropdown.value = workflow.workflowid;
         qtlDropdown.addEventListener('change', (event) => {
-            const results = datasets[0].filter(
-                (d) => d.workflowid === event.target.value
-            );
-            const workflow = datasets[1].find(
-                (d) => d.workflowid === event.target.value
-            );
+            const workflowID = event.target.value;
+
+            // analysis results
+            const results = filterOnWorkflowID(datasets[0], workflowID);
+
+            // chart configuration
+            const workflow = selectWorkflowID(datasets[1], workflowID);
             workflow.y = 'metric';
-            const parameters = datasets[2].filter(
-                (d) => d.workflowid === event.target.value
+
+            // threshold annotations
+            const parameters = mergeParameters(
+                filterOnWorkflowID(datasets[2], workflowID),
+                filterOnWorkflowID(datasets[3], workflowID)
             );
-            const analysis = datasets[3].filter(
-                (d) => d.workflowid === event.target.value
-            );
+
+            // additional analysis output
+            const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);
 
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
                 parameters,
-                analysis
+                resultsVertical
             );
         });
     }

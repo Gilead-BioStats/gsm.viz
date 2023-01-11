@@ -25,17 +25,16 @@ Promise.all(dataPromises)
         // config
         const config =
             by === 'kri'
-                ? datasets[1].find(
-                      (workflow) => workflow.workflowid === workflowID
-                  )
+                ? {
+                      ...datasets[1].find(
+                          (workflow) => workflow.workflowid === workflowID
+                      ),
+                      //discreteUnit: 'Country',
+                  }
                 : {
                       selectedGroupIDs: '173',
-                      //aggregateLabel: 'Country',
                   };
         config.y = 'n_at_risk_or_flagged';
-
-        console.log(workflow);
-        console.log(flagCounts);
 
         // visualization
         const instance = rbmViz.default.timeSeries(

@@ -1,7 +1,7 @@
 {
   "TODO": "",
   "name": "rbm-viz",
-  "version": "0.13.8",
+  "version": "1.0.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
@@ -13,11 +13,12 @@
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
-    "local": "live-server --ignore=examples/app,examples/data,examples/react-example-page,node_modules --wait=250 .",
-    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch",
+    "local": "live-server --ignore=app,examples/app,examples/data,node_modules,src .",
     "test": "jest",
     "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
-    "transpile": "babel index.js > index.es5.js"
+    "transpile": "babel index.js > index.es5.js",
+    "update-data": "node examples/data/helpers/csv-to-json.js && cp examples/data/*.json examples/app/src/data",
+    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "keywords": [
     "rbm",
+    "rbqm",
     "risk-based",
     "monitoring",
     "data",
@@ -48,8 +50,8 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.20.7",
-    "@babel/core": "^7.19.3",
-    "@babel/preset-env": "^7.19.3",
+    "@babel/core": "^7.20.7",
+    "@babel/preset-env": "^7.20.2",
     "babel-jest": "^29.1.2",
     "csvtojson": "^2.0.10",
     "esbuild": "^0.15.10",

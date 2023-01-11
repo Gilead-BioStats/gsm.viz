@@ -1,6 +1,9 @@
+import { rollup } from 'd3';
 import configure from './configure';
 import structureData from './structureData';
-import plugins from './plugins';
+import checkThresholds from '../util/checkThresholds';
+import colorScheme from '../util/colorScheme';
+import getPlugins from './getPlugins';
 import getScales from './getScales';
 
 /**
@@ -9,7 +12,7 @@ import getScales from './getScales';
  * @param {Object} chart - Chart.js chart object
  * @param {Array} _data_ - KRI/QTL results where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _parameters_ - KRI/QTL parameters where each array item is an object of key-value pairs
+ * @param {Array} _thresholds_ - KRI/QTL parameters where each array item is an object of key-value pairs
  * @param {Array} _analysis_ - additional statistical output where each array item is an object of key-value pairs
  *
  */
@@ -17,19 +20,69 @@ export default function updateData(
     chart,
     _data_,
     _config_,
-    _parameters_ = null,
+    _thresholds_ = null,
     _analysis_ = null
 ) {
-    const config = configure(_config_, _data_, _parameters_);
+    const config = configure(_config_, _data_, _thresholds_);
+
+    const data = structureData(_data_, config, _analysis_);
+
+    // TODO: move this crap to structureData
+    if (Array.isArray(_thresholds_)) {
+        const thresholds = [
+            ...rollup(
+                _thresholds_.filter((d) => d.param === 'vThreshold'),
+                (group) => {
+                    const flags = checkThresholds({}, group);
+
+                    flags.forEach((flag) => {
+                        flag.snapshot_date = group[0].snapshot_date;
+                        flag.snapshot_date = group[0].snapshot_date;
+                        flag.x = flag.snapshot_date;
+                        flag.y = flag.threshold;
+                        flag.color = colorScheme.find((color) =>
+                            color.flag.includes(flag.flag)
+                        );
+                    });
+
+                    return flags;
+                },
+                (d) => d.snapshot_date
+            ),
+        ].flatMap((d) => d[1]);
+
+        const thresholdData = [
+            ...rollup(
+                thresholds,
+                (group) => ({
+                    borderColor: group[0].color.color,
+                    //function (d) {
+                    //    return d.color.color;
+                    //},
+                    borderDash: [2],
+                    borderWidth: 1,
+                    data: group,
+                    label: '',
+                    radius: 0,
+                    stepped: 'before', // 'after'
+                    type: 'line',
+                }),
+                (d) => d.flag
+            ),
+        ].map((d) => d[1]);
+
+        data.datasets = [...data.datasets, ...thresholdData];
+    }
 
     chart.data = {
-        ...structureData(_data_, config, _analysis_),
+        ...data,
         config,
         _data_,
     };
 
+    // might matter that scales come before plugins
     chart.options.scales = getScales(config);
-    chart.options.plugins = plugins(config);
+    chart.options.plugins = getPlugins(config);
 
     chart.update();
 }

@@ -1,20 +1,15 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import coalesce from '../util/coalesce';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
 
     defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
-    //defaults.dataType = this.dataType !== undefined
-    //    ? this.dataType
-    //    : /flag|risk/.test(_config_.y)
-    //    ? 'discrete'
-    //    : 'continuous';
 
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
@@ -22,20 +17,7 @@ export default function configure(_config_, _data_, _thresholds_) {
             : 'Site';
     else defaults.discreteUnit = null;
 
-    defaults.type =
-        defaults.dataType === 'discrete'
-            ? 'aggregate'
-            : /^qtl/.test(_config_?.workflowid)
-            ? 'identity'
-            : 'boxplot';
-    defaults.tooltipType = 'scatter';
-    //defaults.type = this.type !== undefined
-    //    ? this.type
-    //    : defaults.dataType === 'discrete'
-    //    ? 'aggregate'
-    //    : /^qtl/.test(_config_?.workflowid)
-    //    ? 'identity'
-    //    : 'boxplot';
+    defaults.distributionDisplay = 'boxplot';
 
     // horizontal
     defaults.x = 'snapshot_date';
@@ -46,9 +28,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.yType = 'linear';
 
     // color
-    //defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
-    //defaults.colorLabel = _config_[defaults.color];
+    defaults.color = 'flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -59,6 +39,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     // miscellaneous
     defaults.group = 'Site';
     defaults.aggregateLabel = 'Study';
+    defaults.annotateThreshold = _thresholds_ !== null;
     //defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     //defaults.displayBoxplots = true;
@@ -71,8 +52,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
               (threshold) =>
-                  threshold.gsm_analysis_date !==
-                  _thresholds_[0].gsm_analysis_date
+                  threshold.snapshot_date !== _thresholds_[0].snapshot_date
           )
         : false;
 
@@ -86,18 +66,29 @@ export default function configure(_config_, _data_, _thresholds_) {
     });
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+    const discreteUnits =
+        config.dataType === 'discrete'
+            ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
+            : '';
     config.yLabel = coalesce(
         _config_.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
-            ? `Red or Amber ${config.discreteUnit}s`
+            ? `Red or Amber ${discreteUnits}`
             : /flag/.test(config.y)
-            ? `Red ${config.discreteUnit}s`
+            ? `Red ${discreteUnits}`
             : /risk/.test(config.y)
-            ? `Amber ${config.discreteUnit}s`
+            ? `Amber ${discreteUnits}`
             : ''
     );
+    config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+
+    // If callbacks already exist maintain them.
+    if (config.hoverCallbackWrapper === undefined)
+        config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === undefined)
+        config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
 
     return config;
 }

@@ -1,11 +1,11 @@
 // Add event listener to KRI dropdown.
-const kri = function (workflow, datasets, setup = false) {
+const kri = function (workflowID, datasets, setup = false) {
     const instance = getChart();
     const kriDropdown = document.querySelector('#kri');
 
     if (setup === true) {
         const kris = [
-            ...new Set(datasets[1].map((d) => d.workflowid)).values(),
+            ...new Set(datasets[0].map((d) => d.workflowid)).values(),
         ];
 
         for (const i in kris) {
@@ -15,18 +15,14 @@ const kri = function (workflow, datasets, setup = false) {
             kriDropdown.appendChild(option);
         }
 
-        kriDropdown.value = workflow.workflowid;
+        kriDropdown.value = workflowID;
         kriDropdown.addEventListener('change', (event) => {
-            const workflow = datasets[0].find(
-                (d) => d.workflowid === event.target.value
-            );
-            const results = datasets[1].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
-            const bounds = datasets[2].filter(
-                (d) => d.workflowid === workflow.workflowid
-            );
+            const results = filterOnWorkflowID(datasets[0], event.target.value);
+            const workflow = selectWorkflowID(datasets[1], event.target.value);
+            const bounds = filterOnWorkflowID(datasets[2], event.target.value);
+
             workflow.selectedGroupIDs = [site()];
+
             if (instance.data.datasets[0].type === 'scatter')
                 workflow.xType = xAxisType();
 

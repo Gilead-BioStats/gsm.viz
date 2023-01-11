@@ -1,4 +1,5 @@
 import { color as d3color, max, mean, rollup } from 'd3';
+import colorScheme from '../../util/colorScheme';
 
 export default function identityLine(data, config, labels) {
     const aggregateData = rollup(
@@ -18,7 +19,7 @@ export default function identityLine(data, config, labels) {
             if (d.type === 'dataset') {
                 return backgroundColor;
             } else {
-                return config.colorScheme.find((color) =>
+                return colorScheme.find((color) =>
                     color.flag.includes(+d.raw.flag)
                 ).color;
             }
@@ -35,6 +36,8 @@ export default function identityLine(data, config, labels) {
             };
         }),
         label: '',
+        listenHover: true,
+        listenClick: true,
         pointStyle: 'circle',
         purpose: 'aggregate',
         radius: 2.5,

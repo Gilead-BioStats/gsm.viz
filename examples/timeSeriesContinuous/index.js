@@ -14,31 +14,21 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        console.log(datasets);
-
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 
-        // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        // analysis results
+        const results = filterOnWorkflowID(datasets[0], workflowID);
 
-        console.log(results);
-
-        // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
+        // chart configuration
+        const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.selectedGroupIDs = '190';
-        workflow.type = 'boxplot'; //'violin';
 
-        console.log(workflow);
-
-        // customization data
-        //const parameters = datasets[2].filter(
-        //    (d) => d.workflowid === workflow.workflowid
-        //);
+        // threshold annotations
         const parameters = mergeParameters(
-            datasets[2].filter((d) => d.workflowid === workflowID),
-            datasets[3].filter((d) => d.workflowid === workflowID)
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
 
         // visualization
@@ -46,9 +36,10 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters
+            parameters //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
         );
 
         kri(workflow, datasets, true);
         site(datasets, true);
+        download(true);
     });

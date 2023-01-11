@@ -7,8 +7,7 @@ export default function mutate(_data_, config) {
                 ...d,
                 x: +d[config.x],
                 y: +d[config.y],
-                //stratum: Math.abs(+d[config.color]),
-                stratum: [NaN, null, undefined, ''].includes(+d[config.color])
+                stratum: isNaN(parseFloat(d[config.color]))
                     ? 3
                     : Math.abs(+d[config.color]),
             };
@@ -23,8 +22,11 @@ export default function mutate(_data_, config) {
             return aSelected ? 1 : bSelected ? -1 : stratum;
         });
 
+    // Check whether all group IDs are numeric.
     const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
 
+    // Apply custom sort to control display of group IDs in tooltip of overlapping points. Within
+    // each combination of x- and y-values sort selected group ID first and then by group ID.
     rollup(
         data,
         (group) => {

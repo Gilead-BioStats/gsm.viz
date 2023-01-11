@@ -1,0 +1,97 @@
+{
+    "title": "KRI Analysis Metadata",
+    "description": "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    "version": "0.14.0",
+    "type": "object",
+    "properties": {
+        "workflowid": {
+            "title": "Workflow ID",
+            "description": "Unique workflow identifier",
+            "type": "string",
+            "required": false
+        },
+        "group": {
+            "title": "Grouping Variable",
+            "description": "Grouping variable of analysis, one of Site, Country, or Study",
+            "type": "string",
+            "required": true
+        },
+        "numerator": {
+            "title": "KRI Numerator",
+            "description": "Unit of KRI numerator",
+            "type": "string",
+            "required": true,
+            "key": false
+        },
+        "denominator": {
+            "title": "KRI Denominator",
+            "description": "Unit of KRI denominator",
+            "type": "string",
+            "required": true,
+            "key": false
+        },
+        "metric": {
+            "title": "KRI Metric",
+            "description": "Unit of KRI metric",
+            "type": "string",
+            "required": true,
+            "key": false
+        },
+        "outcome": {
+            "title": "KRI Type",
+            "description": "Type of KRI metric",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "score": {
+            "title": "KRI Score",
+            "description": "Unit of KRI score",
+            "type": "string",
+            "required": true,
+            "key": false
+        },
+        "model": {
+            "title": "KRI Score Method",
+            "description": "Statistical model used to evaluate KRI",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "abbreviation": {
+            "title": "Abbreviation",
+            "description": "KRI abbreviation",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "data_inputs": {
+            "title": "Input Data Domains",
+            "description": "Data domains used to evaluate KRI",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "data_filters": {
+            "title": "Subsets",
+            "description": "Subsets applied to input data domains",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "gsm_analysis_date": {
+            "title": "Analysis Date",
+            "description": "Date of analysis",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "gsm_version": {
+            "title": "{gsm} Version",
+            "description": "{gsm} version when analysis ran",
+            "type": "string",
+            "required": false,
+            "key": false
+        }
+    }
+}

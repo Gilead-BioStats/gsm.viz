@@ -4,11 +4,11 @@ import parameters from '../../examples/data/meta_param.json';
 
 import configure from '../../src/barChart/configure';
 
-import structureData from '../../src/barChart/structureData';
-import getScales from '../../src/barChart/getScales';
-import annotations from '../../src/barChart/plugins/annotations';
-import legend from '../../src/barChart/plugins/legend';
-import tooltip from '../../src/barChart/plugins/tooltip';
+//import structureData from '../../src/barChart/structureData';
+//import getScales from '../../src/barChart/getScales';
+//import annotations from '../../src/barChart/getPlugins/annotations';
+//import legend from '../../src/barChart/getPlugins/legend';
+//import tooltip from '../../src/barChart/getPlugins/tooltip';
 
 const workflowID = 'kri0001';
 const dataSubset = data.filter((d) => d.workflowid === workflowID);
@@ -40,9 +40,7 @@ describe('configuration', () => {
                 'data_filters',
                 'gsm_analysis_date',
 
-                // scatter plot settings
-                'type',
-
+                // bar chart settings
                 'x',
                 'xType',
                 'xLabel',
@@ -52,13 +50,15 @@ describe('configuration', () => {
                 'yLabel',
 
                 'color',
-                'colorLabel',
 
                 'hoverCallback',
+                'hoverCallbackWrapper',
                 'clickCallback',
+                'clickCallbackWrapper',
 
+                'chartName',
+                'displayTitle',
                 'maintainAspectRatio',
-
                 'selectedGroupIDs',
                 'thresholds',
             ].sort()

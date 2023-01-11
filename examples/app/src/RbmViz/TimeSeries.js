@@ -6,7 +6,17 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const TimeSeries = ({ data, config, thresholds, intervals }) => {
+const TimeSeries = ({
+    data,
+    config,
+    thresholds,
+    intervals,
+    style = {
+        width: '100%',
+        height: '50vh',
+        display: 'block',
+    },
+}) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -21,13 +31,7 @@ const TimeSeries = ({ data, config, thresholds, intervals }) => {
         }
     }, [data, config, thresholds, intervals]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{ width: '100%', height: '50vh', display: 'block' }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 TimeSeries.propTypes = {
@@ -40,8 +44,8 @@ TimeSeries.propTypes = {
 TimeSeries.defaultProps = {
     data: [],
     config: {},
-    thresholds: [],
-    intervals: [],
+    thresholds: null,
+    intervals: null,
 };
 
 export { TimeSeries };
