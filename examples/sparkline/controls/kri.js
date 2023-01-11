@@ -42,7 +42,8 @@ const kri = function (datasets, setup = false, workflowID = null) {
                     chart,
                     results.filter(
                         (d) =>
-                            d.groupid === chart.data.datasets[0].data[0]?.groupid
+                            d.groupid ===
+                            chart.data.datasets[0].data[0]?.groupid
                     ),
                     config
                 );

@@ -2,6 +2,7 @@ import configureAll from '../util/configure';
 import coalesce from '../util/coalesce';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 
 export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
@@ -51,8 +52,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
               (threshold) =>
-                  threshold.snapshot_date !==
-                  _thresholds_[0].snapshot_date
+                  threshold.snapshot_date !== _thresholds_[0].snapshot_date
           )
         : false;
 
@@ -66,9 +66,10 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     });
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
-    const discreteUnits = config.dataType === 'discrete'
-        ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
-        : '';
+    const discreteUnits =
+        config.dataType === 'discrete'
+            ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
+            : '';
     config.yLabel = coalesce(
         _config_.yLabel,
         config.dataType === 'continuous'
@@ -82,6 +83,12 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
             : ''
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+
+    // If callbacks already exist maintain them.
+    if (config.hoverCallbackWrapper === undefined)
+        config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === undefined)
+        config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
 
     return config;
 }

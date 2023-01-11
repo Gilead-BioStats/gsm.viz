@@ -38,7 +38,10 @@ const App = () => {
     //const resultsVerticalOverTime = filterWorkflowID(resultsVerticalOverTimeAll, workflowID);
 
     /// analysis parameters
-    const parametersDefault = filterWorkflowID(parametersDefaultAll, workflowID);
+    const parametersDefault = filterWorkflowID(
+        parametersDefaultAll,
+        workflowID
+    );
     const parameters = mergeParameters(
         parametersDefault,
         filterWorkflowID(parametersCustomAll, workflowID)
@@ -57,10 +60,16 @@ const App = () => {
     const scatterPlotConfig = { ...workflow };
     const barChartMetricConfig = { ...workflow, y: 'metric' };
     const timeSeriesContinuousConfig = { ...workflow };
-    const timeSeriesContinuousWithCIConfig = { ...findWorkflowID(workflows, 'qtl0006'), y: 'metric' };
+    const timeSeriesContinuousWithCIConfig = {
+        ...findWorkflowID(workflows, 'qtl0006'),
+        y: 'metric',
+    };
     const sparklineConfig = { ...workflow, nSnapshots: 25 };
     const timeSeriesDiscreteByGroupConfig = { y: 'n_at_risk_or_flagged' };
-    const timeSeriesDiscreteByKRIConfig = { ...workflow, y: 'n_at_risk_or_flagged' };
+    const timeSeriesDiscreteByKRIConfig = {
+        ...workflow,
+        y: 'n_at_risk_or_flagged',
+    };
 
     // QTL
     const resultsOverTimeQTL = filterWorkflowID(resultsOverTimeAll, 'qtl0006');
@@ -68,7 +77,10 @@ const App = () => {
         filterWorkflowID(parametersDefaultAll, 'qtl0006'),
         filterWorkflowID(parametersCustomOverTimeAll, 'qtl0006')
     );
-    const resultsVerticalOverTimeQTL = filterWorkflowID(resultsVerticalOverTimeAll, 'qtl0006');
+    const resultsVerticalOverTimeQTL = filterWorkflowID(
+        resultsVerticalOverTimeAll,
+        'qtl0006'
+    );
 
     // sparklines
     const groupIDs = [...new Set(resultsOverTime.map((d) => d.groupid))].filter(
@@ -117,16 +129,14 @@ const App = () => {
                 thresholds={parametersOverTimeQTL}
                 intervals={resultsVerticalOverTimeQTL}
             />
-            <div>
-                {sparklines}
-            </div>
+            <div>{sparklines}</div>
             <TimeSeries
                 data={flagCountsByGroup}
                 config={timeSeriesDiscreteByGroupConfig}
                 style={{
                     width: '50%',
                     height: '25vw',
-                    display: 'inline-block'
+                    display: 'inline-block',
                 }}
             />
             <TimeSeries
@@ -135,7 +145,7 @@ const App = () => {
                 style={{
                     width: '50%',
                     height: '25vw',
-                    display: 'inline-block'
+                    display: 'inline-block',
                 }}
             />
         </>

@@ -1,5 +1,4 @@
 import updateConfig from './updateConfig';
-import addCustomEvent from '../util/addCanvas/addCustomEvent';
 import structureData from './structureData';
 import triggerTooltip from '../util/triggerTooltip';
 
@@ -20,7 +19,7 @@ export default function updateData(chart, _data_, _config_, _bounds_) {
     const datasets = structureData(_data_, config, _bounds_);
 
     // Update chart.
-    chart.data.config = config
+    chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
 

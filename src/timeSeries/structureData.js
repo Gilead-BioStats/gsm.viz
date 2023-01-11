@@ -23,6 +23,7 @@ export default function structureData(_data_, config, _intervals_) {
     // datasets
     let datasets = [];
     if (config.dataType !== 'discrete') {
+        // TODO: find a better way to differentiate distribution and CI instances
         if (_intervals_ !== null) {
             datasets = [
                 getIdentityLine(data, config, labels),

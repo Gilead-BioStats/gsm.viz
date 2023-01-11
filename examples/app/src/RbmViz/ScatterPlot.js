@@ -13,8 +13,8 @@ const ScatterPlot = ({
     style = {
         width: '33%',
         height: '20vw',
-        display: 'inline-block'
-    }
+        display: 'inline-block',
+    },
 }) => {
     const container = useRef(null);
 
@@ -24,13 +24,7 @@ const ScatterPlot = ({
         }
     }, [data, config, bounds]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{ ...style }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 ScatterPlot.propTypes = {

@@ -3,7 +3,6 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param_over_time.csv',
-
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -37,7 +36,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters//.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            parameters //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
         );
 
         kri(workflow, datasets, true);

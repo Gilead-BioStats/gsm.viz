@@ -15,7 +15,7 @@ const Sparkline = ({
         margin: 'auto',
         height: '50px',
         display: 'inline-block',
-    }
+    },
 }) => {
     const container = useRef(null);
 
@@ -25,13 +25,7 @@ const Sparkline = ({
         }
     }, [data, config, parameters]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{ ...style }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 Sparkline.propTypes = {

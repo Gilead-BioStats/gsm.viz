@@ -38,4 +38,4 @@ export default function mergeParameters(defaultParameters, customParameters) {
         .flatMap((parameters) => parameters);
 
     return parametersOverTime;
-};
+}

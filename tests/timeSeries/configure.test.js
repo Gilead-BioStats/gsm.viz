@@ -46,7 +46,9 @@ describe('configuration', () => {
                 'color',
 
                 'hoverCallback',
+                'hoverCallbackWrapper',
                 'clickCallback',
+                'clickCallbackWrapper',
 
                 'annotateThreshold',
                 'aggregateLabel',

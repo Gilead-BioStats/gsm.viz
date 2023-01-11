@@ -1,5 +1,5 @@
 export default function getCallbackWrapper(callback) {
-    const callbackWrapper = function(event) {
+    const callbackWrapper = function (event) {
         const pointDatum = event.data;
 
         callback(pointDatum);

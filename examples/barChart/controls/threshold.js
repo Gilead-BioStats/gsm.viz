@@ -13,9 +13,9 @@ const threshold = function (workflow, datasets, setup = false) {
             workflow.y === 'score' &&
             document.getElementById('threshold').checked
                 ? mergeParameters(
-                        filterOnWorkflowID(datasets[2], workflowID),
-                        filterOnWorkflowID(datasets[3], workflowID)
-                    )
+                      filterOnWorkflowID(datasets[2], workflowID),
+                      filterOnWorkflowID(datasets[3], workflowID)
+                  )
                 : null;
 
         workflow.selectedGroupIDs = site();

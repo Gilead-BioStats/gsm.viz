@@ -1,3 +1,5 @@
+import { max } from 'd3';
+
 // Chart.js
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';

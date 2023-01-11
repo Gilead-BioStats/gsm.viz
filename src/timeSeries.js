@@ -32,8 +32,7 @@ export default function timeSeries(
     _thresholds_ = null,
     _intervals_ = null
 ) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i
-        .test(_config_.y);
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
 
     checkInput({
         parameter: '_data_',

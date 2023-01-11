@@ -19,7 +19,7 @@ export default function updateData(chart, _data_, _config_, _thresholds_) {
     const datasets = structureData(_data_, config);
 
     // Update chart.
-    chart.data.config = config
+    chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
 

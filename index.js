@@ -322,8 +322,8 @@ var rbmViz = (() => {
     const endToAngle = _normalizeAngle(a - e);
     return a === s || a === e || sameAngleIsFullCircle && s === e || angleToStart > angleToEnd && startToAngle < endToAngle;
   }
-  function _limitValue(value, min3, max4) {
-    return Math.max(min3, Math.min(max4, value));
+  function _limitValue(value, min3, max3) {
+    return Math.max(min3, Math.min(max3, value));
   }
   function _int16Range(value) {
     return _limitValue(value, -32768, 32767);
@@ -348,13 +348,13 @@ var rbmViz = (() => {
   }
   var _lookupByKey = (table, key, value, last) => _lookup(table, value, last ? (index3) => table[index3][key] <= value : (index3) => table[index3][key] < value);
   var _rlookupByKey = (table, key, value) => _lookup(table, value, (index3) => table[index3][key] >= value);
-  function _filterBetween(values, min3, max4) {
+  function _filterBetween(values, min3, max3) {
     let start2 = 0;
     let end = values.length;
     while (start2 < end && values[start2] < min3) {
       start2++;
     }
-    while (end > start2 && values[end - 1] > max4) {
+    while (end > start2 && values[end - 1] > max3) {
       end--;
     }
     return start2 > 0 || end < values.length ? values.slice(start2, end) : values;
@@ -467,7 +467,7 @@ var rbmViz = (() => {
     if (meta._sorted) {
       const { iScale, _parsed } = meta;
       const axis = iScale.axis;
-      const { min: min3, max: max4, minDefined, maxDefined } = iScale.getUserBounds();
+      const { min: min3, max: max3, minDefined, maxDefined } = iScale.getUserBounds();
       if (minDefined) {
         start2 = _limitValue(
           Math.min(
@@ -481,8 +481,8 @@ var rbmViz = (() => {
       if (maxDefined) {
         count = _limitValue(
           Math.max(
-            _lookupByKey(_parsed, iScale.axis, max4, true).hi + 1,
-            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max4), true).hi + 1
+            _lookupByKey(_parsed, iScale.axis, max3, true).hi + 1,
+            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max3), true).hi + 1
           ),
           start2,
           pointCount
@@ -647,11 +647,11 @@ var rbmViz = (() => {
     }
     return rgb2;
   }
-  function hueValue(r, g, b, d, max4) {
-    if (r === max4) {
+  function hueValue(r, g, b, d, max3) {
+    if (r === max3) {
       return (g - b) / d + (g < b ? 6 : 0);
     }
-    if (g === max4) {
+    if (g === max3) {
       return (b - r) / d + 2;
     }
     return (r - g) / d + 4;
@@ -661,14 +661,14 @@ var rbmViz = (() => {
     const r = v.r / range;
     const g = v.g / range;
     const b = v.b / range;
-    const max4 = Math.max(r, g, b);
+    const max3 = Math.max(r, g, b);
     const min3 = Math.min(r, g, b);
-    const l = (max4 + min3) / 2;
+    const l = (max3 + min3) / 2;
     let h, s, d;
-    if (max4 !== min3) {
-      d = max4 - min3;
-      s = l > 0.5 ? d / (2 - max4 - min3) : d / (max4 + min3);
-      h = hueValue(r, g, b, d, max4);
+    if (max3 !== min3) {
+      d = max3 - min3;
+      s = l > 0.5 ? d / (2 - max3 - min3) : d / (max3 + min3);
+      h = hueValue(r, g, b, d, max3);
       h = h * 60 + 0.5;
     }
     return [h | 0, s || 0, l];
@@ -1631,12 +1631,12 @@ var rbmViz = (() => {
     }
   }
   function _addGrace(minmax, grace, beginAtZero) {
-    const { min: min3, max: max4 } = minmax;
-    const change = toDimension(grace, (max4 - min3) / 2);
+    const { min: min3, max: max3 } = minmax;
+    const change = toDimension(grace, (max3 - min3) / 2);
     const keepZero = (value, add) => beginAtZero && value === 0 ? 0 : value + add;
     return {
       min: keepZero(min3, -Math.abs(change)),
-      max: keepZero(max4, change)
+      max: keepZero(max3, change)
     };
   }
   function createContext(parentContext, context) {
@@ -2004,8 +2004,8 @@ var rbmViz = (() => {
     monotoneAdjust(points, deltaK, mK);
     monotoneCompute(points, mK, indexAxis);
   }
-  function capControlPoint(pt, min3, max4) {
-    return Math.max(Math.min(pt, max4), min3);
+  function capControlPoint(pt, min3, max3) {
+    return Math.max(Math.min(pt, max3), min3);
   }
   function capBezierPoints(points, area) {
     let i, ilen, point, inArea, inAreaPrev;
@@ -2441,13 +2441,13 @@ var rbmViz = (() => {
     end %= count;
     return { start: start2, end };
   }
-  function solidSegments(points, start2, max4, loop) {
+  function solidSegments(points, start2, max3, loop) {
     const count = points.length;
     const result = [];
     let last = start2;
     let prev = points[start2];
     let end;
-    for (end = start2 + 1; end <= max4; ++end) {
+    for (end = start2 + 1; end <= max3; ++end) {
       const cur = points[end % count];
       if (cur.skip || cur.stop) {
         if (!prev.skip) {
@@ -2480,9 +2480,9 @@ var rbmViz = (() => {
     if (spanGaps === true) {
       return splitByStyles(line, [{ start: start2, end, loop }], points, segmentOptions);
     }
-    const max4 = end < start2 ? end + count : end;
+    const max3 = end < start2 ? end + count : end;
     const completeLoop = !!line._fullLoop && start2 === 0 && end === count - 1;
-    return splitByStyles(line, solidSegments(points, start2, max4, completeLoop), points, segmentOptions);
+    return splitByStyles(line, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
   }
   function splitByStyles(line, segments, points, segmentOptions) {
     if (!segmentOptions || !segmentOptions.setContext || !points) {
@@ -2972,10 +2972,10 @@ var rbmViz = (() => {
     const opts = scale && scale.options || {};
     const reverse = opts.reverse;
     const min3 = opts.min === void 0 ? allowedOverflow : 0;
-    const max4 = opts.max === void 0 ? allowedOverflow : 0;
+    const max3 = opts.max === void 0 ? allowedOverflow : 0;
     return {
-      start: reverse ? max4 : min3,
-      end: reverse ? min3 : max4
+      start: reverse ? max3 : min3,
+      end: reverse ? min3 : max3
     };
   }
   function defaultClip(xScale, yScale, allowedOverflow) {
@@ -3061,10 +3061,10 @@ var rbmViz = (() => {
     return `${indexScale.id}.${valueScale.id}.${meta.stack || meta.type}`;
   }
   function getUserBounds(scale) {
-    const { min: min3, max: max4, minDefined, maxDefined } = scale.getUserBounds();
+    const { min: min3, max: max3, minDefined, maxDefined } = scale.getUserBounds();
     return {
       min: minDefined ? min3 : Number.NEGATIVE_INFINITY,
-      max: maxDefined ? max4 : Number.POSITIVE_INFINITY
+      max: maxDefined ? max3 : Number.POSITIVE_INFINITY
     };
   }
   function getOrCreateStack(stacks, stackKey, indexValue) {
@@ -3768,11 +3768,11 @@ var rbmViz = (() => {
     const startValue = vScale.parse(entry[0], i);
     const endValue = vScale.parse(entry[1], i);
     const min3 = Math.min(startValue, endValue);
-    const max4 = Math.max(startValue, endValue);
+    const max3 = Math.max(startValue, endValue);
     let barStart = min3;
-    let barEnd = max4;
-    if (Math.abs(min3) > Math.abs(max4)) {
-      barStart = max4;
+    let barEnd = max3;
+    if (Math.abs(min3) > Math.abs(max3)) {
+      barStart = max3;
       barEnd = min3;
     }
     item[vScale.axis] = barEnd;
@@ -3782,7 +3782,7 @@ var rbmViz = (() => {
       start: startValue,
       end: endValue,
       min: min3,
-      max: max4
+      max: max3
     };
   }
   function parseValue(entry, item, vScale, i) {
@@ -4061,8 +4061,8 @@ var rbmViz = (() => {
         const startPixel = vScale.getPixelForDecimal(0);
         const endPixel = vScale.getPixelForDecimal(1);
         const min3 = Math.min(startPixel, endPixel);
-        const max4 = Math.max(startPixel, endPixel);
-        base = Math.max(Math.min(base, max4), min3);
+        const max3 = Math.max(startPixel, endPixel);
+        base = Math.max(Math.min(base, max3), min3);
         head = base + size;
       }
       if (base === vScale.getPixelForValue(actualBase)) {
@@ -4172,11 +4172,11 @@ var rbmViz = (() => {
     }
     getMaxOverflow() {
       const data = this._cachedMeta.data;
-      let max4 = 0;
+      let max3 = 0;
       for (let i = data.length - 1; i >= 0; --i) {
-        max4 = Math.max(max4, data[i].size(this.resolveDataElementOptions(i)) / 2);
+        max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
       }
-      return max4 > 0 && max4;
+      return max3 > 0 && max3;
     }
     getLabelAndValue(index3) {
       const meta = this._cachedMeta;
@@ -4321,19 +4321,19 @@ var rbmViz = (() => {
     }
     _getRotationExtents() {
       let min3 = TAU;
-      let max4 = -TAU;
+      let max3 = -TAU;
       for (let i = 0; i < this.chart.data.datasets.length; ++i) {
         if (this.chart.isDatasetVisible(i)) {
           const controller = this.chart.getDatasetMeta(i).controller;
           const rotation = controller._getRotation();
           const circumference = controller._getCircumference();
           min3 = Math.min(min3, rotation);
-          max4 = Math.max(max4, rotation + circumference);
+          max3 = Math.max(max3, rotation + circumference);
         }
       }
       return {
         rotation: min3,
-        circumference: max4 - min3
+        circumference: max3 - min3
       };
     }
     update(mode) {
@@ -4436,7 +4436,7 @@ var rbmViz = (() => {
       };
     }
     getMaxBorderWidth(arcs) {
-      let max4 = 0;
+      let max3 = 0;
       const chart = this.chart;
       let i, ilen, meta, controller, options;
       if (!arcs) {
@@ -4455,18 +4455,18 @@ var rbmViz = (() => {
       for (i = 0, ilen = arcs.length; i < ilen; ++i) {
         options = controller.resolveDataElementOptions(i);
         if (options.borderAlign !== "inner") {
-          max4 = Math.max(max4, options.borderWidth || 0, options.hoverBorderWidth || 0);
+          max3 = Math.max(max3, options.borderWidth || 0, options.hoverBorderWidth || 0);
         }
       }
-      return max4;
+      return max3;
     }
     getMaxOffset(arcs) {
-      let max4 = 0;
+      let max3 = 0;
       for (let i = 0, ilen = arcs.length; i < ilen; ++i) {
         const options = this.resolveDataElementOptions(i);
-        max4 = Math.max(max4, options.offset || 0, options.hoverOffset || 0);
+        max3 = Math.max(max3, options.offset || 0, options.hoverOffset || 0);
       }
-      return max4;
+      return max3;
     }
     _getRingWeightOffset(datasetIndex) {
       let ringWeightOffset = 0;
@@ -5356,10 +5356,10 @@ var rbmViz = (() => {
       };
     }
     getMinMax(canStack) {
-      let { min: min3, max: max4, minDefined, maxDefined } = this.getUserBounds();
+      let { min: min3, max: max3, minDefined, maxDefined } = this.getUserBounds();
       let range;
       if (minDefined && maxDefined) {
-        return { min: min3, max: max4 };
+        return { min: min3, max: max3 };
       }
       const metas = this.getMatchingVisibleMetas();
       for (let i = 0, ilen = metas.length; i < ilen; ++i) {
@@ -5368,14 +5368,14 @@ var rbmViz = (() => {
           min3 = Math.min(min3, range.min);
         }
         if (!maxDefined) {
-          max4 = Math.max(max4, range.max);
+          max3 = Math.max(max3, range.max);
         }
       }
-      min3 = maxDefined && min3 > max4 ? max4 : min3;
-      max4 = minDefined && min3 > max4 ? min3 : max4;
+      min3 = maxDefined && min3 > max3 ? max3 : min3;
+      max3 = minDefined && min3 > max3 ? min3 : max3;
       return {
-        min: finiteOrDefault(min3, finiteOrDefault(max4, min3)),
-        max: finiteOrDefault(max4, finiteOrDefault(min3, max4))
+        min: finiteOrDefault(min3, finiteOrDefault(max3, min3)),
+        max: finiteOrDefault(max3, finiteOrDefault(min3, max3))
       };
     }
     getPadding() {
@@ -5765,8 +5765,8 @@ var rbmViz = (() => {
       return this.getPixelForValue(this.getBaseValue());
     }
     getBaseValue() {
-      const { min: min3, max: max4 } = this;
-      return min3 < 0 && max4 < 0 ? max4 : min3 > 0 && max4 > 0 ? min3 : 0;
+      const { min: min3, max: max3 } = this;
+      return min3 < 0 && max3 < 0 ? max3 : min3 > 0 && max3 > 0 ? min3 : 0;
     }
     getContext(index3) {
       const ticks = this.ticks || [];
@@ -6596,11 +6596,11 @@ var rbmViz = (() => {
       const meta = this._cachedMeta;
       const data = meta.data || [];
       if (!this.options.showLine) {
-        let max4 = 0;
+        let max3 = 0;
         for (let i = data.length - 1; i >= 0; --i) {
-          max4 = Math.max(max4, data[i].size(this.resolveDataElementOptions(i)) / 2);
+          max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
         }
-        return max4 > 0 && max4;
+        return max3 > 0 && max3;
       }
       const dataset = meta.dataset;
       const border = dataset.options && dataset.options.borderWidth || 0;
@@ -9328,8 +9328,8 @@ var rbmViz = (() => {
     }
     return { left, top, right, bottom };
   }
-  function skipOrLimit(skip2, value, min3, max4) {
-    return skip2 ? 0 : _limitValue(value, min3, max4);
+  function skipOrLimit(skip2, value, min3, max3) {
+    return skip2 ? 0 : _limitValue(value, min3, max3);
   }
   function parseBorderWidth(bar, maxW, maxH) {
     const value = bar.options.borderWidth;
@@ -9597,12 +9597,12 @@ var rbmViz = (() => {
     let start2 = 0;
     let count;
     const { iScale } = meta;
-    const { min: min3, max: max4, minDefined, maxDefined } = iScale.getUserBounds();
+    const { min: min3, max: max3, minDefined, maxDefined } = iScale.getUserBounds();
     if (minDefined) {
       start2 = _limitValue(_lookupByKey(points, iScale.axis, min3).lo, 0, pointCount - 1);
     }
     if (maxDefined) {
-      count = _limitValue(_lookupByKey(points, iScale.axis, max4).hi + 1, start2, pointCount) - start2;
+      count = _limitValue(_lookupByKey(points, iScale.axis, max3).hi + 1, start2, pointCount) - start2;
     } else {
       count = pointCount - start2;
     }
@@ -11799,7 +11799,7 @@ var rbmViz = (() => {
     const last = labels.lastIndexOf(raw);
     return first !== last ? index3 : first;
   }
-  var validIndex = (index3, max4) => index3 === null ? null : _limitValue(Math.round(index3), 0, max4);
+  var validIndex = (index3, max3) => index3 === null ? null : _limitValue(Math.round(index3), 0, max3);
   var CategoryScale = class extends Scale {
     constructor(cfg) {
       super(cfg);
@@ -11830,28 +11830,28 @@ var rbmViz = (() => {
     }
     determineDataLimits() {
       const { minDefined, maxDefined } = this.getUserBounds();
-      let { min: min3, max: max4 } = this.getMinMax(true);
+      let { min: min3, max: max3 } = this.getMinMax(true);
       if (this.options.bounds === "ticks") {
         if (!minDefined) {
           min3 = 0;
         }
         if (!maxDefined) {
-          max4 = this.getLabels().length - 1;
+          max3 = this.getLabels().length - 1;
         }
       }
       this.min = min3;
-      this.max = max4;
+      this.max = max3;
     }
     buildTicks() {
       const min3 = this.min;
-      const max4 = this.max;
+      const max3 = this.max;
       const offset = this.options.offset;
       const ticks = [];
       let labels = this.getLabels();
-      labels = min3 === 0 && max4 === labels.length - 1 ? labels : labels.slice(min3, max4 + 1);
+      labels = min3 === 0 && max3 === labels.length - 1 ? labels : labels.slice(min3, max3 + 1);
       this._valueRange = Math.max(labels.length - (offset ? 0 : 1), 1);
       this._startValue = this.min - (offset ? 0.5 : 0);
-      for (let value = min3; value <= max4; value++) {
+      for (let value = min3; value <= max3; value++) {
         ticks.push({ value });
       }
       return ticks;
@@ -11898,12 +11898,12 @@ var rbmViz = (() => {
   function generateTicks$1(generationOptions, dataRange) {
     const ticks = [];
     const MIN_SPACING = 1e-14;
-    const { bounds, step, min: min3, max: max4, precision, count, maxTicks, maxDigits, includeBounds } = generationOptions;
+    const { bounds, step, min: min3, max: max3, precision, count, maxTicks, maxDigits, includeBounds } = generationOptions;
     const unit = step || 1;
     const maxSpaces = maxTicks - 1;
     const { min: rmin, max: rmax } = dataRange;
     const minDefined = !isNullOrUndef(min3);
-    const maxDefined = !isNullOrUndef(max4);
+    const maxDefined = !isNullOrUndef(max3);
     const countDefined = !isNullOrUndef(count);
     const minSpacing = (rmax - rmin) / (maxDigits + 1);
     let spacing = niceNum((rmax - rmin) / maxSpaces / unit) * unit;
@@ -11926,14 +11926,14 @@ var rbmViz = (() => {
       niceMin = rmin;
       niceMax = rmax;
     }
-    if (minDefined && maxDefined && step && almostWhole((max4 - min3) / step, spacing / 1e3)) {
-      numSpaces = Math.round(Math.min((max4 - min3) / spacing, maxTicks));
-      spacing = (max4 - min3) / numSpaces;
+    if (minDefined && maxDefined && step && almostWhole((max3 - min3) / step, spacing / 1e3)) {
+      numSpaces = Math.round(Math.min((max3 - min3) / spacing, maxTicks));
+      spacing = (max3 - min3) / numSpaces;
       niceMin = min3;
-      niceMax = max4;
+      niceMax = max3;
     } else if (countDefined) {
       niceMin = minDefined ? min3 : niceMin;
-      niceMax = maxDefined ? max4 : niceMax;
+      niceMax = maxDefined ? max3 : niceMax;
       numSpaces = count - 1;
       spacing = (niceMax - niceMin) / numSpaces;
     } else {
@@ -11968,13 +11968,13 @@ var rbmViz = (() => {
     for (; j < numSpaces; ++j) {
       ticks.push({ value: Math.round((niceMin + j * spacing) * factor) / factor });
     }
-    if (maxDefined && includeBounds && niceMax !== max4) {
-      if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max4, relativeLabelSize(max4, minSpacing, generationOptions))) {
-        ticks[ticks.length - 1].value = max4;
+    if (maxDefined && includeBounds && niceMax !== max3) {
+      if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max3, relativeLabelSize(max3, minSpacing, generationOptions))) {
+        ticks[ticks.length - 1].value = max3;
       } else {
-        ticks.push({ value: max4 });
+        ticks.push({ value: max3 });
       }
-    } else if (!maxDefined || niceMax === max4) {
+    } else if (!maxDefined || niceMax === max3) {
       ticks.push({ value: niceMax });
     }
     return ticks;
@@ -12006,30 +12006,30 @@ var rbmViz = (() => {
     handleTickRangeOptions() {
       const { beginAtZero } = this.options;
       const { minDefined, maxDefined } = this.getUserBounds();
-      let { min: min3, max: max4 } = this;
+      let { min: min3, max: max3 } = this;
       const setMin = (v) => min3 = minDefined ? min3 : v;
-      const setMax = (v) => max4 = maxDefined ? max4 : v;
+      const setMax = (v) => max3 = maxDefined ? max3 : v;
       if (beginAtZero) {
         const minSign = sign(min3);
-        const maxSign = sign(max4);
+        const maxSign = sign(max3);
         if (minSign < 0 && maxSign < 0) {
           setMax(0);
         } else if (minSign > 0 && maxSign > 0) {
           setMin(0);
         }
       }
-      if (min3 === max4) {
+      if (min3 === max3) {
         let offset = 1;
-        if (max4 >= Number.MAX_SAFE_INTEGER || min3 <= Number.MIN_SAFE_INTEGER) {
-          offset = Math.abs(max4 * 0.05);
+        if (max3 >= Number.MAX_SAFE_INTEGER || min3 <= Number.MIN_SAFE_INTEGER) {
+          offset = Math.abs(max3 * 0.05);
         }
-        setMax(max4 + offset);
+        setMax(max3 + offset);
         if (!beginAtZero) {
           setMin(min3 - offset);
         }
       }
       this.min = min3;
-      this.max = max4;
+      this.max = max3;
     }
     getTickLimit() {
       const tickOpts = this.options.ticks;
@@ -12106,9 +12106,9 @@ var rbmViz = (() => {
   };
   var LinearScale = class extends LinearScaleBase {
     determineDataLimits() {
-      const { min: min3, max: max4 } = this.getMinMax(true);
+      const { min: min3, max: max3 } = this.getMinMax(true);
       this.min = isNumberFinite(min3) ? min3 : 0;
-      this.max = isNumberFinite(max4) ? max4 : 1;
+      this.max = isNumberFinite(max3) ? max3 : 1;
       this.handleTickRangeOptions();
     }
     computeTickLimit() {
@@ -12175,9 +12175,9 @@ var rbmViz = (() => {
       return isNumberFinite(value) && value > 0 ? value : null;
     }
     determineDataLimits() {
-      const { min: min3, max: max4 } = this.getMinMax(true);
+      const { min: min3, max: max3 } = this.getMinMax(true);
       this.min = isNumberFinite(min3) ? Math.max(0, min3) : null;
-      this.max = isNumberFinite(max4) ? Math.max(0, max4) : null;
+      this.max = isNumberFinite(max3) ? Math.max(0, max3) : null;
       if (this.options.beginAtZero) {
         this._zero = true;
       }
@@ -12186,30 +12186,30 @@ var rbmViz = (() => {
     handleTickRangeOptions() {
       const { minDefined, maxDefined } = this.getUserBounds();
       let min3 = this.min;
-      let max4 = this.max;
+      let max3 = this.max;
       const setMin = (v) => min3 = minDefined ? min3 : v;
-      const setMax = (v) => max4 = maxDefined ? max4 : v;
+      const setMax = (v) => max3 = maxDefined ? max3 : v;
       const exp = (v, m) => Math.pow(10, Math.floor(log10(v)) + m);
-      if (min3 === max4) {
+      if (min3 === max3) {
         if (min3 <= 0) {
           setMin(1);
           setMax(10);
         } else {
           setMin(exp(min3, -1));
-          setMax(exp(max4, 1));
+          setMax(exp(max3, 1));
         }
       }
       if (min3 <= 0) {
-        setMin(exp(max4, -1));
+        setMin(exp(max3, -1));
       }
-      if (max4 <= 0) {
+      if (max3 <= 0) {
         setMax(exp(min3, 1));
       }
       if (this._zero && this.min !== this._suggestedMin && min3 === exp(this.min, 0)) {
         setMin(exp(min3, -1));
       }
       this.min = min3;
-      this.max = max4;
+      this.max = max3;
     }
     buildTicks() {
       const opts = this.options;
@@ -12278,13 +12278,13 @@ var rbmViz = (() => {
       h: label.length * font.lineHeight
     };
   }
-  function determineLimits(angle, pos, size, min3, max4) {
-    if (angle === min3 || angle === max4) {
+  function determineLimits(angle, pos, size, min3, max3) {
+    if (angle === min3 || angle === max3) {
       return {
         start: pos - size / 2,
         end: pos + size / 2
       };
-    } else if (angle < min3 || angle > max4) {
+    } else if (angle < min3 || angle > max3) {
       return {
         start: pos - size,
         end: pos
@@ -12498,9 +12498,9 @@ var rbmViz = (() => {
       this.drawingArea = Math.floor(Math.min(w, h) / 2);
     }
     determineDataLimits() {
-      const { min: min3, max: max4 } = this.getMinMax(false);
+      const { min: min3, max: max3 } = this.getMinMax(false);
       this.min = isNumberFinite(min3) && !isNaN(min3) ? min3 : 0;
-      this.max = isNumberFinite(max4) && !isNaN(max4) ? max4 : 0;
+      this.max = isNumberFinite(max3) && !isNaN(max3) ? max3 : 0;
       this.handleTickRangeOptions();
     }
     computeTickLimit() {
@@ -12754,21 +12754,21 @@ var rbmViz = (() => {
     }
     return +value;
   }
-  function determineUnitForAutoTicks(minUnit, min3, max4, capacity) {
+  function determineUnitForAutoTicks(minUnit, min3, max3, capacity) {
     const ilen = UNITS.length;
     for (let i = UNITS.indexOf(minUnit); i < ilen - 1; ++i) {
       const interval2 = INTERVALS[UNITS[i]];
       const factor = interval2.steps ? interval2.steps : Number.MAX_SAFE_INTEGER;
-      if (interval2.common && Math.ceil((max4 - min3) / (factor * interval2.size)) <= capacity) {
+      if (interval2.common && Math.ceil((max3 - min3) / (factor * interval2.size)) <= capacity) {
         return UNITS[i];
       }
     }
     return UNITS[ilen - 1];
   }
-  function determineUnitForFormatting(scale, numTicks, minUnit, min3, max4) {
+  function determineUnitForFormatting(scale, numTicks, minUnit, min3, max3) {
     for (let i = UNITS.length - 1; i >= UNITS.indexOf(minUnit); i--) {
       const unit = UNITS[i];
-      if (INTERVALS[unit].common && scale._adapter.diff(max4, min3, unit) >= numTicks - 1) {
+      if (INTERVALS[unit].common && scale._adapter.diff(max3, min3, unit) >= numTicks - 1) {
         return unit;
       }
     }
@@ -12863,13 +12863,13 @@ var rbmViz = (() => {
       const options = this.options;
       const adapter = this._adapter;
       const unit = options.time.unit || "day";
-      let { min: min3, max: max4, minDefined, maxDefined } = this.getUserBounds();
+      let { min: min3, max: max3, minDefined, maxDefined } = this.getUserBounds();
       function _applyBounds(bounds) {
         if (!minDefined && !isNaN(bounds.min)) {
           min3 = Math.min(min3, bounds.min);
         }
         if (!maxDefined && !isNaN(bounds.max)) {
-          max4 = Math.max(max4, bounds.max);
+          max3 = Math.max(max3, bounds.max);
         }
       }
       if (!minDefined || !maxDefined) {
@@ -12879,19 +12879,19 @@ var rbmViz = (() => {
         }
       }
       min3 = isNumberFinite(min3) && !isNaN(min3) ? min3 : +adapter.startOf(Date.now(), unit);
-      max4 = isNumberFinite(max4) && !isNaN(max4) ? max4 : +adapter.endOf(Date.now(), unit) + 1;
-      this.min = Math.min(min3, max4 - 1);
-      this.max = Math.max(min3 + 1, max4);
+      max3 = isNumberFinite(max3) && !isNaN(max3) ? max3 : +adapter.endOf(Date.now(), unit) + 1;
+      this.min = Math.min(min3, max3 - 1);
+      this.max = Math.max(min3 + 1, max3);
     }
     _getLabelBounds() {
       const arr = this.getLabelTimestamps();
       let min3 = Number.POSITIVE_INFINITY;
-      let max4 = Number.NEGATIVE_INFINITY;
+      let max3 = Number.NEGATIVE_INFINITY;
       if (arr.length) {
         min3 = arr[0];
-        max4 = arr[arr.length - 1];
+        max3 = arr[arr.length - 1];
       }
-      return { min: min3, max: max4 };
+      return { min: min3, max: max3 };
     }
     buildTicks() {
       const options = this.options;
@@ -12903,8 +12903,8 @@ var rbmViz = (() => {
         this.max = this._userMax || timestamps[timestamps.length - 1];
       }
       const min3 = this.min;
-      const max4 = this.max;
-      const ticks = _filterBetween(timestamps, min3, max4);
+      const max3 = this.max;
+      const ticks = _filterBetween(timestamps, min3, max3);
       this._unit = timeOpts.unit || (tickOpts.autoSkip ? determineUnitForAutoTicks(timeOpts.minUnit, this.min, this.max, this._getLabelCapacity(min3)) : determineUnitForFormatting(this, ticks.length, timeOpts.minUnit, this.min, this.max));
       this._majorUnit = !tickOpts.major.enabled || this._unit === "year" ? void 0 : determineMajorUnit(this._unit);
       this.initOffsets(timestamps);
@@ -12944,10 +12944,10 @@ var rbmViz = (() => {
     _generate() {
       const adapter = this._adapter;
       const min3 = this.min;
-      const max4 = this.max;
+      const max3 = this.max;
       const options = this.options;
       const timeOpts = options.time;
-      const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min3, max4, this._getLabelCapacity(min3));
+      const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min3, max3, this._getLabelCapacity(min3));
       const stepSize = valueOrDefault(timeOpts.stepSize, 1);
       const weekday = minor === "week" ? timeOpts.isoWeekday : false;
       const hasWeekday = isNumber(weekday) || weekday === true;
@@ -12958,14 +12958,14 @@ var rbmViz = (() => {
         first = +adapter.startOf(first, "isoWeek", weekday);
       }
       first = +adapter.startOf(first, hasWeekday ? "day" : minor);
-      if (adapter.diff(max4, min3, minor) > 1e5 * stepSize) {
-        throw new Error(min3 + " and " + max4 + " are too far apart with stepSize of " + stepSize + " " + minor);
+      if (adapter.diff(max3, min3, minor) > 1e5 * stepSize) {
+        throw new Error(min3 + " and " + max3 + " are too far apart with stepSize of " + stepSize + " " + minor);
       }
       const timestamps = options.ticks.source === "data" && this.getDataTimestamps();
-      for (time = first, count = 0; time < max4; time = +adapter.add(time, stepSize, minor), count++) {
+      for (time = first, count = 0; time < max3; time = +adapter.add(time, stepSize, minor), count++) {
         addTick(ticks, time, timestamps);
       }
-      if (time === max4 || options.bounds === "ticks" || count === 1) {
+      if (time === max3 || options.bounds === "ticks" || count === 1) {
         addTick(ticks, time, timestamps);
       }
       return Object.keys(ticks).sort((a, b) => a - b).map((x) => +x);
@@ -13117,20 +13117,20 @@ var rbmViz = (() => {
       super.initOffsets(timestamps);
     }
     buildLookupTable(timestamps) {
-      const { min: min3, max: max4 } = this;
+      const { min: min3, max: max3 } = this;
       const items = [];
       const table = [];
       let i, ilen, prev, curr, next;
       for (i = 0, ilen = timestamps.length; i < ilen; ++i) {
         curr = timestamps[i];
-        if (curr >= min3 && curr <= max4) {
+        if (curr >= min3 && curr <= max3) {
           items.push(curr);
         }
       }
       if (items.length < 2) {
         return [
           { time: min3, pos: 0 },
-          { time: max4, pos: 1 }
+          { time: max3, pos: 1 }
         ];
       }
       for (i = 0, ilen = items.length; i < ilen; ++i) {
@@ -13904,16 +13904,16 @@ var rbmViz = (() => {
       const { scales: scales2, chartArea } = chart;
       const scale = scales2[options.scaleID];
       const area = { x: chartArea.left, y: chartArea.top, x2: chartArea.right, y2: chartArea.bottom };
-      let min3, max4;
+      let min3, max3;
       if (scale) {
         min3 = scaleValue(scale, options.value, NaN);
-        max4 = scaleValue(scale, options.endValue, min3);
+        max3 = scaleValue(scale, options.endValue, min3);
         if (scale.isHorizontal()) {
           area.x = min3;
-          area.x2 = max4;
+          area.x2 = max3;
         } else {
           area.y = min3;
-          area.y2 = max4;
+          area.y2 = max3;
         }
       } else {
         const xScale = scales2[retrieveScaleID(scales2, options, "xScaleID")];
@@ -14176,16 +14176,16 @@ var rbmViz = (() => {
     };
   }
   function adjustLabelCoordinate(coordinate, labelSizes) {
-    const { size, min: min3, max: max4, padding } = labelSizes;
+    const { size, min: min3, max: max3, padding } = labelSizes;
     const halfSize = size / 2;
-    if (size > max4 - min3) {
-      return (max4 + min3) / 2;
+    if (size > max3 - min3) {
+      return (max3 + min3) / 2;
     }
     if (min3 >= coordinate - padding - halfSize) {
       coordinate = min3 + padding + halfSize;
     }
-    if (max4 <= coordinate + padding + halfSize) {
-      coordinate = max4 - padding - halfSize;
+    if (max3 <= coordinate + padding + halfSize) {
+      coordinate = max3 - padding - halfSize;
     }
     return coordinate;
   }
@@ -15098,10 +15098,10 @@ var rbmViz = (() => {
     const validData = valid === length ? vs : vs.subarray(0, valid);
     validData.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
     const min3 = validData[0];
-    const max4 = validData[validData.length - 1];
+    const max3 = validData[validData.length - 1];
     return {
       min: min3,
-      max: max4,
+      max: max3,
       missing,
       s: validData
     };
@@ -15116,21 +15116,21 @@ var rbmViz = (() => {
       };
     }
     const min3 = data[0];
-    const max4 = data[data.length - 1];
+    const max3 = data[data.length - 1];
     return {
       min: min3,
-      max: max4,
+      max: max3,
       missing: 0,
       s: data
     };
   }
-  function computeWhiskers(s, valid, min3, max4, { eps, quantiles, coef, whiskersMode }) {
+  function computeWhiskers(s, valid, min3, max3, { eps, quantiles, coef, whiskersMode }) {
     const same = (a, b) => Math.abs(a - b) < eps;
     const { median, q1, q3 } = quantiles(s, valid);
     const iqr = q3 - q1;
     const isCoefValid = typeof coef === "number" && coef > 0;
     let whiskerLow = isCoefValid ? Math.max(min3, q1 - coef * iqr) : min3;
-    let whiskerHigh = isCoefValid ? Math.min(max4, q3 + coef * iqr) : max4;
+    let whiskerHigh = isCoefValid ? Math.min(max3, q3 + coef * iqr) : max3;
     const outlierLow = [];
     for (let i = 0; i < valid; i += 1) {
       const v = s[i];
@@ -15195,7 +15195,7 @@ var rbmViz = (() => {
       whiskersMode: "nearest",
       ...options
     };
-    const { missing, s, min: min3, max: max4 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
+    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
     const invalid = {
       min: Number.NaN,
       max: Number.NaN,
@@ -15219,12 +15219,12 @@ var rbmViz = (() => {
     }
     const result = {
       min: min3,
-      max: max4,
+      max: max3,
       count: data.length,
       missing,
       items: s,
       ...computeStats(s, valid),
-      ...computeWhiskers(s, valid, min3, max4, fullOptions)
+      ...computeWhiskers(s, valid, min3, max3, fullOptions)
     };
     return {
       ...result,
@@ -15304,15 +15304,15 @@ var rbmViz = (() => {
       q3: r.q3
     };
   }
-  function computeSamples(min3, max4, points) {
-    const range = max4 - min3;
+  function computeSamples(min3, max3, points) {
+    const range = max3 - min3;
     const samples = [];
     const inc = range / points;
-    for (let v = min3; v <= max4 && inc > 0; v += inc) {
+    for (let v = min3; v <= max3 && inc > 0; v += inc) {
       samples.push(v);
     }
-    if (samples[samples.length - 1] !== max4) {
-      samples.push(max4);
+    if (samples[samples.length - 1] !== max3) {
+      samples.push(max3);
     }
     return samples;
   }
@@ -15791,21 +15791,21 @@ var rbmViz = (() => {
     }
     _getBounds(useFinalPosition) {
       if (this.isVertical()) {
-        const { x, width, min: min4, max: max5 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
+        const { x, width, min: min4, max: max4 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
         const x0 = x - width / 2;
         return {
           left: x0,
-          top: max5,
+          top: max4,
           right: x0 + width,
           bottom: min4
         };
       }
-      const { y, height, min: min3, max: max4 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
+      const { y, height, min: min3, max: max3 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
       const y0 = y - height / 2;
       return {
         left: min3,
         top: y0,
-        right: max4,
+        right: max3,
         bottom: y0 + height
       };
     }
@@ -15948,9 +15948,9 @@ var rbmViz = (() => {
       scale.axis = config.minStats;
       const { min: min3 } = super.getMinMax(scale, canStack);
       scale.axis = config.maxStats;
-      const { max: max4 } = super.getMinMax(scale, canStack);
+      const { max: max3 } = super.getMinMax(scale, canStack);
       scale.axis = bak;
-      return { min: min3, max: max4 };
+      return { min: min3, max: max3 };
     }
     parsePrimitiveData(meta, data, start2, count) {
       const vScale = meta.vScale;
@@ -16099,1659 +16099,6 @@ var rbmViz = (() => {
   };
   ViolinChart.id = ViolinController.id;
 
-  // node_modules/chart.js/auto/auto.mjs
-  Chart.register(...registerables);
-  var auto_default = Chart;
-
-  // node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js
-  var devicePixelRatio = function() {
-    if (typeof window !== "undefined") {
-      if (window.devicePixelRatio) {
-        return window.devicePixelRatio;
-      }
-      var screen = window.screen;
-      if (screen) {
-        return (screen.deviceXDPI || 1) / (screen.logicalXDPI || 1);
-      }
-    }
-    return 1;
-  }();
-  var utils = {
-    toTextLines: function(inputs) {
-      var lines = [];
-      var input;
-      inputs = [].concat(inputs);
-      while (inputs.length) {
-        input = inputs.pop();
-        if (typeof input === "string") {
-          lines.unshift.apply(lines, input.split("\n"));
-        } else if (Array.isArray(input)) {
-          inputs.push.apply(inputs, input);
-        } else if (!isNullOrUndef(inputs)) {
-          lines.unshift("" + input);
-        }
-      }
-      return lines;
-    },
-    textSize: function(ctx, lines, font) {
-      var items = [].concat(lines);
-      var ilen = items.length;
-      var prev = ctx.font;
-      var width = 0;
-      var i;
-      ctx.font = font.string;
-      for (i = 0; i < ilen; ++i) {
-        width = Math.max(ctx.measureText(items[i]).width, width);
-      }
-      ctx.font = prev;
-      return {
-        height: ilen * font.lineHeight,
-        width
-      };
-    },
-    bound: function(min3, value, max4) {
-      return Math.max(min3, Math.min(value, max4));
-    },
-    arrayDiff: function(a0, a1) {
-      var prev = a0.slice();
-      var updates = [];
-      var i, j, ilen, v;
-      for (i = 0, ilen = a1.length; i < ilen; ++i) {
-        v = a1[i];
-        j = prev.indexOf(v);
-        if (j === -1) {
-          updates.push([v, 1]);
-        } else {
-          prev.splice(j, 1);
-        }
-      }
-      for (i = 0, ilen = prev.length; i < ilen; ++i) {
-        updates.push([prev[i], -1]);
-      }
-      return updates;
-    },
-    rasterize: function(v) {
-      return Math.round(v * devicePixelRatio) / devicePixelRatio;
-    }
-  };
-  function orient(point, origin) {
-    var x0 = origin.x;
-    var y0 = origin.y;
-    if (x0 === null) {
-      return { x: 0, y: -1 };
-    }
-    if (y0 === null) {
-      return { x: 1, y: 0 };
-    }
-    var dx = point.x - x0;
-    var dy = point.y - y0;
-    var ln = Math.sqrt(dx * dx + dy * dy);
-    return {
-      x: ln ? dx / ln : 0,
-      y: ln ? dy / ln : -1
-    };
-  }
-  function aligned(x, y, vx, vy, align) {
-    switch (align) {
-      case "center":
-        vx = vy = 0;
-        break;
-      case "bottom":
-        vx = 0;
-        vy = 1;
-        break;
-      case "right":
-        vx = 1;
-        vy = 0;
-        break;
-      case "left":
-        vx = -1;
-        vy = 0;
-        break;
-      case "top":
-        vx = 0;
-        vy = -1;
-        break;
-      case "start":
-        vx = -vx;
-        vy = -vy;
-        break;
-      case "end":
-        break;
-      default:
-        align *= Math.PI / 180;
-        vx = Math.cos(align);
-        vy = Math.sin(align);
-        break;
-    }
-    return {
-      x,
-      y,
-      vx,
-      vy
-    };
-  }
-  var R_INSIDE = 0;
-  var R_LEFT = 1;
-  var R_RIGHT = 2;
-  var R_BOTTOM = 4;
-  var R_TOP = 8;
-  function region(x, y, rect) {
-    var res = R_INSIDE;
-    if (x < rect.left) {
-      res |= R_LEFT;
-    } else if (x > rect.right) {
-      res |= R_RIGHT;
-    }
-    if (y < rect.top) {
-      res |= R_TOP;
-    } else if (y > rect.bottom) {
-      res |= R_BOTTOM;
-    }
-    return res;
-  }
-  function clipped(segment, area) {
-    var x0 = segment.x0;
-    var y0 = segment.y0;
-    var x1 = segment.x1;
-    var y1 = segment.y1;
-    var r0 = region(x0, y0, area);
-    var r1 = region(x1, y1, area);
-    var r, x, y;
-    while (true) {
-      if (!(r0 | r1) || r0 & r1) {
-        break;
-      }
-      r = r0 || r1;
-      if (r & R_TOP) {
-        x = x0 + (x1 - x0) * (area.top - y0) / (y1 - y0);
-        y = area.top;
-      } else if (r & R_BOTTOM) {
-        x = x0 + (x1 - x0) * (area.bottom - y0) / (y1 - y0);
-        y = area.bottom;
-      } else if (r & R_RIGHT) {
-        y = y0 + (y1 - y0) * (area.right - x0) / (x1 - x0);
-        x = area.right;
-      } else if (r & R_LEFT) {
-        y = y0 + (y1 - y0) * (area.left - x0) / (x1 - x0);
-        x = area.left;
-      }
-      if (r === r0) {
-        x0 = x;
-        y0 = y;
-        r0 = region(x0, y0, area);
-      } else {
-        x1 = x;
-        y1 = y;
-        r1 = region(x1, y1, area);
-      }
-    }
-    return {
-      x0,
-      x1,
-      y0,
-      y1
-    };
-  }
-  function compute$1(range, config) {
-    var anchor = config.anchor;
-    var segment = range;
-    var x, y;
-    if (config.clamp) {
-      segment = clipped(segment, config.area);
-    }
-    if (anchor === "start") {
-      x = segment.x0;
-      y = segment.y0;
-    } else if (anchor === "end") {
-      x = segment.x1;
-      y = segment.y1;
-    } else {
-      x = (segment.x0 + segment.x1) / 2;
-      y = (segment.y0 + segment.y1) / 2;
-    }
-    return aligned(x, y, range.vx, range.vy, config.align);
-  }
-  var positioners2 = {
-    arc: function(el, config) {
-      var angle = (el.startAngle + el.endAngle) / 2;
-      var vx = Math.cos(angle);
-      var vy = Math.sin(angle);
-      var r0 = el.innerRadius;
-      var r1 = el.outerRadius;
-      return compute$1({
-        x0: el.x + vx * r0,
-        y0: el.y + vy * r0,
-        x1: el.x + vx * r1,
-        y1: el.y + vy * r1,
-        vx,
-        vy
-      }, config);
-    },
-    point: function(el, config) {
-      var v = orient(el, config.origin);
-      var rx = v.x * el.options.radius;
-      var ry = v.y * el.options.radius;
-      return compute$1({
-        x0: el.x - rx,
-        y0: el.y - ry,
-        x1: el.x + rx,
-        y1: el.y + ry,
-        vx: v.x,
-        vy: v.y
-      }, config);
-    },
-    bar: function(el, config) {
-      var v = orient(el, config.origin);
-      var x = el.x;
-      var y = el.y;
-      var sx = 0;
-      var sy = 0;
-      if (el.horizontal) {
-        x = Math.min(el.x, el.base);
-        sx = Math.abs(el.base - el.x);
-      } else {
-        y = Math.min(el.y, el.base);
-        sy = Math.abs(el.base - el.y);
-      }
-      return compute$1({
-        x0: x,
-        y0: y + sy,
-        x1: x + sx,
-        y1: y,
-        vx: v.x,
-        vy: v.y
-      }, config);
-    },
-    fallback: function(el, config) {
-      var v = orient(el, config.origin);
-      return compute$1({
-        x0: el.x,
-        y0: el.y,
-        x1: el.x + (el.width || 0),
-        y1: el.y + (el.height || 0),
-        vx: v.x,
-        vy: v.y
-      }, config);
-    }
-  };
-  var rasterize = utils.rasterize;
-  function boundingRects2(model) {
-    var borderWidth3 = model.borderWidth || 0;
-    var padding = model.padding;
-    var th = model.size.height;
-    var tw = model.size.width;
-    var tx = -tw / 2;
-    var ty = -th / 2;
-    return {
-      frame: {
-        x: tx - padding.left - borderWidth3,
-        y: ty - padding.top - borderWidth3,
-        w: tw + padding.width + borderWidth3 * 2,
-        h: th + padding.height + borderWidth3 * 2
-      },
-      text: {
-        x: tx,
-        y: ty,
-        w: tw,
-        h: th
-      }
-    };
-  }
-  function getScaleOrigin(el, context) {
-    var scale = context.chart.getDatasetMeta(context.datasetIndex).vScale;
-    if (!scale) {
-      return null;
-    }
-    if (scale.xCenter !== void 0 && scale.yCenter !== void 0) {
-      return { x: scale.xCenter, y: scale.yCenter };
-    }
-    var pixel = scale.getBasePixel();
-    return el.horizontal ? { x: pixel, y: null } : { x: null, y: pixel };
-  }
-  function getPositioner(el) {
-    if (el instanceof ArcElement) {
-      return positioners2.arc;
-    }
-    if (el instanceof PointElement) {
-      return positioners2.point;
-    }
-    if (el instanceof BarElement) {
-      return positioners2.bar;
-    }
-    return positioners2.fallback;
-  }
-  function drawRoundedRect(ctx, x, y, w, h, radius3) {
-    var HALF_PI2 = Math.PI / 2;
-    if (radius3) {
-      var r = Math.min(radius3, h / 2, w / 2);
-      var left = x + r;
-      var top = y + r;
-      var right = x + w - r;
-      var bottom = y + h - r;
-      ctx.moveTo(x, top);
-      if (left < right && top < bottom) {
-        ctx.arc(left, top, r, -Math.PI, -HALF_PI2);
-        ctx.arc(right, top, r, -HALF_PI2, 0);
-        ctx.arc(right, bottom, r, 0, HALF_PI2);
-        ctx.arc(left, bottom, r, HALF_PI2, Math.PI);
-      } else if (left < right) {
-        ctx.moveTo(left, y);
-        ctx.arc(right, top, r, -HALF_PI2, HALF_PI2);
-        ctx.arc(left, top, r, HALF_PI2, Math.PI + HALF_PI2);
-      } else if (top < bottom) {
-        ctx.arc(left, top, r, -Math.PI, 0);
-        ctx.arc(left, bottom, r, 0, Math.PI);
-      } else {
-        ctx.arc(left, top, r, -Math.PI, Math.PI);
-      }
-      ctx.closePath();
-      ctx.moveTo(x, y);
-    } else {
-      ctx.rect(x, y, w, h);
-    }
-  }
-  function drawFrame(ctx, rect, model) {
-    var bgColor = model.backgroundColor;
-    var borderColor4 = model.borderColor;
-    var borderWidth3 = model.borderWidth;
-    if (!bgColor && (!borderColor4 || !borderWidth3)) {
-      return;
-    }
-    ctx.beginPath();
-    drawRoundedRect(
-      ctx,
-      rasterize(rect.x) + borderWidth3 / 2,
-      rasterize(rect.y) + borderWidth3 / 2,
-      rasterize(rect.w) - borderWidth3,
-      rasterize(rect.h) - borderWidth3,
-      model.borderRadius
-    );
-    ctx.closePath();
-    if (bgColor) {
-      ctx.fillStyle = bgColor;
-      ctx.fill();
-    }
-    if (borderColor4 && borderWidth3) {
-      ctx.strokeStyle = borderColor4;
-      ctx.lineWidth = borderWidth3;
-      ctx.lineJoin = "miter";
-      ctx.stroke();
-    }
-  }
-  function textGeometry(rect, align, font) {
-    var h = font.lineHeight;
-    var w = rect.w;
-    var x = rect.x;
-    var y = rect.y + h / 2;
-    if (align === "center") {
-      x += w / 2;
-    } else if (align === "end" || align === "right") {
-      x += w;
-    }
-    return {
-      h,
-      w,
-      x,
-      y
-    };
-  }
-  function drawTextLine(ctx, text, cfg) {
-    var shadow = ctx.shadowBlur;
-    var stroked = cfg.stroked;
-    var x = rasterize(cfg.x);
-    var y = rasterize(cfg.y);
-    var w = rasterize(cfg.w);
-    if (stroked) {
-      ctx.strokeText(text, x, y, w);
-    }
-    if (cfg.filled) {
-      if (shadow && stroked) {
-        ctx.shadowBlur = 0;
-      }
-      ctx.fillText(text, x, y, w);
-      if (shadow && stroked) {
-        ctx.shadowBlur = shadow;
-      }
-    }
-  }
-  function drawText(ctx, lines, rect, model) {
-    var align = model.textAlign;
-    var color3 = model.color;
-    var filled = !!color3;
-    var font = model.font;
-    var ilen = lines.length;
-    var strokeColor = model.textStrokeColor;
-    var strokeWidth = model.textStrokeWidth;
-    var stroked = strokeColor && strokeWidth;
-    var i;
-    if (!ilen || !filled && !stroked) {
-      return;
-    }
-    rect = textGeometry(rect, align, font);
-    ctx.font = font.string;
-    ctx.textAlign = align;
-    ctx.textBaseline = "middle";
-    ctx.shadowBlur = model.textShadowBlur;
-    ctx.shadowColor = model.textShadowColor;
-    if (filled) {
-      ctx.fillStyle = color3;
-    }
-    if (stroked) {
-      ctx.lineJoin = "round";
-      ctx.lineWidth = strokeWidth;
-      ctx.strokeStyle = strokeColor;
-    }
-    for (i = 0, ilen = lines.length; i < ilen; ++i) {
-      drawTextLine(ctx, lines[i], {
-        stroked,
-        filled,
-        w: rect.w,
-        x: rect.x,
-        y: rect.y + rect.h * i
-      });
-    }
-  }
-  var Label = function(config, ctx, el, index3) {
-    var me = this;
-    me._config = config;
-    me._index = index3;
-    me._model = null;
-    me._rects = null;
-    me._ctx = ctx;
-    me._el = el;
-  };
-  merge(Label.prototype, {
-    _modelize: function(display, lines, config, context) {
-      var me = this;
-      var index3 = me._index;
-      var font = toFont(resolve([config.font, {}], context, index3));
-      var color3 = resolve([config.color, defaults.color], context, index3);
-      return {
-        align: resolve([config.align, "center"], context, index3),
-        anchor: resolve([config.anchor, "center"], context, index3),
-        area: context.chart.chartArea,
-        backgroundColor: resolve([config.backgroundColor, null], context, index3),
-        borderColor: resolve([config.borderColor, null], context, index3),
-        borderRadius: resolve([config.borderRadius, 0], context, index3),
-        borderWidth: resolve([config.borderWidth, 0], context, index3),
-        clamp: resolve([config.clamp, false], context, index3),
-        clip: resolve([config.clip, false], context, index3),
-        color: color3,
-        display,
-        font,
-        lines,
-        offset: resolve([config.offset, 4], context, index3),
-        opacity: resolve([config.opacity, 1], context, index3),
-        origin: getScaleOrigin(me._el, context),
-        padding: toPadding(resolve([config.padding, 4], context, index3)),
-        positioner: getPositioner(me._el),
-        rotation: resolve([config.rotation, 0], context, index3) * (Math.PI / 180),
-        size: utils.textSize(me._ctx, lines, font),
-        textAlign: resolve([config.textAlign, "start"], context, index3),
-        textShadowBlur: resolve([config.textShadowBlur, 0], context, index3),
-        textShadowColor: resolve([config.textShadowColor, color3], context, index3),
-        textStrokeColor: resolve([config.textStrokeColor, color3], context, index3),
-        textStrokeWidth: resolve([config.textStrokeWidth, 0], context, index3)
-      };
-    },
-    update: function(context) {
-      var me = this;
-      var model = null;
-      var rects = null;
-      var index3 = me._index;
-      var config = me._config;
-      var value, label, lines;
-      var display = resolve([config.display, true], context, index3);
-      if (display) {
-        value = context.dataset.data[index3];
-        label = valueOrDefault(callback(config.formatter, [value, context]), value);
-        lines = isNullOrUndef(label) ? [] : utils.toTextLines(label);
-        if (lines.length) {
-          model = me._modelize(display, lines, config, context);
-          rects = boundingRects2(model);
-        }
-      }
-      me._model = model;
-      me._rects = rects;
-    },
-    geometry: function() {
-      return this._rects ? this._rects.frame : {};
-    },
-    rotation: function() {
-      return this._model ? this._model.rotation : 0;
-    },
-    visible: function() {
-      return this._model && this._model.opacity;
-    },
-    model: function() {
-      return this._model;
-    },
-    draw: function(chart, center) {
-      var me = this;
-      var ctx = chart.ctx;
-      var model = me._model;
-      var rects = me._rects;
-      var area;
-      if (!this.visible()) {
-        return;
-      }
-      ctx.save();
-      if (model.clip) {
-        area = model.area;
-        ctx.beginPath();
-        ctx.rect(
-          area.left,
-          area.top,
-          area.right - area.left,
-          area.bottom - area.top
-        );
-        ctx.clip();
-      }
-      ctx.globalAlpha = utils.bound(0, model.opacity, 1);
-      ctx.translate(rasterize(center.x), rasterize(center.y));
-      ctx.rotate(model.rotation);
-      drawFrame(ctx, rects.frame, model);
-      drawText(ctx, model.lines, rects.text, model);
-      ctx.restore();
-    }
-  });
-  var MIN_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
-  var MAX_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
-  function rotated2(point, center, angle) {
-    var cos = Math.cos(angle);
-    var sin = Math.sin(angle);
-    var cx = center.x;
-    var cy = center.y;
-    return {
-      x: cx + cos * (point.x - cx) - sin * (point.y - cy),
-      y: cy + sin * (point.x - cx) + cos * (point.y - cy)
-    };
-  }
-  function projected(points, axis) {
-    var min3 = MAX_INTEGER;
-    var max4 = MIN_INTEGER;
-    var origin = axis.origin;
-    var i, pt, vx, vy, dp;
-    for (i = 0; i < points.length; ++i) {
-      pt = points[i];
-      vx = pt.x - origin.x;
-      vy = pt.y - origin.y;
-      dp = axis.vx * vx + axis.vy * vy;
-      min3 = Math.min(min3, dp);
-      max4 = Math.max(max4, dp);
-    }
-    return {
-      min: min3,
-      max: max4
-    };
-  }
-  function toAxis(p0, p1) {
-    var vx = p1.x - p0.x;
-    var vy = p1.y - p0.y;
-    var ln = Math.sqrt(vx * vx + vy * vy);
-    return {
-      vx: (p1.x - p0.x) / ln,
-      vy: (p1.y - p0.y) / ln,
-      origin: p0,
-      ln
-    };
-  }
-  var HitBox = function() {
-    this._rotation = 0;
-    this._rect = {
-      x: 0,
-      y: 0,
-      w: 0,
-      h: 0
-    };
-  };
-  merge(HitBox.prototype, {
-    center: function() {
-      var r = this._rect;
-      return {
-        x: r.x + r.w / 2,
-        y: r.y + r.h / 2
-      };
-    },
-    update: function(center, rect, rotation) {
-      this._rotation = rotation;
-      this._rect = {
-        x: rect.x + center.x,
-        y: rect.y + center.y,
-        w: rect.w,
-        h: rect.h
-      };
-    },
-    contains: function(point) {
-      var me = this;
-      var margin = 1;
-      var rect = me._rect;
-      point = rotated2(point, me.center(), -me._rotation);
-      return !(point.x < rect.x - margin || point.y < rect.y - margin || point.x > rect.x + rect.w + margin * 2 || point.y > rect.y + rect.h + margin * 2);
-    },
-    intersects: function(other) {
-      var r0 = this._points();
-      var r1 = other._points();
-      var axes = [
-        toAxis(r0[0], r0[1]),
-        toAxis(r0[0], r0[3])
-      ];
-      var i, pr0, pr1;
-      if (this._rotation !== other._rotation) {
-        axes.push(
-          toAxis(r1[0], r1[1]),
-          toAxis(r1[0], r1[3])
-        );
-      }
-      for (i = 0; i < axes.length; ++i) {
-        pr0 = projected(r0, axes[i]);
-        pr1 = projected(r1, axes[i]);
-        if (pr0.max < pr1.min || pr1.max < pr0.min) {
-          return false;
-        }
-      }
-      return true;
-    },
-    _points: function() {
-      var me = this;
-      var rect = me._rect;
-      var angle = me._rotation;
-      var center = me.center();
-      return [
-        rotated2({ x: rect.x, y: rect.y }, center, angle),
-        rotated2({ x: rect.x + rect.w, y: rect.y }, center, angle),
-        rotated2({ x: rect.x + rect.w, y: rect.y + rect.h }, center, angle),
-        rotated2({ x: rect.x, y: rect.y + rect.h }, center, angle)
-      ];
-    }
-  });
-  function coordinates(el, model, geometry) {
-    var point = model.positioner(el, model);
-    var vx = point.vx;
-    var vy = point.vy;
-    if (!vx && !vy) {
-      return { x: point.x, y: point.y };
-    }
-    var w = geometry.w;
-    var h = geometry.h;
-    var rotation = model.rotation;
-    var dx = Math.abs(w / 2 * Math.cos(rotation)) + Math.abs(h / 2 * Math.sin(rotation));
-    var dy = Math.abs(w / 2 * Math.sin(rotation)) + Math.abs(h / 2 * Math.cos(rotation));
-    var vs = 1 / Math.max(Math.abs(vx), Math.abs(vy));
-    dx *= vx * vs;
-    dy *= vy * vs;
-    dx += model.offset * vx;
-    dy += model.offset * vy;
-    return {
-      x: point.x + dx,
-      y: point.y + dy
-    };
-  }
-  function collide(labels, collider) {
-    var i, j, s0, s1;
-    for (i = labels.length - 1; i >= 0; --i) {
-      s0 = labels[i].$layout;
-      for (j = i - 1; j >= 0 && s0._visible; --j) {
-        s1 = labels[j].$layout;
-        if (s1._visible && s0._box.intersects(s1._box)) {
-          collider(s0, s1);
-        }
-      }
-    }
-    return labels;
-  }
-  function compute(labels) {
-    var i, ilen, label, state, geometry, center, proxy;
-    for (i = 0, ilen = labels.length; i < ilen; ++i) {
-      label = labels[i];
-      state = label.$layout;
-      if (state._visible) {
-        proxy = new Proxy(label._el, { get: (el, p) => el.getProps([p], true)[p] });
-        geometry = label.geometry();
-        center = coordinates(proxy, label.model(), geometry);
-        state._box.update(center, geometry, label.rotation());
-      }
-    }
-    return collide(labels, function(s0, s1) {
-      var h0 = s0._hidable;
-      var h12 = s1._hidable;
-      if (h0 && h12 || h12) {
-        s1._visible = false;
-      } else if (h0) {
-        s0._visible = false;
-      }
-    });
-  }
-  var layout = {
-    prepare: function(datasets) {
-      var labels = [];
-      var i, j, ilen, jlen, label;
-      for (i = 0, ilen = datasets.length; i < ilen; ++i) {
-        for (j = 0, jlen = datasets[i].length; j < jlen; ++j) {
-          label = datasets[i][j];
-          labels.push(label);
-          label.$layout = {
-            _box: new HitBox(),
-            _hidable: false,
-            _visible: true,
-            _set: i,
-            _idx: label._index
-          };
-        }
-      }
-      labels.sort(function(a, b) {
-        var sa = a.$layout;
-        var sb = b.$layout;
-        return sa._idx === sb._idx ? sb._set - sa._set : sb._idx - sa._idx;
-      });
-      this.update(labels);
-      return labels;
-    },
-    update: function(labels) {
-      var dirty = false;
-      var i, ilen, label, model, state;
-      for (i = 0, ilen = labels.length; i < ilen; ++i) {
-        label = labels[i];
-        model = label.model();
-        state = label.$layout;
-        state._hidable = model && model.display === "auto";
-        state._visible = label.visible();
-        dirty |= state._hidable;
-      }
-      if (dirty) {
-        compute(labels);
-      }
-    },
-    lookup: function(labels, point) {
-      var i, state;
-      for (i = labels.length - 1; i >= 0; --i) {
-        state = labels[i].$layout;
-        if (state && state._visible && state._box.contains(point)) {
-          return labels[i];
-        }
-      }
-      return null;
-    },
-    draw: function(chart, labels) {
-      var i, ilen, label, state, geometry, center;
-      for (i = 0, ilen = labels.length; i < ilen; ++i) {
-        label = labels[i];
-        state = label.$layout;
-        if (state._visible) {
-          geometry = label.geometry();
-          center = coordinates(label._el, label.model(), geometry);
-          state._box.update(center, geometry, label.rotation());
-          label.draw(chart, center);
-        }
-      }
-    }
-  };
-  var formatter = function(value) {
-    if (isNullOrUndef(value)) {
-      return null;
-    }
-    var label = value;
-    var keys, klen, k;
-    if (isObject(value)) {
-      if (!isNullOrUndef(value.label)) {
-        label = value.label;
-      } else if (!isNullOrUndef(value.r)) {
-        label = value.r;
-      } else {
-        label = "";
-        keys = Object.keys(value);
-        for (k = 0, klen = keys.length; k < klen; ++k) {
-          label += (k !== 0 ? ", " : "") + keys[k] + ": " + value[keys[k]];
-        }
-      }
-    }
-    return "" + label;
-  };
-  var defaults2 = {
-    align: "center",
-    anchor: "center",
-    backgroundColor: null,
-    borderColor: null,
-    borderRadius: 0,
-    borderWidth: 0,
-    clamp: false,
-    clip: false,
-    color: void 0,
-    display: true,
-    font: {
-      family: void 0,
-      lineHeight: 1.2,
-      size: void 0,
-      style: void 0,
-      weight: null
-    },
-    formatter,
-    labels: void 0,
-    listeners: {},
-    offset: 4,
-    opacity: 1,
-    padding: {
-      top: 4,
-      right: 4,
-      bottom: 4,
-      left: 4
-    },
-    rotation: 0,
-    textAlign: "start",
-    textStrokeColor: void 0,
-    textStrokeWidth: 0,
-    textShadowBlur: 0,
-    textShadowColor: void 0
-  };
-  var EXPANDO_KEY2 = "$datalabels";
-  var DEFAULT_KEY = "$default";
-  function configure(dataset, options) {
-    var override = dataset.datalabels;
-    var listeners = {};
-    var configs = [];
-    var labels, keys;
-    if (override === false) {
-      return null;
-    }
-    if (override === true) {
-      override = {};
-    }
-    options = merge({}, [options, override]);
-    labels = options.labels || {};
-    keys = Object.keys(labels);
-    delete options.labels;
-    if (keys.length) {
-      keys.forEach(function(key) {
-        if (labels[key]) {
-          configs.push(merge({}, [
-            options,
-            labels[key],
-            { _key: key }
-          ]));
-        }
-      });
-    } else {
-      configs.push(options);
-    }
-    listeners = configs.reduce(function(target, config) {
-      each(config.listeners || {}, function(fn, event) {
-        target[event] = target[event] || {};
-        target[event][config._key || DEFAULT_KEY] = fn;
-      });
-      delete config.listeners;
-      return target;
-    }, {});
-    return {
-      labels: configs,
-      listeners
-    };
-  }
-  function dispatchEvent2(chart, listeners, label, event) {
-    if (!listeners) {
-      return;
-    }
-    var context = label.$context;
-    var groups2 = label.$groups;
-    var callback$1;
-    if (!listeners[groups2._set]) {
-      return;
-    }
-    callback$1 = listeners[groups2._set][groups2._key];
-    if (!callback$1) {
-      return;
-    }
-    if (callback(callback$1, [context, event]) === true) {
-      chart[EXPANDO_KEY2]._dirty = true;
-      label.update(context);
-    }
-  }
-  function dispatchMoveEvents2(chart, listeners, previous, label, event) {
-    var enter, leave;
-    if (!previous && !label) {
-      return;
-    }
-    if (!previous) {
-      enter = true;
-    } else if (!label) {
-      leave = true;
-    } else if (previous !== label) {
-      leave = enter = true;
-    }
-    if (leave) {
-      dispatchEvent2(chart, listeners.leave, previous, event);
-    }
-    if (enter) {
-      dispatchEvent2(chart, listeners.enter, label, event);
-    }
-  }
-  function handleMoveEvents2(chart, event) {
-    var expando = chart[EXPANDO_KEY2];
-    var listeners = expando._listeners;
-    var previous, label;
-    if (!listeners.enter && !listeners.leave) {
-      return;
-    }
-    if (event.type === "mousemove") {
-      label = layout.lookup(expando._labels, event);
-    } else if (event.type !== "mouseout") {
-      return;
-    }
-    previous = expando._hovered;
-    expando._hovered = label;
-    dispatchMoveEvents2(chart, listeners, previous, label, event);
-  }
-  function handleClickEvents2(chart, event) {
-    var expando = chart[EXPANDO_KEY2];
-    var handlers = expando._listeners.click;
-    var label = handlers && layout.lookup(expando._labels, event);
-    if (label) {
-      dispatchEvent2(chart, handlers, label, event);
-    }
-  }
-  var plugin = {
-    id: "datalabels",
-    defaults: defaults2,
-    beforeInit: function(chart) {
-      chart[EXPANDO_KEY2] = {
-        _actives: []
-      };
-    },
-    beforeUpdate: function(chart) {
-      var expando = chart[EXPANDO_KEY2];
-      expando._listened = false;
-      expando._listeners = {};
-      expando._datasets = [];
-      expando._labels = [];
-    },
-    afterDatasetUpdate: function(chart, args, options) {
-      var datasetIndex = args.index;
-      var expando = chart[EXPANDO_KEY2];
-      var labels = expando._datasets[datasetIndex] = [];
-      var visible = chart.isDatasetVisible(datasetIndex);
-      var dataset = chart.data.datasets[datasetIndex];
-      var config = configure(dataset, options);
-      var elements2 = args.meta.data || [];
-      var ctx = chart.ctx;
-      var i, j, ilen, jlen, cfg, key, el, label;
-      ctx.save();
-      for (i = 0, ilen = elements2.length; i < ilen; ++i) {
-        el = elements2[i];
-        el[EXPANDO_KEY2] = [];
-        if (visible && el && chart.getDataVisibility(i) && !el.skip) {
-          for (j = 0, jlen = config.labels.length; j < jlen; ++j) {
-            cfg = config.labels[j];
-            key = cfg._key;
-            label = new Label(cfg, ctx, el, i);
-            label.$groups = {
-              _set: datasetIndex,
-              _key: key || DEFAULT_KEY
-            };
-            label.$context = {
-              active: false,
-              chart,
-              dataIndex: i,
-              dataset,
-              datasetIndex
-            };
-            label.update(label.$context);
-            el[EXPANDO_KEY2].push(label);
-            labels.push(label);
-          }
-        }
-      }
-      ctx.restore();
-      merge(expando._listeners, config.listeners, {
-        merger: function(event, target, source) {
-          target[event] = target[event] || {};
-          target[event][args.index] = source[event];
-          expando._listened = true;
-        }
-      });
-    },
-    afterUpdate: function(chart) {
-      chart[EXPANDO_KEY2]._labels = layout.prepare(chart[EXPANDO_KEY2]._datasets);
-    },
-    afterDatasetsDraw: function(chart) {
-      layout.draw(chart, chart[EXPANDO_KEY2]._labels);
-    },
-    beforeEvent: function(chart, args) {
-      if (chart[EXPANDO_KEY2]._listened) {
-        var event = args.event;
-        switch (event.type) {
-          case "mousemove":
-          case "mouseout":
-            handleMoveEvents2(chart, event);
-            break;
-          case "click":
-            handleClickEvents2(chart, event);
-            break;
-        }
-      }
-    },
-    afterEvent: function(chart) {
-      var expando = chart[EXPANDO_KEY2];
-      var previous = expando._actives;
-      var actives = expando._actives = chart.getActiveElements();
-      var updates = utils.arrayDiff(previous, actives);
-      var i, ilen, j, jlen, update, label, labels;
-      for (i = 0, ilen = updates.length; i < ilen; ++i) {
-        update = updates[i];
-        if (update[1]) {
-          labels = update[0].element[EXPANDO_KEY2] || [];
-          for (j = 0, jlen = labels.length; j < jlen; ++j) {
-            label = labels[j];
-            label.$context.active = update[1] === 1;
-            label.update(label.$context);
-          }
-        }
-      }
-      if (expando._dirty || updates.length) {
-        layout.update(expando._labels);
-        chart.render();
-      }
-      delete expando._dirty;
-    }
-  };
-
-  // src/data/schema/analysisMetadata.json
-  var analysisMetadata_default = {
-    title: "KRI Analysis Metadata",
-    description: "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
-    version: "0.14.0",
-    type: "object",
-    properties: {
-      workflowid: {
-        title: "Workflow ID",
-        description: "Unique workflow identifier",
-        type: "string",
-        required: false
-      },
-      group: {
-        title: "Grouping Variable",
-        description: "Grouping variable of analysis, one of Site, Country, or Study",
-        type: "string",
-        required: true
-      },
-      numerator: {
-        title: "KRI Numerator",
-        description: "Unit of KRI numerator",
-        type: "string",
-        required: true,
-        key: false
-      },
-      denominator: {
-        title: "KRI Denominator",
-        description: "Unit of KRI denominator",
-        type: "string",
-        required: true,
-        key: false
-      },
-      metric: {
-        title: "KRI Metric",
-        description: "Unit of KRI metric",
-        type: "string",
-        required: true,
-        key: false
-      },
-      outcome: {
-        title: "KRI Type",
-        description: "Type of KRI metric",
-        type: "string",
-        required: false,
-        key: false
-      },
-      score: {
-        title: "KRI Score",
-        description: "Unit of KRI score",
-        type: "string",
-        required: true,
-        key: false
-      },
-      model: {
-        title: "KRI Score Method",
-        description: "Statistical model used to evaluate KRI",
-        type: "string",
-        required: false,
-        key: false
-      },
-      abbreviation: {
-        title: "Abbreviation",
-        description: "KRI abbreviation",
-        type: "string",
-        required: false,
-        key: false
-      },
-      data_inputs: {
-        title: "Input Data Domains",
-        description: "Data domains used to evaluate KRI",
-        type: "string",
-        required: false,
-        key: false
-      },
-      data_filters: {
-        title: "Subsets",
-        description: "Subsets applied to input data domains",
-        type: "string",
-        required: false,
-        key: false
-      },
-      gsm_analysis_date: {
-        title: "Analysis Date",
-        description: "Date of analysis",
-        type: "string",
-        required: false,
-        key: false
-      },
-      gsm_version: {
-        title: "{gsm} Version",
-        description: "{gsm} version when analysis ran",
-        type: "string",
-        required: false,
-        key: false
-      }
-    }
-  };
-
-  // src/data/schema/analysisParameters.json
-  var analysisParameters_default = {
-    title: "KRI Analysis Parameters",
-    description: "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        workflowid: {
-          title: "Workflow ID",
-          description: "Unique workflow identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        param: {
-          title: "Analysis Parameter",
-          description: "Analysis parameter",
-          type: "string",
-          required: true,
-          key: true
-        },
-        index: {
-          title: "Parameter Index",
-          description: "Index of analysis parameter",
-          type: "number",
-          required: false,
-          key: true
-        },
-        value: {
-          title: "Parameter Value",
-          description: "Parameter value",
-          type: "string",
-          required: true,
-          key: false
-        },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
-          key: false
-        },
-        gsm_version: {
-          title: "{gsm} Version",
-          description: "{gsm} version when analysis ran",
-          type: "string",
-          required: false,
-          key: false
-        }
-      }
-    }
-  };
-
-  // src/data/schema/flagCounts.json
-  var flagCounts_default = {
-    title: "Flag Counts",
-    description: "JSON schema of discrete input data to timeSeries modules",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        groupid: {
-          title: "Group ID",
-          description: "Unique group identifier",
-          type: "string",
-          required: true,
-          key: true,
-          alternate: "workflowid"
-        },
-        workflowid: {
-          title: "Workflow ID",
-          description: "Unique workflow identifier",
-          type: "string",
-          required: true,
-          key: true,
-          alternate: "workflowid"
-        },
-        n: {
-          title: "# of Groups/KRIs",
-          description: "Total number of assessed groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        n_at_risk: {
-          title: "# of Amber Groups/KRIs",
-          description: "Number of amber groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        n_flagged: {
-          title: "# of Red Groups/KRIs",
-          description: "Number of red groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        },
-        n_at_risk_or_flagged: {
-          title: "# of Amber of Red Groups/KRIs",
-          description: "Number of amber or red groups/KRIs",
-          type: "number",
-          required: true,
-          key: false
-        }
-      }
-    }
-  };
-
-  // src/data/schema/results.json
-  var results_default = {
-    title: "Standard KRI Analysis Output",
-    description: "JSON schema of input data to barChart and scatterPlot modules",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        workflowid: {
-          title: "Workflow ID",
-          description: "Unique workflow identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        groupid: {
-          title: "Group ID",
-          description: "Unique group identifier",
-          type: "string",
-          required: true,
-          key: true
-        },
-        numerator: {
-          title: "Numerator",
-          description: "Numerator of KRI metric",
-          type: "number",
-          required: true,
-          key: false
-        },
-        denominator: {
-          title: "Denominator",
-          description: "Denominator of KRI metric",
-          type: "number",
-          required: true,
-          key: false
-        },
-        metric: {
-          title: "KRI Metric",
-          description: "KRI metric",
-          type: "number",
-          required: true,
-          key: false
-        },
-        score: {
-          title: "KRI Score",
-          description: "KRI score",
-          type: "number",
-          required: true,
-          key: false
-        },
-        flag: {
-          title: "Flag Status",
-          description: "Flag assigned given KRI score and specified thresholds",
-          type: "number",
-          required: true,
-          key: false
-        },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
-          key: false
-        }
-      }
-    }
-  };
-
-  // src/data/schema/resultsPredicted.json
-  var resultsPredicted_default = {
-    title: "Predicted KRI Analysis Output",
-    description: "JSON schema of predicted input data to scatterPlot module",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        workflowid: {
-          title: "Workflow ID",
-          description: "Unique workflow identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        threshold: {
-          title: "Threshold",
-          description: "Directional factor of predicted results",
-          type: "number",
-          required: true,
-          key: true
-        },
-        numerator: {
-          title: "Predicted Numerator",
-          description: "Predicted numerator of KRI metric",
-          type: "number",
-          required: true,
-          key: false
-        },
-        denominator: {
-          title: "Predicted Denominator",
-          description: "Predicted denominator of KRI metric",
-          type: "number",
-          required: true,
-          key: false
-        },
-        log_denominator: {
-          title: "Predicted Denominator (log)",
-          description: "Predicted Denominator of KRI metric (log)",
-          type: "number",
-          required: false,
-          key: false
-        },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
-          key: false
-        }
-      }
-    }
-  };
-
-  // src/data/schema/resultsVertical.json
-  var resultsVertical_default = {
-    title: "Additional KRI Analysis Output",
-    description: "JSON schema of ancillary input data to timeSeries module",
-    version: "0.14.0",
-    type: "array",
-    items: {
-      type: "object",
-      properties: {
-        studyid: {
-          title: "Study ID",
-          description: "Unique study identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        workflowid: {
-          title: "Workflow ID",
-          description: "Unique workflow identifier",
-          type: "string",
-          required: false,
-          key: true
-        },
-        param: {
-          title: "Analysis Parameter",
-          description: "Analysis parameter",
-          type: "string",
-          required: true,
-          key: true
-        },
-        value: {
-          title: "Analysis Result",
-          description: "Analysis result",
-          type: "number",
-          required: true,
-          key: false
-        },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
-          key: false
-        }
-      }
-    }
-  };
-
-  // src/data/schema/snapshotDate.json
-  var snapshotDate_default = {
-    title: "Snapshot Date",
-    description: "Date of data snapshot",
-    type: "string",
-    required: true,
-    key: true
-  };
-
-  // src/data/schema/index.js
-  var schema = {
-    analysisMetadata: analysisMetadata_default,
-    analysisParameters: analysisParameters_default,
-    flagCounts: flagCounts_default,
-    results: results_default,
-    resultsPredicted: resultsPredicted_default,
-    resultsVertical: resultsVertical_default,
-    snapshotDate: snapshotDate_default
-  };
-  var schema_default = schema;
-
-  // src/data/checkInput/getType.js
-  function getType(variable) {
-    let variableType = typeof variable;
-    if (variable instanceof Array)
-      variableType = "array";
-    if (variable instanceof Map)
-      variableType = "map";
-    if (variable instanceof Set)
-      variableType = "set";
-    if (variable instanceof Function)
-      variableType = "function";
-    return variableType;
-  }
-
-  // src/data/checkInput/checkProps.js
-  function checkProps({
-    obj,
-    properties,
-    parameter = null,
-    module = null,
-    i = null
-  }) {
-    const actualProps = Object.keys(obj);
-    const expectedProps = Object.keys(properties);
-    const requiredProps = expectedProps.filter(
-      (prop) => properties[prop].required
-    );
-    const alternateProps = expectedProps.filter(
-      (prop) => properties[prop].alternate !== void 0
-    );
-    for (const requiredProp of requiredProps) {
-      if (actualProps.includes(requiredProp) === false) {
-        if (actualProps.some((actualProp) => alternateProps.includes(actualProp)) === false) {
-          let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
-          if (i !== null)
-            message = `${message} in item ${i}`;
-          if (parameter !== null)
-            message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
-          if (module !== null)
-            message = `${message} to [ ${module}() ]`;
-          throw new Error(`${message}.`);
-        }
-      }
-    }
-  }
-
-  // src/data/checkInput.js
-  function checkInput({
-    parameter = null,
-    argument = null,
-    schemaName = null,
-    module = null,
-    verbose = false
-  }) {
-    if (argument === null) {
-      if (verbose)
-        console.log(
-          `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
-        );
-      return;
-    }
-    if (schemaName === null) {
-      if (verbose)
-        console.log(
-          `[ ${schemaName} ] unspecified. Terminating execution of [ checkInputs() ].`
-        );
-      return;
-    }
-    const schema2 = schema_default[schemaName];
-    if (module === "timeSeries" && ["flagCounts", "results", "resultsVertical"].includes(schemaName)) {
-      schema2.items.properties.snapshot_date = schema_default.snapshotDate;
-    }
-    if (argument === null) {
-      if (verbose)
-        console.log(
-          `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
-        );
-      return;
-    }
-    const argumentType = getType(argument);
-    if (argumentType !== schema2.type) {
-      throw new Error(
-        `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
-      );
-    }
-    if (schema2.type === "array") {
-      argument.forEach((item, i) => {
-        const itemType = getType(item);
-        if (itemType !== schema2.items.type) {
-          throw new Error(
-            `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
-          );
-        }
-        if (schema2.items.type === "object") {
-          const properties = schema2.items.properties;
-          checkProps({
-            obj: item,
-            properties,
-            parameter,
-            module,
-            i
-          });
-        }
-      });
-    }
-    if (schema2.type === "object") {
-      const properties = schema2.properties;
-      checkProps({
-        obj: argument,
-        properties,
-        parameter,
-        module
-      });
-    }
-    return argument;
-  }
-
-  // src/util/coalesce.js
-  function coalesce(customSetting, defaultSetting) {
-    if ([null, void 0].includes(customSetting)) {
-      return defaultSetting;
-    }
-    if (typeof defaultSetting === "string" && customSetting === "") {
-      return defaultSetting;
-    }
-    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
-      customSetting = [customSetting];
-    }
-    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
-      return defaultSetting;
-    }
-    return customSetting;
-  }
-
-  // src/util/configure.js
-  function configure2(defaults3, _config_, customSettings = null) {
-    const config = { ..._config_ };
-    for (const key in defaults3) {
-      config[key] = coalesce(config[key], defaults3[key]);
-    }
-    if (customSettings !== null) {
-      for (const key in customSettings) {
-        config[key] = customSettings[key]();
-      }
-    }
-    return config;
-  }
-
-  // src/util/checkSelectedGroupIDs.js
-  function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
-    if (["", null, void 0].includes(selectedGroupIDs) || Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0)
-      return [];
-    if (!Array.isArray(selectedGroupIDs))
-      selectedGroupIDs = [selectedGroupIDs];
-    if (Array.isArray(selectedGroupIDs)) {
-      const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
-      for (const selectedGroupID of selectedGroupIDs) {
-        if (actualGroupIDs.includes(selectedGroupID) === false)
-          selectedGroupIDs = selectedGroupIDs.filter(
-            (groupID) => groupID !== selectedGroupID
-          );
-      }
-    }
-    return selectedGroupIDs;
-  }
-
   // node_modules/d3-array/src/ascending.js
   function ascending(a, b) {
     return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
@@ -17842,23 +16189,23 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-array/src/max.js
-  function max2(values, valueof) {
-    let max4;
+  function max(values, valueof) {
+    let max3;
     if (valueof === void 0) {
       for (const value of values) {
-        if (value != null && (max4 < value || max4 === void 0 && value >= value)) {
-          max4 = value;
+        if (value != null && (max3 < value || max3 === void 0 && value >= value)) {
+          max3 = value;
         }
       }
     } else {
       let index3 = -1;
       for (let value of values) {
-        if ((value = valueof(value, ++index3, values)) != null && (max4 < value || max4 === void 0 && value >= value)) {
-          max4 = value;
+        if ((value = valueof(value, ++index3, values)) != null && (max3 < value || max3 === void 0 && value >= value)) {
+          max3 = value;
         }
       }
     }
-    return max4;
+    return max3;
   }
 
   // node_modules/d3-array/src/min.js
@@ -18730,7 +17077,7 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-selection/src/selection/dispatch.js
-  function dispatchEvent3(node, type2, params) {
+  function dispatchEvent2(node, type2, params) {
     var window2 = window_default(node), event = window2.CustomEvent;
     if (typeof event === "function") {
       event = new event(type2, params);
@@ -18745,12 +17092,12 @@ var rbmViz = (() => {
   }
   function dispatchConstant(type2, params) {
     return function() {
-      return dispatchEvent3(this, type2, params);
+      return dispatchEvent2(this, type2, params);
     };
   }
   function dispatchFunction(type2, params) {
     return function() {
-      return dispatchEvent3(this, type2, params.apply(this, arguments));
+      return dispatchEvent2(this, type2, params.apply(this, arguments));
     };
   }
   function dispatch_default2(type2, params) {
@@ -19115,15 +17462,15 @@ var rbmViz = (() => {
     if (o instanceof Hsl)
       return o;
     o = o.rgb();
-    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r, g, b), max4 = Math.max(r, g, b), h = NaN, s = max4 - min3, l = (max4 + min3) / 2;
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r, g, b), max3 = Math.max(r, g, b), h = NaN, s = max3 - min3, l = (max3 + min3) / 2;
     if (s) {
-      if (r === max4)
+      if (r === max3)
         h = (g - b) / s + (g < b) * 6;
-      else if (g === max4)
+      else if (g === max3)
         h = (b - r) / s + 2;
       else
         h = (r - g) / s + 4;
-      s /= l < 0.5 ? max4 + min3 : 2 - max4 - min3;
+      s /= l < 0.5 ? max3 + min3 : 2 - max3 - min3;
       h *= 60;
     } else {
       s = l > 0 && l < 1 ? 0 : h;
@@ -20287,7 +18634,7 @@ var rbmViz = (() => {
   selection_default.prototype.transition = transition_default2;
 
   // node_modules/d3-brush/src/brush.js
-  var { abs, max: max3, min: min2 } = Math;
+  var { abs, max: max2, min: min2 } = Math;
   function number1(e) {
     return [+e[0], +e[1]];
   }
@@ -20621,6 +18968,1661 @@ var rbmViz = (() => {
     return node.__zoom;
   }
 
+  // node_modules/chart.js/auto/auto.mjs
+  Chart.register(...registerables);
+  var auto_default = Chart;
+
+  // node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js
+  var devicePixelRatio = function() {
+    if (typeof window !== "undefined") {
+      if (window.devicePixelRatio) {
+        return window.devicePixelRatio;
+      }
+      var screen = window.screen;
+      if (screen) {
+        return (screen.deviceXDPI || 1) / (screen.logicalXDPI || 1);
+      }
+    }
+    return 1;
+  }();
+  var utils = {
+    toTextLines: function(inputs) {
+      var lines = [];
+      var input;
+      inputs = [].concat(inputs);
+      while (inputs.length) {
+        input = inputs.pop();
+        if (typeof input === "string") {
+          lines.unshift.apply(lines, input.split("\n"));
+        } else if (Array.isArray(input)) {
+          inputs.push.apply(inputs, input);
+        } else if (!isNullOrUndef(inputs)) {
+          lines.unshift("" + input);
+        }
+      }
+      return lines;
+    },
+    textSize: function(ctx, lines, font) {
+      var items = [].concat(lines);
+      var ilen = items.length;
+      var prev = ctx.font;
+      var width = 0;
+      var i;
+      ctx.font = font.string;
+      for (i = 0; i < ilen; ++i) {
+        width = Math.max(ctx.measureText(items[i]).width, width);
+      }
+      ctx.font = prev;
+      return {
+        height: ilen * font.lineHeight,
+        width
+      };
+    },
+    bound: function(min3, value, max3) {
+      return Math.max(min3, Math.min(value, max3));
+    },
+    arrayDiff: function(a0, a1) {
+      var prev = a0.slice();
+      var updates = [];
+      var i, j, ilen, v;
+      for (i = 0, ilen = a1.length; i < ilen; ++i) {
+        v = a1[i];
+        j = prev.indexOf(v);
+        if (j === -1) {
+          updates.push([v, 1]);
+        } else {
+          prev.splice(j, 1);
+        }
+      }
+      for (i = 0, ilen = prev.length; i < ilen; ++i) {
+        updates.push([prev[i], -1]);
+      }
+      return updates;
+    },
+    rasterize: function(v) {
+      return Math.round(v * devicePixelRatio) / devicePixelRatio;
+    }
+  };
+  function orient(point, origin) {
+    var x0 = origin.x;
+    var y0 = origin.y;
+    if (x0 === null) {
+      return { x: 0, y: -1 };
+    }
+    if (y0 === null) {
+      return { x: 1, y: 0 };
+    }
+    var dx = point.x - x0;
+    var dy = point.y - y0;
+    var ln = Math.sqrt(dx * dx + dy * dy);
+    return {
+      x: ln ? dx / ln : 0,
+      y: ln ? dy / ln : -1
+    };
+  }
+  function aligned(x, y, vx, vy, align) {
+    switch (align) {
+      case "center":
+        vx = vy = 0;
+        break;
+      case "bottom":
+        vx = 0;
+        vy = 1;
+        break;
+      case "right":
+        vx = 1;
+        vy = 0;
+        break;
+      case "left":
+        vx = -1;
+        vy = 0;
+        break;
+      case "top":
+        vx = 0;
+        vy = -1;
+        break;
+      case "start":
+        vx = -vx;
+        vy = -vy;
+        break;
+      case "end":
+        break;
+      default:
+        align *= Math.PI / 180;
+        vx = Math.cos(align);
+        vy = Math.sin(align);
+        break;
+    }
+    return {
+      x,
+      y,
+      vx,
+      vy
+    };
+  }
+  var R_INSIDE = 0;
+  var R_LEFT = 1;
+  var R_RIGHT = 2;
+  var R_BOTTOM = 4;
+  var R_TOP = 8;
+  function region(x, y, rect) {
+    var res = R_INSIDE;
+    if (x < rect.left) {
+      res |= R_LEFT;
+    } else if (x > rect.right) {
+      res |= R_RIGHT;
+    }
+    if (y < rect.top) {
+      res |= R_TOP;
+    } else if (y > rect.bottom) {
+      res |= R_BOTTOM;
+    }
+    return res;
+  }
+  function clipped(segment, area) {
+    var x0 = segment.x0;
+    var y0 = segment.y0;
+    var x1 = segment.x1;
+    var y1 = segment.y1;
+    var r0 = region(x0, y0, area);
+    var r1 = region(x1, y1, area);
+    var r, x, y;
+    while (true) {
+      if (!(r0 | r1) || r0 & r1) {
+        break;
+      }
+      r = r0 || r1;
+      if (r & R_TOP) {
+        x = x0 + (x1 - x0) * (area.top - y0) / (y1 - y0);
+        y = area.top;
+      } else if (r & R_BOTTOM) {
+        x = x0 + (x1 - x0) * (area.bottom - y0) / (y1 - y0);
+        y = area.bottom;
+      } else if (r & R_RIGHT) {
+        y = y0 + (y1 - y0) * (area.right - x0) / (x1 - x0);
+        x = area.right;
+      } else if (r & R_LEFT) {
+        y = y0 + (y1 - y0) * (area.left - x0) / (x1 - x0);
+        x = area.left;
+      }
+      if (r === r0) {
+        x0 = x;
+        y0 = y;
+        r0 = region(x0, y0, area);
+      } else {
+        x1 = x;
+        y1 = y;
+        r1 = region(x1, y1, area);
+      }
+    }
+    return {
+      x0,
+      x1,
+      y0,
+      y1
+    };
+  }
+  function compute$1(range, config) {
+    var anchor = config.anchor;
+    var segment = range;
+    var x, y;
+    if (config.clamp) {
+      segment = clipped(segment, config.area);
+    }
+    if (anchor === "start") {
+      x = segment.x0;
+      y = segment.y0;
+    } else if (anchor === "end") {
+      x = segment.x1;
+      y = segment.y1;
+    } else {
+      x = (segment.x0 + segment.x1) / 2;
+      y = (segment.y0 + segment.y1) / 2;
+    }
+    return aligned(x, y, range.vx, range.vy, config.align);
+  }
+  var positioners2 = {
+    arc: function(el, config) {
+      var angle = (el.startAngle + el.endAngle) / 2;
+      var vx = Math.cos(angle);
+      var vy = Math.sin(angle);
+      var r0 = el.innerRadius;
+      var r1 = el.outerRadius;
+      return compute$1({
+        x0: el.x + vx * r0,
+        y0: el.y + vy * r0,
+        x1: el.x + vx * r1,
+        y1: el.y + vy * r1,
+        vx,
+        vy
+      }, config);
+    },
+    point: function(el, config) {
+      var v = orient(el, config.origin);
+      var rx = v.x * el.options.radius;
+      var ry = v.y * el.options.radius;
+      return compute$1({
+        x0: el.x - rx,
+        y0: el.y - ry,
+        x1: el.x + rx,
+        y1: el.y + ry,
+        vx: v.x,
+        vy: v.y
+      }, config);
+    },
+    bar: function(el, config) {
+      var v = orient(el, config.origin);
+      var x = el.x;
+      var y = el.y;
+      var sx = 0;
+      var sy = 0;
+      if (el.horizontal) {
+        x = Math.min(el.x, el.base);
+        sx = Math.abs(el.base - el.x);
+      } else {
+        y = Math.min(el.y, el.base);
+        sy = Math.abs(el.base - el.y);
+      }
+      return compute$1({
+        x0: x,
+        y0: y + sy,
+        x1: x + sx,
+        y1: y,
+        vx: v.x,
+        vy: v.y
+      }, config);
+    },
+    fallback: function(el, config) {
+      var v = orient(el, config.origin);
+      return compute$1({
+        x0: el.x,
+        y0: el.y,
+        x1: el.x + (el.width || 0),
+        y1: el.y + (el.height || 0),
+        vx: v.x,
+        vy: v.y
+      }, config);
+    }
+  };
+  var rasterize = utils.rasterize;
+  function boundingRects2(model) {
+    var borderWidth3 = model.borderWidth || 0;
+    var padding = model.padding;
+    var th = model.size.height;
+    var tw = model.size.width;
+    var tx = -tw / 2;
+    var ty = -th / 2;
+    return {
+      frame: {
+        x: tx - padding.left - borderWidth3,
+        y: ty - padding.top - borderWidth3,
+        w: tw + padding.width + borderWidth3 * 2,
+        h: th + padding.height + borderWidth3 * 2
+      },
+      text: {
+        x: tx,
+        y: ty,
+        w: tw,
+        h: th
+      }
+    };
+  }
+  function getScaleOrigin(el, context) {
+    var scale = context.chart.getDatasetMeta(context.datasetIndex).vScale;
+    if (!scale) {
+      return null;
+    }
+    if (scale.xCenter !== void 0 && scale.yCenter !== void 0) {
+      return { x: scale.xCenter, y: scale.yCenter };
+    }
+    var pixel = scale.getBasePixel();
+    return el.horizontal ? { x: pixel, y: null } : { x: null, y: pixel };
+  }
+  function getPositioner(el) {
+    if (el instanceof ArcElement) {
+      return positioners2.arc;
+    }
+    if (el instanceof PointElement) {
+      return positioners2.point;
+    }
+    if (el instanceof BarElement) {
+      return positioners2.bar;
+    }
+    return positioners2.fallback;
+  }
+  function drawRoundedRect(ctx, x, y, w, h, radius3) {
+    var HALF_PI2 = Math.PI / 2;
+    if (radius3) {
+      var r = Math.min(radius3, h / 2, w / 2);
+      var left = x + r;
+      var top = y + r;
+      var right = x + w - r;
+      var bottom = y + h - r;
+      ctx.moveTo(x, top);
+      if (left < right && top < bottom) {
+        ctx.arc(left, top, r, -Math.PI, -HALF_PI2);
+        ctx.arc(right, top, r, -HALF_PI2, 0);
+        ctx.arc(right, bottom, r, 0, HALF_PI2);
+        ctx.arc(left, bottom, r, HALF_PI2, Math.PI);
+      } else if (left < right) {
+        ctx.moveTo(left, y);
+        ctx.arc(right, top, r, -HALF_PI2, HALF_PI2);
+        ctx.arc(left, top, r, HALF_PI2, Math.PI + HALF_PI2);
+      } else if (top < bottom) {
+        ctx.arc(left, top, r, -Math.PI, 0);
+        ctx.arc(left, bottom, r, 0, Math.PI);
+      } else {
+        ctx.arc(left, top, r, -Math.PI, Math.PI);
+      }
+      ctx.closePath();
+      ctx.moveTo(x, y);
+    } else {
+      ctx.rect(x, y, w, h);
+    }
+  }
+  function drawFrame(ctx, rect, model) {
+    var bgColor = model.backgroundColor;
+    var borderColor4 = model.borderColor;
+    var borderWidth3 = model.borderWidth;
+    if (!bgColor && (!borderColor4 || !borderWidth3)) {
+      return;
+    }
+    ctx.beginPath();
+    drawRoundedRect(
+      ctx,
+      rasterize(rect.x) + borderWidth3 / 2,
+      rasterize(rect.y) + borderWidth3 / 2,
+      rasterize(rect.w) - borderWidth3,
+      rasterize(rect.h) - borderWidth3,
+      model.borderRadius
+    );
+    ctx.closePath();
+    if (bgColor) {
+      ctx.fillStyle = bgColor;
+      ctx.fill();
+    }
+    if (borderColor4 && borderWidth3) {
+      ctx.strokeStyle = borderColor4;
+      ctx.lineWidth = borderWidth3;
+      ctx.lineJoin = "miter";
+      ctx.stroke();
+    }
+  }
+  function textGeometry(rect, align, font) {
+    var h = font.lineHeight;
+    var w = rect.w;
+    var x = rect.x;
+    var y = rect.y + h / 2;
+    if (align === "center") {
+      x += w / 2;
+    } else if (align === "end" || align === "right") {
+      x += w;
+    }
+    return {
+      h,
+      w,
+      x,
+      y
+    };
+  }
+  function drawTextLine(ctx, text, cfg) {
+    var shadow = ctx.shadowBlur;
+    var stroked = cfg.stroked;
+    var x = rasterize(cfg.x);
+    var y = rasterize(cfg.y);
+    var w = rasterize(cfg.w);
+    if (stroked) {
+      ctx.strokeText(text, x, y, w);
+    }
+    if (cfg.filled) {
+      if (shadow && stroked) {
+        ctx.shadowBlur = 0;
+      }
+      ctx.fillText(text, x, y, w);
+      if (shadow && stroked) {
+        ctx.shadowBlur = shadow;
+      }
+    }
+  }
+  function drawText(ctx, lines, rect, model) {
+    var align = model.textAlign;
+    var color3 = model.color;
+    var filled = !!color3;
+    var font = model.font;
+    var ilen = lines.length;
+    var strokeColor = model.textStrokeColor;
+    var strokeWidth = model.textStrokeWidth;
+    var stroked = strokeColor && strokeWidth;
+    var i;
+    if (!ilen || !filled && !stroked) {
+      return;
+    }
+    rect = textGeometry(rect, align, font);
+    ctx.font = font.string;
+    ctx.textAlign = align;
+    ctx.textBaseline = "middle";
+    ctx.shadowBlur = model.textShadowBlur;
+    ctx.shadowColor = model.textShadowColor;
+    if (filled) {
+      ctx.fillStyle = color3;
+    }
+    if (stroked) {
+      ctx.lineJoin = "round";
+      ctx.lineWidth = strokeWidth;
+      ctx.strokeStyle = strokeColor;
+    }
+    for (i = 0, ilen = lines.length; i < ilen; ++i) {
+      drawTextLine(ctx, lines[i], {
+        stroked,
+        filled,
+        w: rect.w,
+        x: rect.x,
+        y: rect.y + rect.h * i
+      });
+    }
+  }
+  var Label = function(config, ctx, el, index3) {
+    var me = this;
+    me._config = config;
+    me._index = index3;
+    me._model = null;
+    me._rects = null;
+    me._ctx = ctx;
+    me._el = el;
+  };
+  merge(Label.prototype, {
+    _modelize: function(display, lines, config, context) {
+      var me = this;
+      var index3 = me._index;
+      var font = toFont(resolve([config.font, {}], context, index3));
+      var color3 = resolve([config.color, defaults.color], context, index3);
+      return {
+        align: resolve([config.align, "center"], context, index3),
+        anchor: resolve([config.anchor, "center"], context, index3),
+        area: context.chart.chartArea,
+        backgroundColor: resolve([config.backgroundColor, null], context, index3),
+        borderColor: resolve([config.borderColor, null], context, index3),
+        borderRadius: resolve([config.borderRadius, 0], context, index3),
+        borderWidth: resolve([config.borderWidth, 0], context, index3),
+        clamp: resolve([config.clamp, false], context, index3),
+        clip: resolve([config.clip, false], context, index3),
+        color: color3,
+        display,
+        font,
+        lines,
+        offset: resolve([config.offset, 4], context, index3),
+        opacity: resolve([config.opacity, 1], context, index3),
+        origin: getScaleOrigin(me._el, context),
+        padding: toPadding(resolve([config.padding, 4], context, index3)),
+        positioner: getPositioner(me._el),
+        rotation: resolve([config.rotation, 0], context, index3) * (Math.PI / 180),
+        size: utils.textSize(me._ctx, lines, font),
+        textAlign: resolve([config.textAlign, "start"], context, index3),
+        textShadowBlur: resolve([config.textShadowBlur, 0], context, index3),
+        textShadowColor: resolve([config.textShadowColor, color3], context, index3),
+        textStrokeColor: resolve([config.textStrokeColor, color3], context, index3),
+        textStrokeWidth: resolve([config.textStrokeWidth, 0], context, index3)
+      };
+    },
+    update: function(context) {
+      var me = this;
+      var model = null;
+      var rects = null;
+      var index3 = me._index;
+      var config = me._config;
+      var value, label, lines;
+      var display = resolve([config.display, true], context, index3);
+      if (display) {
+        value = context.dataset.data[index3];
+        label = valueOrDefault(callback(config.formatter, [value, context]), value);
+        lines = isNullOrUndef(label) ? [] : utils.toTextLines(label);
+        if (lines.length) {
+          model = me._modelize(display, lines, config, context);
+          rects = boundingRects2(model);
+        }
+      }
+      me._model = model;
+      me._rects = rects;
+    },
+    geometry: function() {
+      return this._rects ? this._rects.frame : {};
+    },
+    rotation: function() {
+      return this._model ? this._model.rotation : 0;
+    },
+    visible: function() {
+      return this._model && this._model.opacity;
+    },
+    model: function() {
+      return this._model;
+    },
+    draw: function(chart, center) {
+      var me = this;
+      var ctx = chart.ctx;
+      var model = me._model;
+      var rects = me._rects;
+      var area;
+      if (!this.visible()) {
+        return;
+      }
+      ctx.save();
+      if (model.clip) {
+        area = model.area;
+        ctx.beginPath();
+        ctx.rect(
+          area.left,
+          area.top,
+          area.right - area.left,
+          area.bottom - area.top
+        );
+        ctx.clip();
+      }
+      ctx.globalAlpha = utils.bound(0, model.opacity, 1);
+      ctx.translate(rasterize(center.x), rasterize(center.y));
+      ctx.rotate(model.rotation);
+      drawFrame(ctx, rects.frame, model);
+      drawText(ctx, model.lines, rects.text, model);
+      ctx.restore();
+    }
+  });
+  var MIN_INTEGER = Number.MIN_SAFE_INTEGER || -9007199254740991;
+  var MAX_INTEGER = Number.MAX_SAFE_INTEGER || 9007199254740991;
+  function rotated2(point, center, angle) {
+    var cos = Math.cos(angle);
+    var sin = Math.sin(angle);
+    var cx = center.x;
+    var cy = center.y;
+    return {
+      x: cx + cos * (point.x - cx) - sin * (point.y - cy),
+      y: cy + sin * (point.x - cx) + cos * (point.y - cy)
+    };
+  }
+  function projected(points, axis) {
+    var min3 = MAX_INTEGER;
+    var max3 = MIN_INTEGER;
+    var origin = axis.origin;
+    var i, pt, vx, vy, dp;
+    for (i = 0; i < points.length; ++i) {
+      pt = points[i];
+      vx = pt.x - origin.x;
+      vy = pt.y - origin.y;
+      dp = axis.vx * vx + axis.vy * vy;
+      min3 = Math.min(min3, dp);
+      max3 = Math.max(max3, dp);
+    }
+    return {
+      min: min3,
+      max: max3
+    };
+  }
+  function toAxis(p0, p1) {
+    var vx = p1.x - p0.x;
+    var vy = p1.y - p0.y;
+    var ln = Math.sqrt(vx * vx + vy * vy);
+    return {
+      vx: (p1.x - p0.x) / ln,
+      vy: (p1.y - p0.y) / ln,
+      origin: p0,
+      ln
+    };
+  }
+  var HitBox = function() {
+    this._rotation = 0;
+    this._rect = {
+      x: 0,
+      y: 0,
+      w: 0,
+      h: 0
+    };
+  };
+  merge(HitBox.prototype, {
+    center: function() {
+      var r = this._rect;
+      return {
+        x: r.x + r.w / 2,
+        y: r.y + r.h / 2
+      };
+    },
+    update: function(center, rect, rotation) {
+      this._rotation = rotation;
+      this._rect = {
+        x: rect.x + center.x,
+        y: rect.y + center.y,
+        w: rect.w,
+        h: rect.h
+      };
+    },
+    contains: function(point) {
+      var me = this;
+      var margin = 1;
+      var rect = me._rect;
+      point = rotated2(point, me.center(), -me._rotation);
+      return !(point.x < rect.x - margin || point.y < rect.y - margin || point.x > rect.x + rect.w + margin * 2 || point.y > rect.y + rect.h + margin * 2);
+    },
+    intersects: function(other) {
+      var r0 = this._points();
+      var r1 = other._points();
+      var axes = [
+        toAxis(r0[0], r0[1]),
+        toAxis(r0[0], r0[3])
+      ];
+      var i, pr0, pr1;
+      if (this._rotation !== other._rotation) {
+        axes.push(
+          toAxis(r1[0], r1[1]),
+          toAxis(r1[0], r1[3])
+        );
+      }
+      for (i = 0; i < axes.length; ++i) {
+        pr0 = projected(r0, axes[i]);
+        pr1 = projected(r1, axes[i]);
+        if (pr0.max < pr1.min || pr1.max < pr0.min) {
+          return false;
+        }
+      }
+      return true;
+    },
+    _points: function() {
+      var me = this;
+      var rect = me._rect;
+      var angle = me._rotation;
+      var center = me.center();
+      return [
+        rotated2({ x: rect.x, y: rect.y }, center, angle),
+        rotated2({ x: rect.x + rect.w, y: rect.y }, center, angle),
+        rotated2({ x: rect.x + rect.w, y: rect.y + rect.h }, center, angle),
+        rotated2({ x: rect.x, y: rect.y + rect.h }, center, angle)
+      ];
+    }
+  });
+  function coordinates(el, model, geometry) {
+    var point = model.positioner(el, model);
+    var vx = point.vx;
+    var vy = point.vy;
+    if (!vx && !vy) {
+      return { x: point.x, y: point.y };
+    }
+    var w = geometry.w;
+    var h = geometry.h;
+    var rotation = model.rotation;
+    var dx = Math.abs(w / 2 * Math.cos(rotation)) + Math.abs(h / 2 * Math.sin(rotation));
+    var dy = Math.abs(w / 2 * Math.sin(rotation)) + Math.abs(h / 2 * Math.cos(rotation));
+    var vs = 1 / Math.max(Math.abs(vx), Math.abs(vy));
+    dx *= vx * vs;
+    dy *= vy * vs;
+    dx += model.offset * vx;
+    dy += model.offset * vy;
+    return {
+      x: point.x + dx,
+      y: point.y + dy
+    };
+  }
+  function collide(labels, collider) {
+    var i, j, s0, s1;
+    for (i = labels.length - 1; i >= 0; --i) {
+      s0 = labels[i].$layout;
+      for (j = i - 1; j >= 0 && s0._visible; --j) {
+        s1 = labels[j].$layout;
+        if (s1._visible && s0._box.intersects(s1._box)) {
+          collider(s0, s1);
+        }
+      }
+    }
+    return labels;
+  }
+  function compute(labels) {
+    var i, ilen, label, state, geometry, center, proxy;
+    for (i = 0, ilen = labels.length; i < ilen; ++i) {
+      label = labels[i];
+      state = label.$layout;
+      if (state._visible) {
+        proxy = new Proxy(label._el, { get: (el, p) => el.getProps([p], true)[p] });
+        geometry = label.geometry();
+        center = coordinates(proxy, label.model(), geometry);
+        state._box.update(center, geometry, label.rotation());
+      }
+    }
+    return collide(labels, function(s0, s1) {
+      var h0 = s0._hidable;
+      var h12 = s1._hidable;
+      if (h0 && h12 || h12) {
+        s1._visible = false;
+      } else if (h0) {
+        s0._visible = false;
+      }
+    });
+  }
+  var layout = {
+    prepare: function(datasets) {
+      var labels = [];
+      var i, j, ilen, jlen, label;
+      for (i = 0, ilen = datasets.length; i < ilen; ++i) {
+        for (j = 0, jlen = datasets[i].length; j < jlen; ++j) {
+          label = datasets[i][j];
+          labels.push(label);
+          label.$layout = {
+            _box: new HitBox(),
+            _hidable: false,
+            _visible: true,
+            _set: i,
+            _idx: label._index
+          };
+        }
+      }
+      labels.sort(function(a, b) {
+        var sa = a.$layout;
+        var sb = b.$layout;
+        return sa._idx === sb._idx ? sb._set - sa._set : sb._idx - sa._idx;
+      });
+      this.update(labels);
+      return labels;
+    },
+    update: function(labels) {
+      var dirty = false;
+      var i, ilen, label, model, state;
+      for (i = 0, ilen = labels.length; i < ilen; ++i) {
+        label = labels[i];
+        model = label.model();
+        state = label.$layout;
+        state._hidable = model && model.display === "auto";
+        state._visible = label.visible();
+        dirty |= state._hidable;
+      }
+      if (dirty) {
+        compute(labels);
+      }
+    },
+    lookup: function(labels, point) {
+      var i, state;
+      for (i = labels.length - 1; i >= 0; --i) {
+        state = labels[i].$layout;
+        if (state && state._visible && state._box.contains(point)) {
+          return labels[i];
+        }
+      }
+      return null;
+    },
+    draw: function(chart, labels) {
+      var i, ilen, label, state, geometry, center;
+      for (i = 0, ilen = labels.length; i < ilen; ++i) {
+        label = labels[i];
+        state = label.$layout;
+        if (state._visible) {
+          geometry = label.geometry();
+          center = coordinates(label._el, label.model(), geometry);
+          state._box.update(center, geometry, label.rotation());
+          label.draw(chart, center);
+        }
+      }
+    }
+  };
+  var formatter = function(value) {
+    if (isNullOrUndef(value)) {
+      return null;
+    }
+    var label = value;
+    var keys, klen, k;
+    if (isObject(value)) {
+      if (!isNullOrUndef(value.label)) {
+        label = value.label;
+      } else if (!isNullOrUndef(value.r)) {
+        label = value.r;
+      } else {
+        label = "";
+        keys = Object.keys(value);
+        for (k = 0, klen = keys.length; k < klen; ++k) {
+          label += (k !== 0 ? ", " : "") + keys[k] + ": " + value[keys[k]];
+        }
+      }
+    }
+    return "" + label;
+  };
+  var defaults2 = {
+    align: "center",
+    anchor: "center",
+    backgroundColor: null,
+    borderColor: null,
+    borderRadius: 0,
+    borderWidth: 0,
+    clamp: false,
+    clip: false,
+    color: void 0,
+    display: true,
+    font: {
+      family: void 0,
+      lineHeight: 1.2,
+      size: void 0,
+      style: void 0,
+      weight: null
+    },
+    formatter,
+    labels: void 0,
+    listeners: {},
+    offset: 4,
+    opacity: 1,
+    padding: {
+      top: 4,
+      right: 4,
+      bottom: 4,
+      left: 4
+    },
+    rotation: 0,
+    textAlign: "start",
+    textStrokeColor: void 0,
+    textStrokeWidth: 0,
+    textShadowBlur: 0,
+    textShadowColor: void 0
+  };
+  var EXPANDO_KEY2 = "$datalabels";
+  var DEFAULT_KEY = "$default";
+  function configure(dataset, options) {
+    var override = dataset.datalabels;
+    var listeners = {};
+    var configs = [];
+    var labels, keys;
+    if (override === false) {
+      return null;
+    }
+    if (override === true) {
+      override = {};
+    }
+    options = merge({}, [options, override]);
+    labels = options.labels || {};
+    keys = Object.keys(labels);
+    delete options.labels;
+    if (keys.length) {
+      keys.forEach(function(key) {
+        if (labels[key]) {
+          configs.push(merge({}, [
+            options,
+            labels[key],
+            { _key: key }
+          ]));
+        }
+      });
+    } else {
+      configs.push(options);
+    }
+    listeners = configs.reduce(function(target, config) {
+      each(config.listeners || {}, function(fn, event) {
+        target[event] = target[event] || {};
+        target[event][config._key || DEFAULT_KEY] = fn;
+      });
+      delete config.listeners;
+      return target;
+    }, {});
+    return {
+      labels: configs,
+      listeners
+    };
+  }
+  function dispatchEvent3(chart, listeners, label, event) {
+    if (!listeners) {
+      return;
+    }
+    var context = label.$context;
+    var groups2 = label.$groups;
+    var callback$1;
+    if (!listeners[groups2._set]) {
+      return;
+    }
+    callback$1 = listeners[groups2._set][groups2._key];
+    if (!callback$1) {
+      return;
+    }
+    if (callback(callback$1, [context, event]) === true) {
+      chart[EXPANDO_KEY2]._dirty = true;
+      label.update(context);
+    }
+  }
+  function dispatchMoveEvents2(chart, listeners, previous, label, event) {
+    var enter, leave;
+    if (!previous && !label) {
+      return;
+    }
+    if (!previous) {
+      enter = true;
+    } else if (!label) {
+      leave = true;
+    } else if (previous !== label) {
+      leave = enter = true;
+    }
+    if (leave) {
+      dispatchEvent3(chart, listeners.leave, previous, event);
+    }
+    if (enter) {
+      dispatchEvent3(chart, listeners.enter, label, event);
+    }
+  }
+  function handleMoveEvents2(chart, event) {
+    var expando = chart[EXPANDO_KEY2];
+    var listeners = expando._listeners;
+    var previous, label;
+    if (!listeners.enter && !listeners.leave) {
+      return;
+    }
+    if (event.type === "mousemove") {
+      label = layout.lookup(expando._labels, event);
+    } else if (event.type !== "mouseout") {
+      return;
+    }
+    previous = expando._hovered;
+    expando._hovered = label;
+    dispatchMoveEvents2(chart, listeners, previous, label, event);
+  }
+  function handleClickEvents2(chart, event) {
+    var expando = chart[EXPANDO_KEY2];
+    var handlers = expando._listeners.click;
+    var label = handlers && layout.lookup(expando._labels, event);
+    if (label) {
+      dispatchEvent3(chart, handlers, label, event);
+    }
+  }
+  var plugin = {
+    id: "datalabels",
+    defaults: defaults2,
+    beforeInit: function(chart) {
+      chart[EXPANDO_KEY2] = {
+        _actives: []
+      };
+    },
+    beforeUpdate: function(chart) {
+      var expando = chart[EXPANDO_KEY2];
+      expando._listened = false;
+      expando._listeners = {};
+      expando._datasets = [];
+      expando._labels = [];
+    },
+    afterDatasetUpdate: function(chart, args, options) {
+      var datasetIndex = args.index;
+      var expando = chart[EXPANDO_KEY2];
+      var labels = expando._datasets[datasetIndex] = [];
+      var visible = chart.isDatasetVisible(datasetIndex);
+      var dataset = chart.data.datasets[datasetIndex];
+      var config = configure(dataset, options);
+      var elements2 = args.meta.data || [];
+      var ctx = chart.ctx;
+      var i, j, ilen, jlen, cfg, key, el, label;
+      ctx.save();
+      for (i = 0, ilen = elements2.length; i < ilen; ++i) {
+        el = elements2[i];
+        el[EXPANDO_KEY2] = [];
+        if (visible && el && chart.getDataVisibility(i) && !el.skip) {
+          for (j = 0, jlen = config.labels.length; j < jlen; ++j) {
+            cfg = config.labels[j];
+            key = cfg._key;
+            label = new Label(cfg, ctx, el, i);
+            label.$groups = {
+              _set: datasetIndex,
+              _key: key || DEFAULT_KEY
+            };
+            label.$context = {
+              active: false,
+              chart,
+              dataIndex: i,
+              dataset,
+              datasetIndex
+            };
+            label.update(label.$context);
+            el[EXPANDO_KEY2].push(label);
+            labels.push(label);
+          }
+        }
+      }
+      ctx.restore();
+      merge(expando._listeners, config.listeners, {
+        merger: function(event, target, source) {
+          target[event] = target[event] || {};
+          target[event][args.index] = source[event];
+          expando._listened = true;
+        }
+      });
+    },
+    afterUpdate: function(chart) {
+      chart[EXPANDO_KEY2]._labels = layout.prepare(chart[EXPANDO_KEY2]._datasets);
+    },
+    afterDatasetsDraw: function(chart) {
+      layout.draw(chart, chart[EXPANDO_KEY2]._labels);
+    },
+    beforeEvent: function(chart, args) {
+      if (chart[EXPANDO_KEY2]._listened) {
+        var event = args.event;
+        switch (event.type) {
+          case "mousemove":
+          case "mouseout":
+            handleMoveEvents2(chart, event);
+            break;
+          case "click":
+            handleClickEvents2(chart, event);
+            break;
+        }
+      }
+    },
+    afterEvent: function(chart) {
+      var expando = chart[EXPANDO_KEY2];
+      var previous = expando._actives;
+      var actives = expando._actives = chart.getActiveElements();
+      var updates = utils.arrayDiff(previous, actives);
+      var i, ilen, j, jlen, update, label, labels;
+      for (i = 0, ilen = updates.length; i < ilen; ++i) {
+        update = updates[i];
+        if (update[1]) {
+          labels = update[0].element[EXPANDO_KEY2] || [];
+          for (j = 0, jlen = labels.length; j < jlen; ++j) {
+            label = labels[j];
+            label.$context.active = update[1] === 1;
+            label.update(label.$context);
+          }
+        }
+      }
+      if (expando._dirty || updates.length) {
+        layout.update(expando._labels);
+        chart.render();
+      }
+      delete expando._dirty;
+    }
+  };
+
+  // src/data/schema/analysisMetadata.json
+  var analysisMetadata_default = {
+    title: "KRI Analysis Metadata",
+    description: "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    version: "0.14.0",
+    type: "object",
+    properties: {
+      workflowid: {
+        title: "Workflow ID",
+        description: "Unique workflow identifier",
+        type: "string",
+        required: false
+      },
+      group: {
+        title: "Grouping Variable",
+        description: "Grouping variable of analysis, one of Site, Country, or Study",
+        type: "string",
+        required: true
+      },
+      numerator: {
+        title: "KRI Numerator",
+        description: "Unit of KRI numerator",
+        type: "string",
+        required: true,
+        key: false
+      },
+      denominator: {
+        title: "KRI Denominator",
+        description: "Unit of KRI denominator",
+        type: "string",
+        required: true,
+        key: false
+      },
+      metric: {
+        title: "KRI Metric",
+        description: "Unit of KRI metric",
+        type: "string",
+        required: true,
+        key: false
+      },
+      outcome: {
+        title: "KRI Type",
+        description: "Type of KRI metric",
+        type: "string",
+        required: false,
+        key: false
+      },
+      score: {
+        title: "KRI Score",
+        description: "Unit of KRI score",
+        type: "string",
+        required: true,
+        key: false
+      },
+      model: {
+        title: "KRI Score Method",
+        description: "Statistical model used to evaluate KRI",
+        type: "string",
+        required: false,
+        key: false
+      },
+      abbreviation: {
+        title: "Abbreviation",
+        description: "KRI abbreviation",
+        type: "string",
+        required: false,
+        key: false
+      },
+      data_inputs: {
+        title: "Input Data Domains",
+        description: "Data domains used to evaluate KRI",
+        type: "string",
+        required: false,
+        key: false
+      },
+      data_filters: {
+        title: "Subsets",
+        description: "Subsets applied to input data domains",
+        type: "string",
+        required: false,
+        key: false
+      },
+      gsm_analysis_date: {
+        title: "Analysis Date",
+        description: "Date of analysis",
+        type: "string",
+        required: false,
+        key: false
+      },
+      gsm_version: {
+        title: "{gsm} Version",
+        description: "{gsm} version when analysis ran",
+        type: "string",
+        required: false,
+        key: false
+      }
+    }
+  };
+
+  // src/data/schema/analysisParameters.json
+  var analysisParameters_default = {
+    title: "KRI Analysis Parameters",
+    description: "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        param: {
+          title: "Analysis Parameter",
+          description: "Analysis parameter",
+          type: "string",
+          required: true,
+          key: true
+        },
+        index: {
+          title: "Parameter Index",
+          description: "Index of analysis parameter",
+          type: "number",
+          required: false,
+          key: true
+        },
+        value: {
+          title: "Parameter Value",
+          description: "Parameter value",
+          type: "string",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        },
+        gsm_version: {
+          title: "{gsm} Version",
+          description: "{gsm} version when analysis ran",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/flagCounts.json
+  var flagCounts_default = {
+    title: "Flag Counts",
+    description: "JSON schema of discrete input data to timeSeries modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        groupid: {
+          title: "Group ID",
+          description: "Unique group identifier",
+          type: "string",
+          required: true,
+          key: true,
+          alternate: "workflowid"
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: true,
+          key: true,
+          alternate: "workflowid"
+        },
+        n: {
+          title: "# of Groups/KRIs",
+          description: "Total number of assessed groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_at_risk: {
+          title: "# of Amber Groups/KRIs",
+          description: "Number of amber groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_flagged: {
+          title: "# of Red Groups/KRIs",
+          description: "Number of red groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        },
+        n_at_risk_or_flagged: {
+          title: "# of Amber of Red Groups/KRIs",
+          description: "Number of amber or red groups/KRIs",
+          type: "number",
+          required: true,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/results.json
+  var results_default = {
+    title: "Standard KRI Analysis Output",
+    description: "JSON schema of input data to barChart and scatterPlot modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        groupid: {
+          title: "Group ID",
+          description: "Unique group identifier",
+          type: "string",
+          required: true,
+          key: true
+        },
+        numerator: {
+          title: "Numerator",
+          description: "Numerator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        denominator: {
+          title: "Denominator",
+          description: "Denominator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        metric: {
+          title: "KRI Metric",
+          description: "KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        score: {
+          title: "KRI Score",
+          description: "KRI score",
+          type: "number",
+          required: true,
+          key: false
+        },
+        flag: {
+          title: "Flag Status",
+          description: "Flag assigned given KRI score and specified thresholds",
+          type: "number",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/resultsPredicted.json
+  var resultsPredicted_default = {
+    title: "Predicted KRI Analysis Output",
+    description: "JSON schema of predicted input data to scatterPlot module",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        threshold: {
+          title: "Threshold",
+          description: "Directional factor of predicted results",
+          type: "number",
+          required: true,
+          key: true
+        },
+        numerator: {
+          title: "Predicted Numerator",
+          description: "Predicted numerator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        denominator: {
+          title: "Predicted Denominator",
+          description: "Predicted denominator of KRI metric",
+          type: "number",
+          required: true,
+          key: false
+        },
+        log_denominator: {
+          title: "Predicted Denominator (log)",
+          description: "Predicted Denominator of KRI metric (log)",
+          type: "number",
+          required: false,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/resultsVertical.json
+  var resultsVertical_default = {
+    title: "Additional KRI Analysis Output",
+    description: "JSON schema of ancillary input data to timeSeries module",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        workflowid: {
+          title: "Workflow ID",
+          description: "Unique workflow identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        param: {
+          title: "Analysis Parameter",
+          description: "Analysis parameter",
+          type: "string",
+          required: true,
+          key: true
+        },
+        value: {
+          title: "Analysis Result",
+          description: "Analysis result",
+          type: "number",
+          required: true,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
+  // src/data/schema/snapshotDate.json
+  var snapshotDate_default = {
+    title: "Snapshot Date",
+    description: "Date of data snapshot",
+    type: "string",
+    required: true,
+    key: true
+  };
+
+  // src/data/schema/index.js
+  var schema = {
+    analysisMetadata: analysisMetadata_default,
+    analysisParameters: analysisParameters_default,
+    flagCounts: flagCounts_default,
+    results: results_default,
+    resultsPredicted: resultsPredicted_default,
+    resultsVertical: resultsVertical_default,
+    snapshotDate: snapshotDate_default
+  };
+  var schema_default = schema;
+
+  // src/data/checkInput/getType.js
+  function getType(variable) {
+    let variableType = typeof variable;
+    if (variable instanceof Array)
+      variableType = "array";
+    if (variable instanceof Map)
+      variableType = "map";
+    if (variable instanceof Set)
+      variableType = "set";
+    if (variable instanceof Function)
+      variableType = "function";
+    return variableType;
+  }
+
+  // src/data/checkInput/checkProps.js
+  function checkProps({
+    obj,
+    properties,
+    parameter = null,
+    module = null,
+    i = null
+  }) {
+    const actualProps = Object.keys(obj);
+    const expectedProps = Object.keys(properties);
+    const requiredProps = expectedProps.filter(
+      (prop) => properties[prop].required
+    );
+    const alternateProps = expectedProps.filter(
+      (prop) => properties[prop].alternate !== void 0
+    );
+    for (const requiredProp of requiredProps) {
+      if (actualProps.includes(requiredProp) === false) {
+        if (actualProps.some(
+          (actualProp) => alternateProps.includes(actualProp)
+        ) === false) {
+          let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
+          if (i !== null)
+            message = `${message} in item ${i}`;
+          if (parameter !== null)
+            message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
+          if (module !== null)
+            message = `${message} to [ ${module}() ]`;
+          throw new Error(`${message}.`);
+        }
+      }
+    }
+  }
+
+  // src/data/checkInput.js
+  function checkInput({
+    parameter = null,
+    argument = null,
+    schemaName = null,
+    module = null,
+    verbose = false
+  }) {
+    if (argument === null) {
+      if (verbose)
+        console.log(
+          `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
+        );
+      return;
+    }
+    if (schemaName === null) {
+      if (verbose)
+        console.log(
+          `[ ${schemaName} ] unspecified. Terminating execution of [ checkInputs() ].`
+        );
+      return;
+    }
+    const schema2 = JSON.parse(JSON.stringify(schema_default[schemaName]));
+    if (module === "timeSeries" && ["flagCounts", "results", "resultsVertical"].includes(schemaName)) {
+      schema2.items.properties.snapshot_date = schema_default.snapshotDate;
+    }
+    if (argument === null) {
+      if (verbose)
+        console.log(
+          `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
+        );
+      return;
+    }
+    const argumentType = getType(argument);
+    if (argumentType !== schema2.type) {
+      throw new Error(
+        `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
+      );
+    }
+    if (schema2.type === "array") {
+      argument.forEach((item, i) => {
+        const itemType = getType(item);
+        if (itemType !== schema2.items.type) {
+          throw new Error(
+            `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
+          );
+        }
+        if (schema2.items.type === "object") {
+          const properties = schema2.items.properties;
+          checkProps({
+            obj: item,
+            properties,
+            parameter,
+            module,
+            i
+          });
+        }
+      });
+    }
+    if (schema2.type === "object") {
+      const properties = schema2.properties;
+      checkProps({
+        obj: argument,
+        properties,
+        parameter,
+        module
+      });
+    }
+    return argument;
+  }
+
+  // src/util/coalesce.js
+  function coalesce(customSetting, defaultSetting) {
+    if ([null, void 0].includes(customSetting)) {
+      return defaultSetting;
+    }
+    if (typeof defaultSetting === "string" && customSetting === "") {
+      return defaultSetting;
+    }
+    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
+      customSetting = [customSetting];
+    }
+    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
+      return defaultSetting;
+    }
+    return customSetting;
+  }
+
+  // src/util/configure.js
+  function configure2(defaults3, _config_, customSettings = null) {
+    const config = { ..._config_ };
+    for (const key in defaults3) {
+      config[key] = coalesce(config[key], defaults3[key]);
+    }
+    if (customSettings !== null) {
+      for (const key in customSettings) {
+        config[key] = customSettings[key]();
+      }
+    }
+    return config;
+  }
+
+  // src/util/checkSelectedGroupIDs.js
+  function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
+    if (["", null, void 0].includes(selectedGroupIDs) || Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0)
+      return [];
+    if (!Array.isArray(selectedGroupIDs))
+      selectedGroupIDs = [selectedGroupIDs];
+    if (Array.isArray(selectedGroupIDs)) {
+      const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
+      for (const selectedGroupID of selectedGroupIDs) {
+        if (actualGroupIDs.includes(selectedGroupID) === false)
+          selectedGroupIDs = selectedGroupIDs.filter(
+            (groupID) => groupID !== selectedGroupID
+          );
+      }
+    }
+    return selectedGroupIDs;
+  }
+
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
     const thresholds2 = _thresholds_.map((threshold) => +threshold).sort(ascending);
@@ -20714,17 +20716,9 @@ var rbmViz = (() => {
   function addCustomEvent(canvas, callback2, eventType) {
     const callbackWrapper = getCallbackWrapper(callback2);
     const eventID = `${eventType}-event`;
-    canvas.removeEventListener(
-      eventID,
-      callback2,
-      false
-    );
+    canvas.removeEventListener(eventID, callback2, false);
     const customEvent = new Event(eventID);
-    canvas.addEventListener(
-      eventID,
-      callback2,
-      false
-    );
+    canvas.addEventListener(eventID, callback2, false);
     return customEvent;
   }
 
@@ -20747,8 +20741,16 @@ var rbmViz = (() => {
       }
       canvas = newCanvas;
     }
-    canvas.hoverEvent = addCustomEvent(canvas, config.hoverCallbackWrapper, "hover");
-    canvas.clickEvent = addCustomEvent(canvas, config.clickCallbackWrapper, "click");
+    canvas.hoverEvent = addCustomEvent(
+      canvas,
+      config.hoverCallbackWrapper,
+      "hover"
+    );
+    canvas.clickEvent = addCustomEvent(
+      canvas,
+      config.clickCallbackWrapper,
+      "click"
+    );
     return canvas;
   }
 
@@ -21726,9 +21728,7 @@ var rbmViz = (() => {
     const data = mutate3(_data_, config);
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = data.map((d, i) => {
-      return config.dataType === "continuous" ? colorScheme_default[d.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find(
-        (color3) => /amber/i.test(color3.description)
-      ).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
+      return config.dataType === "continuous" ? colorScheme_default[d.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
     });
     const datasets = [
       {
@@ -21776,7 +21776,7 @@ var rbmViz = (() => {
     const xMax = data.length - 1;
     const xValue = xMax + xMax / 50;
     const yMin = min(data, (d) => +d[config.y]);
-    const yMax = max2(data, (d) => +d[config.y]);
+    const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
@@ -21859,7 +21859,7 @@ var rbmViz = (() => {
     scales2.x.display = false;
     scales2.x.type = config.xType;
     const yMin = min(data, (d) => d.y);
-    const yMax = max2(data, (d) => d.y);
+    const yMax = max(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     scales2.y.display = false;
     scales2.y.min = config.yMin !== void 0 ? config.yMin : yMin - range * 0.35;
@@ -21969,6 +21969,10 @@ var rbmViz = (() => {
       config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+    if (config.hoverCallbackWrapper === void 0)
+      config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === void 0)
+      config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
     return config;
   }
 

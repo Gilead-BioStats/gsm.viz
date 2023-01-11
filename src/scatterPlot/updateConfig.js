@@ -13,7 +13,12 @@ import triggerTooltip from '../util/triggerTooltip';
  *
  * @returns {Object} updated chart configuration
  */
-export default function updateConfig(chart, _config_, updateChart = true, updateTooltip = true) {
+export default function updateConfig(
+    chart,
+    _config_,
+    updateChart = true,
+    updateTooltip = true
+) {
     // Update chart configuration.
     const config = configure(
         _config_,
@@ -31,11 +36,9 @@ export default function updateConfig(chart, _config_, updateChart = true, update
     chart.options.plugins = plugins;
     chart.options.scales = scales;
 
-    if (updateChart)
-        chart.update();
+    if (updateChart) chart.update();
 
-    if (updateTooltip)
-        triggerTooltip(chart);
+    if (updateTooltip) triggerTooltip(chart);
 
     return config;
 }

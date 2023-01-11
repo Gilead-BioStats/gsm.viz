@@ -1,8 +1,11 @@
 import flagCountsByGroup from '../../examples/data/flag_counts_by_group.json';
 import flagCountsByKRI from '../../examples/data/flag_counts_by_kri.json';
 import schema from '../../src/data/schema/flagCounts.json';
+import snapshotDate from '../../src/data/schema/snapshotDate.json';
 import checkInput from '../../src/data/checkInput';
 import getType from '../../src/data/checkInput/getType';
+
+schema.items.properties.snapshot_date = snapshotDate;
 
 describe('flag counts schema with flag counts by group', () => {
     const flagCounts = flagCountsByGroup;
@@ -28,7 +31,8 @@ describe('flag counts schema with flag counts by group', () => {
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter(prop => prop !== 'workflowid').sort();
+            .filter((prop) => prop !== 'workflowid')
+            .sort();
 
         expect(propsResult).toEqual(propsSchema);
     });
@@ -58,7 +62,8 @@ describe('flag counts schema with flag counts by KRI', () => {
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter(prop => prop !== 'groupid').sort();
+            .filter((prop) => prop !== 'groupid')
+            .sort();
 
         expect(propsResult).toEqual(propsSchema);
     });

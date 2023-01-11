@@ -19,7 +19,11 @@ export default function checkProps({
         // check that actual properties include required property
         if (actualProps.includes(requiredProp) === false) {
             // for required properties with alternates check that actual props includes alternate prop
-            if (actualProps.some(actualProp => alternateProps.includes(actualProp)) === false) {
+            if (
+                actualProps.some((actualProp) =>
+                    alternateProps.includes(actualProp)
+                ) === false
+            ) {
                 let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
 
                 if (i !== null) message = `${message} in item ${i}`;

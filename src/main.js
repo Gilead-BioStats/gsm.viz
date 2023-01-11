@@ -21,7 +21,7 @@ Chart.register(
     CategoryScale,
     LinearScale,
     Violin,
-    ViolinController,
+    ViolinController
 );
 
 // TODO: implement class-based modules

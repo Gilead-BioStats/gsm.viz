@@ -14,8 +14,8 @@ const TimeSeries = ({
     style = {
         width: '100%',
         height: '50vh',
-        display: 'block'
-    }
+        display: 'block',
+    },
 }) => {
     const container = useRef(null);
 
@@ -31,13 +31,7 @@ const TimeSeries = ({
         }
     }, [data, config, thresholds, intervals]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{ ...style }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 TimeSeries.propTypes = {
@@ -50,8 +44,8 @@ TimeSeries.propTypes = {
 TimeSeries.defaultProps = {
     data: [],
     config: {},
-    thresholds: [],
-    intervals: [],
+    thresholds: null,
+    intervals: null,
 };
 
 export { TimeSeries };

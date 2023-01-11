@@ -39,11 +39,9 @@ export default function updateConfig(
     chart.options.plugins = plugins;
     chart.options.scales = scales;
 
-    if (updateChart)
-        chart.update();
+    if (updateChart) chart.update();
 
-    if (updateTooltip)
-        triggerTooltip(chart);
+    if (updateTooltip) triggerTooltip(chart);
 
     return config;
 }
