@@ -8,7 +8,8 @@ import workflows from '../../data/meta_workflow';
 // TODO: on KRI change current state of y-axis and threshold toggle are not effected
 const KRI = ({kri, setKri}) => {
 
-    let allKris = workflows.filter((d) => /^kri/.test(d.workflowid))
+
+    let allKris = workflows.filter((d) => /^kri|^cou/.test(d.workflowid))
     // observe KRI dropdown
     const handleKriChange = (event) => {
         setKri(event.target.value);
@@ -29,7 +30,7 @@ const KRI = ({kri, setKri}) => {
                     {allKris.map((d, index) => {
                         return (
                             <MenuItem key={index} value={d.workflowid}>
-                                {d.metric}
+                                {d.metric} by {d.group}
                             </MenuItem>
                         );
                     })}
