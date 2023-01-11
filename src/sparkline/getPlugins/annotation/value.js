@@ -16,11 +16,9 @@ export default function annotations(config, data) {
     // Identify appropriate number format.
     const format = data.every((d) => +d[config.y] % 1 === 0)
         ? `d`
-        : config.y === 'metric' // range < 0.1
+        : config.y === 'metric'
         ? `.3f`
-        : //: range < 1
-          //  ? `.2f`
-          `.1f`;
+        : `.1f`;
 
     // content
     const datum = data

@@ -2,7 +2,7 @@
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-// check inputts > configure > add canvas, structure data
+// check inputs > configure > add canvas, structure data
 import checkInput from './data/checkInput';
 import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
@@ -95,7 +95,7 @@ export default function barChart(
     // Instantiate Chart.js chart object.
     const chart = new Chart(canvas, {
         data: {
-            datasets,
+            datasets, // required by Chart.js
             config,
             _data_,
             _config_,

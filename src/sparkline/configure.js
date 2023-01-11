@@ -1,4 +1,3 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
@@ -19,8 +18,6 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // color
     defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
-    //defaults.colorLabel = _config_[ defaults.color ];
 
     // event callbacks
     defaults.hoverCallback = (datum) => {};

@@ -11,7 +11,6 @@ export default function thresholds(config) {
             color.rgba.opacity = 0.5;
 
             const annotation = {
-                //drawTime: 'beforeDatasetsDraw',
                 type: 'line',
                 yMin: threshold.threshold,
                 yMax: threshold.threshold,

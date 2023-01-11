@@ -1,5 +1,6 @@
-import mutate from './structureData/mutate';
 import { group } from 'd3';
+import mutate from './structureData/mutate';
+import colorScheme from '../util/colorScheme';
 import scriptableOptions from './structureData/scriptableOptions';
 
 /**
@@ -17,16 +18,16 @@ export default function structureData(_data_, config) {
     const labels = data.map((d) => d.snapshot_date);
     const pointBackgroundColor = data.map((d, i) => {
         return config.dataType === 'continuous'
-            ? config.colorScheme[d.stratum].color
+            ? colorScheme[d.stratum].color
             : config.y === 'n_at_risk'
-            ? config.colorScheme.find((color) =>
+            ? colorScheme.find((color) =>
                   /amber/i.test(color.description)
               ).color
             : config.y === 'n_flagged'
-            ? config.colorScheme.find((color) => /red/i.test(color.description))
+            ? colorScheme.find((color) => /red/i.test(color.description))
                   .color
             : config.y === 'n_at_risk_or_flagged'
-            ? config.colorScheme.amberRed.color
+            ? colorScheme.amberRed.color
             : '#1890FF';
     });
 

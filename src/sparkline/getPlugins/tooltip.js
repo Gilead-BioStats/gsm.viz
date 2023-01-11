@@ -22,8 +22,6 @@ export default function tooltip(config) {
                       `${data.label}: ${format(fmt)(
                           data.raw.n_flagged
                       )} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
-                //`${data.label}: ${format(fmt)(data.raw.n_at_risk)} amber`,
-                //];
             },
             title: () => null,
             footer: () => null,
