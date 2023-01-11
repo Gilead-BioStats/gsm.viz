@@ -1,12 +1,10 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import coalesce from '../util/coalesce';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 
 export default function configure(_config_, _data_) {
     const defaults = {};
-
-    defaults.type = 'scatter';
 
     // horizontal
     defaults.x = 'denominator';
@@ -18,7 +16,6 @@ export default function configure(_config_, _data_) {
 
     // color
     defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -39,8 +36,16 @@ export default function configure(_config_, _data_) {
         ),
     });
 
+    // configuration-driven settings
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
+
+    // If callbacks already exist maintain them.
+    if (config.hoverCallbackWrapper === undefined)
+        config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === undefined)
+        config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
 
     return config;
 }

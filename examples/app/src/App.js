@@ -1,63 +1,85 @@
 import React from 'react';
 import { shuffle } from 'd3';
+
+// imports
+import findWorkflowID from './data/helpers/findWorkflowID';
+import filterWorkflowID from './data/helpers/filterWorkflowID';
+import mergeParameters from './data/helpers/mergeParameters';
 import { BarChart, ScatterPlot, Sparkline, TimeSeries } from './RbmViz';
 
+// analysis metadata
 import workflows from './data/meta_workflow';
-import resultsAll from './data/results_summary';
-import boundsAll from './data/results_bounds';
-import parametersAll from './data/meta_param';
-import resultsOverTimeAll from './data/results_summary_over_time';
-//import flagCountsByKRIAll from './data/flag_counts_by_kri';
-import flagCountsByGroupAll from './data/flag_counts_by_group';
 
-//import analysisAll from './data/results_analysis';
-import analysisOverTimeAll from './data/results_analysis_over_time';
+// analysis output
+import resultsAll from './data/results_summary';
+import resultsOverTimeAll from './data/results_summary_over_time';
+import resultsPredictedAll from './data/results_bounds';
+import resultsVerticalOverTimeAll from './data/results_analysis_over_time';
+
+// analysis parameters
+import parametersDefaultAll from './data/meta_param';
+import parametersCustomAll from './data/status_param';
+import parametersCustomOverTimeAll from './data/status_param_over_time';
+
+// flag counts
+import flagCountsByGroupAll from './data/flag_counts_by_group';
+import flagCountsByKRIAll from './data/flag_counts_by_kri';
 
 const App = () => {
-    const workflow = workflows[0];
-    //workflow.selectedGroupIDs = '43';
-    const results = resultsAll.filter(
-        (d) => d.workflowid === workflow.workflowid
-    );
-    const parameters = parametersAll.filter(
-        (d) => d.workflowid === workflow.workflowid
-    );
-    const bounds = boundsAll.filter(
-        (d) => d.workflowid === workflow.workflowid
-    );
-    const resultsOverTime = resultsOverTimeAll.filter(
-        (d) => d.workflowid === workflow.workflowid
-    );
-    //const flagCountsByKRI = flagCountsByKRIAll;
-    //    .filter(
-    //    (d) => d.workflowid === workflow.workflowid
-    //);
+    const workflowID = 'kri0001';
 
-    const workflowScoreBars = { ...workflow };
-    workflowScoreBars.y = 'score';
-    const workflowMetricBars = { ...workflow };
-    workflowMetricBars.y = 'metric';
-    const workflowScatterPlot = { ...workflow };
-    //workflowScatterPlot.clickCallback = () => console.log('clickt!');
-    const workflowTimeSeries = { ...workflow };
-    const workflowFlagCounts = { ...workflow };
-    workflowFlagCounts.y = 'n_flagged';
-    const workflowSparkline = { ...workflow };
-    workflow.nSnapshots = 25;
+    // analysis metadata
+    const workflow = findWorkflowID(workflows, workflowID);
 
-    // QTL time series
-    const workflowQTL = workflows.find(
-        (workflow) => workflow.workflowid === 'qtl0006'
+    // analysis output
+    const results = filterWorkflowID(resultsAll, workflowID);
+    const resultsOverTime = filterWorkflowID(resultsOverTimeAll, workflowID);
+    const resultsPredicted = filterWorkflowID(resultsPredictedAll, workflowID);
+    //const resultsVerticalOverTime = filterWorkflowID(resultsVerticalOverTimeAll, workflowID);
+
+    /// analysis parameters
+    const parametersDefault = filterWorkflowID(
+        parametersDefaultAll,
+        workflowID
     );
-    workflowQTL.y = 'metric';
-    const resultsOverTimeQTL = resultsOverTimeAll.filter(
-        (d) => d.workflowid === workflowQTL.workflowid
+    const parameters = mergeParameters(
+        parametersDefault,
+        filterWorkflowID(parametersCustomAll, workflowID)
     );
-    const parametersQTL = parametersAll.filter(
-        (d) => d.workflowid === workflowQTL.workflowid
+    const parametersOverTime = mergeParameters(
+        parametersDefault,
+        filterWorkflowID(parametersCustomOverTimeAll, workflowID)
     );
-    const analysisOverTimeQTL = analysisOverTimeAll.filter(
-        (d) => d.workflowid === workflowQTL.workflowid
+
+    // flag counts
+    const flagCountsByGroup = flagCountsByGroupAll;
+    const flagCountsByKRI = filterWorkflowID(flagCountsByKRIAll, workflowID);
+
+    // configuration
+    const barChartScoreConfig = { ...workflow, y: 'score' };
+    const scatterPlotConfig = { ...workflow };
+    const barChartMetricConfig = { ...workflow, y: 'metric' };
+    const timeSeriesContinuousConfig = { ...workflow };
+    const timeSeriesContinuousWithCIConfig = {
+        ...findWorkflowID(workflows, 'qtl0006'),
+        y: 'metric',
+    };
+    const sparklineConfig = { ...workflow, nSnapshots: 25 };
+    const timeSeriesDiscreteByGroupConfig = { y: 'n_at_risk_or_flagged' };
+    const timeSeriesDiscreteByKRIConfig = {
+        ...workflow,
+        y: 'n_at_risk_or_flagged',
+    };
+
+    // QTL
+    const resultsOverTimeQTL = filterWorkflowID(resultsOverTimeAll, 'qtl0006');
+    const parametersOverTimeQTL = mergeParameters(
+        filterWorkflowID(parametersDefaultAll, 'qtl0006'),
+        filterWorkflowID(parametersCustomOverTimeAll, 'qtl0006')
+    );
+    const resultsVerticalOverTimeQTL = filterWorkflowID(
+        resultsVerticalOverTimeAll,
+        'qtl0006'
     );
 
     // sparklines
@@ -71,7 +93,7 @@ const App = () => {
         const sparkline = (
             <Sparkline
                 data={shuffle(data).slice(0, 25)}
-                config={{ ...workflowSparkline }}
+                config={{ ...sparklineConfig }}
                 parameters={parameters}
                 key={i}
             />
@@ -81,41 +103,52 @@ const App = () => {
 
     return (
         <>
-            {/* <p>welcome</p> */}
-            {/* <button onClick={updateHndler}>Update</button> */}
             <BarChart
                 data={results}
-                config={workflowScoreBars}
+                config={barChartScoreConfig}
                 thresholds={parameters}
             />
             <ScatterPlot
                 data={results}
-                config={workflowScatterPlot}
-                bounds={bounds}
+                config={scatterPlotConfig}
+                bounds={resultsPredicted}
             />
             <BarChart
                 data={results}
-                config={workflowMetricBars}
+                config={barChartMetricConfig}
                 thresholds={parameters}
             />
             <TimeSeries
                 data={resultsOverTime}
-                config={workflowTimeSeries}
-                thresholds={parameters}
+                config={timeSeriesContinuousConfig}
+                thresholds={parametersOverTime}
             />
             <TimeSeries
                 data={resultsOverTimeQTL}
-                config={workflowQTL}
-                thresholds={parametersQTL}
-                intervals={analysisOverTimeQTL}
+                config={timeSeriesContinuousWithCIConfig}
+                thresholds={parametersOverTimeQTL}
+                intervals={resultsVerticalOverTimeQTL}
             />
-            {sparklines}
+            <div>{sparklines}</div>
             <TimeSeries
-                data={flagCountsByGroupAll}
-                config={workflowFlagCounts}
+                data={flagCountsByGroup}
+                config={timeSeriesDiscreteByGroupConfig}
+                style={{
+                    width: '50%',
+                    height: '25vw',
+                    display: 'inline-block',
+                }}
+            />
+            <TimeSeries
+                data={flagCountsByKRI}
+                config={timeSeriesDiscreteByKRIConfig}
+                style={{
+                    width: '50%',
+                    height: '25vw',
+                    display: 'inline-block',
+                }}
             />
         </>
     );
 };
-
 export default App;

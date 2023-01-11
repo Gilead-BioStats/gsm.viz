@@ -1,5 +1,5 @@
 import configure from './configure';
-import plugins from './plugins';
+import getPlugins from './getPlugins';
 import getScales from './getScales';
 
 /**

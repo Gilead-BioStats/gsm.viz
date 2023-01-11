@@ -22,8 +22,9 @@ export default function structureData(_data_, config, _intervals_) {
 
     // datasets
     let datasets = [];
-    if (config.hasOwnProperty('workflowid') && config.dataType !== 'discrete') {
-        if (/^qtl/.test(config.workflowid)) {
+    if (config.dataType !== 'discrete') {
+        // TODO: find a better way to differentiate distribution and CI instances
+        if (_intervals_ !== null) {
             datasets = [
                 getIdentityLine(data, config, labels),
                 ...getIntervalLines(_intervals_, config, labels),
@@ -76,22 +77,25 @@ export default function structureData(_data_, config, _intervals_) {
             ];
         }
     } else if (config.dataType === 'discrete') {
+        const color =
+            config.yLabel === 'Red or Amber KRIs'
+                ? colorScheme.amberRed.color
+                : config.yLabel === 'Red KRIs'
+                ? colorScheme.find((color) => /red/i.test(color.description))
+                      .color
+                : config.yLabel === 'Amber KRIs'
+                ? colorScheme.find((color) => /amber/i.test(color.description))
+                      .color
+                : '#1890FF';
+
         datasets = [
             config.selectedGroupIDs.length > 0
                 ? {
                       ...getSelectedGroupLine(data, config, labels),
-                      backgroundColor:
-                          /at.risk/.test(config.y) && /flagged/.test(config.y)
-                              ? '#FD9432'
-                              : /at.risk/.test(config.y)
-                              ? colorScheme.find((color) =>
-                                    color.flag.includes(1)
-                                ).color
-                              : /flagged/.test(config.y)
-                              ? colorScheme.find((color) =>
-                                    color.flag.includes(2)
-                                ).color
-                              : '#aaaaaa',
+                      backgroundColor: color,
+                      borderColor: (d) => {
+                          return d.raw !== undefined ? 'black' : '#aaa';
+                      },
                   }
                 : null,
             {

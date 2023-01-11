@@ -6,7 +6,16 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const ScatterPlot = ({ data, config, bounds }) => {
+const ScatterPlot = ({
+    data,
+    config,
+    bounds,
+    style = {
+        width: '33%',
+        height: '20vw',
+        display: 'inline-block',
+    },
+}) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -15,13 +24,7 @@ const ScatterPlot = ({ data, config, bounds }) => {
         }
     }, [data, config, bounds]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{ width: '33%', height: '25vh', display: 'inline-block' }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 ScatterPlot.propTypes = {

@@ -1,4 +1,3 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
@@ -6,8 +5,6 @@ import coalesce from '../util/coalesce';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
-
-    defaults.type = 'line';
 
     // horizontal
     defaults.x = 'snapshot_date';
@@ -19,8 +16,6 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // color
     defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
-    //defaults.colorLabel = _config_[ defaults.color ];
 
     // event callbacks
     defaults.hoverCallback = (datum) => {};
@@ -48,6 +43,7 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Sparkline of ${config.yLabel} by ${config.xLabel}`;
 
     return config;
 }

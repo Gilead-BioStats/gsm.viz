@@ -2,6 +2,7 @@ const dataFiles = [
     '../../data/results_summary_over_time.csv',
     '../../data/meta_workflow.csv',
     '../../data/meta_param.csv',
+    '../../data/status_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -15,25 +16,24 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^kri/.test(d.workflowid))
         );
 
-        const workflowid = kri(datasets, true);
+        const workflowID = kri(datasets, true);
 
         // data
-        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
-        const results = datasets[0].filter(
-            (d) => d.workflowid === workflowid && groupids.includes(d.groupid)
-        );
+        const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
         // configuration
-        const workflow = datasets[1].filter((d) => d.workflowid === workflowid);
+        const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
         workflow.y = 'score';
-        workflow.nSnapshots = 25;
+        workflow.nSnapshots = 10;
 
         // threshold annotations
-        const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflowid
+        const parameters = mergeParameters(
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
 
         // loop over group IDs
+        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
         for (const i in groupids) {
             const groupid = groupids[i];
 

@@ -1,4 +1,5 @@
 import { format } from 'd3';
+import falsy from './falsy';
 
 export default function formatResultTooltipContent(config, data) {
     const datum = data.dataset.data[data.dataIndex];
@@ -12,7 +13,11 @@ export default function formatResultTooltipContent(config, data) {
         content =
             config.group === 'Study'
                 ? [
-                      `${config.yLabel}: ${format('.3f')(datum.metric)}`,
+                      `${config.yLabel}: ${
+                          falsy.includes(datum.metric)
+                              ? '—'
+                              : format('.3f')(datum.metric)
+                      }`,
                       `Confidence Interval: (${format('.3f')(
                           datum.lowerCI
                       )}, ${format('.3f')(datum.upperCI)})`,
@@ -22,12 +27,16 @@ export default function formatResultTooltipContent(config, data) {
                       )}`,
                   ]
                 : [
-                      `KRI Score: ${format('.1f')(datum.score)} (${
-                          config.score
-                      })`,
-                      `KRI Value: ${format('.3f')(datum.metric)} (${
-                          config.metric
-                      })`,
+                      `KRI Score: ${
+                          falsy.includes(datum.score)
+                              ? '—'
+                              : format('.1f')(datum.score)
+                      } (${config.score})`,
+                      `KRI Value: ${
+                          falsy.includes(datum.metric)
+                              ? '—'
+                              : format('.3f')(datum.metric)
+                      } (${config.metric})`,
                       `${config.numerator}: ${format(',')(datum.numerator)}`,
                       `${config.denominator}: ${format(',')(
                           datum.denominator

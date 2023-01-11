@@ -1,7 +1,8 @@
-import mutate from './structureData/mutate';
 import { group } from 'd3';
+import mutate from './structureData/mutate';
 import scriptableOptions from './structureData/scriptableOptions';
 import rollupBounds from './structureData/rollupBounds';
+import falsy from '../util/falsy';
 
 /**
  * Given input data, returns an array of arrays, each of which map to one or more graphical elements
@@ -14,23 +15,34 @@ import rollupBounds from './structureData/rollupBounds';
  * @returns {Array} data formatted for consumption by Chart.js
  */
 export default function structureData(_data_, config, _bounds_) {
-    // Update data.
+    // Modify properties and sort order of data.
     const data = mutate(_data_, config);
 
+    // Define array of Chart.js dataset objects.
     const datasets = [
         {
-            type: 'scatter',
             data,
             label: '',
+            listenClick: true,
+            listenHover: true,
+            type: 'scatter',
             ...scriptableOptions(),
         },
     ];
 
+    // Add predicted bounds dataset objects.
     const bounds = rollupBounds(_bounds_, config);
-
     if (bounds !== undefined)
         bounds.forEach((bound) => {
             datasets.push(bound);
+        });
+
+    // If unevaluable analysis output exists, add an additional dataset object to ensure the
+    // corresponding legend item appears.
+    if (data.some((d) => falsy.includes(d.flag)))
+        datasets.push({
+            type: 'line',
+            label: 'No Flag',
         });
 
     return datasets;

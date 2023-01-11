@@ -35,8 +35,6 @@ describe('configuration', () => {
                 'gsm_analysis_date',
 
                 // sparkline settings
-                'type',
-
                 'x',
                 'xType',
                 'xLabel',
@@ -46,18 +44,17 @@ describe('configuration', () => {
                 'yLabel',
 
                 'color',
-                'colorScheme',
 
                 'hoverCallback',
                 'clickCallback',
 
+                'annotation',
+                'chartName',
+                'dataType',
+                'displayThresholds',
                 'maintainAspectRatio',
                 'nSnapshots',
-                'displayThresholds',
-
                 'thresholds',
-                'annotation',
-                'dataType',
             ].sort()
         );
     });

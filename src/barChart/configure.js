@@ -1,13 +1,11 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import checkThresholds from '../util/checkThresholds';
 import coalesce from '../util/coalesce';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
-
-    defaults.type = 'bar';
 
     // horizontal
     defaults.x = 'groupid';
@@ -19,8 +17,6 @@ export default function configure(_config_, _data_, _thresholds_) {
 
     // color
     defaults.color = 'flag';
-    //defaults.colorScheme = colorScheme;
-    defaults.colorLabel = _config_[defaults.color];
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -29,7 +25,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     };
 
     // miscellaneous
-    //defaults.displayTitle = false;
+    defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
 
     const config = configureAll(defaults, _config_, {
@@ -41,8 +37,16 @@ export default function configure(_config_, _data_, _thresholds_) {
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
+    // configuration-driven settings
     config.xLabel = coalesce(_config_.xLabel, config['group']);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
+
+    // If callbacks already exist maintain them.
+    if (config.hoverCallbackWrapper === undefined)
+        config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
+    if (config.clickCallbackWrapper === undefined)
+        config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
 
     return config;
 }

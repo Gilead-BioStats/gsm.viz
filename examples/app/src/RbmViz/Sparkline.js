@@ -6,7 +6,17 @@ const generateKey = () => {
     return `${new Date().getTime()}`;
 };
 
-const Sparkline = ({ data, config, parameters }) => {
+const Sparkline = ({
+    data,
+    config,
+    parameters,
+    style = {
+        width: '12.5%',
+        margin: 'auto',
+        height: '50px',
+        display: 'inline-block',
+    },
+}) => {
     const container = useRef(null);
 
     useEffect(() => {
@@ -15,18 +25,7 @@ const Sparkline = ({ data, config, parameters }) => {
         }
     }, [data, config, parameters]);
 
-    return (
-        <div
-            ref={container}
-            key={generateKey()}
-            style={{
-                width: '12.5%',
-                margin: 'auto',
-                height: '50px',
-                display: 'inline-block',
-            }}
-        ></div>
-    );
+    return <div ref={container} key={generateKey()} style={{ ...style }}></div>;
 };
 
 Sparkline.propTypes = {

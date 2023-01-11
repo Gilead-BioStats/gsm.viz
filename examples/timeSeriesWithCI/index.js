@@ -15,36 +15,33 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'qtl0006';
 
-        datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^qtl/.test(d.workflowid))
-        );
+        datasets = datasets.map((dataset) => {
+            return dataset.filter((d) => /^qtl/.test(d.workflowid));
+        });
 
-        // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        // analysis results
+        const results = filterOnWorkflowID(datasets[0], workflowID);
 
-        // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
+        // chart configuration
+        const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'metric';
 
-        // customization data
-        const parameters = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+        // threshold annotations
+        const parameters = mergeParameters(
+            filterOnWorkflowID(datasets[2], workflowID),
+            filterOnWorkflowID(datasets[3], workflowID)
         );
-        //const parameters = mergeParameters(
-        //    datasets[2].filter(d => d.workflowid === workflowID),
-        //    datasets[3].filter(d => d.workflowid === workflowID)
-        //);
 
         // additional analysis output
-        const analysis = datasets[4].filter((d) => d.workflowid === workflowID);
+        const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             workflow,
-            parameters,
-            analysis
+            parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            resultsVertical
         );
 
         qtl(workflow, datasets, true);
