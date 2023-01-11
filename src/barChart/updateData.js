@@ -1,28 +1,28 @@
 import updateConfig from './updateConfig';
-import addCustomEvent from '../util/addCanvas/addCustomEvent';
 import structureData from './structureData';
+import triggerTooltip from '../util/triggerTooltip';
 
+/**
+ * Update chart data and redraw chart.
+ *
+ * @param {Object} chart - Chart.js chart object
+ * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Object} _config_ - chart configuration and metadata
+ * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
+ *
+ */
 export default function updateData(chart, _data_, _config_, _thresholds_) {
-    // To avoid attaching duplicate event listeners the callback must not change.
-    const hoverCallbackWrapper = chart.data.config.hoverCallbackWrapper;
-    _config_.hoverCallbackWrapper = hoverCallbackWrapper;
+    // Update chart configuration.
+    const config = updateConfig(chart, _config_, _thresholds_, false, false);
 
-    const clickCallbackWrapper = chart.data.config.clickCallbackWrapper;
-    _config_.clickCallbackWrapper = clickCallbackWrapper;
+    // Update chart data.
+    const datasets = structureData(_data_, config);
 
-    chart.data.config = updateConfig(chart, _config_, _thresholds_);
-
-    // TODO: figure out why these events have to be redefined on data change
-    chart.data.config.hoverEvent = addCustomEvent(
-        chart.canvas,
-        hoverCallbackWrapper,
-        'hover'
-    );
-    chart.data.config.clickEvent = addCustomEvent(
-        chart.canvas,
-        clickCallbackWrapper,
-        'click'
-    );
-    chart.data.datasets = structureData(_data_, chart.data.config);
+    // Update chart.
+    chart.data.config = config
+    chart.data.datasets = datasets;
     chart.update();
+
+    // Trigger tooltip, if a value is currently selected.
+    triggerTooltip(chart);
 }

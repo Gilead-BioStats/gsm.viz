@@ -322,8 +322,8 @@ var rbmViz = (() => {
     const endToAngle = _normalizeAngle(a - e);
     return a === s || a === e || sameAngleIsFullCircle && s === e || angleToStart > angleToEnd && startToAngle < endToAngle;
   }
-  function _limitValue(value, min3, max3) {
-    return Math.max(min3, Math.min(max3, value));
+  function _limitValue(value, min3, max4) {
+    return Math.max(min3, Math.min(max4, value));
   }
   function _int16Range(value) {
     return _limitValue(value, -32768, 32767);
@@ -348,13 +348,13 @@ var rbmViz = (() => {
   }
   var _lookupByKey = (table, key, value, last) => _lookup(table, value, last ? (index3) => table[index3][key] <= value : (index3) => table[index3][key] < value);
   var _rlookupByKey = (table, key, value) => _lookup(table, value, (index3) => table[index3][key] >= value);
-  function _filterBetween(values, min3, max3) {
+  function _filterBetween(values, min3, max4) {
     let start2 = 0;
     let end = values.length;
     while (start2 < end && values[start2] < min3) {
       start2++;
     }
-    while (end > start2 && values[end - 1] > max3) {
+    while (end > start2 && values[end - 1] > max4) {
       end--;
     }
     return start2 > 0 || end < values.length ? values.slice(start2, end) : values;
@@ -467,7 +467,7 @@ var rbmViz = (() => {
     if (meta._sorted) {
       const { iScale, _parsed } = meta;
       const axis = iScale.axis;
-      const { min: min3, max: max3, minDefined, maxDefined } = iScale.getUserBounds();
+      const { min: min3, max: max4, minDefined, maxDefined } = iScale.getUserBounds();
       if (minDefined) {
         start2 = _limitValue(
           Math.min(
@@ -481,8 +481,8 @@ var rbmViz = (() => {
       if (maxDefined) {
         count = _limitValue(
           Math.max(
-            _lookupByKey(_parsed, iScale.axis, max3, true).hi + 1,
-            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max3), true).hi + 1
+            _lookupByKey(_parsed, iScale.axis, max4, true).hi + 1,
+            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max4), true).hi + 1
           ),
           start2,
           pointCount
@@ -647,11 +647,11 @@ var rbmViz = (() => {
     }
     return rgb2;
   }
-  function hueValue(r, g, b, d, max3) {
-    if (r === max3) {
+  function hueValue(r, g, b, d, max4) {
+    if (r === max4) {
       return (g - b) / d + (g < b ? 6 : 0);
     }
-    if (g === max3) {
+    if (g === max4) {
       return (b - r) / d + 2;
     }
     return (r - g) / d + 4;
@@ -661,14 +661,14 @@ var rbmViz = (() => {
     const r = v.r / range;
     const g = v.g / range;
     const b = v.b / range;
-    const max3 = Math.max(r, g, b);
+    const max4 = Math.max(r, g, b);
     const min3 = Math.min(r, g, b);
-    const l = (max3 + min3) / 2;
+    const l = (max4 + min3) / 2;
     let h, s, d;
-    if (max3 !== min3) {
-      d = max3 - min3;
-      s = l > 0.5 ? d / (2 - max3 - min3) : d / (max3 + min3);
-      h = hueValue(r, g, b, d, max3);
+    if (max4 !== min3) {
+      d = max4 - min3;
+      s = l > 0.5 ? d / (2 - max4 - min3) : d / (max4 + min3);
+      h = hueValue(r, g, b, d, max4);
       h = h * 60 + 0.5;
     }
     return [h | 0, s || 0, l];
@@ -1631,12 +1631,12 @@ var rbmViz = (() => {
     }
   }
   function _addGrace(minmax, grace, beginAtZero) {
-    const { min: min3, max: max3 } = minmax;
-    const change = toDimension(grace, (max3 - min3) / 2);
+    const { min: min3, max: max4 } = minmax;
+    const change = toDimension(grace, (max4 - min3) / 2);
     const keepZero = (value, add) => beginAtZero && value === 0 ? 0 : value + add;
     return {
       min: keepZero(min3, -Math.abs(change)),
-      max: keepZero(max3, change)
+      max: keepZero(max4, change)
     };
   }
   function createContext(parentContext, context) {
@@ -2004,8 +2004,8 @@ var rbmViz = (() => {
     monotoneAdjust(points, deltaK, mK);
     monotoneCompute(points, mK, indexAxis);
   }
-  function capControlPoint(pt, min3, max3) {
-    return Math.max(Math.min(pt, max3), min3);
+  function capControlPoint(pt, min3, max4) {
+    return Math.max(Math.min(pt, max4), min3);
   }
   function capBezierPoints(points, area) {
     let i, ilen, point, inArea, inAreaPrev;
@@ -2441,13 +2441,13 @@ var rbmViz = (() => {
     end %= count;
     return { start: start2, end };
   }
-  function solidSegments(points, start2, max3, loop) {
+  function solidSegments(points, start2, max4, loop) {
     const count = points.length;
     const result = [];
     let last = start2;
     let prev = points[start2];
     let end;
-    for (end = start2 + 1; end <= max3; ++end) {
+    for (end = start2 + 1; end <= max4; ++end) {
       const cur = points[end % count];
       if (cur.skip || cur.stop) {
         if (!prev.skip) {
@@ -2480,9 +2480,9 @@ var rbmViz = (() => {
     if (spanGaps === true) {
       return splitByStyles(line, [{ start: start2, end, loop }], points, segmentOptions);
     }
-    const max3 = end < start2 ? end + count : end;
+    const max4 = end < start2 ? end + count : end;
     const completeLoop = !!line._fullLoop && start2 === 0 && end === count - 1;
-    return splitByStyles(line, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
+    return splitByStyles(line, solidSegments(points, start2, max4, completeLoop), points, segmentOptions);
   }
   function splitByStyles(line, segments, points, segmentOptions) {
     if (!segmentOptions || !segmentOptions.setContext || !points) {
@@ -2972,10 +2972,10 @@ var rbmViz = (() => {
     const opts = scale && scale.options || {};
     const reverse = opts.reverse;
     const min3 = opts.min === void 0 ? allowedOverflow : 0;
-    const max3 = opts.max === void 0 ? allowedOverflow : 0;
+    const max4 = opts.max === void 0 ? allowedOverflow : 0;
     return {
-      start: reverse ? max3 : min3,
-      end: reverse ? min3 : max3
+      start: reverse ? max4 : min3,
+      end: reverse ? min3 : max4
     };
   }
   function defaultClip(xScale, yScale, allowedOverflow) {
@@ -3061,10 +3061,10 @@ var rbmViz = (() => {
     return `${indexScale.id}.${valueScale.id}.${meta.stack || meta.type}`;
   }
   function getUserBounds(scale) {
-    const { min: min3, max: max3, minDefined, maxDefined } = scale.getUserBounds();
+    const { min: min3, max: max4, minDefined, maxDefined } = scale.getUserBounds();
     return {
       min: minDefined ? min3 : Number.NEGATIVE_INFINITY,
-      max: maxDefined ? max3 : Number.POSITIVE_INFINITY
+      max: maxDefined ? max4 : Number.POSITIVE_INFINITY
     };
   }
   function getOrCreateStack(stacks, stackKey, indexValue) {
@@ -3768,11 +3768,11 @@ var rbmViz = (() => {
     const startValue = vScale.parse(entry[0], i);
     const endValue = vScale.parse(entry[1], i);
     const min3 = Math.min(startValue, endValue);
-    const max3 = Math.max(startValue, endValue);
+    const max4 = Math.max(startValue, endValue);
     let barStart = min3;
-    let barEnd = max3;
-    if (Math.abs(min3) > Math.abs(max3)) {
-      barStart = max3;
+    let barEnd = max4;
+    if (Math.abs(min3) > Math.abs(max4)) {
+      barStart = max4;
       barEnd = min3;
     }
     item[vScale.axis] = barEnd;
@@ -3782,7 +3782,7 @@ var rbmViz = (() => {
       start: startValue,
       end: endValue,
       min: min3,
-      max: max3
+      max: max4
     };
   }
   function parseValue(entry, item, vScale, i) {
@@ -4061,8 +4061,8 @@ var rbmViz = (() => {
         const startPixel = vScale.getPixelForDecimal(0);
         const endPixel = vScale.getPixelForDecimal(1);
         const min3 = Math.min(startPixel, endPixel);
-        const max3 = Math.max(startPixel, endPixel);
-        base = Math.max(Math.min(base, max3), min3);
+        const max4 = Math.max(startPixel, endPixel);
+        base = Math.max(Math.min(base, max4), min3);
         head = base + size;
       }
       if (base === vScale.getPixelForValue(actualBase)) {
@@ -4172,11 +4172,11 @@ var rbmViz = (() => {
     }
     getMaxOverflow() {
       const data = this._cachedMeta.data;
-      let max3 = 0;
+      let max4 = 0;
       for (let i = data.length - 1; i >= 0; --i) {
-        max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
+        max4 = Math.max(max4, data[i].size(this.resolveDataElementOptions(i)) / 2);
       }
-      return max3 > 0 && max3;
+      return max4 > 0 && max4;
     }
     getLabelAndValue(index3) {
       const meta = this._cachedMeta;
@@ -4321,19 +4321,19 @@ var rbmViz = (() => {
     }
     _getRotationExtents() {
       let min3 = TAU;
-      let max3 = -TAU;
+      let max4 = -TAU;
       for (let i = 0; i < this.chart.data.datasets.length; ++i) {
         if (this.chart.isDatasetVisible(i)) {
           const controller = this.chart.getDatasetMeta(i).controller;
           const rotation = controller._getRotation();
           const circumference = controller._getCircumference();
           min3 = Math.min(min3, rotation);
-          max3 = Math.max(max3, rotation + circumference);
+          max4 = Math.max(max4, rotation + circumference);
         }
       }
       return {
         rotation: min3,
-        circumference: max3 - min3
+        circumference: max4 - min3
       };
     }
     update(mode) {
@@ -4436,7 +4436,7 @@ var rbmViz = (() => {
       };
     }
     getMaxBorderWidth(arcs) {
-      let max3 = 0;
+      let max4 = 0;
       const chart = this.chart;
       let i, ilen, meta, controller, options;
       if (!arcs) {
@@ -4455,18 +4455,18 @@ var rbmViz = (() => {
       for (i = 0, ilen = arcs.length; i < ilen; ++i) {
         options = controller.resolveDataElementOptions(i);
         if (options.borderAlign !== "inner") {
-          max3 = Math.max(max3, options.borderWidth || 0, options.hoverBorderWidth || 0);
+          max4 = Math.max(max4, options.borderWidth || 0, options.hoverBorderWidth || 0);
         }
       }
-      return max3;
+      return max4;
     }
     getMaxOffset(arcs) {
-      let max3 = 0;
+      let max4 = 0;
       for (let i = 0, ilen = arcs.length; i < ilen; ++i) {
         const options = this.resolveDataElementOptions(i);
-        max3 = Math.max(max3, options.offset || 0, options.hoverOffset || 0);
+        max4 = Math.max(max4, options.offset || 0, options.hoverOffset || 0);
       }
-      return max3;
+      return max4;
     }
     _getRingWeightOffset(datasetIndex) {
       let ringWeightOffset = 0;
@@ -5356,10 +5356,10 @@ var rbmViz = (() => {
       };
     }
     getMinMax(canStack) {
-      let { min: min3, max: max3, minDefined, maxDefined } = this.getUserBounds();
+      let { min: min3, max: max4, minDefined, maxDefined } = this.getUserBounds();
       let range;
       if (minDefined && maxDefined) {
-        return { min: min3, max: max3 };
+        return { min: min3, max: max4 };
       }
       const metas = this.getMatchingVisibleMetas();
       for (let i = 0, ilen = metas.length; i < ilen; ++i) {
@@ -5368,14 +5368,14 @@ var rbmViz = (() => {
           min3 = Math.min(min3, range.min);
         }
         if (!maxDefined) {
-          max3 = Math.max(max3, range.max);
+          max4 = Math.max(max4, range.max);
         }
       }
-      min3 = maxDefined && min3 > max3 ? max3 : min3;
-      max3 = minDefined && min3 > max3 ? min3 : max3;
+      min3 = maxDefined && min3 > max4 ? max4 : min3;
+      max4 = minDefined && min3 > max4 ? min3 : max4;
       return {
-        min: finiteOrDefault(min3, finiteOrDefault(max3, min3)),
-        max: finiteOrDefault(max3, finiteOrDefault(min3, max3))
+        min: finiteOrDefault(min3, finiteOrDefault(max4, min3)),
+        max: finiteOrDefault(max4, finiteOrDefault(min3, max4))
       };
     }
     getPadding() {
@@ -5765,8 +5765,8 @@ var rbmViz = (() => {
       return this.getPixelForValue(this.getBaseValue());
     }
     getBaseValue() {
-      const { min: min3, max: max3 } = this;
-      return min3 < 0 && max3 < 0 ? max3 : min3 > 0 && max3 > 0 ? min3 : 0;
+      const { min: min3, max: max4 } = this;
+      return min3 < 0 && max4 < 0 ? max4 : min3 > 0 && max4 > 0 ? min3 : 0;
     }
     getContext(index3) {
       const ticks = this.ticks || [];
@@ -6269,25 +6269,25 @@ var rbmViz = (() => {
       }
     }
     drawTitle() {
-      const { ctx, options: { position, title: title2, reverse } } = this;
-      if (!title2.display) {
+      const { ctx, options: { position, title: title3, reverse } } = this;
+      if (!title3.display) {
         return;
       }
-      const font = toFont(title2.font);
-      const padding = toPadding(title2.padding);
-      const align = title2.align;
+      const font = toFont(title3.font);
+      const padding = toPadding(title3.padding);
+      const align = title3.align;
       let offset = font.lineHeight / 2;
       if (position === "bottom" || position === "center" || isObject(position)) {
         offset += padding.bottom;
-        if (isArray(title2.text)) {
-          offset += font.lineHeight * (title2.text.length - 1);
+        if (isArray(title3.text)) {
+          offset += font.lineHeight * (title3.text.length - 1);
         }
       } else {
         offset += padding.top;
       }
       const { titleX, titleY, maxWidth, rotation } = titleArgs(this, offset, position, align);
-      renderText(ctx, title2.text, 0, 0, font, {
-        color: title2.color,
+      renderText(ctx, title3.text, 0, 0, font, {
+        color: title3.color,
         maxWidth,
         rotation,
         textAlign: titleAlign(align, position, reverse),
@@ -6596,11 +6596,11 @@ var rbmViz = (() => {
       const meta = this._cachedMeta;
       const data = meta.data || [];
       if (!this.options.showLine) {
-        let max3 = 0;
+        let max4 = 0;
         for (let i = data.length - 1; i >= 0; --i) {
-          max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
+          max4 = Math.max(max4, data[i].size(this.resolveDataElementOptions(i)) / 2);
         }
-        return max3 > 0 && max3;
+        return max4 > 0 && max4;
       }
       const dataset = meta.dataset;
       const border = dataset.options && dataset.options.borderWidth || 0;
@@ -7500,8 +7500,8 @@ var rbmViz = (() => {
     _createDescriptors(chart, all) {
       const config = chart && chart.config;
       const options = valueOrDefault(config.options && config.options.plugins, {});
-      const plugins6 = allPlugins(config);
-      return options === false && !all ? [] : createDescriptors(chart, plugins6, options, all);
+      const plugins4 = allPlugins(config);
+      return options === false && !all ? [] : createDescriptors(chart, plugins4, options, all);
     }
     _notifyStateChanges(chart) {
       const previousDescriptors = this._oldCache || [];
@@ -7513,20 +7513,20 @@ var rbmViz = (() => {
   };
   function allPlugins(config) {
     const localIds = {};
-    const plugins6 = [];
+    const plugins4 = [];
     const keys = Object.keys(registry.plugins.items);
     for (let i = 0; i < keys.length; i++) {
-      plugins6.push(registry.getPlugin(keys[i]));
+      plugins4.push(registry.getPlugin(keys[i]));
     }
     const local = config.plugins || [];
     for (let i = 0; i < local.length; i++) {
       const plugin2 = local[i];
-      if (plugins6.indexOf(plugin2) === -1) {
-        plugins6.push(plugin2);
+      if (plugins4.indexOf(plugin2) === -1) {
+        plugins4.push(plugin2);
         localIds[plugin2.id] = true;
       }
     }
-    return { plugins: plugins6, localIds };
+    return { plugins: plugins4, localIds };
   }
   function getOpts(options, all) {
     if (!all && options === false) {
@@ -7537,10 +7537,10 @@ var rbmViz = (() => {
     }
     return options;
   }
-  function createDescriptors(chart, { plugins: plugins6, localIds }, options, all) {
+  function createDescriptors(chart, { plugins: plugins4, localIds }, options, all) {
     const result = [];
     const context = chart.getContext();
-    for (const plugin2 of plugins6) {
+    for (const plugin2 of plugins4) {
       const id2 = plugin2.id;
       const opts = getOpts(options[id2], all);
       if (opts === null) {
@@ -9328,8 +9328,8 @@ var rbmViz = (() => {
     }
     return { left, top, right, bottom };
   }
-  function skipOrLimit(skip2, value, min3, max3) {
-    return skip2 ? 0 : _limitValue(value, min3, max3);
+  function skipOrLimit(skip2, value, min3, max4) {
+    return skip2 ? 0 : _limitValue(value, min3, max4);
   }
   function parseBorderWidth(bar, maxW, maxH) {
     const value = bar.options.borderWidth;
@@ -9597,12 +9597,12 @@ var rbmViz = (() => {
     let start2 = 0;
     let count;
     const { iScale } = meta;
-    const { min: min3, max: max3, minDefined, maxDefined } = iScale.getUserBounds();
+    const { min: min3, max: max4, minDefined, maxDefined } = iScale.getUserBounds();
     if (minDefined) {
       start2 = _limitValue(_lookupByKey(points, iScale.axis, min3).lo, 0, pointCount - 1);
     }
     if (maxDefined) {
-      count = _limitValue(_lookupByKey(points, iScale.axis, max3).hi + 1, start2, pointCount) - start2;
+      count = _limitValue(_lookupByKey(points, iScale.axis, max4).hi + 1, start2, pointCount) - start2;
     } else {
       count = pointCount - start2;
     }
@@ -10747,14 +10747,14 @@ var rbmViz = (() => {
     }
   };
   function createTitle(chart, titleOpts) {
-    const title2 = new Title({
+    const title3 = new Title({
       ctx: chart.ctx,
       options: titleOpts,
       chart
     });
-    layouts.configure(chart, title2, titleOpts);
-    layouts.addBox(chart, title2);
-    chart.titleBlock = title2;
+    layouts.configure(chart, title3, titleOpts);
+    layouts.addBox(chart, title3);
+    chart.titleBlock = title3;
   }
   var plugin_title = {
     id: "title",
@@ -10768,9 +10768,9 @@ var rbmViz = (() => {
       delete chart.titleBlock;
     },
     beforeUpdate(chart, _args, options) {
-      const title2 = chart.titleBlock;
-      layouts.configure(chart, title2, options);
-      title2.options = options;
+      const title3 = chart.titleBlock;
+      layouts.configure(chart, title3, options);
+      title3.options = options;
     },
     defaults: {
       align: "center",
@@ -10796,23 +10796,23 @@ var rbmViz = (() => {
   var plugin_subtitle = {
     id: "subtitle",
     start(chart, _args, options) {
-      const title2 = new Title({
+      const title3 = new Title({
         ctx: chart.ctx,
         options,
         chart
       });
-      layouts.configure(chart, title2, options);
-      layouts.addBox(chart, title2);
-      map2.set(chart, title2);
+      layouts.configure(chart, title3, options);
+      layouts.addBox(chart, title3);
+      map2.set(chart, title3);
     },
     stop(chart) {
       layouts.removeBox(chart, map2.get(chart));
       map2.delete(chart);
     },
     beforeUpdate(chart, _args, options) {
-      const title2 = map2.get(chart);
-      layouts.configure(chart, title2, options);
-      title2.options = options;
+      const title3 = map2.get(chart);
+      layouts.configure(chart, title3, options);
+      title3.options = options;
     },
     defaults: {
       align: "center",
@@ -10921,12 +10921,12 @@ var rbmViz = (() => {
   }
   function getTooltipSize(tooltip5, options) {
     const ctx = tooltip5.chart.ctx;
-    const { body, footer, title: title2 } = tooltip5;
+    const { body, footer, title: title3 } = tooltip5;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
     const footerFont = toFont(options.footerFont);
-    const titleLineCount = title2.length;
+    const titleLineCount = title3.length;
     const footerLineCount = footer.length;
     const bodyLineItemCount = body.length;
     const padding = toPadding(options.padding);
@@ -11126,11 +11126,11 @@ var rbmViz = (() => {
     getTitle(context, options) {
       const { callbacks } = options;
       const beforeTitle = callbacks.beforeTitle.apply(this, [context]);
-      const title2 = callbacks.title.apply(this, [context]);
+      const title3 = callbacks.title.apply(this, [context]);
       const afterTitle = callbacks.afterTitle.apply(this, [context]);
       let lines = [];
       lines = pushOrConcat(lines, splitNewlines(beforeTitle));
-      lines = pushOrConcat(lines, splitNewlines(title2));
+      lines = pushOrConcat(lines, splitNewlines(title3));
       lines = pushOrConcat(lines, splitNewlines(afterTitle));
       return lines;
     }
@@ -11292,8 +11292,8 @@ var rbmViz = (() => {
       return { x1, x2, x3, y1, y2, y3 };
     }
     drawTitle(pt, ctx, options) {
-      const title2 = this.title;
-      const length = title2.length;
+      const title3 = this.title;
+      const length = title3.length;
       let titleFont, titleSpacing, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
@@ -11305,7 +11305,7 @@ var rbmViz = (() => {
         ctx.fillStyle = options.titleColor;
         ctx.font = titleFont.string;
         for (i = 0; i < length; ++i) {
-          ctx.fillText(title2[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+          ctx.fillText(title3[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
           pt.y += titleFont.lineHeight + titleSpacing;
           if (i + 1 === length) {
             pt.y += options.titleMarginBottom - titleSpacing;
@@ -11799,7 +11799,7 @@ var rbmViz = (() => {
     const last = labels.lastIndexOf(raw);
     return first !== last ? index3 : first;
   }
-  var validIndex = (index3, max3) => index3 === null ? null : _limitValue(Math.round(index3), 0, max3);
+  var validIndex = (index3, max4) => index3 === null ? null : _limitValue(Math.round(index3), 0, max4);
   var CategoryScale = class extends Scale {
     constructor(cfg) {
       super(cfg);
@@ -11830,28 +11830,28 @@ var rbmViz = (() => {
     }
     determineDataLimits() {
       const { minDefined, maxDefined } = this.getUserBounds();
-      let { min: min3, max: max3 } = this.getMinMax(true);
+      let { min: min3, max: max4 } = this.getMinMax(true);
       if (this.options.bounds === "ticks") {
         if (!minDefined) {
           min3 = 0;
         }
         if (!maxDefined) {
-          max3 = this.getLabels().length - 1;
+          max4 = this.getLabels().length - 1;
         }
       }
       this.min = min3;
-      this.max = max3;
+      this.max = max4;
     }
     buildTicks() {
       const min3 = this.min;
-      const max3 = this.max;
+      const max4 = this.max;
       const offset = this.options.offset;
       const ticks = [];
       let labels = this.getLabels();
-      labels = min3 === 0 && max3 === labels.length - 1 ? labels : labels.slice(min3, max3 + 1);
+      labels = min3 === 0 && max4 === labels.length - 1 ? labels : labels.slice(min3, max4 + 1);
       this._valueRange = Math.max(labels.length - (offset ? 0 : 1), 1);
       this._startValue = this.min - (offset ? 0.5 : 0);
-      for (let value = min3; value <= max3; value++) {
+      for (let value = min3; value <= max4; value++) {
         ticks.push({ value });
       }
       return ticks;
@@ -11898,12 +11898,12 @@ var rbmViz = (() => {
   function generateTicks$1(generationOptions, dataRange) {
     const ticks = [];
     const MIN_SPACING = 1e-14;
-    const { bounds, step, min: min3, max: max3, precision, count, maxTicks, maxDigits, includeBounds } = generationOptions;
+    const { bounds, step, min: min3, max: max4, precision, count, maxTicks, maxDigits, includeBounds } = generationOptions;
     const unit = step || 1;
     const maxSpaces = maxTicks - 1;
     const { min: rmin, max: rmax } = dataRange;
     const minDefined = !isNullOrUndef(min3);
-    const maxDefined = !isNullOrUndef(max3);
+    const maxDefined = !isNullOrUndef(max4);
     const countDefined = !isNullOrUndef(count);
     const minSpacing = (rmax - rmin) / (maxDigits + 1);
     let spacing = niceNum((rmax - rmin) / maxSpaces / unit) * unit;
@@ -11926,14 +11926,14 @@ var rbmViz = (() => {
       niceMin = rmin;
       niceMax = rmax;
     }
-    if (minDefined && maxDefined && step && almostWhole((max3 - min3) / step, spacing / 1e3)) {
-      numSpaces = Math.round(Math.min((max3 - min3) / spacing, maxTicks));
-      spacing = (max3 - min3) / numSpaces;
+    if (minDefined && maxDefined && step && almostWhole((max4 - min3) / step, spacing / 1e3)) {
+      numSpaces = Math.round(Math.min((max4 - min3) / spacing, maxTicks));
+      spacing = (max4 - min3) / numSpaces;
       niceMin = min3;
-      niceMax = max3;
+      niceMax = max4;
     } else if (countDefined) {
       niceMin = minDefined ? min3 : niceMin;
-      niceMax = maxDefined ? max3 : niceMax;
+      niceMax = maxDefined ? max4 : niceMax;
       numSpaces = count - 1;
       spacing = (niceMax - niceMin) / numSpaces;
     } else {
@@ -11968,13 +11968,13 @@ var rbmViz = (() => {
     for (; j < numSpaces; ++j) {
       ticks.push({ value: Math.round((niceMin + j * spacing) * factor) / factor });
     }
-    if (maxDefined && includeBounds && niceMax !== max3) {
-      if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max3, relativeLabelSize(max3, minSpacing, generationOptions))) {
-        ticks[ticks.length - 1].value = max3;
+    if (maxDefined && includeBounds && niceMax !== max4) {
+      if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max4, relativeLabelSize(max4, minSpacing, generationOptions))) {
+        ticks[ticks.length - 1].value = max4;
       } else {
-        ticks.push({ value: max3 });
+        ticks.push({ value: max4 });
       }
-    } else if (!maxDefined || niceMax === max3) {
+    } else if (!maxDefined || niceMax === max4) {
       ticks.push({ value: niceMax });
     }
     return ticks;
@@ -12006,30 +12006,30 @@ var rbmViz = (() => {
     handleTickRangeOptions() {
       const { beginAtZero } = this.options;
       const { minDefined, maxDefined } = this.getUserBounds();
-      let { min: min3, max: max3 } = this;
+      let { min: min3, max: max4 } = this;
       const setMin = (v) => min3 = minDefined ? min3 : v;
-      const setMax = (v) => max3 = maxDefined ? max3 : v;
+      const setMax = (v) => max4 = maxDefined ? max4 : v;
       if (beginAtZero) {
         const minSign = sign(min3);
-        const maxSign = sign(max3);
+        const maxSign = sign(max4);
         if (minSign < 0 && maxSign < 0) {
           setMax(0);
         } else if (minSign > 0 && maxSign > 0) {
           setMin(0);
         }
       }
-      if (min3 === max3) {
+      if (min3 === max4) {
         let offset = 1;
-        if (max3 >= Number.MAX_SAFE_INTEGER || min3 <= Number.MIN_SAFE_INTEGER) {
-          offset = Math.abs(max3 * 0.05);
+        if (max4 >= Number.MAX_SAFE_INTEGER || min3 <= Number.MIN_SAFE_INTEGER) {
+          offset = Math.abs(max4 * 0.05);
         }
-        setMax(max3 + offset);
+        setMax(max4 + offset);
         if (!beginAtZero) {
           setMin(min3 - offset);
         }
       }
       this.min = min3;
-      this.max = max3;
+      this.max = max4;
     }
     getTickLimit() {
       const tickOpts = this.options.ticks;
@@ -12106,9 +12106,9 @@ var rbmViz = (() => {
   };
   var LinearScale = class extends LinearScaleBase {
     determineDataLimits() {
-      const { min: min3, max: max3 } = this.getMinMax(true);
+      const { min: min3, max: max4 } = this.getMinMax(true);
       this.min = isNumberFinite(min3) ? min3 : 0;
-      this.max = isNumberFinite(max3) ? max3 : 1;
+      this.max = isNumberFinite(max4) ? max4 : 1;
       this.handleTickRangeOptions();
     }
     computeTickLimit() {
@@ -12175,9 +12175,9 @@ var rbmViz = (() => {
       return isNumberFinite(value) && value > 0 ? value : null;
     }
     determineDataLimits() {
-      const { min: min3, max: max3 } = this.getMinMax(true);
+      const { min: min3, max: max4 } = this.getMinMax(true);
       this.min = isNumberFinite(min3) ? Math.max(0, min3) : null;
-      this.max = isNumberFinite(max3) ? Math.max(0, max3) : null;
+      this.max = isNumberFinite(max4) ? Math.max(0, max4) : null;
       if (this.options.beginAtZero) {
         this._zero = true;
       }
@@ -12186,30 +12186,30 @@ var rbmViz = (() => {
     handleTickRangeOptions() {
       const { minDefined, maxDefined } = this.getUserBounds();
       let min3 = this.min;
-      let max3 = this.max;
+      let max4 = this.max;
       const setMin = (v) => min3 = minDefined ? min3 : v;
-      const setMax = (v) => max3 = maxDefined ? max3 : v;
+      const setMax = (v) => max4 = maxDefined ? max4 : v;
       const exp = (v, m) => Math.pow(10, Math.floor(log10(v)) + m);
-      if (min3 === max3) {
+      if (min3 === max4) {
         if (min3 <= 0) {
           setMin(1);
           setMax(10);
         } else {
           setMin(exp(min3, -1));
-          setMax(exp(max3, 1));
+          setMax(exp(max4, 1));
         }
       }
       if (min3 <= 0) {
-        setMin(exp(max3, -1));
+        setMin(exp(max4, -1));
       }
-      if (max3 <= 0) {
+      if (max4 <= 0) {
         setMax(exp(min3, 1));
       }
       if (this._zero && this.min !== this._suggestedMin && min3 === exp(this.min, 0)) {
         setMin(exp(min3, -1));
       }
       this.min = min3;
-      this.max = max3;
+      this.max = max4;
     }
     buildTicks() {
       const opts = this.options;
@@ -12278,13 +12278,13 @@ var rbmViz = (() => {
       h: label.length * font.lineHeight
     };
   }
-  function determineLimits(angle, pos, size, min3, max3) {
-    if (angle === min3 || angle === max3) {
+  function determineLimits(angle, pos, size, min3, max4) {
+    if (angle === min3 || angle === max4) {
       return {
         start: pos - size / 2,
         end: pos + size / 2
       };
-    } else if (angle < min3 || angle > max3) {
+    } else if (angle < min3 || angle > max4) {
       return {
         start: pos - size,
         end: pos
@@ -12498,9 +12498,9 @@ var rbmViz = (() => {
       this.drawingArea = Math.floor(Math.min(w, h) / 2);
     }
     determineDataLimits() {
-      const { min: min3, max: max3 } = this.getMinMax(false);
+      const { min: min3, max: max4 } = this.getMinMax(false);
       this.min = isNumberFinite(min3) && !isNaN(min3) ? min3 : 0;
-      this.max = isNumberFinite(max3) && !isNaN(max3) ? max3 : 0;
+      this.max = isNumberFinite(max4) && !isNaN(max4) ? max4 : 0;
       this.handleTickRangeOptions();
     }
     computeTickLimit() {
@@ -12754,21 +12754,21 @@ var rbmViz = (() => {
     }
     return +value;
   }
-  function determineUnitForAutoTicks(minUnit, min3, max3, capacity) {
+  function determineUnitForAutoTicks(minUnit, min3, max4, capacity) {
     const ilen = UNITS.length;
     for (let i = UNITS.indexOf(minUnit); i < ilen - 1; ++i) {
       const interval2 = INTERVALS[UNITS[i]];
       const factor = interval2.steps ? interval2.steps : Number.MAX_SAFE_INTEGER;
-      if (interval2.common && Math.ceil((max3 - min3) / (factor * interval2.size)) <= capacity) {
+      if (interval2.common && Math.ceil((max4 - min3) / (factor * interval2.size)) <= capacity) {
         return UNITS[i];
       }
     }
     return UNITS[ilen - 1];
   }
-  function determineUnitForFormatting(scale, numTicks, minUnit, min3, max3) {
+  function determineUnitForFormatting(scale, numTicks, minUnit, min3, max4) {
     for (let i = UNITS.length - 1; i >= UNITS.indexOf(minUnit); i--) {
       const unit = UNITS[i];
-      if (INTERVALS[unit].common && scale._adapter.diff(max3, min3, unit) >= numTicks - 1) {
+      if (INTERVALS[unit].common && scale._adapter.diff(max4, min3, unit) >= numTicks - 1) {
         return unit;
       }
     }
@@ -12863,13 +12863,13 @@ var rbmViz = (() => {
       const options = this.options;
       const adapter = this._adapter;
       const unit = options.time.unit || "day";
-      let { min: min3, max: max3, minDefined, maxDefined } = this.getUserBounds();
+      let { min: min3, max: max4, minDefined, maxDefined } = this.getUserBounds();
       function _applyBounds(bounds) {
         if (!minDefined && !isNaN(bounds.min)) {
           min3 = Math.min(min3, bounds.min);
         }
         if (!maxDefined && !isNaN(bounds.max)) {
-          max3 = Math.max(max3, bounds.max);
+          max4 = Math.max(max4, bounds.max);
         }
       }
       if (!minDefined || !maxDefined) {
@@ -12879,19 +12879,19 @@ var rbmViz = (() => {
         }
       }
       min3 = isNumberFinite(min3) && !isNaN(min3) ? min3 : +adapter.startOf(Date.now(), unit);
-      max3 = isNumberFinite(max3) && !isNaN(max3) ? max3 : +adapter.endOf(Date.now(), unit) + 1;
-      this.min = Math.min(min3, max3 - 1);
-      this.max = Math.max(min3 + 1, max3);
+      max4 = isNumberFinite(max4) && !isNaN(max4) ? max4 : +adapter.endOf(Date.now(), unit) + 1;
+      this.min = Math.min(min3, max4 - 1);
+      this.max = Math.max(min3 + 1, max4);
     }
     _getLabelBounds() {
       const arr = this.getLabelTimestamps();
       let min3 = Number.POSITIVE_INFINITY;
-      let max3 = Number.NEGATIVE_INFINITY;
+      let max4 = Number.NEGATIVE_INFINITY;
       if (arr.length) {
         min3 = arr[0];
-        max3 = arr[arr.length - 1];
+        max4 = arr[arr.length - 1];
       }
-      return { min: min3, max: max3 };
+      return { min: min3, max: max4 };
     }
     buildTicks() {
       const options = this.options;
@@ -12903,8 +12903,8 @@ var rbmViz = (() => {
         this.max = this._userMax || timestamps[timestamps.length - 1];
       }
       const min3 = this.min;
-      const max3 = this.max;
-      const ticks = _filterBetween(timestamps, min3, max3);
+      const max4 = this.max;
+      const ticks = _filterBetween(timestamps, min3, max4);
       this._unit = timeOpts.unit || (tickOpts.autoSkip ? determineUnitForAutoTicks(timeOpts.minUnit, this.min, this.max, this._getLabelCapacity(min3)) : determineUnitForFormatting(this, ticks.length, timeOpts.minUnit, this.min, this.max));
       this._majorUnit = !tickOpts.major.enabled || this._unit === "year" ? void 0 : determineMajorUnit(this._unit);
       this.initOffsets(timestamps);
@@ -12944,10 +12944,10 @@ var rbmViz = (() => {
     _generate() {
       const adapter = this._adapter;
       const min3 = this.min;
-      const max3 = this.max;
+      const max4 = this.max;
       const options = this.options;
       const timeOpts = options.time;
-      const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min3, max3, this._getLabelCapacity(min3));
+      const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min3, max4, this._getLabelCapacity(min3));
       const stepSize = valueOrDefault(timeOpts.stepSize, 1);
       const weekday = minor === "week" ? timeOpts.isoWeekday : false;
       const hasWeekday = isNumber(weekday) || weekday === true;
@@ -12958,14 +12958,14 @@ var rbmViz = (() => {
         first = +adapter.startOf(first, "isoWeek", weekday);
       }
       first = +adapter.startOf(first, hasWeekday ? "day" : minor);
-      if (adapter.diff(max3, min3, minor) > 1e5 * stepSize) {
-        throw new Error(min3 + " and " + max3 + " are too far apart with stepSize of " + stepSize + " " + minor);
+      if (adapter.diff(max4, min3, minor) > 1e5 * stepSize) {
+        throw new Error(min3 + " and " + max4 + " are too far apart with stepSize of " + stepSize + " " + minor);
       }
       const timestamps = options.ticks.source === "data" && this.getDataTimestamps();
-      for (time = first, count = 0; time < max3; time = +adapter.add(time, stepSize, minor), count++) {
+      for (time = first, count = 0; time < max4; time = +adapter.add(time, stepSize, minor), count++) {
         addTick(ticks, time, timestamps);
       }
-      if (time === max3 || options.bounds === "ticks" || count === 1) {
+      if (time === max4 || options.bounds === "ticks" || count === 1) {
         addTick(ticks, time, timestamps);
       }
       return Object.keys(ticks).sort((a, b) => a - b).map((x) => +x);
@@ -13117,20 +13117,20 @@ var rbmViz = (() => {
       super.initOffsets(timestamps);
     }
     buildLookupTable(timestamps) {
-      const { min: min3, max: max3 } = this;
+      const { min: min3, max: max4 } = this;
       const items = [];
       const table = [];
       let i, ilen, prev, curr, next;
       for (i = 0, ilen = timestamps.length; i < ilen; ++i) {
         curr = timestamps[i];
-        if (curr >= min3 && curr <= max3) {
+        if (curr >= min3 && curr <= max4) {
           items.push(curr);
         }
       }
       if (items.length < 2) {
         return [
           { time: min3, pos: 0 },
-          { time: max3, pos: 1 }
+          { time: max4, pos: 1 }
         ];
       }
       for (i = 0, ilen = items.length; i < ilen; ++i) {
@@ -13904,16 +13904,16 @@ var rbmViz = (() => {
       const { scales: scales2, chartArea } = chart;
       const scale = scales2[options.scaleID];
       const area = { x: chartArea.left, y: chartArea.top, x2: chartArea.right, y2: chartArea.bottom };
-      let min3, max3;
+      let min3, max4;
       if (scale) {
         min3 = scaleValue(scale, options.value, NaN);
-        max3 = scaleValue(scale, options.endValue, min3);
+        max4 = scaleValue(scale, options.endValue, min3);
         if (scale.isHorizontal()) {
           area.x = min3;
-          area.x2 = max3;
+          area.x2 = max4;
         } else {
           area.y = min3;
-          area.y2 = max3;
+          area.y2 = max4;
         }
       } else {
         const xScale = scales2[retrieveScaleID(scales2, options, "xScaleID")];
@@ -14176,16 +14176,16 @@ var rbmViz = (() => {
     };
   }
   function adjustLabelCoordinate(coordinate, labelSizes) {
-    const { size, min: min3, max: max3, padding } = labelSizes;
+    const { size, min: min3, max: max4, padding } = labelSizes;
     const halfSize = size / 2;
-    if (size > max3 - min3) {
-      return (max3 + min3) / 2;
+    if (size > max4 - min3) {
+      return (max4 + min3) / 2;
     }
     if (min3 >= coordinate - padding - halfSize) {
       coordinate = min3 + padding + halfSize;
     }
-    if (max3 <= coordinate + padding + halfSize) {
-      coordinate = max3 - padding - halfSize;
+    if (max4 <= coordinate + padding + halfSize) {
+      coordinate = max4 - padding - halfSize;
     }
     return coordinate;
   }
@@ -15098,10 +15098,10 @@ var rbmViz = (() => {
     const validData = valid === length ? vs : vs.subarray(0, valid);
     validData.sort((a, b) => a === b ? 0 : a < b ? -1 : 1);
     const min3 = validData[0];
-    const max3 = validData[validData.length - 1];
+    const max4 = validData[validData.length - 1];
     return {
       min: min3,
-      max: max3,
+      max: max4,
       missing,
       s: validData
     };
@@ -15116,21 +15116,21 @@ var rbmViz = (() => {
       };
     }
     const min3 = data[0];
-    const max3 = data[data.length - 1];
+    const max4 = data[data.length - 1];
     return {
       min: min3,
-      max: max3,
+      max: max4,
       missing: 0,
       s: data
     };
   }
-  function computeWhiskers(s, valid, min3, max3, { eps, quantiles, coef, whiskersMode }) {
+  function computeWhiskers(s, valid, min3, max4, { eps, quantiles, coef, whiskersMode }) {
     const same = (a, b) => Math.abs(a - b) < eps;
     const { median, q1, q3 } = quantiles(s, valid);
     const iqr = q3 - q1;
     const isCoefValid = typeof coef === "number" && coef > 0;
     let whiskerLow = isCoefValid ? Math.max(min3, q1 - coef * iqr) : min3;
-    let whiskerHigh = isCoefValid ? Math.min(max3, q3 + coef * iqr) : max3;
+    let whiskerHigh = isCoefValid ? Math.min(max4, q3 + coef * iqr) : max4;
     const outlierLow = [];
     for (let i = 0; i < valid; i += 1) {
       const v = s[i];
@@ -15195,7 +15195,7 @@ var rbmViz = (() => {
       whiskersMode: "nearest",
       ...options
     };
-    const { missing, s, min: min3, max: max3 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
+    const { missing, s, min: min3, max: max4 } = fullOptions.validAndSorted ? withSortedData(data) : createSortedData(data);
     const invalid = {
       min: Number.NaN,
       max: Number.NaN,
@@ -15219,12 +15219,12 @@ var rbmViz = (() => {
     }
     const result = {
       min: min3,
-      max: max3,
+      max: max4,
       count: data.length,
       missing,
       items: s,
       ...computeStats(s, valid),
-      ...computeWhiskers(s, valid, min3, max3, fullOptions)
+      ...computeWhiskers(s, valid, min3, max4, fullOptions)
     };
     return {
       ...result,
@@ -15304,15 +15304,15 @@ var rbmViz = (() => {
       q3: r.q3
     };
   }
-  function computeSamples(min3, max3, points) {
-    const range = max3 - min3;
+  function computeSamples(min3, max4, points) {
+    const range = max4 - min3;
     const samples = [];
     const inc = range / points;
-    for (let v = min3; v <= max3 && inc > 0; v += inc) {
+    for (let v = min3; v <= max4 && inc > 0; v += inc) {
       samples.push(v);
     }
-    if (samples[samples.length - 1] !== max3) {
-      samples.push(max3);
+    if (samples[samples.length - 1] !== max4) {
+      samples.push(max4);
     }
     return samples;
   }
@@ -15791,21 +15791,21 @@ var rbmViz = (() => {
     }
     _getBounds(useFinalPosition) {
       if (this.isVertical()) {
-        const { x, width, min: min4, max: max4 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
+        const { x, width, min: min4, max: max5 } = this.getProps(["x", "width", "min", "max"], useFinalPosition);
         const x0 = x - width / 2;
         return {
           left: x0,
-          top: max4,
+          top: max5,
           right: x0 + width,
           bottom: min4
         };
       }
-      const { y, height, min: min3, max: max3 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
+      const { y, height, min: min3, max: max4 } = this.getProps(["y", "height", "min", "max"], useFinalPosition);
       const y0 = y - height / 2;
       return {
         left: min3,
         top: y0,
-        right: max3,
+        right: max4,
         bottom: y0 + height
       };
     }
@@ -15948,9 +15948,9 @@ var rbmViz = (() => {
       scale.axis = config.minStats;
       const { min: min3 } = super.getMinMax(scale, canStack);
       scale.axis = config.maxStats;
-      const { max: max3 } = super.getMinMax(scale, canStack);
+      const { max: max4 } = super.getMinMax(scale, canStack);
       scale.axis = bak;
-      return { min: min3, max: max3 };
+      return { min: min3, max: max4 };
     }
     parsePrimitiveData(meta, data, start2, count) {
       const vScale = meta.vScale;
@@ -16099,6 +16099,10 @@ var rbmViz = (() => {
   };
   ViolinChart.id = ViolinController.id;
 
+  // node_modules/chart.js/auto/auto.mjs
+  Chart.register(...registerables);
+  var auto_default = Chart;
+
   // node_modules/chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js
   var devicePixelRatio = function() {
     if (typeof window !== "undefined") {
@@ -16145,8 +16149,8 @@ var rbmViz = (() => {
         width
       };
     },
-    bound: function(min3, value, max3) {
-      return Math.max(min3, Math.min(value, max3));
+    bound: function(min3, value, max4) {
+      return Math.max(min3, Math.min(value, max4));
     },
     arrayDiff: function(a0, a1) {
       var prev = a0.slice();
@@ -16666,7 +16670,7 @@ var rbmViz = (() => {
   }
   function projected(points, axis) {
     var min3 = MAX_INTEGER;
-    var max3 = MIN_INTEGER;
+    var max4 = MIN_INTEGER;
     var origin = axis.origin;
     var i, pt, vx, vy, dp;
     for (i = 0; i < points.length; ++i) {
@@ -16675,11 +16679,11 @@ var rbmViz = (() => {
       vy = pt.y - origin.y;
       dp = axis.vx * vx + axis.vy * vy;
       min3 = Math.min(min3, dp);
-      max3 = Math.max(max3, dp);
+      max4 = Math.max(max4, dp);
     }
     return {
       min: min3,
-      max: max3
+      max: max4
     };
   }
   function toAxis(p0, p1) {
@@ -17693,9 +17697,54 @@ var rbmViz = (() => {
     return argument;
   }
 
-  // src/util/falsy.js
-  var falsy = [void 0, null, NaN, "", "NA"];
-  var falsy_default = falsy;
+  // src/util/coalesce.js
+  function coalesce(customSetting, defaultSetting) {
+    if ([null, void 0].includes(customSetting)) {
+      return defaultSetting;
+    }
+    if (typeof defaultSetting === "string" && customSetting === "") {
+      return defaultSetting;
+    }
+    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
+      customSetting = [customSetting];
+    }
+    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
+      return defaultSetting;
+    }
+    return customSetting;
+  }
+
+  // src/util/configure.js
+  function configure2(defaults3, _config_, customSettings = null) {
+    const config = { ..._config_ };
+    for (const key in defaults3) {
+      config[key] = coalesce(config[key], defaults3[key]);
+    }
+    if (customSettings !== null) {
+      for (const key in customSettings) {
+        config[key] = customSettings[key]();
+      }
+    }
+    return config;
+  }
+
+  // src/util/checkSelectedGroupIDs.js
+  function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
+    if (["", null, void 0].includes(selectedGroupIDs) || Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0)
+      return [];
+    if (!Array.isArray(selectedGroupIDs))
+      selectedGroupIDs = [selectedGroupIDs];
+    if (Array.isArray(selectedGroupIDs)) {
+      const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
+      for (const selectedGroupID of selectedGroupIDs) {
+        if (actualGroupIDs.includes(selectedGroupID) === false)
+          selectedGroupIDs = selectedGroupIDs.filter(
+            (groupID) => groupID !== selectedGroupID
+          );
+      }
+    }
+    return selectedGroupIDs;
+  }
 
   // node_modules/d3-array/src/ascending.js
   function ascending(a, b) {
@@ -17787,23 +17836,23 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-array/src/max.js
-  function max(values, valueof) {
-    let max3;
+  function max2(values, valueof) {
+    let max4;
     if (valueof === void 0) {
       for (const value of values) {
-        if (value != null && (max3 < value || max3 === void 0 && value >= value)) {
-          max3 = value;
+        if (value != null && (max4 < value || max4 === void 0 && value >= value)) {
+          max4 = value;
         }
       }
     } else {
       let index3 = -1;
       for (let value of values) {
-        if ((value = valueof(value, ++index3, values)) != null && (max3 < value || max3 === void 0 && value >= value)) {
-          max3 = value;
+        if ((value = valueof(value, ++index3, values)) != null && (max4 < value || max4 === void 0 && value >= value)) {
+          max4 = value;
         }
       }
     }
-    return max3;
+    return max4;
   }
 
   // node_modules/d3-array/src/min.js
@@ -19060,15 +19109,15 @@ var rbmViz = (() => {
     if (o instanceof Hsl)
       return o;
     o = o.rgb();
-    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r, g, b), max3 = Math.max(r, g, b), h = NaN, s = max3 - min3, l = (max3 + min3) / 2;
+    var r = o.r / 255, g = o.g / 255, b = o.b / 255, min3 = Math.min(r, g, b), max4 = Math.max(r, g, b), h = NaN, s = max4 - min3, l = (max4 + min3) / 2;
     if (s) {
-      if (r === max3)
+      if (r === max4)
         h = (g - b) / s + (g < b) * 6;
-      else if (g === max3)
+      else if (g === max4)
         h = (b - r) / s + 2;
       else
         h = (r - g) / s + 4;
-      s /= l < 0.5 ? max3 + min3 : 2 - max3 - min3;
+      s /= l < 0.5 ? max4 + min3 : 2 - max4 - min3;
       h *= 60;
     } else {
       s = l > 0 && l < 1 ? 0 : h;
@@ -20232,7 +20281,7 @@ var rbmViz = (() => {
   selection_default.prototype.transition = transition_default2;
 
   // node_modules/d3-brush/src/brush.js
-  var { abs, max: max2, min: min2 } = Math;
+  var { abs, max: max3, min: min2 } = Math;
   function number1(e) {
     return [+e[0], +e[1]];
   }
@@ -20566,98 +20615,6 @@ var rbmViz = (() => {
     return node.__zoom;
   }
 
-  // src/util/colorScheme.js
-  var colorScheme = [
-    {
-      color: "#52C41A",
-      order: 0,
-      description: "Green Flag",
-      flag: [0]
-    },
-    {
-      color: "#FFBF00",
-      order: 1,
-      description: "Amber Flag",
-      flag: [-1, 1]
-    },
-    {
-      color: "#ff0040",
-      order: 2,
-      description: "Red Flag",
-      flag: [-2, 2]
-    },
-    {
-      color: "#aaaaaa",
-      order: 3,
-      description: "No Flag",
-      flag: falsy_default
-    }
-  ];
-  colorScheme.forEach((color3) => {
-    color3.rgba = color2(color3.color);
-  });
-  var amber = colorScheme.find((color3) => color3.flag.includes(1));
-  var red = colorScheme.find((color3) => color3.flag.includes(2));
-  colorScheme.amberRed = {
-    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
-      (amber.rgba.g + red.rgba.g) / 2
-    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
-    order: -1,
-    description: "Amber or Red Flag",
-    flag: [...amber.flag, ...red.flag].sort(ascending)
-  };
-  colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
-  var colorScheme_default = colorScheme;
-
-  // src/util/coalesce.js
-  function coalesce(customSetting, defaultSetting) {
-    if ([null, void 0].includes(customSetting)) {
-      return defaultSetting;
-    }
-    if (typeof defaultSetting === "string" && customSetting === "") {
-      return defaultSetting;
-    }
-    if (Array.isArray(defaultSetting) && !Array.isArray(customSetting)) {
-      customSetting = [customSetting];
-    }
-    if (Array.isArray(defaultSetting) && Array.isArray(customSetting) && customSetting[0] === "") {
-      return defaultSetting;
-    }
-    return customSetting;
-  }
-
-  // src/util/configure.js
-  function configure2(defaults3, _config_, customSettings = null) {
-    const config = { ..._config_ };
-    for (const key in defaults3) {
-      config[key] = coalesce(config[key], defaults3[key]);
-    }
-    if (customSettings !== null) {
-      for (const key in customSettings) {
-        config[key] = customSettings[key]();
-      }
-    }
-    return config;
-  }
-
-  // src/util/checkSelectedGroupIDs.js
-  function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
-    if (["", null, void 0].includes(selectedGroupIDs) || Array.isArray(selectedGroupIDs) && selectedGroupIDs.length === 0)
-      return [];
-    if (!Array.isArray(selectedGroupIDs))
-      selectedGroupIDs = [selectedGroupIDs];
-    if (Array.isArray(selectedGroupIDs)) {
-      const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
-      for (const selectedGroupID of selectedGroupIDs) {
-        if (actualGroupIDs.includes(selectedGroupID) === false)
-          selectedGroupIDs = selectedGroupIDs.filter(
-            (groupID) => groupID !== selectedGroupID
-          );
-      }
-    }
-    return selectedGroupIDs;
-  }
-
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
     const thresholds2 = _thresholds_.map((threshold) => +threshold).sort(ascending);
@@ -20723,12 +20680,12 @@ var rbmViz = (() => {
     defaults3.y = "score";
     defaults3.yType = "linear";
     defaults3.color = "flag";
-    defaults3.colorLabel = _config_[defaults3.color];
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
+    defaults3.displayTitle = false;
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
@@ -20790,6 +20747,10 @@ var rbmViz = (() => {
     return canvas;
   }
 
+  // src/util/falsy.js
+  var falsy = [void 0, null, NaN, "", "NA"];
+  var falsy_default = falsy;
+
   // src/barChart/structureData/mutate.js
   function mutate(_data_, config) {
     const data = _data_.map((d) => {
@@ -20803,6 +20764,49 @@ var rbmViz = (() => {
     }).sort((a, b) => b.y - a.y);
     return data;
   }
+
+  // src/util/colorScheme.js
+  var colorScheme = [
+    {
+      color: "#52C41A",
+      order: 0,
+      description: "Green Flag",
+      flag: [0]
+    },
+    {
+      color: "#FFBF00",
+      order: 1,
+      description: "Amber Flag",
+      flag: [-1, 1]
+    },
+    {
+      color: "#ff0040",
+      order: 2,
+      description: "Red Flag",
+      flag: [-2, 2]
+    },
+    {
+      color: "#aaaaaa",
+      order: 3,
+      description: "No Flag",
+      flag: falsy_default
+    }
+  ];
+  colorScheme.forEach((color3) => {
+    color3.rgba = color2(color3.color);
+  });
+  var amber = colorScheme.find((color3) => color3.flag.includes(1));
+  var red = colorScheme.find((color3) => color3.flag.includes(2));
+  colorScheme.amberRed = {
+    color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+      (amber.rgba.g + red.rgba.g) / 2
+    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
+    order: -1,
+    description: "Amber or Red Flag",
+    flag: [...amber.flag, ...red.flag].sort(ascending)
+  };
+  colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
+  var colorScheme_default = colorScheme;
 
   // src/barChart/structureData/scriptableOptions/backgroundColor.js
   function backgroundColor(context, options) {
@@ -20878,7 +20882,7 @@ var rbmViz = (() => {
     }
   }
 
-  // src/barChart/plugins/annotations.js
+  // src/barChart/getPlugins/annotations.js
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
@@ -20918,7 +20922,21 @@ var rbmViz = (() => {
     return annotations5;
   }
 
-  // src/barChart/plugins/legend.js
+  // src/barChart/getPlugins/dataLabels.js
+  function dataLabels(config) {
+    return {
+      align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      color: "black",
+      display: (context) => {
+        return context.chart.getDatasetMeta(0).data[0].width >= context.chart.options.font.size - 3;
+      },
+      formatter: (value, context) => context.chart.data.labels[context.dataIndex],
+      rotation: -90
+    };
+  }
+
+  // src/barChart/getPlugins/legend.js
   function legend(config) {
     return {
       display: !config.thresholds,
@@ -20930,6 +20948,14 @@ var rbmViz = (() => {
         }
       },
       position: "top"
+    };
+  }
+
+  // src/barChart/getPlugins/title.js
+  function title(config) {
+    return {
+      display: config.displayTitle,
+      text: `${config.metric} by ${config.group}`
     };
   }
 
@@ -21005,7 +21031,7 @@ var rbmViz = (() => {
     };
   }
 
-  // src/barChart/plugins/tooltip.js
+  // src/barChart/getPlugins/tooltip.js
   function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
     tooltipAesthetics.boxWidth = 10;
@@ -21024,32 +21050,19 @@ var rbmViz = (() => {
     };
   }
 
-  // src/barChart/plugins/chartLabels.js
-  function chartLabels(config) {
-    return {
-      align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
-      anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
-      color: "black",
-      display: (context) => {
-        return context.chart.getDatasetMeta(0).data[0].width >= context.chart.options.font.size - 3;
-      },
-      formatter: (value, context) => context.chart.data.labels[context.dataIndex],
-      rotation: -90
-    };
-  }
-
-  // src/barChart/plugins.js
-  function plugins2(config) {
-    const plugins6 = {
+  // src/barChart/getPlugins.js
+  function getPlugins(config) {
+    const getPlugins3 = {
       annotation: {
         annotations: annotations(config),
         clip: true
       },
-      datalabels: chartLabels(config),
+      datalabels: dataLabels(config),
       legend: legend(config),
+      title: title(config),
       tooltip: tooltip(config)
     };
-    return plugins6;
+    return getPlugins3;
   }
 
   // src/util/getDefaultScales.js
@@ -21118,10 +21131,6 @@ var rbmViz = (() => {
     return plugin2;
   }
 
-  // node_modules/chart.js/auto/auto.mjs
-  Chart.register(...registerables);
-  var auto_default = Chart;
-
   // src/util/triggerTooltip.js
   function triggerTooltip(chart) {
     const tooltip5 = chart.tooltip;
@@ -21146,43 +21155,35 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateConfig.js
-  function updateConfig(chart, _config_, _thresholds_, update = false) {
+  function updateConfig(chart, _config_, _thresholds_, updateChart = true, updateTooltip = true) {
     const config = configure3(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
       _thresholds_
     );
-    chart.options.plugins = plugins2(config);
-    chart.options.scales = getScales(config);
+    const plugins4 = getPlugins(config);
+    const scales2 = getScales(config);
     chart.data.config = config;
-    if (update)
+    chart.options.plugins = plugins4;
+    chart.options.scales = scales2;
+    if (updateChart)
       chart.update();
-    triggerTooltip(chart);
+    if (updateTooltip)
+      triggerTooltip(chart);
     return config;
   }
 
   // src/barChart/updateData.js
   function updateData(chart, _data_, _config_, _thresholds_) {
-    const hoverCallbackWrapper = chart.data.config.hoverCallbackWrapper;
-    _config_.hoverCallbackWrapper = hoverCallbackWrapper;
-    const clickCallbackWrapper = chart.data.config.clickCallbackWrapper;
-    _config_.clickCallbackWrapper = clickCallbackWrapper;
-    chart.data.config = updateConfig(chart, _config_, _thresholds_);
-    chart.data.config.hoverEvent = addCustomEvent(
-      chart.canvas,
-      hoverCallbackWrapper,
-      "hover"
-    );
-    chart.data.config.clickEvent = addCustomEvent(
-      chart.canvas,
-      clickCallbackWrapper,
-      "click"
-    );
-    chart.data.datasets = structureData(_data_, chart.data.config);
+    const config = updateConfig(chart, _config_, _thresholds_, false, false);
+    const datasets = structureData(_data_, config);
+    chart.data.config = config;
+    chart.data.datasets = datasets;
     chart.update();
+    triggerTooltip(chart);
   }
 
-  // src/barChart/updateOption.js
+  // src/util/updateOption.js
   function updateOption(chart, option, value) {
     const objPath = option.split(".");
     let obj = chart.options;
@@ -21193,10 +21194,11 @@ var rbmViz = (() => {
         obj[objPath[i]] = value;
     }
     chart.update();
+    triggerTooltip(chart);
   }
 
   // src/barChart.js
-  function barChart(_element_, _data_, _config_ = {}, _thresholds_ = null) {
+  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null) {
     checkInput({
       parameter: "_data_",
       argument: _data_,
@@ -21221,7 +21223,6 @@ var rbmViz = (() => {
     const options = {
       animation: false,
       clip: false,
-      events: ["click", "mousemove", "mouseout"],
       interaction: {
         intersect: false,
         mode: "x"
@@ -21234,25 +21235,27 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins2(config),
+      plugins: getPlugins(config),
       scales: getScales(config, datasets)
     };
     const chart = new auto_default(canvas, {
       data: {
         datasets,
         config,
-        _thresholds_,
-        _data_
+        _data_,
+        _config_,
+        _thresholds_
       },
       options,
       plugins: [plugin, displayWhiteBackground()]
     });
-    chart.helpers = {
-      updateData,
-      updateConfig,
-      updateOption
-    };
     canvas.chart = chart;
+    chart.helpers = {
+      updateConfig,
+      updateData,
+      updateOption,
+      triggerTooltip
+    };
     triggerTooltip(chart);
     return chart;
   }
@@ -21266,7 +21269,6 @@ var rbmViz = (() => {
     defaults3.y = "numerator";
     defaults3.yType = "linear";
     defaults3.color = "flag";
-    defaults3.colorScheme = colorScheme_default;
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -21333,7 +21335,7 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "scatter") {
-      const color3 = config.colorScheme[datum2.stratum].rgba;
+      const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.includes(datum2.groupid) ? 1 : config.selectedGroupIDs.length === 0 ? 0.5 : 0.25;
       return color3 + "";
     }
@@ -21346,7 +21348,7 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "scatter") {
-      const color3 = config.colorScheme[datum2.stratum].rgba;
+      const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
       return config.selectedGroupIDs.includes(datum2.groupid) ? "black" : color3 + "";
     }
@@ -21413,10 +21415,10 @@ var rbmViz = (() => {
           (flag2) => flag2.threshold === group2.threshold
         );
         const flag = group2.flag.flag;
-        group2.label = config.colorScheme.find(
+        group2.label = colorScheme_default.find(
           (color4) => color4.flag.includes(flag)
         ).description;
-        const color3 = config.colorScheme[Math.abs(flag)].color;
+        const color3 = colorScheme_default[Math.abs(flag)].color;
         group2.borderColor = color3;
         const backgroundColor4 = color2(color3);
         backgroundColor4.opacity = 0.75;
@@ -21446,11 +21448,11 @@ var rbmViz = (() => {
     const data = mutate2(_data_, config);
     const datasets = [
       {
-        type: "scatter",
         data,
         label: "",
         listenClick: true,
         listenHover: true,
+        type: "scatter",
         ...scriptableOptions2()
       }
     ];
@@ -21459,7 +21461,7 @@ var rbmViz = (() => {
       bounds.forEach((bound) => {
         datasets.push(bound);
       });
-    if (data.some((d) => ["", NaN, null, void 0].includes(d.flag)))
+    if (data.some((d) => falsy_default.includes(d.flag)))
       datasets.push({
         type: "line",
         label: "No Flag"
@@ -21467,7 +21469,7 @@ var rbmViz = (() => {
     return datasets;
   }
 
-  // src/scatterPlot/plugins/legend.js
+  // src/scatterPlot/getPlugins/legend.js
   function legend2(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     return {
@@ -21487,15 +21489,15 @@ var rbmViz = (() => {
     };
   }
 
-  // src/scatterPlot/plugins/title.js
-  function title(config) {
+  // src/scatterPlot/getPlugins/title.js
+  function title2(config) {
     return {
       display: config.displayTitle,
       text: `${config.metric} by ${config.group}`
     };
   }
 
-  // src/scatterPlot/plugins/tooltip.js
+  // src/scatterPlot/getPlugins/tooltip.js
   function tooltip2(config) {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
@@ -21537,14 +21539,14 @@ var rbmViz = (() => {
     };
   }
 
-  // src/scatterPlot/plugins.js
-  function plugins3(config) {
-    const plugins6 = {
+  // src/scatterPlot/getPlugins.js
+  function getPlugins2(config) {
+    const plugins4 = {
       legend: legend2(config),
-      title: title(config),
+      title: title2(config),
       tooltip: tooltip2(config)
     };
-    return plugins6;
+    return plugins4;
   }
 
   // src/scatterPlot/getScales.js
@@ -21570,10 +21572,10 @@ var rbmViz = (() => {
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "scatter").data
     );
-    const plugins6 = plugins3(config);
+    const plugins4 = getPlugins2(config);
     const scales2 = getScales2(config);
     chart.data.config = config;
-    chart.options.plugins = plugins6;
+    chart.options.plugins = plugins4;
     chart.options.scales = scales2;
     if (updateChart)
       chart.update();
@@ -21588,20 +21590,6 @@ var rbmViz = (() => {
     const datasets = structureData2(_data_, config, _bounds_);
     chart.data.config = config;
     chart.data.datasets = datasets;
-    chart.update();
-    triggerTooltip(chart);
-  }
-
-  // src/scatterPlot/updateOption.js
-  function updateOption2(chart, option, value) {
-    const objPath = option.split(".");
-    let obj = chart.options;
-    for (let i = 0; i < objPath.length; i++) {
-      if (i < objPath.length - 1)
-        obj = obj[objPath[i]];
-      else
-        obj[objPath[i]] = value;
-    }
     chart.update();
     triggerTooltip(chart);
   }
@@ -21631,29 +21619,29 @@ var rbmViz = (() => {
     const datasets = structureData2(_data_, config, _bounds_);
     const options = {
       animation: false,
-      events: ["click", "mousemove", "mouseout"],
-      interaction: {
-        mode: "point"
-      },
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins3(config),
+      plugins: getPlugins2(config),
       scales: getScales2(config)
     };
     const chart = new auto_default(canvas, {
       data: {
         datasets,
-        config
+        config,
+        _data_,
+        _config_,
+        _bounds_
       },
       options,
       plugins: [displayWhiteBackground()]
     });
     canvas.chart = chart;
     chart.helpers = {
-      updateData: updateData2,
       updateConfig: updateConfig2,
-      updateOption: updateOption2
+      updateData: updateData2,
+      updateOption,
+      triggerTooltip
     };
     triggerTooltip(chart);
     return chart;
@@ -21785,7 +21773,7 @@ var rbmViz = (() => {
     const xMax = data.length - 1;
     const xValue = xMax + xMax / 50;
     const yMin = min(data, (d) => +d[config.y]);
-    const yMax = max(data, (d) => +d[config.y]);
+    const yMax = max2(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
     const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
@@ -21853,13 +21841,13 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/plugins.js
-  function plugins4(config, _data_) {
-    const plugins6 = {
+  function plugins2(config, _data_) {
+    const plugins4 = {
       annotation: annotations3(config, _data_),
       legend: legend3(config),
       tooltip: tooltip3(config)
     };
-    return plugins6;
+    return plugins4;
   }
 
   // src/sparkline/getScales.js
@@ -21868,7 +21856,7 @@ var rbmViz = (() => {
     scales2.x.display = false;
     scales2.x.type = config.xType;
     const yMin = min(data, (d) => d.y);
-    const yMax = max(data, (d) => d.y);
+    const yMax = max2(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     scales2.y.display = false;
     scales2.y.min = config.yMin !== void 0 ? config.yMin : yMin - range * 0.35;
@@ -21904,7 +21892,7 @@ var rbmViz = (() => {
       clickCallbackWrapper,
       "click"
     );
-    chart.options.plugins = plugins4(
+    chart.options.plugins = plugins2(
       chart.data.config,
       chart.data.datasets[0].data
     );
@@ -21929,7 +21917,7 @@ var rbmViz = (() => {
         }
       },
       maintainAspectRatio: config.maintainAspectRatio,
-      plugins: plugins4(config, datasets[0].data),
+      plugins: plugins2(config, datasets[0].data),
       scales: getScales3(config, datasets[0].data)
     };
     const chart = new auto_default(canvas, {
@@ -22499,7 +22487,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/plugins.js
-  function plugins5(config) {
+  function plugins3(config) {
     return {
       annotation: {
         annotations: annotations4(config)
@@ -22567,7 +22555,7 @@ var rbmViz = (() => {
       _data_
     };
     chart.options.scales = getScales4(config);
-    chart.options.plugins = plugins5(config);
+    chart.options.plugins = plugins3(config);
     chart.update();
   }
 
@@ -22659,7 +22647,7 @@ var rbmViz = (() => {
       maintainAspectRatio: config.maintainAspectRatio,
       onClick,
       onHover,
-      plugins: plugins5(config),
+      plugins: plugins3(config),
       responsive: true,
       scales: getScales4(config, _data_)
     };
@@ -22683,12 +22671,12 @@ var rbmViz = (() => {
   // src/main.js
   Chart.register(
     annotation,
+    BoxAndWiskers,
+    BoxPlotController,
     CategoryScale,
     LinearScale,
-    BoxPlotController,
-    BoxAndWiskers,
-    ViolinController,
-    Violin
+    Violin,
+    ViolinController
   );
   var rbmViz = {
     barChart: barChart.bind({

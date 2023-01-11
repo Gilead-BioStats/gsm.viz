@@ -1,5 +1,5 @@
 import configure from './configure';
-import getPlugins from './plugins';
+import getPlugins from './getPlugins';
 import getScales from './getScales';
 import triggerTooltip from '../util/triggerTooltip';
 
@@ -8,8 +8,8 @@ import triggerTooltip from '../util/triggerTooltip';
  *
  * @param {Object} chart - Chart.js chart object
  * @param {Object} _config_ - chart configuration and metadata
- * @param {boolean} update - call `chart.update`?
- * @param {boolean} triggerTooltip - trigger tooltip?
+ * @param {boolean} updateChart - call `chart.update` after updating chart configuration?
+ * @param {boolean} updateTooltip - trigger tooltip after updating chart configuration?
  *
  * @returns {Object} updated chart configuration
  */
@@ -26,6 +26,7 @@ export default function updateConfig(chart, _config_, updateChart = true, update
     // Update chart scales.
     const scales = getScales(config);
 
+    // Update chart object.
     chart.data.config = config;
     chart.options.plugins = plugins;
     chart.options.scales = scales;

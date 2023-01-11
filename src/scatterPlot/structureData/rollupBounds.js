@@ -1,5 +1,6 @@
 import { color as d3color, rollup, rollups } from 'd3';
 import mapThresholdsToFlags from '../../util/mapThresholdsToFlags';
+import colorScheme from '../../util/colorScheme';
 
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
@@ -34,10 +35,10 @@ export default function rollupBounds(_bounds_, config) {
             );
             const flag = group.flag.flag;
 
-            group.label = config.colorScheme.find((color) =>
+            group.label = colorScheme.find((color) =>
                 color.flag.includes(flag)
             ).description;
-            const color = config.colorScheme[Math.abs(flag)].color;
+            const color = colorScheme[Math.abs(flag)].color;
             group.borderColor = color;
             const backgroundColor = d3color(color);
             backgroundColor.opacity = 0.75;

@@ -1,4 +1,3 @@
-import colorScheme from '../util/colorScheme';
 import configureAll from '../util/configure';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
 import coalesce from '../util/coalesce';
@@ -19,7 +18,6 @@ export default function configure(_config_, _data_) {
 
     // color
     defaults.color = 'flag';
-    defaults.colorScheme = colorScheme;
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -40,6 +38,7 @@ export default function configure(_config_, _data_) {
         ),
     });
 
+    // configuration-driven settings
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
