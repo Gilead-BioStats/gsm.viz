@@ -38,6 +38,7 @@ export default function scatterPlot(
     _config_ = {},
     _bounds_ = null
 ) {
+    console.log(_config_);
     // Check inputs.
     checkInput({
         parameter: '_data_',

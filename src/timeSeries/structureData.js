@@ -114,7 +114,9 @@ export default function structureData(_data_, config, _intervals_) {
             getAggregateLine(data, config, labels),
             {
                 type: 'scatter',
-                label: `${config.aggregateLabel} Average`,
+                label: config.discreteUnit === 'KRI'
+                    ? `${config.group} Average`
+                    : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
                 boxWidth: 24,

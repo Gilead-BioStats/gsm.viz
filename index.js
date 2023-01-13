@@ -21602,6 +21602,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
+    console.log(_config_);
     checkInput({
       parameter: "_data_",
       argument: _data_,
@@ -22340,7 +22341,7 @@ var rbmViz = (() => {
         aggregateLine(data, config, labels),
         {
           type: "scatter",
-          label: `${config.aggregateLabel} Average`,
+          label: config.discreteUnit === "KRI" ? `${config.group} Average` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -22395,7 +22396,7 @@ var rbmViz = (() => {
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
-    legendOrder.unshift(`${config.aggregateLabel} Average`);
+    legendOrder.unshift(`${config.group} Average`);
     legendOrder.unshift(`${config.group} Distribution`);
     if (config.group === "Study")
       return {
@@ -22437,7 +22438,9 @@ var rbmViz = (() => {
           },
           sort: function(a, b, chartData) {
             const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
-            return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
+            console.log(a.text, /^Site (?!Distribution)/i.test(a.text));
+            console.log(b.text, /^Site (?!Distribution)/i.test(a.text));
+            return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) && /^Site (?!Average)/i.test(b.text) ? -1 : order;
           },
           usePointStyle: true
         },
