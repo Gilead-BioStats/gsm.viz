@@ -22279,7 +22279,7 @@ var rbmViz = (() => {
           ...intervalLines(_intervals_, config, labels),
           {
             type: "scatter",
-            label: "Study Average",
+            label: "",
             pointStyle: "line",
             pointStyleWidth: 24,
             boxWidth: 24,
@@ -22378,7 +22378,7 @@ var rbmViz = (() => {
             position: Math.sign(+x.flag) >= 0 ? "end" : "start",
             color: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
-            content: `QTL: ${config.thresholds[0].threshold}`,
+            content: `QTL: ${config.thresholds[0].threshold.toString().replace(/^(.*\.\d{3})(\d+)$/, "$1")}`,
             display: true,
             font: {
               size: 12

@@ -30,7 +30,7 @@ export default function structureData(_data_, config, _intervals_) {
                 ...getIntervalLines(_intervals_, config, labels),
                 {
                     type: 'scatter',
-                    label: 'Study Average',
+                    label: '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
                     boxWidth: 24,
