@@ -10,11 +10,13 @@ import getFlagAmber from './structureData/flagAmber';
 import getFlagRed from './structureData/flagRed';
 import getDistribution from './structureData/distribution';
 
+import getThresholdLines from './structureData/getThresholdLines';
+
 import getAggregateLine from './structureData/aggregateLine';
 
 import colorScheme from '../util/colorScheme';
 
-export default function structureData(_data_, config, _intervals_) {
+export default function structureData(_data_, config, _thresholds_ = null, _intervals_ = null) {
     const data = mutate(_data_, config, _intervals_);
 
     // x-axis labels
@@ -44,6 +46,7 @@ export default function structureData(_data_, config, _intervals_) {
                     backgroundColor: color.color,
                     borderColor: color.color,
                 })),
+                ...getThresholdLines(_thresholds_, config),
             ];
         } else {
             datasets = [
@@ -74,6 +77,7 @@ export default function structureData(_data_, config, _intervals_) {
                 getFlagRed(data, config, labels),
                 getFlagAmber(data, config, labels),
                 getDistribution(data, config, labels),
+                ...getThresholdLines(_thresholds_, config),
             ];
         }
     } else if (config.dataType === 'discrete') {

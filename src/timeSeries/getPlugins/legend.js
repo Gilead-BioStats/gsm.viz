@@ -61,8 +61,6 @@ export default function legend(config) {
                     const order =
                         legendOrder.indexOf(a.text) -
                         legendOrder.indexOf(b.text);
-                    console.log(a.text, /^Site (?!Distribution)/i.test(a.text));
-                    console.log(b.text, /^Site (?!Distribution)/i.test(a.text));
 
                     return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text)
                         ? 1

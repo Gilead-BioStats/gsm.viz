@@ -22211,6 +22211,49 @@ var rbmViz = (() => {
     return dataset;
   }
 
+  // src/timeSeries/structureData/getThresholdLines.js
+  function getThresholdLines(_thresholds_, config) {
+    const thresholds2 = [
+      ...rollup(
+        _thresholds_.filter((d) => d.param === "vThreshold"),
+        (group2) => {
+          const flags = checkThresholds({}, group2);
+          flags.forEach((flag) => {
+            flag.snapshot_date = group2[0].snapshot_date;
+            flag.snapshot_date = group2[0].snapshot_date;
+            flag.x = flag.snapshot_date;
+            flag.y = flag.threshold;
+            flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
+              (color3) => color3.flag.includes(flag.flag)
+            );
+          });
+          return flags;
+        },
+        (d) => d.snapshot_date
+      )
+    ].flatMap((d) => d[1]);
+    const thresholdData = [
+      ...rollup(
+        thresholds2,
+        (group2) => ({
+          adjustScaleRange: false,
+          borderColor: group2[0].color.color,
+          borderDash: [2],
+          borderWidth: 1,
+          data: group2,
+          hoverRadius: 0,
+          label: "",
+          purpose: "annotation",
+          pointRadius: 0,
+          stepped: "middle",
+          type: "line"
+        }),
+        (d) => d.flag
+      )
+    ].map((d) => d[1]);
+    return thresholdData;
+  }
+
   // src/timeSeries/structureData/aggregateLine.js
   function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
@@ -22269,7 +22312,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config, _intervals_) {
+  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
     const data = mutate4(_data_, config, _intervals_);
     const labels = getLabels(data, config);
     let datasets = [];
@@ -22293,7 +22336,8 @@ var rbmViz = (() => {
             label: color3.description,
             backgroundColor: color3.color,
             borderColor: color3.color
-          }))
+          })),
+          ...getThresholdLines(_thresholds_, config)
         ];
       } else {
         datasets = [
@@ -22315,7 +22359,8 @@ var rbmViz = (() => {
           })),
           flagRed(data, config, labels),
           flagAmber(data, config, labels),
-          distribution(data, config, labels)
+          distribution(data, config, labels),
+          ...getThresholdLines(_thresholds_, config)
         ];
       }
     } else if (config.dataType === "discrete") {
@@ -22438,8 +22483,6 @@ var rbmViz = (() => {
           },
           sort: function(a, b, chartData) {
             const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
-            console.log(a.text, /^Site (?!Distribution)/i.test(a.text));
-            console.log(b.text, /^Site (?!Distribution)/i.test(a.text));
             return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) && /^Site (?!Average)/i.test(b.text) ? -1 : order;
           },
           usePointStyle: true
@@ -22591,48 +22634,7 @@ var rbmViz = (() => {
     });
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const data = structureData4(_data_, config, _intervals_);
-    if (Array.isArray(_thresholds_) && config.variableThresholds) {
-      const thresholds2 = [
-        ...rollup(
-          _thresholds_.filter((d) => d.param === "vThreshold"),
-          (group2) => {
-            const flags = checkThresholds({}, group2);
-            flags.forEach((flag) => {
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.x = flag.snapshot_date;
-              flag.y = flag.threshold;
-              flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
-                (color3) => color3.flag.includes(flag.flag)
-              );
-            });
-            return flags;
-          },
-          (d) => d.snapshot_date
-        )
-      ].flatMap((d) => d[1]);
-      const thresholdData = [
-        ...rollup(
-          thresholds2,
-          (group2) => ({
-            adjustScaleRange: false,
-            borderColor: group2[0].color.color,
-            borderDash: [2],
-            borderWidth: 1,
-            data: group2,
-            hoverRadius: 0,
-            label: "",
-            purpose: "annotation",
-            pointRadius: 0,
-            stepped: "middle",
-            type: "line"
-          }),
-          (d) => d.flag
-        )
-      ].map((d) => d[1]);
-      data.datasets = [...data.datasets, ...thresholdData];
-    }
+    const data = structureData4(_data_, config, _thresholds_, _intervals_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
