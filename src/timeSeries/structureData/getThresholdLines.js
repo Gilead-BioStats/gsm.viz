@@ -1,8 +1,8 @@
-import { rollup } from 'd3';
+import { max, rollup } from 'd3';
 import checkThresholds from '../../util/checkThresholds';
 import colorScheme from '../../util/colorScheme';
 
-export default function getThresholdLines(_thresholds_, config) {
+export default function getThresholdLines(_thresholds_, config, labels) {
     let thresholdData = [null];
 
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
@@ -33,25 +33,45 @@ export default function getThresholdLines(_thresholds_, config) {
             ),
         ].flatMap((d) => d[1]);
 
+        const latestSnapshotDate = max(labels);
         thresholdData = [
             ...rollup(
                 thresholds,
-                (group) => ({
-                    adjustScaleRange: false,
-                    borderColor: group[0].color.color,
-                    //function (d) {
-                    //    return d.color.color;
-                    //},
-                    borderDash: [2],
-                    borderWidth: 1,
-                    data: group,
-                    hoverRadius: 0,
-                    label: '',
-                    purpose: 'annotation',
-                    pointRadius: 0,
-                    stepped: 'middle', // 'before', 'middle', 'after'
-                    type: 'line',
-                }),
+                (group) => {
+                    const dataset = {
+                        adjustScaleRange: false,
+                        borderColor: group[0].color.color,
+                        //function (d) {
+                        //    return d.color.color;
+                        //},
+                        borderDash: [2],
+                        borderWidth: 1,
+                        data: group,
+                        hoverRadius: 0,
+                        label: '',
+                        purpose: 'annotation',
+                        pointRadius: 0,
+                        stepped: 'middle', // 'before', 'middle', 'after'
+                        type: 'line',
+                    };
+
+                    const snapshotDates = [...new Set(
+                        group.map(d => d[ config.x ])
+                    )];
+                    const snapshotDate = max(snapshotDates);
+                    if (snapshotDate < latestSnapshotDate) {
+                        const threshold = {...dataset.data.find(
+                            d => d[ config.x ] === snapshotDate
+                        )};
+
+                        threshold[ config.x ] = latestSnapshotDate;
+                        threshold.x = latestSnapshotDate;
+
+                        dataset.data.push(threshold);
+                    }
+
+                    return dataset;
+                },
                 (d) => d.flag
             ),
         ].map((d) => d[1]);

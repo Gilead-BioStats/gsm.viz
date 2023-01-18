@@ -43,7 +43,7 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
                     backgroundColor: color.color,
                     borderColor: color.color,
                 })),
-                ...getThresholdLines(thresholds, config),
+                ...getThresholdLines(thresholds, config, labels),
             ];
         } else {
             datasets = [
@@ -74,7 +74,7 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
                 getFlagRed(data, config, labels),
                 getFlagAmber(data, config, labels),
                 getDistribution(data, config, labels),
-                ...getThresholdLines(thresholds, config),
+                ...getThresholdLines(thresholds, config, labels),
             ];
         }
     } else if (config.dataType === 'discrete') {

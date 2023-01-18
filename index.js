@@ -22289,7 +22289,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/getThresholdLines.js
-  function getThresholdLines(_thresholds_, config) {
+  function getThresholdLines(_thresholds_, config, labels) {
     let thresholdData = [null];
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
       const thresholds2 = [
@@ -22311,22 +22311,38 @@ var rbmViz = (() => {
           (d) => d.snapshot_date
         )
       ].flatMap((d) => d[1]);
+      const latestSnapshotDate = max(labels);
       thresholdData = [
         ...rollup(
           thresholds2,
-          (group2) => ({
-            adjustScaleRange: false,
-            borderColor: group2[0].color.color,
-            borderDash: [2],
-            borderWidth: 1,
-            data: group2,
-            hoverRadius: 0,
-            label: "",
-            purpose: "annotation",
-            pointRadius: 0,
-            stepped: "middle",
-            type: "line"
-          }),
+          (group2) => {
+            const dataset = {
+              adjustScaleRange: false,
+              borderColor: group2[0].color.color,
+              borderDash: [2],
+              borderWidth: 1,
+              data: group2,
+              hoverRadius: 0,
+              label: "",
+              purpose: "annotation",
+              pointRadius: 0,
+              stepped: "middle",
+              type: "line"
+            };
+            const snapshotDates = [...new Set(
+              group2.map((d) => d[config.x])
+            )];
+            const snapshotDate = max(snapshotDates);
+            if (snapshotDate < latestSnapshotDate) {
+              const threshold = { ...dataset.data.find(
+                (d) => d[config.x] === snapshotDate
+              ) };
+              threshold[config.x] = latestSnapshotDate;
+              threshold.x = latestSnapshotDate;
+              dataset.data.push(threshold);
+            }
+            return dataset;
+          },
           (d) => d.flag
         )
       ].map((d) => d[1]);
@@ -22416,7 +22432,7 @@ var rbmViz = (() => {
             backgroundColor: color3.color,
             borderColor: color3.color
           })),
-          ...getThresholdLines(thresholds2, config)
+          ...getThresholdLines(thresholds2, config, labels)
         ];
       } else {
         datasets = [
@@ -22439,7 +22455,7 @@ var rbmViz = (() => {
           flagRed(data, config, labels),
           flagAmber(data, config, labels),
           distribution(data, config, labels),
-          ...getThresholdLines(thresholds2, config)
+          ...getThresholdLines(thresholds2, config, labels)
         ];
       }
     } else if (config.dataType === "discrete") {
