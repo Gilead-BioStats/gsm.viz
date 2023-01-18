@@ -1,5 +1,5 @@
 {
-  "TODO": "figure out why continuous time series is trying to filter CI data",
+  "TODO": "",
   "name": "rbm-viz",
   "version": "1.0.1",
   "description": "web-based data visualization for risk-based monitoring",

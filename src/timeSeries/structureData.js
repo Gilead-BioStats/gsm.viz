@@ -131,11 +131,8 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
         ];
     }
 
-    // Chart.js data object
-    const chartData = {
-        labels,
-        datasets: datasets.filter((dataset) => dataset !== null),
-    };
+    datasets = datasets.filter((dataset) => dataset !== null);
+    datasets.labels = labels;
 
-    return chartData;
+    return datasets;
 }

@@ -5,7 +5,7 @@ import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // check inputs > configure > add canvas, structure data
-import checkInput from './data/checkInput';
+import checkInputs from './barChart/checkInputs';
 import configure from './barChart/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './barChart/structureData';
@@ -41,26 +41,8 @@ export default function barChart(
     _config_ = {},
     _thresholds_ = null
 ) {
-    checkInput({
-        parameter: '_data_',
-        argument: _data_,
-        schemaName: 'results',
-        module: 'barChart',
-    });
-
-    checkInput({
-        parameter: '_config_',
-        argument: _config_,
-        schemaName: 'analysisMetadata',
-        module: 'barChart',
-    });
-
-    checkInput({
-        parameter: '_thresholds_',
-        argument: _thresholds_,
-        schemaName: 'analysisParameters',
-        module: 'barChart',
-    });
+    // Check input data against data schema.
+    checkInputs(_data_, _config_, _thresholds_);
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_, _thresholds_);
@@ -99,6 +81,8 @@ export default function barChart(
         data: {
             datasets, // required by Chart.js
             config,
+
+            // inputs
             _data_,
             _config_,
             _thresholds_,

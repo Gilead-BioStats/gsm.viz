@@ -20574,6 +20574,28 @@ var rbmViz = (() => {
     return argument;
   }
 
+  // src/barChart/checkInputs.js
+  function checkInputs(_data_, _config_, _thresholds_) {
+    checkInput({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: "results",
+      module: "barChart"
+    });
+    checkInput({
+      parameter: "_config_",
+      argument: _config_,
+      schemaName: "analysisMetadata",
+      module: "barChart"
+    });
+    checkInput({
+      parameter: "_thresholds_",
+      argument: _thresholds_,
+      schemaName: "analysisParameters",
+      module: "barChart"
+    });
+  }
+
   // src/util/coalesce.js
   function coalesce(customSetting, defaultSetting) {
     if ([null, void 0].includes(customSetting)) {
@@ -21206,24 +21228,7 @@ var rbmViz = (() => {
 
   // src/barChart.js
   function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null) {
-    checkInput({
-      parameter: "_data_",
-      argument: _data_,
-      schemaName: "results",
-      module: "barChart"
-    });
-    checkInput({
-      parameter: "_config_",
-      argument: _config_,
-      schemaName: "analysisMetadata",
-      module: "barChart"
-    });
-    checkInput({
-      parameter: "_thresholds_",
-      argument: _thresholds_,
-      schemaName: "analysisParameters",
-      module: "barChart"
-    });
+    checkInputs(_data_, _config_, _thresholds_);
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData(_data_, config);
@@ -21265,6 +21270,28 @@ var rbmViz = (() => {
     };
     triggerTooltip(chart);
     return chart;
+  }
+
+  // src/scatterPlot/checkInputs.js
+  function checkInputs2(_data_, _config_, _bounds_) {
+    checkInput({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: "results",
+      module: "scatterPlot"
+    });
+    checkInput({
+      parameter: "_config_",
+      argument: _config_,
+      schemaName: "analysisMetadata",
+      module: "scatterPlot"
+    });
+    checkInput({
+      parameter: "_bounds_",
+      argument: _bounds_,
+      schemaName: "resultsPredicted",
+      module: "scatterPlot"
+    });
   }
 
   // src/scatterPlot/configure.js
@@ -21602,25 +21629,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
-    console.log(_config_);
-    checkInput({
-      parameter: "_data_",
-      argument: _data_,
-      schemaName: "results",
-      module: "scatterPlot"
-    });
-    checkInput({
-      parameter: "_config_",
-      argument: _config_,
-      schemaName: "analysisMetadata",
-      module: "scatterPlot"
-    });
-    checkInput({
-      parameter: "_bounds_",
-      argument: _bounds_,
-      schemaName: "resultsPredicted",
-      module: "scatterPlot"
-    });
+    checkInputs2(_data_, _config_, _bounds_);
     const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData2(_data_, config, _bounds_);
@@ -21652,6 +21661,29 @@ var rbmViz = (() => {
     };
     triggerTooltip(chart);
     return chart;
+  }
+
+  // src/sparkline/checkInputs.js
+  function checkInputs3(_data_, _config_, _thresholds_) {
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    checkInput({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: discrete ? "flagCounts" : "results",
+      module: "sparkline"
+    });
+    checkInput({
+      parameter: "_config_",
+      argument: discrete ? null : _config_,
+      schemaName: "analysisMetadata",
+      module: "sparkline"
+    });
+    checkInput({
+      parameter: "_thresholds_",
+      argument: _thresholds_,
+      schemaName: "analysisParameters",
+      module: "sparkline"
+    });
   }
 
   // src/sparkline/configure.js
@@ -21895,6 +21927,7 @@ var rbmViz = (() => {
 
   // src/sparkline.js
   function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = []) {
+    checkInputs3(_data_, _config_, _thresholds_);
     const config = configure5(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData3(_data_, config);
@@ -21911,8 +21944,8 @@ var rbmViz = (() => {
     };
     const chart = new auto_default(canvas, {
       data: {
-        labels: datasets.labels,
         datasets,
+        labels: datasets.labels,
         config,
         _data_,
         _config_,
@@ -21927,6 +21960,35 @@ var rbmViz = (() => {
       updateOption
     };
     return chart;
+  }
+
+  // src/timeSeries/checkInputs.js
+  function checkInputs4(_data_, _config_, _thresholds_, _intervals_) {
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    checkInput({
+      parameter: "_data_",
+      argument: _data_,
+      schemaName: discrete ? "flagCounts" : "results",
+      module: "timeSeries"
+    });
+    checkInput({
+      parameter: "_config_",
+      argument: discrete ? null : _config_,
+      schemaName: "analysisMetadata",
+      module: "timeSeries"
+    });
+    checkInput({
+      parameter: "_thresholds_",
+      argument: _thresholds_,
+      schemaName: "analysisParameters",
+      module: "timeSeries"
+    });
+    checkInput({
+      parameter: "_intervals_",
+      argument: _intervals_,
+      schemaName: "resultsVertical",
+      module: "timeSeries"
+    });
   }
 
   // src/timeSeries/configure.js
@@ -22213,44 +22275,47 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/getThresholdLines.js
   function getThresholdLines(_thresholds_, config) {
-    const thresholds2 = [
-      ...rollup(
-        _thresholds_.filter((d) => d.param === "vThreshold"),
-        (group2) => {
-          const flags = checkThresholds({}, group2);
-          flags.forEach((flag) => {
-            flag.snapshot_date = group2[0].snapshot_date;
-            flag.snapshot_date = group2[0].snapshot_date;
-            flag.x = flag.snapshot_date;
-            flag.y = flag.threshold;
-            flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
-              (color3) => color3.flag.includes(flag.flag)
-            );
-          });
-          return flags;
-        },
-        (d) => d.snapshot_date
-      )
-    ].flatMap((d) => d[1]);
-    const thresholdData = [
-      ...rollup(
-        thresholds2,
-        (group2) => ({
-          adjustScaleRange: false,
-          borderColor: group2[0].color.color,
-          borderDash: [2],
-          borderWidth: 1,
-          data: group2,
-          hoverRadius: 0,
-          label: "",
-          purpose: "annotation",
-          pointRadius: 0,
-          stepped: "middle",
-          type: "line"
-        }),
-        (d) => d.flag
-      )
-    ].map((d) => d[1]);
+    let thresholdData = [null];
+    if (Array.isArray(_thresholds_) && config.variableThresholds) {
+      const thresholds2 = [
+        ...rollup(
+          _thresholds_.filter((d) => d.param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
+          (group2) => {
+            const flags = checkThresholds({}, group2);
+            flags.forEach((flag) => {
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.snapshot_date = group2[0].snapshot_date;
+              flag.x = flag.snapshot_date;
+              flag.y = flag.threshold;
+              flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
+                (color3) => color3.flag.includes(flag.flag)
+              );
+            });
+            return flags;
+          },
+          (d) => d.snapshot_date
+        )
+      ].flatMap((d) => d[1]);
+      thresholdData = [
+        ...rollup(
+          thresholds2,
+          (group2) => ({
+            adjustScaleRange: false,
+            borderColor: group2[0].color.color,
+            borderDash: [2],
+            borderWidth: 1,
+            data: group2,
+            hoverRadius: 0,
+            label: "",
+            purpose: "annotation",
+            pointRadius: 0,
+            stepped: "middle",
+            type: "line"
+          }),
+          (d) => d.flag
+        )
+      ].map((d) => d[1]);
+    }
     return thresholdData;
   }
 
@@ -22396,11 +22461,9 @@ var rbmViz = (() => {
         }
       ];
     }
-    const chartData = {
-      labels,
-      datasets: datasets.filter((dataset) => dataset !== null)
-    };
-    return chartData;
+    datasets = datasets.filter((dataset) => dataset !== null);
+    datasets.labels = labels;
+    return datasets;
   }
 
   // src/timeSeries/getPlugins/annotations.js
@@ -22543,51 +22606,17 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _thresholds_ = null, _analysis_ = null) {
+  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
-    const data = structureData4(_data_, config, _analysis_);
-    if (Array.isArray(_thresholds_)) {
-      const thresholds2 = [
-        ...rollup(
-          _thresholds_.filter((d) => d.param === "vThreshold"),
-          (group2) => {
-            const flags = checkThresholds({}, group2);
-            flags.forEach((flag) => {
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.x = flag.snapshot_date;
-              flag.y = flag.threshold;
-              flag.color = colorScheme_default.find(
-                (color3) => color3.flag.includes(flag.flag)
-              );
-            });
-            return flags;
-          },
-          (d) => d.snapshot_date
-        )
-      ].flatMap((d) => d[1]);
-      const thresholdData = [
-        ...rollup(
-          thresholds2,
-          (group2) => ({
-            borderColor: group2[0].color.color,
-            borderDash: [2],
-            borderWidth: 1,
-            data: group2,
-            label: "",
-            radius: 0,
-            stepped: "before",
-            type: "line"
-          }),
-          (d) => d.flag
-        )
-      ].map((d) => d[1]);
-      data.datasets = [...data.datasets, ...thresholdData];
-    }
+    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
     chart.data = {
-      ...data,
+      datasets,
+      labels: datasets.labels,
       config,
-      _data_
+      _data_,
+      _config_,
+      _thresholds_,
+      _intervals_
     };
     chart.options.scales = getScales4(config);
     chart.options.plugins = getPlugins4(config);
@@ -22597,44 +22626,26 @@ var rbmViz = (() => {
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = selectedGroupIDs;
-    this.data.config = configure6(this.data.config, this.data._data_);
+    this.data.config = configure6(
+      this.data.config,
+      this.data._data_,
+      this.data._thresholds_,
+      this.data._intervals_
+    );
     this.data.datasets = structureData4(
       this.data._data_,
-      this.data.config
-    ).datasets;
+      this.data.config,
+      this.data._thresholds_
+    );
     this.update();
   }
 
   // src/timeSeries.js
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
-    checkInput({
-      parameter: "_data_",
-      argument: _data_,
-      schemaName: discrete ? "flagCounts" : "results",
-      module: "timeSeries"
-    });
-    checkInput({
-      parameter: "_config_",
-      argument: discrete ? null : _config_,
-      schemaName: "analysisMetadata",
-      module: "timeSeries"
-    });
-    checkInput({
-      parameter: "_thresholds_",
-      argument: _thresholds_,
-      schemaName: "analysisParameters",
-      module: "timeSeries"
-    });
-    checkInput({
-      parameter: "_intervals_",
-      argument: _intervals_,
-      schemaName: "resultsVertical",
-      module: "timeSeries"
-    });
+    checkInputs4(_data_, _config_, _thresholds_, _intervals_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const data = structureData4(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
@@ -22646,7 +22657,8 @@ var rbmViz = (() => {
     };
     const chart = new auto_default(canvas, {
       data: {
-        ...data,
+        datasets,
+        labels: datasets.labels,
         config,
         _data_,
         _config_,
