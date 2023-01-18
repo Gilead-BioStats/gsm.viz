@@ -40,7 +40,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            parameters.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
             resultsVertical
         );
 

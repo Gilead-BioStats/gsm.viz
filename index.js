@@ -22039,29 +22039,44 @@ var rbmViz = (() => {
     return config;
   }
 
+  // src/timeSeries/structureData/getLabels.js
+  function getLabels(data, config) {
+    const labels = [...new Set(data.map((d) => d[config.x]))];
+    return labels;
+  }
+
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config, _intervals_) {
-    return _data_.map((d) => {
+  function mutate4(_data_, config, _thresholds_, _intervals_) {
+    const data = _data_.map((d) => {
       const datum2 = { ...d };
       if ([void 0, null].includes(_intervals_) === false) {
-        const intervals = _intervals_.filter(
+        const intervals2 = _intervals_.filter(
           (interval2) => interval2.snapshot_date === datum2.snapshot_date
         );
-        datum2.lowerCI = intervals.find(
+        datum2.lowerCI = intervals2.find(
           (interval2) => interval2.param === "LowCI"
         )?.value;
-        datum2.upperCI = intervals.find(
+        datum2.upperCI = intervals2.find(
           (interval2) => interval2.param === "UpCI"
         )?.value;
       }
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
-  }
-
-  // src/timeSeries/structureData/getLabels.js
-  function getLabels(data, config) {
-    const labels = [...new Set(data.map((d) => d[config.x]))];
-    return labels;
+    const labels = getLabels(data, config);
+    let thresholds2 = null;
+    if (Array.isArray(_thresholds_) && config.variableThresholds) {
+      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
+    }
+    let intervals = null;
+    if (Array.isArray(_intervals_)) {
+      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
+    }
+    return {
+      data,
+      labels,
+      thresholds: thresholds2,
+      intervals
+    };
   }
 
   // src/timeSeries/structureData/identityLine.js
@@ -22378,14 +22393,13 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
-    const data = mutate4(_data_, config, _intervals_);
-    const labels = getLabels(data, config);
+    const { data, labels, thresholds: thresholds2, intervals } = mutate4(_data_, config, _thresholds_, _intervals_);
     let datasets = [];
     if (config.dataType !== "discrete") {
-      if (_intervals_ !== null) {
+      if (intervals !== null) {
         datasets = [
           identityLine(data, config, labels),
-          ...intervalLines(_intervals_, config, labels),
+          ...intervalLines(intervals, config, labels),
           {
             type: "scatter",
             label: "",
@@ -22402,7 +22416,7 @@ var rbmViz = (() => {
             backgroundColor: color3.color,
             borderColor: color3.color
           })),
-          ...getThresholdLines(_thresholds_, config)
+          ...getThresholdLines(thresholds2, config)
         ];
       } else {
         datasets = [
@@ -22425,7 +22439,7 @@ var rbmViz = (() => {
           flagRed(data, config, labels),
           flagAmber(data, config, labels),
           distribution(data, config, labels),
-          ...getThresholdLines(_thresholds_, config)
+          ...getThresholdLines(thresholds2, config)
         ];
       }
     } else if (config.dataType === "discrete") {

@@ -17,19 +17,16 @@ import getAggregateLine from './structureData/aggregateLine';
 import colorScheme from '../util/colorScheme';
 
 export default function structureData(_data_, config, _thresholds_ = null, _intervals_ = null) {
-    const data = mutate(_data_, config, _intervals_);
-
-    // x-axis labels
-    const labels = getLabels(data, config);
+    const { data, labels, thresholds, intervals } = mutate(_data_, config, _thresholds_, _intervals_);
 
     // datasets
     let datasets = [];
     if (config.dataType !== 'discrete') {
         // TODO: find a better way to differentiate distribution and CI instances
-        if (_intervals_ !== null) {
+        if (intervals !== null) {
             datasets = [
                 getIdentityLine(data, config, labels),
-                ...getIntervalLines(_intervals_, config, labels),
+                ...getIntervalLines(intervals, config, labels),
                 {
                     type: 'scatter',
                     label: '',
@@ -46,7 +43,7 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
                     backgroundColor: color.color,
                     borderColor: color.color,
                 })),
-                ...getThresholdLines(_thresholds_, config),
+                ...getThresholdLines(thresholds, config),
             ];
         } else {
             datasets = [
@@ -77,7 +74,7 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
                 getFlagRed(data, config, labels),
                 getFlagAmber(data, config, labels),
                 getDistribution(data, config, labels),
-                ...getThresholdLines(_thresholds_, config),
+                ...getThresholdLines(thresholds, config),
             ];
         }
     } else if (config.dataType === 'discrete') {
