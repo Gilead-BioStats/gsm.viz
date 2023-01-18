@@ -2,9 +2,8 @@
 import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
-// TODO: add input checking
 // check inputs > configure > add canvas, structure data
-// import checkInput from './data/checkInput';
+import checkInputs from './sparkline/checkInputs';
 import configure from './sparkline/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './sparkline/structureData';
@@ -36,6 +35,9 @@ export default function sparkline(
     _config_ = {},
     _thresholds_ = []
 ) {
+    // Check data inputs against data schema.
+    checkInputs(_data_, _config_, _thresholds_);
+
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_, _thresholds_);
 
@@ -61,9 +63,11 @@ export default function sparkline(
     // Instantiate Chart.js chart object.
     const chart = new Chart(canvas, {
         data: {
-            labels: datasets.labels, // required by Chart.js
             datasets, // required by Chart.js
+            labels: datasets.labels, // required by Chart.js
             config,
+
+            // inputs
             _data_,
             _config_,
             _thresholds_,

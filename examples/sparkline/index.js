@@ -44,7 +44,7 @@ Promise.all(dataPromises)
         });
 
         // configuration
-        const workflow = filterOnWorkflowID(datasets[1], workflowID);
+        const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.nSnapshots = 25;
 
         // threshold annotations

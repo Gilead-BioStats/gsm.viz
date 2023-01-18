@@ -30,16 +30,14 @@ const TSDiscreteContainer = () => {
         workflow: filterWorkflow(selectedGroup),
     });
 
-    console.log(params.results);
-
     let pseudocode = `rbmViz.timeSeries(
-    document.getElementById(container), 
-    data, 
-    workflow: {
-        y: 'n_at_risk_or_flagged', 
-        selectedGroupIDs: selectedGroup
-    }
-)`;
+        document.getElementById(container), 
+        data, 
+        workflow: {
+            y: 'n_at_risk_or_flagged', 
+            selectedGroupIDs: selectedGroup
+        }
+    )`;
 
     return (
         <div className="chart-container-ts">

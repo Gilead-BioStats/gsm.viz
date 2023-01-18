@@ -23,7 +23,7 @@ Promise.all(dataPromises)
         );
 
         // configuration
-        const workflow = datasets[1].filter((d) => d.workflowid === workflowid);
+        const workflow = datasets[1].find((d) => d.workflowid === workflowid);
         workflow.y = 'metric';
         workflow.nSnapshots = 25;
 

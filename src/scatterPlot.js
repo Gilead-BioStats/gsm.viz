@@ -2,7 +2,7 @@
 import Chart from 'chart.js/auto';
 
 // check inputs > configure > add canvas, structure data
-import checkInput from './data/checkInput';
+import checkInputs from './scatterPlot/checkInputs';
 import configure from './scatterPlot/configure';
 import addCanvas from './util/addCanvas';
 import structureData from './scatterPlot/structureData';
@@ -38,27 +38,8 @@ export default function scatterPlot(
     _config_ = {},
     _bounds_ = null
 ) {
-    // Check inputs.
-    checkInput({
-        parameter: '_data_',
-        argument: _data_,
-        schemaName: 'results',
-        module: 'scatterPlot',
-    });
-
-    checkInput({
-        parameter: '_config_',
-        argument: _config_,
-        schemaName: 'analysisMetadata',
-        module: 'scatterPlot',
-    });
-
-    checkInput({
-        parameter: '_bounds_',
-        argument: _bounds_,
-        schemaName: 'resultsPredicted',
-        module: 'scatterPlot',
-    });
+    // Check input data against data schema.
+    checkInputs(_data_, _config_, _bounds_);
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_);
@@ -82,8 +63,10 @@ export default function scatterPlot(
     // Instantiate Chart.js chart object.
     const chart = new Chart(canvas, {
         data: {
-            datasets,
+            datasets, // required by Chart.js
             config,
+
+            // inputs
             _data_,
             _config_,
             _bounds_,
@@ -92,10 +75,10 @@ export default function scatterPlot(
         plugins: [displayWhiteBackground()],
     });
 
-    // Attach chart to canvas element.
+    // Attach chart object to canvas element.
     canvas.chart = chart;
 
-    // Attach update methods to chart.
+    // Attach update methods to chart object.
     chart.helpers = {
         updateConfig,
         updateData,

@@ -22,7 +22,7 @@ Promise.all(dataPromises)
         const results = datasets[0].filter((d) => d.workflowid === workflowID);
 
         // configuration
-        const workflow = datasets[1].filter((d) => d.workflowid === workflowID);
+        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
         workflow.y = 'score';
         workflow.nSnapshots = 10;
 

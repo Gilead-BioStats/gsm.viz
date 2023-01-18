@@ -35,7 +35,9 @@ const ScatterPlot = ({
             }
 
             // highlight selected group
-            inst.data.config.selectedGroupIDs = selectedGroup;
+            inst.data.config.selectedGroupIDs = selectedGroup !== ''
+                ? [selectedGroup]
+                : [];
 
             // TODO - Paritosh said we might not need this, looks like we do? Why?
             inst.update();

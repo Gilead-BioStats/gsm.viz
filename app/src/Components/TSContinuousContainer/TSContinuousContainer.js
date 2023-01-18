@@ -29,7 +29,8 @@ const filterWorkflow = (kri, selectedGroup) => {
 const filterMeta = (kri) => {
     return metaAll
         .filter((d) => /^kri/.test(d.workflowid))
-        .filter((d) => d.workflowid === kri);
+        .filter((d) => d.workflowid === kri)
+        .map((d) => ({ ...d, value: d.default }));
 };
 
 const TSContinuousContainer = () => {

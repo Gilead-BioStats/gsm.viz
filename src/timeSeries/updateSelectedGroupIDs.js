@@ -9,10 +9,16 @@ import structureData from './structureData';
  */
 export default function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = selectedGroupIDs;
-    this.data.config = configure(this.data.config, this.data._data_);
+    this.data.config = configure(
+        this.data.config,
+        this.data._data_,
+        this.data._thresholds_,
+        this.data._intervals_
+    );
     this.data.datasets = structureData(
         this.data._data_,
-        this.data.config
-    ).datasets;
+        this.data.config,
+        this.data._thresholds_
+    );
     this.update();
 }

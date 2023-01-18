@@ -19,7 +19,9 @@ const filterWorkflow = (kri) => {
 };
 
 const filterThresholds = (kri) => {
-    return parametersAll.filter((d) => d.workflowid === kri);
+    return parametersAll
+        .filter((d) => d.workflowid === kri)
+        .map((d) => ({ ...d, value: d.default }));
 };
 
 const BarChartContainer = () => {

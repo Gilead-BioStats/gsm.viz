@@ -5,7 +5,7 @@ export default function legend(config) {
         .sort((a, b) => a.order - b.order)
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
-    legendOrder.unshift(`${config.aggregateLabel} Average`);
+    legendOrder.unshift(`${config.group} Average`);
     legendOrder.unshift(`${config.group} Distribution`);
 
     if (config.group === 'Study')
@@ -62,9 +62,9 @@ export default function legend(config) {
                         legendOrder.indexOf(a.text) -
                         legendOrder.indexOf(b.text);
 
-                    return /^Site (?!Distribution)/i.test(a.text)
+                    return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text)
                         ? 1
-                        : /^Site (?!Distribution)/i.test(b.text)
+                        : /^Site (?!Distribution)/i.test(b.text) && /^Site (?!Average)/i.test(b.text)
                         ? -1
                         : order;
                 },
