@@ -20,7 +20,9 @@ const BarChart = ({ params, selectedGroup, setInstance }) => {
                 config,
                 thresholds
             );
-            inst.data.config.selectedGroupIDs = selectedGroup;
+            inst.data.config.selectedGroupIDs = selectedGroup !== ''
+                ? [selectedGroup]
+                : [];
             inst.update();
             setInstance(inst);
         }

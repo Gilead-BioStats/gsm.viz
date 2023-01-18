@@ -13,7 +13,7 @@ import getScales from './getScales';
  * @param {Array} _data_ - KRI/QTL results where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _thresholds_ - KRI/QTL parameters where each array item is an object of key-value pairs
- * @param {Array} _analysis_ - additional statistical output where each array item is an object of key-value pairs
+ * @param {Array} _intervals_ - additional statistical output where each array item is an object of key-value pairs
  *
  */
 export default function updateData(
@@ -21,63 +21,20 @@ export default function updateData(
     _data_,
     _config_,
     _thresholds_ = null,
-    _analysis_ = null
+    _intervals_ = null
 ) {
     const config = configure(_config_, _data_, _thresholds_);
 
-    const data = structureData(_data_, config, _analysis_);
-
-    // TODO: move this crap to structureData
-    if (Array.isArray(_thresholds_)) {
-        const thresholds = [
-            ...rollup(
-                _thresholds_.filter((d) => d.param === 'vThreshold'),
-                (group) => {
-                    const flags = checkThresholds({}, group);
-
-                    flags.forEach((flag) => {
-                        flag.snapshot_date = group[0].snapshot_date;
-                        flag.snapshot_date = group[0].snapshot_date;
-                        flag.x = flag.snapshot_date;
-                        flag.y = flag.threshold;
-                        flag.color = colorScheme.find((color) =>
-                            color.flag.includes(flag.flag)
-                        );
-                    });
-
-                    return flags;
-                },
-                (d) => d.snapshot_date
-            ),
-        ].flatMap((d) => d[1]);
-
-        const thresholdData = [
-            ...rollup(
-                thresholds,
-                (group) => ({
-                    borderColor: group[0].color.color,
-                    //function (d) {
-                    //    return d.color.color;
-                    //},
-                    borderDash: [2],
-                    borderWidth: 1,
-                    data: group,
-                    label: '',
-                    radius: 0,
-                    stepped: 'before', // 'after'
-                    type: 'line',
-                }),
-                (d) => d.flag
-            ),
-        ].map((d) => d[1]);
-
-        data.datasets = [...data.datasets, ...thresholdData];
-    }
+    const datasets = structureData(_data_, config, _thresholds_, _intervals_);
 
     chart.data = {
-        ...data,
+        datasets,
+        labels: datasets.labels,
         config,
         _data_,
+        _config_,
+        _thresholds_,
+        _intervals_,
     };
 
     // might matter that scales come before plugins

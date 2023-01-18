@@ -10,27 +10,36 @@ import getFlagAmber from './structureData/flagAmber';
 import getFlagRed from './structureData/flagRed';
 import getDistribution from './structureData/distribution';
 
+import getThresholdLines from './structureData/getThresholdLines';
+
 import getAggregateLine from './structureData/aggregateLine';
 
 import colorScheme from '../util/colorScheme';
 
-export default function structureData(_data_, config, _intervals_) {
-    const data = mutate(_data_, config, _intervals_);
-
-    // x-axis labels
-    const labels = getLabels(data, config);
+export default function structureData(
+    _data_,
+    config,
+    _thresholds_ = null,
+    _intervals_ = null
+) {
+    const { data, labels, thresholds, intervals } = mutate(
+        _data_,
+        config,
+        _thresholds_,
+        _intervals_
+    );
 
     // datasets
     let datasets = [];
     if (config.dataType !== 'discrete') {
         // TODO: find a better way to differentiate distribution and CI instances
-        if (_intervals_ !== null) {
+        if (intervals !== null) {
             datasets = [
                 getIdentityLine(data, config, labels),
-                ...getIntervalLines(_intervals_, config, labels),
+                ...getIntervalLines(intervals, config, labels),
                 {
                     type: 'scatter',
-                    label: 'Study Average',
+                    label: '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
                     boxWidth: 24,
@@ -44,6 +53,7 @@ export default function structureData(_data_, config, _intervals_) {
                     backgroundColor: color.color,
                     borderColor: color.color,
                 })),
+                ...getThresholdLines(thresholds, config, labels),
             ];
         } else {
             datasets = [
@@ -74,6 +84,7 @@ export default function structureData(_data_, config, _intervals_) {
                 getFlagRed(data, config, labels),
                 getFlagAmber(data, config, labels),
                 getDistribution(data, config, labels),
+                ...getThresholdLines(thresholds, config, labels),
             ];
         }
     } else if (config.dataType === 'discrete') {
@@ -114,7 +125,10 @@ export default function structureData(_data_, config, _intervals_) {
             getAggregateLine(data, config, labels),
             {
                 type: 'scatter',
-                label: `${config.aggregateLabel} Average`,
+                label:
+                    config.discreteUnit === 'KRI'
+                        ? `${config.group} Average`
+                        : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
                 boxWidth: 24,
@@ -125,11 +139,8 @@ export default function structureData(_data_, config, _intervals_) {
         ];
     }
 
-    // Chart.js data object
-    const chartData = {
-        labels,
-        datasets: datasets.filter((dataset) => dataset !== null),
-    };
+    datasets = datasets.filter((dataset) => dataset !== null);
+    datasets.labels = labels;
 
-    return chartData;
+    return datasets;
 }

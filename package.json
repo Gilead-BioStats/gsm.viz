@@ -1,7 +1,7 @@
 {
   "TODO": "",
   "name": "rbm-viz",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
@@ -17,7 +17,7 @@
     "test": "jest",
     "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
     "transpile": "babel index.js > index.es5.js",
-    "update-data": "node examples/data/helpers/csv-to-json.js && cp examples/data/*.json examples/app/src/data",
+    "update-data": "node examples/data/helpers/csv-to-json.js && cp examples/data/*.json app/src/data && cp examples/data/*.json examples/app/src/data",
     "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch"
   },
   "repository": {
