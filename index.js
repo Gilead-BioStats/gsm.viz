@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20970,7 +20969,6 @@ var rbmViz = (() => {
 
   // src/barChart/getPlugins/legend.js
   function legend(config) {
-    console.log(config);
     return {
       display: !config.thresholds,
       labels: {
@@ -21207,13 +21205,14 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_) {
+  function updateData(chart, _data_, _config_, _thresholds_, updateTooltip = true) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
     const datasets = structureData(_data_, config);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
-    triggerTooltip(chart);
+    if (updateTooltip)
+      triggerTooltip(chart);
   }
 
   // src/util/updateOption.js
@@ -22333,14 +22332,16 @@ var rbmViz = (() => {
               stepped: "middle",
               type: "line"
             };
-            const snapshotDates = [...new Set(
-              group2.map((d) => d[config.x])
-            )];
+            const snapshotDates = [
+              ...new Set(group2.map((d) => d[config.x]))
+            ];
             const snapshotDate = max(snapshotDates);
             if (snapshotDate < latestSnapshotDate) {
-              const threshold = { ...dataset.data.find(
-                (d) => d[config.x] === snapshotDate
-              ) };
+              const threshold = {
+                ...dataset.data.find(
+                  (d) => d[config.x] === snapshotDate
+                )
+              };
               threshold[config.x] = latestSnapshotDate;
               threshold.x = latestSnapshotDate;
               dataset.data.push(threshold);
@@ -22413,7 +22414,12 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
-    const { data, labels, thresholds: thresholds2, intervals } = mutate4(_data_, config, _thresholds_, _intervals_);
+    const { data, labels, thresholds: thresholds2, intervals } = mutate4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_
+    );
     let datasets = [];
     if (config.dataType !== "discrete") {
       if (intervals !== null) {

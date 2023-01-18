@@ -11,7 +11,7 @@ import triggerTooltip from '../util/triggerTooltip';
  * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
  *
  */
-export default function updateData(chart, _data_, _config_, _thresholds_) {
+export default function updateData(chart, _data_, _config_, _thresholds_, updateTooltip = true) {
     // Update chart configuration.
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
 
@@ -24,5 +24,6 @@ export default function updateData(chart, _data_, _config_, _thresholds_) {
     chart.update();
 
     // Trigger tooltip, if a value is currently selected.
-    triggerTooltip(chart);
+    if (updateTooltip)
+        triggerTooltip(chart);
 }
