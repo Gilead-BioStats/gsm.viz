@@ -34,7 +34,7 @@ export default function updateData(
         _data_,
         _config_,
         _thresholds_,
-        _intervals_
+        _intervals_,
     };
 
     // might matter that scales come before plugins

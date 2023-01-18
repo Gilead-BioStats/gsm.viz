@@ -16,8 +16,18 @@ import getAggregateLine from './structureData/aggregateLine';
 
 import colorScheme from '../util/colorScheme';
 
-export default function structureData(_data_, config, _thresholds_ = null, _intervals_ = null) {
-    const { data, labels, thresholds, intervals } = mutate(_data_, config, _thresholds_, _intervals_);
+export default function structureData(
+    _data_,
+    config,
+    _thresholds_ = null,
+    _intervals_ = null
+) {
+    const { data, labels, thresholds, intervals } = mutate(
+        _data_,
+        config,
+        _thresholds_,
+        _intervals_
+    );
 
     // datasets
     let datasets = [];
@@ -115,9 +125,10 @@ export default function structureData(_data_, config, _thresholds_ = null, _inte
             getAggregateLine(data, config, labels),
             {
                 type: 'scatter',
-                label: config.discreteUnit === 'KRI'
-                    ? `${config.group} Average`
-                    : '',
+                label:
+                    config.discreteUnit === 'KRI'
+                        ? `${config.group} Average`
+                        : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
                 boxWidth: 24,

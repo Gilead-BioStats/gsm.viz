@@ -28,7 +28,7 @@ export default function mutate(_data_, config, _thresholds_, _intervals_) {
     let thresholds = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
         thresholds = _thresholds_
-            .filter(d => labels.includes(d[config.x]))
+            .filter((d) => labels.includes(d[config.x]))
             .map((d) => ({ ...d }))
             .sort((a, b) => ascending(a[config.x], b[config.x]));
     }
@@ -36,7 +36,7 @@ export default function mutate(_data_, config, _thresholds_, _intervals_) {
     let intervals = null;
     if (Array.isArray(_intervals_)) {
         intervals = _intervals_
-            .filter(d => labels.includes(d[config.x]))
+            .filter((d) => labels.includes(d[config.x]))
             .map((d) => ({ ...d }))
             .sort((a, b) => ascending(a[config.x], b[config.x]));
     }
@@ -45,6 +45,6 @@ export default function mutate(_data_, config, _thresholds_, _intervals_) {
         data,
         labels,
         thresholds,
-        intervals
+        intervals,
     };
 }

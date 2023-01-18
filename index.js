@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20727,6 +20728,8 @@ var rbmViz = (() => {
     config.xLabel = coalesce(_config_.xLabel, config["group"]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
+    if (config.y === "metric")
+      delete config.thresholds;
     if (config.hoverCallbackWrapper === void 0)
       config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
     if (config.clickCallbackWrapper === void 0)
@@ -20967,6 +20970,7 @@ var rbmViz = (() => {
 
   // src/barChart/getPlugins/legend.js
   function legend(config) {
+    console.log(config);
     return {
       display: !config.thresholds,
       labels: {

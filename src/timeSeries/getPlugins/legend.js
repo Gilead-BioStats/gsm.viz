@@ -62,9 +62,11 @@ export default function legend(config) {
                         legendOrder.indexOf(a.text) -
                         legendOrder.indexOf(b.text);
 
-                    return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text)
+                    return /^Site (?!Distribution)/i.test(a.text) &&
+                        /^Site (?!Average)/i.test(a.text)
                         ? 1
-                        : /^Site (?!Distribution)/i.test(b.text) && /^Site (?!Average)/i.test(b.text)
+                        : /^Site (?!Distribution)/i.test(b.text) &&
+                          /^Site (?!Average)/i.test(b.text)
                         ? -1
                         : order;
                 },

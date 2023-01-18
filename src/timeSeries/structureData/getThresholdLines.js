@@ -10,7 +10,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
             ...rollup(
                 _thresholds_
                     .filter((d) => d.param === 'vThreshold')
-                    .sort((a,b) => a < b ? -1 : b < a ? 1 : 0),
+                    .sort((a, b) => (a < b ? -1 : b < a ? 1 : 0)),
                 (group) => {
                     const flags = checkThresholds({}, group);
 
@@ -23,8 +23,8 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                             flags.length === 1
                                 ? colorScheme.amberRed
                                 : colorScheme.find((color) =>
-                                        color.flag.includes(flag.flag)
-                                    );
+                                      color.flag.includes(flag.flag)
+                                  );
                     });
 
                     return flags;
@@ -55,16 +55,18 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                         type: 'line',
                     };
 
-                    const snapshotDates = [...new Set(
-                        group.map(d => d[ config.x ])
-                    )];
+                    const snapshotDates = [
+                        ...new Set(group.map((d) => d[config.x])),
+                    ];
                     const snapshotDate = max(snapshotDates);
                     if (snapshotDate < latestSnapshotDate) {
-                        const threshold = {...dataset.data.find(
-                            d => d[ config.x ] === snapshotDate
-                        )};
+                        const threshold = {
+                            ...dataset.data.find(
+                                (d) => d[config.x] === snapshotDate
+                            ),
+                        };
 
-                        threshold[ config.x ] = latestSnapshotDate;
+                        threshold[config.x] = latestSnapshotDate;
                         threshold.x = latestSnapshotDate;
 
                         dataset.data.push(threshold);

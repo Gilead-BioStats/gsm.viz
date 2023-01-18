@@ -1,6 +1,11 @@
 import checkInput from '../data/checkInput';
 
-export default function checkInputs(_data_, _config_, _thresholds_, _intervals_) {
+export default function checkInputs(
+    _data_,
+    _config_,
+    _thresholds_,
+    _intervals_
+) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
 
     checkInput({
