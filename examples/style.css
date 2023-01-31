@@ -13,5 +13,6 @@ fieldset {
 }
 .multiple {
     width: 33%;
+    height: 25vw;
     display:inline-block
 }
