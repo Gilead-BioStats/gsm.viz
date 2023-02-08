@@ -35,6 +35,7 @@ Promise.all(dataPromises)
                       selectedGroupIDs: '173',
                   };
         config.y = 'n_at_risk_or_flagged';
+        //config.aggregateLabel = 'Country';
 
         // visualization
         const instance = rbmViz.default.timeSeries(
