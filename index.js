@@ -20970,9 +20970,8 @@ var rbmViz = (() => {
 
   // src/barChart/getPlugins/legend.js
   function legend(config) {
-    console.log(config);
     return {
-      display: !config.thresholds,
+      display: true,
       labels: {
         boxHeight: 10,
         boxWidth: 10,
@@ -22075,6 +22074,21 @@ var rbmViz = (() => {
     if (Array.isArray(_intervals_)) {
       intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
+    rollup(
+      data,
+      (group2) => {
+        group2.sort((a, b) => {
+          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
+          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+          return selected !== 0 ? selected : groupid;
+        }).forEach((d, i) => {
+          d.duplicate = i > 0;
+        });
+      },
+      (d) => d[config.x],
+      (d) => d[config.y]
+    );
     return {
       data,
       labels,
@@ -22333,14 +22347,16 @@ var rbmViz = (() => {
               stepped: "middle",
               type: "line"
             };
-            const snapshotDates = [...new Set(
-              group2.map((d) => d[config.x])
-            )];
+            const snapshotDates = [
+              ...new Set(group2.map((d) => d[config.x]))
+            ];
             const snapshotDate = max(snapshotDates);
             if (snapshotDate < latestSnapshotDate) {
-              const threshold = { ...dataset.data.find(
-                (d) => d[config.x] === snapshotDate
-              ) };
+              const threshold = {
+                ...dataset.data.find(
+                  (d) => d[config.x] === snapshotDate
+                )
+              };
               threshold[config.x] = latestSnapshotDate;
               threshold.x = latestSnapshotDate;
               dataset.data.push(threshold);
@@ -22413,7 +22429,12 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData.js
   function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
-    const { data, labels, thresholds: thresholds2, intervals } = mutate4(_data_, config, _thresholds_, _intervals_);
+    const { data, labels, thresholds: thresholds2, intervals } = mutate4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_
+    );
     let datasets = [];
     if (config.dataType !== "discrete") {
       if (intervals !== null) {
@@ -22485,7 +22506,7 @@ var rbmViz = (() => {
         aggregateLine(data, config, labels),
         {
           type: "scatter",
-          label: config.discreteUnit === "KRI" ? `${config.group} Average` : "",
+          label: config.discreteUnit === "KRI" ? `${config.aggregateLabel} Average` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -22538,7 +22559,7 @@ var rbmViz = (() => {
   function legend4(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
-    legendOrder.unshift(`${config.group} Average`);
+    legendOrder.unshift(`${config.aggregateLabel} Average`);
     legendOrder.unshift(`${config.group} Distribution`);
     if (config.group === "Study")
       return {
@@ -22594,7 +22615,10 @@ var rbmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
-        label: formatResultTooltipContent.bind(null, config),
+        label: (d) => {
+          const content = formatResultTooltipContent(config, d);
+          return d.raw.duplicate ? "" : content;
+        },
         labelPointStyle: (data) => {
           return {
             pointStyle: ["line", "scatter"].includes(data.dataset.type) ? "circle" : "rect"
@@ -22602,10 +22626,28 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return ["boxplot", "violin"].includes(
-              data[0].dataset.type
-            ) === false && data[0].dataset.purpose !== "aggregate" ? `${config.group} ${datum2.groupid} on ${data[0].label}` : ["boxplot", "violin"].includes(data[0].dataset.type) ? `${config.group} Distribution on ${data[0].label}` : data[0].dataset.purpose === "aggregate" ? `${config.group} Summary on ${data[0].label}` : null;
+            if (["boxplot", "violin"].includes(data[0].dataset.type)) {
+              return `${config.group} Distribution on ${data[0].label}`;
+            } else if (data[0].dataset.purpose === "aggregate") {
+              return `${config.group} Summary on ${data[0].label}`;
+            } else {
+              const datum2 = data[0].dataset.data[data[0].dataIndex];
+              const numericGroupIDs = data.every(
+                (d) => /^\d+$/.test(d.raw.groupid)
+              );
+              const groupIDs = data.sort((a, b) => {
+                const selected = config.selectedGroupIDs.includes(
+                  b.raw.groupid
+                ) - config.selectedGroupIDs.includes(
+                  a.raw.groupid
+                );
+                const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
+                return selected || alphanumeric;
+              }).map(
+                (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
+              );
+              return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
+            }
           }
         }
       },

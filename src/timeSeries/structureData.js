@@ -127,7 +127,7 @@ export default function structureData(
                 type: 'scatter',
                 label:
                     config.discreteUnit === 'KRI'
-                        ? `${config.group} Average`
+                        ? `${config.aggregateLabel} Average`
                         : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
