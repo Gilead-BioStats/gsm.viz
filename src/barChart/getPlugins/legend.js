@@ -1,10 +1,9 @@
 // import thresholds from '../../util/colors';
 
 export default function legend(config) {
-    console.log(config);
     //const legendOrder = thresholds.map(threshold => threshold.description);
     return {
-        display: !config.thresholds,
+        display: true, //!config.thresholds,
         labels: {
             boxHeight: 10,
             boxWidth: 10,
