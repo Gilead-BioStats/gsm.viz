@@ -22406,7 +22406,6 @@ var rbmViz = (() => {
         const y = value;
         const counts = [...countsBySnapshot.get(labels[i])];
         return {
-          ...data.find((d) => d[config.x] === x),
           x,
           y,
           counts: counts.map(([key1, value1]) => {
@@ -22542,7 +22541,7 @@ var rbmViz = (() => {
             position: Math.sign(+x.flag) >= 0 ? "end" : "start",
             color: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
-            content: `QTL: ${config.thresholds[0].threshold.toString().replace(/^(.*\.\d{3})(\d+)$/, "$1")}`,
+            content: `QTL: ${Math.round(+config.thresholds[0].threshold * 1e3) / 1e3 .toString()}`,
             display: true,
             font: {
               size: 12
