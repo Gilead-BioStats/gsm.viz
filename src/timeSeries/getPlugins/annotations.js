@@ -30,8 +30,9 @@ export default function annotations(config) {
                             : colorScheme.find((y) => y.flag.includes(+x.flag))
                                   .color,
                     backgroundColor: 'white',
-                    content: `QTL: ${Math.round(+config.thresholds[0].threshold*1000)/1000
-                        .toString()
+                    content: `QTL: ${
+                        Math.round(+config.thresholds[0].threshold * 1000) /
+                        (1000).toString()
                     }`,
                     //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
                     display: true, //Math.sign(+x.flag) === 1,
