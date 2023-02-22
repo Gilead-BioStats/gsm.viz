@@ -20885,7 +20885,9 @@ var rbmViz = (() => {
 
   // src/util/getElementDatum.js
   function getElementDatum(activeElements, chart) {
-    const element = activeElements[0];
+    const element = activeElements.sort(
+      (a, b) => b.index - a.index
+    )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
     const datum2 = data[element.index];
     return datum2;
@@ -22630,7 +22632,6 @@ var rbmViz = (() => {
             } else if (data[0].dataset.purpose === "aggregate") {
               return `${config.group} Summary on ${data[0].label}`;
             } else {
-              const datum2 = data[0].dataset.data[data[0].dataIndex];
               const numericGroupIDs = data.every(
                 (d) => /^\d+$/.test(d.raw.groupid)
               );
@@ -22643,7 +22644,7 @@ var rbmViz = (() => {
                 const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
                 return selected || alphanumeric;
               }).map(
-                (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
+                (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.purpose !== "distribution" ? d.dataset.data[d.dataIndex].groupid : "Site Distribution"
               );
               return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
             }

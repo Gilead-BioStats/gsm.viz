@@ -29,7 +29,7 @@ export default function tooltip(config) {
                     } else if (data[0].dataset.purpose === 'aggregate') {
                         return `${config.group} Summary on ${data[0].label}`;
                     } else {
-                        const datum = data[0].dataset.data[data[0].dataIndex];
+                        //data = data.filter(d => ['highlight', 'scatter'].includes(d.dataset.purpose));
 
                         const numericGroupIDs = data.every((d) =>
                             /^\d+$/.test(d.raw.groupid)
@@ -56,7 +56,9 @@ export default function tooltip(config) {
                                     ? `${config.group}${
                                           data.length > 1 ? 's' : ''
                                       } ${d.dataset.data[d.dataIndex].groupid}`
-                                    : d.dataset.data[d.dataIndex].groupid
+                                    : d.dataset.purpose !== 'distribution'
+                                    ? d.dataset.data[d.dataIndex].groupid
+                                    : 'Site Distribution'
                             );
 
                         return groupIDs.length <= 4
