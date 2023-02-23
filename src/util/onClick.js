@@ -9,6 +9,7 @@ export default function onClick(event, activeElements, chart) {
         activeElements.length &&
         chart.data.datasets[activeElements[0].datasetIndex].listenClick === true
     ) {
+        console.log(activeElements);
         const datum = getElementDatum(activeElements, chart);
         canvas.clickEvent.data = datum;
         canvas.dispatchEvent(canvas.clickEvent);

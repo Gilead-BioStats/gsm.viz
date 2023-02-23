@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20889,7 +20888,8 @@ var rbmViz = (() => {
       (a, b) => b.index - a.index
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
-    const datum2 = data[element.index];
+    const activeData = data.filter((d, i) => activeElements.map((activeElement) => activeElement.index).includes(i));
+    const datum2 = activeData[element.index];
     return datum2;
   }
 
@@ -20897,6 +20897,7 @@ var rbmViz = (() => {
   function onClick(event, activeElements, chart) {
     const canvas = chart.canvas;
     if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenClick === true) {
+      console.log(activeElements);
       const datum2 = getElementDatum(activeElements, chart);
       canvas.clickEvent.data = datum2;
       canvas.dispatchEvent(canvas.clickEvent);
@@ -22187,12 +22188,14 @@ var rbmViz = (() => {
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
+        if (d.element === void 0) {
+          return backgroundColor4;
+        }
         const color4 = colorScheme_default.find(
-          (color5) => color5.flag.includes(+d.raw?.flag)
+          (color5) => falsy_default.includes(d.raw.flag) ? color5.flag.includes(d.raw?.flag) : color5.flag.includes(+d.raw?.flag)
         );
-        if (color4 !== void 0)
-          color4.rgba.opacity = 0.75;
-        return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
+        color4.rgba.opacity = 0.75;
+        return color4.rgba + "";
       },
       borderColor: function(d) {
         return d.type === "data" ? "black" : borderColor4;
@@ -22643,9 +22646,19 @@ var rbmViz = (() => {
                 );
                 const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
                 return selected || alphanumeric;
-              }).map(
-                (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.purpose !== "distribution" ? d.dataset.data[d.dataIndex].groupid : "Site Distribution"
-              );
+              }).map(function(d, i) {
+                let title3;
+                if (i === 0) {
+                  title3 = `${config.group}${data.length > 1 && !(data.length === 2 && data.some(
+                    (d2) => ["aggregate", "distribution"].includes(d2.dataset.purpose)
+                  )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
+                } else if (!["aggregate", "distribution"].includes(d.dataset.purpose)) {
+                  title3 = d.dataset.data[d.dataIndex].groupid;
+                } else {
+                  title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
+                }
+                return title3;
+              });
               return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
             }
           }
