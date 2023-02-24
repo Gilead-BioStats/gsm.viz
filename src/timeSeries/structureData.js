@@ -47,12 +47,14 @@ export default function structureData(
                     borderColor: 'rgba(0,0,0,.25)',
                     borderWidth: 3,
                 },
-                ...colorScheme.map((color) => ({
-                    type: 'bar',
-                    label: color.description,
-                    backgroundColor: color.color,
-                    borderColor: color.color,
-                })),
+                ...colorScheme
+                    .filter((color) => color.description !== 'No Flag')
+                    .map((color) => ({
+                        type: 'bar',
+                        label: color.description,
+                        backgroundColor: color.color,
+                        borderColor: color.color,
+                    })),
                 ...getThresholdLines(thresholds, config, labels),
             ];
         } else {

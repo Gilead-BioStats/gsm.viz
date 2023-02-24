@@ -2,6 +2,7 @@ import { ascending } from 'd3';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
+// TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -29,14 +30,13 @@ export default function tooltip(config) {
                     } else if (data[0].dataset.purpose === 'aggregate') {
                         return `${config.group} Summary on ${data[0].label}`;
                     } else {
-                        //data = data.filter(d => ['highlight', 'scatter'].includes(d.dataset.purpose));
-
                         const numericGroupIDs = data.every((d) =>
                             /^\d+$/.test(d.raw.groupid)
                         );
 
                         const groupIDs = data
                             .sort((a, b) => {
+                                // order selected group ID first
                                 const selected =
                                     config.selectedGroupIDs.includes(
                                         b.raw.groupid
@@ -45,21 +45,48 @@ export default function tooltip(config) {
                                         a.raw.groupid
                                     );
 
+                                // order remaining group IDs alphanumerically
                                 const alphanumeric = numericGroupIDs
                                     ? ascending(+a.raw.groupid, +b.raw.groupid)
                                     : ascending(a.raw.groupid, b.raw.groupid);
 
                                 return selected || alphanumeric;
                             })
-                            .map((d, i) =>
-                                i === 0
-                                    ? `${config.group}${
-                                          data.length > 1 ? 's' : ''
-                                      } ${d.dataset.data[d.dataIndex].groupid}`
-                                    : d.dataset.purpose !== 'distribution'
-                                    ? d.dataset.data[d.dataIndex].groupid
-                                    : 'Site Distribution'
-                            );
+                            .map(function (d, i) {
+                                let title;
+
+                                // first element at coordinates
+                                if (i === 0) {
+                                    title = `${config.group}${
+                                        data.length > 1 && // multiple element at coordinates
+                                        !(
+                                            data.length === 2 &&
+                                            data.some((d) =>
+                                                [
+                                                    'aggregate',
+                                                    'distribution',
+                                                ].includes(d.dataset.purpose)
+                                            )
+                                        ) // two elements at coordinates: selected group ID and distribution or aggregate
+                                            ? 's'
+                                            : ''
+                                    } ${d.dataset.data[d.dataIndex].groupid}`;
+                                } else if (
+                                    !['aggregate', 'distribution'].includes(
+                                        d.dataset.purpose
+                                    )
+                                ) {
+                                    title = d.dataset.data[d.dataIndex].groupid;
+                                } else {
+                                    title = `${config.group} ${
+                                        d.dataset.purpose === 'aggregate'
+                                            ? 'Summary'
+                                            : 'Distribution'
+                                    }`;
+                                }
+
+                                return title;
+                            });
 
                         return groupIDs.length <= 4
                             ? `${groupIDs.join(', ')} on ${data[0].label}`
@@ -70,7 +97,7 @@ export default function tooltip(config) {
                 }
             },
         },
-        displayColors: config.dataType !== 'discrete',
+        displayColors: true, //config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 
