@@ -20883,13 +20883,38 @@ var rbmViz = (() => {
     return datasets;
   }
 
+  // src/util/identifyDuplicatePoints.js
+  function identifyDuplicatePoints(data, config, mutate5 = true) {
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
+    data.sort((a, b) => {
+      const x = ascending(a[config.x], b[config.x]);
+      const y = ascending(a[config.y], b[config.y]);
+      const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
+      const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+      return x || y || selected || groupid;
+    });
+    if (mutate5)
+      rollup(
+        data,
+        (group2) => {
+          group2.forEach((d, i) => {
+            d.duplicate = i > 0;
+          });
+        },
+        (d) => d[config.x],
+        (d) => d[config.y]
+      );
+  }
+
   // src/util/getElementDatum.js
   function getElementDatum(activeElements, chart) {
     const element = activeElements.sort(
       (a, b) => b.index - a.index
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
-    const datum2 = data[element.index];
+    const activeData = data.filter((d, i) => activeElements.map((activeElement) => activeElement.index).includes(i));
+    identifyDuplicatePoints(activeData, chart.data.config, false);
+    const datum2 = activeData[0];
     return datum2;
   }
 
@@ -21348,21 +21373,7 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
-    rollup(
-      data,
-      (group2) => {
-        group2.sort((a, b) => {
-          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
-          return selected !== 0 ? selected : groupid;
-        }).forEach((d, i) => {
-          d.duplicate = i > 0;
-        });
-      },
-      (d) => d.x,
-      (d) => d.y
-    );
+    identifyDuplicatePoints(data, config);
     return data;
   }
 
@@ -22076,21 +22087,7 @@ var rbmViz = (() => {
     if (Array.isArray(_intervals_)) {
       intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
-    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
-    rollup(
-      data,
-      (group2) => {
-        group2.sort((a, b) => {
-          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
-          return selected !== 0 ? selected : groupid;
-        }).forEach((d, i) => {
-          d.duplicate = i > 0;
-        });
-      },
-      (d) => d[config.x],
-      (d) => d[config.y]
-    );
+    identifyDuplicatePoints(data, config);
     return {
       data,
       labels,
@@ -22187,12 +22184,14 @@ var rbmViz = (() => {
     const dataset = {
       data: lineData,
       backgroundColor: function(d) {
+        if (d.element === void 0) {
+          return backgroundColor4;
+        }
         const color4 = colorScheme_default.find(
-          (color5) => color5.flag.includes(+d.raw?.flag)
+          (color5) => falsy_default.includes(d.raw.flag) ? color5.flag.includes(d.raw?.flag) : color5.flag.includes(+d.raw?.flag)
         );
-        if (color4 !== void 0)
-          color4.rgba.opacity = 0.75;
-        return color4 !== void 0 ? color4.rgba + "" : backgroundColor4;
+        color4.rgba.opacity = 0.75;
+        return color4.rgba + "";
       },
       borderColor: function(d) {
         return d.type === "data" ? "black" : borderColor4;
@@ -22452,7 +22451,7 @@ var rbmViz = (() => {
             borderColor: "rgba(0,0,0,.25)",
             borderWidth: 3
           },
-          ...colorScheme_default.map((color3) => ({
+          ...colorScheme_default.filter((color3) => color3.description !== "No Flag").map((color3) => ({
             type: "bar",
             label: color3.description,
             backgroundColor: color3.color,
@@ -22643,15 +22642,25 @@ var rbmViz = (() => {
                 );
                 const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
                 return selected || alphanumeric;
-              }).map(
-                (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.purpose !== "distribution" ? d.dataset.data[d.dataIndex].groupid : "Site Distribution"
-              );
+              }).map(function(d, i) {
+                let title3;
+                if (i === 0) {
+                  title3 = `${config.group}${data.length > 1 && !(data.length === 2 && data.some(
+                    (d2) => ["aggregate", "distribution"].includes(d2.dataset.purpose)
+                  )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
+                } else if (!["aggregate", "distribution"].includes(d.dataset.purpose)) {
+                  title3 = d.dataset.data[d.dataIndex].groupid;
+                } else {
+                  title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
+                }
+                return title3;
+              });
               return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
             }
           }
         }
       },
-      displayColors: config.dataType !== "discrete",
+      displayColors: true,
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
         return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
