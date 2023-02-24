@@ -2,6 +2,7 @@ import { ascending } from 'd3';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
+// TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -51,31 +52,37 @@ export default function tooltip(config) {
 
                                 return selected || alphanumeric;
                             })
-                            .map(function(d, i) {
+                            .map(function (d, i) {
                                 let title;
 
                                 // first element at coordinates
                                 if (i === 0) {
                                     title = `${config.group}${
-                                          data.length > 1 && // multiple element at coordinates
-                                              !(
-                                                  data.length === 2 &&
-                                                  data.some(d =>
-                                                      ['aggregate', 'distribution']
-                                                          .includes(d.dataset.purpose)
-                                                  )
-                                              ) // two elements at coordinates: selected group ID and distribution or aggregate
+                                        data.length > 1 && // multiple element at coordinates
+                                        !(
+                                            data.length === 2 &&
+                                            data.some((d) =>
+                                                [
+                                                    'aggregate',
+                                                    'distribution',
+                                                ].includes(d.dataset.purpose)
+                                            )
+                                        ) // two elements at coordinates: selected group ID and distribution or aggregate
                                             ? 's'
                                             : ''
-                                      } ${d.dataset.data[d.dataIndex].groupid}`;
-                                } else if (!['aggregate', 'distribution'].includes(d.dataset.purpose)) {
+                                    } ${d.dataset.data[d.dataIndex].groupid}`;
+                                } else if (
+                                    !['aggregate', 'distribution'].includes(
+                                        d.dataset.purpose
+                                    )
+                                ) {
                                     title = d.dataset.data[d.dataIndex].groupid;
                                 } else {
                                     title = `${config.group} ${
                                         d.dataset.purpose === 'aggregate'
                                             ? 'Summary'
                                             : 'Distribution'
-                                    }`
+                                    }`;
                                 }
 
                                 return title;
@@ -90,7 +97,7 @@ export default function tooltip(config) {
                 }
             },
         },
-        displayColors: config.dataType !== 'discrete',
+        displayColors: true, //config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 

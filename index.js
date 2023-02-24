@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20882,6 +20883,29 @@ var rbmViz = (() => {
     return datasets;
   }
 
+  // src/util/identifyDuplicatePoints.js
+  function identifyDuplicatePoints(data, config, mutate5 = true) {
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
+    data.sort((a, b) => {
+      const x = ascending(a[config.x], b[config.x]);
+      const y = ascending(a[config.y], b[config.y]);
+      const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
+      const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+      return x || y || selected || groupid;
+    });
+    if (mutate5)
+      rollup(
+        data,
+        (group2) => {
+          group2.forEach((d, i) => {
+            d.duplicate = i > 0;
+          });
+        },
+        (d) => d[config.x],
+        (d) => d[config.y]
+      );
+  }
+
   // src/util/getElementDatum.js
   function getElementDatum(activeElements, chart) {
     const element = activeElements.sort(
@@ -20889,7 +20913,8 @@ var rbmViz = (() => {
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
     const activeData = data.filter((d, i) => activeElements.map((activeElement) => activeElement.index).includes(i));
-    const datum2 = activeData[element.index];
+    identifyDuplicatePoints(activeData, chart.data.config, false);
+    const datum2 = activeData[0];
     return datum2;
   }
 
@@ -20897,7 +20922,6 @@ var rbmViz = (() => {
   function onClick(event, activeElements, chart) {
     const canvas = chart.canvas;
     if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenClick === true) {
-      console.log(activeElements);
       const datum2 = getElementDatum(activeElements, chart);
       canvas.clickEvent.data = datum2;
       canvas.dispatchEvent(canvas.clickEvent);
@@ -21349,21 +21373,7 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
-    rollup(
-      data,
-      (group2) => {
-        group2.sort((a, b) => {
-          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
-          return selected !== 0 ? selected : groupid;
-        }).forEach((d, i) => {
-          d.duplicate = i > 0;
-        });
-      },
-      (d) => d.x,
-      (d) => d.y
-    );
+    identifyDuplicatePoints(data, config);
     return data;
   }
 
@@ -22077,21 +22087,7 @@ var rbmViz = (() => {
     if (Array.isArray(_intervals_)) {
       intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
-    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
-    rollup(
-      data,
-      (group2) => {
-        group2.sort((a, b) => {
-          const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-          const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
-          return selected !== 0 ? selected : groupid;
-        }).forEach((d, i) => {
-          d.duplicate = i > 0;
-        });
-      },
-      (d) => d[config.x],
-      (d) => d[config.y]
-    );
+    identifyDuplicatePoints(data, config);
     return {
       data,
       labels,
@@ -22455,7 +22451,7 @@ var rbmViz = (() => {
             borderColor: "rgba(0,0,0,.25)",
             borderWidth: 3
           },
-          ...colorScheme_default.map((color3) => ({
+          ...colorScheme_default.filter((color3) => color3.description !== "No Flag").map((color3) => ({
             type: "bar",
             label: color3.description,
             backgroundColor: color3.color,
@@ -22664,7 +22660,7 @@ var rbmViz = (() => {
           }
         }
       },
-      displayColors: config.dataType !== "discrete",
+      displayColors: true,
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
         return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
