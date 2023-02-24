@@ -3,6 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param.csv',
+    '../data/results_bounds.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -34,11 +35,18 @@ Promise.all(dataPromises)
 
                 // Need to update data (?) because selected group ID is highlighted with a
                 // scriptable (in src/barChart/structureData/scriptableOptions/backgroundColor.js.
+                //chart.helpers.updateData(
+                //    chart,
+                //    chart.data._data_, // initial data
+                //    chart.data._config_, // initial config
+                //    chart.data._thresholds_, // initial thresholds
+                //    false
+                //);
                 chart.helpers.updateData(
                     chart,
                     chart.data._data_, // initial data
                     chart.data._config_, // initial config
-                    chart.data._thresholds_, // initial thresholds
+                    chart.data._bounds_, // initial thresholds
                     false
                 );
             }
@@ -51,7 +59,7 @@ Promise.all(dataPromises)
             const results = filterOnWorkflowID(datasets[0], workflowID);
 
             // chart configuration
-            workflow.y = 'score';
+            //workflow.y = 'score';
             workflow.hoverCallback = onHover;
             workflow.displayTitle = true;
 
@@ -61,17 +69,25 @@ Promise.all(dataPromises)
                 filterOnWorkflowID(datasets[3], workflowID)
             );
 
+            const bounds = filterOnWorkflowID(datasets[4], workflowID);
+
             const element = document.createElement('div');
             element.className = 'multiple';
             element.id = 'multiple-' + workflowID;
             multipleContainer.appendChild(element);
 
             // visualization
-            const instance = rbmViz.default.barChart(
+            //const instance = rbmViz.default.barChart(
+            //    element,
+            //    results,
+            //    workflow,
+            //    parameters
+            //);
+            const instance = rbmViz.default.scatterPlot(
                 element,
                 results,
                 workflow,
-                parameters
+                bounds
             );
         });
 
