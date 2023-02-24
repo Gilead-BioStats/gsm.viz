@@ -1,5 +1,6 @@
 import { color as d3color, max } from 'd3';
 import colorScheme from '../../util/colorScheme';
+import falsy from '../../util/falsy';
 
 export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;
@@ -22,12 +23,20 @@ export default function selectedGroupLine(data, config, labels) {
     const dataset = {
         data: lineData,
         backgroundColor: function (d) {
-            const color = colorScheme.find((color) =>
-                color.flag.includes(+d.raw?.flag)
-            );
-            if (color !== undefined) color.rgba.opacity = 0.75;
+            // line element
+            if (d.element === undefined) {
+                return backgroundColor;
+            }
 
-            return color !== undefined ? color.rgba + '' : backgroundColor;
+            // point elements
+            const color = colorScheme.find((color) =>
+                falsy.includes(d.raw.flag)
+                    ? color.flag.includes(d.raw?.flag)
+                    : color.flag.includes(+d.raw?.flag)
+            );
+            color.rgba.opacity = 0.75;
+
+            return color.rgba + '';
         },
         borderColor: function (d) {
             return d.type === 'data' ? 'black' : borderColor;

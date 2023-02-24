@@ -48,7 +48,7 @@ export default function aggregateLine(data, config, labels) {
             const counts = [...countsBySnapshot.get(labels[i])];
 
             return {
-                ...data.find((d) => d[config.x] === x),
+                //...data.find((d) => d[config.x] === x),
                 x,
                 y,
                 counts: counts

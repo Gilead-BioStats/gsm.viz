@@ -1,11 +1,12 @@
 import colorScheme from '../../util/colorScheme';
 
+// TODO: refactor
 export default function legend(config) {
     const legendOrder = colorScheme
         .sort((a, b) => a.order - b.order)
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
-    legendOrder.unshift(`${config.group} Average`);
+    legendOrder.unshift(`${config.aggregateLabel} Average`);
     legendOrder.unshift(`${config.group} Distribution`);
 
     if (config.group === 'Study')

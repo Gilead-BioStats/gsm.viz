@@ -1,6 +1,6 @@
 export default function legend(config) {
     return {
-        display: !config.thresholds,
+        display: true, //!config.thresholds,
         labels: {
             boxHeight: 10,
             boxWidth: 10,

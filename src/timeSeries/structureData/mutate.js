@@ -1,5 +1,6 @@
 import { ascending } from 'd3';
 import getLabels from './getLabels';
+import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
 
 export default function mutate(_data_, config, _thresholds_, _intervals_) {
     const data = _data_
@@ -40,6 +41,8 @@ export default function mutate(_data_, config, _thresholds_, _intervals_) {
             .map((d) => ({ ...d }))
             .sort((a, b) => ascending(a[config.x], b[config.x]));
     }
+
+    identifyDuplicatePoints(data, config);
 
     return {
         data,

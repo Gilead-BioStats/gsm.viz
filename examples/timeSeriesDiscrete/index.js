@@ -32,9 +32,10 @@ Promise.all(dataPromises)
                       //discreteUnit: 'Country',
                   }
                 : {
-                      selectedGroupIDs: '173',
+                      selectedGroupIDs: '13',
                   };
-        config.y = 'n_at_risk_or_flagged';
+        config.y = 'n_flagged';
+        //config.aggregateLabel = 'Country';
 
         // visualization
         const instance = rbmViz.default.timeSeries(

@@ -1,12 +1,20 @@
+import { ascending } from 'd3';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 
+// TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
     return {
         callbacks: {
-            label: formatResultTooltipContent.bind(null, config),
+            //label: formatResultTooltipContent.bind(null, config),
+            label: (d) => {
+                const content = formatResultTooltipContent(config, d);
+
+                // prevent display of duplicate tooltip content
+                return d.raw.duplicate ? '' : content;
+            },
             labelPointStyle: (data) => {
                 return {
                     pointStyle: ['line', 'scatter'].includes(data.dataset.type)
@@ -16,21 +24,80 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    const datum = data[0].dataset.data[data[0].dataIndex];
+                    // distribution tooltip
+                    if (['boxplot', 'violin'].includes(data[0].dataset.type)) {
+                        return `${config.group} Distribution on ${data[0].label}`;
+                    } else if (data[0].dataset.purpose === 'aggregate') {
+                        return `${config.group} Summary on ${data[0].label}`;
+                    } else {
+                        const numericGroupIDs = data.every((d) =>
+                            /^\d+$/.test(d.raw.groupid)
+                        );
 
-                    return ['boxplot', 'violin'].includes(
-                        data[0].dataset.type
-                    ) === false && data[0].dataset.purpose !== 'aggregate'
-                        ? `${config.group} ${datum.groupid} on ${data[0].label}`
-                        : ['boxplot', 'violin'].includes(data[0].dataset.type)
-                        ? `${config.group} Distribution on ${data[0].label}`
-                        : data[0].dataset.purpose === 'aggregate'
-                        ? `${config.group} Summary on ${data[0].label}`
-                        : null;
+                        const groupIDs = data
+                            .sort((a, b) => {
+                                // order selected group ID first
+                                const selected =
+                                    config.selectedGroupIDs.includes(
+                                        b.raw.groupid
+                                    ) -
+                                    config.selectedGroupIDs.includes(
+                                        a.raw.groupid
+                                    );
+
+                                // order remaining group IDs alphanumerically
+                                const alphanumeric = numericGroupIDs
+                                    ? ascending(+a.raw.groupid, +b.raw.groupid)
+                                    : ascending(a.raw.groupid, b.raw.groupid);
+
+                                return selected || alphanumeric;
+                            })
+                            .map(function (d, i) {
+                                let title;
+
+                                // first element at coordinates
+                                if (i === 0) {
+                                    title = `${config.group}${
+                                        data.length > 1 && // multiple element at coordinates
+                                        !(
+                                            data.length === 2 &&
+                                            data.some((d) =>
+                                                [
+                                                    'aggregate',
+                                                    'distribution',
+                                                ].includes(d.dataset.purpose)
+                                            )
+                                        ) // two elements at coordinates: selected group ID and distribution or aggregate
+                                            ? 's'
+                                            : ''
+                                    } ${d.dataset.data[d.dataIndex].groupid}`;
+                                } else if (
+                                    !['aggregate', 'distribution'].includes(
+                                        d.dataset.purpose
+                                    )
+                                ) {
+                                    title = d.dataset.data[d.dataIndex].groupid;
+                                } else {
+                                    title = `${config.group} ${
+                                        d.dataset.purpose === 'aggregate'
+                                            ? 'Summary'
+                                            : 'Distribution'
+                                    }`;
+                                }
+
+                                return title;
+                            });
+
+                        return groupIDs.length <= 4
+                            ? `${groupIDs.join(', ')} on ${data[0].label}`
+                            : `${groupIDs.slice(0, 3).join(', ')} and [ ${
+                                  groupIDs.length - 3
+                              } ] more on ${data[0].label}`;
+                    }
                 }
             },
         },
-        displayColors: config.dataType !== 'discrete',
+        displayColors: true, //config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
 
