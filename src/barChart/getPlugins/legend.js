@@ -1,7 +1,4 @@
-// import thresholds from '../../util/colors';
-
 export default function legend(config) {
-    //const legendOrder = thresholds.map(threshold => threshold.description);
     return {
         display: true, //!config.thresholds,
         labels: {
@@ -9,15 +6,9 @@ export default function legend(config) {
             boxWidth: 10,
             filter: function (item, chart) {
                 return (
-                    item.text !== '' // Math.sign(chart.datasets[item.datasetIndex].flag) !== -1
+                    item.text !== ''
                 );
             },
-            //sort: function (a, b, chartData) {
-            //    return (
-            //        legendOrder.indexOf(a.text) -
-            //        legendOrder.indexOf(b.text)
-            //    );
-            //},
         },
         position: 'top',
     };

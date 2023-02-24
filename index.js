@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20912,7 +20911,9 @@ var rbmViz = (() => {
       (a, b) => b.index - a.index
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
-    const activeData = data.filter((d, i) => activeElements.map((activeElement) => activeElement.index).includes(i));
+    const activeData = data.filter(
+      (d, i) => activeElements.map((activeElement) => activeElement.index).includes(i)
+    );
     identifyDuplicatePoints(activeData, chart.data.config, false);
     const datum2 = activeData[0];
     return datum2;
@@ -21233,13 +21234,14 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_) {
+  function updateData(chart, _data_, _config_, _thresholds_, updateTooltip = true) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
     const datasets = structureData(_data_, config);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
-    triggerTooltip(chart);
+    if (updateTooltip)
+      triggerTooltip(chart);
   }
 
   // src/util/updateOption.js
@@ -21634,13 +21636,14 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateData.js
-  function updateData2(chart, _data_, _config_, _bounds_) {
+  function updateData2(chart, _data_, _config_, _bounds_, updateTooltip = true) {
     const config = updateConfig2(chart, _config_, false, false);
     const datasets = structureData2(_data_, config, _bounds_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
-    triggerTooltip(chart);
+    if (updateTooltip)
+      triggerTooltip(chart);
   }
 
   // src/scatterPlot.js
@@ -22646,9 +22649,14 @@ var rbmViz = (() => {
                 let title3;
                 if (i === 0) {
                   title3 = `${config.group}${data.length > 1 && !(data.length === 2 && data.some(
-                    (d2) => ["aggregate", "distribution"].includes(d2.dataset.purpose)
+                    (d2) => [
+                      "aggregate",
+                      "distribution"
+                    ].includes(d2.dataset.purpose)
                   )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
-                } else if (!["aggregate", "distribution"].includes(d.dataset.purpose)) {
+                } else if (!["aggregate", "distribution"].includes(
+                  d.dataset.purpose
+                )) {
                   title3 = d.dataset.data[d.dataIndex].groupid;
                 } else {
                   title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
