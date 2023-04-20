@@ -20648,7 +20648,7 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
-    const thresholds2 = _thresholds_.map((threshold) => +threshold).sort(ascending);
+    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending);
     const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
     const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
@@ -20912,7 +20912,9 @@ var rbmViz = (() => {
       (a, b) => b.index - a.index
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
-    const activeData = data.filter((d, i) => activeElements.map((activeElement) => activeElement.index).includes(i));
+    const activeData = data.filter(
+      (d, i) => activeElements.map((activeElement) => activeElement.index).includes(i)
+    );
     identifyDuplicatePoints(activeData, chart.data.config, false);
     const datum2 = activeData[0];
     return datum2;
@@ -22646,9 +22648,14 @@ var rbmViz = (() => {
                 let title3;
                 if (i === 0) {
                   title3 = `${config.group}${data.length > 1 && !(data.length === 2 && data.some(
-                    (d2) => ["aggregate", "distribution"].includes(d2.dataset.purpose)
+                    (d2) => [
+                      "aggregate",
+                      "distribution"
+                    ].includes(d2.dataset.purpose)
                   )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
-                } else if (!["aggregate", "distribution"].includes(d.dataset.purpose)) {
+                } else if (!["aggregate", "distribution"].includes(
+                  d.dataset.purpose
+                )) {
                   title3 = d.dataset.data[d.dataIndex].groupid;
                 } else {
                   title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
