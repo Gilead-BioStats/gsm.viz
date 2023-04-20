@@ -2,7 +2,7 @@ import { ascending, descending } from 'd3';
 
 export default function mapThresholdsToFlags(_thresholds_) {
     // Capture complete set of thresholds.
-    const thresholds = _thresholds_
+    const thresholds = [...new Set(_thresholds_)] // remove duplicate thresholds
         .map((threshold) => +threshold)
         .sort(ascending);
 
