@@ -1,0 +1,1069 @@
+{
+    "site_grid_details": [
+        {
+            "site_id": "28",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 5,
+            "site_investigator": "al-Mona, Andrew",
+            "flagged_kri": 3,
+            "at_risk_kri": 0,
+            "kri_column_details": [
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.8
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.2
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 11,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 6,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.62
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "132",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "China",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 1,
+            "site_investigator": "Gonzales, Aqsa",
+            "flagged_kri": 2,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.09
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.06
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "52",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 3,
+            "site_investigator": "al-Nawaz, Ghaaliya",
+            "flagged_kri": 2,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.67
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.67
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.05
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.25
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "115",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 3,
+            "site_investigator": "el-Mostafa, Sabriyya",
+            "flagged_kri": 2,
+            "at_risk_kri": 0,
+            "kri_column_details": [
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.06
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 6,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.67
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 6,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.67
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.4
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "173",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 27,
+            "site_investigator": "Salas Dominguez, Dominick",
+            "flagged_kri": 2,
+            "at_risk_kri": 0,
+            "kri_column_details": [
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.18
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.07
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.07
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 10,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 11,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "189",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 28,
+            "site_investigator": "Depoyster, Annestaisia",
+            "flagged_kri": 2,
+            "at_risk_kri": 0,
+            "kri_column_details": [
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.42
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 6,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "114",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 7,
+            "site_investigator": "el-Shaker, Aatika",
+            "flagged_kri": 1,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.3
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.14
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.29
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 8,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "13",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "China",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 8,
+            "site_investigator": "Gonzalez, Crystal",
+            "flagged_kri": 1,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.47
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 9,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.38
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.38
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "145",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 1,
+            "site_investigator": "el-Yusuf, Christine",
+            "flagged_kri": 1,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.8
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.09
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.05
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 1.0
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 1.0
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 5,
+                        "flag_value": -2,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": null,
+                        "flag_value": null,
+                        "selected_snapshot_kri_value": 0.5
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.03
+                    }
+                }
+            ]
+        },
+        {
+            "site_id": "179",
+            "site_id_details": {
+                "city": "city 1",
+                "state": "state 1",
+                "country": "US",
+                "site_name": "city 1 Medical Center",
+                "site_status": "Active"
+            },
+            "subject_enrolled": 4,
+            "site_investigator": "Lee, Omar",
+            "flagged_kri": 1,
+            "at_risk_kri": 1,
+            "kri_column_details": [
+                {
+                    "kri0004": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0012": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.43
+                    }
+                },
+                {
+                    "kri0011": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 1,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0010": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0009": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.02
+                    }
+                },
+                {
+                    "kri0008": {
+                        "no_of_consecutive_loads": 7,
+                        "flag_value": 2,
+                        "selected_snapshot_kri_value": 0.04
+                    }
+                },
+                {
+                    "kri0007": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0006": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.25
+                    }
+                },
+                {
+                    "kri0005": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0003": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                },
+                {
+                    "kri0002": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.0
+                    }
+                },
+                {
+                    "kri0001": {
+                        "no_of_consecutive_loads": 0,
+                        "flag_value": 0,
+                        "selected_snapshot_kri_value": 0.01
+                    }
+                }
+            ]
+        }
+    ],
+    "all_kris_list": [
+        {
+            "kri_id": "kri0003",
+            "kri_name": "Non-Important Pd Rate",
+            "kri_acronym": "PD"
+        },
+        {
+            "kri_id": "kri0004",
+            "kri_name": "Important Pd Rate",
+            "kri_acronym": "IPD"
+        },
+        {
+            "kri_id": "kri0006",
+            "kri_name": "Study Discontinuation Rate",
+            "kri_acronym": "SDSC"
+        },
+        {
+            "kri_id": "kri0007",
+            "kri_name": "Treatment Discontinuation Rate",
+            "kri_acronym": "TDSC"
+        },
+        {
+            "kri_id": "kri0008",
+            "kri_name": "Query Rate",
+            "kri_acronym": "QRY"
+        },
+        {
+            "kri_id": "kri0005",
+            "kri_name": "G3+ Lab Abnormality Rate",
+            "kri_acronym": "LB"
+        },
+        {
+            "kri_id": "kri0009",
+            "kri_name": "Outstanding Query Rate",
+            "kri_acronym": "OQRY"
+        },
+        {
+            "kri_id": "kri0011",
+            "kri_name": "Data Change Rate",
+            "kri_acronym": "CDAT"
+        },
+        {
+            "kri_id": "kri0001",
+            "kri_name": "Non-Serious Ae Reporting Rate",
+            "kri_acronym": "AE"
+        },
+        {
+            "kri_id": "kri0002",
+            "kri_name": "Sae Reporting Rate",
+            "kri_acronym": "SAE"
+        },
+        {
+            "kri_id": "kri0010",
+            "kri_name": "Outstanding Data Entry Rate",
+            "kri_acronym": "ODAT"
+        },
+        {
+            "kri_id": "kri0012",
+            "kri_name": "Screen Failure Rate",
+            "kri_acronym": "SF"
+        }
+    ],
+    "filtered_sites_count": 176,
+    "selected_snapshot_date": "2023-01-01",
+    "total_sites_count": 176
+}
