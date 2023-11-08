@@ -3,6 +3,7 @@
   "name": "rbm-viz",
   "version": "1.0.6",
   "description": "web-based data visualization for risk-based monitoring",
+  "type": "module",
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
