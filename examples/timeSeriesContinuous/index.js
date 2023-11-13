@@ -41,5 +41,6 @@ Promise.all(dataPromises)
 
         kri(workflow, datasets, true);
         site(datasets, true);
+        outcome(workflow, datasets, true);
         download(true);
     });
