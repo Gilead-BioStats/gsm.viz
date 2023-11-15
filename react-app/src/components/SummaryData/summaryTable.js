@@ -14,7 +14,8 @@ export default function makeSiteSummaryData(data) {
                 Object.keys(b) < Object.keys(a) ?  1 : 0
             ))
             .reduce((kriItems, kriItem, i) => {
-                kriItems[Object.keys(kriItem)] = kriItem[Object.keys(kriItem)].flag_value;
+                // kriItems[Object.keys(kriItem)] = kriItem[Object.keys(kriItem)].flag_value;
+                kriItems[Object.keys(kriItem)] = kriItem[Object.keys(kriItem)];
                 return kriItems;
             }, {});
 
