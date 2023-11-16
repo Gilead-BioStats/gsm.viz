@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -22768,6 +22767,60 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/siteSummaryTable/getColumnDefs.js
+  function getColumnDefs(data) {
+    const kriObj = data.all_kris_list.map((kri) => ({
+      header: kri.kri_acronym,
+      accessorKey: kri.kri_id
+    })).sort(
+      (a, b) => a.accessorKey < b.accessorKey ? -1 : b.accessorKey < a.accessorKey ? 1 : 0
+    );
+    const columns = [
+      {
+        header: "Site ID",
+        accessorKey: "site_id"
+      },
+      {
+        header: "Enrolled subjects",
+        accessorKey: "enrolled_subjects"
+      },
+      {
+        header: "Red kris",
+        accessorKey: "red_kris"
+      },
+      {
+        header: "Amber kris",
+        accessorKey: "amber_kris"
+      },
+      ...kriObj
+    ];
+    return columns;
+  }
+
+  // src/siteSummaryTable/makeSiteSummaryData.js
+  function makeSiteSummaryData(data) {
+    const siteSummaryData = data.site_grid_details.map((item, i) => {
+      let obj = {
+        site_id: item.site_id,
+        enrolled_subjects: item.subject_enrolled,
+        red_kris: item.at_risk_kri,
+        amber_kris: item.flagged_kri
+      };
+      let kriObj = item.kri_column_details.sort((a, b) => Object.keys(a) < Object.keys(b) ? -1 : Object.keys(b) < Object.keys(a) ? 1 : 0).reduce((kriItems, kriItem, i2) => {
+        kriItems[Object.keys(kriItem)] = kriItem[Object.keys(kriItem)].flag_value;
+        return kriItems;
+      }, {});
+      return { ...obj, ...kriObj };
+    });
+    return siteSummaryData;
+  }
+
+  // src/siteSummaryTable.js
+  var siteSummaryTable_default = {
+    getColumnDefs,
+    makeSiteSummaryData
+  };
+
   // src/main.js
   Chart.register(
     annotation,
@@ -22850,7 +22903,8 @@ var rbmViz = (() => {
       y: "metric",
       chartType: "identity",
       dataType: "continuous"
-    })
+    }),
+    siteSummaryTable: siteSummaryTable_default
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);
