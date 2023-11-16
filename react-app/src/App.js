@@ -103,7 +103,22 @@ function App() {
   const columns = [
     {
       header: "Site ID",
-      accessorKey: "site_id"
+      accessorKey: "site_data",
+      cell: (props) => (
+        <Tooltip placement='right' color='#fff' title={
+          <div className='align darkTxt'>
+            {props.getValue().site_id ? <p><b>Site ID:</b> {props.getValue().site_id}</p> : ''}
+            <hr/>
+            {props.getValue().site_name ? <p>Site name: <b>{props.getValue().site_name}</b></p> : ''}
+            {props.getValue().city ? <p>City: <b>{props.getValue().city}</b></p> : ''}
+            {props.getValue().state ? <p>State: <b>{props.getValue().state}</b></p> : ''}
+            {props.getValue().country ? <p>Country: <b>{props.getValue().country}</b></p> : ''}
+            {props.getValue().site_status ? <p>Status: <b>{props.getValue().site_status}</b></p> : ''}
+          </div>
+        }>
+          <span>{props.getValue().site_id}</span>
+        </Tooltip>
+      )
     },
     {
       header: "Enrolled subjects",
