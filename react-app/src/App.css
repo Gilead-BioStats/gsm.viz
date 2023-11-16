@@ -85,3 +85,6 @@ th:last-child {
 .flag-icon-rotate {
   transform: rotate(180deg);
 }
+.align p {
+  margin: 0;
+}

@@ -1,5 +1,6 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
 import { CheckOutlined, MinusOutlined } from '@ant-design/icons';
+import { Tooltip } from 'antd';
 import doubleDownArrow from './assets/doubleDownArrow.svg';
 import singleArrow from './assets/singleArrow.svg';
 import makeSiteSummaryData from './components/SummaryData/summaryTable';
@@ -8,25 +9,79 @@ import './App.css';
 
 function App() {
 
-  const flagStatusIcon = (data) => {
+  const flagStatusIcon = (data, obj) => {
     switch (data) {
       case 2:
-        return <img alt="" src={doubleDownArrow} />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <img alt="" src={doubleDownArrow} />
+          </Tooltip>
+        )
         break;
       case 1:
-        return <img alt="" src={singleArrow} />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <img alt="" src={singleArrow} />
+          </Tooltip>
+        )
         break;
       case 0:
-        return <CheckOutlined style={{ color: '#3aaf00' }} />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <CheckOutlined style={{ color: '#3aaf00' }} />
+          </Tooltip>
+        )
         break;
       case -1:
-        return <img alt="" src={singleArrow} className="flag-icon-rotate" />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <img alt="" src={singleArrow} className="flag-icon-rotate" />
+          </Tooltip>
+        )
         break;
       case -2:
-        return <img alt="" src={doubleDownArrow} className="flag-icon-rotate" />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <img alt="" src={doubleDownArrow} className="flag-icon-rotate" />
+          </Tooltip>
+        )
         break;
       default:
-        return <MinusOutlined />
+        return (
+          <Tooltip placement='bottom' title={obj ? 
+            <div className='align'>
+              {obj.no_of_consecutive_loads ? <p>No consecutive loads: {obj.no_of_consecutive_loads}</p> : ''}
+              {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
+              {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
+            </div> : ''}>
+            <MinusOutlined />
+          </Tooltip>
+        )
         break;
     };
   }
@@ -36,7 +91,7 @@ function App() {
     {
       header: kri.kri_acronym,
       accessorKey: kri.kri_id,
-      cell: (props) => <span>{flagStatusIcon(props.getValue())}</span>
+      cell: (props) => <span>{flagStatusIcon(props.getValue().flag_value, props.getValue())}</span>
     }
   ))
   .sort((a,b) => 
@@ -57,12 +112,12 @@ function App() {
     {
       header: "Red kris",
       accessorKey: "red_kris",
-      cell: (props) => <span>{flagStatusIcon(props.getValue())}</span>
+      cell: (props) => <span>{flagStatusIcon(props.getValue(), props.getValue())}</span>
     },
     {
       header: "Amber kris",
       accessorKey: "amber_kris",
-      cell: (props) => <span>{flagStatusIcon(props.getValue())}</span>
+      cell: (props) => <span>{flagStatusIcon(props.getValue(), props.getValue())}</span>
     },
     ...kriObj
   ];
@@ -73,7 +128,7 @@ function App() {
     columns,
     getCoreRowModel: getCoreRowModel()
   });
-
+// console.log('data: ', makeSiteSummaryData(SUMMARY_DATA))
   return (
     <div className="App">
       <h3>Site Summary Table</h3>
