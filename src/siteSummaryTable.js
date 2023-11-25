@@ -1,25 +1,11 @@
-export default function makeSiteSummaryData(data) {
-    const siteSummaryData = data.site_grid_details.map((item, i) => {
-        let obj = {
-            site_id: item.site_id,
-            enrolled_subjects: item.subject_enrolled,
-            red_kris: item.at_risk_kri,
-            amber_kris: item.flagged_kri,
-        };
+import getColumnDefs from './siteSummaryTable/getColumnDefs';
+import makeSiteSummaryData from './siteSummaryTable/makeSiteSummaryData';
+import flagStatusIcon from './siteSummaryTable/flagStatusIcon';
+import dataTable from './siteSummaryTable/dataTable';
 
-        // Define an object with KRIs for keys and flags for values.
-        let kriObj = item.kri_column_details
-            .sort((a,b) => (
-                Object.keys(a) < Object.keys(b) ? -1 :
-                Object.keys(b) < Object.keys(a) ?  1 : 0
-            ))
-            .reduce((kriItems, kriItem, i) => {
-                kriItems[Object.keys(kriItem)] = kriItem[Object.keys(kriItem)].flag_value;
-                return kriItems;
-            }, {});
-
-        return { ...obj, ...kriObj };
-    });
-
-    return(siteSummaryData)
+export default {
+    getColumnDefs,
+    makeSiteSummaryData,
+    flagStatusIcon,
+    dataTable
 };

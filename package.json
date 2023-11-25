@@ -41,6 +41,8 @@
   "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
   "dependencies": {
     "@sgratzl/chartjs-chart-boxplot": "^3.10.0",
+    "@tanstack/table-core": "^8.10.7",
+    "antd": "^5.11.4",
     "chart.js": "^3.9.1",
     "chartjs-plugin-annotation": "^2.0.1",
     "chartjs-plugin-datalabels": "^2.1.0",
