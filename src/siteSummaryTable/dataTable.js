@@ -8,7 +8,7 @@ import makeSiteSummaryData from './makeSiteSummaryData';
 import SUMMARY_DATA from './../summary-data.json';
 import './App.css';
 
-function DataTable() {
+export default function dataTable() {
 
   const flagStatusIcon = (data, obj) => {
     switch (data) {
@@ -186,5 +186,3 @@ function DataTable() {
     </div>
   );
 }
-
-export default DataTable;
