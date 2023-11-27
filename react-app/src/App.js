@@ -1,5 +1,5 @@
 import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
-// import { CheckOutlined, MinusOutlined } from '@ant-design/icons';
+import { CheckOutlined, MinusOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 //import { siteSummaryTable } from 'rbm-viz';
 import doubleDownArrow from './assets/doubleDownArrow.svg';
@@ -128,12 +128,10 @@ function App() {
     {
       header: "Red kris",
       accessorKey: "red_kris",
-      cell: (props) => <span>{flagStatusIcon(props.getValue(), props.getValue())}</span>
     },
     {
       header: "Amber kris",
       accessorKey: "amber_kris",
-      cell: (props) => <span>{flagStatusIcon(props.getValue(), props.getValue())}</span>
     },
     ...kriObj
   ];
@@ -144,7 +142,7 @@ function App() {
     columns,
     getCoreRowModel: getCoreRowModel()
   });
-// console.log('data: ', makeSiteSummaryData(SUMMARY_DATA))
+
   return (
     <div className="App">
       <h3>Site Summary Table</h3>
@@ -156,7 +154,7 @@ function App() {
                 <tr key={headerGroup.id}>
                   {
                     headerGroup.headers.map((headers => (
-                      <th key={headers.id}>
+                      <th key={headers.id} className={headers.id === "amber_kris" ? "background-yellow" : ''}>
                         {flexRender(headers.column.columnDef.header, headers.getContext())}
                       </th>
                     )))
@@ -171,7 +169,7 @@ function App() {
                 <tr key={row.id}>
                   {
                     row.getVisibleCells().map((cell) => (
-                      <td key={cell.id}>
+                      <td key={cell.id} className={cell.id.includes("amber_kris") ? "background-yellow" : ''}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     ))
