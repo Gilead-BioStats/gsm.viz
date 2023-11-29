@@ -1,10 +1,13 @@
 import { useState, useMemo } from 'react';
 import { flexRender, getCoreRowModel, useReactTable, getSortedRowModel } from '@tanstack/react-table';
-import { CheckOutlined, MinusOutlined } from '@ant-design/icons';
+import { CheckOutlined, MinusOutlined, InfoCircleOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 //import { siteSummaryTable } from 'rbm-viz';
 import doubleDownArrow from './assets/doubleDownArrow.svg';
 import singleArrow from './assets/singleArrow.svg';
+import ascend from './assets/sort-up-solid.svg';
+import sortIcon from './assets/sort-solid.svg';
+import descend from './assets/sort-down-solid.svg';
 import makeSiteSummaryData from './components/SummaryData/summaryTable';
 import SUMMARY_DATA from './services/siteSummaryData.json';
 import './App.css';
@@ -22,7 +25,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <img alt="" src={doubleDownArrow} />
+              <img className='help' alt="" src={doubleDownArrow} />
             </Tooltip>
           )
           break;
@@ -34,7 +37,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <img alt="" src={singleArrow} />
+              <img className='help' alt="" src={singleArrow} />
             </Tooltip>
           )
           break;
@@ -46,7 +49,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <CheckOutlined style={{ color: '#3aaf00' }} />
+              <CheckOutlined style={{ color: '#3aaf00' }} className='help' />
             </Tooltip>
           )
           break;
@@ -58,7 +61,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <img alt="" src={singleArrow} className="flag-icon-rotate" />
+              <img alt="" src={singleArrow} className="help flag-icon-rotate" />
             </Tooltip>
           )
           break;
@@ -70,7 +73,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <img alt="" src={doubleDownArrow} className="flag-icon-rotate" />
+              <img alt="" src={doubleDownArrow} className="help flag-icon-rotate" />
             </Tooltip>
           )
           break;
@@ -82,7 +85,7 @@ function App() {
                 {obj.flag_value ? <p>Flag value: {obj.flag_value}</p> : <p>Flag value: {data}</p>}
                 {obj.selected_snapshot_kri_value ? <p>Snapshot kri: {obj.selected_snapshot_kri_value}</p> : ''}
               </div> : ''}>
-              <MinusOutlined />
+              <MinusOutlined className='help' />
             </Tooltip>
           )
           break;
@@ -122,9 +125,10 @@ function App() {
             {props.getValue().state ? <p>State: <b>{props.getValue().state}</b></p> : ''}
             {props.getValue().country ? <p>Country: <b>{props.getValue().country}</b></p> : ''}
             {props.getValue().site_status ? <p>Status: <b>{props.getValue().site_status}</b></p> : ''}
+            {props.getValue().site_investigator ? <p>Site investigator: <b>{props.getValue().site_investigator}</b></p> : ''}
           </div>
         }>
-          <span>{props.getValue().site_id}</span>
+          <span className='help'>{props.getValue().site_id}</span> <InfoCircleOutlined style={{ color: '#3c587f', cursor: 'help', fontSize: '12px', marginLeft: '2px' }} />
         </Tooltip>
       )
     },
@@ -171,20 +175,20 @@ function App() {
                       <th
                         key={header.id}
                         onClick={header.column.getToggleSortingHandler()}
+                        className={header.id.includes("amber_kris") ? "background-yellow" : header.id.includes("red_kris") ? "background_red" : ""}
                       >
-                        {header.isPlaceholder ? null : (
-                          <div>
-                            {flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                            {
-                              { asc: '🔼', desc: '🔽' }[
-                                header.column.getIsSorted() ?? null
-                              ]
-                            }
-                          </div>
-                        )}
+                        {header.column.columnDef.header}
+                        {header.column.getIsSorted() ? (
+                          {
+                            asc: <img src={descend} className='sortIcon' />,
+                            desc: <img src={ascend} className='sortIcon' />,
+                          }[header.column.getIsSorted()]
+                          ) : (
+                            header.column.getCanSort() && (
+                              <img src={sortIcon} className='sortIcon' />
+                            )
+                          )
+                        }
                       </th>
                     ))
                   }
@@ -198,7 +202,7 @@ function App() {
                 <tr key={row.id}>
                   {
                     row.getVisibleCells().map((cell) => (
-                      <td key={cell.id} className={cell.id.includes("amber_kris") ? "background-yellow" : ''}>
+                      <td key={cell.id} className={cell.id.includes("amber_kris") ? "background-yellow" : cell.id.includes("red_kris") ? "background_red" : "cursor-info"}>
                         {flexRender(cell.column.columnDef.cell, cell.getContext())}
                       </td>
                     ))
