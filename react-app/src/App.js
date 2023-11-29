@@ -1,4 +1,5 @@
-import { flexRender, getCoreRowModel, useReactTable } from '@tanstack/react-table';
+import { useState, useMemo } from 'react';
+import { flexRender, getCoreRowModel, useReactTable, getSortedRowModel } from '@tanstack/react-table';
 import { CheckOutlined, MinusOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 //import { siteSummaryTable } from 'rbm-viz';
@@ -9,8 +10,9 @@ import SUMMARY_DATA from './services/siteSummaryData.json';
 import './App.css';
 
 function App() {
-
+  
     const flagStatusIcon = (data, obj) => {
+      // console.log("obj: ", obj);
       switch (data) {
         case 2:
           return (
@@ -92,7 +94,12 @@ function App() {
     {
       header: kri.kri_acronym,
       accessorKey: kri.kri_id,
-      cell: (props) => <span>{flagStatusIcon(props.getValue().flag_value, props.getValue())}</span>
+      cell: (props) => <span>{flagStatusIcon(props.getValue().flag_value, props.getValue())}</span>,
+      sortingFn: (A, B, columnId) => {
+        const flag_comparison = Math.abs(A.original[columnId].flag_value) - Math.abs(B.original[columnId].flag_value);
+        const score_comparison = Math.abs(A.original[columnId].selected_snapshot_kri_value) - Math.abs(B.original[columnId].selected_snapshot_kri_value);
+        return flag_comparison || score_comparison;
+      }
     }
   ))
   .sort((a,b) => 
@@ -123,7 +130,7 @@ function App() {
     },
     {
       header: "Enrolled subjects",
-      accessorKey: "enrolled_subjects"
+      accessorKey: "enrolled_subjects",
     },
     {
       header: "Red kris",
@@ -136,11 +143,18 @@ function App() {
     ...kriObj
   ];
 
+  const [sorting, setSorting] = useState([]);
+
   //Structure for our TanStack table
   const table = useReactTable({
-    data: makeSiteSummaryData(SUMMARY_DATA),
+    data: useMemo(() => makeSiteSummaryData(SUMMARY_DATA), []),
     columns,
-    getCoreRowModel: getCoreRowModel()
+    getCoreRowModel: getCoreRowModel(),
+    getSortedRowModel: getSortedRowModel(),
+    state: {
+      sorting: sorting,
+    },
+    onSortingChange: setSorting,
   });
 
   return (
@@ -153,11 +167,26 @@ function App() {
               table.getHeaderGroups().map(headerGroup => (
                 <tr key={headerGroup.id}>
                   {
-                    headerGroup.headers.map((headers => (
-                      <th key={headers.id} className={headers.id === "amber_kris" ? "background-yellow" : ''}>
-                        {flexRender(headers.column.columnDef.header, headers.getContext())}
+                    headerGroup.headers.map(header => (
+                      <th
+                        key={header.id}
+                        onClick={header.column.getToggleSortingHandler()}
+                      >
+                        {header.isPlaceholder ? null : (
+                          <div>
+                            {flexRender(
+                              header.column.columnDef.header,
+                              header.getContext()
+                            )}
+                            {
+                              { asc: '🔼', desc: '🔽' }[
+                                header.column.getIsSorted() ?? null
+                              ]
+                            }
+                          </div>
+                        )}
                       </th>
-                    )))
+                    ))
                   }
                 </tr>
               ))
