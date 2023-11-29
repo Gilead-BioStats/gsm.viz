@@ -92,3 +92,6 @@ th:last-child {
 .darkTxt {
   color:black;
 }
+.background-yellow {
+  background: #fffdf1 !important;
+}
