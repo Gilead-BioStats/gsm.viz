@@ -92,10 +92,21 @@ function App() {
       };
     }
 
+  const headerTooltip = (data) => {
+    return <Tooltip placement='left' title={
+      <div className='align'>
+        {data.kri_id ? <p>KRI ID: {data.kri_id}</p> : ''}
+        {data.kri_name ? <p>Name: {data.kri_name}</p> : ''}
+        {data.kri_acronym ? <p>Acronym: {data.kri_acronym}</p> : ''}
+      </div>}>
+      {data.kri_acronym}
+    </Tooltip>;
+  }
+
   //Assign KRI elements into their values
   const kriObj = SUMMARY_DATA.all_kris_list.map((kri) => (
     {
-      header: kri.kri_acronym,
+      header: headerTooltip(kri),
       accessorKey: kri.kri_id,
       cell: (props) => <span>{flagStatusIcon(props.getValue().flag_value, props.getValue())}</span>,
       sortingFn: (A, B, columnId) => {
