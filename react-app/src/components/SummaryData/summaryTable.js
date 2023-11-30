@@ -3,7 +3,8 @@ export default function makeSiteSummaryData(data) {
         let obj = {
             site_data: {
                 site_id: item.site_id,
-                ...item.site_id_details
+                ...item.site_id_details,
+                site_investigator: item.site_investigator,
             },
             enrolled_subjects: item.subject_enrolled,
             red_kris: item.at_risk_kri,

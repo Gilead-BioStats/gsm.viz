@@ -1004,12 +1004,12 @@
 "all_kris_list": [
     {
         "kri_id": "kri0003",
-        "kri_name": "Non-Important Pd Rate",
+        "kri_name": "Non-Important PD Rate",
         "kri_acronym": "PD"
     },
     {
         "kri_id": "kri0004",
-        "kri_name": "Important Pd Rate",
+        "kri_name": "Important PD Rate",
         "kri_acronym": "IPD"
     },
     {
@@ -1044,12 +1044,12 @@
     },
     {
         "kri_id": "kri0001",
-        "kri_name": "Non-Serious Ae Reporting Rate",
+        "kri_name": "Non-Serious AE Reporting Rate",
         "kri_acronym": "AE"
     },
     {
         "kri_id": "kri0002",
-        "kri_name": "Sae Reporting Rate",
+        "kri_name": "SAE Reporting Rate",
         "kri_acronym": "SAE"
     },
     {
