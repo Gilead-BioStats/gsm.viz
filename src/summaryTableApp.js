@@ -1,11 +1,11 @@
 import SUMMARY_DATA from './summary-data.json';
-import './App.css';
+import './siteSummaryTable/App.css';
 
-import defineKriObj from './app/defineKriObj.js';
-import defineColumns from './app/defineColumns.js';
-import DefineTable from './app/defineTable.js';
-import defineThead from './app/defineThead.js';
-import defineTbody from './app/defineTbody.js';
+import defineKriObj from './siteSummaryTable/defineKriObj.js';
+import defineColumns from './siteSummaryTable/app/defineColumns.js';
+import DefineTable from './siteSummaryTable/app/defineTable.js';
+import defineThead from './siteSummaryTable/app/defineThead.js';
+import defineTbody from './siteSummaryTable/app/defineTbody.js';
 
 function SummaryTableApp() {
   //Assign KRI elements into their values
