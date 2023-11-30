@@ -14,7 +14,11 @@ import scatterPlot from './scatterPlot';
 import sparkline from './sparkline';
 import timeSeries from './timeSeries';
 import siteSummaryTable from './siteSummaryTable';
-import summaryTableApp from './summaryTableApp';
+import defineKriObj from './siteSummaryTable/defineKriObj';
+import DefineTable from './siteSummaryTable/defineTable';
+import defineColumns from './siteSummaryTable/defineColumns';
+import defineTbody from './siteSummaryTable/defineTbody';
+import defineThead from './siteSummaryTable/defineThead';
 
 Chart.register(
     annotationPlugin,
@@ -106,7 +110,11 @@ const rbmViz = {
     }),
 
     siteSummaryTable,
-    summaryTableApp,
+    defineKriObj,
+    DefineTable,
+    defineColumns,
+    defineTbody,
+    defineThead,
 };
 
 export default rbmViz;
