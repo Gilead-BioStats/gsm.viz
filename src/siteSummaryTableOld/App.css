@@ -92,23 +92,3 @@ th:last-child {
 .darkTxt {
   color:black;
 }
-.background-yellow {
-  background: #fffdf1 !important;
-}
-.background_red {
-  background: #ffccc74d !important;
-}
-table th {
-  cursor: pointer;
-}
-.sortIcon {
-  position: relative;
-  left: 10px;
-  top: 2px;
-}
-.sortIconInitial {
-  width: 20%;
-}
-.help {
-  cursor: help;
-}
