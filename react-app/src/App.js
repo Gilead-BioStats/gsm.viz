@@ -3,7 +3,7 @@ import './App.css';
 
 import defineKriObj from './app/defineKriObj.js';
 import defineColumns from './app/defineColumns.js';
-import DefineTable from './app/DefineTable.js';
+import DefineTable from './app/defineTable.js';
 import defineThead from './app/defineThead.js';
 import defineTbody from './app/defineTbody.js';
 
