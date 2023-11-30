@@ -14,7 +14,7 @@ import scatterPlot from './scatterPlot';
 import sparkline from './sparkline';
 import timeSeries from './timeSeries';
 import siteSummaryTable from './siteSummaryTable';
-import SummaryTableApp from './summaryTableApp';
+import summaryTableApp from './summaryTableApp';
 
 Chart.register(
     annotationPlugin,
@@ -106,7 +106,7 @@ const rbmViz = {
     }),
 
     siteSummaryTable,
-    SummaryTableApp,
+    summaryTableApp,
 };
 
 export default rbmViz;
