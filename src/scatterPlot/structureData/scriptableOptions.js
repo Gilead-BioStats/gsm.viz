@@ -1,7 +1,7 @@
-import backgroundColor from './scriptableOptions/backgroundColor';
-import borderColor from './scriptableOptions/borderColor';
-import borderWidth from './scriptableOptions/borderWidth';
-import radius from './scriptableOptions/radius';
+import backgroundColor from './scriptableOptions/backgroundColor.js';
+import borderColor from './scriptableOptions/borderColor.js';
+import borderWidth from './scriptableOptions/borderWidth.js';
+import radius from './scriptableOptions/radius.js';
 
 export default function scriptableOptions() {
     return {

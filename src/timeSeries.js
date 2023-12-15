@@ -2,23 +2,23 @@
 import Chart from 'chart.js/auto';
 
 // check inputs > configure > add canvas, structure data
-import checkInputs from './timeSeries/checkInputs';
-import configure from './timeSeries/configure';
-import addCanvas from './util/addCanvas';
-import structureData from './timeSeries/structureData';
+import checkInputs from './timeSeries/checkInputs.js';
+import configure from './timeSeries/configure.js';
+import addCanvas from './util/addCanvas.js';
+import structureData from './timeSeries/structureData.js';
 
 // Chart.js options
-import onHover from './util/onHover';
-import onClick from './util/onClick';
-import getPlugins from './timeSeries/getPlugins';
-import getScales from './timeSeries/getScales';
+import onHover from './util/onHover.js';
+import onClick from './util/onClick.js';
+import getPlugins from './timeSeries/getPlugins.js';
+import getScales from './timeSeries/getScales.js';
 
 // custom plugins
-import displayWhiteBackground from './util/displayWhiteBackground';
+import displayWhiteBackground from './util/displayWhiteBackground.js';
 
 // update meethods
-import updateData from './timeSeries/updateData';
-import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
+import updateData from './timeSeries/updateData.js';
+import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs.js';
 
 export default function timeSeries(
     _element_,

@@ -1,4 +1,4 @@
-import getDefaultScales from '../util/getDefaultScales';
+import getDefaultScales from '../util/getDefaultScales.js.js';
 import { min, max } from 'd3';
 
 // TODO: use some function of canvas height and point radius to define y-domain

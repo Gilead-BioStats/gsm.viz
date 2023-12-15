@@ -1,10 +1,10 @@
-import analysisMetadata from './analysisMetadata.json';
-import analysisParameters from './analysisParameters.json';
-import flagCounts from './flagCounts.json';
-import results from './results.json';
-import resultsPredicted from './resultsPredicted.json';
-import resultsVertical from './resultsVertical.json';
-import snapshotDate from './snapshotDate.json';
+import analysisMetadata from './analysisMetadata.json.js';
+import analysisParameters from './analysisParameters.json.js';
+import flagCounts from './flagCounts.json.js';
+import results from './results.json.js';
+import resultsPredicted from './resultsPredicted.json.js';
+import resultsVertical from './resultsVertical.json.js';
+import snapshotDate from './snapshotDate.json.js';
 
 const schema = {
     analysisMetadata,

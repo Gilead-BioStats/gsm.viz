@@ -2,25 +2,25 @@
 import Chart from 'chart.js/auto';
 
 // check inputs > configure > add canvas, structure data
-import checkInputs from './scatterPlot/checkInputs';
-import configure from './scatterPlot/configure';
-import addCanvas from './util/addCanvas';
-import structureData from './scatterPlot/structureData';
+import checkInputs from './scatterPlot/checkInputs.js';
+import configure from './scatterPlot/configure.js';
+import addCanvas from './util/addCanvas.js';
+import structureData from './scatterPlot/structureData.js';
 
 // Chart.js options
-import onHover from './util/onHover';
-import onClick from './util/onClick';
-import getPlugins from './scatterPlot/getPlugins';
-import getScales from './scatterPlot/getScales';
+import onHover from './util/onHover.js';
+import onClick from './util/onClick.js';
+import getPlugins from './scatterPlot/getPlugins.js';
+import getScales from './scatterPlot/getScales.js';
 
 // custom plugins
-import displayWhiteBackground from './util/displayWhiteBackground';
+import displayWhiteBackground from './util/displayWhiteBackground.js';
 
 // update methods
-import updateConfig from './scatterPlot/updateConfig';
-import updateData from './scatterPlot/updateData';
-import updateOption from './util/updateOption';
-import triggerTooltip from './util/triggerTooltip';
+import updateConfig from './scatterPlot/updateConfig.js';
+import updateData from './scatterPlot/updateData.js';
+import updateOption from './util/updateOption.js';
+import triggerTooltip from './util/triggerTooltip.js';
 
 /**
  * Generate a scatter plot.

@@ -1,4 +1,4 @@
-import checkInput from '../data/checkInput';
+import checkInput from '../data/checkInput.js.js';
 
 export default function checkInputs(_data_, _config_, _bounds_) {
     checkInput({

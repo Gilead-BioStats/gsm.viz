@@ -1,4 +1,4 @@
-import coalesce from './coalesce';
+import coalesce from './coalesce.js.js.js';
 
 export default function configure(defaults, _config_, customSettings = null) {
     const config = { ..._config_ };

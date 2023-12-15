@@ -5,25 +5,25 @@ import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // check inputs > configure > add canvas, structure data
-import checkInputs from './barChart/checkInputs';
-import configure from './barChart/configure';
-import addCanvas from './util/addCanvas';
-import structureData from './barChart/structureData';
+import checkInputs from './barChart/checkInputs.js';
+import configure from './barChart/configure.js';
+import addCanvas from './util/addCanvas.js';
+import structureData from './barChart/structureData.js';
 
 // Chart.js options
-import onClick from './util/onClick';
-import onHover from './util/onHover';
-import getPlugins from './barChart/getPlugins';
-import getScales from './barChart/getScales';
+import onClick from './util/onClick.js';
+import onHover from './util/onHover.js';
+import getPlugins from './barChart/getPlugins.js';
+import getScales from './barChart/getScales.js';
 
 // custom plugins
-import displayWhiteBackground from './util/displayWhiteBackground';
+import displayWhiteBackground from './util/displayWhiteBackground.js';
 
 // update methods
-import updateData from './barChart/updateData';
-import updateConfig from './barChart/updateConfig';
-import updateOption from './util/updateOption';
-import triggerTooltip from './util/triggerTooltip';
+import updateData from './barChart/updateData.js';
+import updateConfig from './barChart/updateConfig.js';
+import updateOption from './util/updateOption.js';
+import triggerTooltip from './util/triggerTooltip.js';
 
 /**
  * Generate a bar chart.

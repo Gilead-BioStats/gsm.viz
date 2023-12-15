@@ -1,5 +1,5 @@
-import formatResultTooltipContent from '../../util/formatResultTooltipContent';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();

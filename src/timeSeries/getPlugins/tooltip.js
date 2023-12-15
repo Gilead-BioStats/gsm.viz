@@ -1,6 +1,6 @@
 import { ascending } from 'd3';
-import formatResultTooltipContent from '../../util/formatResultTooltipContent';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 // TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {

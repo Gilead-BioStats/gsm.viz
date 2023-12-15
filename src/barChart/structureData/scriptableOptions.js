@@ -1,5 +1,5 @@
-import backgroundColor from './scriptableOptions/backgroundColor';
-import borderColor from './scriptableOptions/borderColor';
+import backgroundColor from './scriptableOptions/backgroundColor.js';
+import borderColor from './scriptableOptions/borderColor.js';
 
 export default function scriptableOptions() {
     return {

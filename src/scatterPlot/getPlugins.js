@@ -1,6 +1,6 @@
-import legend from './getPlugins/legend';
-import title from './getPlugins/title';
-import tooltip from './getPlugins/tooltip';
+import legend from './getPlugins/legend.js.js.js';
+import title from './getPlugins/title.js.js.js';
+import tooltip from './getPlugins/tooltip.js.js.js';
 
 export default function getPlugins(config) {
     const plugins = {

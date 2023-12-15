@@ -3,21 +3,21 @@ import Chart from 'chart.js/auto';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 
 // check inputs > configure > add canvas, structure data
-import checkInputs from './sparkline/checkInputs';
-import configure from './sparkline/configure';
-import addCanvas from './util/addCanvas';
-import structureData from './sparkline/structureData';
+import checkInputs from './sparkline/checkInputs.js';
+import configure from './sparkline/configure.js';
+import addCanvas from './util/addCanvas.js';
+import structureData from './sparkline/structureData.js';
 
 // Chart.js options
-import onHover from './util/onHover';
-import onClick from './util/onClick';
-import getPlugins from './sparkline/getPlugins';
-import getScales from './sparkline/getScales';
+import onHover from './util/onHover.js';
+import onClick from './util/onClick.js';
+import getPlugins from './sparkline/getPlugins.js';
+import getScales from './sparkline/getScales.js';
 
 // update methods
-import updateData from './sparkline/updateData';
-import updateConfig from './sparkline/updateConfig';
-import updateOption from './util/updateOption';
+import updateData from './sparkline/updateData.js';
+import updateConfig from './sparkline/updateConfig.js';
+import updateOption from './util/updateOption.js';
 
 /**
  * Generate a sparkline.

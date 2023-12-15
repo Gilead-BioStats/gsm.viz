@@ -1,5 +1,5 @@
 import { format } from 'd3';
-import getDefaultScales from '../util/getDefaultScales';
+import getDefaultScales from '../util/getDefaultScales.js.js';
 
 export default function getScales(config) {
     const scales = getDefaultScales();

@@ -1,7 +1,7 @@
 import { group } from 'd3';
-import mutate from './structureData/mutate';
-import colorScheme from '../util/colorScheme';
-import scriptableOptions from './structureData/scriptableOptions';
+import mutate from './structureData/mutate.js.js.js';
+import colorScheme from '../util/colorScheme.js.js';
+import scriptableOptions from './structureData/scriptableOptions.js.js.js';
 
 /**
  * Given input data, returns an array of arrays, each of which map to one or more graphical elements

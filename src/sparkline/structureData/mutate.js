@@ -1,4 +1,4 @@
-import falsy from '../../util/falsy';
+import falsy from '../../util/falsy.js';
 import { ascending } from 'd3';
 
 export default function mutate(_data_, config) {

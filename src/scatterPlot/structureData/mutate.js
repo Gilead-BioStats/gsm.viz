@@ -1,4 +1,4 @@
-import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
+import identifyDuplicatePoints from '../../util/identifyDuplicatePoints.js';
 
 export default function mutate(_data_, config) {
     const data = _data_

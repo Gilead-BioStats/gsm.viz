@@ -1,6 +1,6 @@
 import { color as d3color, max } from 'd3';
-import colorScheme from '../../util/colorScheme';
-import falsy from '../../util/falsy';
+import colorScheme from '../../util/colorScheme.js';
+import falsy from '../../util/falsy.js';
 
 export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;

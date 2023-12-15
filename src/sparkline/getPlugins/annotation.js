@@ -1,5 +1,5 @@
-import annotateThresholds from './annotation/thresholds';
-import annotateValue from './annotation/value';
+import annotateThresholds from './annotation/thresholds.js';
+import annotateValue from './annotation/value.js';
 
 export default function annotations(config, data) {
     const value = annotateValue(config, data);

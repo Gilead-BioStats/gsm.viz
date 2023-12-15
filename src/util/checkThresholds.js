@@ -1,4 +1,4 @@
-import mapThresholdsToFlags from './mapThresholdsToFlags';
+import mapThresholdsToFlags from './mapThresholdsToFlags.js.js.js';
 
 export default function checkThresholds(_config_, _thresholds_) {
     let thresholds = _config_.thresholds;

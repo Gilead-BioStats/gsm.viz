@@ -1,6 +1,6 @@
-import schemata from './schema/index';
-import getType from './checkInput/getType';
-import checkProps from './checkInput/checkProps';
+import schemata from './schema/index.js.js.js';
+import getType from './checkInput/getType.js.js.js';
+import checkProps from './checkInput/checkProps.js.js.js';
 
 /**
  * Check argument to module against corresponding schema.

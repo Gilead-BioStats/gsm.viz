@@ -9,10 +9,10 @@ import {
 } from '@sgratzl/chartjs-chart-boxplot';
 
 // modules
-import barChart from './barChart';
-import scatterPlot from './scatterPlot';
-import sparkline from './sparkline';
-import timeSeries from './timeSeries';
+import barChart from './barChart.js';
+import scatterPlot from './scatterPlot.js';
+import sparkline from './sparkline.js';
+import timeSeries from './timeSeries.js';
 
 Chart.register(
     annotationPlugin,

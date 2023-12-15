@@ -1,4 +1,4 @@
-import getElementDatum from '../util/getElementDatum';
+import getElementDatum from '../util/getElementDatum.js.js';
 
 export default function onClick(event, activeElements, chart) {
     const canvas = chart.canvas;

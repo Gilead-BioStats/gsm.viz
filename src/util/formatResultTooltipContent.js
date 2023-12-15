@@ -1,5 +1,5 @@
 import { format } from 'd3';
-import falsy from './falsy';
+import falsy from './falsy.js.js.js';
 
 export default function formatResultTooltipContent(config, data) {
     const datum = data.dataset.data[data.dataIndex];
