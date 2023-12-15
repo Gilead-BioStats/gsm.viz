@@ -1,7 +1,7 @@
 {
   "TODO": "",
   "name": "rbm-viz",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
@@ -13,7 +13,7 @@
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
     "format-tests": "npx prettier --single-quote --tab-width=4 --write tests",
-    "local": "live-server --ignore=app,examples/app,examples/data,node_modules,src .",
+    "local": "live-server --ignore=app,examples/app,examples/data,node_modules,react-app,src .",
     "test": "jest",
     "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
     "transpile": "babel index.js > index.es5.js",

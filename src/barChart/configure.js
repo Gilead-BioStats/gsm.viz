@@ -1,8 +1,8 @@
-import configureAll from '../util/configure.js.js';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js.js';
-import checkThresholds from '../util/checkThresholds.js.js';
-import coalesce from '../util/coalesce.js.js';
-import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js.js';
+import configureAll from '../util/configure.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import checkThresholds from '../util/checkThresholds.js';
+import coalesce from '../util/coalesce.js';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};

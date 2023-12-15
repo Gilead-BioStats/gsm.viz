@@ -1,7 +1,7 @@
-import configure from './configure.js.js.js';
-import getPlugins from './getPlugins.js.js.js';
-import getScales from './getScales.js.js.js';
-import triggerTooltip from '../util/triggerTooltip.js.js';
+import configure from './configure.js';
+import getPlugins from './getPlugins.js';
+import getScales from './getScales.js';
+import triggerTooltip from '../util/triggerTooltip.js';
 
 /**
  * Update chart data and optionally redraw chart.

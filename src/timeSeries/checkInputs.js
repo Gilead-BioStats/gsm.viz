@@ -1,4 +1,4 @@
-import checkInput from '../data/checkInput.js.js';
+import checkInput from '../data/checkInput.js';
 
 export default function checkInputs(
     _data_,

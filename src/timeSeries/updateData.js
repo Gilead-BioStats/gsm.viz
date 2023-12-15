@@ -1,10 +1,10 @@
 import { rollup } from 'd3';
-import configure from './configure.js.js.js';
-import structureData from './structureData.js.js.js';
-import checkThresholds from '../util/checkThresholds.js.js';
-import colorScheme from '../util/colorScheme.js.js';
-import getPlugins from './getPlugins.js.js.js';
-import getScales from './getScales.js.js.js';
+import configure from './configure.js';
+import structureData from './structureData.js';
+import checkThresholds from '../util/checkThresholds.js';
+import colorScheme from '../util/colorScheme.js';
+import getPlugins from './getPlugins.js';
+import getScales from './getScales.js';
 
 /**
  * Update chart configuration and redraw chart.

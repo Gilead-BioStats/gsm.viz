@@ -1,4 +1,4 @@
-import identifyDuplicatePoints from './identifyDuplicatePoints.js.js.js';
+import identifyDuplicatePoints from './identifyDuplicatePoints.js';
 
 export default function getElementDatum(activeElements, chart) {
     const element = activeElements.sort(

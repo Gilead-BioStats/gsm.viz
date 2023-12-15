@@ -1,4 +1,4 @@
-import checkInput from '../data/checkInput.js.js';
+import checkInput from '../data/checkInput.js';
 
 export default function checkInputs(_data_, _config_, _thresholds_) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);

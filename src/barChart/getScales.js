@@ -1,4 +1,4 @@
-import getDefaultScales from '../util/getDefaultScales.js.js';
+import getDefaultScales from '../util/getDefaultScales.js';
 
 export default function getScales(config, datasets) {
     const scales = getDefaultScales();

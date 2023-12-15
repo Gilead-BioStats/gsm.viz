@@ -1,4 +1,4 @@
-import addCustomEvent from './addCanvas/addCustomEvent.js.js.js';
+import addCustomEvent from './addCanvas/addCustomEvent.js';
 
 export default function addCanvas(_element_, config) {
     let canvas;
