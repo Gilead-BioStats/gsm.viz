@@ -1,6 +1,6 @@
 import { color as d3color, rollup, rollups } from 'd3';
-import mapThresholdsToFlags from '../../util/mapThresholdsToFlags';
-import colorScheme from '../../util/colorScheme';
+import mapThresholdsToFlags from '../../util/mapThresholdsToFlags.js';
+import colorScheme from '../../util/colorScheme.js';
 
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {

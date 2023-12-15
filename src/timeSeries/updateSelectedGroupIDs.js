@@ -1,5 +1,5 @@
-import configure from './configure';
-import structureData from './structureData';
+import configure from './configure.js';
+import structureData from './structureData.js';
 
 /**
  * Update chart configuration and redraw chart.

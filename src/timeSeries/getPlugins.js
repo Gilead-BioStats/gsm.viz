@@ -1,6 +1,6 @@
-import annotations from './getPlugins/annotations';
-import legend from './getPlugins/legend';
-import tooltip from './getPlugins/tooltip';
+import annotations from './getPlugins/annotations.js';
+import legend from './getPlugins/legend.js';
+import tooltip from './getPlugins/tooltip.js';
 
 export default function getPlugins(config) {
     return {

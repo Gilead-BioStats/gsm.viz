@@ -1,6 +1,6 @@
 import { ascending } from 'd3';
-import getLabels from './getLabels';
-import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
+import getLabels from './getLabels.js';
+import identifyDuplicatePoints from '../../util/identifyDuplicatePoints.js';
 
 export default function mutate(_data_, config, _thresholds_, _intervals_) {
     const data = _data_

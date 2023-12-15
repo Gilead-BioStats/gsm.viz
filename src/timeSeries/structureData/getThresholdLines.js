@@ -1,6 +1,6 @@
 import { max, rollup } from 'd3';
-import checkThresholds from '../../util/checkThresholds';
-import colorScheme from '../../util/colorScheme';
+import checkThresholds from '../../util/checkThresholds.js';
+import colorScheme from '../../util/colorScheme.js';
 
 export default function getThresholdLines(_thresholds_, config, labels) {
     let thresholdData = [null];

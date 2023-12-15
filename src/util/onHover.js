@@ -1,4 +1,4 @@
-import getElementDatum from '../util/getElementDatum';
+import getElementDatum from '../util/getElementDatum.js';
 
 export default function onHover(event, activeElements, chart) {
     const canvas = chart.canvas;

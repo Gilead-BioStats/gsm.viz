@@ -1,5 +1,5 @@
-import getBoxplot from './distribution/boxplot';
-import getViolin from './distribution/violin';
+import getBoxplot from './distribution/boxplot.js';
+import getViolin from './distribution/violin.js';
 
 export default function distribution(data, config, labels) {
     if (!['boxplot', 'violin'].includes(config.distributionDisplay))

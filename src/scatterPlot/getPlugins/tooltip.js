@@ -1,6 +1,6 @@
 import { ascending } from 'd3';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
-import formatResultTooltipContent from '../../util/formatResultTooltipContent';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();

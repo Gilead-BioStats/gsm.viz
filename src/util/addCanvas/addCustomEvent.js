@@ -1,4 +1,4 @@
-import getCallbackWrapper from './getCallbackWrapper';
+import getCallbackWrapper from './getCallbackWrapper.js';
 
 export default function addCustomEvent(canvas, callback, eventType) {
     const callbackWrapper = getCallbackWrapper(callback);

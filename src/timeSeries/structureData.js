@@ -1,20 +1,20 @@
-import mutate from './structureData/mutate';
-import getLabels from './structureData/getLabels';
+import mutate from './structureData/mutate.js';
+import getLabels from './structureData/getLabels.js';
 
 // datasets
-import getIdentityLine from './structureData/identityLine';
-import getIntervalLines from './structureData/intervalLines';
+import getIdentityLine from './structureData/identityLine.js';
+import getIntervalLines from './structureData/intervalLines.js';
 
-import getSelectedGroupLine from './structureData/selectedGroupLine';
-import getFlagAmber from './structureData/flagAmber';
-import getFlagRed from './structureData/flagRed';
-import getDistribution from './structureData/distribution';
+import getSelectedGroupLine from './structureData/selectedGroupLine.js';
+import getFlagAmber from './structureData/flagAmber.js';
+import getFlagRed from './structureData/flagRed.js';
+import getDistribution from './structureData/distribution.js';
 
-import getThresholdLines from './structureData/getThresholdLines';
+import getThresholdLines from './structureData/getThresholdLines.js';
 
-import getAggregateLine from './structureData/aggregateLine';
+import getAggregateLine from './structureData/aggregateLine.js';
 
-import colorScheme from '../util/colorScheme';
+import colorScheme from '../util/colorScheme.js';
 
 export default function structureData(
     _data_,

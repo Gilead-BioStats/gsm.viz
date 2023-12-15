@@ -1,8 +1,8 @@
 import { group } from 'd3';
-import mutate from './structureData/mutate';
-import scriptableOptions from './structureData/scriptableOptions';
-import rollupBounds from './structureData/rollupBounds';
-import falsy from '../util/falsy';
+import mutate from './structureData/mutate.js';
+import scriptableOptions from './structureData/scriptableOptions.js';
+import rollupBounds from './structureData/rollupBounds.js';
+import falsy from '../util/falsy.js';
 
 /**
  * Given input data, returns an array of arrays, each of which map to one or more graphical elements

@@ -1,5 +1,5 @@
 import { format, timeFormat, timeParse } from 'd3';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();

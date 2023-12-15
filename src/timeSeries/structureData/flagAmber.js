@@ -1,4 +1,4 @@
-import colorScheme from '../../util/colorScheme';
+import colorScheme from '../../util/colorScheme.js';
 
 export default function flagAmber(data, config, labels) {
     const pointData = data

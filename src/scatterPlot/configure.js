@@ -1,7 +1,7 @@
-import configureAll from '../util/configure';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import coalesce from '../util/coalesce';
-import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
+import configureAll from '../util/configure.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import coalesce from '../util/coalesce.js';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
 export default function configure(_config_, _data_) {
     const defaults = {};

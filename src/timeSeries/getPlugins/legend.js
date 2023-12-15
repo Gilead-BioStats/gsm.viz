@@ -1,4 +1,4 @@
-import colorScheme from '../../util/colorScheme';
+import colorScheme from '../../util/colorScheme.js';
 
 // TODO: refactor
 export default function legend(config) {

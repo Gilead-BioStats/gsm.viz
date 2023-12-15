@@ -1,4 +1,4 @@
-import falsy from './falsy';
+import falsy from './falsy.js';
 import { ascending, color as d3color } from 'd3';
 
 const colorScheme = [

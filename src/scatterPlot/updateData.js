@@ -1,6 +1,6 @@
-import updateConfig from './updateConfig';
-import structureData from './structureData';
-import triggerTooltip from '../util/triggerTooltip';
+import updateConfig from './updateConfig.js';
+import structureData from './structureData.js';
+import triggerTooltip from '../util/triggerTooltip.js';
 
 /**
  * Update chart data and redraw chart.

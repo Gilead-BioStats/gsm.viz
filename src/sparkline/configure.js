@@ -1,7 +1,7 @@
-import configureAll from '../util/configure';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from '../util/checkThresholds';
-import coalesce from '../util/coalesce';
+import configureAll from '../util/configure.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import checkThresholds from '../util/checkThresholds.js';
+import coalesce from '../util/coalesce.js';
 
 export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};

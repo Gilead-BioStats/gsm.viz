@@ -1,5 +1,5 @@
 import { color as d3color, max, mean, rollup } from 'd3';
-import colorScheme from '../../util/colorScheme';
+import colorScheme from '../../util/colorScheme.js';
 
 export default function identityLine(data, config, labels) {
     const aggregateData = rollup(
