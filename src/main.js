@@ -13,6 +13,7 @@ import barChart from './barChart.js';
 import scatterPlot from './scatterPlot.js';
 import sparkline from './sparkline.js';
 import timeSeries from './timeSeries.js';
+import siteOverview from './siteOverview.js';
 
 Chart.register(
     annotationPlugin,
@@ -102,6 +103,8 @@ const rbmViz = {
         chartType: 'identity',
         dataType: 'continuous',
     }),
+    // site overview
+    siteOverview
 };
 
 export default rbmViz;
