@@ -22787,7 +22787,6 @@ var rbmViz = (() => {
       }, {});
       return { ...obj, ...kriObj };
     });
-    console.log(siteSummaryData);
     return siteSummaryData;
   };
   var siteOverview = {
