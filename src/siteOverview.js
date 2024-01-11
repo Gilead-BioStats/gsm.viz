@@ -5,23 +5,27 @@ import { CheckOutlined, MinusOutlined, InfoCircleOutlined } from '@ant-design/ic
 //(() => {
   // src/siteOverview.js
   const makeSiteSummaryData = function (data) {
-    const siteSummaryData = data.site_grid_details.map((item) => {
-      const obj = {
-        site_data: {
-          site_id: item.site_id,
-          ...item.site_id_details,
-          site_investigator: item.site_investigator
-        },
-        enrolled_subjects: item.subject_enrolled,
-        red_kris: item.flagged_kri,
-        amber_kris: item.at_risk_kri
-      };
-      const kriObj = item.kri_column_details.sort((a, b) => Object.keys(a) < Object.keys(b) ? -1 : Object.keys(b) < Object.keys(a) ? 1 : 0).reduce((kriItems, kriItem) => {
-        kriItems[Object.keys(kriItem)] = { ...kriItem[Object.keys(kriItem)], site_id: item.site_id };
-        return kriItems;
-      }, {});
-      return { ...obj, ...kriObj };
-    });
+      const siteSummaryData = data.site_grid_details
+          .filter(d => d.subject_enrolled > 0)
+          .map((item) => {
+            const obj = {
+                site_data: {
+                site_id: item.site_id,
+                ...item.site_id_details,
+                site_investigator: item.site_investigator
+                },
+                enrolled_subjects: item.subject_enrolled,
+                red_kris: item.flagged_kri,
+                amber_kris: item.at_risk_kri
+            };
+
+            const kriObj = item.kri_column_details.sort((a, b) => Object.keys(a) < Object.keys(b) ? -1 : Object.keys(b) < Object.keys(a) ? 1 : 0).reduce((kriItems, kriItem) => {
+                kriItems[Object.keys(kriItem)] = { ...kriItem[Object.keys(kriItem)], site_id: item.site_id };
+                return kriItems;
+            }, {});
+
+            return { ...obj, ...kriObj };
+          });
     return siteSummaryData;
   };
 
