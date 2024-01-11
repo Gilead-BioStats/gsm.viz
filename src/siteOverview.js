@@ -1,9 +1,5 @@
-import React from 'react';
-import { Tooltip } from 'antd';
-import { Link } from 'react-router-dom';
-import { CheckOutlined, MinusOutlined, InfoCircleOutlined } from '@ant-design/icons';
-//(() => {
-  // src/siteOverview.js
+import Parser from 'html-react-parser';
+
   const makeSiteSummaryData = function (data) {
       const siteSummaryData = data.site_grid_details
           .filter(d => d.subject_enrolled > 0)
@@ -30,51 +26,55 @@ import { CheckOutlined, MinusOutlined, InfoCircleOutlined } from '@ant-design/ic
   };
 
 const defineColumns = function(kriObj) {
-     const columns = [
-       {
-         header: "Site ID - test",
-         accessorKey: "site_data",
-         cell: function(props) {
-           return /* @__PURE__ */ React.createElement(Tooltip, { 
-             placement: "right",
-             color: "#fff",
-             title: /* @__PURE__ */ React.createElement("div", { 
-               className: "align darkTxt"
-             }, props.getValue().site_id ? /* @__PURE__ */ React.createElement("p", null, /* @__PURE__ */ React.createElement("b", null, "Site ID:"), " ", props.getValue().site_id) : "", /* @__PURE__ */ React.createElement("hr", null), props.getValue().site_name ? /* @__PURE__ */ React.createElement("p", null, "Site name: ", /* @__PURE__ */ React.createElement("b", null, props.getValue().site_name)) : "", props.getValue().city ? /* @__PURE__ */ 
- React.createElement("p", null, "City: ", /* @__PURE__ */ React.createElement("b", null, props.getValue().city)) : "", props.getValue().state ? /* @__PURE__ */ React.createElement("p", null, "State: ", /* @__PURE__ */ React.createElement("b", null, props.getValue().state)) : "", props.getValue().country ? /* @__PURE__ */ React.createElement("p", null, "Country: ", /* @__PURE__ */ React.createElement("b", null, props.getValue().country)) : "", props.getValue().site_status ? /* @__PURE__ */ React.createElement("p", null, "Status: ", /* @__PURE__ */ React.createElement("b", null, props.getValue().site_status)) : "")
-           }, /* @__PURE__ */ React.createElement("div", {       
-             style: { display: "grid" }
-           }, /* @__PURE__ */ React.createElement("span", {      
-             className: "help"
-           }, /* @__PURE__ */ React.createElement(Link, {        
-             to: `${props.getValue().site_id}`,
-             style: { cursor: "pointer", color: "black", fontWeight: "bold", textDecoration: "underline" }
-           }, props.getValue().site_id, /* @__PURE__ */ React.createElement(InfoCircleOutlined, {
-             style: { color: "#3c587f", cursor: "help", fontSize: "12px", marginLeft: "2px" }
-           }))), /* @__PURE__ */ React.createElement("span", null, `${props.getValue().site_investigator}`.split(",").shift())));        }
-       },
-       {
-         header: "Enrolled subjects",
-         accessorKey: "enrolled_subjects"
-       },
-       {
-         header: "Red KRIs",
-         accessorKey: "red_kris"
-       },
-       {
-         header: "Amber KRIs",
-         accessorKey: "amber_kris"
-       },
-       ...kriObj
-     ];
-     return columns;
-   };
+    const columns = [
+      {
+        header: "Site ID",
+        accessorKey: "site_data",
+        cell: (props) => 
+          Parser(`
+            <div style={{ display: 'grid' }} className="tooltip">
+            <div className='align darkTxt tooltiptext'>
+                ${
+                  props.getValue().site_id ?
+                    `<p><b>Site ID:</b> ${props.getValue().site_id}</p>`
+                    : ''
+                }
+                <hr/>
+                ${props.getValue().site_name ? `<p>Site name: <b>${props.getValue().site_name}</b></p>` : ''}
+                ${props.getValue().city ? `<p>City: <b>${props.getValue().city}</b></p>` : ''}
+                ${props.getValue().state ? `<p>State: <b>${props.getValue().state}</b></p>` : ''}
+                ${props.getValue().country ? `<p>Country: <b>${props.getValue().country}</b></p>` : ''}
+                ${props.getValue().site_status ? `<p>Status: <b>${props.getValue().site_status}</b></p>` : ''}
+              </div>
+              <span className='help'>
+                <Link to=${props.getValue().site_id} style={{ cursor: 'pointer', color: 'black', fontWeight: 'bold', textDecoration: 'underline' }}>
+                  ${props.getValue().site_id}
+                  <InfoCircleOutlined style={{ color: '#3c587f', cursor: 'help', fontSize: '12px', marginLeft: '2px' }} />
+                </Link>
+              </span>
+              <span>${props.getValue().site_investigator?.split(",").shift()}</span>
+            </div>`),
+      },
+      {
+        header: "Enrolled subjects",
+        accessorKey: "enrolled_subjects"
+      },
+      {
+        header: "Red KRIs",
+        accessorKey: "red_kris"
+      },
+      {
+        header: "Amber KRIs",
+        accessorKey: "amber_kris"
+      },
+      ...kriObj
+    ];
+    return columns;
+  };
 
   const siteOverview = {
     makeSiteSummaryData,
     defineColumns
   };
-//var siteOverview_default = siteOverview;
-//  return siteOverview;
-//
+
 export default siteOverview;
