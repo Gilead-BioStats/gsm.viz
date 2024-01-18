@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -22767,6 +22768,32 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/siteOverview.js
+  var makeSiteSummaryData = function(data) {
+    const siteSummaryData = data.site_grid_details.map((item) => {
+      const obj = {
+        site_data: {
+          site_id: item.site_id,
+          ...item.site_id_details,
+          site_investigator: item.site_investigator
+        },
+        enrolled_subjects: item.subject_enrolled,
+        red_kris: item.flagged_kri,
+        amber_kris: item.at_risk_kri
+      };
+      const kriObj = item.kri_column_details.sort((a, b) => Object.keys(a) < Object.keys(b) ? -1 : Object.keys(b) < Object.keys(a) ? 1 : 0).reduce((kriItems, kriItem) => {
+        kriItems[Object.keys(kriItem)] = { ...kriItem[Object.keys(kriItem)], site_id: item.site_id };
+        return kriItems;
+      }, {});
+      return { ...obj, ...kriObj };
+    });
+    return siteSummaryData;
+  };
+  var siteOverview = {
+    makeSiteSummaryData
+  };
+  var siteOverview_default = siteOverview;
+
   // src/main.js
   Chart.register(
     annotation,
@@ -22849,7 +22876,8 @@ var rbmViz = (() => {
       y: "metric",
       chartType: "identity",
       dataType: "continuous"
-    })
+    }),
+    siteOverview: siteOverview_default
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);
