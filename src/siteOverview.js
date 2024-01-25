@@ -1,3 +1,4 @@
+import React, { useRef, useEffect } from 'react';
 import Parser from 'html-react-parser';
 import InfoCircleOutlined from '../src/assets/info-circle-svg.svg';
 import doubleDownArrow from '../src/assets/doubleDownArrow.svg';
@@ -86,13 +87,14 @@ const headerTooltip = function(data) {
   </div>`);
 }
 
+const callSparkline = function(obj, kri, sparklineData, sparklineWorkflow,) {
+  if(sparklineWorkflow?.[kri.kri_id] !== undefined) {
+    sparkline(document.getElementById(`chartContainer${[obj?.site_id]}-${[kri.kri_id]}`), sparklineData?.[obj?.site_id]?.[kri.kri_id], sparklineWorkflow?.[kri.kri_id]);
+  }
+}
+
 const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri) {
-  // if (sparklineWorkflow?.[kri.kri_id] !== undefined) {
-  //   console.log('config: ', sparklineWorkflow?.[kri.kri_id]);
-  //   sparkline({ data: sparklineData?.[obj?.site_id]?.[kri.kri_id], config: sparklineWorkflow?.[kri.kri_id] });
-  // } else {
-  //   console.log('not working: ', sparklineWorkflow?.[kri.kri_id]);
-  // }
+  callSparkline(obj, kri, sparklineData, sparklineWorkflow);
   switch (data) {
     case 2:
       return (
@@ -104,8 +106,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper' id="red">
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
@@ -128,8 +129,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
@@ -152,8 +152,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
@@ -176,8 +175,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
@@ -200,8 +198,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
@@ -224,8 +221,7 @@ const flagStatusIcon = function(data, obj, sparklineData, sparklineWorkflow, kri
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                Sparkline grpah here!
-                
+                <div id='chartContainer${[obj?.site_id]}-${[kri.kri_id]}' style="width: 100%;height: 50px"></div>
               </div>
             </div>
           </div>
