@@ -2,6 +2,7 @@ const dataFiles = [
     '../data/results_summary.csv',
     '../data/meta_workflow.csv',
     '../data/results_bounds.csv',
+    '../data/status_site.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -12,6 +13,9 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
+
+        // site metadata
+        const sites = datasets[3];
 
         datasets = datasets.map((dataset) =>
             dataset.filter((d) => /^kri/.test(d.workflowid))
@@ -32,7 +36,8 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            bounds
+            bounds,
+            sites
         );
 
         // controls
