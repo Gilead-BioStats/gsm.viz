@@ -50,8 +50,7 @@ export default function scatterPlot(
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _bounds_);
-    console.log(_sites_);
+    const datasets = structureData(_data_, config, _bounds_, _sites_);
 
     // Configure Chart.js options.
     const options = {

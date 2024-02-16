@@ -33,19 +33,32 @@ export default function tooltip(config) {
 
                             return selected || alphanumeric;
                         })
-                        .map((d, i) =>
-                            i === 0
-                                ? `${config.group}${
-                                      data.length > 1 ? 's' : ''
-                                  } ${d.dataset.data[d.dataIndex].groupid}`
-                                : d.dataset.data[d.dataIndex].groupid
-                        );
+                        .map((d, i) => {
+                            const site = d.raw.site;
+                            let title;
 
-                    return groupIDs.length <= 4
+                            if (data.length === 1) {
+                                title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+
+                                if (site !== undefined) {
+                                    title = `${title} (${site.pi_last_name})`;
+                                }
+                            } else {
+                                title = i === 0
+                                    ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`
+                                    : d.dataset.data[d.dataIndex].groupid;
+                            }
+
+                            return title;
+                        });
+
+                    const title = groupIDs.length <= 4
                         ? groupIDs.join(', ')
                         : `${groupIDs.slice(0, 3).join(', ')} and [ ${
                               groupIDs.length - 3
-                          } ] more`;
+                          } ] more`
+
+                    return title;
                 }
             },
         },

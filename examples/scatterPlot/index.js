@@ -18,7 +18,9 @@ Promise.all(dataPromises)
         const sites = datasets[3];
 
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('workflowid')
+                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+                : dataset
         );
 
         // analysis results

@@ -21571,8 +21571,14 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData/mutate.js
-  function mutate2(_data_, config) {
+  function mutate2(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
+      if (_sites_ !== null) {
+        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        if (site !== void 0) {
+          d.site = site;
+        }
+      }
       const datum2 = {
         ...d,
         x: +d[config.x],
@@ -21706,8 +21712,8 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData.js
-  function structureData2(_data_, config, _bounds_) {
-    const data = mutate2(_data_, config);
+  function structureData2(_data_, config, _bounds_, _sites_ = null) {
+    const data = mutate2(_data_, config, _sites_);
     const datasets = [
       {
         data,
@@ -21779,10 +21785,21 @@ var rbmViz = (() => {
               ) - config.selectedGroupIDs.includes(a.raw.groupid);
               const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
               return selected || alphanumeric;
-            }).map(
-              (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
-            );
-            return groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more`;
+            }).map((d, i) => {
+              const site = d.raw.site;
+              let title4;
+              if (data.length === 1) {
+                title4 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                if (site !== void 0) {
+                  title4 = `${title4} (${site.pi_last_name})`;
+                }
+              } else {
+                title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid;
+              }
+              return title4;
+            });
+            const title3 = groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more`;
+            return title3;
           }
         }
       },
@@ -21848,9 +21865,9 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateData.js
-  function updateData2(chart, _data_, _config_, _bounds_) {
+  function updateData2(chart, _data_, _config_, _bounds_, _sites_) {
     const config = updateConfig2(chart, _config_, false, false);
-    const datasets = structureData2(_data_, config, _bounds_);
+    const datasets = structureData2(_data_, config, _bounds_, _sites_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21862,8 +21879,7 @@ var rbmViz = (() => {
     checkInputs2(_data_, _config_, _bounds_, _sites_);
     const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData2(_data_, config, _bounds_);
-    console.log(_sites_);
+    const datasets = structureData2(_data_, config, _bounds_, _sites_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
