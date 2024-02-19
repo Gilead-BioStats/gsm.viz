@@ -38,7 +38,8 @@ const kri = function (workflow, datasets, setup = false) {
                 instance,
                 results,
                 workflow,
-                parameters
+                parameters,
+                datasets[4]
             );
         });
     }

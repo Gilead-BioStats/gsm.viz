@@ -1,8 +1,17 @@
 import falsy from '../../util/falsy';
 
-export default function mutate(_data_, config) {
+export default function mutate(_data_, config, _sites_ = null) {
     const data = _data_
         .map((d) => {
+            // attach site metadata to results
+            if (_sites_ !== null) {
+                const site = _sites_.find(site => site.siteid === d.groupid);
+
+                if (site !== undefined) {
+                    d.site = site;
+                }
+            }
+
             const datum = {
                 ...d,
                 x: d[config.x],

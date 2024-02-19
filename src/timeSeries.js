@@ -25,10 +25,11 @@ export default function timeSeries(
     _data_,
     _config_ = {},
     _thresholds_ = null,
-    _intervals_ = null
+    _intervals_ = null,
+    _sites_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_data_, _config_, _thresholds_, _intervals_);
+    checkInputs(_data_, _config_, _thresholds_, _intervals_, _sites_);
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_, _thresholds_, _intervals_);
@@ -37,7 +38,7 @@ export default function timeSeries(
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData(_data_, config, _thresholds_, _intervals_, _sites_);
 
     // Configure Chart.js options.
     const options = {

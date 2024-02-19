@@ -20982,8 +20982,14 @@ var rbmViz = (() => {
   var falsy_default = falsy;
 
   // src/barChart/structureData/mutate.js
-  function mutate(_data_, config) {
+  function mutate(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
+      if (_sites_ !== null) {
+        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        if (site !== void 0) {
+          d.site = site;
+        }
+      }
       const datum2 = {
         ...d,
         x: d[config.x],
@@ -21060,8 +21066,8 @@ var rbmViz = (() => {
   }
 
   // src/barChart/structureData.js
-  function structureData(_data_, config) {
-    const data = mutate(_data_, config);
+  function structureData(_data_, config, _sites_ = null) {
+    const data = mutate(_data_, config, _sites_);
     const datasets = [
       {
         type: "bar",
@@ -21312,7 +21318,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return `${config.group} ${datum2.groupid}`;
+            return datum2.site !== void 0 ? `${config.group} ${datum2.groupid} (${datum2.site.pi_last_name})` : `${config.group} ${datum2.groupid}`;
           }
         }
       },
@@ -21444,9 +21450,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_) {
+  function updateData(chart, _data_, _config_, _thresholds_, _sites_ = null) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_data_, config, _sites_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21468,11 +21474,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null) {
-    checkInputs(_data_, _config_, _thresholds_);
+  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null, _sites_ = null) {
+    checkInputs(_data_, _config_, _thresholds_, _sites_);
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_data_, config, _sites_);
     const options = {
       animation: false,
       clip: false,
@@ -21516,7 +21522,7 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/checkInputs.js
-  function checkInputs2(_data_, _config_, _bounds_) {
+  function checkInputs2(_data_, _config_, _bounds_, _sites_ = null) {
     checkInput({
       parameter: "_data_",
       argument: _data_,
@@ -21535,6 +21541,14 @@ var rbmViz = (() => {
       schemaName: "resultsPredicted",
       module: "scatterPlot"
     });
+    if (_sites_ !== null) {
+      checkInput({
+        parameter: "_sites_",
+        argument: _sites_,
+        schemaName: "sites",
+        module: "scatterPlot"
+      });
+    }
   }
 
   // src/scatterPlot/configure.js
@@ -21640,7 +21654,11 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "scatter") {
-      return config.selectedGroupIDs.includes(datum2.groupid) ? 5 : 3;
+      if (datum2.site !== void 0) {
+        return Math.sqrt(datum2.site.enrolled_participants / Math.PI) * 3;
+      } else {
+        return config.selectedGroupIDs.includes(datum2.groupid) ? 5 : 3;
+      }
     }
   }
 
@@ -22222,7 +22240,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/checkInputs.js
-  function checkInputs4(_data_, _config_, _thresholds_, _intervals_) {
+  function checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_ = null) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInput({
       parameter: "_data_",
@@ -22248,6 +22266,14 @@ var rbmViz = (() => {
       schemaName: "resultsVertical",
       module: "timeSeries"
     });
+    if (_sites_ !== null) {
+      checkInput({
+        parameter: "_sites_",
+        argument: _sites_,
+        schemaName: "sites",
+        module: "timeSeries"
+      });
+    }
   }
 
   // src/timeSeries/configure.js
@@ -22305,9 +22331,15 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config, _thresholds_, _intervals_) {
+  function mutate4(_data_, config, _thresholds_, _intervals_, _sites_ = null) {
     const data = _data_.map((d) => {
       const datum2 = { ...d };
+      if (_sites_ !== null) {
+        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        if (site !== void 0) {
+          datum2.site = site;
+        }
+      }
       if ([void 0, null].includes(_intervals_) === false) {
         const intervals2 = _intervals_.filter(
           (interval2) => interval2.snapshot_date === datum2.snapshot_date
@@ -22679,12 +22711,13 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
+  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     const { data, labels, thresholds: thresholds2, intervals } = mutate4(
       _data_,
       config,
       _thresholds_,
-      _intervals_
+      _intervals_,
+      _sites_
     );
     let datasets = [];
     if (config.dataType !== "discrete") {
@@ -22902,6 +22935,7 @@ var rbmViz = (() => {
                 return selected || alphanumeric;
               }).map(function(d, i) {
                 let title3;
+                console.log(d);
                 if (i === 0) {
                   title3 = `${config.group}${data.length > 1 && // multiple element at coordinates
                   !(data.length === 2 && data.some(
@@ -22991,11 +23025,11 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    checkInputs4(_data_, _config_, _thresholds_, _intervals_);
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
+    checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData4(_data_, config, _thresholds_, _intervals_, _sites_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,

@@ -2,10 +2,18 @@ import { ascending } from 'd3';
 import getLabels from './getLabels';
 import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
 
-export default function mutate(_data_, config, _thresholds_, _intervals_) {
+export default function mutate(_data_, config, _thresholds_, _intervals_, _sites_ = null) {
     const data = _data_
         .map((d) => {
             const datum = { ...d };
+
+            if (_sites_ !== null) {
+                const site = _sites_.find(site => site.siteid === d.groupid);
+
+                if (site !== undefined) {
+                    datum.site = site;
+                }
+            }
 
             // Merge confidence intervals onto standard analysis output.
             if ([undefined, null].includes(_intervals_) === false) {

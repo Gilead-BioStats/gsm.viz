@@ -3,6 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param.csv',
+    '../data/status_site.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -14,8 +15,13 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
+        // site metadata
+        const sites = datasets[4];
+
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('workflowid')
+                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+                : dataset
         );
 
         // analysis results
@@ -36,7 +42,8 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters
+            parameters,
+            sites
         );
 
         // controls

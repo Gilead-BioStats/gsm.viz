@@ -56,6 +56,7 @@ export default function tooltip(config) {
                                 let title;
 
                                 // first element at coordinates
+                                console.log(d);
                                 if (i === 0) {
                                     title = `${config.group}${
                                         data.length > 1 && // multiple element at coordinates
