@@ -16127,7 +16127,7 @@ var rbmViz = (() => {
   ViolinChart.id = ViolinController.id;
 
   // node_modules/d3-array/src/ascending.js
-  function ascending(a, b) {
+  function ascending2(a, b) {
     return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
   }
 
@@ -16690,7 +16690,7 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/sort.js
   function sort_default(compare) {
     if (!compare)
-      compare = ascending2;
+      compare = ascending3;
     function compareNode(a, b) {
       return a && b ? compare(a.__data__, b.__data__) : !a - !b;
     }
@@ -16704,7 +16704,7 @@ var rbmViz = (() => {
     }
     return new Selection(sortgroups, this._parents).order();
   }
-  function ascending2(a, b) {
+  function ascending3(a, b) {
     return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
   }
 
@@ -20846,7 +20846,7 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
-    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending);
+    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending2);
     const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
     const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
@@ -20854,7 +20854,7 @@ var rbmViz = (() => {
         flag: -(i + 1)
       };
     });
-    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
+    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending2);
     const positiveFlags = positiveThresholds.map((threshold, i) => {
       return {
         threshold,
@@ -21039,7 +21039,7 @@ var rbmViz = (() => {
     )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: "Amber or Red Flag",
-    flag: [...amber.flag, ...red.flag].sort(ascending)
+    flag: [...amber.flag, ...red.flag].sort(ascending2)
   };
   colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
@@ -21092,10 +21092,10 @@ var rbmViz = (() => {
   function identifyDuplicatePoints(data, config, mutate5 = true) {
     const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
     data.sort((a, b) => {
-      const x = ascending(a[config.x], b[config.x]);
-      const y = ascending(a[config.y], b[config.y]);
+      const x = ascending2(a[config.x], b[config.x]);
+      const y = ascending2(a[config.y], b[config.y]);
       const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-      const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
+      const groupid = numericGroupIDs ? ascending2(+a.groupid, +b.groupid) : ascending2(a.groupid, b.groupid);
       return x || y || selected || groupid;
     });
     if (mutate5)
@@ -21318,7 +21318,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.site !== void 0 ? `${config.group} ${datum2.groupid} (${datum2.site.pi_last_name})` : `${config.group} ${datum2.groupid}`;
+            return datum2.site !== void 0 ? `${config.group} ${datum2.groupid} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.group} ${datum2.groupid}`;
           }
         }
       },
@@ -21565,6 +21565,7 @@ var rbmViz = (() => {
       console.log(datum2);
     };
     defaults3.displayTitle = false;
+    defaults3.displayLegend = true;
     defaults3.displayTrendLine = false;
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
@@ -21647,6 +21648,26 @@ var rbmViz = (() => {
     }
   }
 
+  // src/scatterPlot/structureData/scriptableOptions/pointHoverRadius.js
+  function pointHoverRadius(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "scatter") {
+      const defaultRadius = 3;
+      const hoverRadius = 4;
+      if (datum2.site !== void 0) {
+        const enrollmentFactor = Math.sqrt(
+          datum2.site.enrolled_participants / Math.PI
+        );
+        return enrollmentFactor * hoverRadius;
+      } else {
+        return config.selectedGroupIDs.includes(datum2.groupid) ? hoverRadius : defaultRadius;
+      }
+    }
+  }
+
   // src/scatterPlot/structureData/scriptableOptions/radius.js
   function radius(context, options) {
     const chart = context.chart;
@@ -21654,10 +21675,15 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "scatter") {
+      const defaultRadius = 3;
+      const hoverRadius = 4;
       if (datum2.site !== void 0) {
-        return Math.sqrt(datum2.site.enrolled_participants / Math.PI) * 3;
+        const enrollmentFactor = Math.sqrt(
+          datum2.site.enrolled_participants / Math.PI
+        );
+        return enrollmentFactor * defaultRadius;
       } else {
-        return config.selectedGroupIDs.includes(datum2.groupid) ? 5 : 3;
+        return config.selectedGroupIDs.includes(datum2.groupid) ? hoverRadius : defaultRadius;
       }
     }
   }
@@ -21668,6 +21694,7 @@ var rbmViz = (() => {
       backgroundColor: backgroundColor2,
       borderColor: borderColor2,
       borderWidth,
+      pointHoverRadius,
       radius
     };
   }
@@ -21759,7 +21786,7 @@ var rbmViz = (() => {
   function legend2(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     return {
-      display: true,
+      display: config.displayLegend,
       labels: {
         boxHeight: 6,
         filter: function(legendItem, chartData) {
@@ -21783,6 +21810,23 @@ var rbmViz = (() => {
     };
   }
 
+  // src/util/sortByGroupID.js
+  function sortByGroupID(data, config) {
+    const numericGroupIDs = data.every(
+      (d) => /^\d+$/.test(d.raw.groupid)
+    );
+    const dataSorted = data.sort((a, b) => {
+      const selected = config.selectedGroupIDs.includes(
+        b.raw.groupid
+      ) - config.selectedGroupIDs.includes(
+        a.raw.groupid
+      );
+      const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
+      return selected || alphanumeric;
+    });
+    return dataSorted;
+  }
+
   // src/scatterPlot/getPlugins/tooltip.js
   function tooltip2(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -21794,29 +21838,20 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            const numericGroupIDs = data.every(
-              (d) => /^\d+$/.test(d.raw.groupid)
-            );
-            const groupIDs = data.sort((a, b) => {
-              const selected = config.selectedGroupIDs.includes(
-                b.raw.groupid
-              ) - config.selectedGroupIDs.includes(a.raw.groupid);
-              const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
-              return selected || alphanumeric;
-            }).map((d, i) => {
-              const site = d.raw.site;
+            const dataSorted = sortByGroupID(data);
+            const titles = dataSorted.map((d, i) => {
               let title4;
               if (data.length === 1) {
                 title4 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
-                if (site !== void 0) {
-                  title4 = `${title4} (${site.pi_last_name})`;
+                if (d.raw.site !== void 0) {
+                  title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                 }
               } else {
                 title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid;
               }
               return title4;
             });
-            const title3 = groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more`;
+            const title3 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
             return title3;
           }
         }
@@ -21990,7 +22025,7 @@ var rbmViz = (() => {
         stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
-    }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
+    }).sort((a, b) => ascending2(a.snapshot_date, b.snapshot_date));
     return data.slice(-config.nSnapshots);
   }
 
@@ -22335,7 +22370,12 @@ var rbmViz = (() => {
     const data = _data_.map((d) => {
       const datum2 = { ...d };
       if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        let site = _sites_.filter((site2) => site2.siteid === d.groupid);
+        if (site.length > 1) {
+          site = site.find((site2) => site2.snapshot_date === datum2.snapshot_date);
+        } else {
+          site = site[0];
+        }
         if (site !== void 0) {
           datum2.site = site;
         }
@@ -22352,15 +22392,15 @@ var rbmViz = (() => {
         )?.value;
       }
       return datum2;
-    }).sort((a, b) => ascending(a[config.x], b[config.x]));
+    }).sort((a, b) => ascending2(a[config.x], b[config.x]));
     const labels = getLabels(data, config);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
-      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
+      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending2(a[config.x], b[config.x]));
     }
     let intervals = null;
     if (Array.isArray(_intervals_)) {
-      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
+      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending2(a[config.x], b[config.x]));
     }
     identifyDuplicatePoints(data, config);
     return {
@@ -22922,28 +22962,28 @@ var rbmViz = (() => {
             } else if (data[0].dataset.purpose === "aggregate") {
               return `${config.group} Summary on ${data[0].label}`;
             } else {
-              const numericGroupIDs = data.every(
-                (d) => /^\d+$/.test(d.raw.groupid)
-              );
-              const groupIDs = data.sort((a, b) => {
-                const selected = config.selectedGroupIDs.includes(
-                  b.raw.groupid
-                ) - config.selectedGroupIDs.includes(
-                  a.raw.groupid
-                );
-                const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
-                return selected || alphanumeric;
-              }).map(function(d, i) {
+              const dataSorted = sortByGroupID(data);
+              const titles = dataSorted.map(function(d, i) {
                 let title3;
                 console.log(d);
                 if (i === 0) {
-                  title3 = `${config.group}${data.length > 1 && // multiple element at coordinates
-                  !(data.length === 2 && data.some(
-                    (d2) => [
-                      "aggregate",
-                      "distribution"
-                    ].includes(d2.dataset.purpose)
-                  )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
+                  if (data.length > 1) {
+                    if (data.length === 2 && data.some(
+                      (d2) => [
+                        "aggregate",
+                        "distribution"
+                      ].includes(d2.dataset.purpose)
+                    )) {
+                      title3 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                    } else {
+                      title3 = `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`;
+                    }
+                  } else {
+                    title3 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                    if (d.raw.site !== void 0) {
+                      title3 = `${title3} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                    }
+                  }
                 } else if (!["aggregate", "distribution"].includes(
                   d.dataset.purpose
                 )) {
@@ -22953,7 +22993,7 @@ var rbmViz = (() => {
                 }
                 return title3;
               });
-              return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
+              return titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
             }
           }
         }

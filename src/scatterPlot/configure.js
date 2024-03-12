@@ -25,6 +25,7 @@ export default function configure(_config_, _data_) {
 
     // miscellaneous
     defaults.displayTitle = false;
+    defaults.displayLegend = true;
     defaults.displayTrendLine = false;
     defaults.maintainAspectRatio = false;
 

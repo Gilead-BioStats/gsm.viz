@@ -1,6 +1,7 @@
 import { ascending } from 'd3';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import sortByGroupID from '../../util/sortByGroupID';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -15,33 +16,21 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    const numericGroupIDs = data.every((d) =>
-                        /^\d+$/.test(d.raw.groupid)
-                    );
+                    const dataSorted = sortByGroupID(data);
 
-                    const groupIDs = data
-                        .sort((a, b) => {
-                            const selected =
-                                config.selectedGroupIDs.includes(
-                                    b.raw.groupid
-                                ) -
-                                config.selectedGroupIDs.includes(a.raw.groupid);
-
-                            const alphanumeric = numericGroupIDs
-                                ? ascending(+a.raw.groupid, +b.raw.groupid)
-                                : ascending(a.raw.groupid, b.raw.groupid);
-
-                            return selected || alphanumeric;
-                        })
+                    const titles = dataSorted
                         .map((d, i) => {
-                            const site = d.raw.site;
                             let title;
 
                             if (data.length === 1) {
                                 title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
 
-                                if (site !== undefined) {
-                                    title = `${title} (${site.pi_last_name})`;
+                                if (d.raw.site !== undefined) {
+                                    title = `${title} (${
+                                        d.raw.site.pi_last_name
+                                    } / ${
+                                        d.raw.site.enrolled_participants
+                                    } enrolled)`;
                                 }
                             } else {
                                 title = i === 0
@@ -52,10 +41,10 @@ export default function tooltip(config) {
                             return title;
                         });
 
-                    const title = groupIDs.length <= 4
-                        ? groupIDs.join(', ')
-                        : `${groupIDs.slice(0, 3).join(', ')} and [ ${
-                              groupIDs.length - 3
+                    const title = titles.length <= 4
+                        ? titles.join(', ')
+                        : `${titles.slice(0, 3).join(', ')} and [ ${
+                              titles.length - 3
                           } ] more`
 
                     return title;

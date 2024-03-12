@@ -8,7 +8,13 @@ export default function mutate(_data_, config, _thresholds_, _intervals_, _sites
             const datum = { ...d };
 
             if (_sites_ !== null) {
-                const site = _sites_.find(site => site.siteid === d.groupid);
+                let site = _sites_.filter(site => site.siteid === d.groupid);
+
+                if (site.length > 1) {
+                    site = site.find(site => site.snapshot_date === datum.snapshot_date);
+                } else {
+                    site = site[0];
+                }
 
                 if (site !== undefined) {
                     datum.site = site;

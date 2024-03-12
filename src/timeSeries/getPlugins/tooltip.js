@@ -1,6 +1,7 @@
 import { ascending } from 'd3';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import sortByGroupID from '../../util/sortByGroupID';
 
 // TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {
@@ -30,37 +31,18 @@ export default function tooltip(config) {
                     } else if (data[0].dataset.purpose === 'aggregate') {
                         return `${config.group} Summary on ${data[0].label}`;
                     } else {
-                        const numericGroupIDs = data.every((d) =>
-                            /^\d+$/.test(d.raw.groupid)
-                        );
+                        const dataSorted = sortByGroupID(data);
 
-                        const groupIDs = data
-                            .sort((a, b) => {
-                                // order selected group ID first
-                                const selected =
-                                    config.selectedGroupIDs.includes(
-                                        b.raw.groupid
-                                    ) -
-                                    config.selectedGroupIDs.includes(
-                                        a.raw.groupid
-                                    );
-
-                                // order remaining group IDs alphanumerically
-                                const alphanumeric = numericGroupIDs
-                                    ? ascending(+a.raw.groupid, +b.raw.groupid)
-                                    : ascending(a.raw.groupid, b.raw.groupid);
-
-                                return selected || alphanumeric;
-                            })
+                        const titles = dataSorted
                             .map(function (d, i) {
                                 let title;
 
                                 // first element at coordinates
                                 console.log(d);
                                 if (i === 0) {
-                                    title = `${config.group}${
-                                        data.length > 1 && // multiple element at coordinates
-                                        !(
+                                    if (data.length > 1) {
+                                        // multiple elements at coordinates
+                                        if (
                                             data.length === 2 &&
                                             data.some((d) =>
                                                 [
@@ -68,10 +50,19 @@ export default function tooltip(config) {
                                                     'distribution',
                                                 ].includes(d.dataset.purpose)
                                             )
-                                        ) // two elements at coordinates: selected group ID and distribution or aggregate
-                                            ? 's'
-                                            : ''
-                                    } ${d.dataset.data[d.dataIndex].groupid}`;
+                                        ) {
+                                            // two elements at coordinates: selected group ID and distribution or aggregate
+                                            title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                                        } else {
+                                            title = `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`;
+                                        }
+                                    } else {
+                                        title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+
+                                        if (d.raw.site !== undefined) {
+                                            title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                                        }
+                                    }
                                 } else if (
                                     !['aggregate', 'distribution'].includes(
                                         d.dataset.purpose
@@ -89,10 +80,10 @@ export default function tooltip(config) {
                                 return title;
                             });
 
-                        return groupIDs.length <= 4
-                            ? `${groupIDs.join(', ')} on ${data[0].label}`
-                            : `${groupIDs.slice(0, 3).join(', ')} and [ ${
-                                  groupIDs.length - 3
+                        return titles.length <= 4
+                            ? `${titles.join(', ')} on ${data[0].label}`
+                            : `${titles.slice(0, 3).join(', ')} and [ ${
+                                  titles.length - 3
                               } ] more on ${data[0].label}`;
                     }
                 }

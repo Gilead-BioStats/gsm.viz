@@ -1,4 +1,4 @@
-export default function radius(context, options) {
+export default function pointHoverRadius(context, options) {
     const chart = context.chart;
     const config = chart.data.config;
     const dataset = context.dataset;
@@ -14,7 +14,7 @@ export default function radius(context, options) {
                 datum.site.enrolled_participants / Math.PI
             );
 
-            return enrollmentFactor * defaultRadius;
+            return enrollmentFactor * hoverRadius;
         } else {
             return config.selectedGroupIDs.includes(datum.groupid)
                 ? hoverRadius

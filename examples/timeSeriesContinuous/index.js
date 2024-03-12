@@ -3,7 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param_over_time.csv',
-    '../data/status_site.csv'
+    '../data/status_site_over_time.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
