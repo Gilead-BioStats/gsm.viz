@@ -3,6 +3,7 @@ const by = 'group'; // 'kri'
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
     '../data/meta_workflow.csv',
+    '../data/status_site_over_time.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -13,6 +14,9 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
+
+        // site metadata
+        const sites = datasets[2];
 
         // data
         datasets[0].forEach((d) => {
@@ -41,7 +45,10 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             flagCounts,
-            config
+            config,
+            null,
+            null,
+            sites
         );
 
         if (by === 'kri') kri(config, datasets, true);

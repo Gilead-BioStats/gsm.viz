@@ -22957,43 +22957,30 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            if (["boxplot", "violin"].includes(data[0].dataset.type)) {
+            if (data[0].dataset.type.purpose === "distribution") {
               return `${config.group} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
+              console.log(data[0].dataset.purpose, data[0].dataset.type);
               return `${config.group} Summary on ${data[0].label}`;
             } else {
+              console.log(data[0].dataset.purpose, data[0].dataset.type);
               const dataSorted = sortByGroupID(data);
+              console.log(dataSorted);
               const titles = dataSorted.map(function(d, i) {
-                let title3;
-                console.log(d);
-                if (i === 0) {
-                  if (data.length > 1) {
-                    if (data.length === 2 && data.some(
-                      (d2) => [
-                        "aggregate",
-                        "distribution"
-                      ].includes(d2.dataset.purpose)
-                    )) {
-                      title3 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
-                    } else {
-                      title3 = `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`;
-                    }
-                  } else {
-                    title3 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
-                    if (d.raw.site !== void 0) {
-                      title3 = `${title3} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
-                    }
+                let title4;
+                if (data.length === 1) {
+                  title4 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                  if (d.raw.site !== void 0) {
+                    title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                   }
-                } else if (!["aggregate", "distribution"].includes(
-                  d.dataset.purpose
-                )) {
-                  title3 = d.dataset.data[d.dataIndex].groupid;
                 } else {
-                  title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
+                  title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid;
                 }
-                return title3;
+                return title4;
               });
-              return titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
+              const title3 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
+              console.log(title3);
+              return title3;
             }
           }
         }
