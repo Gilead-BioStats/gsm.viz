@@ -1,4 +1,3 @@
-import { ascending } from 'd3';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 import sortByGroupID from '../../util/sortByGroupID';
@@ -16,7 +15,7 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    const dataSorted = sortByGroupID(data);
+                    const dataSorted = sortByGroupID(data, config);
 
                     const titles = dataSorted
                         .map((d, i) => {

@@ -1,3 +1,5 @@
+import { ascending } from 'd3';
+
 export default function sortByGroupID(data, config) {
     const numericGroupIDs = data.every((d) =>
         /^\d+$/.test(d.raw.groupid)

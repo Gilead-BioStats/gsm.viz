@@ -14,9 +14,6 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        // site metadata
-        const sites = datasets[3];
-
         datasets = datasets.map((dataset) =>
             Object.keys(dataset[0]).includes('workflowid')
                 ? dataset.filter((d) => /^kri/.test(d.workflowid))
@@ -32,7 +29,9 @@ Promise.all(dataPromises)
         // threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);
 
-        // configuration
+        // site metadata
+        const sites = datasets[3];
+
         // visualization
         const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),

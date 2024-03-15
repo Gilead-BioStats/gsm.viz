@@ -19,8 +19,8 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 2. click event updates to destroy
     // 3. button text changes to KILL
     const create = () => {
-        const workflow = datasets[0].find((d) => d.workflowid === kri());
-        const results = datasets[1].filter(
+        const workflow = datasets[1].find((d) => d.workflowid === kri());
+        const results = datasets[0].filter(
             (d) => d.workflowid === workflow.workflowid
         );
         const bounds = datasets[2].filter(

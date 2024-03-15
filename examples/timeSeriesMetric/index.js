@@ -1,9 +1,9 @@
 const dataFiles = [
-    '../data/results_summary.csv',
+    '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
-    '../data/status_param.csv',
-    '../data/status_site.csv'
+    '../data/status_param_over_time.csv',
+    '../data/status_site_over_time.csv'
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -14,6 +14,9 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const workflowID = 'kri0001';
+
+        // site metadata
+        const sites = datasets[4];
 
         datasets = datasets.map((dataset) =>
             Object.keys(dataset[0]).includes('workflowid')
@@ -26,7 +29,8 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'score';
+        workflow.selectedGroupIDs = '190';
+        workflow.y = 'metric';
 
         // threshold annotations
         const parameters = mergeParameters(
@@ -34,23 +38,17 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[3], workflowID)
         );
 
-        // site metadata
-        const sites = datasets[4];
-
         // visualization
-        const instance = rbmViz.default.barChart(
+        const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             workflow,
-            parameters,
+            //parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            null,
             sites
         );
 
-        // controls
         kri(workflow, datasets, true);
         site(datasets, true);
-        yaxis(workflow, datasets, true);
-        threshold(workflow, datasets, true);
-        lifecycle(datasets, 'barChart', true);
         download(true);
     });

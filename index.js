@@ -16127,7 +16127,7 @@ var rbmViz = (() => {
   ViolinChart.id = ViolinController.id;
 
   // node_modules/d3-array/src/ascending.js
-  function ascending2(a, b) {
+  function ascending(a, b) {
     return a == null || b == null ? NaN : a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
   }
 
@@ -16690,7 +16690,7 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/sort.js
   function sort_default(compare) {
     if (!compare)
-      compare = ascending3;
+      compare = ascending2;
     function compareNode(a, b) {
       return a && b ? compare(a.__data__, b.__data__) : !a - !b;
     }
@@ -16704,7 +16704,7 @@ var rbmViz = (() => {
     }
     return new Selection(sortgroups, this._parents).order();
   }
-  function ascending3(a, b) {
+  function ascending2(a, b) {
     return a < b ? -1 : a > b ? 1 : a >= b ? 0 : NaN;
   }
 
@@ -20846,7 +20846,7 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
-    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending2);
+    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending);
     const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
     const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
@@ -20854,7 +20854,7 @@ var rbmViz = (() => {
         flag: -(i + 1)
       };
     });
-    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending2);
+    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
     const positiveFlags = positiveThresholds.map((threshold, i) => {
       return {
         threshold,
@@ -21039,7 +21039,7 @@ var rbmViz = (() => {
     )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: "Amber or Red Flag",
-    flag: [...amber.flag, ...red.flag].sort(ascending2)
+    flag: [...amber.flag, ...red.flag].sort(ascending)
   };
   colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
@@ -21092,10 +21092,10 @@ var rbmViz = (() => {
   function identifyDuplicatePoints(data, config, mutate5 = true) {
     const numericGroupIDs = data.every((d) => /^\d+$/.test(d.groupid));
     data.sort((a, b) => {
-      const x = ascending2(a[config.x], b[config.x]);
-      const y = ascending2(a[config.y], b[config.y]);
+      const x = ascending(a[config.x], b[config.x]);
+      const y = ascending(a[config.y], b[config.y]);
       const selected = config.selectedGroupIDs.includes(b.groupid) - config.selectedGroupIDs.includes(a.groupid);
-      const groupid = numericGroupIDs ? ascending2(+a.groupid, +b.groupid) : ascending2(a.groupid, b.groupid);
+      const groupid = numericGroupIDs ? ascending(+a.groupid, +b.groupid) : ascending(a.groupid, b.groupid);
       return x || y || selected || groupid;
     });
     if (mutate5)
@@ -21838,7 +21838,7 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            const dataSorted = sortByGroupID(data);
+            const dataSorted = sortByGroupID(data, config);
             const titles = dataSorted.map((d, i) => {
               let title4;
               if (data.length === 1) {
@@ -22025,7 +22025,7 @@ var rbmViz = (() => {
         stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
-    }).sort((a, b) => ascending2(a.snapshot_date, b.snapshot_date));
+    }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
     return data.slice(-config.nSnapshots);
   }
 
@@ -22392,15 +22392,15 @@ var rbmViz = (() => {
         )?.value;
       }
       return datum2;
-    }).sort((a, b) => ascending2(a[config.x], b[config.x]));
+    }).sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(data, config);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
-      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending2(a[config.x], b[config.x]));
+      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
     let intervals = null;
     if (Array.isArray(_intervals_)) {
-      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending2(a[config.x], b[config.x]));
+      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
     identifyDuplicatePoints(data, config);
     return {
