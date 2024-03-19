@@ -63,6 +63,7 @@ export default function timeSeries(
             _config_,
             _thresholds_,
             _intervals_,
+            _sites_
         },
         options,
         plugins: [displayWhiteBackground()],

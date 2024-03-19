@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="utf-8" />
         <title>Bar Chart</title>
+        <meta charset="utf-8" />
+
         <link rel="stylesheet" href="../style.css" />
         <link rel="stylesheet" href="style.css" />
+
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../../index.js"></script>
 
@@ -17,7 +19,7 @@
         <script src="./controls/yaxis.js"></script>
         <script src="./controls/threshold.js"></script>
         <script src="./controls/site.js"></script>
-        <script src="../controls/lifecycle.js"></script>
+        <script src="./controls/lifecycle.js"></script>
         <script src="../controls/download.js"></script>
     </head>
 
@@ -34,10 +36,11 @@
             </fieldset>
 
             <fieldset>
-                <legend>Y-Axis</legend>
+                <legend>Y-axis</legend>
                 <select id="yaxis">
-                    <option value="score">score</option>
+                    <option value="numerator">numerator</option>
                     <option value="metric">metric</option>
+                    <option value="score">score</option>
                 </select>
             </fieldset>
 

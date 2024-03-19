@@ -22947,6 +22947,7 @@ var rbmViz = (() => {
       callbacks: {
         //label: formatResultTooltipContent.bind(null, config),
         label: (d) => {
+          console.log(d);
           const content = formatResultTooltipContent(config, d);
           return d.raw.duplicate ? "" : content;
         },
@@ -22957,15 +22958,20 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            if (data[0].dataset.type.purpose === "distribution") {
+            if (data[0].dataset.purpose === "distribution") {
               return `${config.group} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
               console.log(data[0].dataset.purpose, data[0].dataset.type);
               return `${config.group} Summary on ${data[0].label}`;
             } else {
               console.log(data[0].dataset.purpose, data[0].dataset.type);
-              const dataSorted = sortByGroupID(data);
-              console.log(dataSorted);
+              let dataSorted = data;
+              try {
+                dataSorted = sortByGroupID(data, config);
+              } catch (err) {
+                console.log(err);
+                console.log(data);
+              }
               const titles = dataSorted.map(function(d, i) {
                 let title4;
                 if (data.length === 1) {
@@ -23046,7 +23052,9 @@ var rbmViz = (() => {
     this.data.datasets = structureData4(
       this.data._data_,
       this.data.config,
-      this.data._thresholds_
+      this.data._thresholds_,
+      null,
+      this.data._sites_
     );
     this.update();
   }
@@ -23077,7 +23085,8 @@ var rbmViz = (() => {
         _data_,
         _config_,
         _thresholds_,
-        _intervals_
+        _intervals_,
+        _sites_
       },
       options,
       plugins: [displayWhiteBackground()]

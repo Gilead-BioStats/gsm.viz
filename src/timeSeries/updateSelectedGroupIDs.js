@@ -18,7 +18,9 @@ export default function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.datasets = structureData(
         this.data._data_,
         this.data.config,
-        this.data._thresholds_
+        this.data._thresholds_,
+        null,
+        this.data._sites_
     );
     this.update();
 }

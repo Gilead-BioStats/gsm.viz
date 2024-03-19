@@ -11,6 +11,7 @@ export default function tooltip(config) {
         callbacks: {
             //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
+                console.log(d);
                 const content = formatResultTooltipContent(config, d);
 
                 // prevent display of duplicate tooltip content
@@ -26,7 +27,7 @@ export default function tooltip(config) {
             title: (data) => {
                 if (data.length) {
                     // distribution (boxplot, violin plot)
-                    if (data[0].dataset.type.purpose === 'distribution') {
+                    if (data[0].dataset.purpose === 'distribution') {
                         return `${config.group} Distribution on ${data[0].label}`;
                     }
                     // aggregate (discrete KRI distribution, QTL)
@@ -37,8 +38,13 @@ export default function tooltip(config) {
                     // data point
                     else {
                         console.log(data[0].dataset.purpose, data[0].dataset.type);
-                        const dataSorted = sortByGroupID(data);
-                        console.log(dataSorted);
+                        let dataSorted = data;
+                        try {
+                            dataSorted = sortByGroupID(data, config);
+                        } catch (err) {
+                            console.log(err);
+                            console.log(data);
+                        }
 
                         const titles = dataSorted
                             .map(function (d, i) {

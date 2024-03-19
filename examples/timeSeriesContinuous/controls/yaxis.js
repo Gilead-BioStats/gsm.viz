@@ -21,20 +21,23 @@ const yaxis = function (workflow, datasets, setup = false) {
             workflow.selectedGroupIDs = site();
 
             // threshold annotations
-            const parameters =
-                workflow.y === 'score' &&
-                document.getElementById('threshold').checked
-                    ? mergeParameters(
-                          filterOnWorkflowID(datasets[2], workflowID),
-                          filterOnWorkflowID(datasets[3], workflowID)
-                      )
-                    : null;
+            let parameters = mergeParameters(
+                filterOnWorkflowID(datasets[2], workflowID),
+                filterOnWorkflowID(datasets[3], workflowID)
+            );
+            if (workflow.y !== 'score')
+                parameters = null;
+
+            // site metadata
+            const sites = datasets[4];
 
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
-                parameters
+                parameters,
+                null,
+                sites
             );
         });
     }

@@ -1,9 +1,9 @@
 // Add event listener to threshold dropdown.
 const threshold = function (workflow, datasets, setup = false) {
-    const instance = getChart();
     const thresholdToggle = document.getElementById('threshold');
 
     thresholdToggle.addEventListener('change', (event) => {
+        const instance = getChart();
         const workflowID = kri();
         const results = filterOnWorkflowID(datasets[0], workflowID);
         const workflow = selectWorkflowID(datasets[1], workflowID);

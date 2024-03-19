@@ -15,9 +15,6 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const workflowID = 'kri0001';
 
-        // site metadata
-        const sites = datasets[4];
-
         datasets = datasets.map((dataset) =>
             Object.keys(dataset[0]).includes('workflowid')
                 ? dataset.filter((d) => /^kri/.test(d.workflowid))
@@ -29,13 +26,20 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.selectedGroupIDs = '190';
+        workflow.y = 'score';
+        workflow.clickCallback = function(datum) {
+            instance.helpers.updateSelectedGroupIDs(datum.groupid);
+            document.querySelector('#groupid').value = datum.groupid;
+        }
 
         // threshold annotations
         const parameters = mergeParameters(
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)
         );
+
+        // site metadata
+        const sites = datasets[4];
 
         // visualization
         const instance = rbmViz.default.timeSeries(
@@ -49,5 +53,6 @@ Promise.all(dataPromises)
 
         kri(workflow, datasets, true);
         site(datasets, true);
+        yaxis(workflow, datasets, true);
         download(true);
     });
