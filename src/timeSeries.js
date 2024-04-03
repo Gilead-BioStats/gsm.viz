@@ -16,10 +16,22 @@ import getScales from './timeSeries/getScales';
 // custom plugins
 import displayWhiteBackground from './util/displayWhiteBackground';
 
-// update meethods
+// update methods
 import updateData from './timeSeries/updateData';
 import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs';
 
+/**
+ * Generate a time series.
+ *
+ * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
+ * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Object} _config_ - chart configuration and metadata
+ * @param {Array} _thresholds_ - optional auxiliary data of threshold parameters
+ * @param {Array} _intervals_ - optional auxiliary data of confidence intervals
+ * @param {Array} _sites_ - optional site metadata
+ *
+ * @returns {Object} Chart.js chart object
+ */
 export default function timeSeries(
     _element_,
     _data_,

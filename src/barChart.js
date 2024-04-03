@@ -32,7 +32,7 @@ import triggerTooltip from './util/triggerTooltip';
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _thresholds_ - optional auxiliary data of threshold parameters
- * @param {Array} _site_ - optional site metadata
+ * @param {Array} _sites_ - optional site metadata
  *
  * @returns {Object} Chart.js chart object
  */
