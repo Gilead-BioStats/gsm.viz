@@ -25,12 +25,15 @@ const kri = function (workflow, datasets, setup = false) {
             workflow.selectedGroupIDs = site();
 
             // threshold annotations
-            const parameters = document.getElementById('threshold').checked
-                ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], event.target.value),
-                      filterOnWorkflowID(datasets[3], event.target.value)
-                  )
-                : null;
+            const parameters = (
+                workflow.y === 'score' &&
+                document.getElementById('threshold').checked
+                    ? mergeParameters(
+                        filterOnWorkflowID(datasets[2], event.target.value),
+                        filterOnWorkflowID(datasets[3], event.target.value)
+                    )
+                    : null
+            );
 
             // site metadata
             const sites = datasets[4];

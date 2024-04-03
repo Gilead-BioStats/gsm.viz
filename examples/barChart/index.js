@@ -27,6 +27,18 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'score';
+        workflow.hoverCallback = function(datum) {
+            //console.log(datum.groupid);
+        }
+        workflow.clickCallback = function(datum) {
+            instance.data.config.selectedGroupIDs = datum.groupid;
+            instance.helpers.updateConfig(
+                instance,
+                instance.data.config,
+                instance.data._thresholds_
+            );
+            document.querySelector('#groupid').value = datum.groupid;
+        }
 
         // threshold annotations
         const parameters = mergeParameters(

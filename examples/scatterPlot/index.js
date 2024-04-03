@@ -25,6 +25,15 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
+        workflow.hoverCallback = function(datum) {
+            //console.log(datum.groupid);
+        }
+        workflow.clickCallback = function(datum) {
+            instance.data.config.selectedGroupIDs = datum.groupid;
+            instance.data.config.xType = xAxisType();
+            instance.helpers.updateConfig(instance, instance.data.config);
+            document.querySelector('#groupid').value = datum.groupid;
+        }
 
         // threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);

@@ -9,7 +9,9 @@ const yaxis = function (workflow, datasets, setup = false) {
             const workflowID = kri();
 
             datasets = datasets.map((dataset) =>
-                dataset.filter((d) => /^kri/.test(d.workflowid))
+                Object.keys(dataset[0]).includes('workflowid')
+                    ? dataset.filter((d) => /^kri/.test(d.workflowid))
+                    : dataset
             );
 
             // analysis results

@@ -22947,7 +22947,6 @@ var rbmViz = (() => {
       callbacks: {
         //label: formatResultTooltipContent.bind(null, config),
         label: (d) => {
-          console.log(d);
           const content = formatResultTooltipContent(config, d);
           return d.raw.duplicate ? "" : content;
         },
@@ -22961,10 +22960,8 @@ var rbmViz = (() => {
             if (data[0].dataset.purpose === "distribution") {
               return `${config.group} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
-              console.log(data[0].dataset.purpose, data[0].dataset.type);
               return `${config.group} Summary on ${data[0].label}`;
             } else {
-              console.log(data[0].dataset.purpose, data[0].dataset.type);
               let dataSorted = data;
               try {
                 dataSorted = sortByGroupID(data, config);
@@ -22985,7 +22982,6 @@ var rbmViz = (() => {
                 return title4;
               });
               const title3 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
-              console.log(title3);
               return title3;
             }
           }
@@ -22995,7 +22991,11 @@ var rbmViz = (() => {
       //config.dataType !== 'discrete',
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        const isAnnotation = data.dataset.purpose === "annotation";
+        const isObject2 = typeof datum2 === "object";
+        const isSelected = config.selectedGroupIDs.includes(datum2.groupid);
+        const isScatter = data.dataset.type === "scatter";
+        return !isAnnotation && isObject2 && !(isSelected && isScatter);
       },
       ...tooltipAesthetics
     };
@@ -23023,9 +23023,9 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null) {
+  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData4(_data_, config, _thresholds_, _intervals_, _sites_);
     chart.data = {
       datasets,
       labels: datasets.labels,
@@ -23033,7 +23033,8 @@ var rbmViz = (() => {
       _data_,
       _config_,
       _thresholds_,
-      _intervals_
+      _intervals_,
+      _sites_
     };
     chart.options.scales = getScales4(config);
     chart.options.plugins = getPlugins4(config);
@@ -23042,13 +23043,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
-    this.data.config.selectedGroupIDs = selectedGroupIDs;
-    this.data.config = configure6(
-      this.data.config,
-      this.data._data_,
-      this.data._thresholds_,
-      this.data._intervals_
-    );
+    this.data.config.selectedGroupIDs = [selectedGroupIDs];
     this.data.datasets = structureData4(
       this.data._data_,
       this.data.config,

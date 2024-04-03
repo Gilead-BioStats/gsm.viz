@@ -4,6 +4,7 @@ import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 import sortByGroupID from '../../util/sortByGroupID';
 
 // TODO: figure out better approach to coincidental highlight and site aggregate distribution
+// TODO: figure out why tooltips stop working on site 43 after de-selection
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -11,7 +12,6 @@ export default function tooltip(config) {
         callbacks: {
             //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
-                console.log(d);
                 const content = formatResultTooltipContent(config, d);
 
                 // prevent display of duplicate tooltip content
@@ -32,12 +32,10 @@ export default function tooltip(config) {
                     }
                     // aggregate (discrete KRI distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
-                        console.log(data[0].dataset.purpose, data[0].dataset.type);
                         return `${config.group} Summary on ${data[0].label}`;
                     }
                     // data point
                     else {
-                        console.log(data[0].dataset.purpose, data[0].dataset.type);
                         let dataSorted = data;
                         try {
                             dataSorted = sortByGroupID(data, config);
@@ -74,7 +72,6 @@ export default function tooltip(config) {
                             : `${titles.slice(0, 3).join(', ')} and [ ${
                                   titles.length - 3
                               } ] more on ${data[0].label}`;
-                        console.log(title);
 
                         return title;
                     }
@@ -84,15 +81,16 @@ export default function tooltip(config) {
         displayColors: true, //config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
+            const isAnnotation = data.dataset.purpose === 'annotation';
+            const isObject = typeof datum === 'object';
+            const isSelected = config.selectedGroupIDs.includes(datum.groupid);
+            const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.
             return (
-                data.dataset.purpose !== 'annotation' &&
-                typeof datum === 'object' &&
-                !(
-                    config.selectedGroupIDs.includes(datum.groupid) &&
-                    data.dataset.type === 'scatter'
-                )
+                !isAnnotation &&
+                isObject &&
+                !(isSelected && isScatter)
             );
         },
         ...tooltipAesthetics,

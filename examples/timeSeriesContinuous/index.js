@@ -27,6 +27,9 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'score';
+        workflow.hoverCallback = function(datum) {
+            //console.log(datum.groupid);
+        }
         workflow.clickCallback = function(datum) {
             instance.helpers.updateSelectedGroupIDs(datum.groupid);
             document.querySelector('#groupid').value = datum.groupid;
