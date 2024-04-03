@@ -26,7 +26,13 @@ const kri = function (workflowID, datasets, setup = false) {
             if (instance.data.datasets[0].type === 'scatter')
                 workflow.xType = xAxisType();
 
-            instance.helpers.updateData(instance, results, workflow, bounds, datasets[3]);
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                bounds,
+                datasets[3]
+            );
         });
     }
 

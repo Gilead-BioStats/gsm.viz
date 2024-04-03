@@ -3,7 +3,7 @@ const by = 'group'; // 'kri'
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
     '../data/meta_workflow.csv',
-    '../data/status_site_over_time.csv'
+    '../data/status_site_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>

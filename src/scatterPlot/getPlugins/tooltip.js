@@ -17,34 +17,35 @@ export default function tooltip(config) {
                 if (data.length) {
                     const dataSorted = sortByGroupID(data, config);
 
-                    const titles = dataSorted
-                        .map((d, i) => {
-                            let title;
+                    const titles = dataSorted.map((d, i) => {
+                        let title;
 
-                            if (data.length === 1) {
-                                title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                        if (data.length === 1) {
+                            title = `${config.group} ${
+                                d.dataset.data[d.dataIndex].groupid
+                            }`;
 
-                                if (d.raw.site !== undefined) {
-                                    title = `${title} (${
-                                        d.raw.site.pi_last_name
-                                    } / ${
-                                        d.raw.site.enrolled_participants
-                                    } enrolled)`;
-                                }
-                            } else {
-                                title = i === 0
-                                    ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`
-                                    : d.dataset.data[d.dataIndex].groupid;
+                            if (d.raw.site !== undefined) {
+                                title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                             }
+                        } else {
+                            title =
+                                i === 0
+                                    ? `${config.group}s ${
+                                          d.dataset.data[d.dataIndex].groupid
+                                      }`
+                                    : d.dataset.data[d.dataIndex].groupid;
+                        }
 
-                            return title;
-                        });
+                        return title;
+                    });
 
-                    const title = titles.length <= 4
-                        ? titles.join(', ')
-                        : `${titles.slice(0, 3).join(', ')} and [ ${
-                              titles.length - 3
-                          } ] more`
+                    const title =
+                        titles.length <= 4
+                            ? titles.join(', ')
+                            : `${titles.slice(0, 3).join(', ')} and [ ${
+                                  titles.length - 3
+                              } ] more`;
 
                     return title;
                 }

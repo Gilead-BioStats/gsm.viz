@@ -21812,15 +21812,9 @@ var rbmViz = (() => {
 
   // src/util/sortByGroupID.js
   function sortByGroupID(data, config) {
-    const numericGroupIDs = data.every(
-      (d) => /^\d+$/.test(d.raw.groupid)
-    );
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.raw.groupid));
     const dataSorted = data.sort((a, b) => {
-      const selected = config.selectedGroupIDs.includes(
-        b.raw.groupid
-      ) - config.selectedGroupIDs.includes(
-        a.raw.groupid
-      );
+      const selected = config.selectedGroupIDs.includes(b.raw.groupid) - config.selectedGroupIDs.includes(a.raw.groupid);
       const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
       return selected || alphanumeric;
     });
@@ -22372,7 +22366,9 @@ var rbmViz = (() => {
       if (_sites_ !== null) {
         let site = _sites_.filter((site2) => site2.siteid === d.groupid);
         if (site.length > 1) {
-          site = site.find((site2) => site2.snapshot_date === datum2.snapshot_date);
+          site = site.find(
+            (site2) => site2.snapshot_date === datum2.snapshot_date
+          );
         } else {
           site = site[0];
         }
@@ -23025,7 +23021,13 @@ var rbmViz = (() => {
   // src/timeSeries/updateData.js
   function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_, _sites_);
+    const datasets = structureData4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_,
+      _sites_
+    );
     chart.data = {
       datasets,
       labels: datasets.labels,
@@ -23059,7 +23061,13 @@ var rbmViz = (() => {
     checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_, _sites_);
+    const datasets = structureData4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_,
+      _sites_
+    );
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,

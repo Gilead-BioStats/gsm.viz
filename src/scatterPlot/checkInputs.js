@@ -1,6 +1,11 @@
 import checkInput from '../data/checkInput';
 
-export default function checkInputs(_data_, _config_, _bounds_, _sites_ = null) {
+export default function checkInputs(
+    _data_,
+    _config_,
+    _bounds_,
+    _sites_ = null
+) {
     checkInput({
         parameter: '_data_',
         argument: _data_,

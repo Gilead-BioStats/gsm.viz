@@ -2,7 +2,7 @@ const dataFiles = [
     '../data/results_summary.csv',
     '../data/meta_workflow.csv',
     '../data/results_bounds.csv',
-    '../data/status_site.csv'
+    '../data/status_site.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -25,15 +25,15 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.hoverCallback = function(datum) {
+        workflow.hoverCallback = function (datum) {
             //console.log(datum.groupid);
-        }
-        workflow.clickCallback = function(datum) {
+        };
+        workflow.clickCallback = function (datum) {
             instance.data.config.selectedGroupIDs = datum.groupid;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
             document.querySelector('#groupid').value = datum.groupid;
-        }
+        };
 
         // threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);

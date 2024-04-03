@@ -44,34 +44,36 @@ export default function tooltip(config) {
                             console.log(data);
                         }
 
-                        const titles = dataSorted
-                            .map(function (d, i) {
-                                let title;
+                        const titles = dataSorted.map(function (d, i) {
+                            let title;
 
-                                if (data.length === 1) {
-                                    title = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                            if (data.length === 1) {
+                                title = `${config.group} ${
+                                    d.dataset.data[d.dataIndex].groupid
+                                }`;
 
-                                    if (d.raw.site !== undefined) {
-                                        title = `${title} (${
-                                            d.raw.site.pi_last_name
-                                        } / ${
-                                            d.raw.site.enrolled_participants
-                                        } enrolled)`;
-                                    }
-                                } else {
-                                    title = i === 0
-                                        ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}`
-                                        : d.dataset.data[d.dataIndex].groupid;
+                                if (d.raw.site !== undefined) {
+                                    title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                                 }
+                            } else {
+                                title =
+                                    i === 0
+                                        ? `${config.group}s ${
+                                              d.dataset.data[d.dataIndex]
+                                                  .groupid
+                                          }`
+                                        : d.dataset.data[d.dataIndex].groupid;
+                            }
 
-                                return title;
-                            });
+                            return title;
+                        });
 
-                        const title = titles.length <= 4
-                            ? `${titles.join(', ')} on ${data[0].label}`
-                            : `${titles.slice(0, 3).join(', ')} and [ ${
-                                  titles.length - 3
-                              } ] more on ${data[0].label}`;
+                        const title =
+                            titles.length <= 4
+                                ? `${titles.join(', ')} on ${data[0].label}`
+                                : `${titles.slice(0, 3).join(', ')} and [ ${
+                                      titles.length - 3
+                                  } ] more on ${data[0].label}`;
 
                         return title;
                     }
@@ -87,11 +89,7 @@ export default function tooltip(config) {
             const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.
-            return (
-                !isAnnotation &&
-                isObject &&
-                !(isSelected && isScatter)
-            );
+            return !isAnnotation && isObject && !(isSelected && isScatter);
         },
         ...tooltipAesthetics,
     };

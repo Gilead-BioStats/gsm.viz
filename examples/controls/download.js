@@ -19,11 +19,9 @@ const download = function () {
             const instance = getChart();
             const a = document.createElement('a');
             a.href = instance.toBase64Image();
-            a.download = `${
-                instance.data.config.chartName
-                    .toLowerCase()
-                    .replace(/ /g, '-')
-            }.png`;
+            a.download = `${instance.data.config.chartName
+                .toLowerCase()
+                .replace(/ /g, '-')}.png`;
             a.click();
             a.remove();
         };

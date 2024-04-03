@@ -3,7 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param_over_time.csv',
-    '../data/status_site_over_time.csv'
+    '../data/status_site_over_time.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -27,13 +27,13 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'score';
-        workflow.hoverCallback = function(datum) {
+        workflow.hoverCallback = function (datum) {
             //console.log(datum.groupid);
-        }
-        workflow.clickCallback = function(datum) {
+        };
+        workflow.clickCallback = function (datum) {
             instance.helpers.updateSelectedGroupIDs(datum.groupid);
             document.querySelector('#groupid').value = datum.groupid;
-        }
+        };
 
         // threshold annotations
         const parameters = mergeParameters(

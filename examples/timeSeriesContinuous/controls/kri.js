@@ -33,8 +33,7 @@ const kri = function (workflow, datasets, setup = false) {
                 datasets[2].filter((d) => d.workflowid === workflowID),
                 datasets[3].filter((d) => d.workflowid === workflowID)
             );
-            if (workflow.y !== 'score')
-                parameters = null;
+            if (workflow.y !== 'score') parameters = null;
 
             const sites = datasets[4];
 

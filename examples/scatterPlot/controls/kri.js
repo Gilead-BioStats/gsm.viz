@@ -26,7 +26,13 @@ const kri = function (workflowID, datasets, setup = false) {
 
             const bounds = filterOnWorkflowID(datasets[2], event.target.value);
 
-            instance.helpers.updateData(instance, results, workflow, bounds, datasets[3]);
+            instance.helpers.updateData(
+                instance,
+                results,
+                workflow,
+                bounds,
+                datasets[3]
+            );
         });
     }
 

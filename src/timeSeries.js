@@ -38,7 +38,13 @@ export default function timeSeries(
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _thresholds_, _intervals_, _sites_);
+    const datasets = structureData(
+        _data_,
+        config,
+        _thresholds_,
+        _intervals_,
+        _sites_
+    );
 
     // Configure Chart.js options.
     const options = {
@@ -63,7 +69,7 @@ export default function timeSeries(
             _config_,
             _thresholds_,
             _intervals_,
-            _sites_
+            _sites_,
         },
         options,
         plugins: [displayWhiteBackground()],

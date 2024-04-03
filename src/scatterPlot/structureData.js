@@ -14,7 +14,12 @@ import falsy from '../util/falsy';
  *
  * @returns {Array} data formatted for consumption by Chart.js
  */
-export default function structureData(_data_, config, _bounds_, _sites_ = null) {
+export default function structureData(
+    _data_,
+    config,
+    _bounds_,
+    _sites_ = null
+) {
     // Modify properties and sort order of data.
     const data = mutate(_data_, config, _sites_);
 

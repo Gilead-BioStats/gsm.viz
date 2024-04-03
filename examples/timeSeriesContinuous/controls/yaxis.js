@@ -27,8 +27,7 @@ const yaxis = function (workflow, datasets, setup = false) {
                 filterOnWorkflowID(datasets[2], workflowID),
                 filterOnWorkflowID(datasets[3], workflowID)
             );
-            if (workflow.y !== 'score')
-                parameters = null;
+            if (workflow.y !== 'score') parameters = null;
 
             // site metadata
             const sites = datasets[4];
