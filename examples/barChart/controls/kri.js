@@ -1,7 +1,5 @@
-// TODO: figure out why on KRI change legend disappears when y-axis is set to metric.
 // Add event listener to KRI dropdown.
 const kri = function (workflow, datasets, setup = false) {
-    const instance = getChart();
     const kriDropdown = document.querySelector('#kri');
 
     if (setup === true) {
@@ -27,18 +25,26 @@ const kri = function (workflow, datasets, setup = false) {
             workflow.selectedGroupIDs = site();
 
             // threshold annotations
-            const parameters = document.getElementById('threshold').checked
-                ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], event.target.value),
-                      filterOnWorkflowID(datasets[3], event.target.value)
-                  )
-                : null;
+            const parameters =
+                workflow.y === 'score' &&
+                document.getElementById('threshold').checked
+                    ? mergeParameters(
+                          filterOnWorkflowID(datasets[2], event.target.value),
+                          filterOnWorkflowID(datasets[3], event.target.value)
+                      )
+                    : null;
 
+            // site metadata
+            const sites = datasets[4];
+
+            // update
+            const instance = getChart();
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
-                parameters
+                parameters,
+                sites
             );
         });
     }

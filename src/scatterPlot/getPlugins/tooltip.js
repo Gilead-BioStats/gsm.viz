@@ -1,6 +1,6 @@
-import { ascending } from 'd3';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import sortByGroupID from '../../util/sortByGroupID';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -15,37 +15,39 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    const numericGroupIDs = data.every((d) =>
-                        /^\d+$/.test(d.raw.groupid)
-                    );
+                    const dataSorted = sortByGroupID(data, config);
 
-                    const groupIDs = data
-                        .sort((a, b) => {
-                            const selected =
-                                config.selectedGroupIDs.includes(
-                                    b.raw.groupid
-                                ) -
-                                config.selectedGroupIDs.includes(a.raw.groupid);
+                    const titles = dataSorted.map((d, i) => {
+                        let title;
 
-                            const alphanumeric = numericGroupIDs
-                                ? ascending(+a.raw.groupid, +b.raw.groupid)
-                                : ascending(a.raw.groupid, b.raw.groupid);
+                        if (data.length === 1) {
+                            title = `${config.group} ${
+                                d.dataset.data[d.dataIndex].groupid
+                            }`;
 
-                            return selected || alphanumeric;
-                        })
-                        .map((d, i) =>
-                            i === 0
-                                ? `${config.group}${
-                                      data.length > 1 ? 's' : ''
-                                  } ${d.dataset.data[d.dataIndex].groupid}`
-                                : d.dataset.data[d.dataIndex].groupid
-                        );
+                            if (d.raw.site !== undefined) {
+                                title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                            }
+                        } else {
+                            title =
+                                i === 0
+                                    ? `${config.group}s ${
+                                          d.dataset.data[d.dataIndex].groupid
+                                      }`
+                                    : d.dataset.data[d.dataIndex].groupid;
+                        }
 
-                    return groupIDs.length <= 4
-                        ? groupIDs.join(', ')
-                        : `${groupIDs.slice(0, 3).join(', ')} and [ ${
-                              groupIDs.length - 3
-                          } ] more`;
+                        return title;
+                    });
+
+                    const title =
+                        titles.length <= 4
+                            ? titles.join(', ')
+                            : `${titles.slice(0, 3).join(', ')} and [ ${
+                                  titles.length - 3
+                              } ] more`;
+
+                    return title;
                 }
             },
         },

@@ -3,6 +3,7 @@ const dataFiles = [
     '../data/meta_workflow.csv',
     '../data/meta_param.csv',
     '../data/status_param.csv',
+    '../data/status_site.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -15,7 +16,9 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('workflowid')
+                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+                : dataset
         );
 
         // analysis results
@@ -24,6 +27,18 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'score';
+        workflow.hoverCallback = function (datum) {
+            //console.log(datum.groupid);
+        };
+        workflow.clickCallback = function (datum) {
+            instance.data.config.selectedGroupIDs = datum.groupid;
+            instance.helpers.updateConfig(
+                instance,
+                instance.data.config,
+                instance.data._thresholds_
+            );
+            document.querySelector('#groupid').value = datum.groupid;
+        };
 
         // threshold annotations
         const parameters = mergeParameters(
@@ -31,12 +46,16 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[3], workflowID)
         );
 
+        // site metadata
+        const sites = datasets[4];
+
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             workflow,
-            parameters
+            parameters,
+            sites
         );
 
         // controls

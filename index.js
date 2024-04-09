@@ -1018,9 +1018,9 @@ var rbmViz = (() => {
     }
     return hueParse(str);
   }
-  var Color = class {
+  var Color = class _Color {
     constructor(input) {
-      if (input instanceof Color) {
+      if (input instanceof _Color) {
         return input;
       }
       const type2 = typeof input;
@@ -1080,7 +1080,7 @@ var rbmViz = (() => {
       return this;
     }
     clone() {
-      return new Color(this.rgb);
+      return new _Color(this.rgb);
     }
     alpha(a) {
       this._rgb.a = n2b(a);
@@ -5281,7 +5281,7 @@ var rbmViz = (() => {
     }
     return { titleX, titleY, maxWidth, rotation };
   }
-  var Scale = class extends Element {
+  var Scale = class _Scale extends Element {
     constructor(cfg) {
       super();
       this.id = cfg.id;
@@ -6310,7 +6310,7 @@ var rbmViz = (() => {
       const opts = this.options;
       const tz = opts.ticks && opts.ticks.z || 0;
       const gz = valueOrDefault(opts.grid && opts.grid.z, -1);
-      if (!this._isVisible() || this.draw !== Scale.prototype.draw) {
+      if (!this._isVisible() || this.draw !== _Scale.prototype.draw) {
         return [{
           z: tz,
           draw: (chartArea) => {
@@ -13189,15 +13189,42 @@ var rbmViz = (() => {
   // node_modules/chartjs-plugin-annotation/dist/chartjs-plugin-annotation.esm.js
   var interaction = {
     modes: {
+      /**
+       * Point mode returns all elements that hit test based on the event position
+       * @param {Object} state - the state of the plugin
+       * @param {ChartEvent} event - the event we are find things at
+       * @return {AnnotationElement[]} - elements that are found
+       */
       point(state, event) {
         return filterElements(state, event, { intersect: true });
       },
+      /**
+       * Nearest mode returns the element closest to the event position
+       * @param {Object} state - the state of the plugin
+       * @param {ChartEvent} event - the event we are find things at
+       * @param {Object} options - interaction options to use
+       * @return {AnnotationElement[]} - elements that are found (only 1 element)
+       */
       nearest(state, event, options) {
         return getNearestItem(state, event, options);
       },
+      /**
+       * x mode returns the elements that hit-test at the current x coordinate
+       * @param {Object} state - the state of the plugin
+       * @param {ChartEvent} event - the event we are find things at
+       * @param {Object} options - interaction options to use
+       * @return {AnnotationElement[]} - elements that are found
+       */
       x(state, event, options) {
         return filterElements(state, event, { intersect: options.intersect, axis: "x" });
       },
+      /**
+       * y mode returns the elements that hit-test at the current y coordinate
+       * @param {Object} state - the state of the plugin
+       * @param {ChartEvent} event - the event we are find things at
+       * @param {Object} options - interaction options to use
+       * @return {AnnotationElement[]} - elements that are found
+       */
       y(state, event, options) {
         return filterElements(state, event, { intersect: options.intersect, axis: "y" });
       }
@@ -17352,6 +17379,7 @@ var rbmViz = (() => {
       return this.rgb().displayable();
     },
     hex: color_formatHex,
+    // Deprecated! Use color.formatHex.
     formatHex: color_formatHex,
     formatHex8: color_formatHex8,
     formatHsl: color_formatHsl,
@@ -17419,6 +17447,7 @@ var rbmViz = (() => {
       return -0.5 <= this.r && this.r < 255.5 && (-0.5 <= this.g && this.g < 255.5) && (-0.5 <= this.b && this.b < 255.5) && (0 <= this.opacity && this.opacity <= 1);
     },
     hex: rgb_formatHex,
+    // Deprecated! Use color.formatHex.
     formatHex: rgb_formatHex,
     formatHex8: rgb_formatHex8,
     formatRgb: rgb_formatRgb,
@@ -17918,7 +17947,9 @@ var rbmViz = (() => {
     create(node, id2, {
       name,
       index: index3,
+      // For context during callback.
       group: group2,
+      // For context during callback.
       on: emptyOn,
       tween: emptyTween,
       time: timing.time,
@@ -18600,6 +18631,7 @@ var rbmViz = (() => {
   // node_modules/d3-transition/src/selection/transition.js
   var defaultTiming = {
     time: null,
+    // Set on use.
     delay: 0,
     duration: 250,
     ease: cubicInOut
@@ -18987,6 +19019,7 @@ var rbmViz = (() => {
     return 1;
   }();
   var utils = {
+    // @todo move this in Chart.helpers.toTextLines
     toTextLines: function(inputs) {
       var lines = [];
       var input;
@@ -19003,6 +19036,8 @@ var rbmViz = (() => {
       }
       return lines;
     },
+    // @todo move this in Chart.helpers.canvas.textSize
+    // @todo cache calls of measureText if font doesn't change?!
     textSize: function(ctx, lines, font) {
       var items = [].concat(lines);
       var ilen = items.length;
@@ -19019,9 +19054,19 @@ var rbmViz = (() => {
         width
       };
     },
+    /**
+     * Returns value bounded by min and max. This is equivalent to max(min, min(value, max)).
+     * @todo move this method in Chart.helpers.bound
+     * https://doc.qt.io/qt-5/qtglobal.html#qBound
+     */
     bound: function(min3, value, max3) {
       return Math.max(min3, Math.min(value, max3));
     },
+    /**
+     * Returns an array of pair [value, state] where state is:
+     * * -1: value is only in a0 (removed)
+     * *  1: value is only in a1 (added)
+     */
     arrayDiff: function(a0, a1) {
       var prev = a0.slice();
       var updates = [];
@@ -19040,6 +19085,9 @@ var rbmViz = (() => {
       }
       return updates;
     },
+    /**
+     * https://github.com/chartjs/chartjs-plugin-datalabels/issues/70
+     */
     rasterize: function(v) {
       return Math.round(v * devicePixelRatio) / devicePixelRatio;
     }
@@ -19432,6 +19480,9 @@ var rbmViz = (() => {
     me._el = el;
   };
   merge(Label.prototype, {
+    /**
+     * @private
+     */
     _modelize: function(display, lines, config, context) {
       var me = this;
       var index3 = me._index;
@@ -19600,6 +19651,8 @@ var rbmViz = (() => {
       point = rotated2(point, me.center(), -me._rotation);
       return !(point.x < rect.x - margin || point.y < rect.y - margin || point.x > rect.x + rect.w + margin * 2 || point.y > rect.y + rect.h + margin * 2);
     },
+    // Separating Axis Theorem
+    // https://gamedevelopment.tutsplus.com/tutorials/collision-detection-using-the-separating-axis-theorem--gamedev-169
     intersects: function(other) {
       var r0 = this._points();
       var r1 = other._points();
@@ -19623,6 +19676,9 @@ var rbmViz = (() => {
       }
       return true;
     },
+    /**
+     * @private
+     */
     _points: function() {
       var me = this;
       var rect = me._rect;
@@ -19982,6 +20038,9 @@ var rbmViz = (() => {
     afterUpdate: function(chart) {
       chart[EXPANDO_KEY2]._labels = layout.prepare(chart[EXPANDO_KEY2]._datasets);
     },
+    // Draw labels on top of all dataset elements
+    // https://github.com/chartjs/chartjs-plugin-datalabels/issues/29
+    // https://github.com/chartjs/chartjs-plugin-datalabels/issues/32
     afterDatasetsDraw: function(chart) {
       layout.draw(chart, chart[EXPANDO_KEY2]._labels);
     },
@@ -20435,6 +20494,145 @@ var rbmViz = (() => {
     }
   };
 
+  // src/data/schema/sites.json
+  var sites_default = {
+    title: "Siite Metadata",
+    description: "JSON schema of supplemental data to barChart and scatterPlot modules",
+    version: "0.14.0",
+    type: "array",
+    items: {
+      type: "object",
+      properties: {
+        studyid: {
+          title: "Study ID",
+          description: "Unique study identifier",
+          type: "string",
+          required: false,
+          key: true
+        },
+        siteid: {
+          title: "Site ID",
+          description: "Unique site identifier",
+          type: "string",
+          required: true,
+          key: true
+        },
+        institution: {
+          title: "Site Name",
+          description: "Name of site",
+          type: "string",
+          required: false,
+          key: false
+        },
+        status: {
+          title: "Site Status",
+          description: "Status of site",
+          type: "string",
+          required: true,
+          key: false
+        },
+        enrolled_participants: {
+          title: "Enrolled Participants",
+          description: "Number of participants enrolled at site",
+          type: "number",
+          required: true,
+          key: false
+        },
+        start_date: {
+          title: "Site Activation Date",
+          description: "Date site was activated",
+          type: "string",
+          required: false,
+          key: false
+        },
+        city: {
+          title: "City",
+          description: "City in which site is located",
+          type: "string",
+          required: false,
+          key: false
+        },
+        state: {
+          title: "State",
+          description: "State in which site is located",
+          type: "string",
+          required: false,
+          key: false
+        },
+        country: {
+          title: "Country",
+          description: "Country in which site is located",
+          type: "string",
+          required: true,
+          key: false
+        },
+        invname: {
+          title: "Investigator Name",
+          description: "Full name of investigator",
+          type: "string",
+          required: true,
+          key: false
+        },
+        protocol_row_id: {
+          title: "Protocol Row ID",
+          description: "Unique protocol identifier in database",
+          type: "string",
+          required: false,
+          key: false
+        },
+        site_num: {
+          title: "Site Number",
+          description: "Site ID",
+          type: "string",
+          required: false,
+          key: false
+        },
+        site_row_id: {
+          title: "Site Row ID",
+          description: "Unique site identifier in database",
+          type: "string",
+          required: false,
+          key: false
+        },
+        pi_number: {
+          title: "Investigator Number",
+          description: "Investigator ID",
+          type: "string",
+          required: false,
+          key: false
+        },
+        pi_last_name: {
+          title: "Investigator Last Name",
+          description: "Last name of investigator",
+          type: "string",
+          required: true,
+          key: false
+        },
+        pi_first_name: {
+          title: "Investigator First Name",
+          description: "First name of investigator",
+          type: "string",
+          required: true,
+          key: false
+        },
+        is_satellite: {
+          title: "Satellite Site?",
+          description: "Is site a satellite site?",
+          type: "boolean",
+          required: false,
+          key: false
+        },
+        gsm_analysis_date: {
+          title: "Analysis Date",
+          description: "Date of analysis",
+          type: "string",
+          required: false,
+          key: false
+        }
+      }
+    }
+  };
+
   // src/data/schema/snapshotDate.json
   var snapshotDate_default = {
     title: "Snapshot Date",
@@ -20452,6 +20650,7 @@ var rbmViz = (() => {
     results: results_default,
     resultsPredicted: resultsPredicted_default,
     resultsVertical: resultsVertical_default,
+    sites: sites_default,
     snapshotDate: snapshotDate_default
   };
   var schema_default = schema;
@@ -20784,8 +20983,14 @@ var rbmViz = (() => {
   var falsy_default = falsy;
 
   // src/barChart/structureData/mutate.js
-  function mutate(_data_, config) {
+  function mutate(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
+      if (_sites_ !== null) {
+        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        if (site !== void 0) {
+          d.site = site;
+        }
+      }
       const datum2 = {
         ...d,
         x: d[config.x],
@@ -20857,12 +21062,13 @@ var rbmViz = (() => {
   function scriptableOptions() {
     return {
       backgroundColor
+      //borderColor,
     };
   }
 
   // src/barChart/structureData.js
-  function structureData(_data_, config) {
-    const data = mutate(_data_, config);
+  function structureData(_data_, config, _sites_ = null) {
+    const data = mutate(_data_, config, _sites_);
     const datasets = [
       {
         type: "bar",
@@ -20910,6 +21116,7 @@ var rbmViz = (() => {
   function getElementDatum(activeElements, chart) {
     const element = activeElements.sort(
       (a, b) => b.index - a.index
+      // retrieve first element by index in dataset
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
     const activeData = data.filter(
@@ -20988,6 +21195,7 @@ var rbmViz = (() => {
     return {
       align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
       anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      //clip: true,
       color: "black",
       display: (context) => {
         return context.chart.getDatasetMeta(0).data[0].width >= context.chart.options.font.size - 3;
@@ -21001,12 +21209,19 @@ var rbmViz = (() => {
   function legend(config) {
     return {
       display: true,
+      //!config.thresholds,
       labels: {
         boxHeight: 10,
         boxWidth: 10,
         filter: function(item, chart) {
           return item.text !== "";
         }
+        //sort: function (a, b, chartData) {
+        //    return (
+        //        legendOrder.indexOf(a.text) -
+        //        legendOrder.indexOf(b.text)
+        //    );
+        //},
       },
       position: "top"
     };
@@ -21079,6 +21294,7 @@ var rbmViz = (() => {
       boxWidth: 10,
       cornerRadius: 2,
       caretPadding: 4,
+      //displayColors: false,
       padding: 10,
       titleColor: "black",
       titleMarginBottom: 5,
@@ -21103,7 +21319,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return `${config.group} ${datum2.groupid}`;
+            return datum2.site !== void 0 ? `${config.group} ${datum2.groupid} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.group} ${datum2.groupid}`;
           }
         }
       },
@@ -21235,9 +21451,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_) {
+  function updateData(chart, _data_, _config_, _thresholds_, _sites_ = null) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_data_, config, _sites_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21259,11 +21475,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null) {
-    checkInputs(_data_, _config_, _thresholds_);
+  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = null, _sites_ = null) {
+    checkInputs(_data_, _config_, _thresholds_, _sites_);
     const config = configure3(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_data_, config, _sites_);
     const options = {
       animation: false,
       clip: false,
@@ -21285,7 +21501,9 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
+        // required by Chart.js
         config,
+        // inputs
         _data_,
         _config_,
         _thresholds_
@@ -21305,7 +21523,7 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/checkInputs.js
-  function checkInputs2(_data_, _config_, _bounds_) {
+  function checkInputs2(_data_, _config_, _bounds_, _sites_ = null) {
     checkInput({
       parameter: "_data_",
       argument: _data_,
@@ -21324,6 +21542,14 @@ var rbmViz = (() => {
       schemaName: "resultsPredicted",
       module: "scatterPlot"
     });
+    if (_sites_ !== null) {
+      checkInput({
+        parameter: "_sites_",
+        argument: _sites_,
+        schemaName: "sites",
+        module: "scatterPlot"
+      });
+    }
   }
 
   // src/scatterPlot/configure.js
@@ -21340,6 +21566,7 @@ var rbmViz = (() => {
       console.log(datum2);
     };
     defaults3.displayTitle = false;
+    defaults3.displayLegend = true;
     defaults3.displayTrendLine = false;
     defaults3.maintainAspectRatio = false;
     const config = configure2(defaults3, _config_, {
@@ -21360,8 +21587,14 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData/mutate.js
-  function mutate2(_data_, config) {
+  function mutate2(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
+      if (_sites_ !== null) {
+        const site = _sites_.find((site2) => site2.siteid === d.groupid);
+        if (site !== void 0) {
+          d.site = site;
+        }
+      }
       const datum2 = {
         ...d,
         x: +d[config.x],
@@ -21416,6 +21649,26 @@ var rbmViz = (() => {
     }
   }
 
+  // src/scatterPlot/structureData/scriptableOptions/pointHoverRadius.js
+  function pointHoverRadius(context, options) {
+    const chart = context.chart;
+    const config = chart.data.config;
+    const dataset = context.dataset;
+    const datum2 = dataset.data[context.dataIndex];
+    if (dataset.type === "scatter") {
+      const defaultRadius = 3;
+      const hoverRadius = 4;
+      if (datum2.site !== void 0) {
+        const enrollmentFactor = Math.sqrt(
+          datum2.site.enrolled_participants / Math.PI
+        );
+        return enrollmentFactor * hoverRadius;
+      } else {
+        return config.selectedGroupIDs.includes(datum2.groupid) ? hoverRadius : defaultRadius;
+      }
+    }
+  }
+
   // src/scatterPlot/structureData/scriptableOptions/radius.js
   function radius(context, options) {
     const chart = context.chart;
@@ -21423,7 +21676,16 @@ var rbmViz = (() => {
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
     if (dataset.type === "scatter") {
-      return config.selectedGroupIDs.includes(datum2.groupid) ? 5 : 3;
+      const defaultRadius = 3;
+      const hoverRadius = 4;
+      if (datum2.site !== void 0) {
+        const enrollmentFactor = Math.sqrt(
+          datum2.site.enrolled_participants / Math.PI
+        );
+        return enrollmentFactor * defaultRadius;
+      } else {
+        return config.selectedGroupIDs.includes(datum2.groupid) ? hoverRadius : defaultRadius;
+      }
     }
   }
 
@@ -21433,6 +21695,7 @@ var rbmViz = (() => {
       backgroundColor: backgroundColor2,
       borderColor: borderColor2,
       borderWidth,
+      pointHoverRadius,
       radius
     };
   }
@@ -21495,8 +21758,8 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData.js
-  function structureData2(_data_, config, _bounds_) {
-    const data = mutate2(_data_, config);
+  function structureData2(_data_, config, _bounds_, _sites_ = null) {
+    const data = mutate2(_data_, config, _sites_);
     const datasets = [
       {
         data,
@@ -21524,7 +21787,7 @@ var rbmViz = (() => {
   function legend2(config) {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     return {
-      display: true,
+      display: config.displayLegend,
       labels: {
         boxHeight: 6,
         filter: function(legendItem, chartData) {
@@ -21548,6 +21811,17 @@ var rbmViz = (() => {
     };
   }
 
+  // src/util/sortByGroupID.js
+  function sortByGroupID(data, config) {
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.raw.groupid));
+    const dataSorted = data.sort((a, b) => {
+      const selected = config.selectedGroupIDs.includes(b.raw.groupid) - config.selectedGroupIDs.includes(a.raw.groupid);
+      const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
+      return selected || alphanumeric;
+    });
+    return dataSorted;
+  }
+
   // src/scatterPlot/getPlugins/tooltip.js
   function tooltip2(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -21559,19 +21833,21 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            const numericGroupIDs = data.every(
-              (d) => /^\d+$/.test(d.raw.groupid)
-            );
-            const groupIDs = data.sort((a, b) => {
-              const selected = config.selectedGroupIDs.includes(
-                b.raw.groupid
-              ) - config.selectedGroupIDs.includes(a.raw.groupid);
-              const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
-              return selected || alphanumeric;
-            }).map(
-              (d, i) => i === 0 ? `${config.group}${data.length > 1 ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid
-            );
-            return groupIDs.length <= 4 ? groupIDs.join(", ") : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more`;
+            const dataSorted = sortByGroupID(data, config);
+            const titles = dataSorted.map((d, i) => {
+              let title4;
+              if (data.length === 1) {
+                title4 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                if (d.raw.site !== void 0) {
+                  title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                }
+              } else {
+                title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid;
+              }
+              return title4;
+            });
+            const title3 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
+            return title3;
           }
         }
       },
@@ -21586,6 +21862,7 @@ var rbmViz = (() => {
         }
       },
       filter: (data) => data.dataset.type !== "line",
+      // turns off tooltip for bounds
       ...tooltipAesthetics
     };
   }
@@ -21636,9 +21913,9 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateData.js
-  function updateData2(chart, _data_, _config_, _bounds_) {
+  function updateData2(chart, _data_, _config_, _bounds_, _sites_) {
     const config = updateConfig2(chart, _config_, false, false);
-    const datasets = structureData2(_data_, config, _bounds_);
+    const datasets = structureData2(_data_, config, _bounds_, _sites_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21646,11 +21923,11 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot.js
-  function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null) {
-    checkInputs2(_data_, _config_, _bounds_);
+  function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null, _sites_ = null) {
+    checkInputs2(_data_, _config_, _bounds_, _sites_);
     const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData2(_data_, config, _bounds_);
+    const datasets = structureData2(_data_, config, _bounds_, _sites_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
@@ -21662,7 +21939,9 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
+        // required by Chart.js
         config,
+        // inputs
         _data_,
         _config_,
         _bounds_
@@ -21736,6 +22015,7 @@ var rbmViz = (() => {
     const data = _data_.map((d) => {
       const datum2 = {
         ...d,
+        //x: +d[config.x],
         y: +d[config.y],
         stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
@@ -21769,7 +22049,9 @@ var rbmViz = (() => {
   // src/sparkline/structureData/scriptableOptions.js
   function scriptableOptions3() {
     return {
+      //backgroundColor,
       borderColor: borderColor3,
+      //borderWidth,
       radius: radius2
     };
   }
@@ -21791,6 +22073,7 @@ var rbmViz = (() => {
           return datum2;
         }),
         pointBackgroundColor,
+        //label: '',
         ...scriptableOptions3(),
         spanGaps: true
       }
@@ -21882,9 +22165,12 @@ var rbmViz = (() => {
       callbacks: {
         label: function(data) {
           const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
-          return config.dataType === "continuous" ? `${data.label}: ${format(fmt)(data.parsed.y)}` : `${data.label}: ${format(fmt)(
-            data.raw.n_flagged
-          )} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
+          return config.dataType === "continuous" ? `${data.label}: ${format(fmt)(data.parsed.y)}` : (
+            //[
+            `${data.label}: ${format(fmt)(
+              data.raw.n_flagged
+            )} red / ${format(fmt)(data.raw.n_at_risk)} amber`
+          );
         },
         title: () => null,
         footer: () => null
@@ -21963,8 +22249,11 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
+        // required by Chart.js
         labels: datasets.labels,
+        // required by Chart.js
         config,
+        // inputs
         _data_,
         _config_,
         _thresholds_
@@ -21981,7 +22270,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/checkInputs.js
-  function checkInputs4(_data_, _config_, _thresholds_, _intervals_) {
+  function checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_ = null) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInput({
       parameter: "_data_",
@@ -22007,6 +22296,14 @@ var rbmViz = (() => {
       schemaName: "resultsVertical",
       module: "timeSeries"
     });
+    if (_sites_ !== null) {
+      checkInput({
+        parameter: "_sites_",
+        argument: _sites_,
+        schemaName: "sites",
+        module: "timeSeries"
+      });
+    }
   }
 
   // src/timeSeries/configure.js
@@ -22064,9 +22361,22 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config, _thresholds_, _intervals_) {
+  function mutate4(_data_, config, _thresholds_, _intervals_, _sites_ = null) {
     const data = _data_.map((d) => {
       const datum2 = { ...d };
+      if (_sites_ !== null) {
+        let site = _sites_.filter((site2) => site2.siteid === d.groupid);
+        if (site.length > 1) {
+          site = site.find(
+            (site2) => site2.snapshot_date === datum2.snapshot_date
+          );
+        } else {
+          site = site[0];
+        }
+        if (site !== void 0) {
+          datum2.site = site;
+        }
+      }
       if ([void 0, null].includes(_intervals_) === false) {
         const intervals2 = _intervals_.filter(
           (interval2) => interval2.snapshot_date === datum2.snapshot_date
@@ -22266,6 +22576,7 @@ var rbmViz = (() => {
   function boxplot2(data, config) {
     const grouped = rollups(
       data,
+      //.filter(d => +d.flag === 0),
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
@@ -22276,6 +22587,7 @@ var rbmViz = (() => {
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
       label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
       outlierRadius: 0,
+      ///^n_/.test(config.y) ? 2 : 0,
       pointRadius: 0,
       pointStyle: "rect",
       purpose: "distribution",
@@ -22289,6 +22601,7 @@ var rbmViz = (() => {
   function violin(data, config) {
     const grouped = rollups(
       data,
+      //.filter((d) => +d.flag === 0),
       (group2) => group2.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
@@ -22340,6 +22653,9 @@ var rbmViz = (() => {
             const dataset = {
               adjustScaleRange: false,
               borderColor: group2[0].color.color,
+              //function (d) {
+              //    return d.color.color;
+              //},
               borderDash: [2],
               borderWidth: 1,
               data: group2,
@@ -22348,6 +22664,7 @@ var rbmViz = (() => {
               purpose: "annotation",
               pointRadius: 0,
               stepped: "middle",
+              // 'before', 'middle', 'after'
               type: "line"
             };
             const snapshotDates = [
@@ -22409,6 +22726,7 @@ var rbmViz = (() => {
         const y = value;
         const counts = [...countsBySnapshot.get(labels[i])];
         return {
+          //...data.find((d) => d[config.x] === x),
           x,
           y,
           counts: counts.map(([key1, value1]) => {
@@ -22430,12 +22748,13 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null) {
+  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     const { data, labels, thresholds: thresholds2, intervals } = mutate4(
       _data_,
       config,
       _thresholds_,
-      _intervals_
+      _intervals_,
+      _sites_
     );
     let datasets = [];
     if (config.dataType !== "discrete") {
@@ -22505,6 +22824,7 @@ var rbmViz = (() => {
           borderColor: "rgba(0,0,0,.5)",
           borderWidth: 3
         },
+        // legend item for selected group ID line
         aggregateLine(data, config, labels),
         {
           type: "scatter",
@@ -22516,6 +22836,7 @@ var rbmViz = (() => {
           borderColor: "rgba(0,0,0,.25)",
           borderWidth: 3
         }
+        // legend item for aggregate line
       ];
     }
     datasets = datasets.filter((dataset) => dataset !== null);
@@ -22544,8 +22865,10 @@ var rbmViz = (() => {
             position: Math.sign(+x.flag) >= 0 ? "end" : "start",
             color: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
             backgroundColor: "white",
-            content: `QTL: ${Math.round(+config.thresholds[0].threshold * 1e3) / 1e3 .toString()}`,
+            content: `QTL: ${Math.round(+config.thresholds[0].threshold * 1e3) / 1e3.toString()}`,
+            //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
             display: true,
+            //Math.sign(+x.flag) === 1,
             font: {
               size: 12
             }
@@ -22582,6 +22905,7 @@ var rbmViz = (() => {
               text: dataset.label
             };
           }),
+          //pointStyleWidth: 3,
           sort: function(a, b, chartData) {
             const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
             return /^Site (?!Distribution)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) ? -1 : order;
@@ -22601,6 +22925,7 @@ var rbmViz = (() => {
           filter: (legendItem, chartData) => {
             return legendItem.text !== "";
           },
+          //pointStyleWidth: 3,
           sort: function(a, b, chartData) {
             const order = legendOrder.indexOf(a.text) - legendOrder.indexOf(b.text);
             return /^Site (?!Distribution)/i.test(a.text) && /^Site (?!Average)/i.test(a.text) ? 1 : /^Site (?!Distribution)/i.test(b.text) && /^Site (?!Average)/i.test(b.text) ? -1 : order;
@@ -22617,6 +22942,7 @@ var rbmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
+        //label: formatResultTooltipContent.bind(null, config),
         label: (d) => {
           const content = formatResultTooltipContent(config, d);
           return d.raw.duplicate ? "" : content;
@@ -22628,49 +22954,45 @@ var rbmViz = (() => {
         },
         title: (data) => {
           if (data.length) {
-            if (["boxplot", "violin"].includes(data[0].dataset.type)) {
+            if (data[0].dataset.purpose === "distribution") {
               return `${config.group} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
               return `${config.group} Summary on ${data[0].label}`;
             } else {
-              const numericGroupIDs = data.every(
-                (d) => /^\d+$/.test(d.raw.groupid)
-              );
-              const groupIDs = data.sort((a, b) => {
-                const selected = config.selectedGroupIDs.includes(
-                  b.raw.groupid
-                ) - config.selectedGroupIDs.includes(
-                  a.raw.groupid
-                );
-                const alphanumeric = numericGroupIDs ? ascending(+a.raw.groupid, +b.raw.groupid) : ascending(a.raw.groupid, b.raw.groupid);
-                return selected || alphanumeric;
-              }).map(function(d, i) {
-                let title3;
-                if (i === 0) {
-                  title3 = `${config.group}${data.length > 1 && !(data.length === 2 && data.some(
-                    (d2) => [
-                      "aggregate",
-                      "distribution"
-                    ].includes(d2.dataset.purpose)
-                  )) ? "s" : ""} ${d.dataset.data[d.dataIndex].groupid}`;
-                } else if (!["aggregate", "distribution"].includes(
-                  d.dataset.purpose
-                )) {
-                  title3 = d.dataset.data[d.dataIndex].groupid;
+              let dataSorted = data;
+              try {
+                dataSorted = sortByGroupID(data, config);
+              } catch (err) {
+                console.log(err);
+                console.log(data);
+              }
+              const titles = dataSorted.map(function(d, i) {
+                let title4;
+                if (data.length === 1) {
+                  title4 = `${config.group} ${d.dataset.data[d.dataIndex].groupid}`;
+                  if (d.raw.site !== void 0) {
+                    title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                  }
                 } else {
-                  title3 = `${config.group} ${d.dataset.purpose === "aggregate" ? "Summary" : "Distribution"}`;
+                  title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].groupid}` : d.dataset.data[d.dataIndex].groupid;
                 }
-                return title3;
+                return title4;
               });
-              return groupIDs.length <= 4 ? `${groupIDs.join(", ")} on ${data[0].label}` : `${groupIDs.slice(0, 3).join(", ")} and [ ${groupIDs.length - 3} ] more on ${data[0].label}`;
+              const title3 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
+              return title3;
             }
           }
         }
       },
       displayColors: true,
+      //config.dataType !== 'discrete',
       filter: (data) => {
         const datum2 = data.dataset.data[data.dataIndex];
-        return data.dataset.purpose !== "annotation" && typeof datum2 === "object" && !(config.selectedGroupIDs.includes(datum2.groupid) && data.dataset.type === "scatter");
+        const isAnnotation = data.dataset.purpose === "annotation";
+        const isObject2 = typeof datum2 === "object";
+        const isSelected = config.selectedGroupIDs.includes(datum2.groupid);
+        const isScatter = data.dataset.type === "scatter";
+        return !isAnnotation && isObject2 && !(isSelected && isScatter);
       },
       ...tooltipAesthetics
     };
@@ -22698,9 +23020,15 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null) {
+  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     const config = configure6(_config_, _data_, _thresholds_);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_,
+      _sites_
+    );
     chart.data = {
       datasets,
       labels: datasets.labels,
@@ -22708,7 +23036,8 @@ var rbmViz = (() => {
       _data_,
       _config_,
       _thresholds_,
-      _intervals_
+      _intervals_,
+      _sites_
     };
     chart.options.scales = getScales4(config);
     chart.options.plugins = getPlugins4(config);
@@ -22717,27 +23046,29 @@ var rbmViz = (() => {
 
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
-    this.data.config.selectedGroupIDs = selectedGroupIDs;
-    this.data.config = configure6(
-      this.data.config,
-      this.data._data_,
-      this.data._thresholds_,
-      this.data._intervals_
-    );
+    this.data.config.selectedGroupIDs = [selectedGroupIDs];
     this.data.datasets = structureData4(
       this.data._data_,
       this.data.config,
-      this.data._thresholds_
+      this.data._thresholds_,
+      null,
+      this.data._sites_
     );
     this.update();
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null) {
-    checkInputs4(_data_, _config_, _thresholds_, _intervals_);
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
+    checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData4(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData4(
+      _data_,
+      config,
+      _thresholds_,
+      _intervals_,
+      _sites_
+    );
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
@@ -22750,12 +23081,16 @@ var rbmViz = (() => {
     const chart = new auto_default(canvas, {
       data: {
         datasets,
+        // required by Chart.js
         labels: datasets.labels,
+        // required by Chart.js
         config,
+        // inputs
         _data_,
         _config_,
         _thresholds_,
-        _intervals_
+        _intervals_,
+        _sites_
       },
       options,
       plugins: [displayWhiteBackground()]
@@ -22779,6 +23114,7 @@ var rbmViz = (() => {
     ViolinController
   );
   var rbmViz = {
+    // bar chart
     barChart: barChart.bind({
       x: "groupid",
       y: "score",
@@ -22797,12 +23133,14 @@ var rbmViz = (() => {
       chartType: "bar",
       dataType: "continuous"
     }),
+    // scatter plot
     scatterPlot: scatterPlot.bind({
       x: "denominator",
       y: "numerator",
       chartType: "scatter",
       dataType: "discrete"
     }),
+    // sparkline
     sparkline: sparkline.bind({
       x: "snapshot_date",
       y: "score",
@@ -22827,6 +23165,7 @@ var rbmViz = (() => {
       chartType: "line",
       dataType: "discrete"
     }),
+    // time series
     timeSeries: timeSeries.bind({
       x: "snapshot_date",
       y: "score",
@@ -22855,28 +23194,54 @@ var rbmViz = (() => {
   var main_default = rbmViz;
   return __toCommonJS(main_exports);
 })();
-/*!
- * @kurkle/color v0.2.1
- * https://github.com/kurkle/color#readme
- * (c) 2022 Jukka Kurkela
- * Released under the MIT License
- */
-/*!
- * Chart.js v3.9.1
- * https://www.chartjs.org
- * (c) 2022 Chart.js Contributors
- * Released under the MIT License
- */
-/*!
- * chartjs-plugin-datalabels v2.1.0
- * https://chartjs-plugin-datalabels.netlify.app
- * (c) 2017-2022 chartjs-plugin-datalabels contributors
- * Released under the MIT license
- */
-/*!
-* chartjs-plugin-annotation v2.0.1
-* https://www.chartjs.org/chartjs-plugin-annotation/index
- * (c) 2022 chartjs-plugin-annotation Contributors
- * Released under the MIT License
- */
+/*! Bundled license information:
+
+chart.js/dist/chunks/helpers.segment.mjs:
+  (*!
+   * Chart.js v3.9.1
+   * https://www.chartjs.org
+   * (c) 2022 Chart.js Contributors
+   * Released under the MIT License
+   *)
+
+chart.js/dist/chunks/helpers.segment.mjs:
+  (*!
+   * @kurkle/color v0.2.1
+   * https://github.com/kurkle/color#readme
+   * (c) 2022 Jukka Kurkela
+   * Released under the MIT License
+   *)
+
+chart.js/dist/chart.mjs:
+  (*!
+   * Chart.js v3.9.1
+   * https://www.chartjs.org
+   * (c) 2022 Chart.js Contributors
+   * Released under the MIT License
+   *)
+
+chart.js/dist/helpers.mjs:
+  (*!
+   * Chart.js v3.9.1
+   * https://www.chartjs.org
+   * (c) 2022 Chart.js Contributors
+   * Released under the MIT License
+   *)
+
+chartjs-plugin-annotation/dist/chartjs-plugin-annotation.esm.js:
+  (*!
+  * chartjs-plugin-annotation v2.0.1
+  * https://www.chartjs.org/chartjs-plugin-annotation/index
+   * (c) 2022 chartjs-plugin-annotation Contributors
+   * Released under the MIT License
+   *)
+
+chartjs-plugin-datalabels/dist/chartjs-plugin-datalabels.esm.js:
+  (*!
+   * chartjs-plugin-datalabels v2.1.0
+   * https://chartjs-plugin-datalabels.netlify.app
+   * (c) 2017-2022 chartjs-plugin-datalabels contributors
+   * Released under the MIT license
+   *)
+*/
 //# sourceMappingURL=index.js.map

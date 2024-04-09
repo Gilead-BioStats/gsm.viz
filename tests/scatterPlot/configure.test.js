@@ -51,6 +51,7 @@ describe('configuration', () => {
                 'clickCallbackWrapper',
 
                 'chartName',
+                'displayLegend',
                 'displayTitle',
                 'displayTrendLine',
                 'maintainAspectRatio',
