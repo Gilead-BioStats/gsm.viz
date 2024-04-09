@@ -1,6 +1,6 @@
 "workflowid","gsm_version","group","abbreviation","metric","numerator","denominator","outcome","model","score","data_inputs","data_filters","gsm_analysis_date"
-"kri0001","1.4.1","Site","AE","Non-serious AE Reporting Rate","Treatment-emergent AEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Non-Serious, TreatmentEmergent",2023-01-05
-"kri0002","1.4.1","Site","SAE","SAE Reporting Rate","Treatment-emergent SAEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Serious, TreatmentEmergent",2023-01-05
+"kri0001","1.4.1","Site","AE","Non-serious AE Reporting Rate","AEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Non-Serious, TreatmentEmergent",2023-01-05
+"kri0002","1.4.1","Site","SAE","SAE Reporting Rate","SAEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Serious, TreatmentEmergent",2023-01-05
 "kri0003","1.4.1","Site","PD","Non-important PD Rate","Non-important PDs","Days in Study","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.pd, rawplus.dm","Non-Important",2023-01-05
 "kri0004","1.4.1","Site","IPD","Important PD Rate","Important PDs","Days in Study","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.pd, rawplus.dm","Important",2023-01-05
 "kri0005","1.4.1","Site","LB","G3+ Lab Abnormality Rate","G3+ Abnormal Lab Samples","Total Lab Samples","Percent","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.lb, rawplus.dm","Treatment emergent, Grade >= 3",2023-01-05
@@ -11,8 +11,8 @@
 "kri0010","1.4.1","Site","ODAT","Outstanding Data Entry Rate","Data Pages Entered > 10 Days","Total Data Pages","Percent","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.dm, edc.data_entry_lag","",2023-01-05
 "kri0011","1.4.1","Site","CDAT","Data Change Rate","Data Points with 1+ Change","Total Data Points","Percent","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.dm, edc.data_change_rate","",2023-01-05
 "kri0012","1.4.1","Site","SF","Screen Failure Rate","Screen Failures","Total Screened","Percent","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.enroll","",2023-01-05
-"cou0001","1.4.1","Country","AE","Non-serious AE Reporting Rate","Treatment-emergent AEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Non-Serious, TreatmentEmergent",2023-01-05
-"cou0002","1.4.1","Country","SAE","SAE Reporting Rate","Treatment-emergent SAEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Serious, TreatmentEmergent",2023-01-05
+"cou0001","1.4.1","Country","AE","Non-serious AE Reporting Rate","AEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Non-Serious, TreatmentEmergent",2023-01-05
+"cou0002","1.4.1","Country","SAE","SAE Reporting Rate","SAEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Serious, TreatmentEmergent",2023-01-05
 "cou0003","1.4.1","Country","PD","Non-important PD Rate","Non-important PDs","Days in Study","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.pd, rawplus.dm","Non-Important",2023-01-05
 "cou0004","1.4.1","Country","IPD","Important PD Rate","Important PDs","Days in Study","Rate","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.pd, rawplus.dm","Important",2023-01-05
 "cou0005","1.4.1","Country","LB","G3 or Higher Lab Abnormality Rate","G3+ Abnormal Lab Samples","Total Lab Samples","Percent","Normal Approximation (Percent)","Adjusted Z-Score ","rawplus.lb, rawplus.dm","Treatment emergent, Grade >= 3",2023-01-05

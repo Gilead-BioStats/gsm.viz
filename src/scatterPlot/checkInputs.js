@@ -1,6 +1,11 @@
 import checkInput from '../data/checkInput.js';
 
-export default function checkInputs(_data_, _config_, _bounds_) {
+export default function checkInputs(
+    _data_,
+    _config_,
+    _bounds_,
+    _sites_ = null
+) {
     checkInput({
         parameter: '_data_',
         argument: _data_,
@@ -21,4 +26,13 @@ export default function checkInputs(_data_, _config_, _bounds_) {
         schemaName: 'resultsPredicted',
         module: 'scatterPlot',
     });
+
+    if (_sites_ !== null) {
+        checkInput({
+            parameter: '_sites_',
+            argument: _sites_,
+            schemaName: 'sites',
+            module: 'scatterPlot',
+        });
+    }
 }

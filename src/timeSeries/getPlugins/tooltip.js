@@ -1,6 +1,6 @@
-import { ascending } from 'd3';
-import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import sortByGroupID from '../../util/sortByGroupID.js';
 
 // TODO: figure out better approach to coincidental highlight and site aggregate distribution
 export default function tooltip(config) {
@@ -24,75 +24,56 @@ export default function tooltip(config) {
             },
             title: (data) => {
                 if (data.length) {
-                    // distribution tooltip
-                    if (['boxplot', 'violin'].includes(data[0].dataset.type)) {
+                    // distribution (boxplot, violin plot)
+                    if (data[0].dataset.purpose === 'distribution') {
                         return `${config.group} Distribution on ${data[0].label}`;
-                    } else if (data[0].dataset.purpose === 'aggregate') {
+                    }
+                    // aggregate (discrete KRI distribution, QTL)
+                    else if (data[0].dataset.purpose === 'aggregate') {
                         return `${config.group} Summary on ${data[0].label}`;
-                    } else {
-                        const numericGroupIDs = data.every((d) =>
-                            /^\d+$/.test(d.raw.groupid)
-                        );
+                    }
+                    // data point
+                    else {
+                        let dataSorted = data;
+                        try {
+                            dataSorted = sortByGroupID(data, config);
+                        } catch (err) {
+                            console.log(err);
+                            console.log(data);
+                        }
 
-                        const groupIDs = data
-                            .sort((a, b) => {
-                                // order selected group ID first
-                                const selected =
-                                    config.selectedGroupIDs.includes(
-                                        b.raw.groupid
-                                    ) -
-                                    config.selectedGroupIDs.includes(
-                                        a.raw.groupid
-                                    );
+                        const titles = dataSorted.map(function (d, i) {
+                            let title;
 
-                                // order remaining group IDs alphanumerically
-                                const alphanumeric = numericGroupIDs
-                                    ? ascending(+a.raw.groupid, +b.raw.groupid)
-                                    : ascending(a.raw.groupid, b.raw.groupid);
+                            if (data.length === 1) {
+                                title = `${config.group} ${
+                                    d.dataset.data[d.dataIndex].groupid
+                                }`;
 
-                                return selected || alphanumeric;
-                            })
-                            .map(function (d, i) {
-                                let title;
-
-                                // first element at coordinates
-                                if (i === 0) {
-                                    title = `${config.group}${
-                                        data.length > 1 && // multiple element at coordinates
-                                        !(
-                                            data.length === 2 &&
-                                            data.some((d) =>
-                                                [
-                                                    'aggregate',
-                                                    'distribution',
-                                                ].includes(d.dataset.purpose)
-                                            )
-                                        ) // two elements at coordinates: selected group ID and distribution or aggregate
-                                            ? 's'
-                                            : ''
-                                    } ${d.dataset.data[d.dataIndex].groupid}`;
-                                } else if (
-                                    !['aggregate', 'distribution'].includes(
-                                        d.dataset.purpose
-                                    )
-                                ) {
-                                    title = d.dataset.data[d.dataIndex].groupid;
-                                } else {
-                                    title = `${config.group} ${
-                                        d.dataset.purpose === 'aggregate'
-                                            ? 'Summary'
-                                            : 'Distribution'
-                                    }`;
+                                if (d.raw.site !== undefined) {
+                                    title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                                 }
+                            } else {
+                                title =
+                                    i === 0
+                                        ? `${config.group}s ${
+                                              d.dataset.data[d.dataIndex]
+                                                  .groupid
+                                          }`
+                                        : d.dataset.data[d.dataIndex].groupid;
+                            }
 
-                                return title;
-                            });
+                            return title;
+                        });
 
-                        return groupIDs.length <= 4
-                            ? `${groupIDs.join(', ')} on ${data[0].label}`
-                            : `${groupIDs.slice(0, 3).join(', ')} and [ ${
-                                  groupIDs.length - 3
-                              } ] more on ${data[0].label}`;
+                        const title =
+                            titles.length <= 4
+                                ? `${titles.join(', ')} on ${data[0].label}`
+                                : `${titles.slice(0, 3).join(', ')} and [ ${
+                                      titles.length - 3
+                                  } ] more on ${data[0].label}`;
+
+                        return title;
                     }
                 }
             },
@@ -100,16 +81,13 @@ export default function tooltip(config) {
         displayColors: true, //config.dataType !== 'discrete',
         filter: (data) => {
             const datum = data.dataset.data[data.dataIndex];
+            const isAnnotation = data.dataset.purpose === 'annotation';
+            const isObject = typeof datum === 'object';
+            const isSelected = config.selectedGroupIDs.includes(datum.groupid);
+            const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.
-            return (
-                data.dataset.purpose !== 'annotation' &&
-                typeof datum === 'object' &&
-                !(
-                    config.selectedGroupIDs.includes(datum.groupid) &&
-                    data.dataset.type === 'scatter'
-                )
-            );
+            return !isAnnotation && isObject && !(isSelected && isScatter);
         },
         ...tooltipAesthetics,
     };

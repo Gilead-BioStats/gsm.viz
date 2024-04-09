@@ -20,13 +20,15 @@ export default function structureData(
     _data_,
     config,
     _thresholds_ = null,
-    _intervals_ = null
+    _intervals_ = null,
+    _sites_ = null
 ) {
     const { data, labels, thresholds, intervals } = mutate(
         _data_,
         config,
         _thresholds_,
-        _intervals_
+        _intervals_,
+        _sites_
     );
 
     // datasets

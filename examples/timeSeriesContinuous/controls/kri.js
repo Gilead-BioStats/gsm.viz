@@ -1,6 +1,5 @@
 // Add event listener to KRI dropdown.
 const kri = function (workflow, datasets, setup = false) {
-    const instance = getChart();
     const kriDropdown = document.querySelector('#kri');
 
     if (setup === true) {
@@ -17,6 +16,8 @@ const kri = function (workflow, datasets, setup = false) {
 
         kriDropdown.value = workflow.workflowid;
         kriDropdown.addEventListener('change', (event) => {
+            const instance = getChart();
+
             const workflowID = event.target.value;
 
             // analysis results
@@ -24,19 +25,25 @@ const kri = function (workflow, datasets, setup = false) {
 
             // chart configuration
             const workflow = selectWorkflowID(datasets[1], workflowID);
+            workflow.y = yaxis();
             workflow.selectedGroupIDs = site();
 
             // threshold annotations
-            const parameters = mergeParameters(
+            let parameters = mergeParameters(
                 datasets[2].filter((d) => d.workflowid === workflowID),
                 datasets[3].filter((d) => d.workflowid === workflowID)
             );
+            if (workflow.y !== 'score') parameters = null;
+
+            const sites = datasets[4];
 
             instance.helpers.updateData(
                 instance,
                 results,
                 workflow,
-                parameters
+                parameters,
+                null,
+                sites
             );
         });
     }

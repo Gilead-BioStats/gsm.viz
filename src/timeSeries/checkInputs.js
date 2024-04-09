@@ -4,7 +4,8 @@ export default function checkInputs(
     _data_,
     _config_,
     _thresholds_,
-    _intervals_
+    _intervals_,
+    _sites_ = null
 ) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
 
@@ -35,4 +36,13 @@ export default function checkInputs(
         schemaName: 'resultsVertical',
         module: 'timeSeries',
     });
+
+    if (_sites_ !== null) {
+        checkInput({
+            parameter: '_sites_',
+            argument: _sites_,
+            schemaName: 'sites',
+            module: 'timeSeries',
+        });
+    }
 }

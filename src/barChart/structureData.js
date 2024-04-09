@@ -11,9 +11,9 @@ import colorScheme from '../util/colorScheme.js';
  *
  * @returns {Array} data formatted for consumption by Chart.js
  */
-export default function structureData(_data_, config) {
+export default function structureData(_data_, config, _sites_ = null) {
     // Modify properties and sort order of data.
-    const data = mutate(_data_, config);
+    const data = mutate(_data_, config, _sites_);
 
     // Define array of Chart.js dataset objects.
     const datasets = [

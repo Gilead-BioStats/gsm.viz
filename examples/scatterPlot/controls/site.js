@@ -9,9 +9,9 @@ const site = function (datasets, setup = false) {
         option.innerHTML = 'None';
         siteDropdown.appendChild(option);
 
-        const groupIDs = Array.from(
-            new Set(datasets[0].map((d) => d.groupid)).values()
-        ).sort((a, b) => a - b);
+        const groupIDs = [...new Set(datasets[0].map((d) => d.groupid))].sort(
+            (a, b) => a - b
+        );
 
         for (i in groupIDs) {
             const option = document.createElement('option');
@@ -27,11 +27,8 @@ const site = function (datasets, setup = false) {
         siteDropdown.addEventListener('change', (event) => {
             instance = getChart();
             instance.data.config.selectedGroupIDs = event.target.value;
-            instance.helpers.updateConfig(
-                instance,
-                instance.data.config,
-                instance.data._thresholds_
-            );
+            instance.data.config.xType = xAxisType();
+            instance.helpers.updateConfig(instance, instance.data.config);
         });
     }
 

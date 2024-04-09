@@ -19,22 +19,35 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 2. click event updates to destroy
     // 3. button text changes to KILL
     const create = () => {
-        const workflow = datasets[1].find((d) => d.workflowid === kri());
-        const results = datasets[0].filter(
-            (d) => d.workflowid === workflow.workflowid
-        );
-        const bounds = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
-        );
-        workflow.selectedGroupIDs = [site()];
-        if (instance.data.datasets[0].type === 'scatter')
-            workflow.xType = xAxisType();
-        instance = rbmViz.default[chartFunction](
+        // analysis results
+        const results = filterOnWorkflowID(datasets[0], kri());
+
+        // chart configuration
+        const workflow = selectWorkflowID(datasets[1], kri());
+        workflow.y = yaxis();
+        workflow.selectedGroupIDs = site();
+
+        // threshold annotations
+        const parameters =
+            workflow.y === 'score' &&
+            document.getElementById('threshold').checked
+                ? mergeParameters(
+                      filterOnWorkflowID(datasets[2], kri()),
+                      filterOnWorkflowID(datasets[3], kri())
+                  )
+                : null;
+
+        // site metadata
+        const sites = datasets[4];
+
+        instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             workflow,
-            bounds
+            parameters,
+            sites
         );
+
         lifecycleButton.innerHTML = '<strong>KILL</strong>';
         lifecycleButton.onclick = destroy.bind(instance);
     };

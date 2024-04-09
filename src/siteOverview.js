@@ -1,9 +1,9 @@
 import React, { useRef, useEffect } from 'react';
 import Parser from 'html-react-parser';
-import InfoCircleOutlined from '../src/assets/info-circle-svg.svg';
-import doubleDownArrow from '../src/assets/doubleDownArrow.svg';
-import singleArrow from '../src/assets/singleArrow.svg';
-import greenCheck from '../src/assets/green-checkmark.webp';
+//import InfoCircleOutlined from '../src/assets/info-circle-svg.svg';
+//import doubleDownArrow from '../src/assets/doubleDownArrow.svg';
+//import singleArrow from '../src/assets/singleArrow.svg';
+//import greenCheck from '../src/assets/green-checkmark.webp';
 import sparkline from './sparkline';
 
   const makeSiteSummaryData = function (data) {

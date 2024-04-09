@@ -29,6 +29,7 @@ import triggerTooltip from './util/triggerTooltip.js';
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _bounds_ - optional auxiliary data of predicted analysis output
+ * @param {Array} _sites_ - optional site metadata
  *
  * @returns {Object} Chart.js chart object
  */
@@ -36,10 +37,11 @@ export default function scatterPlot(
     _element_ = 'body',
     _data_ = [],
     _config_ = {},
-    _bounds_ = null
+    _bounds_ = null,
+    _sites_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_data_, _config_, _bounds_);
+    checkInputs(_data_, _config_, _bounds_, _sites_);
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_);
@@ -48,7 +50,7 @@ export default function scatterPlot(
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _bounds_);
+    const datasets = structureData(_data_, config, _bounds_, _sites_);
 
     // Configure Chart.js options.
     const options = {

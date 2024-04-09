@@ -20,21 +20,24 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 3. button text changes to KILL
     const create = () => {
         const workflow = datasets[1].find((d) => d.workflowid === kri());
+
         const results = datasets[0].filter(
             (d) => d.workflowid === workflow.workflowid
         );
+
         const bounds = datasets[2].filter(
             (d) => d.workflowid === workflow.workflowid
         );
+        workflow.xType = xAxisType();
         workflow.selectedGroupIDs = [site()];
-        if (instance.data.datasets[0].type === 'scatter')
-            workflow.xType = xAxisType();
-        instance = rbmViz.default[chartFunction](
+
+        instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             workflow,
             bounds
         );
+
         lifecycleButton.innerHTML = '<strong>KILL</strong>';
         lifecycleButton.onclick = destroy.bind(instance);
     };

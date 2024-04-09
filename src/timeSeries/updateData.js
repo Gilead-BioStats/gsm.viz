@@ -21,11 +21,18 @@ export default function updateData(
     _data_,
     _config_,
     _thresholds_ = null,
-    _intervals_ = null
+    _intervals_ = null,
+    _sites_ = null
 ) {
     const config = configure(_config_, _data_, _thresholds_);
 
-    const datasets = structureData(_data_, config, _thresholds_, _intervals_);
+    const datasets = structureData(
+        _data_,
+        config,
+        _thresholds_,
+        _intervals_,
+        _sites_
+    );
 
     chart.data = {
         datasets,
@@ -35,6 +42,7 @@ export default function updateData(
         _config_,
         _thresholds_,
         _intervals_,
+        _sites_,
     };
 
     // might matter that scales come before plugins

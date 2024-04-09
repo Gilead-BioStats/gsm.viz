@@ -6,7 +6,7 @@ export default function legend(config) {
         .map((color) => color.description);
 
     return {
-        display: true,
+        display: config.displayLegend,
         labels: {
             boxHeight: 6,
             filter: function (legendItem, chartData) {
