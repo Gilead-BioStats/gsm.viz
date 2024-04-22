@@ -46,6 +46,7 @@ const rbmViz = {
         chartType: 'bar',
         dataType: 'continuous',
     }),
+
     // scatter plot
     scatterPlot: scatterPlot.bind({
         x: 'denominator',
@@ -53,6 +54,7 @@ const rbmViz = {
         chartType: 'scatter',
         dataType: 'discrete',
     }),
+
     // sparkline
     sparkline: sparkline.bind({
         x: 'snapshot_date',
@@ -78,6 +80,7 @@ const rbmViz = {
         chartType: 'line',
         dataType: 'discrete',
     }),
+
     // time series
     timeSeries: timeSeries.bind({
         x: 'snapshot_date',
@@ -103,6 +106,7 @@ const rbmViz = {
         chartType: 'identity',
         dataType: 'continuous',
     }),
+
     // site overview
     siteOverview
 };
