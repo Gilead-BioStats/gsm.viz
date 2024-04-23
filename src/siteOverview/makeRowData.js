@@ -1,17 +1,19 @@
+import { group } from 'd3';
+
 export default function makeRowData(results, sites, workflows) {
-    const lookup = d3.group(
+    const lookup = group(
         results,
-        d => d.groupid,
-        d => d.workflowid
+        (d) => d.groupid,
+        (d) => d.workflowid
     );
 
     const rowData = Array.from(lookup, ([key, value]) => {
-        let site = sites.find(site => site.siteid === key);
+        let site = sites.find((site) => site.siteid === key);
 
         // Use a default site object if the site is not found.
         if (site === undefined) {
-            site = {groupid: key};
-        };
+            site = { groupid: key };
+        }
 
         site.key = key;
         site.value = key;
@@ -20,8 +22,12 @@ export default function makeRowData(results, sites, workflows) {
         site.tooltip = true;
 
         const siteResults = Array.from(value, ([key, value]) => value[0]);
-        site.nRedFlags = siteResults.filter(result => Math.abs(parseInt(result.flag)) === 2).length;
-        site.nAmberFlags = siteResults.filter(result => Math.abs(parseInt(result.flag)) === 1).length;
+        site.nRedFlags = siteResults.filter(
+            (result) => Math.abs(parseInt(result.flag)) === 2
+        ).length;
+        site.nAmberFlags = siteResults.filter(
+            (result) => Math.abs(parseInt(result.flag)) === 1
+        ).length;
 
         const rowDatum = [
             site,
@@ -69,7 +75,7 @@ export default function makeRowData(results, sites, workflows) {
             if (Array.isArray(cellDatum) && cellDatum.length > 0) {
                 cellDatum = cellDatum[0];
             } else {
-                cellDatum = {flag: 'NA'};
+                cellDatum = { flag: 'NA' };
             }
 
             cellDatum.key = workflow.workflowid;

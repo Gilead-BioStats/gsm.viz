@@ -16187,6 +16187,9 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-array/src/group.js
+  function group(values, ...keys) {
+    return nest(values, identity, identity, keys);
+  }
   function rollup(values, reduce, ...keys) {
     return nest(values, identity, reduce, keys);
   }
@@ -17192,6 +17195,11 @@ var rbmViz = (() => {
     [Symbol.iterator]: iterator_default
   };
   var selection_default = selection;
+
+  // node_modules/d3-selection/src/select.js
+  function select_default2(selector) {
+    return typeof selector === "string" ? new Selection([[document.querySelector(selector)]], [document.documentElement]) : new Selection([[selector]], root);
+  }
 
   // node_modules/d3-color/src/define.js
   function define_default(constructor, factory, prototype) {
@@ -18373,7 +18381,7 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-transition/src/transition/select.js
-  function select_default2(select) {
+  function select_default3(select) {
     var name = this._name, id2 = this._id;
     if (typeof select !== "function")
       select = selector_default(select);
@@ -18591,7 +18599,7 @@ var rbmViz = (() => {
   var selection_prototype = selection_default.prototype;
   Transition.prototype = transition.prototype = {
     constructor: Transition,
-    select: select_default2,
+    select: select_default3,
     selectAll: selectAll_default2,
     selectChild: selection_prototype.selectChild,
     selectChildren: selection_prototype.selectChildren,
@@ -23104,7 +23112,7 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeRowData.js
   function makeRowData(results, sites, workflows) {
-    const lookup = d3.group(
+    const lookup = group(
       results,
       (d) => d.groupid,
       (d) => d.workflowid
@@ -23114,15 +23122,18 @@ var rbmViz = (() => {
       if (site === void 0) {
         site = { groupid: key };
       }
-      ;
       site.key = key;
       site.value = key;
       site.text = key;
       site.type = "site";
       site.tooltip = true;
       const siteResults = Array.from(value, ([key2, value2]) => value2[0]);
-      site.nRedFlags = siteResults.filter((result) => Math.abs(parseInt(result.flag)) === 2).length;
-      site.nAmberFlags = siteResults.filter((result) => Math.abs(parseInt(result.flag)) === 1).length;
+      site.nRedFlags = siteResults.filter(
+        (result) => Math.abs(parseInt(result.flag)) === 2
+      ).length;
+      site.nAmberFlags = siteResults.filter(
+        (result) => Math.abs(parseInt(result.flag)) === 1
+      ).length;
       const rowDatum = [
         site,
         {
@@ -23181,8 +23192,7 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/makeTable.js
-  function makeTable(rowData, workflows) {
-    console.log(rowData);
+  function makeTable(_element_, rowData, workflows) {
     const columns = [
       "groupid",
       "invname",
@@ -23222,12 +23232,15 @@ var rbmViz = (() => {
         text: workflow.abbreviation
       }))
     ];
-    const table = d3.select("body").append("table");
+    const table = select_default2(_element_).append("table");
     const thead = table.append("thead");
     const tbody = table.append("tbody");
     thead.append("tr").selectAll("th").data(headerLabels).join("th").text((d) => d.text);
     const rows = tbody.selectAll("tr").data(rowData).join("tr");
-    rows.selectAll("td").data((d) => d, (d) => d.key).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.type).attr(
+    rows.selectAll("td").data(
+      (d) => d,
+      (d) => d.key
+    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.type).attr(
       "title",
       (d) => d.tooltip ? Object.entries(d).map(([key, value]) => `${key}: ${value}`).join("\n") : null
     ).style("cursor", (d) => d.tooltip ? "help" : null);
@@ -23244,9 +23257,9 @@ var rbmViz = (() => {
       }
     });
     tbody.selectAll("tr").on("mouseover", function() {
-      d3.select(this).style("background-color", "lightgray");
+      select_default2(this).style("background-color", "lightgray");
     }).on("mouseout", function() {
-      d3.select(this).style("background-color", null);
+      select_default2(this).style("background-color", null);
     });
     thead.selectAll("th").on("click", function(event, d) {
       const i = headerLabels.findIndex((di) => di.key === d.key);
@@ -23262,18 +23275,20 @@ var rbmViz = (() => {
       this.classList.toggle("ascending", !sortAscending);
     });
     thead.selectAll("th").filter((d) => /^kri/.test(d.key)).attr("title", function(d) {
-      const workflow = workflows.find((workflow2) => workflow2.workflowid === d.key);
+      const workflow = workflows.find(
+        (workflow2) => workflow2.workflowid === d.key
+      );
       return workflow.metric;
     }).style("cursor", "help");
     return table;
   }
 
   // src/siteOverview.js
-  var siteOverview = {
-    makeRowData,
-    makeTable
-  };
-  var siteOverview_default = siteOverview;
+  function siteOverview(_element_ = "body", _data_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
+    const rowData = makeRowData(_data_, _sites_, _workflows_);
+    const table = makeTable(_element_, rowData, _workflows_);
+    return table;
+  }
 
   // src/main.js
   Chart.register(
@@ -23363,7 +23378,7 @@ var rbmViz = (() => {
       dataType: "continuous"
     }),
     // site overview
-    siteOverview: siteOverview_default
+    siteOverview
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);

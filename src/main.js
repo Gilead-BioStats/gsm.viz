@@ -108,7 +108,7 @@ const rbmViz = {
     }),
 
     // site overview
-    siteOverview
+    siteOverview,
 };
 
 export default rbmViz;

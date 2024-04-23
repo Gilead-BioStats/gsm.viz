@@ -11,9 +11,17 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const results = datasets[0].filter(d => /^kri/.test(d.workflowid));
-        const workflows = datasets[1].filter(d => /^kri/.test(d.workflowid));
+        const results = datasets[0].filter((d) => /^kri/.test(d.workflowid));
+        const workflows = datasets[1].filter((d) => /^kri/.test(d.workflowid));
         const sites = datasets[2];
-        const rowData = rbmViz.default.siteOverview.makeRowData(results, sites, workflows);
-        const table = rbmViz.default.siteOverview.makeTable(rowData, workflows);
+
+        const instance = rbmViz.default.siteOverview(
+            document.getElementById('container'),
+            results,
+            {
+                group: 'site',
+            },
+            sites,
+            workflows
+        );
     });
