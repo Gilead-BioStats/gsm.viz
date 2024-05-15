@@ -23258,6 +23258,11 @@ var rbmViz = (() => {
     });
   }
 
+  // src/siteOverview/makeTable/identifyInactiveSites.js
+  function identifyInactiveSites(rows) {
+    rows.selectAll("td.site.string.tooltip").style("text-decoration", (d) => d.status === "Active" ? null : "line-through");
+  }
+
   // src/siteOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting(rows) {
     const kriCells = rows.selectAll("td.kri");
@@ -23330,7 +23335,7 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/makeTable.js
-  function makeTable(_element_, rowData, workflows) {
+  function makeTable(_element_, data, workflows) {
     const columns = [
       "groupid",
       "invname",
@@ -23345,7 +23350,7 @@ var rbmViz = (() => {
     const thead = table.append("thead");
     const tbody = table.append("tbody");
     thead.append("tr").selectAll("th").data(headerLabels).join("th").text((d) => d.text);
-    const rows = tbody.selectAll("tr").data(rowData).join("tr");
+    const rows = tbody.selectAll("tr").data(data).join("tr");
     rows.selectAll("td").data(
       (d) => d,
       (d) => d.key
@@ -23355,7 +23360,7 @@ var rbmViz = (() => {
     );
     addHeaderTooltips(thead, workflows);
     addSorting(thead, tbody, headerLabels);
-    rows.selectAll("td.site.string.tooltip").style("font-weight", (d) => d.status === "Active" ? "bold" : "normal");
+    identifyInactiveSites(rows);
     addTrafficLighting(rows);
     addFlagIcons(rows);
     addRowHighlighting(rows);

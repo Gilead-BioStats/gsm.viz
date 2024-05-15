@@ -4,11 +4,12 @@ import getHeaderLabels from './makeTable/getHeaderLabels.js';
 import addHeaderTooltips from './makeTable/addHeaderTooltips.js';
 import addSorting from './makeTable/addSorting.js';
 
+import identifyInactiveSites from './makeTable/identifyInactiveSites.js';
 import addTrafficLighting from './makeTable/addTrafficLighting.js';
 import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 
-export default function makeTable(_element_, rowData, workflows) {
+export default function makeTable(_element_, data, workflows) {
     const columns = [
         'groupid',
         'invname',
@@ -33,7 +34,7 @@ export default function makeTable(_element_, rowData, workflows) {
         .join('th')
         .text((d) => d.text);
 
-    const rows = tbody.selectAll('tr').data(rowData).join('tr');
+    const rows = tbody.selectAll('tr').data(data).join('tr');
 
     rows.selectAll('td')
         .data(
@@ -57,9 +58,8 @@ export default function makeTable(_element_, rowData, workflows) {
     // add column sorting
     addSorting(thead, tbody, headerLabels);
 
-    // embolden active site IDs
-    rows.selectAll('td.site.string.tooltip')
-        .style('font-weight', d => d.status === 'Active' ? 'bold' : 'normal');
+    // identify inactive sites
+    identifyInactiveSites(rows);
 
     // add traffic light coloring to cells
     addTrafficLighting(rows);
