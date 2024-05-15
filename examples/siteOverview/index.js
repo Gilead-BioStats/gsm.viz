@@ -13,7 +13,10 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const results = datasets[0].filter((d) => /^kri/.test(d.workflowid));
         const workflows = datasets[1].filter((d) => /^kri/.test(d.workflowid));
-        const sites = datasets[2];
+        const sites = datasets[2].map(d => {
+            d.invname = d.invname.split(',')[0]
+            return d;
+        });
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),

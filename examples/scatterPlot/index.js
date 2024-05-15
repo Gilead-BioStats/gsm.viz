@@ -53,6 +53,7 @@ Promise.all(dataPromises)
         // controls
         kri(workflowID, datasets, true);
         site(datasets, true);
+        country(datasets, true);
         xAxisType(true);
         lifecycle(datasets, 'scatterPlot', true);
         download(true);

@@ -1,4 +1,4 @@
-import makeRowData from './siteOverview/makeRowData';
+import structureData from './siteOverview/structureData';
 import makeTable from './siteOverview/makeTable';
 
 /**
@@ -26,8 +26,8 @@ export default function siteOverview(
     // Merge custom settings with default settings.
     //const config = configure(_config_, _data_);
 
-    const rowData = makeRowData(_data_, _sites_, _workflows_);
-    const table = makeTable(_element_, rowData, _workflows_);
+    const data = structureData(_data_, _sites_, _workflows_);
+    const table = makeTable(_element_, data, _workflows_);
 
     return table;
 }

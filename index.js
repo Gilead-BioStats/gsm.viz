@@ -26,7 +26,7 @@ var rbmViz = (() => {
   // node_modules/chart.js/dist/chunks/helpers.segment.mjs
   function noop() {
   }
-  var uid = function() {
+  var uid = /* @__PURE__ */ function() {
     let id2 = 0;
     return function() {
       return id2++;
@@ -23110,8 +23110,8 @@ var rbmViz = (() => {
     return chart;
   }
 
-  // src/siteOverview/makeRowData.js
-  function makeRowData(results, sites, workflows) {
+  // src/siteOverview/structureData.js
+  function structureData5(results, sites, workflows) {
     const lookup = group(
       results,
       (d) => d.groupid,
@@ -23125,7 +23125,7 @@ var rbmViz = (() => {
       site.key = key;
       site.value = key;
       site.text = key;
-      site.type = "site";
+      site.type = "site string tooltip";
       site.tooltip = true;
       const siteResults = Array.from(value, ([key2, value2]) => value2[0]);
       site.nRedFlags = siteResults.filter(
@@ -23134,41 +23134,44 @@ var rbmViz = (() => {
       site.nAmberFlags = siteResults.filter(
         (result) => Math.abs(parseInt(result.flag)) === 1
       ).length;
+      site.nGreenFlags = siteResults.filter(
+        (result) => Math.abs(parseInt(result.flag)) === 0
+      ).length;
       const rowDatum = [
         site,
         {
           key,
           value: site.invname,
           text: site.invname,
-          type: "site",
+          type: "site string",
           tooltip: false
         },
-        {
-          key,
-          value: site.status,
-          text: site.status,
-          type: "site",
-          tooltip: false
-        },
+        //{
+        //    key: key,
+        //    value: site.status,
+        //    text: site.status,
+        //    type: 'site string',
+        //    tooltip: false,
+        //},
         {
           key,
           value: parseInt(site.enrolled_participants),
           text: site.enrolled_participants,
-          type: "site",
+          type: "site number",
           tooltip: false
         },
         {
           key,
           value: site.nRedFlags,
           text: site.nRedFlags,
-          type: "site",
+          type: "site number",
           tooltip: false
         },
         {
           key,
           value: site.nAmberFlags,
           text: site.nAmberFlags,
-          type: "site",
+          type: "site number",
           tooltip: false
         }
       ];
@@ -23181,28 +23184,26 @@ var rbmViz = (() => {
         }
         cellDatum.key = workflow.workflowid;
         cellDatum.value = Math.abs(parseFloat(cellDatum.score));
-        cellDatum.text = cellDatum.flag;
-        cellDatum.type = "kri";
+        cellDatum.text = "";
+        cellDatum.type = "kri icon tooltip";
         cellDatum.tooltip = true;
         rowDatum.push(cellDatum);
       }
       return rowDatum;
     });
-    return rowData;
+    const sortedData = rowData.sort((a, b) => {
+      const redComparison = b[0].nRedFlags - a[0].nRedFlags;
+      const amberComparison = b[0].nAmberFlags - a[0].nAmberFlags;
+      const greenComparison = b[0].nGreenFlags - a[0].nGreenFlags;
+      const siteComparison = a[0].value.localeCompare(b[0].value);
+      return redComparison || amberComparison || greenComparison || siteComparison;
+    });
+    return sortedData;
   }
 
-  // src/siteOverview/makeTable.js
-  function makeTable(_element_, rowData, workflows) {
-    const columns = [
-      "groupid",
-      "invname",
-      "status",
-      "enrolled_participants",
-      "nRedFlags",
-      "nAmberFlags",
-      ...workflows.map((workflow) => workflow.workflowid)
-    ];
-    const headerLabels = [
+  // src/siteOverview/makeTable/getHeaderLabels.js
+  function getHeaderLabels(columns, workflows) {
+    return [
       {
         key: "groupid",
         text: "Site ID"
@@ -23212,55 +23213,36 @@ var rbmViz = (() => {
         text: "Investigator"
       },
       {
-        key: "status",
-        text: "Status"
-      },
-      {
         key: "enrolled_participants",
         text: "Enrolled"
       },
       {
         key: "nRedFlags",
-        text: "# Red Flags"
+        text: "Red Flags"
       },
       {
         key: "nAmberFlags",
-        text: "# Amber Flags"
+        text: "Amber Flags"
       },
       ...workflows.map((workflow) => ({
         key: workflow.workflowid,
         text: workflow.abbreviation
       }))
     ];
-    const table = select_default2(_element_).append("table");
-    const thead = table.append("thead");
-    const tbody = table.append("tbody");
-    thead.append("tr").selectAll("th").data(headerLabels).join("th").text((d) => d.text);
-    const rows = tbody.selectAll("tr").data(rowData).join("tr");
-    rows.selectAll("td").data(
-      (d) => d,
-      (d) => d.key
-    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.type).attr(
-      "title",
-      (d) => d.tooltip ? Object.entries(d).map(([key, value]) => `${key}: ${value}`).join("\n") : null
-    ).style("cursor", (d) => d.tooltip ? "help" : null);
-    rows.selectAll("td.kri").style("background-color", function(d, i) {
-      switch (Math.abs(parseInt(d.flag))) {
-        case 0:
-          return "green";
-        case 1:
-          return "yellow";
-        case 2:
-          return "red";
-        default:
-          return "#eee";
-      }
+  }
+
+  // src/siteOverview/makeTable/addHeaderTooltips.js
+  function addHeaderTooltips(thead, workflows) {
+    thead.selectAll("th").filter((d) => /^kri/.test(d.key)).classed("tooltip", true).attr("title", function(d) {
+      const workflow = workflows.find(
+        (workflow2) => workflow2.workflowid === d.key
+      );
+      return workflow.metric;
     });
-    tbody.selectAll("tr").on("mouseover", function() {
-      select_default2(this).style("background-color", "lightgray");
-    }).on("mouseout", function() {
-      select_default2(this).style("background-color", null);
-    });
+  }
+
+  // src/siteOverview/makeTable/addSorting.js
+  function addSorting(thead, tbody, headerLabels) {
     thead.selectAll("th").on("click", function(event, d) {
       const i = headerLabels.findIndex((di) => di.key === d.key);
       const sortAscending = this.classList.contains("ascending");
@@ -23274,19 +23256,116 @@ var rbmViz = (() => {
       });
       this.classList.toggle("ascending", !sortAscending);
     });
-    thead.selectAll("th").filter((d) => /^kri/.test(d.key)).attr("title", function(d) {
-      const workflow = workflows.find(
-        (workflow2) => workflow2.workflowid === d.key
-      );
-      return workflow.metric;
-    }).style("cursor", "help");
+  }
+
+  // src/siteOverview/makeTable/addTrafficLighting.js
+  function addTrafficLighting(rows) {
+    const kriCells = rows.selectAll("td.kri");
+    kriCells.style("background-color", function(d, i) {
+      switch (Math.abs(parseInt(d.flag))) {
+        case 0:
+          return colorScheme_default.find((color3) => color3.flag.includes(0)).color;
+        case 1:
+          return colorScheme_default.find((color3) => color3.flag.includes(1)).color;
+        case 2:
+          return colorScheme_default.find((color3) => color3.flag.includes(2)).color;
+        default:
+          return "#eee";
+      }
+    });
+  }
+
+  // src/siteOverview/makeTable/icons/singleArrow.js
+  function singleArrow(flag, color3 = "white") {
+    const direction = Math.sign(flag) === 1 ? "up" : "down";
+    return [
+      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5857 11.4447C12.9763 11.8353 13.5303 11.9144 13.8232 11.6215C14.1161 11.3286 14.0369 10.7746 13.6464 10.3841L10.818 7.55565C10.5746 7.31232 10.2678 7.18988 10.0003 7.20299C9.73263 7.18973 9.42564 7.31217 9.18218 7.55563L6.35376 10.3841C5.96323 10.7746 5.88409 11.3286 6.17698 11.6215C6.46987 11.9144 7.02389 11.8352 7.41442 11.4447L10.0001 8.85907L12.5857 11.4447Z" fill="${color3}"/>`,
+      `<rect x="10" y="19.2929" width="13.1421" height="13.1421" rx="1.5" transform="rotate(-135 10 19.2929)" stroke="${color3}"/>`,
+      `</svg>`
+    ].join("");
+  }
+
+  // src/siteOverview/makeTable/icons/doubleArrow.js
+  function doubleArrow(flag, color3 = "white") {
+    const direction = Math.sign(flag) === 1 ? "up" : "down";
+    return [
+      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color3}"/>`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color3}"/>`,
+      `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color3}"/>`,
+      `</svg>`
+    ].join(``);
+  }
+
+  // src/siteOverview/makeTable/addFlagIcons.js
+  function addFlagIcons(rows) {
+    const kriCells = rows.selectAll("td.kri");
+    kriCells.each(function(d) {
+      const flag = parseInt(d.flag);
+      const absFlag = Math.abs(flag);
+      switch (absFlag) {
+        case 0:
+          break;
+        case 1:
+          this.insertAdjacentHTML("beforeend", singleArrow(flag));
+          break;
+        case 2:
+          this.insertAdjacentHTML("beforeend", doubleArrow(flag));
+          break;
+        default:
+          this.textContent = "-";
+          break;
+      }
+    });
+  }
+
+  // src/siteOverview/makeTable/addRowHighlighting.js
+  function addRowHighlighting(rows) {
+    rows.on("mouseover", function() {
+      select_default2(this).style("background-color", "lightgray");
+    }).on("mouseout", function() {
+      select_default2(this).style("background-color", null);
+    });
+  }
+
+  // src/siteOverview/makeTable.js
+  function makeTable(_element_, rowData, workflows) {
+    const columns = [
+      "groupid",
+      "invname",
+      "status",
+      "enrolled_participants",
+      "nRedFlags",
+      "nAmberFlags",
+      ...workflows.map((workflow) => workflow.workflowid)
+    ];
+    const headerLabels = getHeaderLabels(columns, workflows);
+    const table = select_default2(_element_).append("table");
+    const thead = table.append("thead");
+    const tbody = table.append("tbody");
+    thead.append("tr").selectAll("th").data(headerLabels).join("th").text((d) => d.text);
+    const rows = tbody.selectAll("tr").data(rowData).join("tr");
+    rows.selectAll("td").data(
+      (d) => d,
+      (d) => d.key
+    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.type).attr(
+      "title",
+      (d) => d.tooltip ? Object.entries(d).map(([key, value]) => `${key}: ${value}`).join("\n") : null
+    );
+    addHeaderTooltips(thead, workflows);
+    addSorting(thead, tbody, headerLabels);
+    rows.selectAll("td.site.string.tooltip").style("font-weight", (d) => d.status === "Active" ? "bold" : "normal");
+    addTrafficLighting(rows);
+    addFlagIcons(rows);
+    addRowHighlighting(rows);
     return table;
   }
 
   // src/siteOverview.js
   function siteOverview(_element_ = "body", _data_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
-    const rowData = makeRowData(_data_, _sites_, _workflows_);
-    const table = makeTable(_element_, rowData, _workflows_);
+    const data = structureData5(_data_, _sites_, _workflows_);
+    const table = makeTable(_element_, data, _workflows_);
     return table;
   }
 

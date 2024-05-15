@@ -1,5 +1,13 @@
 import { select } from 'd3';
 
+import getHeaderLabels from './makeTable/getHeaderLabels.js';
+import addHeaderTooltips from './makeTable/addHeaderTooltips.js';
+import addSorting from './makeTable/addSorting.js';
+
+import addTrafficLighting from './makeTable/addTrafficLighting.js';
+import addFlagIcons from './makeTable/addFlagIcons.js';
+import addRowHighlighting from './makeTable/addRowHighlighting.js';
+
 export default function makeTable(_element_, rowData, workflows) {
     const columns = [
         'groupid',
@@ -11,36 +19,7 @@ export default function makeTable(_element_, rowData, workflows) {
         ...workflows.map((workflow) => workflow.workflowid),
     ];
 
-    const headerLabels = [
-        {
-            key: 'groupid',
-            text: 'Site ID',
-        },
-        {
-            key: 'invname',
-            text: 'Investigator',
-        },
-        {
-            key: 'status',
-            text: 'Status',
-        },
-        {
-            key: 'enrolled_participants',
-            text: 'Enrolled',
-        },
-        {
-            key: 'nRedFlags',
-            text: '# Red Flags',
-        },
-        {
-            key: 'nAmberFlags',
-            text: '# Amber Flags',
-        },
-        ...workflows.map((workflow) => ({
-            key: workflow.workflowid,
-            text: workflow.abbreviation,
-        })),
-    ];
+    const headerLabels = getHeaderLabels(columns, workflows);
 
     // create table
     const table = select(_element_).append('table');
@@ -70,63 +49,26 @@ export default function makeTable(_element_, rowData, workflows) {
                       .map(([key, value]) => `${key}: ${value}`)
                       .join('\n')
                 : null
-        )
-        .style('cursor', (d) => (d.tooltip ? 'help' : null));
-
-    // add traffic light coloring to cells
-    rows.selectAll('td.kri').style('background-color', function (d, i) {
-        switch (Math.abs(parseInt(d.flag))) {
-            case 0:
-                return 'green';
-            case 1:
-                return 'yellow';
-            case 2:
-                return 'red';
-            default:
-                return '#eee';
-        }
-    });
-
-    // add row highlighting
-    tbody
-        .selectAll('tr')
-        .on('mouseover', function () {
-            select(this).style('background-color', 'lightgray');
-        })
-        .on('mouseout', function () {
-            select(this).style('background-color', null);
-        });
-
-    // add column sorting
-    thead.selectAll('th').on('click', function (event, d) {
-        const i = headerLabels.findIndex((di) => di.key === d.key);
-        const sortAscending = this.classList.contains('ascending');
-        const sortKey = d.value;
-
-        // TODO: handle sorting by non-numeric and missing values
-        tbody.selectAll('tr').sort((a, b) => {
-            if (sortAscending) {
-                return a[i].value - b[i].value;
-            } else {
-                return b[i].value - a[i].value;
-            }
-        });
-
-        this.classList.toggle('ascending', !sortAscending);
-    });
+        );
 
     // add tooltips to column headers
-    thead
-        .selectAll('th')
-        .filter((d) => /^kri/.test(d.key))
-        .attr('title', function (d) {
-            const workflow = workflows.find(
-                (workflow) => workflow.workflowid === d.key
-            );
+    addHeaderTooltips(thead, workflows);
 
-            return workflow.metric;
-        })
-        .style('cursor', 'help');
+    // add column sorting
+    addSorting(thead, tbody, headerLabels);
+
+    // embolden active site IDs
+    rows.selectAll('td.site.string.tooltip')
+        .style('font-weight', d => d.status === 'Active' ? 'bold' : 'normal');
+
+    // add traffic light coloring to cells
+    addTrafficLighting(rows);
+
+    // add directional arrows to KRI cells
+    addFlagIcons(rows);
+
+    // add row highlighting
+    addRowHighlighting(rows);
 
     return table;
 }

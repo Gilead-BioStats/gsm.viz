@@ -1,0 +1,17 @@
+.tooltip {
+    cursor: help;
+}
+
+td {
+    text-align: center;
+}
+
+td.number {
+    text-align: right;
+}
+
+td.kri {
+    width: 3em;
+    height: 1.5em;
+    text-align: center;
+}
