@@ -1,3 +1,5 @@
+import deriveSiteMetrics from './siteOverview/deriveSiteMetrics';
+import defineColumns from './siteOverview/defineColumns';
 import structureData from './siteOverview/structureData';
 import makeTable from './siteOverview/makeTable';
 
@@ -5,7 +7,7 @@ import makeTable from './siteOverview/makeTable';
  * Generate site overview table.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - table configuration and metadata
  * @param {Array} _sites_ - optional site metadata
  * @param {Array} _workflows_ - optional workflow metadata
@@ -15,7 +17,7 @@ import makeTable from './siteOverview/makeTable';
 
 export default function siteOverview(
     _element_ = 'body',
-    _data_ = [],
+    _results_ = [],
     _config_ = {},
     _sites_ = null,
     _workflows_ = null
@@ -26,8 +28,10 @@ export default function siteOverview(
     // Merge custom settings with default settings.
     //const config = configure(_config_, _data_);
 
-    const data = structureData(_data_, _sites_, _workflows_);
-    const table = makeTable(_element_, data, _workflows_);
+    const sites = deriveSiteMetrics(_sites_, _results_);
+    const columns = defineColumns(sites, _workflows_, _results_);
+    const rows = structureData(_results_, columns, sites, _workflows_);
+    const table = makeTable(_element_, rows, columns);
 
     return table;
 }

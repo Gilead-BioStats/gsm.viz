@@ -1,16 +1,22 @@
-export default function addSorting(thead, tbody, headerLabels) {
+export default function addSorting(thead, tbody, columns) {
     thead.selectAll('th').on('click', function (event, d) {
-        const i = headerLabels.findIndex((di) => di.key === d.key);
-        const sortAscending = this.classList.contains('ascending');
+        console.log(d);
+        const sortAscending = d.sort === 1; this.classList.contains('ascending');
         const sortKey = d.value;
+        const data = tbody.selectAll('tr').data();
 
         // TODO: handle sorting by non-numeric and missing values
         tbody.selectAll('tr').sort((a, b) => {
-            if (sortAscending) {
-                return a[i].value - b[i].value;
-            } else {
-                return b[i].value - a[i].value;
-            }
+            const defaultSort = sortAscending
+                ? a[i].value - b[i].value
+                : b[i].value - a[i].value;
+
+            // sort NaN last
+            const nanSort = isNaN(a[i].value)
+                ? 1
+                : -1;
+
+            return defaultSort || nanSort;
         });
 
         this.classList.toggle('ascending', !sortAscending);

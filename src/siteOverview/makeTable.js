@@ -1,7 +1,6 @@
 import { select } from 'd3';
 
-import getHeaderLabels from './makeTable/getHeaderLabels.js';
-import addHeaderTooltips from './makeTable/addHeaderTooltips.js';
+import addHeaderRow from './makeTable/addHeaderRow.js';
 import addSorting from './makeTable/addSorting.js';
 
 import identifyInactiveSites from './makeTable/identifyInactiveSites.js';
@@ -9,66 +8,43 @@ import addTrafficLighting from './makeTable/addTrafficLighting.js';
 import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 
-export default function makeTable(_element_, data, workflows) {
-    const columns = [
-        'groupid',
-        'invname',
-        'status',
-        'enrolled_participants',
-        'nRedFlags',
-        'nAmberFlags',
-        ...workflows.map((workflow) => workflow.workflowid),
-    ];
-
-    const headerLabels = getHeaderLabels(columns, workflows);
-
+export default function makeTable(_element_, rows, columns) {
     // create table
     const table = select(_element_).append('table');
     const thead = table.append('thead');
     const tbody = table.append('tbody');
 
-    thead
-        .append('tr')
-        .selectAll('th')
-        .data(headerLabels)
-        .join('th')
-        .text((d) => d.text);
+    // add header row
+    const headerRow = addHeaderRow(thead, columns);
 
-    const rows = tbody.selectAll('tr').data(data).join('tr');
+    // add body bodyRows
+    const bodyRows = tbody.selectAll('tr').data(rows).join('tr');
 
-    rows.selectAll('td')
+    bodyRows.selectAll('td')
         .data(
             (d) => d,
             (d) => d.key
         )
         .join('td')
         .text((d) => (d.text === 'NA' ? '-' : d.text))
-        .attr('class', (d) => d.type)
-        .attr('title', (d) =>
-            d.tooltip
-                ? Object.entries(d)
-                      .map(([key, value]) => `${key}: ${value}`)
-                      .join('\n')
-                : null
-        );
-
-    // add tooltips to column headers
-    addHeaderTooltips(thead, workflows);
+        .attr('class', (d) => d.class)
+        .classed('tooltip', (d) => d.tooltip)
+        .attr('title', (d) => d.tooltip ? d.tooltipContent: null);
 
     // add column sorting
-    addSorting(thead, tbody, headerLabels);
+    addSorting(thead, tbody, columns);
 
     // identify inactive sites
-    identifyInactiveSites(rows);
+    identifyInactiveSites(bodyRows);
 
     // add traffic light coloring to cells
-    addTrafficLighting(rows);
+    addTrafficLighting(bodyRows);
 
     // add directional arrows to KRI cells
-    addFlagIcons(rows);
+    addFlagIcons(bodyRows);
 
     // add row highlighting
-    addRowHighlighting(rows);
+    addRowHighlighting(bodyRows);
 
     return table;
 }
