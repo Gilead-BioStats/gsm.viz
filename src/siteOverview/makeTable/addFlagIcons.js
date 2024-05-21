@@ -2,7 +2,7 @@ import singleArrow from './icons/singleArrow';
 import doubleArrow from './icons/doubleArrow';
 
 export default function addFlagIcons(rows) {
-    const kriCells = rows.selectAll('td.kri');
+    const kriCells = rows.selectAll('td.kri').text('');
 
     kriCells
         .each(function (d) {

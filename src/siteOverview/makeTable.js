@@ -19,7 +19,6 @@ export default function makeTable(_element_, rows, columns) {
 
     // add body bodyRows
     const bodyRows = tbody.selectAll('tr').data(rows).join('tr');
-
     bodyRows.selectAll('td')
         .data(
             (d) => d,
@@ -32,7 +31,7 @@ export default function makeTable(_element_, rows, columns) {
         .attr('title', (d) => d.tooltip ? d.tooltipContent: null);
 
     // add column sorting
-    addSorting(thead, tbody, columns);
+    addSorting(headerRow, bodyRows, columns);
 
     // identify inactive sites
     identifyInactiveSites(bodyRows);

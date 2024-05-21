@@ -63,34 +63,34 @@ var rbmViz = (() => {
     }
   }
   function each(loopable, fn, thisArg, reverse) {
-    let i2, len, keys;
+    let i, len, keys;
     if (isArray(loopable)) {
       len = loopable.length;
       if (reverse) {
-        for (i2 = len - 1; i2 >= 0; i2--) {
-          fn.call(thisArg, loopable[i2], i2);
+        for (i = len - 1; i >= 0; i--) {
+          fn.call(thisArg, loopable[i], i);
         }
       } else {
-        for (i2 = 0; i2 < len; i2++) {
-          fn.call(thisArg, loopable[i2], i2);
+        for (i = 0; i < len; i++) {
+          fn.call(thisArg, loopable[i], i);
         }
       }
     } else if (isObject(loopable)) {
       keys = Object.keys(loopable);
       len = keys.length;
-      for (i2 = 0; i2 < len; i2++) {
-        fn.call(thisArg, loopable[keys[i2]], keys[i2]);
+      for (i = 0; i < len; i++) {
+        fn.call(thisArg, loopable[keys[i]], keys[i]);
       }
     }
   }
   function _elementsEqual(a0, a1) {
-    let i2, ilen, v0, v1;
+    let i, ilen, v0, v1;
     if (!a0 || !a1 || a0.length !== a1.length) {
       return false;
     }
-    for (i2 = 0, ilen = a0.length; i2 < ilen; ++i2) {
-      v0 = a0[i2];
-      v1 = a1[i2];
+    for (i = 0, ilen = a0.length; i < ilen; ++i) {
+      v0 = a0[i];
+      v1 = a1[i];
       if (v0.datasetIndex !== v1.datasetIndex || v0.index !== v1.index) {
         return false;
       }
@@ -136,8 +136,8 @@ var rbmViz = (() => {
     }
     options = options || {};
     const merger = options.merger || _merger;
-    for (let i2 = 0; i2 < ilen; ++i2) {
-      source = sources[i2];
+    for (let i = 0; i < ilen; ++i) {
+      source = sources[i];
       if (!isObject(source)) {
         continue;
       }
@@ -239,11 +239,11 @@ var rbmViz = (() => {
   function _factorize(value) {
     const result = [];
     const sqrt = Math.sqrt(value);
-    let i2;
-    for (i2 = 1; i2 < sqrt; i2++) {
-      if (value % i2 === 0) {
-        result.push(i2);
-        result.push(value / i2);
+    let i;
+    for (i = 1; i < sqrt; i++) {
+      if (value % i === 0) {
+        result.push(i);
+        result.push(value / i);
       }
     }
     if (sqrt === (sqrt | 0)) {
@@ -263,9 +263,9 @@ var rbmViz = (() => {
     return rounded - epsilon <= x && rounded + epsilon >= x;
   }
   function _setMinAndMaxByKey(array2, target, property) {
-    let i2, ilen, value;
-    for (i2 = 0, ilen = array2.length; i2 < ilen; i2++) {
-      value = array2[i2][property];
+    let i, ilen, value;
+    for (i = 0, ilen = array2.length; i < ilen; i++) {
+      value = array2[i][property];
       if (!isNaN(value)) {
         target.min = Math.min(target.min, value);
         target.max = Math.max(target.max, value);
@@ -410,9 +410,9 @@ var rbmViz = (() => {
   }
   function _arrayUnique(items) {
     const set4 = /* @__PURE__ */ new Set();
-    let i2, ilen;
-    for (i2 = 0, ilen = items.length; i2 < ilen; ++i2) {
-      set4.add(items[i2]);
+    let i, ilen;
+    for (i = 0, ilen = items.length; i < ilen; ++i) {
+      set4.add(items[i]);
     }
     if (set4.size === ilen) {
       return items;
@@ -635,15 +635,15 @@ var rbmViz = (() => {
   }
   function hwb2rgbn(h, w, b) {
     const rgb2 = hsl2rgbn(h, 1, 0.5);
-    let i2;
+    let i;
     if (w + b > 1) {
-      i2 = 1 / (w + b);
-      w *= i2;
-      b *= i2;
+      i = 1 / (w + b);
+      w *= i;
+      b *= i;
     }
-    for (i2 = 0; i2 < 3; i2++) {
-      rgb2[i2] *= 1 - w - b;
-      rgb2[i2] += w;
+    for (i = 0; i < 3; i++) {
+      rgb2[i] *= 1 - w - b;
+      rgb2[i] += w;
     }
     return rgb2;
   }
@@ -916,9 +916,9 @@ var rbmViz = (() => {
     const unpacked = {};
     const keys = Object.keys(names$1);
     const tkeys = Object.keys(map);
-    let i2, j, k, ok, nk;
-    for (i2 = 0; i2 < keys.length; i2++) {
-      ok = nk = keys[i2];
+    let i, j, k, ok, nk;
+    for (i = 0; i < keys.length; i++) {
+      ok = nk = keys[i];
       for (j = 0; j < tkeys.length; j++) {
         k = tkeys[j];
         nk = nk.replace(k, map[k]);
@@ -983,10 +983,10 @@ var rbmViz = (() => {
       a: rgb1.a + t * (rgb2.a - rgb1.a)
     };
   }
-  function modHSL(v, i2, ratio) {
+  function modHSL(v, i, ratio) {
     if (v) {
       let tmp = rgb2hsl(v);
-      tmp[i2] = Math.max(0, Math.min(tmp[i2] + tmp[i2] * ratio, i2 === 0 ? 360 : 1));
+      tmp[i] = Math.max(0, Math.min(tmp[i] + tmp[i] * ratio, i === 0 ? 360 : 1));
       tmp = hsl2rgb(tmp);
       v.r = tmp[0];
       v.g = tmp[1];
@@ -1152,8 +1152,8 @@ var rbmViz = (() => {
       return node;
     }
     const keys = key.split(".");
-    for (let i2 = 0, n = keys.length; i2 < n; ++i2) {
-      const k = keys[i2];
+    for (let i = 0, n = keys.length; i < n; ++i) {
+      const k = keys[i];
       node = node[k] || (node[k] = /* @__PURE__ */ Object.create(null));
     }
     return node;
@@ -1288,9 +1288,9 @@ var rbmViz = (() => {
     ctx.font = font;
     let longest = 0;
     const ilen = arrayOfThings.length;
-    let i2, j, jlen, thing, nestedThing;
-    for (i2 = 0; i2 < ilen; i2++) {
-      thing = arrayOfThings[i2];
+    let i, j, jlen, thing, nestedThing;
+    for (i = 0; i < ilen; i++) {
+      thing = arrayOfThings[i];
       if (thing !== void 0 && thing !== null && isArray(thing) !== true) {
         longest = _measureText(ctx, data, gc, longest, thing);
       } else if (isArray(thing)) {
@@ -1305,8 +1305,8 @@ var rbmViz = (() => {
     ctx.restore();
     const gcLen = gc.length / 2;
     if (gcLen > arrayOfThings.length) {
-      for (i2 = 0; i2 < gcLen; i2++) {
-        delete data[gc[i2]];
+      for (i = 0; i < gcLen; i++) {
+        delete data[gc[i]];
       }
       gc.splice(0, gcLen);
     }
@@ -1478,12 +1478,12 @@ var rbmViz = (() => {
   function renderText(ctx, text, x, y, font, opts = {}) {
     const lines = isArray(text) ? text : [text];
     const stroke = opts.strokeWidth > 0 && opts.strokeColor !== "";
-    let i2, line;
+    let i, line;
     ctx.save();
     ctx.font = font.string;
     setRenderOpts(ctx, opts);
-    for (i2 = 0; i2 < lines.length; ++i2) {
-      line = lines[i2];
+    for (i = 0; i < lines.length; ++i) {
+      line = lines[i];
       if (stroke) {
         if (opts.strokeColor) {
           ctx.strokeStyle = opts.strokeColor;
@@ -1608,9 +1608,9 @@ var rbmViz = (() => {
   }
   function resolve(inputs, context, index3, info) {
     let cacheable = true;
-    let i2, ilen, value;
-    for (i2 = 0, ilen = inputs.length; i2 < ilen; ++i2) {
-      value = inputs[i2];
+    let i, ilen, value;
+    for (i = 0, ilen = inputs.length; i < ilen; ++i) {
+      value = inputs[i];
       if (value === void 0) {
         continue;
       }
@@ -1894,18 +1894,18 @@ var rbmViz = (() => {
     const { iScale } = meta;
     const { key = "r" } = this._parsing;
     const parsed = new Array(count);
-    let i2, ilen, index3, item;
-    for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
-      index3 = i2 + start2;
+    let i, ilen, index3, item;
+    for (i = 0, ilen = count; i < ilen; ++i) {
+      index3 = i + start2;
       item = data[index3];
-      parsed[i2] = {
+      parsed[i] = {
         r: iScale.parse(resolveObjectKey(item, key), index3)
       };
     }
     return parsed;
   }
   var EPSILON = Number.EPSILON || 1e-14;
-  var getPoint = (points, i2) => i2 < points.length && !points[i2].skip && points[i2];
+  var getPoint = (points, i) => i < points.length && !points[i].skip && points[i];
   var getValueAxis = (indexAxis) => indexAxis === "x" ? "y" : "x";
   function splineCurve(firstPoint, middlePoint, afterPoint, t) {
     const previous = firstPoint.skip ? middlePoint : firstPoint;
@@ -1934,25 +1934,25 @@ var rbmViz = (() => {
     const pointsLen = points.length;
     let alphaK, betaK, tauK, squaredMagnitude, pointCurrent;
     let pointAfter = getPoint(points, 0);
-    for (let i2 = 0; i2 < pointsLen - 1; ++i2) {
+    for (let i = 0; i < pointsLen - 1; ++i) {
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i2 + 1);
+      pointAfter = getPoint(points, i + 1);
       if (!pointCurrent || !pointAfter) {
         continue;
       }
-      if (almostEquals(deltaK[i2], 0, EPSILON)) {
-        mK[i2] = mK[i2 + 1] = 0;
+      if (almostEquals(deltaK[i], 0, EPSILON)) {
+        mK[i] = mK[i + 1] = 0;
         continue;
       }
-      alphaK = mK[i2] / deltaK[i2];
-      betaK = mK[i2 + 1] / deltaK[i2];
+      alphaK = mK[i] / deltaK[i];
+      betaK = mK[i + 1] / deltaK[i];
       squaredMagnitude = Math.pow(alphaK, 2) + Math.pow(betaK, 2);
       if (squaredMagnitude <= 9) {
         continue;
       }
       tauK = 3 / Math.sqrt(squaredMagnitude);
-      mK[i2] = alphaK * tauK * deltaK[i2];
-      mK[i2 + 1] = betaK * tauK * deltaK[i2];
+      mK[i] = alphaK * tauK * deltaK[i];
+      mK[i + 1] = betaK * tauK * deltaK[i];
     }
   }
   function monotoneCompute(points, mK, indexAxis = "x") {
@@ -1960,10 +1960,10 @@ var rbmViz = (() => {
     const pointsLen = points.length;
     let delta, pointBefore, pointCurrent;
     let pointAfter = getPoint(points, 0);
-    for (let i2 = 0; i2 < pointsLen; ++i2) {
+    for (let i = 0; i < pointsLen; ++i) {
       pointBefore = pointCurrent;
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i2 + 1);
+      pointAfter = getPoint(points, i + 1);
       if (!pointCurrent) {
         continue;
       }
@@ -1972,12 +1972,12 @@ var rbmViz = (() => {
       if (pointBefore) {
         delta = (iPixel - pointBefore[indexAxis]) / 3;
         pointCurrent[`cp1${indexAxis}`] = iPixel - delta;
-        pointCurrent[`cp1${valueAxis}`] = vPixel - delta * mK[i2];
+        pointCurrent[`cp1${valueAxis}`] = vPixel - delta * mK[i];
       }
       if (pointAfter) {
         delta = (pointAfter[indexAxis] - iPixel) / 3;
         pointCurrent[`cp2${indexAxis}`] = iPixel + delta;
-        pointCurrent[`cp2${valueAxis}`] = vPixel + delta * mK[i2];
+        pointCurrent[`cp2${valueAxis}`] = vPixel + delta * mK[i];
       }
     }
   }
@@ -1986,20 +1986,20 @@ var rbmViz = (() => {
     const pointsLen = points.length;
     const deltaK = Array(pointsLen).fill(0);
     const mK = Array(pointsLen);
-    let i2, pointBefore, pointCurrent;
+    let i, pointBefore, pointCurrent;
     let pointAfter = getPoint(points, 0);
-    for (i2 = 0; i2 < pointsLen; ++i2) {
+    for (i = 0; i < pointsLen; ++i) {
       pointBefore = pointCurrent;
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i2 + 1);
+      pointAfter = getPoint(points, i + 1);
       if (!pointCurrent) {
         continue;
       }
       if (pointAfter) {
         const slopeDelta = pointAfter[indexAxis] - pointCurrent[indexAxis];
-        deltaK[i2] = slopeDelta !== 0 ? (pointAfter[valueAxis] - pointCurrent[valueAxis]) / slopeDelta : 0;
+        deltaK[i] = slopeDelta !== 0 ? (pointAfter[valueAxis] - pointCurrent[valueAxis]) / slopeDelta : 0;
       }
-      mK[i2] = !pointBefore ? deltaK[i2] : !pointAfter ? deltaK[i2 - 1] : sign(deltaK[i2 - 1]) !== sign(deltaK[i2]) ? 0 : (deltaK[i2 - 1] + deltaK[i2]) / 2;
+      mK[i] = !pointBefore ? deltaK[i] : !pointAfter ? deltaK[i - 1] : sign(deltaK[i - 1]) !== sign(deltaK[i]) ? 0 : (deltaK[i - 1] + deltaK[i]) / 2;
     }
     monotoneAdjust(points, deltaK, mK);
     monotoneCompute(points, mK, indexAxis);
@@ -2008,16 +2008,16 @@ var rbmViz = (() => {
     return Math.max(Math.min(pt, max3), min3);
   }
   function capBezierPoints(points, area) {
-    let i2, ilen, point, inArea, inAreaPrev;
+    let i, ilen, point, inArea, inAreaPrev;
     let inAreaNext = _isPointInArea(points[0], area);
-    for (i2 = 0, ilen = points.length; i2 < ilen; ++i2) {
+    for (i = 0, ilen = points.length; i < ilen; ++i) {
       inAreaPrev = inArea;
       inArea = inAreaNext;
-      inAreaNext = i2 < ilen - 1 && _isPointInArea(points[i2 + 1], area);
+      inAreaNext = i < ilen - 1 && _isPointInArea(points[i + 1], area);
       if (!inArea) {
         continue;
       }
-      point = points[i2];
+      point = points[i];
       if (inAreaPrev) {
         point.cp1x = capControlPoint(point.cp1x, area.left, area.right);
         point.cp1y = capControlPoint(point.cp1y, area.top, area.bottom);
@@ -2029,7 +2029,7 @@ var rbmViz = (() => {
     }
   }
   function _updateBezierControlPoints(points, options, area, loop, indexAxis) {
-    let i2, ilen, point, controlPoints;
+    let i, ilen, point, controlPoints;
     if (options.spanGaps) {
       points = points.filter((pt) => !pt.skip);
     }
@@ -2037,12 +2037,12 @@ var rbmViz = (() => {
       splineCurveMonotone(points, indexAxis);
     } else {
       let prev = loop ? points[points.length - 1] : points[0];
-      for (i2 = 0, ilen = points.length; i2 < ilen; ++i2) {
-        point = points[i2];
+      for (i = 0, ilen = points.length; i < ilen; ++i) {
+        point = points[i];
         controlPoints = splineCurve(
           prev,
           point,
-          points[Math.min(i2 + 1, ilen - (loop ? 0 : 1)) % ilen],
+          points[Math.min(i + 1, ilen - (loop ? 0 : 1)) % ilen],
           options.tension
         );
         point.cp1x = controlPoints.previous.x;
@@ -2086,8 +2086,8 @@ var rbmViz = (() => {
   function getPositionedStyle(styles, style, suffix) {
     const result = {};
     suffix = suffix ? "-" + suffix : "";
-    for (let i2 = 0; i2 < 4; i2++) {
-      const pos = positions[i2];
+    for (let i = 0; i < 4; i++) {
+      const pos = positions[i];
       result[pos] = parseFloat(styles[style + "-" + pos + suffix]) || 0;
     }
     result.width = result.left + result.right;
@@ -2349,11 +2349,11 @@ var rbmViz = (() => {
     const { between, normalize } = propertyFn(property);
     const count = points.length;
     let { start: start2, end, loop } = segment;
-    let i2, ilen;
+    let i, ilen;
     if (loop) {
       start2 += count;
       end += count;
-      for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
+      for (i = 0, ilen = count; i < ilen; ++i) {
         if (!between(normalize(points[start2 % count][property]), startBound, endBound)) {
           break;
         }
@@ -2384,8 +2384,8 @@ var rbmViz = (() => {
     const endIsBefore = () => compare(endBound, value) === 0 || between(endBound, prevValue, value);
     const shouldStart = () => inside || startIsBefore();
     const shouldStop = () => !inside || endIsBefore();
-    for (let i2 = start2, prev = start2; i2 <= end; ++i2) {
-      point = points[i2 % count];
+    for (let i = start2, prev = start2; i <= end; ++i) {
+      point = points[i % count];
       if (point.skip) {
         continue;
       }
@@ -2395,13 +2395,13 @@ var rbmViz = (() => {
       }
       inside = between(value, startBound, endBound);
       if (subStart === null && shouldStart()) {
-        subStart = compare(value, startBound) === 0 ? i2 : prev;
+        subStart = compare(value, startBound) === 0 ? i : prev;
       }
       if (subStart !== null && shouldStop()) {
-        result.push(normalizeSegment({ start: subStart, end: i2, loop, count, style }));
+        result.push(normalizeSegment({ start: subStart, end: i, loop, count, style }));
         subStart = null;
       }
-      prev = i2;
+      prev = i;
       prevValue = value;
     }
     if (subStart !== null) {
@@ -2412,8 +2412,8 @@ var rbmViz = (() => {
   function _boundSegments(line, bounds) {
     const result = [];
     const segments = line.segments;
-    for (let i2 = 0; i2 < segments.length; i2++) {
-      const sub = _boundSegment(segments[i2], line.points, bounds);
+    for (let i = 0; i < segments.length; i++) {
+      const sub = _boundSegment(segments[i], line.points, bounds);
       if (sub.length) {
         result.push(...sub);
       }
@@ -2498,7 +2498,7 @@ var rbmViz = (() => {
     const result = [];
     let prevStyle = baseStyle;
     let start2 = segments[0].start;
-    let i2 = start2;
+    let i = start2;
     function addStyle(s, e, l, st) {
       const dir = spanGaps ? -1 : 1;
       if (s === e) {
@@ -2521,24 +2521,24 @@ var rbmViz = (() => {
       start2 = spanGaps ? start2 : segment.start;
       let prev = points[start2 % count];
       let style;
-      for (i2 = start2 + 1; i2 <= segment.end; i2++) {
-        const pt = points[i2 % count];
+      for (i = start2 + 1; i <= segment.end; i++) {
+        const pt = points[i % count];
         style = readStyle(segmentOptions.setContext(createContext(chartContext, {
           type: "segment",
           p0: prev,
           p1: pt,
-          p0DataIndex: (i2 - 1) % count,
-          p1DataIndex: i2 % count,
+          p0DataIndex: (i - 1) % count,
+          p1DataIndex: i % count,
           datasetIndex
         })));
         if (styleChanged(style, prevStyle)) {
-          addStyle(start2, i2 - 1, segment.loop, prevStyle);
+          addStyle(start2, i - 1, segment.loop, prevStyle);
         }
         prev = pt;
         prevStyle = style;
       }
-      if (start2 < i2 - 1) {
-        addStyle(start2, i2 - 1, segment.loop, prevStyle);
+      if (start2 < i - 1) {
+        addStyle(start2, i - 1, segment.loop, prevStyle);
       }
     }
     return result;
@@ -2596,11 +2596,11 @@ var rbmViz = (() => {
           return;
         }
         const items = anims.items;
-        let i2 = items.length - 1;
+        let i = items.length - 1;
         let draw3 = false;
         let item;
-        for (; i2 >= 0; --i2) {
-          item = items[i2];
+        for (; i >= 0; --i) {
+          item = items[i];
           if (item._active) {
             if (item._total > anims.duration) {
               anims.duration = item._total;
@@ -2608,7 +2608,7 @@ var rbmViz = (() => {
             item.tick(date);
             draw3 = true;
           } else {
-            items[i2] = items[items.length - 1];
+            items[i] = items[items.length - 1];
             items.pop();
           }
         }
@@ -2683,9 +2683,9 @@ var rbmViz = (() => {
         return;
       }
       const items = anims.items;
-      let i2 = items.length - 1;
-      for (; i2 >= 0; --i2) {
-        items[i2].cancel();
+      let i = items.length - 1;
+      for (; i >= 0; --i) {
+        items[i].cancel();
       }
       anims.items = [];
       this._notify(chart, anims, Date.now(), "complete");
@@ -2782,8 +2782,8 @@ var rbmViz = (() => {
     _notify(resolved) {
       const method = resolved ? "res" : "rej";
       const promises = this._promises || [];
-      for (let i2 = 0; i2 < promises.length; i2++) {
-        promises[i2][method]();
+      for (let i = 0; i < promises.length; i++) {
+        promises[i][method]();
       }
     }
   };
@@ -2901,9 +2901,9 @@ var rbmViz = (() => {
       const running = target.$animations || (target.$animations = {});
       const props = Object.keys(values);
       const date = Date.now();
-      let i2;
-      for (i2 = props.length - 1; i2 >= 0; --i2) {
-        const prop = props[i2];
+      let i;
+      for (i = props.length - 1; i >= 0; --i) {
+        const prop = props[i];
         if (prop.charAt(0) === "$") {
           continue;
         }
@@ -2946,8 +2946,8 @@ var rbmViz = (() => {
   function awaitAll(animations, properties) {
     const running = [];
     const keys = Object.keys(properties);
-    for (let i2 = 0; i2 < keys.length; i2++) {
-      const anim = animations[keys[i2]];
+    for (let i = 0; i < keys.length; i++) {
+      const anim = animations[keys[i]];
       if (anim && anim.active()) {
         running.push(anim.wait());
       }
@@ -3012,21 +3012,21 @@ var rbmViz = (() => {
   function getSortedDatasetIndices(chart, filterVisible) {
     const keys = [];
     const metasets = chart._getSortedDatasetMetas(filterVisible);
-    let i2, ilen;
-    for (i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
-      keys.push(metasets[i2].index);
+    let i, ilen;
+    for (i = 0, ilen = metasets.length; i < ilen; ++i) {
+      keys.push(metasets[i].index);
     }
     return keys;
   }
   function applyStack(stack, value, dsIndex, options = {}) {
     const keys = stack.keys;
     const singleMode = options.mode === "single";
-    let i2, ilen, datasetIndex, otherValue;
+    let i, ilen, datasetIndex, otherValue;
     if (value === null) {
       return;
     }
-    for (i2 = 0, ilen = keys.length; i2 < ilen; ++i2) {
-      datasetIndex = +keys[i2];
+    for (i = 0, ilen = keys.length; i < ilen; ++i) {
+      datasetIndex = +keys[i];
       if (datasetIndex === dsIndex) {
         if (options.all) {
           continue;
@@ -3043,10 +3043,10 @@ var rbmViz = (() => {
   function convertObjectDataToArray(data) {
     const keys = Object.keys(data);
     const adata = new Array(keys.length);
-    let i2, ilen, key;
-    for (i2 = 0, ilen = keys.length; i2 < ilen; ++i2) {
-      key = keys[i2];
-      adata[i2] = {
+    let i, ilen, key;
+    for (i = 0, ilen = keys.length; i < ilen; ++i) {
+      key = keys[i];
+      adata[i] = {
         x: key,
         y: data[key]
       };
@@ -3089,8 +3089,8 @@ var rbmViz = (() => {
     const key = getStackKey(iScale, vScale, meta);
     const ilen = parsed.length;
     let stack;
-    for (let i2 = 0; i2 < ilen; ++i2) {
-      const item = parsed[i2];
+    for (let i = 0; i < ilen; ++i) {
+      const item = parsed[i];
       const { [iAxis]: index3, [vAxis]: value } = item;
       const itemStacks = item._stacks || (item._stacks = {});
       stack = itemStacks[vAxis] = getOrCreateStack(stacks, key, index3);
@@ -3280,7 +3280,7 @@ var rbmViz = (() => {
       const iAxis = iScale.axis;
       let sorted = start2 === 0 && count === data.length ? true : meta._sorted;
       let prev = start2 > 0 && meta._parsed[start2 - 1];
-      let i2, cur, parsed;
+      let i, cur, parsed;
       if (this._parsing === false) {
         meta._parsed = data;
         meta._sorted = true;
@@ -3294,8 +3294,8 @@ var rbmViz = (() => {
           parsed = this.parsePrimitiveData(meta, data, start2, count);
         }
         const isNotInOrderComparedToPrev = () => cur[iAxis] === null || prev && cur[iAxis] < prev[iAxis];
-        for (i2 = 0; i2 < count; ++i2) {
-          meta._parsed[i2 + start2] = cur = parsed[i2];
+        for (i = 0; i < count; ++i) {
+          meta._parsed[i + start2] = cur = parsed[i];
           if (sorted) {
             if (isNotInOrderComparedToPrev()) {
               sorted = false;
@@ -3316,10 +3316,10 @@ var rbmViz = (() => {
       const labels = iScale.getLabels();
       const singleScale = iScale === vScale;
       const parsed = new Array(count);
-      let i2, ilen, index3;
-      for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
-        index3 = i2 + start2;
-        parsed[i2] = {
+      let i, ilen, index3;
+      for (i = 0, ilen = count; i < ilen; ++i) {
+        index3 = i + start2;
+        parsed[i] = {
           [iAxis]: singleScale || iScale.parse(labels[index3], index3),
           [vAxis]: vScale.parse(data[index3], index3)
         };
@@ -3329,11 +3329,11 @@ var rbmViz = (() => {
     parseArrayData(meta, data, start2, count) {
       const { xScale, yScale } = meta;
       const parsed = new Array(count);
-      let i2, ilen, index3, item;
-      for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
-        index3 = i2 + start2;
+      let i, ilen, index3, item;
+      for (i = 0, ilen = count; i < ilen; ++i) {
+        index3 = i + start2;
         item = data[index3];
-        parsed[i2] = {
+        parsed[i] = {
           x: xScale.parse(item[0], index3),
           y: yScale.parse(item[1], index3)
         };
@@ -3344,11 +3344,11 @@ var rbmViz = (() => {
       const { xScale, yScale } = meta;
       const { xAxisKey = "x", yAxisKey = "y" } = this._parsing;
       const parsed = new Array(count);
-      let i2, ilen, index3, item;
-      for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
-        index3 = i2 + start2;
+      let i, ilen, index3, item;
+      for (i = 0, ilen = count; i < ilen; ++i) {
+        index3 = i + start2;
         item = data[index3];
-        parsed[i2] = {
+        parsed[i] = {
           x: xScale.parse(resolveObjectKey(item, xAxisKey), index3),
           y: yScale.parse(resolveObjectKey(item, yAxisKey), index3)
         };
@@ -3391,13 +3391,13 @@ var rbmViz = (() => {
       const stack = createStack(canStack, meta, this.chart);
       const range = { min: Number.POSITIVE_INFINITY, max: Number.NEGATIVE_INFINITY };
       const { min: otherMin, max: otherMax } = getUserBounds(otherScale);
-      let i2, parsed;
+      let i, parsed;
       function _skip() {
-        parsed = _parsed[i2];
+        parsed = _parsed[i];
         const otherValue = parsed[otherScale.axis];
         return !isNumberFinite(parsed[scale.axis]) || otherMin > otherValue || otherMax < otherValue;
       }
-      for (i2 = 0; i2 < ilen; ++i2) {
+      for (i = 0; i < ilen; ++i) {
         if (_skip()) {
           continue;
         }
@@ -3407,7 +3407,7 @@ var rbmViz = (() => {
         }
       }
       if (sorted) {
-        for (i2 = ilen - 1; i2 >= 0; --i2) {
+        for (i = ilen - 1; i >= 0; --i) {
           if (_skip()) {
             continue;
           }
@@ -3420,9 +3420,9 @@ var rbmViz = (() => {
     getAllParsedValues(scale) {
       const parsed = this._cachedMeta._parsed;
       const values = [];
-      let i2, ilen, value;
-      for (i2 = 0, ilen = parsed.length; i2 < ilen; ++i2) {
-        value = parsed[i2][scale.axis];
+      let i, ilen, value;
+      for (i = 0, ilen = parsed.length; i < ilen; ++i) {
+        value = parsed[i][scale.axis];
         if (isNumberFinite(value)) {
           values.push(value);
         }
@@ -3459,12 +3459,12 @@ var rbmViz = (() => {
       const start2 = this._drawStart || 0;
       const count = this._drawCount || elements2.length - start2;
       const drawActiveElementsOnTop = this.options.drawActiveElementsOnTop;
-      let i2;
+      let i;
       if (meta.dataset) {
         meta.dataset.draw(ctx, area, start2, count);
       }
-      for (i2 = start2; i2 < start2 + count; ++i2) {
-        const element = elements2[i2];
+      for (i = start2; i < start2 + count; ++i) {
+        const element = elements2[i];
         if (element.hidden) {
           continue;
         }
@@ -3474,8 +3474,8 @@ var rbmViz = (() => {
           element.draw(ctx, area);
         }
       }
-      for (i2 = 0; i2 < active.length; ++i2) {
-        active[i2].draw(ctx, area);
+      for (i = 0; i < active.length; ++i) {
+        active[i].draw(ctx, area);
       }
     }
     getStyle(index3, active) {
@@ -3626,16 +3626,16 @@ var rbmViz = (() => {
       const meta = this._cachedMeta;
       const data = meta.data;
       const end = start2 + count;
-      let i2;
+      let i;
       const move = (arr) => {
         arr.length += count;
-        for (i2 = arr.length - 1; i2 >= end; i2--) {
-          arr[i2] = arr[i2 - count];
+        for (i = arr.length - 1; i >= end; i--) {
+          arr[i] = arr[i - count];
         }
       };
       move(data);
-      for (i2 = start2; i2 < end; ++i2) {
-        data[i2] = new this.dataElementType();
+      for (i = start2; i < end; ++i) {
+        data[i] = new this.dataElementType();
       }
       if (this._parsing) {
         move(meta._parsed);
@@ -3696,8 +3696,8 @@ var rbmViz = (() => {
     if (!scale._cache.$bar) {
       const visibleMetas = scale.getMatchingVisibleMetas(type2);
       let values = [];
-      for (let i2 = 0, ilen = visibleMetas.length; i2 < ilen; i2++) {
-        values = values.concat(visibleMetas[i2].controller.getAllParsedValues(scale));
+      for (let i = 0, ilen = visibleMetas.length; i < ilen; i++) {
+        values = values.concat(visibleMetas[i].controller.getAllParsedValues(scale));
       }
       scale._cache.$bar = _arrayUnique(values.sort((a, b) => a - b));
     }
@@ -3707,7 +3707,7 @@ var rbmViz = (() => {
     const scale = meta.iScale;
     const values = getAllScaleValues(scale, meta.type);
     let min3 = scale._length;
-    let i2, ilen, curr, prev;
+    let i, ilen, curr, prev;
     const updateMinAndPrev = () => {
       if (curr === 32767 || curr === -32768) {
         return;
@@ -3717,13 +3717,13 @@ var rbmViz = (() => {
       }
       prev = curr;
     };
-    for (i2 = 0, ilen = values.length; i2 < ilen; ++i2) {
-      curr = scale.getPixelForValue(values[i2]);
+    for (i = 0, ilen = values.length; i < ilen; ++i) {
+      curr = scale.getPixelForValue(values[i]);
       updateMinAndPrev();
     }
     prev = void 0;
-    for (i2 = 0, ilen = scale.ticks.length; i2 < ilen; ++i2) {
-      curr = scale.getPixelForTick(i2);
+    for (i = 0, ilen = scale.ticks.length; i < ilen; ++i) {
+      curr = scale.getPixelForTick(i);
       updateMinAndPrev();
     }
     return min3;
@@ -3764,9 +3764,9 @@ var rbmViz = (() => {
       start: start2
     };
   }
-  function parseFloatBar(entry, item, vScale, i2) {
-    const startValue = vScale.parse(entry[0], i2);
-    const endValue = vScale.parse(entry[1], i2);
+  function parseFloatBar(entry, item, vScale, i) {
+    const startValue = vScale.parse(entry[0], i);
+    const endValue = vScale.parse(entry[1], i);
     const min3 = Math.min(startValue, endValue);
     const max3 = Math.max(startValue, endValue);
     let barStart = min3;
@@ -3785,11 +3785,11 @@ var rbmViz = (() => {
       max: max3
     };
   }
-  function parseValue(entry, item, vScale, i2) {
+  function parseValue(entry, item, vScale, i) {
     if (isArray(entry)) {
-      parseFloatBar(entry, item, vScale, i2);
+      parseFloatBar(entry, item, vScale, i);
     } else {
-      item[vScale.axis] = vScale.parse(entry, i2);
+      item[vScale.axis] = vScale.parse(entry, i);
     }
     return item;
   }
@@ -3799,12 +3799,12 @@ var rbmViz = (() => {
     const labels = iScale.getLabels();
     const singleScale = iScale === vScale;
     const parsed = [];
-    let i2, ilen, item, entry;
-    for (i2 = start2, ilen = start2 + count; i2 < ilen; ++i2) {
-      entry = data[i2];
+    let i, ilen, item, entry;
+    for (i = start2, ilen = start2 + count; i < ilen; ++i) {
+      entry = data[i];
       item = {};
-      item[iScale.axis] = singleScale || iScale.parse(labels[i2], i2);
-      parsed.push(parseValue(entry, item, vScale, i2));
+      item[iScale.axis] = singleScale || iScale.parse(labels[i], i);
+      parsed.push(parseValue(entry, item, vScale, i));
     }
     return parsed;
   }
@@ -3894,12 +3894,12 @@ var rbmViz = (() => {
       const iAxisKey = iScale.axis === "x" ? xAxisKey : yAxisKey;
       const vAxisKey = vScale.axis === "x" ? xAxisKey : yAxisKey;
       const parsed = [];
-      let i2, ilen, item, obj;
-      for (i2 = start2, ilen = start2 + count; i2 < ilen; ++i2) {
-        obj = data[i2];
+      let i, ilen, item, obj;
+      for (i = start2, ilen = start2 + count; i < ilen; ++i) {
+        obj = data[i];
         item = {};
-        item[iScale.axis] = iScale.parse(resolveObjectKey(obj, iAxisKey), i2);
-        parsed.push(parseValue(resolveObjectKey(obj, vAxisKey), item, vScale, i2));
+        item[iScale.axis] = iScale.parse(resolveObjectKey(obj, iAxisKey), i);
+        parsed.push(parseValue(resolveObjectKey(obj, vAxisKey), item, vScale, i));
       }
       return parsed;
     }
@@ -3942,10 +3942,10 @@ var rbmViz = (() => {
       const horizontal = vScale.isHorizontal();
       const ruler = this._getRuler();
       const { sharedOptions, includeOptions } = this._getSharedOptions(start2, mode);
-      for (let i2 = start2; i2 < start2 + count; i2++) {
-        const parsed = this.getParsed(i2);
-        const vpixels = reset || isNullOrUndef(parsed[vScale.axis]) ? { base, head: base } : this._calculateBarValuePixels(i2);
-        const ipixels = this._calculateBarIndexPixels(i2, ruler);
+      for (let i = start2; i < start2 + count; i++) {
+        const parsed = this.getParsed(i);
+        const vpixels = reset || isNullOrUndef(parsed[vScale.axis]) ? { base, head: base } : this._calculateBarValuePixels(i);
+        const ipixels = this._calculateBarIndexPixels(i, ruler);
         const stack = (parsed._stacks || {})[vScale.axis];
         const properties = {
           horizontal,
@@ -3957,12 +3957,12 @@ var rbmViz = (() => {
           width: horizontal ? Math.abs(vpixels.size) : ipixels.size
         };
         if (includeOptions) {
-          properties.options = sharedOptions || this.resolveDataElementOptions(i2, bars[i2].active ? "active" : mode);
+          properties.options = sharedOptions || this.resolveDataElementOptions(i, bars[i].active ? "active" : mode);
         }
-        const options = properties.options || bars[i2].options;
+        const options = properties.options || bars[i].options;
         setBorderSkipped(properties, options, stack, index3);
         setInflateAmount(properties, options, ruler.ratio);
-        this.updateElement(bars[i2], i2, properties, mode);
+        this.updateElement(bars[i], i, properties, mode);
       }
     }
     _getStacks(last, dataIndex) {
@@ -4006,9 +4006,9 @@ var rbmViz = (() => {
       const meta = this._cachedMeta;
       const iScale = meta.iScale;
       const pixels = [];
-      let i2, ilen;
-      for (i2 = 0, ilen = meta.data.length; i2 < ilen; ++i2) {
-        pixels.push(iScale.getPixelForValue(this.getParsed(i2)[iScale.axis], i2));
+      let i, ilen;
+      for (i = 0, ilen = meta.data.length; i < ilen; ++i) {
+        pixels.push(iScale.getPixelForValue(this.getParsed(i)[iScale.axis], i));
       }
       const barThickness = opts.barThickness;
       const min3 = barThickness || computeMinSampleSize(meta);
@@ -4105,10 +4105,10 @@ var rbmViz = (() => {
       const vScale = meta.vScale;
       const rects = meta.data;
       const ilen = rects.length;
-      let i2 = 0;
-      for (; i2 < ilen; ++i2) {
-        if (this.getParsed(i2)[vScale.axis] !== null) {
-          rects[i2].draw(this._ctx);
+      let i = 0;
+      for (; i < ilen; ++i) {
+        if (this.getParsed(i)[vScale.axis] !== null) {
+          rects[i].draw(this._ctx);
         }
       }
     }
@@ -4149,32 +4149,32 @@ var rbmViz = (() => {
     }
     parsePrimitiveData(meta, data, start2, count) {
       const parsed = super.parsePrimitiveData(meta, data, start2, count);
-      for (let i2 = 0; i2 < parsed.length; i2++) {
-        parsed[i2]._custom = this.resolveDataElementOptions(i2 + start2).radius;
+      for (let i = 0; i < parsed.length; i++) {
+        parsed[i]._custom = this.resolveDataElementOptions(i + start2).radius;
       }
       return parsed;
     }
     parseArrayData(meta, data, start2, count) {
       const parsed = super.parseArrayData(meta, data, start2, count);
-      for (let i2 = 0; i2 < parsed.length; i2++) {
-        const item = data[start2 + i2];
-        parsed[i2]._custom = valueOrDefault(item[2], this.resolveDataElementOptions(i2 + start2).radius);
+      for (let i = 0; i < parsed.length; i++) {
+        const item = data[start2 + i];
+        parsed[i]._custom = valueOrDefault(item[2], this.resolveDataElementOptions(i + start2).radius);
       }
       return parsed;
     }
     parseObjectData(meta, data, start2, count) {
       const parsed = super.parseObjectData(meta, data, start2, count);
-      for (let i2 = 0; i2 < parsed.length; i2++) {
-        const item = data[start2 + i2];
-        parsed[i2]._custom = valueOrDefault(item && item.r && +item.r, this.resolveDataElementOptions(i2 + start2).radius);
+      for (let i = 0; i < parsed.length; i++) {
+        const item = data[start2 + i];
+        parsed[i]._custom = valueOrDefault(item && item.r && +item.r, this.resolveDataElementOptions(i + start2).radius);
       }
       return parsed;
     }
     getMaxOverflow() {
       const data = this._cachedMeta.data;
       let max3 = 0;
-      for (let i2 = data.length - 1; i2 >= 0; --i2) {
-        max3 = Math.max(max3, data[i2].size(this.resolveDataElementOptions(i2)) / 2);
+      for (let i = data.length - 1; i >= 0; --i) {
+        max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
       }
       return max3 > 0 && max3;
     }
@@ -4200,20 +4200,20 @@ var rbmViz = (() => {
       const { sharedOptions, includeOptions } = this._getSharedOptions(start2, mode);
       const iAxis = iScale.axis;
       const vAxis = vScale.axis;
-      for (let i2 = start2; i2 < start2 + count; i2++) {
-        const point = points[i2];
-        const parsed = !reset && this.getParsed(i2);
+      for (let i = start2; i < start2 + count; i++) {
+        const point = points[i];
+        const parsed = !reset && this.getParsed(i);
         const properties = {};
         const iPixel = properties[iAxis] = reset ? iScale.getPixelForDecimal(0.5) : iScale.getPixelForValue(parsed[iAxis]);
         const vPixel = properties[vAxis] = reset ? vScale.getBasePixel() : vScale.getPixelForValue(parsed[vAxis]);
         properties.skip = isNaN(iPixel) || isNaN(vPixel);
         if (includeOptions) {
-          properties.options = sharedOptions || this.resolveDataElementOptions(i2, point.active ? "active" : mode);
+          properties.options = sharedOptions || this.resolveDataElementOptions(i, point.active ? "active" : mode);
           if (reset) {
             properties.options.radius = 0;
           }
         }
-        this.updateElement(point, i2, properties, mode);
+        this.updateElement(point, i, properties, mode);
       }
     }
     resolveDataElementOptions(index3, mode) {
@@ -4302,14 +4302,14 @@ var rbmViz = (() => {
       if (this._parsing === false) {
         meta._parsed = data;
       } else {
-        let getter = (i3) => +data[i3];
+        let getter = (i2) => +data[i2];
         if (isObject(data[start2])) {
           const { key = "value" } = this._parsing;
-          getter = (i3) => +resolveObjectKey(data[i3], key);
+          getter = (i2) => +resolveObjectKey(data[i2], key);
         }
-        let i2, ilen;
-        for (i2 = start2, ilen = start2 + count; i2 < ilen; ++i2) {
-          meta._parsed[i2] = getter(i2);
+        let i, ilen;
+        for (i = start2, ilen = start2 + count; i < ilen; ++i) {
+          meta._parsed[i] = getter(i);
         }
       }
     }
@@ -4322,9 +4322,9 @@ var rbmViz = (() => {
     _getRotationExtents() {
       let min3 = TAU;
       let max3 = -TAU;
-      for (let i2 = 0; i2 < this.chart.data.datasets.length; ++i2) {
-        if (this.chart.isDatasetVisible(i2)) {
-          const controller = this.chart.getDatasetMeta(i2).controller;
+      for (let i = 0; i < this.chart.data.datasets.length; ++i) {
+        if (this.chart.isDatasetVisible(i)) {
+          const controller = this.chart.getDatasetMeta(i).controller;
           const rotation = controller._getRotation();
           const circumference = controller._getCircumference();
           min3 = Math.min(min3, rotation);
@@ -4360,14 +4360,14 @@ var rbmViz = (() => {
       this.innerRadius = Math.max(this.outerRadius - radiusLength * chartWeight, 0);
       this.updateElements(arcs, 0, arcs.length, mode);
     }
-    _circumference(i2, reset) {
+    _circumference(i, reset) {
       const opts = this.options;
       const meta = this._cachedMeta;
       const circumference = this._getCircumference();
-      if (reset && opts.animation.animateRotate || !this.chart.getDataVisibility(i2) || meta._parsed[i2] === null || meta.data[i2].hidden) {
+      if (reset && opts.animation.animateRotate || !this.chart.getDataVisibility(i) || meta._parsed[i] === null || meta.data[i].hidden) {
         return 0;
       }
-      return this.calculateCircumference(meta._parsed[i2] * circumference / TAU);
+      return this.calculateCircumference(meta._parsed[i] * circumference / TAU);
     }
     updateElements(arcs, start2, count, mode) {
       const reset = mode === "reset";
@@ -4382,13 +4382,13 @@ var rbmViz = (() => {
       const outerRadius = animateScale ? 0 : this.outerRadius;
       const { sharedOptions, includeOptions } = this._getSharedOptions(start2, mode);
       let startAngle = this._getRotation();
-      let i2;
-      for (i2 = 0; i2 < start2; ++i2) {
-        startAngle += this._circumference(i2, reset);
+      let i;
+      for (i = 0; i < start2; ++i) {
+        startAngle += this._circumference(i, reset);
       }
-      for (i2 = start2; i2 < start2 + count; ++i2) {
-        const circumference = this._circumference(i2, reset);
-        const arc = arcs[i2];
+      for (i = start2; i < start2 + count; ++i) {
+        const circumference = this._circumference(i, reset);
+        const arc = arcs[i];
         const properties = {
           x: centerX + this.offsetX,
           y: centerY + this.offsetY,
@@ -4399,20 +4399,20 @@ var rbmViz = (() => {
           innerRadius
         };
         if (includeOptions) {
-          properties.options = sharedOptions || this.resolveDataElementOptions(i2, arc.active ? "active" : mode);
+          properties.options = sharedOptions || this.resolveDataElementOptions(i, arc.active ? "active" : mode);
         }
         startAngle += circumference;
-        this.updateElement(arc, i2, properties, mode);
+        this.updateElement(arc, i, properties, mode);
       }
     }
     calculateTotal() {
       const meta = this._cachedMeta;
       const metaData = meta.data;
       let total = 0;
-      let i2;
-      for (i2 = 0; i2 < metaData.length; i2++) {
-        const value = meta._parsed[i2];
-        if (value !== null && !isNaN(value) && this.chart.getDataVisibility(i2) && !metaData[i2].hidden) {
+      let i;
+      for (i = 0; i < metaData.length; i++) {
+        const value = meta._parsed[i];
+        if (value !== null && !isNaN(value) && this.chart.getDataVisibility(i) && !metaData[i].hidden) {
           total += Math.abs(value);
         }
       }
@@ -4438,11 +4438,11 @@ var rbmViz = (() => {
     getMaxBorderWidth(arcs) {
       let max3 = 0;
       const chart = this.chart;
-      let i2, ilen, meta, controller, options;
+      let i, ilen, meta, controller, options;
       if (!arcs) {
-        for (i2 = 0, ilen = chart.data.datasets.length; i2 < ilen; ++i2) {
-          if (chart.isDatasetVisible(i2)) {
-            meta = chart.getDatasetMeta(i2);
+        for (i = 0, ilen = chart.data.datasets.length; i < ilen; ++i) {
+          if (chart.isDatasetVisible(i)) {
+            meta = chart.getDatasetMeta(i);
             arcs = meta.data;
             controller = meta.controller;
             break;
@@ -4452,8 +4452,8 @@ var rbmViz = (() => {
       if (!arcs) {
         return 0;
       }
-      for (i2 = 0, ilen = arcs.length; i2 < ilen; ++i2) {
-        options = controller.resolveDataElementOptions(i2);
+      for (i = 0, ilen = arcs.length; i < ilen; ++i) {
+        options = controller.resolveDataElementOptions(i);
         if (options.borderAlign !== "inner") {
           max3 = Math.max(max3, options.borderWidth || 0, options.hoverBorderWidth || 0);
         }
@@ -4462,17 +4462,17 @@ var rbmViz = (() => {
     }
     getMaxOffset(arcs) {
       let max3 = 0;
-      for (let i2 = 0, ilen = arcs.length; i2 < ilen; ++i2) {
-        const options = this.resolveDataElementOptions(i2);
+      for (let i = 0, ilen = arcs.length; i < ilen; ++i) {
+        const options = this.resolveDataElementOptions(i);
         max3 = Math.max(max3, options.offset || 0, options.hoverOffset || 0);
       }
       return max3;
     }
     _getRingWeightOffset(datasetIndex) {
       let ringWeightOffset = 0;
-      for (let i2 = 0; i2 < datasetIndex; ++i2) {
-        if (this.chart.isDatasetVisible(i2)) {
-          ringWeightOffset += this._getRingWeight(i2);
+      for (let i = 0; i < datasetIndex; ++i) {
+        if (this.chart.isDatasetVisible(i)) {
+          ringWeightOffset += this._getRingWeight(i);
         }
       }
       return ringWeightOffset;
@@ -4518,17 +4518,17 @@ var rbmViz = (() => {
             const data = chart.data;
             if (data.labels.length && data.datasets.length) {
               const { labels: { pointStyle } } = chart.legend.options;
-              return data.labels.map((label, i2) => {
+              return data.labels.map((label, i) => {
                 const meta = chart.getDatasetMeta(0);
-                const style = meta.controller.getStyle(i2);
+                const style = meta.controller.getStyle(i);
                 return {
                   text: label,
                   fillStyle: style.backgroundColor,
                   strokeStyle: style.borderColor,
                   lineWidth: style.borderWidth,
                   pointStyle,
-                  hidden: !chart.getDataVisibility(i2),
-                  index: i2
+                  hidden: !chart.getDataVisibility(i),
+                  index: i
                 };
               });
             }
@@ -4602,24 +4602,24 @@ var rbmViz = (() => {
       const maxGapLength = isNumber(spanGaps) ? spanGaps : Number.POSITIVE_INFINITY;
       const directUpdate = this.chart._animationsDisabled || reset || mode === "none";
       let prevParsed = start2 > 0 && this.getParsed(start2 - 1);
-      for (let i2 = start2; i2 < start2 + count; ++i2) {
-        const point = points[i2];
-        const parsed = this.getParsed(i2);
+      for (let i = start2; i < start2 + count; ++i) {
+        const point = points[i];
+        const parsed = this.getParsed(i);
         const properties = directUpdate ? point : {};
         const nullData = isNullOrUndef(parsed[vAxis]);
-        const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i2);
-        const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? this.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i2);
+        const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i);
+        const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? this.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i);
         properties.skip = isNaN(iPixel) || isNaN(vPixel) || nullData;
-        properties.stop = i2 > 0 && Math.abs(parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
+        properties.stop = i > 0 && Math.abs(parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
         if (segment) {
           properties.parsed = parsed;
-          properties.raw = _dataset.data[i2];
+          properties.raw = _dataset.data[i];
         }
         if (includeOptions) {
-          properties.options = sharedOptions || this.resolveDataElementOptions(i2, point.active ? "active" : mode);
+          properties.options = sharedOptions || this.resolveDataElementOptions(i, point.active ? "active" : mode);
         }
         if (!directUpdate) {
-          this.updateElement(point, i2, properties, mode);
+          this.updateElement(point, i, properties, mode);
         }
         prevParsed = parsed;
       }
@@ -4720,16 +4720,16 @@ var rbmViz = (() => {
       const centerY = scale.yCenter;
       const datasetStartAngle = scale.getIndexAngle(0) - 0.5 * PI;
       let angle = datasetStartAngle;
-      let i2;
+      let i;
       const defaultAngle = 360 / this.countVisibleElements();
-      for (i2 = 0; i2 < start2; ++i2) {
-        angle += this._computeAngle(i2, mode, defaultAngle);
+      for (i = 0; i < start2; ++i) {
+        angle += this._computeAngle(i, mode, defaultAngle);
       }
-      for (i2 = start2; i2 < start2 + count; i2++) {
-        const arc = arcs[i2];
+      for (i = start2; i < start2 + count; i++) {
+        const arc = arcs[i];
         let startAngle = angle;
-        let endAngle = angle + this._computeAngle(i2, mode, defaultAngle);
-        let outerRadius = chart.getDataVisibility(i2) ? scale.getDistanceFromCenterForValue(this.getParsed(i2).r) : 0;
+        let endAngle = angle + this._computeAngle(i, mode, defaultAngle);
+        let outerRadius = chart.getDataVisibility(i) ? scale.getDistanceFromCenterForValue(this.getParsed(i).r) : 0;
         angle = endAngle;
         if (reset) {
           if (animationOpts.animateScale) {
@@ -4746,9 +4746,9 @@ var rbmViz = (() => {
           outerRadius,
           startAngle,
           endAngle,
-          options: this.resolveDataElementOptions(i2, arc.active ? "active" : mode)
+          options: this.resolveDataElementOptions(i, arc.active ? "active" : mode)
         };
-        this.updateElement(arc, i2, properties, mode);
+        this.updateElement(arc, i, properties, mode);
       }
     }
     countVisibleElements() {
@@ -4790,17 +4790,17 @@ var rbmViz = (() => {
             const data = chart.data;
             if (data.labels.length && data.datasets.length) {
               const { labels: { pointStyle } } = chart.legend.options;
-              return data.labels.map((label, i2) => {
+              return data.labels.map((label, i) => {
                 const meta = chart.getDatasetMeta(0);
-                const style = meta.controller.getStyle(i2);
+                const style = meta.controller.getStyle(i);
                 return {
                   text: label,
                   fillStyle: style.backgroundColor,
                   strokeStyle: style.borderColor,
                   lineWidth: style.borderWidth,
                   pointStyle,
-                  hidden: !chart.getDataVisibility(i2),
-                  index: i2
+                  hidden: !chart.getDataVisibility(i),
+                  index: i
                 };
               });
             }
@@ -4884,10 +4884,10 @@ var rbmViz = (() => {
     updateElements(points, start2, count, mode) {
       const scale = this._cachedMeta.rScale;
       const reset = mode === "reset";
-      for (let i2 = start2; i2 < start2 + count; i2++) {
-        const point = points[i2];
-        const options = this.resolveDataElementOptions(i2, point.active ? "active" : mode);
-        const pointPosition = scale.getPointPositionForValue(i2, this.getParsed(i2).r);
+      for (let i = start2; i < start2 + count; i++) {
+        const point = points[i];
+        const options = this.resolveDataElementOptions(i, point.active ? "active" : mode);
+        const pointPosition = scale.getPointPositionForValue(i, this.getParsed(i).r);
         const x = reset ? scale.xCenter : pointPosition.x;
         const y = reset ? scale.yCenter : pointPosition.y;
         const properties = {
@@ -4897,7 +4897,7 @@ var rbmViz = (() => {
           skip: isNaN(x) || isNaN(y),
           options
         };
-        this.updateElement(point, i2, properties, mode);
+        this.updateElement(point, i, properties, mode);
       }
     }
   };
@@ -5073,11 +5073,11 @@ var rbmViz = (() => {
     }
     const spacing = calculateSpacing(majorIndices, ticks, ticksLimit);
     if (numMajorIndices > 0) {
-      let i2, ilen;
+      let i, ilen;
       const avgMajorSpacing = numMajorIndices > 1 ? Math.round((last - first) / (numMajorIndices - 1)) : null;
       skip(ticks, newTicks, spacing, isNullOrUndef(avgMajorSpacing) ? 0 : first - avgMajorSpacing, first);
-      for (i2 = 0, ilen = numMajorIndices - 1; i2 < ilen; i2++) {
-        skip(ticks, newTicks, spacing, majorIndices[i2], majorIndices[i2 + 1]);
+      for (i = 0, ilen = numMajorIndices - 1; i < ilen; i++) {
+        skip(ticks, newTicks, spacing, majorIndices[i], majorIndices[i + 1]);
       }
       skip(ticks, newTicks, spacing, last, isNullOrUndef(avgMajorSpacing) ? ticks.length : last + avgMajorSpacing);
       return newTicks;
@@ -5099,8 +5099,8 @@ var rbmViz = (() => {
       return Math.max(spacing, 1);
     }
     const factors = _factorize(evenMajorSpacing);
-    for (let i2 = 0, ilen = factors.length - 1; i2 < ilen; i2++) {
-      const factor = factors[i2];
+    for (let i = 0, ilen = factors.length - 1; i < ilen; i++) {
+      const factor = factors[i];
       if (factor > spacing) {
         return factor;
       }
@@ -5109,10 +5109,10 @@ var rbmViz = (() => {
   }
   function getMajorIndices(ticks) {
     const result = [];
-    let i2, ilen;
-    for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
-      if (ticks[i2].major) {
-        result.push(i2);
+    let i, ilen;
+    for (i = 0, ilen = ticks.length; i < ilen; i++) {
+      if (ticks[i].major) {
+        result.push(i);
       }
     }
     return result;
@@ -5120,11 +5120,11 @@ var rbmViz = (() => {
   function skipMajors(ticks, newTicks, majorIndices, spacing) {
     let count = 0;
     let next = majorIndices[0];
-    let i2;
+    let i;
     spacing = Math.ceil(spacing);
-    for (i2 = 0; i2 < ticks.length; i2++) {
-      if (i2 === next) {
-        newTicks.push(ticks[i2]);
+    for (i = 0; i < ticks.length; i++) {
+      if (i === next) {
+        newTicks.push(ticks[i]);
         count++;
         next = majorIndices[count * spacing];
       }
@@ -5134,7 +5134,7 @@ var rbmViz = (() => {
     const start2 = valueOrDefault(majorStart, 0);
     const end = Math.min(valueOrDefault(majorEnd, ticks.length), ticks.length);
     let count = 0;
-    let length, i2, next;
+    let length, i, next;
     spacing = Math.ceil(spacing);
     if (majorEnd) {
       length = majorEnd - majorStart;
@@ -5145,9 +5145,9 @@ var rbmViz = (() => {
       count++;
       next = Math.round(start2 + count * spacing);
     }
-    for (i2 = Math.max(start2, 0); i2 < end; i2++) {
-      if (i2 === next) {
-        newTicks.push(ticks[i2]);
+    for (i = Math.max(start2, 0); i < end; i++) {
+      if (i === next) {
+        newTicks.push(ticks[i]);
         count++;
         next = Math.round(start2 + count * spacing);
       }
@@ -5155,12 +5155,12 @@ var rbmViz = (() => {
   }
   function getEvenSpacing(arr) {
     const len = arr.length;
-    let i2, diff;
+    let i, diff;
     if (len < 2) {
       return false;
     }
-    for (diff = arr[0], i2 = 1; i2 < len; ++i2) {
-      if (arr[i2] - arr[i2 - 1] !== diff) {
+    for (diff = arr[0], i = 1; i < len; ++i) {
+      if (arr[i] - arr[i - 1] !== diff) {
         return false;
       }
     }
@@ -5172,9 +5172,9 @@ var rbmViz = (() => {
     const result = [];
     const increment = arr.length / numItems;
     const len = arr.length;
-    let i2 = 0;
-    for (; i2 < len; i2 += increment) {
-      result.push(arr[Math.floor(i2)]);
+    let i = 0;
+    for (; i < len; i += increment) {
+      result.push(arr[Math.floor(i)]);
     }
     return result;
   }
@@ -5205,10 +5205,10 @@ var rbmViz = (() => {
     each(caches, (cache) => {
       const gc = cache.gc;
       const gcLen = gc.length / 2;
-      let i2;
+      let i;
       if (gcLen > length) {
-        for (i2 = 0; i2 < gcLen; ++i2) {
-          delete cache.data[gc[i2]];
+        for (i = 0; i < gcLen; ++i) {
+          delete cache.data[gc[i]];
         }
         gc.splice(0, gcLen);
       }
@@ -5362,8 +5362,8 @@ var rbmViz = (() => {
         return { min: min3, max: max3 };
       }
       const metas = this.getMatchingVisibleMetas();
-      for (let i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
-        range = metas[i2].controller.getMinMax(this, canStack);
+      for (let i = 0, ilen = metas.length; i < ilen; ++i) {
+        range = metas[i].controller.getMinMax(this, canStack);
         if (!minDefined) {
           min3 = Math.min(min3, range.min);
         }
@@ -5516,10 +5516,10 @@ var rbmViz = (() => {
     }
     generateTickLabels(ticks) {
       const tickOpts = this.options.ticks;
-      let i2, ilen, tick;
-      for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
-        tick = ticks[i2];
-        tick.label = callback(tickOpts.callback, [tick.value, i2, ticks], this);
+      let i, ilen, tick;
+      for (i = 0, ilen = ticks.length; i < ilen; i++) {
+        tick = ticks[i];
+        tick.label = callback(tickOpts.callback, [tick.value, i, ticks], this);
       }
     }
     afterTickToLabelConversion() {
@@ -5669,12 +5669,12 @@ var rbmViz = (() => {
     _convertTicksToLabels(ticks) {
       this.beforeTickToLabelConversion();
       this.generateTickLabels(ticks);
-      let i2, ilen;
-      for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
-        if (isNullOrUndef(ticks[i2].label)) {
-          ticks.splice(i2, 1);
+      let i, ilen;
+      for (i = 0, ilen = ticks.length; i < ilen; i++) {
+        if (isNullOrUndef(ticks[i].label)) {
+          ticks.splice(i, 1);
           ilen--;
-          i2--;
+          i--;
         }
       }
       this.afterTickToLabelConversion();
@@ -5697,10 +5697,10 @@ var rbmViz = (() => {
       const heights = [];
       let widestLabelSize = 0;
       let highestLabelSize = 0;
-      let i2, j, jlen, label, tickFont, fontString2, cache, lineHeight, width, height, nestedLabel;
-      for (i2 = 0; i2 < length; ++i2) {
-        label = ticks[i2].label;
-        tickFont = this._resolveTickFontOptions(i2);
+      let i, j, jlen, label, tickFont, fontString2, cache, lineHeight, width, height, nestedLabel;
+      for (i = 0; i < length; ++i) {
+        label = ticks[i].label;
+        tickFont = this._resolveTickFontOptions(i);
         ctx.font = fontString2 = tickFont.string;
         cache = caches[fontString2] = caches[fontString2] || { data: {}, gc: [] };
         lineHeight = tickFont.lineHeight;
@@ -5811,7 +5811,7 @@ var rbmViz = (() => {
       const alignBorderValue = function(pixel) {
         return _alignPixel(chart, pixel, axisWidth);
       };
-      let borderValue, i2, lineValue, alignedLineValue;
+      let borderValue, i, lineValue, alignedLineValue;
       let tx1, ty1, tx2, ty2, x1, y1, x2, y2;
       if (position === "top") {
         borderValue = alignBorderValue(this.bottom);
@@ -5864,8 +5864,8 @@ var rbmViz = (() => {
       }
       const limit = valueOrDefault(options.ticks.maxTicksLimit, ticksLength);
       const step = Math.max(1, Math.ceil(ticksLength / limit));
-      for (i2 = 0; i2 < ticksLength; i2 += step) {
-        const optsAtIndex = grid.setContext(this.getContext(i2));
+      for (i = 0; i < ticksLength; i += step) {
+        const optsAtIndex = grid.setContext(this.getContext(i));
         const lineWidth = optsAtIndex.lineWidth;
         const lineColor = optsAtIndex.color;
         const borderDash = optsAtIndex.borderDash || [];
@@ -5874,7 +5874,7 @@ var rbmViz = (() => {
         const tickColor = optsAtIndex.tickColor;
         const tickBorderDash = optsAtIndex.tickBorderDash || [];
         const tickBorderDashOffset = optsAtIndex.tickBorderDashOffset;
-        lineValue = getPixelForGridLine(this, i2, offset);
+        lineValue = getPixelForGridLine(this, i, offset);
         if (lineValue === void 0) {
           continue;
         }
@@ -5919,7 +5919,7 @@ var rbmViz = (() => {
       const hTickAndPadding = mirror ? -padding : tickAndPadding;
       const rotation = -toRadians(this.labelRotation);
       const items = [];
-      let i2, ilen, tick, label, x, y, textAlign, pixel, font, lineHeight, lineCount, textOffset;
+      let i, ilen, tick, label, x, y, textAlign, pixel, font, lineHeight, lineCount, textOffset;
       let textBaseline = "middle";
       if (position === "top") {
         y = this.bottom - hTickAndPadding;
@@ -5962,12 +5962,12 @@ var rbmViz = (() => {
         }
       }
       const labelSizes = this._getLabelSizes();
-      for (i2 = 0, ilen = ticks.length; i2 < ilen; ++i2) {
-        tick = ticks[i2];
+      for (i = 0, ilen = ticks.length; i < ilen; ++i) {
+        tick = ticks[i];
         label = tick.label;
-        const optsAtIndex = optionTicks.setContext(this.getContext(i2));
-        pixel = this.getPixelForTick(i2) + optionTicks.labelOffset;
-        font = this._resolveTickFontOptions(i2);
+        const optsAtIndex = optionTicks.setContext(this.getContext(i));
+        pixel = this.getPixelForTick(i) + optionTicks.labelOffset;
+        font = this._resolveTickFontOptions(i);
         lineHeight = font.lineHeight;
         lineCount = isArray(label) ? label.length : 1;
         const halfCount = lineCount / 2;
@@ -5978,9 +5978,9 @@ var rbmViz = (() => {
         if (isHorizontal) {
           x = pixel;
           if (textAlign === "inner") {
-            if (i2 === ilen - 1) {
+            if (i === ilen - 1) {
               tickTextAlign = !this.options.reverse ? "right" : "left";
-            } else if (i2 === 0) {
+            } else if (i === 0) {
               tickTextAlign = !this.options.reverse ? "left" : "right";
             } else {
               tickTextAlign = "center";
@@ -6013,8 +6013,8 @@ var rbmViz = (() => {
         let backdrop;
         if (optsAtIndex.showLabelBackdrop) {
           const labelPadding = toPadding(optsAtIndex.backdropPadding);
-          const height = labelSizes.heights[i2];
-          const width = labelSizes.widths[i2];
+          const height = labelSizes.heights[i];
+          const width = labelSizes.widths[i];
           let top = y + textOffset - labelPadding.top;
           let left = x - labelPadding.left;
           switch (textBaseline) {
@@ -6172,7 +6172,7 @@ var rbmViz = (() => {
       const grid = this.options.grid;
       const ctx = this.ctx;
       const items = this._gridLineItems || (this._gridLineItems = this._computeGridLineItems(chartArea));
-      let i2, ilen;
+      let i, ilen;
       const drawLine = (p1, p2, style) => {
         if (!style.width || !style.color) {
           return;
@@ -6189,8 +6189,8 @@ var rbmViz = (() => {
         ctx.restore();
       };
       if (grid.display) {
-        for (i2 = 0, ilen = items.length; i2 < ilen; ++i2) {
-          const item = items[i2];
+        for (i = 0, ilen = items.length; i < ilen; ++i) {
+          const item = items[i];
           if (grid.drawOnChartArea) {
             drawLine(
               { x: item.x1, y: item.y1 },
@@ -6252,9 +6252,9 @@ var rbmViz = (() => {
         clipArea(ctx, area);
       }
       const items = this._labelItems || (this._labelItems = this._computeLabelItems(chartArea));
-      let i2, ilen;
-      for (i2 = 0, ilen = items.length; i2 < ilen; ++i2) {
-        const item = items[i2];
+      let i, ilen;
+      for (i = 0, ilen = items.length; i < ilen; ++i) {
+        const item = items[i];
         const tickFont = item.font;
         const label = item.label;
         if (item.backdrop) {
@@ -6340,9 +6340,9 @@ var rbmViz = (() => {
       const metas = this.chart.getSortedVisibleDatasetMetas();
       const axisID = this.axis + "AxisID";
       const result = [];
-      let i2, ilen;
-      for (i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
-        const meta = metas[i2];
+      let i, ilen;
+      for (i = 0, ilen = metas.length; i < ilen; ++i) {
+        const meta = metas[i];
         if (meta[axisID] === this.id && (!type2 || meta.type === type2)) {
           result.push(meta);
         }
@@ -6506,8 +6506,8 @@ var rbmViz = (() => {
       callback(component["after" + camelMethod], [], component);
     }
     _getRegistryForType(type2) {
-      for (let i2 = 0; i2 < this._typedRegistries.length; i2++) {
-        const reg = this._typedRegistries[i2];
+      for (let i = 0; i < this._typedRegistries.length; i++) {
+        const reg = this._typedRegistries[i];
         if (reg.isForType(type2)) {
           return reg;
         }
@@ -6569,24 +6569,24 @@ var rbmViz = (() => {
       const maxGapLength = isNumber(spanGaps) ? spanGaps : Number.POSITIVE_INFINITY;
       const directUpdate = this.chart._animationsDisabled || reset || mode === "none";
       let prevParsed = start2 > 0 && this.getParsed(start2 - 1);
-      for (let i2 = start2; i2 < start2 + count; ++i2) {
-        const point = points[i2];
-        const parsed = this.getParsed(i2);
+      for (let i = start2; i < start2 + count; ++i) {
+        const point = points[i];
+        const parsed = this.getParsed(i);
         const properties = directUpdate ? point : {};
         const nullData = isNullOrUndef(parsed[vAxis]);
-        const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i2);
-        const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? this.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i2);
+        const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i);
+        const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? this.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i);
         properties.skip = isNaN(iPixel) || isNaN(vPixel) || nullData;
-        properties.stop = i2 > 0 && Math.abs(parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
+        properties.stop = i > 0 && Math.abs(parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
         if (segment) {
           properties.parsed = parsed;
-          properties.raw = _dataset.data[i2];
+          properties.raw = _dataset.data[i];
         }
         if (includeOptions) {
-          properties.options = sharedOptions || this.resolveDataElementOptions(i2, point.active ? "active" : mode);
+          properties.options = sharedOptions || this.resolveDataElementOptions(i, point.active ? "active" : mode);
         }
         if (!directUpdate) {
-          this.updateElement(point, i2, properties, mode);
+          this.updateElement(point, i, properties, mode);
         }
         prevParsed = parsed;
       }
@@ -6597,8 +6597,8 @@ var rbmViz = (() => {
       const data = meta.data || [];
       if (!this.options.showLine) {
         let max3 = 0;
-        for (let i2 = data.length - 1; i2 >= 0; --i2) {
-          max3 = Math.max(max3, data[i2].size(this.resolveDataElementOptions(i2)) / 2);
+        for (let i = data.length - 1; i >= 0; --i) {
+          max3 = Math.max(max3, data[i].size(this.resolveDataElementOptions(i)) / 2);
         }
         return max3 > 0 && max3;
       }
@@ -6714,9 +6714,9 @@ var rbmViz = (() => {
   function evaluateInteractionItems(chart, axis, position, handler, intersect) {
     const metasets = chart.getSortedVisibleDatasetMetas();
     const value = position[axis];
-    for (let i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
-      const { index: index3, data } = metasets[i2];
-      const { lo, hi } = binarySearch(metasets[i2], axis, value, intersect);
+    for (let i = 0, ilen = metasets.length; i < ilen; ++i) {
+      const { index: index3, data } = metasets[i];
+      const { lo, hi } = binarySearch(metasets[i], axis, value, intersect);
       for (let j = lo; j <= hi; ++j) {
         const element = data[j];
         if (!element.skip) {
@@ -6838,8 +6838,8 @@ var rbmViz = (() => {
           const datasetIndex = items[0].datasetIndex;
           const data = chart.getDatasetMeta(datasetIndex).data;
           items = [];
-          for (let i2 = 0; i2 < data.length; ++i2) {
-            items.push({ element: data[i2], datasetIndex, index: i2 });
+          for (let i = 0; i < data.length; ++i) {
+            items.push({ element: data[i], datasetIndex, index: i });
           }
         }
         return items;
@@ -6882,12 +6882,12 @@ var rbmViz = (() => {
   }
   function wrapBoxes(boxes) {
     const layoutBoxes = [];
-    let i2, ilen, box, pos, stack, stackWeight;
-    for (i2 = 0, ilen = (boxes || []).length; i2 < ilen; ++i2) {
-      box = boxes[i2];
+    let i, ilen, box, pos, stack, stackWeight;
+    for (i = 0, ilen = (boxes || []).length; i < ilen; ++i) {
+      box = boxes[i];
       ({ position: pos, options: { stack, stackWeight = 1 } } = box);
       layoutBoxes.push({
-        index: i2,
+        index: i,
         box,
         pos,
         horizontal: box.isHorizontal(),
@@ -6914,9 +6914,9 @@ var rbmViz = (() => {
   function setLayoutDims(layouts2, params) {
     const stacks = buildStacks(layouts2);
     const { vBoxMaxWidth, hBoxMaxHeight } = params;
-    let i2, ilen, layout2;
-    for (i2 = 0, ilen = layouts2.length; i2 < ilen; ++i2) {
-      layout2 = layouts2[i2];
+    let i, ilen, layout2;
+    for (i = 0, ilen = layouts2.length; i < ilen; ++i) {
+      layout2 = layouts2[i];
       const { fullSize } = layout2.box;
       const stack = stacks[layout2.stack];
       const factor = stack && layout2.stackWeight / stack.weight;
@@ -7005,9 +7005,9 @@ var rbmViz = (() => {
   }
   function fitBoxes(boxes, chartArea, params, stacks) {
     const refitBoxes = [];
-    let i2, ilen, layout2, box, refit, changed;
-    for (i2 = 0, ilen = boxes.length, refit = 0; i2 < ilen; ++i2) {
-      layout2 = boxes[i2];
+    let i, ilen, layout2, box, refit, changed;
+    for (i = 0, ilen = boxes.length, refit = 0; i < ilen; ++i) {
+      layout2 = boxes[i];
       box = layout2.box;
       box.update(
         layout2.width || chartArea.w,
@@ -7515,12 +7515,12 @@ var rbmViz = (() => {
     const localIds = {};
     const plugins2 = [];
     const keys = Object.keys(registry.plugins.items);
-    for (let i2 = 0; i2 < keys.length; i2++) {
-      plugins2.push(registry.getPlugin(keys[i2]));
+    for (let i = 0; i < keys.length; i++) {
+      plugins2.push(registry.getPlugin(keys[i]));
     }
     const local = config.plugins || [];
-    for (let i2 = 0; i2 < local.length; i2++) {
-      const plugin2 = local[i2];
+    for (let i = 0; i < local.length; i++) {
+      const plugin2 = local[i];
       if (plugins2.indexOf(plugin2) === -1) {
         plugins2.push(plugin2);
         localIds[plugin2.id] = true;
@@ -8106,8 +8106,8 @@ var rbmViz = (() => {
       const numMeta = metasets.length;
       metasets.sort((a, b) => a.index - b.index);
       if (numMeta > numData) {
-        for (let i2 = numData; i2 < numMeta; ++i2) {
-          this._destroyDatasetMeta(i2);
+        for (let i = numData; i < numMeta; ++i) {
+          this._destroyDatasetMeta(i);
         }
         metasets.splice(numData, numMeta - numData);
       }
@@ -8127,24 +8127,24 @@ var rbmViz = (() => {
     buildOrUpdateControllers() {
       const newControllers = [];
       const datasets = this.data.datasets;
-      let i2, ilen;
+      let i, ilen;
       this._removeUnreferencedMetasets();
-      for (i2 = 0, ilen = datasets.length; i2 < ilen; i2++) {
-        const dataset = datasets[i2];
-        let meta = this.getDatasetMeta(i2);
+      for (i = 0, ilen = datasets.length; i < ilen; i++) {
+        const dataset = datasets[i];
+        let meta = this.getDatasetMeta(i);
         const type2 = dataset.type || this.config.type;
         if (meta.type && meta.type !== type2) {
-          this._destroyDatasetMeta(i2);
-          meta = this.getDatasetMeta(i2);
+          this._destroyDatasetMeta(i);
+          meta = this.getDatasetMeta(i);
         }
         meta.type = type2;
         meta.indexAxis = dataset.indexAxis || getIndexAxis(type2, this.options);
         meta.order = dataset.order || 0;
-        meta.index = i2;
+        meta.index = i;
         meta.label = "" + dataset.label;
-        meta.visible = this.isDatasetVisible(i2);
+        meta.visible = this.isDatasetVisible(i);
         if (meta.controller) {
-          meta.controller.updateIndex(i2);
+          meta.controller.updateIndex(i);
           meta.controller.linkScales();
         } else {
           const ControllerClass = registry.getController(type2);
@@ -8153,7 +8153,7 @@ var rbmViz = (() => {
             dataElementType: registry.getElement(dataElementType),
             datasetElementType: datasetElementType && registry.getElement(datasetElementType)
           });
-          meta.controller = new ControllerClass(this, i2);
+          meta.controller = new ControllerClass(this, i);
           newControllers.push(meta.controller);
         }
       }
@@ -8184,8 +8184,8 @@ var rbmViz = (() => {
       const newControllers = this.buildOrUpdateControllers();
       this.notifyPlugins("beforeElementsUpdate");
       let minPadding = 0;
-      for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; i2++) {
-        const { controller } = this.getDatasetMeta(i2);
+      for (let i = 0, ilen = this.data.datasets.length; i < ilen; i++) {
+        const { controller } = this.getDatasetMeta(i);
         const reset = !animsDisabled && newControllers.indexOf(controller) === -1;
         controller.buildOrUpdateElements(reset);
         minPadding = Math.max(+controller.getMaxOverflow(), minPadding);
@@ -8240,11 +8240,11 @@ var rbmViz = (() => {
       this._dataChanges = [];
       const datasetCount = this.data.datasets.length;
       const makeSet = (idx) => new Set(
-        _dataChanges.filter((c) => c[0] === idx).map((c, i2) => i2 + "," + c.splice(1).join(","))
+        _dataChanges.filter((c) => c[0] === idx).map((c, i) => i + "," + c.splice(1).join(","))
       );
       const changeSet = makeSet(0);
-      for (let i2 = 1; i2 < datasetCount; i2++) {
-        if (!setsEqual(changeSet, makeSet(i2))) {
+      for (let i = 1; i < datasetCount; i++) {
+        if (!setsEqual(changeSet, makeSet(i))) {
           return;
         }
       }
@@ -8276,11 +8276,11 @@ var rbmViz = (() => {
       if (this.notifyPlugins("beforeDatasetsUpdate", { mode, cancelable: true }) === false) {
         return;
       }
-      for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
-        this.getDatasetMeta(i2).controller.configure();
+      for (let i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+        this.getDatasetMeta(i).controller.configure();
       }
-      for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
-        this._updateDataset(i2, isFunction(mode) ? mode({ datasetIndex: i2 }) : mode);
+      for (let i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+        this._updateDataset(i, isFunction(mode) ? mode({ datasetIndex: i }) : mode);
       }
       this.notifyPlugins("afterDatasetsUpdate", { mode });
     }
@@ -8308,7 +8308,7 @@ var rbmViz = (() => {
       }
     }
     draw() {
-      let i2;
+      let i;
       if (this._resizeBeforeDraw) {
         const { width, height } = this._resizeBeforeDraw;
         this._resize(width, height);
@@ -8322,21 +8322,21 @@ var rbmViz = (() => {
         return;
       }
       const layers = this._layers;
-      for (i2 = 0; i2 < layers.length && layers[i2].z <= 0; ++i2) {
-        layers[i2].draw(this.chartArea);
+      for (i = 0; i < layers.length && layers[i].z <= 0; ++i) {
+        layers[i].draw(this.chartArea);
       }
       this._drawDatasets();
-      for (; i2 < layers.length; ++i2) {
-        layers[i2].draw(this.chartArea);
+      for (; i < layers.length; ++i) {
+        layers[i].draw(this.chartArea);
       }
       this.notifyPlugins("afterDraw");
     }
     _getSortedDatasetMetas(filterVisible) {
       const metasets = this._sortedMetasets;
       const result = [];
-      let i2, ilen;
-      for (i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
-        const meta = metasets[i2];
+      let i, ilen;
+      for (i = 0, ilen = metasets.length; i < ilen; ++i) {
+        const meta = metasets[i];
         if (!filterVisible || meta.visible) {
           result.push(meta);
         }
@@ -8351,8 +8351,8 @@ var rbmViz = (() => {
         return;
       }
       const metasets = this.getSortedVisibleDatasetMetas();
-      for (let i2 = metasets.length - 1; i2 >= 0; --i2) {
-        this._drawDataset(metasets[i2]);
+      for (let i = metasets.length - 1; i >= 0; --i) {
+        this._drawDataset(metasets[i]);
       }
       this.notifyPlugins("afterDatasetsDraw");
     }
@@ -8468,11 +8468,11 @@ var rbmViz = (() => {
       delete this._metasets[datasetIndex];
     }
     _stop() {
-      let i2, ilen;
+      let i, ilen;
       this.stop();
       animator.remove(this);
-      for (i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
-        this._destroyDatasetMeta(i2);
+      for (i = 0, ilen = this.data.datasets.length; i < ilen; ++i) {
+        this._destroyDatasetMeta(i);
       }
     }
     destroy() {
@@ -8570,13 +8570,13 @@ var rbmViz = (() => {
     }
     updateHoverStyle(items, mode, enabled) {
       const prefix = enabled ? "set" : "remove";
-      let meta, item, i2, ilen;
+      let meta, item, i, ilen;
       if (mode === "dataset") {
         meta = this.getDatasetMeta(items[0].datasetIndex);
         meta.controller["_" + prefix + "DatasetHoverStyle"]();
       }
-      for (i2 = 0, ilen = items.length; i2 < ilen; ++i2) {
-        item = items[i2];
+      for (i = 0, ilen = items.length; i < ilen; ++i) {
+        item = items[i];
         const controller = item && this.getDatasetMeta(item.datasetIndex).controller;
         if (controller) {
           controller[prefix + "HoverStyle"](item.element, item.datasetIndex, item.index);
@@ -8818,7 +8818,7 @@ var rbmViz = (() => {
     let endAngle = element.endAngle;
     if (fullCircles) {
       pathArc(ctx, element, offset, spacing, startAngle + TAU, circular);
-      for (let i2 = 0; i2 < fullCircles; ++i2) {
+      for (let i = 0; i < fullCircles; ++i) {
         ctx.fill();
       }
       if (!isNaN(circumference)) {
@@ -8836,18 +8836,18 @@ var rbmViz = (() => {
     const { x, y, startAngle, pixelMargin, fullCircles } = element;
     const outerRadius = Math.max(element.outerRadius - pixelMargin, 0);
     const innerRadius = element.innerRadius + pixelMargin;
-    let i2;
+    let i;
     if (inner) {
       clipArc(ctx, element, startAngle + TAU);
     }
     ctx.beginPath();
     ctx.arc(x, y, innerRadius, startAngle + TAU, startAngle, true);
-    for (i2 = 0; i2 < fullCircles; ++i2) {
+    for (i = 0; i < fullCircles; ++i) {
       ctx.stroke();
     }
     ctx.beginPath();
     ctx.arc(x, y, outerRadius, startAngle, startAngle + TAU);
-    for (i2 = 0; i2 < fullCircles; ++i2) {
+    for (i = 0; i < fullCircles; ++i) {
       ctx.stroke();
     }
   }
@@ -9007,9 +9007,9 @@ var rbmViz = (() => {
     const { count, start: start2, loop, ilen } = pathVars(points, segment, params);
     const lineMethod = getLineMethod(options);
     let { move = true, reverse } = params || {};
-    let i2, point, prev;
-    for (i2 = 0; i2 <= ilen; ++i2) {
-      point = points[(start2 + (reverse ? ilen - i2 : i2)) % count];
+    let i, point, prev;
+    for (i = 0; i <= ilen; ++i) {
+      point = points[(start2 + (reverse ? ilen - i : i)) % count];
       if (point.skip) {
         continue;
       } else if (move) {
@@ -9032,7 +9032,7 @@ var rbmViz = (() => {
     const { move = true, reverse } = params || {};
     let avgX = 0;
     let countX = 0;
-    let i2, point, prevX, minY, maxY, lastY;
+    let i, point, prevX, minY, maxY, lastY;
     const pointIndex = (index3) => (start2 + (reverse ? ilen - index3 : index3)) % count;
     const drawX = () => {
       if (minY !== maxY) {
@@ -9045,8 +9045,8 @@ var rbmViz = (() => {
       point = points[pointIndex(0)];
       ctx.moveTo(point.x, point.y);
     }
-    for (i2 = 0; i2 <= ilen; ++i2) {
-      point = points[pointIndex(i2)];
+    for (i = 0; i <= ilen; ++i) {
+      point = points[pointIndex(i)];
       if (point.skip) {
         continue;
       }
@@ -9176,9 +9176,9 @@ var rbmViz = (() => {
       }
       const result = [];
       const _interpolate = _getInterpolationMethod(options);
-      let i2, ilen;
-      for (i2 = 0, ilen = segments.length; i2 < ilen; ++i2) {
-        const { start: start2, end } = segments[i2];
+      let i, ilen;
+      for (i = 0, ilen = segments.length; i < ilen; ++i) {
+        const { start: start2, end } = segments[i];
         const p1 = points[start2];
         const p2 = points[end];
         if (p1 === p2) {
@@ -9491,14 +9491,14 @@ var rbmViz = (() => {
     let sampledIndex = 0;
     const endIndex = start2 + count - 1;
     let a = start2;
-    let i2, maxAreaPoint, maxArea, area, nextA;
+    let i, maxAreaPoint, maxArea, area, nextA;
     decimated[sampledIndex++] = data[a];
-    for (i2 = 0; i2 < samples - 2; i2++) {
+    for (i = 0; i < samples - 2; i++) {
       let avgX = 0;
       let avgY = 0;
       let j;
-      const avgRangeStart = Math.floor((i2 + 1) * bucketWidth) + 1 + start2;
-      const avgRangeEnd = Math.min(Math.floor((i2 + 2) * bucketWidth) + 1, count) + start2;
+      const avgRangeStart = Math.floor((i + 1) * bucketWidth) + 1 + start2;
+      const avgRangeEnd = Math.min(Math.floor((i + 2) * bucketWidth) + 1, count) + start2;
       const avgRangeLength = avgRangeEnd - avgRangeStart;
       for (j = avgRangeStart; j < avgRangeEnd; j++) {
         avgX += data[j].x;
@@ -9506,8 +9506,8 @@ var rbmViz = (() => {
       }
       avgX /= avgRangeLength;
       avgY /= avgRangeLength;
-      const rangeOffs = Math.floor(i2 * bucketWidth) + 1 + start2;
-      const rangeTo = Math.min(Math.floor((i2 + 1) * bucketWidth) + 1, count) + start2;
+      const rangeOffs = Math.floor(i * bucketWidth) + 1 + start2;
+      const rangeTo = Math.min(Math.floor((i + 1) * bucketWidth) + 1, count) + start2;
       const { x: pointAx, y: pointAy } = data[a];
       maxArea = area = -1;
       for (j = rangeOffs; j < rangeTo; j++) {
@@ -9529,28 +9529,28 @@ var rbmViz = (() => {
   function minMaxDecimation(data, start2, count, availableWidth) {
     let avgX = 0;
     let countX = 0;
-    let i2, point, x, y, prevX, minIndex, maxIndex, startIndex, minY, maxY;
+    let i, point, x, y, prevX, minIndex, maxIndex, startIndex, minY, maxY;
     const decimated = [];
     const endIndex = start2 + count - 1;
     const xMin = data[start2].x;
     const xMax = data[endIndex].x;
     const dx = xMax - xMin;
-    for (i2 = start2; i2 < start2 + count; ++i2) {
-      point = data[i2];
+    for (i = start2; i < start2 + count; ++i) {
+      point = data[i];
       x = (point.x - xMin) / dx * availableWidth;
       y = point.y;
       const truncX = x | 0;
       if (truncX === prevX) {
         if (y < minY) {
           minY = y;
-          minIndex = i2;
+          minIndex = i;
         } else if (y > maxY) {
           maxY = y;
-          maxIndex = i2;
+          maxIndex = i;
         }
         avgX = (countX * avgX + point.x) / ++countX;
       } else {
-        const lastIndex = i2 - 1;
+        const lastIndex = i - 1;
         if (!isNullOrUndef(minIndex) && !isNullOrUndef(maxIndex)) {
           const intermediateIndex1 = Math.min(minIndex, maxIndex);
           const intermediateIndex2 = Math.max(minIndex, maxIndex);
@@ -9567,14 +9567,14 @@ var rbmViz = (() => {
             });
           }
         }
-        if (i2 > 0 && lastIndex !== startIndex) {
+        if (i > 0 && lastIndex !== startIndex) {
           decimated.push(data[lastIndex]);
         }
         decimated.push(point);
         prevX = truncX;
         countX = 0;
         minY = maxY = y;
-        minIndex = maxIndex = startIndex = i2;
+        minIndex = maxIndex = startIndex = i;
       }
     }
     return decimated;
@@ -9869,8 +9869,8 @@ var rbmViz = (() => {
     const sourcePoints = line.points;
     const linesBelow = getLinesBelow(scale, index3);
     linesBelow.push(_createBoundaryLine({ x: null, y: scale.bottom }, line));
-    for (let i2 = 0; i2 < segments.length; i2++) {
-      const segment = segments[i2];
+    for (let i = 0; i < segments.length; i++) {
+      const segment = segments[i];
       for (let j = segment.start; j <= segment.end; j++) {
         addPointsBelow(points, sourcePoints[j], linesBelow);
       }
@@ -9880,8 +9880,8 @@ var rbmViz = (() => {
   function getLinesBelow(scale, index3) {
     const below = [];
     const metas = scale.getMatchingVisibleMetas("line");
-    for (let i2 = 0; i2 < metas.length; i2++) {
-      const meta = metas[i2];
+    for (let i = 0; i < metas.length; i++) {
+      const meta = metas[i];
       if (meta.index === index3) {
         break;
       }
@@ -9920,8 +9920,8 @@ var rbmViz = (() => {
     const linePoints = line.points;
     let first = false;
     let last = false;
-    for (let i2 = 0; i2 < segments.length; i2++) {
-      const segment = segments[i2];
+    for (let i = 0; i < segments.length; i++) {
+      const segment = segments[i];
       const firstValue = linePoints[segment.start][property];
       const lastValue = linePoints[segment.end][property];
       if (_isBetween(pointValue, firstValue, lastValue)) {
@@ -10010,8 +10010,8 @@ var rbmViz = (() => {
         radius: scale.getDistanceFromCenterForValue(value)
       });
     }
-    for (let i2 = 0; i2 < length; ++i2) {
-      target.push(scale.getPointPositionForValue(i2, value));
+    for (let i = 0; i < length; ++i) {
+      target.push(scale.getPointPositionForValue(i, value));
     }
     return target;
   }
@@ -10118,16 +10118,16 @@ var rbmViz = (() => {
     afterDatasetsUpdate(chart, _args, options) {
       const count = (chart.data.datasets || []).length;
       const sources = [];
-      let meta, i2, line, source;
-      for (i2 = 0; i2 < count; ++i2) {
-        meta = chart.getDatasetMeta(i2);
+      let meta, i, line, source;
+      for (i = 0; i < count; ++i) {
+        meta = chart.getDatasetMeta(i);
         line = meta.dataset;
         source = null;
         if (line && line.options && line instanceof LineElement) {
           source = {
-            visible: chart.isDatasetVisible(i2),
-            index: i2,
-            fill: _decodeFill(line, i2, count),
+            visible: chart.isDatasetVisible(i),
+            index: i,
+            fill: _decodeFill(line, i, count),
             chart,
             axis: meta.controller.options.indexAxis,
             scale: meta.vScale,
@@ -10137,20 +10137,20 @@ var rbmViz = (() => {
         meta.$filler = source;
         sources.push(source);
       }
-      for (i2 = 0; i2 < count; ++i2) {
-        source = sources[i2];
+      for (i = 0; i < count; ++i) {
+        source = sources[i];
         if (!source || source.fill === false) {
           continue;
         }
-        source.fill = _resolveTarget(sources, i2, options.propagate);
+        source.fill = _resolveTarget(sources, i, options.propagate);
       }
     },
     beforeDraw(chart, _args, options) {
       const draw3 = options.drawTime === "beforeDraw";
       const metasets = chart.getSortedVisibleDatasetMetas();
       const area = chart.chartArea;
-      for (let i2 = metasets.length - 1; i2 >= 0; --i2) {
-        const source = metasets[i2].$filler;
+      for (let i = metasets.length - 1; i >= 0; --i) {
+        const source = metasets[i].$filler;
         if (!source) {
           continue;
         }
@@ -10165,8 +10165,8 @@ var rbmViz = (() => {
         return;
       }
       const metasets = chart.getSortedVisibleDatasetMetas();
-      for (let i2 = metasets.length - 1; i2 >= 0; --i2) {
-        const source = metasets[i2].$filler;
+      for (let i = metasets.length - 1; i >= 0; --i) {
+        const source = metasets[i].$filler;
         if (_shouldApplyFill(source)) {
           _drawfill(chart.ctx, source, chart.chartArea);
         }
@@ -10289,15 +10289,15 @@ var rbmViz = (() => {
       ctx.textBaseline = "middle";
       let row = -1;
       let top = -lineHeight;
-      this.legendItems.forEach((legendItem, i2) => {
+      this.legendItems.forEach((legendItem, i) => {
         const itemWidth = boxWidth + fontSize / 2 + ctx.measureText(legendItem.text).width;
-        if (i2 === 0 || lineWidths[lineWidths.length - 1] + itemWidth + 2 * padding > maxWidth) {
+        if (i === 0 || lineWidths[lineWidths.length - 1] + itemWidth + 2 * padding > maxWidth) {
           totalHeight += lineHeight;
-          lineWidths[lineWidths.length - (i2 > 0 ? 0 : 1)] = 0;
+          lineWidths[lineWidths.length - (i > 0 ? 0 : 1)] = 0;
           top += lineHeight;
           row++;
         }
-        hitboxes[i2] = { left: 0, top, row, width: itemWidth, height: itemHeight };
+        hitboxes[i] = { left: 0, top, row, width: itemWidth, height: itemHeight };
         lineWidths[lineWidths.length - 1] += itemWidth + padding;
       });
       return totalHeight;
@@ -10312,16 +10312,16 @@ var rbmViz = (() => {
       let currentColHeight = 0;
       let left = 0;
       let col = 0;
-      this.legendItems.forEach((legendItem, i2) => {
+      this.legendItems.forEach((legendItem, i) => {
         const itemWidth = boxWidth + fontSize / 2 + ctx.measureText(legendItem.text).width;
-        if (i2 > 0 && currentColHeight + itemHeight + 2 * padding > heightLimit) {
+        if (i > 0 && currentColHeight + itemHeight + 2 * padding > heightLimit) {
           totalWidth += currentColWidth + padding;
           columnSizes.push({ width: currentColWidth, height: currentColHeight });
           left += currentColWidth + padding;
           col++;
           currentColWidth = currentColHeight = 0;
         }
-        hitboxes[i2] = { left, top: currentColHeight, col, width: itemWidth, height: itemHeight };
+        hitboxes[i] = { left, top: currentColHeight, col, width: itemWidth, height: itemHeight };
         currentColWidth = Math.max(currentColWidth, itemWidth);
         currentColHeight += itemHeight + padding;
       });
@@ -10459,7 +10459,7 @@ var rbmViz = (() => {
       }
       overrideTextDirection(this.ctx, opts.textDirection);
       const lineHeight = itemHeight + padding;
-      this.legendItems.forEach((legendItem, i2) => {
+      this.legendItems.forEach((legendItem, i) => {
         ctx.strokeStyle = legendItem.fontColor || fontColor;
         ctx.fillStyle = legendItem.fontColor || fontColor;
         const textWidth = ctx.measureText(legendItem.text).width;
@@ -10469,12 +10469,12 @@ var rbmViz = (() => {
         let y = cursor.y;
         rtlHelper.setWidth(this.width);
         if (isHorizontal) {
-          if (i2 > 0 && x + width + padding > this.right) {
+          if (i > 0 && x + width + padding > this.right) {
             y = cursor.y += lineHeight;
             cursor.line++;
             x = cursor.x = _alignStartEnd(align, this.left + padding, this.right - lineWidths[cursor.line]);
           }
-        } else if (i2 > 0 && y + lineHeight > this.bottom) {
+        } else if (i > 0 && y + lineHeight > this.bottom) {
           x = cursor.x = x + columnSizes[cursor.line].width + padding;
           cursor.line++;
           y = cursor.y = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - columnSizes[cursor.line].height);
@@ -10530,13 +10530,13 @@ var rbmViz = (() => {
       return titleOpts.display ? titleFont.lineHeight + titlePadding.height : 0;
     }
     _getLegendItemAt(x, y) {
-      let i2, hitBox, lh;
+      let i, hitBox, lh;
       if (_isBetween(x, this.left, this.right) && _isBetween(y, this.top, this.bottom)) {
         lh = this.legendHitBoxes;
-        for (i2 = 0; i2 < lh.length; ++i2) {
-          hitBox = lh[i2];
+        for (i = 0; i < lh.length; ++i) {
+          hitBox = lh[i];
           if (_isBetween(x, hitBox.left, hitBox.left + hitBox.width) && _isBetween(y, hitBox.top, hitBox.top + hitBox.height)) {
-            return this.legendItems[i2];
+            return this.legendItems[i];
           }
         }
       }
@@ -10839,12 +10839,12 @@ var rbmViz = (() => {
       if (!items.length) {
         return false;
       }
-      let i2, len;
+      let i, len;
       let x = 0;
       let y = 0;
       let count = 0;
-      for (i2 = 0, len = items.length; i2 < len; ++i2) {
-        const el = items[i2].element;
+      for (i = 0, len = items.length; i < len; ++i) {
+        const el = items[i].element;
         if (el && el.hasValue()) {
           const pos = el.tooltipPosition();
           x += pos.x;
@@ -10864,9 +10864,9 @@ var rbmViz = (() => {
       let x = eventPosition.x;
       let y = eventPosition.y;
       let minDistance = Number.POSITIVE_INFINITY;
-      let i2, len, nearestElement;
-      for (i2 = 0, len = items.length; i2 < len; ++i2) {
-        const el = items[i2].element;
+      let i, len, nearestElement;
+      for (i = 0, len = items.length; i < len; ++i) {
+        const el = items[i].element;
         if (el && el.hasValue()) {
           const center = el.getCenterPoint();
           const d2 = distanceBetweenPoints(eventPosition, center);
@@ -11175,9 +11175,9 @@ var rbmViz = (() => {
       const labelPointStyles = [];
       const labelTextColors = [];
       let tooltipItems = [];
-      let i2, len;
-      for (i2 = 0, len = active.length; i2 < len; ++i2) {
-        tooltipItems.push(createTooltipItem(this.chart, active[i2]));
+      let i, len;
+      for (i = 0, len = active.length; i < len; ++i) {
+        tooltipItems.push(createTooltipItem(this.chart, active[i]));
       }
       if (options.filter) {
         tooltipItems = tooltipItems.filter((element, index3, array2) => options.filter(element, index3, array2, data));
@@ -11294,7 +11294,7 @@ var rbmViz = (() => {
     drawTitle(pt, ctx, options) {
       const title3 = this.title;
       const length = title3.length;
-      let titleFont, titleSpacing, i2;
+      let titleFont, titleSpacing, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
         pt.x = getAlignedX(this, options.titleAlign, options);
@@ -11304,18 +11304,18 @@ var rbmViz = (() => {
         titleSpacing = options.titleSpacing;
         ctx.fillStyle = options.titleColor;
         ctx.font = titleFont.string;
-        for (i2 = 0; i2 < length; ++i2) {
-          ctx.fillText(title3[i2], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+        for (i = 0; i < length; ++i) {
+          ctx.fillText(title3[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
           pt.y += titleFont.lineHeight + titleSpacing;
-          if (i2 + 1 === length) {
+          if (i + 1 === length) {
             pt.y += options.titleMarginBottom - titleSpacing;
           }
         }
       }
     }
-    _drawColorBox(ctx, pt, i2, rtlHelper, options) {
-      const labelColors = this.labelColors[i2];
-      const labelPointStyle = this.labelPointStyles[i2];
+    _drawColorBox(ctx, pt, i, rtlHelper, options) {
+      const labelColors = this.labelColors[i];
+      const labelPointStyle = this.labelPointStyles[i];
       const { boxHeight, boxWidth, boxPadding } = options;
       const bodyFont = toFont(options.bodyFont);
       const colorX = getAlignedX(this, "left", options);
@@ -11375,7 +11375,7 @@ var rbmViz = (() => {
           ctx.fillRect(innerX, colorY + 1, boxWidth - 2, boxHeight - 2);
         }
       }
-      ctx.fillStyle = this.labelTextColors[i2];
+      ctx.fillStyle = this.labelTextColors[i];
     }
     drawBody(pt, ctx, options) {
       const { body } = this;
@@ -11389,7 +11389,7 @@ var rbmViz = (() => {
         pt.y += bodyLineHeight + bodySpacing;
       };
       const bodyAlignForCalculation = rtlHelper.textAlign(bodyAlign);
-      let bodyItem, textColor, lines, i2, j, ilen, jlen;
+      let bodyItem, textColor, lines, i, j, ilen, jlen;
       ctx.textAlign = bodyAlign;
       ctx.textBaseline = "middle";
       ctx.font = bodyFont.string;
@@ -11397,14 +11397,14 @@ var rbmViz = (() => {
       ctx.fillStyle = options.bodyColor;
       each(this.beforeBody, fillLineOfText);
       xLinePadding = displayColors && bodyAlignForCalculation !== "right" ? bodyAlign === "center" ? boxWidth / 2 + boxPadding : boxWidth + 2 + boxPadding : 0;
-      for (i2 = 0, ilen = body.length; i2 < ilen; ++i2) {
-        bodyItem = body[i2];
-        textColor = this.labelTextColors[i2];
+      for (i = 0, ilen = body.length; i < ilen; ++i) {
+        bodyItem = body[i];
+        textColor = this.labelTextColors[i];
         ctx.fillStyle = textColor;
         each(bodyItem.before, fillLineOfText);
         lines = bodyItem.lines;
         if (displayColors && lines.length) {
-          this._drawColorBox(ctx, pt, i2, rtlHelper, options);
+          this._drawColorBox(ctx, pt, i, rtlHelper, options);
           bodyLineHeight = Math.max(bodyFont.lineHeight, boxHeight);
         }
         for (j = 0, jlen = lines.length; j < jlen; ++j) {
@@ -11421,7 +11421,7 @@ var rbmViz = (() => {
     drawFooter(pt, ctx, options) {
       const footer = this.footer;
       const length = footer.length;
-      let footerFont, i2;
+      let footerFont, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
         pt.x = getAlignedX(this, options.footerAlign, options);
@@ -11431,8 +11431,8 @@ var rbmViz = (() => {
         footerFont = toFont(options.footerFont);
         ctx.fillStyle = options.footerColor;
         ctx.font = footerFont.string;
-        for (i2 = 0; i2 < length; ++i2) {
-          ctx.fillText(footer[i2], rtlHelper.x(pt.x), pt.y + footerFont.lineHeight / 2);
+        for (i = 0; i < length; ++i) {
+          ctx.fillText(footer[i], rtlHelper.x(pt.x), pt.y + footerFont.lineHeight / 2);
           pt.y += footerFont.lineHeight + options.footerSpacing;
         }
       }
@@ -12308,14 +12308,14 @@ var rbmViz = (() => {
     const valueCount = scale._pointLabels.length;
     const pointLabelOpts = scale.options.pointLabels;
     const additionalAngle = pointLabelOpts.centerPointLabels ? PI / valueCount : 0;
-    for (let i2 = 0; i2 < valueCount; i2++) {
-      const opts = pointLabelOpts.setContext(scale.getPointLabelContext(i2));
-      padding[i2] = opts.padding;
-      const pointPosition = scale.getPointPosition(i2, scale.drawingArea + padding[i2], additionalAngle);
+    for (let i = 0; i < valueCount; i++) {
+      const opts = pointLabelOpts.setContext(scale.getPointLabelContext(i));
+      padding[i] = opts.padding;
+      const pointPosition = scale.getPointPosition(i, scale.drawingArea + padding[i], additionalAngle);
       const plFont = toFont(opts.font);
-      const textSize = measureLabelSize(scale.ctx, plFont, scale._pointLabels[i2]);
-      labelSizes[i2] = textSize;
-      const angleRadians = _normalizeAngle(scale.getIndexAngle(i2) + additionalAngle);
+      const textSize = measureLabelSize(scale.ctx, plFont, scale._pointLabels[i]);
+      labelSizes[i] = textSize;
+      const angleRadians = _normalizeAngle(scale.getIndexAngle(i) + additionalAngle);
       const angle = Math.round(toDegrees(angleRadians));
       const hLimits = determineLimits(angle, pointPosition.x, textSize.w, 0, 180);
       const vLimits = determineLimits(angle, pointPosition.y, textSize.h, 90, 270);
@@ -12356,10 +12356,10 @@ var rbmViz = (() => {
     const extra = getTickBackdropHeight(opts) / 2;
     const outerDistance = scale.drawingArea;
     const additionalAngle = opts.pointLabels.centerPointLabels ? PI / valueCount : 0;
-    for (let i2 = 0; i2 < valueCount; i2++) {
-      const pointLabelPosition = scale.getPointPosition(i2, outerDistance + extra + padding[i2], additionalAngle);
+    for (let i = 0; i < valueCount; i++) {
+      const pointLabelPosition = scale.getPointPosition(i, outerDistance + extra + padding[i], additionalAngle);
       const angle = Math.round(toDegrees(_normalizeAngle(pointLabelPosition.angle + HALF_PI)));
-      const size = labelSizes[i2];
+      const size = labelSizes[i];
       const y = yForAngle(pointLabelPosition.y, size.h, angle);
       const textAlign = getTextAlignForAngle(angle);
       const left = leftForTextAlign(pointLabelPosition.x, size.w, textAlign);
@@ -12401,10 +12401,10 @@ var rbmViz = (() => {
   }
   function drawPointLabels(scale, labelCount) {
     const { ctx, options: { pointLabels } } = scale;
-    for (let i2 = labelCount - 1; i2 >= 0; i2--) {
-      const optsAtIndex = pointLabels.setContext(scale.getPointLabelContext(i2));
+    for (let i = labelCount - 1; i >= 0; i--) {
+      const optsAtIndex = pointLabels.setContext(scale.getPointLabelContext(i));
       const plFont = toFont(optsAtIndex.font);
-      const { x, y, textAlign, left, top, right, bottom } = scale._pointLabelItems[i2];
+      const { x, y, textAlign, left, top, right, bottom } = scale._pointLabelItems[i];
       const { backdropColor } = optsAtIndex;
       if (!isNullOrUndef(backdropColor)) {
         const borderRadius = toTRBLCorners(optsAtIndex.borderRadius);
@@ -12430,7 +12430,7 @@ var rbmViz = (() => {
       }
       renderText(
         ctx,
-        scale._pointLabels[i2],
+        scale._pointLabels[i],
         x,
         y + plFont.lineHeight / 2,
         plFont,
@@ -12449,8 +12449,8 @@ var rbmViz = (() => {
     } else {
       let pointPosition = scale.getPointPosition(0, radius3);
       ctx.moveTo(pointPosition.x, pointPosition.y);
-      for (let i2 = 1; i2 < labelCount; i2++) {
-        pointPosition = scale.getPointPosition(i2, radius3);
+      for (let i = 1; i < labelCount; i++) {
+        pointPosition = scale.getPointPosition(i, radius3);
         ctx.lineTo(pointPosition.x, pointPosition.y);
       }
     }
@@ -12511,7 +12511,7 @@ var rbmViz = (() => {
       this._pointLabels = this.getLabels().map((value, index3) => {
         const label = callback(this.options.pointLabels.callback, [value, index3], this);
         return label || label === 0 ? label : "";
-      }).filter((v, i2) => this.chart.getDataVisibility(i2));
+      }).filter((v, i) => this.chart.getDataVisibility(i));
     }
     fit() {
       const opts = this.options;
@@ -12596,7 +12596,7 @@ var rbmViz = (() => {
       const opts = this.options;
       const { angleLines, grid } = opts;
       const labelCount = this._pointLabels.length;
-      let i2, offset, position;
+      let i, offset, position;
       if (opts.pointLabels.display) {
         drawPointLabels(this, labelCount);
       }
@@ -12611,8 +12611,8 @@ var rbmViz = (() => {
       }
       if (angleLines.display) {
         ctx.save();
-        for (i2 = labelCount - 1; i2 >= 0; i2--) {
-          const optsAtIndex = angleLines.setContext(this.getPointLabelContext(i2));
+        for (i = labelCount - 1; i >= 0; i--) {
+          const optsAtIndex = angleLines.setContext(this.getPointLabelContext(i));
           const { color: color3, lineWidth } = optsAtIndex;
           if (!lineWidth || !color3) {
             continue;
@@ -12622,7 +12622,7 @@ var rbmViz = (() => {
           ctx.setLineDash(optsAtIndex.borderDash);
           ctx.lineDashOffset = optsAtIndex.borderDashOffset;
           offset = this.getDistanceFromCenterForValue(opts.ticks.reverse ? this.min : this.max);
-          position = this.getPointPosition(i2, offset);
+          position = this.getPointPosition(i, offset);
           ctx.beginPath();
           ctx.moveTo(this.xCenter, this.yCenter);
           ctx.lineTo(position.x, position.y);
@@ -12756,18 +12756,18 @@ var rbmViz = (() => {
   }
   function determineUnitForAutoTicks(minUnit, min3, max3, capacity) {
     const ilen = UNITS.length;
-    for (let i2 = UNITS.indexOf(minUnit); i2 < ilen - 1; ++i2) {
-      const interval2 = INTERVALS[UNITS[i2]];
+    for (let i = UNITS.indexOf(minUnit); i < ilen - 1; ++i) {
+      const interval2 = INTERVALS[UNITS[i]];
       const factor = interval2.steps ? interval2.steps : Number.MAX_SAFE_INTEGER;
       if (interval2.common && Math.ceil((max3 - min3) / (factor * interval2.size)) <= capacity) {
-        return UNITS[i2];
+        return UNITS[i];
       }
     }
     return UNITS[ilen - 1];
   }
   function determineUnitForFormatting(scale, numTicks, minUnit, min3, max3) {
-    for (let i2 = UNITS.length - 1; i2 >= UNITS.indexOf(minUnit); i2--) {
-      const unit = UNITS[i2];
+    for (let i = UNITS.length - 1; i >= UNITS.indexOf(minUnit); i--) {
+      const unit = UNITS[i];
       if (INTERVALS[unit].common && scale._adapter.diff(max3, min3, unit) >= numTicks - 1) {
         return unit;
       }
@@ -12775,9 +12775,9 @@ var rbmViz = (() => {
     return UNITS[minUnit ? UNITS.indexOf(minUnit) : 0];
   }
   function determineMajorUnit(unit) {
-    for (let i2 = UNITS.indexOf(unit) + 1, ilen = UNITS.length; i2 < ilen; ++i2) {
-      if (INTERVALS[UNITS[i2]].common) {
-        return UNITS[i2];
+    for (let i = UNITS.indexOf(unit) + 1, ilen = UNITS.length; i < ilen; ++i) {
+      if (INTERVALS[UNITS[i]].common) {
+        return UNITS[i];
       }
     }
   }
@@ -12807,10 +12807,10 @@ var rbmViz = (() => {
     const ticks = [];
     const map4 = {};
     const ilen = values.length;
-    let i2, value;
-    for (i2 = 0; i2 < ilen; ++i2) {
-      value = values[i2];
-      map4[value] = i2;
+    let i, value;
+    for (i = 0; i < ilen; ++i) {
+      value = values[i];
+      map4[value] = i;
       ticks.push({
         value,
         major: false
@@ -12992,10 +12992,10 @@ var rbmViz = (() => {
       return formatter2 ? callback(formatter2, [label, index3, ticks], this) : label;
     }
     generateTickLabels(ticks) {
-      let i2, ilen, tick;
-      for (i2 = 0, ilen = ticks.length; i2 < ilen; ++i2) {
-        tick = ticks[i2];
-        tick.label = this._tickFormatFunction(tick.value, i2, ticks);
+      let i, ilen, tick;
+      for (i = 0, ilen = ticks.length; i < ilen; ++i) {
+        tick = ticks[i];
+        tick.label = this._tickFormatFunction(tick.value, i, ticks);
       }
     }
     getDecimalForValue(value) {
@@ -13034,7 +13034,7 @@ var rbmViz = (() => {
     }
     getDataTimestamps() {
       let timestamps = this._cache.data || [];
-      let i2, ilen;
+      let i, ilen;
       if (timestamps.length) {
         return timestamps;
       }
@@ -13042,20 +13042,20 @@ var rbmViz = (() => {
       if (this._normalized && metas.length) {
         return this._cache.data = metas[0].controller.getAllParsedValues(this);
       }
-      for (i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
-        timestamps = timestamps.concat(metas[i2].controller.getAllParsedValues(this));
+      for (i = 0, ilen = metas.length; i < ilen; ++i) {
+        timestamps = timestamps.concat(metas[i].controller.getAllParsedValues(this));
       }
       return this._cache.data = this.normalize(timestamps);
     }
     getLabelTimestamps() {
       const timestamps = this._cache.labels || [];
-      let i2, ilen;
+      let i, ilen;
       if (timestamps.length) {
         return timestamps;
       }
       const labels = this.getLabels();
-      for (i2 = 0, ilen = labels.length; i2 < ilen; ++i2) {
-        timestamps.push(parse(this, labels[i2]));
+      for (i = 0, ilen = labels.length; i < ilen; ++i) {
+        timestamps.push(parse(this, labels[i]));
       }
       return this._cache.labels = this._normalized ? timestamps : this.normalize(timestamps);
     }
@@ -13120,9 +13120,9 @@ var rbmViz = (() => {
       const { min: min3, max: max3 } = this;
       const items = [];
       const table = [];
-      let i2, ilen, prev, curr, next;
-      for (i2 = 0, ilen = timestamps.length; i2 < ilen; ++i2) {
-        curr = timestamps[i2];
+      let i, ilen, prev, curr, next;
+      for (i = 0, ilen = timestamps.length; i < ilen; ++i) {
+        curr = timestamps[i];
         if (curr >= min3 && curr <= max3) {
           items.push(curr);
         }
@@ -13133,12 +13133,12 @@ var rbmViz = (() => {
           { time: max3, pos: 1 }
         ];
       }
-      for (i2 = 0, ilen = items.length; i2 < ilen; ++i2) {
-        next = items[i2 + 1];
-        prev = items[i2 - 1];
-        curr = items[i2];
+      for (i = 0, ilen = items.length; i < ilen; ++i) {
+        next = items[i + 1];
+        prev = items[i - 1];
+        curr = items[i];
         if (Math.round((next + prev) / 2) !== curr) {
-          table.push({ time: curr, pos: i2 / (ilen - 1) });
+          table.push({ time: curr, pos: i / (ilen - 1) });
         }
       }
       return table;
@@ -13381,9 +13381,9 @@ var rbmViz = (() => {
   }
   function requireVersion(pkg, min3, ver, strict = true) {
     const parts = ver.split(".");
-    let i2 = 0;
+    let i = 0;
     for (const req of min3.split(".")) {
-      const act = parts[i2++];
+      const act = parts[i++];
       if (parseInt(req, 10) < parseInt(act, 10)) {
         break;
       }
@@ -13493,8 +13493,8 @@ var rbmViz = (() => {
       ctx.font = font.string;
       const count = lines.length;
       let width = 0;
-      for (let i2 = 0; i2 < count; i2++) {
-        const text = lines[i2];
+      for (let i = 0; i < count; i++) {
+        const text = lines[i];
         width = Math.max(width, ctx.measureText(text).width + strokeWidth);
       }
       ctx.restore();
@@ -13541,10 +13541,10 @@ var rbmViz = (() => {
     ctx.textBaseline = "middle";
     ctx.textAlign = options.textAlign;
     if (setTextStrokeStyle(ctx, options)) {
-      labels.forEach((l, i2) => ctx.strokeText(l, x, y + i2 * lh));
+      labels.forEach((l, i) => ctx.strokeText(l, x, y + i * lh));
     }
     ctx.fillStyle = options.color;
-    labels.forEach((l, i2) => ctx.fillText(l, x, y + i2 * lh));
+    labels.forEach((l, i) => ctx.fillText(l, x, y + i * lh));
     ctx.restore();
   }
   function setTextStrokeStyle(ctx, options) {
@@ -14691,7 +14691,7 @@ var rbmViz = (() => {
       const elements2 = [];
       const angle = 2 * PI / sides;
       let rad = rotation * RAD_PER_DEG;
-      for (let i2 = 0; i2 < sides; i2++, rad += angle) {
+      for (let i = 0; i < sides; i++, rad += angle) {
         elements2.push(buildPointElement(properties, options, rad));
       }
       properties.elements = elements2;
@@ -14792,9 +14792,9 @@ var rbmViz = (() => {
     const animations = resolveAnimations(chart, options.animations, mode);
     const annotations5 = state.annotations;
     const elements2 = resyncElements(state.elements, annotations5);
-    for (let i2 = 0; i2 < annotations5.length; i2++) {
-      const annotationOptions = annotations5[i2];
-      const element = getOrCreateElement(elements2, i2, annotationOptions.type);
+    for (let i = 0; i < annotations5.length; i++) {
+      const annotationOptions = annotations5[i];
+      const element = getOrCreateElement(elements2, i, annotationOptions.type);
       const resolver = annotationOptions.setContext(getContext(chart, element, annotationOptions));
       const properties = element.resolveElementProperties(chart, resolver);
       properties.skip = toSkip(properties);
@@ -14821,10 +14821,10 @@ var rbmViz = (() => {
   function updateSubElements(mainElement, { elements: elements2, initProperties }, resolver, animations) {
     const subElements = mainElement.elements || (mainElement.elements = []);
     subElements.length = elements2.length;
-    for (let i2 = 0; i2 < elements2.length; i2++) {
-      const definition = elements2[i2];
+    for (let i = 0; i < elements2.length; i++) {
+      const definition = elements2[i];
       const properties = definition.properties;
-      const subElement = getOrCreateElement(subElements, i2, definition.type, initProperties);
+      const subElement = getOrCreateElement(subElements, i, definition.type, initProperties);
       const subResolver = resolver[definition.optionScope].override(definition);
       properties.options = resolveAnnotationOptions(subResolver);
       animations.update(subElement, properties);
@@ -15046,10 +15046,10 @@ var rbmViz = (() => {
     const len = stats.items.length;
     const bandwidth = nrd(stats.iqr, stats.variance, len);
     return (x) => {
-      let i2 = 0;
+      let i = 0;
       let sum = 0;
-      for (i2 = 0; i2 < len; i2++) {
-        const v = stats.items[i2];
+      for (i = 0; i < len; i++) {
+        const v = stats.items[i];
         sum += gaussian((x - v) / bandwidth);
       }
       return sum / bandwidth / len;
@@ -15074,19 +15074,19 @@ var rbmViz = (() => {
     return quantilesInterpolate(arr, length, (a, b, alpha2) => a + alpha2 * (b - a));
   }
   function quantilesLinear(arr, length = arr.length) {
-    return quantilesInterpolate(arr, length, (i2, j, fraction) => i2 + (j - i2) * fraction);
+    return quantilesInterpolate(arr, length, (i, j, fraction) => i + (j - i) * fraction);
   }
   function quantilesLower(arr, length = arr.length) {
-    return quantilesInterpolate(arr, length, (i2) => i2);
+    return quantilesInterpolate(arr, length, (i) => i);
   }
   function quantilesHigher(arr, length = arr.length) {
     return quantilesInterpolate(arr, length, (_, j) => j);
   }
   function quantilesNearest(arr, length = arr.length) {
-    return quantilesInterpolate(arr, length, (i2, j, fraction) => fraction < 0.5 ? i2 : j);
+    return quantilesInterpolate(arr, length, (i, j, fraction) => fraction < 0.5 ? i : j);
   }
   function quantilesMidpoint(arr, length = arr.length) {
-    return quantilesInterpolate(arr, length, (i2, j) => (i2 + j) * 0.5);
+    return quantilesInterpolate(arr, length, (i, j) => (i + j) * 0.5);
   }
   function quantilesFivenum(arr, length = arr.length) {
     const n = length;
@@ -15105,8 +15105,8 @@ var rbmViz = (() => {
     let valid = 0;
     const { length } = data;
     const vs = data instanceof Float64Array ? new Float64Array(length) : new Float32Array(length);
-    for (let i2 = 0; i2 < length; i2 += 1) {
-      const v = data[i2];
+    for (let i = 0; i < length; i += 1) {
+      const v = data[i];
       if (v == null || Number.isNaN(v)) {
         continue;
       }
@@ -15159,8 +15159,8 @@ var rbmViz = (() => {
     let whiskerLow = isCoefValid ? Math.max(min3, q1 - coef * iqr) : min3;
     let whiskerHigh = isCoefValid ? Math.min(max3, q3 + coef * iqr) : max3;
     const outlierLow = [];
-    for (let i2 = 0; i2 < valid; i2 += 1) {
-      const v = s[i2];
+    for (let i = 0; i < valid; i += 1) {
+      const v = s[i];
       if (v >= whiskerLow || same(v, whiskerLow)) {
         if (whiskersMode === "nearest") {
           whiskerLow = v;
@@ -15172,8 +15172,8 @@ var rbmViz = (() => {
       }
     }
     const reversedOutlierHigh = [];
-    for (let i2 = valid - 1; i2 >= 0; i2 -= 1) {
-      const v = s[i2];
+    for (let i = valid - 1; i >= 0; i -= 1) {
+      const v = s[i];
       if (v <= whiskerHigh || same(v, whiskerHigh)) {
         if (whiskersMode === "nearest") {
           whiskerHigh = v;
@@ -15197,14 +15197,14 @@ var rbmViz = (() => {
   }
   function computeStats(s, valid) {
     let mean2 = 0;
-    for (let i2 = 0; i2 < valid; i2++) {
-      const v = s[i2];
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
       mean2 += v;
     }
     mean2 /= valid;
     let variance = 0;
-    for (let i2 = 0; i2 < valid; i2++) {
-      const v = s[i2];
+    for (let i = 0; i < valid; i++) {
+      const v = s[i];
       variance += (v - mean2) * (v - mean2);
     }
     variance /= valid;
@@ -15266,15 +15266,15 @@ var rbmViz = (() => {
     let whiskerMin = coefValid ? Math.max(boxplot3.min, boxplot3.q1 - coef * iqr) : boxplot3.min;
     let whiskerMax = coefValid ? Math.min(boxplot3.max, boxplot3.q3 + coef * iqr) : boxplot3.max;
     if (Array.isArray(arr)) {
-      for (let i2 = 0; i2 < arr.length; i2 += 1) {
-        const v = arr[i2];
+      for (let i = 0; i < arr.length; i += 1) {
+        const v = arr[i];
         if (v >= whiskerMin) {
           whiskerMin = v;
           break;
         }
       }
-      for (let i2 = arr.length - 1; i2 >= 0; i2 -= 1) {
-        const v = arr[i2];
+      for (let i = arr.length - 1; i >= 0; i -= 1) {
+        const v = arr[i];
         if (v <= whiskerMax) {
           whiskerMax = v;
           break;
@@ -15552,9 +15552,9 @@ var rbmViz = (() => {
         return -1;
       }
       const toCompare = vertical ? mouseY : mouseX;
-      for (let i2 = 0; i2 < outliers.length; i2 += 1) {
-        if (Math.abs(outliers[i2] - toCompare) <= hitRadius) {
-          return i2;
+      for (let i = 0; i < outliers.length; i += 1) {
+        if (Math.abs(outliers[i] - toCompare) <= hitRadius) {
+          return i;
         }
       }
       return -1;
@@ -15859,15 +15859,15 @@ var rbmViz = (() => {
       return interpolators2.number(from2, to2, factor);
     }
     if (Array.isArray(from2) && Array.isArray(to2)) {
-      return to2.map((t, i2) => interpolators2.number(from2[i2], t, factor));
+      return to2.map((t, i) => interpolators2.number(from2[i], t, factor));
     }
     return to2;
   }
   function interpolateKdeCoords(from2, to2, factor) {
     if (Array.isArray(from2) && Array.isArray(to2)) {
-      return to2.map((t, i2) => ({
-        v: interpolators2.number(from2[i2] ? from2[i2].v : null, t.v, factor),
-        estimate: interpolators2.number(from2[i2] ? from2[i2].estimate : null, t.estimate, factor)
+      return to2.map((t, i) => ({
+        v: interpolators2.number(from2[i] ? from2[i].v : null, t.v, factor),
+        estimate: interpolators2.number(from2[i] ? from2[i].estimate : null, t.estimate, factor)
       }));
     }
     return to2;
@@ -15886,8 +15886,8 @@ var rbmViz = (() => {
     let x = 0;
     let y = 0;
     let count = 0;
-    for (let i2 = 0; i2 < items.length; i2 += 1) {
-      const el = items[i2].element;
+    for (let i = 0; i < items.length; i += 1) {
+      const el = items[i].element;
       if (el && el.hasValue()) {
         const pos = el.tooltipPosition(eventPosition, this);
         x += pos.x;
@@ -15984,8 +15984,8 @@ var rbmViz = (() => {
       const iScale = meta.iScale;
       const labels = iScale.getLabels();
       const r = [];
-      for (let i2 = 0; i2 < count; i2 += 1) {
-        const index3 = i2 + start2;
+      for (let i = 0; i < count; i += 1) {
+        const index3 = i + start2;
         const parsed = {};
         parsed[iScale.axis] = iScale.parse(labels[index3], index3);
         const stats = this._parseStats(data == null ? null : data[index3], this.options);
@@ -16197,11 +16197,11 @@ var rbmViz = (() => {
     return nest(values, Array.from, reduce, keys);
   }
   function nest(values, map4, reduce, keys) {
-    return function regroup(values2, i2) {
-      if (i2 >= keys.length)
+    return function regroup(values2, i) {
+      if (i >= keys.length)
         return reduce(values2);
       const groups2 = new InternMap();
-      const keyof2 = keys[i2++];
+      const keyof2 = keys[i++];
       let index3 = -1;
       for (const value of values2) {
         const key = keyof2(value, ++index3, values2);
@@ -16212,7 +16212,7 @@ var rbmViz = (() => {
           groups2.set(key, [value]);
       }
       for (const [key, values3] of groups2) {
-        groups2.set(key, regroup(values3, i2));
+        groups2.set(key, regroup(values3, i));
       }
       return map4(groups2);
     }(values, 0);
@@ -16284,8 +16284,8 @@ var rbmViz = (() => {
   var noop2 = { value: () => {
   } };
   function dispatch() {
-    for (var i2 = 0, n = arguments.length, _ = {}, t; i2 < n; ++i2) {
-      if (!(t = arguments[i2] + "") || t in _ || /[\s.]/.test(t))
+    for (var i = 0, n = arguments.length, _ = {}, t; i < n; ++i) {
+      if (!(t = arguments[i] + "") || t in _ || /[\s.]/.test(t))
         throw new Error("illegal type: " + t);
       _[t] = [];
     }
@@ -16296,9 +16296,9 @@ var rbmViz = (() => {
   }
   function parseTypenames(typenames, types) {
     return typenames.trim().split(/^|\s+/).map(function(t) {
-      var name = "", i2 = t.indexOf(".");
-      if (i2 >= 0)
-        name = t.slice(i2 + 1), t = t.slice(0, i2);
+      var name = "", i = t.indexOf(".");
+      if (i >= 0)
+        name = t.slice(i + 1), t = t.slice(0, i);
       if (t && !types.hasOwnProperty(t))
         throw new Error("unknown type: " + t);
       return { type: t, name };
@@ -16307,17 +16307,17 @@ var rbmViz = (() => {
   Dispatch.prototype = dispatch.prototype = {
     constructor: Dispatch,
     on: function(typename, callback2) {
-      var _ = this._, T = parseTypenames(typename + "", _), t, i2 = -1, n = T.length;
+      var _ = this._, T = parseTypenames(typename + "", _), t, i = -1, n = T.length;
       if (arguments.length < 2) {
-        while (++i2 < n)
-          if ((t = (typename = T[i2]).type) && (t = get(_[t], typename.name)))
+        while (++i < n)
+          if ((t = (typename = T[i]).type) && (t = get(_[t], typename.name)))
             return t;
         return;
       }
       if (callback2 != null && typeof callback2 !== "function")
         throw new Error("invalid callback: " + callback2);
-      while (++i2 < n) {
-        if (t = (typename = T[i2]).type)
+      while (++i < n) {
+        if (t = (typename = T[i]).type)
           _[t] = set2(_[t], typename.name, callback2);
         else if (callback2 == null)
           for (t in _)
@@ -16333,31 +16333,31 @@ var rbmViz = (() => {
     },
     call: function(type2, that) {
       if ((n = arguments.length - 2) > 0)
-        for (var args = new Array(n), i2 = 0, n, t; i2 < n; ++i2)
-          args[i2] = arguments[i2 + 2];
+        for (var args = new Array(n), i = 0, n, t; i < n; ++i)
+          args[i] = arguments[i + 2];
       if (!this._.hasOwnProperty(type2))
         throw new Error("unknown type: " + type2);
-      for (t = this._[type2], i2 = 0, n = t.length; i2 < n; ++i2)
-        t[i2].value.apply(that, args);
+      for (t = this._[type2], i = 0, n = t.length; i < n; ++i)
+        t[i].value.apply(that, args);
     },
     apply: function(type2, that, args) {
       if (!this._.hasOwnProperty(type2))
         throw new Error("unknown type: " + type2);
-      for (var t = this._[type2], i2 = 0, n = t.length; i2 < n; ++i2)
-        t[i2].value.apply(that, args);
+      for (var t = this._[type2], i = 0, n = t.length; i < n; ++i)
+        t[i].value.apply(that, args);
     }
   };
   function get(type2, name) {
-    for (var i2 = 0, n = type2.length, c; i2 < n; ++i2) {
-      if ((c = type2[i2]).name === name) {
+    for (var i = 0, n = type2.length, c; i < n; ++i) {
+      if ((c = type2[i]).name === name) {
         return c.value;
       }
     }
   }
   function set2(type2, name, callback2) {
-    for (var i2 = 0, n = type2.length; i2 < n; ++i2) {
-      if (type2[i2].name === name) {
-        type2[i2] = noop2, type2 = type2.slice(0, i2).concat(type2.slice(i2 + 1));
+    for (var i = 0, n = type2.length; i < n; ++i) {
+      if (type2[i].name === name) {
+        type2[i] = noop2, type2 = type2.slice(0, i).concat(type2.slice(i + 1));
         break;
       }
     }
@@ -16379,9 +16379,9 @@ var rbmViz = (() => {
 
   // node_modules/d3-selection/src/namespace.js
   function namespace_default(name) {
-    var prefix = name += "", i2 = prefix.indexOf(":");
-    if (i2 >= 0 && (prefix = name.slice(0, i2)) !== "xmlns")
-      name = name.slice(i2 + 1);
+    var prefix = name += "", i = prefix.indexOf(":");
+    if (i >= 0 && (prefix = name.slice(0, i)) !== "xmlns")
+      name = name.slice(i + 1);
     return namespaces_default.hasOwnProperty(prefix) ? { space: namespaces_default[prefix], local: name } : name;
   }
 
@@ -16416,11 +16416,11 @@ var rbmViz = (() => {
     if (typeof select !== "function")
       select = selector_default(select);
     for (var groups2 = this._groups, m = groups2.length, subgroups = new Array(m), j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = new Array(n), node, subnode, i2 = 0; i2 < n; ++i2) {
-        if ((node = group2[i2]) && (subnode = select.call(node, node.__data__, i2, group2))) {
+      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i) {
+        if ((node = group2[i]) && (subnode = select.call(node, node.__data__, i, group2))) {
           if ("__data__" in node)
             subnode.__data__ = node.__data__;
-          subgroup[i2] = subnode;
+          subgroup[i] = subnode;
         }
       }
     }
@@ -16454,9 +16454,9 @@ var rbmViz = (() => {
     else
       select = selectorAll_default(select);
     for (var groups2 = this._groups, m = groups2.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, node, i2 = 0; i2 < n; ++i2) {
-        if (node = group2[i2]) {
-          subgroups.push(select.call(node, node.__data__, i2, group2));
+      for (var group2 = groups2[j], n = group2.length, node, i = 0; i < n; ++i) {
+        if (node = group2[i]) {
+          subgroups.push(select.call(node, node.__data__, i, group2));
           parents.push(node);
         }
       }
@@ -16509,8 +16509,8 @@ var rbmViz = (() => {
     if (typeof match !== "function")
       match = matcher_default(match);
     for (var groups2 = this._groups, m = groups2.length, subgroups = new Array(m), j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = [], node, i2 = 0; i2 < n; ++i2) {
-        if ((node = group2[i2]) && match.call(node, node.__data__, i2, group2)) {
+      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i) {
+        if ((node = group2[i]) && match.call(node, node.__data__, i, group2)) {
           subgroup.push(node);
         }
       }
@@ -16559,46 +16559,46 @@ var rbmViz = (() => {
 
   // node_modules/d3-selection/src/selection/data.js
   function bindIndex(parent, group2, enter, update, exit, data) {
-    var i2 = 0, node, groupLength = group2.length, dataLength = data.length;
-    for (; i2 < dataLength; ++i2) {
-      if (node = group2[i2]) {
-        node.__data__ = data[i2];
-        update[i2] = node;
+    var i = 0, node, groupLength = group2.length, dataLength = data.length;
+    for (; i < dataLength; ++i) {
+      if (node = group2[i]) {
+        node.__data__ = data[i];
+        update[i] = node;
       } else {
-        enter[i2] = new EnterNode(parent, data[i2]);
+        enter[i] = new EnterNode(parent, data[i]);
       }
     }
-    for (; i2 < groupLength; ++i2) {
-      if (node = group2[i2]) {
-        exit[i2] = node;
+    for (; i < groupLength; ++i) {
+      if (node = group2[i]) {
+        exit[i] = node;
       }
     }
   }
   function bindKey(parent, group2, enter, update, exit, data, key) {
-    var i2, node, nodeByKeyValue = /* @__PURE__ */ new Map(), groupLength = group2.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
-    for (i2 = 0; i2 < groupLength; ++i2) {
-      if (node = group2[i2]) {
-        keyValues[i2] = keyValue = key.call(node, node.__data__, i2, group2) + "";
+    var i, node, nodeByKeyValue = /* @__PURE__ */ new Map(), groupLength = group2.length, dataLength = data.length, keyValues = new Array(groupLength), keyValue;
+    for (i = 0; i < groupLength; ++i) {
+      if (node = group2[i]) {
+        keyValues[i] = keyValue = key.call(node, node.__data__, i, group2) + "";
         if (nodeByKeyValue.has(keyValue)) {
-          exit[i2] = node;
+          exit[i] = node;
         } else {
           nodeByKeyValue.set(keyValue, node);
         }
       }
     }
-    for (i2 = 0; i2 < dataLength; ++i2) {
-      keyValue = key.call(parent, data[i2], i2, data) + "";
+    for (i = 0; i < dataLength; ++i) {
+      keyValue = key.call(parent, data[i], i, data) + "";
       if (node = nodeByKeyValue.get(keyValue)) {
-        update[i2] = node;
-        node.__data__ = data[i2];
+        update[i] = node;
+        node.__data__ = data[i];
         nodeByKeyValue.delete(keyValue);
       } else {
-        enter[i2] = new EnterNode(parent, data[i2]);
+        enter[i] = new EnterNode(parent, data[i]);
       }
     }
-    for (i2 = 0; i2 < groupLength; ++i2) {
-      if ((node = group2[i2]) && nodeByKeyValue.get(keyValues[i2]) === node) {
-        exit[i2] = node;
+    for (i = 0; i < groupLength; ++i) {
+      if ((node = group2[i]) && nodeByKeyValue.get(keyValues[i]) === node) {
+        exit[i] = node;
       }
     }
   }
@@ -16664,9 +16664,9 @@ var rbmViz = (() => {
   function merge_default(context) {
     var selection2 = context.selection ? context.selection() : context;
     for (var groups0 = this._groups, groups1 = selection2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
-      for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge2 = merges[j] = new Array(n), node, i2 = 0; i2 < n; ++i2) {
-        if (node = group0[i2] || group1[i2]) {
-          merge2[i2] = node;
+      for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge2 = merges[j] = new Array(n), node, i = 0; i < n; ++i) {
+        if (node = group0[i] || group1[i]) {
+          merge2[i] = node;
         }
       }
     }
@@ -16679,8 +16679,8 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/order.js
   function order_default() {
     for (var groups2 = this._groups, j = -1, m = groups2.length; ++j < m; ) {
-      for (var group2 = groups2[j], i2 = group2.length - 1, next = group2[i2], node; --i2 >= 0; ) {
-        if (node = group2[i2]) {
+      for (var group2 = groups2[j], i = group2.length - 1, next = group2[i], node; --i >= 0; ) {
+        if (node = group2[i]) {
           if (next && node.compareDocumentPosition(next) ^ 4)
             next.parentNode.insertBefore(node, next);
           next = node;
@@ -16698,9 +16698,9 @@ var rbmViz = (() => {
       return a && b ? compare(a.__data__, b.__data__) : !a - !b;
     }
     for (var groups2 = this._groups, m = groups2.length, sortgroups = new Array(m), j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, sortgroup = sortgroups[j] = new Array(n), node, i2 = 0; i2 < n; ++i2) {
-        if (node = group2[i2]) {
-          sortgroup[i2] = node;
+      for (var group2 = groups2[j], n = group2.length, sortgroup = sortgroups[j] = new Array(n), node, i = 0; i < n; ++i) {
+        if (node = group2[i]) {
+          sortgroup[i] = node;
         }
       }
       sortgroup.sort(compareNode);
@@ -16727,8 +16727,8 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/node.js
   function node_default() {
     for (var groups2 = this._groups, j = 0, m = groups2.length; j < m; ++j) {
-      for (var group2 = groups2[j], i2 = 0, n = group2.length; i2 < n; ++i2) {
-        var node = group2[i2];
+      for (var group2 = groups2[j], i = 0, n = group2.length; i < n; ++i) {
+        var node = group2[i];
         if (node)
           return node;
       }
@@ -16752,9 +16752,9 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/each.js
   function each_default(callback2) {
     for (var groups2 = this._groups, j = 0, m = groups2.length; j < m; ++j) {
-      for (var group2 = groups2[j], i2 = 0, n = group2.length, node; i2 < n; ++i2) {
-        if (node = group2[i2])
-          callback2.call(node, node.__data__, i2, group2);
+      for (var group2 = groups2[j], i = 0, n = group2.length, node; i < n; ++i) {
+        if (node = group2[i])
+          callback2.call(node, node.__data__, i, group2);
       }
     }
     return this;
@@ -16877,16 +16877,16 @@ var rbmViz = (() => {
   }
   ClassList.prototype = {
     add: function(name) {
-      var i2 = this._names.indexOf(name);
-      if (i2 < 0) {
+      var i = this._names.indexOf(name);
+      if (i < 0) {
         this._names.push(name);
         this._node.setAttribute("class", this._names.join(" "));
       }
     },
     remove: function(name) {
-      var i2 = this._names.indexOf(name);
-      if (i2 >= 0) {
-        this._names.splice(i2, 1);
+      var i = this._names.indexOf(name);
+      if (i >= 0) {
+        this._names.splice(i, 1);
         this._node.setAttribute("class", this._names.join(" "));
       }
     },
@@ -16895,14 +16895,14 @@ var rbmViz = (() => {
     }
   };
   function classedAdd(node, names2) {
-    var list = classList(node), i2 = -1, n = names2.length;
-    while (++i2 < n)
-      list.add(names2[i2]);
+    var list = classList(node), i = -1, n = names2.length;
+    while (++i < n)
+      list.add(names2[i]);
   }
   function classedRemove(node, names2) {
-    var list = classList(node), i2 = -1, n = names2.length;
-    while (++i2 < n)
-      list.remove(names2[i2]);
+    var list = classList(node), i = -1, n = names2.length;
+    while (++i < n)
+      list.remove(names2[i]);
   }
   function classedTrue(names2) {
     return function() {
@@ -16922,9 +16922,9 @@ var rbmViz = (() => {
   function classed_default(name, value) {
     var names2 = classArray(name + "");
     if (arguments.length < 2) {
-      var list = classList(this.node()), i2 = -1, n = names2.length;
-      while (++i2 < n)
-        if (!list.contains(names2[i2]))
+      var list = classList(this.node()), i = -1, n = names2.length;
+      while (++i < n)
+        if (!list.contains(names2[i]))
           return false;
       return true;
     }
@@ -17042,9 +17042,9 @@ var rbmViz = (() => {
   }
   function parseTypenames2(typenames) {
     return typenames.trim().split(/^|\s+/).map(function(t) {
-      var name = "", i2 = t.indexOf(".");
-      if (i2 >= 0)
-        name = t.slice(i2 + 1), t = t.slice(0, i2);
+      var name = "", i = t.indexOf(".");
+      if (i >= 0)
+        name = t.slice(i + 1), t = t.slice(0, i);
       return { type: t, name };
     });
   }
@@ -17053,15 +17053,15 @@ var rbmViz = (() => {
       var on = this.__on;
       if (!on)
         return;
-      for (var j = 0, i2 = -1, m = on.length, o; j < m; ++j) {
+      for (var j = 0, i = -1, m = on.length, o; j < m; ++j) {
         if (o = on[j], (!typename.type || o.type === typename.type) && o.name === typename.name) {
           this.removeEventListener(o.type, o.listener, o.options);
         } else {
-          on[++i2] = o;
+          on[++i] = o;
         }
       }
-      if (++i2)
-        on.length = i2;
+      if (++i)
+        on.length = i;
       else
         delete this.__on;
     };
@@ -17087,13 +17087,13 @@ var rbmViz = (() => {
     };
   }
   function on_default(typename, value, options) {
-    var typenames = parseTypenames2(typename + ""), i2, n = typenames.length, t;
+    var typenames = parseTypenames2(typename + ""), i, n = typenames.length, t;
     if (arguments.length < 2) {
       var on = this.node().__on;
       if (on)
         for (var j = 0, m = on.length, o; j < m; ++j) {
-          for (i2 = 0, o = on[j]; i2 < n; ++i2) {
-            if ((t = typenames[i2]).type === o.type && t.name === o.name) {
+          for (i = 0, o = on[j]; i < n; ++i) {
+            if ((t = typenames[i]).type === o.type && t.name === o.name) {
               return o.value;
             }
           }
@@ -17101,8 +17101,8 @@ var rbmViz = (() => {
       return;
     }
     on = value ? onAdd : onRemove;
-    for (i2 = 0; i2 < n; ++i2)
-      this.each(on(typenames[i2], value, options));
+    for (i = 0; i < n; ++i)
+      this.each(on(typenames[i], value, options));
     return this;
   }
 
@@ -17137,8 +17137,8 @@ var rbmViz = (() => {
   // node_modules/d3-selection/src/selection/iterator.js
   function* iterator_default() {
     for (var groups2 = this._groups, j = 0, m = groups2.length; j < m; ++j) {
-      for (var group2 = groups2[j], i2 = 0, n = group2.length, node; i2 < n; ++i2) {
-        if (node = group2[i2])
+      for (var group2 = groups2[j], i = 0, n = group2.length, node; i < n; ++i) {
+        if (node = group2[i])
           yield node;
       }
     }
@@ -17571,8 +17571,8 @@ var rbmViz = (() => {
   function basis_default(values) {
     var n = values.length - 1;
     return function(t) {
-      var i2 = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values[i2], v2 = values[i2 + 1], v0 = i2 > 0 ? values[i2 - 1] : 2 * v1 - v2, v3 = i2 < n - 1 ? values[i2 + 2] : 2 * v2 - v1;
-      return basis((t - i2 / n) * n, v0, v1, v2, v3);
+      var i = t <= 0 ? t = 0 : t >= 1 ? (t = 1, n - 1) : Math.floor(t * n), v1 = values[i], v2 = values[i + 1], v0 = i > 0 ? values[i - 1] : 2 * v1 - v2, v3 = i < n - 1 ? values[i + 2] : 2 * v2 - v1;
+      return basis((t - i / n) * n, v0, v1, v2, v3);
     };
   }
 
@@ -17580,8 +17580,8 @@ var rbmViz = (() => {
   function basisClosed_default(values) {
     var n = values.length;
     return function(t) {
-      var i2 = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values[(i2 + n - 1) % n], v1 = values[i2 % n], v2 = values[(i2 + 1) % n], v3 = values[(i2 + 2) % n];
-      return basis((t - i2 / n) * n, v0, v1, v2, v3);
+      var i = Math.floor(((t %= 1) < 0 ? ++t : t) * n), v0 = values[(i + n - 1) % n], v1 = values[i % n], v2 = values[(i + 1) % n], v3 = values[(i + 2) % n];
+      return basis((t - i / n) * n, v0, v1, v2, v3);
     };
   }
 
@@ -17627,12 +17627,12 @@ var rbmViz = (() => {
   }(1);
   function rgbSpline(spline) {
     return function(colors2) {
-      var n = colors2.length, r = new Array(n), g = new Array(n), b = new Array(n), i2, color3;
-      for (i2 = 0; i2 < n; ++i2) {
-        color3 = rgb(colors2[i2]);
-        r[i2] = color3.r || 0;
-        g[i2] = color3.g || 0;
-        b[i2] = color3.b || 0;
+      var n = colors2.length, r = new Array(n), g = new Array(n), b = new Array(n), i, color3;
+      for (i = 0; i < n; ++i) {
+        color3 = rgb(colors2[i]);
+        r[i] = color3.r || 0;
+        g[i] = color3.g || 0;
+        b[i] = color3.b || 0;
       }
       r = spline(r);
       g = spline(g);
@@ -17670,37 +17670,37 @@ var rbmViz = (() => {
     };
   }
   function string_default(a, b) {
-    var bi = reA.lastIndex = reB.lastIndex = 0, am, bm, bs, i2 = -1, s = [], q = [];
+    var bi = reA.lastIndex = reB.lastIndex = 0, am, bm, bs, i = -1, s = [], q = [];
     a = a + "", b = b + "";
     while ((am = reA.exec(a)) && (bm = reB.exec(b))) {
       if ((bs = bm.index) > bi) {
         bs = b.slice(bi, bs);
-        if (s[i2])
-          s[i2] += bs;
+        if (s[i])
+          s[i] += bs;
         else
-          s[++i2] = bs;
+          s[++i] = bs;
       }
       if ((am = am[0]) === (bm = bm[0])) {
-        if (s[i2])
-          s[i2] += bm;
+        if (s[i])
+          s[i] += bm;
         else
-          s[++i2] = bm;
+          s[++i] = bm;
       } else {
-        s[++i2] = null;
-        q.push({ i: i2, x: number_default(am, bm) });
+        s[++i] = null;
+        q.push({ i, x: number_default(am, bm) });
       }
       bi = reB.lastIndex;
     }
     if (bi < b.length) {
       bs = b.slice(bi);
-      if (s[i2])
-        s[i2] += bs;
+      if (s[i])
+        s[i] += bs;
       else
-        s[++i2] = bs;
+        s[++i] = bs;
     }
     return s.length < 2 ? q[0] ? one(q[0].x) : zero(b) : (b = q.length, function(t) {
-      for (var i3 = 0, o; i3 < b; ++i3)
-        s[(o = q[i3]).i] = o.x(t);
+      for (var i2 = 0, o; i2 < b; ++i2)
+        s[(o = q[i2]).i] = o.x(t);
       return s.join("");
     });
   }
@@ -17760,8 +17760,8 @@ var rbmViz = (() => {
     }
     function translate2(xa, ya, xb, yb, s, q) {
       if (xa !== xb || ya !== yb) {
-        var i2 = s.push("translate(", null, pxComma, null, pxParen);
-        q.push({ i: i2 - 4, x: number_default(xa, xb) }, { i: i2 - 2, x: number_default(ya, yb) });
+        var i = s.push("translate(", null, pxComma, null, pxParen);
+        q.push({ i: i - 4, x: number_default(xa, xb) }, { i: i - 2, x: number_default(ya, yb) });
       } else if (xb || yb) {
         s.push("translate(" + xb + pxComma + yb + pxParen);
       }
@@ -17786,8 +17786,8 @@ var rbmViz = (() => {
     }
     function scale(xa, ya, xb, yb, s, q) {
       if (xa !== xb || ya !== yb) {
-        var i2 = s.push(pop(s) + "scale(", null, ",", null, ")");
-        q.push({ i: i2 - 4, x: number_default(xa, xb) }, { i: i2 - 2, x: number_default(ya, yb) });
+        var i = s.push(pop(s) + "scale(", null, ",", null, ")");
+        q.push({ i: i - 4, x: number_default(xa, xb) }, { i: i - 2, x: number_default(ya, yb) });
       } else if (xb !== 1 || yb !== 1) {
         s.push(pop(s) + "scale(" + xb + "," + yb + ")");
       }
@@ -17801,9 +17801,9 @@ var rbmViz = (() => {
       scale(a.scaleX, a.scaleY, b.scaleX, b.scaleY, s, q);
       a = b = null;
       return function(t) {
-        var i2 = -1, n = q.length, o;
-        while (++i2 < n)
-          s[(o = q[i2]).i] = o.x(t);
+        var i = -1, n = q.length, o;
+        while (++i < n)
+          s[(o = q[i]).i] = o.x(t);
         return s.join("");
       };
     };
@@ -17996,11 +17996,11 @@ var rbmViz = (() => {
         start2(elapsed - self.delay);
     }
     function start2(elapsed) {
-      var i2, j, n, o;
+      var i, j, n, o;
       if (self.state !== SCHEDULED)
         return stop();
-      for (i2 in schedules) {
-        o = schedules[i2];
+      for (i in schedules) {
+        o = schedules[i];
         if (o.name !== self.name)
           continue;
         if (o.state === STARTED)
@@ -18009,12 +18009,12 @@ var rbmViz = (() => {
           o.state = ENDED;
           o.timer.stop();
           o.on.call("interrupt", node, node.__data__, o.index, o.group);
-          delete schedules[i2];
-        } else if (+i2 < id2) {
+          delete schedules[i];
+        } else if (+i < id2) {
           o.state = ENDED;
           o.timer.stop();
           o.on.call("cancel", node, node.__data__, o.index, o.group);
-          delete schedules[i2];
+          delete schedules[i];
         }
       }
       timeout_default(function() {
@@ -18030,17 +18030,17 @@ var rbmViz = (() => {
         return;
       self.state = STARTED;
       tween = new Array(n = self.tween.length);
-      for (i2 = 0, j = -1; i2 < n; ++i2) {
-        if (o = self.tween[i2].value.call(node, node.__data__, self.index, self.group)) {
+      for (i = 0, j = -1; i < n; ++i) {
+        if (o = self.tween[i].value.call(node, node.__data__, self.index, self.group)) {
           tween[++j] = o;
         }
       }
       tween.length = j + 1;
     }
     function tick(elapsed) {
-      var t = elapsed < self.duration ? self.ease.call(null, elapsed / self.duration) : (self.timer.restart(stop), self.state = ENDING, 1), i2 = -1, n = tween.length;
-      while (++i2 < n) {
-        tween[i2].call(node, t);
+      var t = elapsed < self.duration ? self.ease.call(null, elapsed / self.duration) : (self.timer.restart(stop), self.state = ENDING, 1), i = -1, n = tween.length;
+      while (++i < n) {
+        tween[i].call(node, t);
       }
       if (self.state === ENDING) {
         self.on.call("end", node, node.__data__, self.index, self.group);
@@ -18051,7 +18051,7 @@ var rbmViz = (() => {
       self.state = ENDED;
       self.timer.stop();
       delete schedules[id2];
-      for (var i2 in schedules)
+      for (var i in schedules)
         return;
       delete node.__transition;
     }
@@ -18059,12 +18059,12 @@ var rbmViz = (() => {
 
   // node_modules/d3-transition/src/interrupt.js
   function interrupt_default(node, name) {
-    var schedules = node.__transition, schedule, active, empty2 = true, i2;
+    var schedules = node.__transition, schedule, active, empty2 = true, i;
     if (!schedules)
       return;
     name = name == null ? null : name + "";
-    for (i2 in schedules) {
-      if ((schedule = schedules[i2]).name !== name) {
+    for (i in schedules) {
+      if ((schedule = schedules[i]).name !== name) {
         empty2 = false;
         continue;
       }
@@ -18072,7 +18072,7 @@ var rbmViz = (() => {
       schedule.state = ENDED;
       schedule.timer.stop();
       schedule.on.call(active ? "interrupt" : "cancel", node, node.__data__, schedule.index, schedule.group);
-      delete schedules[i2];
+      delete schedules[i];
     }
     if (empty2)
       delete node.__transition;
@@ -18092,10 +18092,10 @@ var rbmViz = (() => {
       var schedule = set3(this, id2), tween = schedule.tween;
       if (tween !== tween0) {
         tween1 = tween0 = tween;
-        for (var i2 = 0, n = tween1.length; i2 < n; ++i2) {
-          if (tween1[i2].name === name) {
+        for (var i = 0, n = tween1.length; i < n; ++i) {
+          if (tween1[i].name === name) {
             tween1 = tween1.slice();
-            tween1.splice(i2, 1);
+            tween1.splice(i, 1);
             break;
           }
         }
@@ -18111,13 +18111,13 @@ var rbmViz = (() => {
       var schedule = set3(this, id2), tween = schedule.tween;
       if (tween !== tween0) {
         tween1 = (tween0 = tween).slice();
-        for (var t = { name, value }, i2 = 0, n = tween1.length; i2 < n; ++i2) {
-          if (tween1[i2].name === name) {
-            tween1[i2] = t;
+        for (var t = { name, value }, i = 0, n = tween1.length; i < n; ++i) {
+          if (tween1[i].name === name) {
+            tween1[i] = t;
             break;
           }
         }
-        if (i2 === n)
+        if (i === n)
           tween1.push(t);
       }
       schedule.tween = tween1;
@@ -18128,8 +18128,8 @@ var rbmViz = (() => {
     name += "";
     if (arguments.length < 2) {
       var tween = get2(this.node(), id2).tween;
-      for (var i2 = 0, n = tween.length, t; i2 < n; ++i2) {
-        if ((t = tween[i2]).name === name) {
+      for (var i = 0, n = tween.length, t; i < n; ++i) {
+        if ((t = tween[i]).name === name) {
           return t.value;
         }
       }
@@ -18202,27 +18202,27 @@ var rbmViz = (() => {
     };
   }
   function attr_default2(name, value) {
-    var fullname = namespace_default(name), i2 = fullname === "transform" ? interpolateTransformSvg : interpolate_default;
-    return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i2, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i2, value));
+    var fullname = namespace_default(name), i = fullname === "transform" ? interpolateTransformSvg : interpolate_default;
+    return this.attrTween(name, typeof value === "function" ? (fullname.local ? attrFunctionNS2 : attrFunction2)(fullname, i, tweenValue(this, "attr." + name, value)) : value == null ? (fullname.local ? attrRemoveNS2 : attrRemove2)(fullname) : (fullname.local ? attrConstantNS2 : attrConstant2)(fullname, i, value));
   }
 
   // node_modules/d3-transition/src/transition/attrTween.js
-  function attrInterpolate(name, i2) {
+  function attrInterpolate(name, i) {
     return function(t) {
-      this.setAttribute(name, i2.call(this, t));
+      this.setAttribute(name, i.call(this, t));
     };
   }
-  function attrInterpolateNS(fullname, i2) {
+  function attrInterpolateNS(fullname, i) {
     return function(t) {
-      this.setAttributeNS(fullname.space, fullname.local, i2.call(this, t));
+      this.setAttributeNS(fullname.space, fullname.local, i.call(this, t));
     };
   }
   function attrTweenNS(fullname, value) {
     var t0, i0;
     function tween() {
-      var i2 = value.apply(this, arguments);
-      if (i2 !== i0)
-        t0 = (i0 = i2) && attrInterpolateNS(fullname, i2);
+      var i = value.apply(this, arguments);
+      if (i !== i0)
+        t0 = (i0 = i) && attrInterpolateNS(fullname, i);
       return t0;
     }
     tween._value = value;
@@ -18231,9 +18231,9 @@ var rbmViz = (() => {
   function attrTween(name, value) {
     var t0, i0;
     function tween() {
-      var i2 = value.apply(this, arguments);
-      if (i2 !== i0)
-        t0 = (i0 = i2) && attrInterpolate(name, i2);
+      var i = value.apply(this, arguments);
+      if (i !== i0)
+        t0 = (i0 = i) && attrInterpolate(name, i);
       return t0;
     }
     tween._value = value;
@@ -18316,8 +18316,8 @@ var rbmViz = (() => {
     if (typeof match !== "function")
       match = matcher_default(match);
     for (var groups2 = this._groups, m = groups2.length, subgroups = new Array(m), j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = [], node, i2 = 0; i2 < n; ++i2) {
-        if ((node = group2[i2]) && match.call(node, node.__data__, i2, group2)) {
+      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = [], node, i = 0; i < n; ++i) {
+        if ((node = group2[i]) && match.call(node, node.__data__, i, group2)) {
           subgroup.push(node);
         }
       }
@@ -18330,9 +18330,9 @@ var rbmViz = (() => {
     if (transition2._id !== this._id)
       throw new Error();
     for (var groups0 = this._groups, groups1 = transition2._groups, m0 = groups0.length, m1 = groups1.length, m = Math.min(m0, m1), merges = new Array(m0), j = 0; j < m; ++j) {
-      for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge2 = merges[j] = new Array(n), node, i2 = 0; i2 < n; ++i2) {
-        if (node = group0[i2] || group1[i2]) {
-          merge2[i2] = node;
+      for (var group0 = groups0[j], group1 = groups1[j], n = group0.length, merge2 = merges[j] = new Array(n), node, i = 0; i < n; ++i) {
+        if (node = group0[i] || group1[i]) {
+          merge2[i] = node;
         }
       }
     }
@@ -18345,9 +18345,9 @@ var rbmViz = (() => {
   // node_modules/d3-transition/src/transition/on.js
   function start(name) {
     return (name + "").trim().split(/^|\s+/).every(function(t) {
-      var i2 = t.indexOf(".");
-      if (i2 >= 0)
-        t = t.slice(0, i2);
+      var i = t.indexOf(".");
+      if (i >= 0)
+        t = t.slice(0, i);
       return !t || t === "start";
     });
   }
@@ -18369,8 +18369,8 @@ var rbmViz = (() => {
   function removeFunction(id2) {
     return function() {
       var parent = this.parentNode;
-      for (var i2 in this.__transition)
-        if (+i2 !== id2)
+      for (var i in this.__transition)
+        if (+i !== id2)
           return;
       if (parent)
         parent.removeChild(this);
@@ -18386,12 +18386,12 @@ var rbmViz = (() => {
     if (typeof select !== "function")
       select = selector_default(select);
     for (var groups2 = this._groups, m = groups2.length, subgroups = new Array(m), j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = new Array(n), node, subnode, i2 = 0; i2 < n; ++i2) {
-        if ((node = group2[i2]) && (subnode = select.call(node, node.__data__, i2, group2))) {
+      for (var group2 = groups2[j], n = group2.length, subgroup = subgroups[j] = new Array(n), node, subnode, i = 0; i < n; ++i) {
+        if ((node = group2[i]) && (subnode = select.call(node, node.__data__, i, group2))) {
           if ("__data__" in node)
             subnode.__data__ = node.__data__;
-          subgroup[i2] = subnode;
-          schedule_default(subgroup[i2], name, id2, i2, subgroup, get2(node, id2));
+          subgroup[i] = subnode;
+          schedule_default(subgroup[i], name, id2, i, subgroup, get2(node, id2));
         }
       }
     }
@@ -18404,9 +18404,9 @@ var rbmViz = (() => {
     if (typeof select !== "function")
       select = selectorAll_default(select);
     for (var groups2 = this._groups, m = groups2.length, subgroups = [], parents = [], j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, node, i2 = 0; i2 < n; ++i2) {
-        if (node = group2[i2]) {
-          for (var children2 = select.call(node, node.__data__, i2, group2), child, inherit2 = get2(node, id2), k = 0, l = children2.length; k < l; ++k) {
+      for (var group2 = groups2[j], n = group2.length, node, i = 0; i < n; ++i) {
+        if (node = group2[i]) {
+          for (var children2 = select.call(node, node.__data__, i, group2), child, inherit2 = get2(node, id2), k = 0, l = children2.length; k < l; ++k) {
             if (child = children2[k]) {
               schedule_default(child, name, id2, k, children2, inherit2);
             }
@@ -18464,22 +18464,22 @@ var rbmViz = (() => {
     };
   }
   function style_default2(name, value, priority) {
-    var i2 = (name += "") === "transform" ? interpolateTransformCss : interpolate_default;
-    return value == null ? this.styleTween(name, styleNull(name, i2)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i2, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i2, value), priority).on("end.style." + name, null);
+    var i = (name += "") === "transform" ? interpolateTransformCss : interpolate_default;
+    return value == null ? this.styleTween(name, styleNull(name, i)).on("end.style." + name, styleRemove2(name)) : typeof value === "function" ? this.styleTween(name, styleFunction2(name, i, tweenValue(this, "style." + name, value))).each(styleMaybeRemove(this._id, name)) : this.styleTween(name, styleConstant2(name, i, value), priority).on("end.style." + name, null);
   }
 
   // node_modules/d3-transition/src/transition/styleTween.js
-  function styleInterpolate(name, i2, priority) {
+  function styleInterpolate(name, i, priority) {
     return function(t) {
-      this.style.setProperty(name, i2.call(this, t), priority);
+      this.style.setProperty(name, i.call(this, t), priority);
     };
   }
   function styleTween(name, value, priority) {
     var t, i0;
     function tween() {
-      var i2 = value.apply(this, arguments);
-      if (i2 !== i0)
-        t = (i0 = i2) && styleInterpolate(name, i2, priority);
+      var i = value.apply(this, arguments);
+      if (i !== i0)
+        t = (i0 = i) && styleInterpolate(name, i, priority);
       return t;
     }
     tween._value = value;
@@ -18513,17 +18513,17 @@ var rbmViz = (() => {
   }
 
   // node_modules/d3-transition/src/transition/textTween.js
-  function textInterpolate(i2) {
+  function textInterpolate(i) {
     return function(t) {
-      this.textContent = i2.call(this, t);
+      this.textContent = i.call(this, t);
     };
   }
   function textTween(value) {
     var t0, i0;
     function tween() {
-      var i2 = value.apply(this, arguments);
-      if (i2 !== i0)
-        t0 = (i0 = i2) && textInterpolate(i2);
+      var i = value.apply(this, arguments);
+      if (i !== i0)
+        t0 = (i0 = i) && textInterpolate(i);
       return t0;
     }
     tween._value = value;
@@ -18544,10 +18544,10 @@ var rbmViz = (() => {
   function transition_default() {
     var name = this._name, id0 = this._id, id1 = newId();
     for (var groups2 = this._groups, m = groups2.length, j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, node, i2 = 0; i2 < n; ++i2) {
-        if (node = group2[i2]) {
+      for (var group2 = groups2[j], n = group2.length, node, i = 0; i < n; ++i) {
+        if (node = group2[i]) {
           var inherit2 = get2(node, id0);
-          schedule_default(node, name, id1, i2, group2, {
+          schedule_default(node, name, id1, i, group2, {
             time: inherit2.time + inherit2.delay + inherit2.duration,
             delay: 0,
             duration: inherit2.duration,
@@ -18660,9 +18660,9 @@ var rbmViz = (() => {
       id2 = newId(), (timing = defaultTiming).time = now(), name = name == null ? null : name + "";
     }
     for (var groups2 = this._groups, m = groups2.length, j = 0; j < m; ++j) {
-      for (var group2 = groups2[j], n = group2.length, node, i2 = 0; i2 < n; ++i2) {
-        if (node = group2[i2]) {
-          schedule_default(node, name, id2, i2, group2, timing || inherit(node, id2));
+      for (var group2 = groups2[j], n = group2.length, node, i = 0; i < n; ++i) {
+        if (node = group2[i]) {
+          schedule_default(node, name, id2, i, group2, timing || inherit(node, id2));
         }
       }
     }
@@ -18720,12 +18720,12 @@ var rbmViz = (() => {
     return Math.abs(x = Math.round(x)) >= 1e21 ? x.toLocaleString("en").replace(/,/g, "") : x.toString(10);
   }
   function formatDecimalParts(x, p) {
-    if ((i2 = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0)
+    if ((i = (x = p ? x.toExponential(p - 1) : x.toExponential()).indexOf("e")) < 0)
       return null;
-    var i2, coefficient = x.slice(0, i2);
+    var i, coefficient = x.slice(0, i);
     return [
       coefficient.length > 1 ? coefficient[0] + coefficient.slice(2) : coefficient,
-      +x.slice(i2 + 1)
+      +x.slice(i + 1)
     ];
   }
 
@@ -18737,11 +18737,11 @@ var rbmViz = (() => {
   // node_modules/d3-format/src/formatGroup.js
   function formatGroup_default(grouping, thousands) {
     return function(value, width) {
-      var i2 = value.length, t = [], j = 0, g = grouping[0], length = 0;
-      while (i2 > 0 && g > 0) {
+      var i = value.length, t = [], j = 0, g = grouping[0], length = 0;
+      while (i > 0 && g > 0) {
         if (length + g + 1 > width)
           g = Math.max(1, width - length);
-        t.push(value.substring(i2 -= g, i2 + g));
+        t.push(value.substring(i -= g, i + g));
         if ((length += g + 1) > width)
           break;
         g = grouping[j = (j + 1) % grouping.length];
@@ -18753,8 +18753,8 @@ var rbmViz = (() => {
   // node_modules/d3-format/src/formatNumerals.js
   function formatNumerals_default(numerals) {
     return function(value) {
-      return value.replace(/[0-9]/g, function(i2) {
-        return numerals[+i2];
+      return value.replace(/[0-9]/g, function(i) {
+        return numerals[+i];
       });
     };
   }
@@ -18798,18 +18798,18 @@ var rbmViz = (() => {
   // node_modules/d3-format/src/formatTrim.js
   function formatTrim_default(s) {
     out:
-      for (var n = s.length, i2 = 1, i0 = -1, i1; i2 < n; ++i2) {
-        switch (s[i2]) {
+      for (var n = s.length, i = 1, i0 = -1, i1; i < n; ++i) {
+        switch (s[i]) {
           case ".":
-            i0 = i1 = i2;
+            i0 = i1 = i;
             break;
           case "0":
             if (i0 === 0)
-              i0 = i2;
-            i1 = i2;
+              i0 = i;
+            i1 = i;
             break;
           default:
-            if (!+s[i2])
+            if (!+s[i])
               break out;
             if (i0 > 0)
               i0 = 0;
@@ -18825,8 +18825,8 @@ var rbmViz = (() => {
     var d2 = formatDecimalParts(x, p);
     if (!d2)
       return x + "";
-    var coefficient = d2[0], exponent = d2[1], i2 = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n = coefficient.length;
-    return i2 === n ? coefficient : i2 > n ? coefficient + new Array(i2 - n + 1).join("0") : i2 > 0 ? coefficient.slice(0, i2) + "." + coefficient.slice(i2) : "0." + new Array(1 - i2).join("0") + formatDecimalParts(x, Math.max(0, p + i2 - 1))[0];
+    var coefficient = d2[0], exponent = d2[1], i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n = coefficient.length;
+    return i === n ? coefficient : i > n ? coefficient + new Array(i - n + 1).join("0") : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i) : "0." + new Array(1 - i).join("0") + formatDecimalParts(x, Math.max(0, p + i - 1))[0];
   }
 
   // node_modules/d3-format/src/formatRounded.js
@@ -18878,7 +18878,7 @@ var rbmViz = (() => {
       var formatType = formatTypes_default[type2], maybeSuffix = /[defgprs%]/.test(type2);
       precision = precision === void 0 ? 6 : /[gprs]/.test(type2) ? Math.max(1, Math.min(21, precision)) : Math.max(0, Math.min(20, precision));
       function format2(value) {
-        var valuePrefix = prefix, valueSuffix = suffix, i2, n, c;
+        var valuePrefix = prefix, valueSuffix = suffix, i, n, c;
         if (type2 === "c") {
           valueSuffix = formatType(value) + valueSuffix;
           value = "";
@@ -18893,11 +18893,11 @@ var rbmViz = (() => {
           valuePrefix = (valueNegative ? sign2 === "(" ? sign2 : minus : sign2 === "-" || sign2 === "(" ? "" : sign2) + valuePrefix;
           valueSuffix = (type2 === "s" ? prefixes[8 + prefixExponent / 3] : "") + valueSuffix + (valueNegative && sign2 === "(" ? ")" : "");
           if (maybeSuffix) {
-            i2 = -1, n = value.length;
-            while (++i2 < n) {
-              if (c = value.charCodeAt(i2), 48 > c || c > 57) {
-                valueSuffix = (c === 46 ? decimal + value.slice(i2 + 1) : value.slice(i2)) + valueSuffix;
-                value = value.slice(0, i2);
+            i = -1, n = value.length;
+            while (++i < n) {
+              if (c = value.charCodeAt(i), 48 > c || c > 57) {
+                valueSuffix = (c === 46 ? decimal + value.slice(i + 1) : value.slice(i)) + valueSuffix;
+                value = value.slice(0, i);
                 break;
               }
             }
@@ -19050,10 +19050,10 @@ var rbmViz = (() => {
       var ilen = items.length;
       var prev = ctx.font;
       var width = 0;
-      var i2;
+      var i;
       ctx.font = font.string;
-      for (i2 = 0; i2 < ilen; ++i2) {
-        width = Math.max(ctx.measureText(items[i2]).width, width);
+      for (i = 0; i < ilen; ++i) {
+        width = Math.max(ctx.measureText(items[i]).width, width);
       }
       ctx.font = prev;
       return {
@@ -19077,9 +19077,9 @@ var rbmViz = (() => {
     arrayDiff: function(a0, a1) {
       var prev = a0.slice();
       var updates = [];
-      var i2, j, ilen, v;
-      for (i2 = 0, ilen = a1.length; i2 < ilen; ++i2) {
-        v = a1[i2];
+      var i, j, ilen, v;
+      for (i = 0, ilen = a1.length; i < ilen; ++i) {
+        v = a1[i];
         j = prev.indexOf(v);
         if (j === -1) {
           updates.push([v, 1]);
@@ -19087,8 +19087,8 @@ var rbmViz = (() => {
           prev.splice(j, 1);
         }
       }
-      for (i2 = 0, ilen = prev.length; i2 < ilen; ++i2) {
-        updates.push([prev[i2], -1]);
+      for (i = 0, ilen = prev.length; i < ilen; ++i) {
+        updates.push([prev[i], -1]);
       }
       return updates;
     },
@@ -19449,7 +19449,7 @@ var rbmViz = (() => {
     var strokeColor = model.textStrokeColor;
     var strokeWidth = model.textStrokeWidth;
     var stroked = strokeColor && strokeWidth;
-    var i2;
+    var i;
     if (!ilen || !filled && !stroked) {
       return;
     }
@@ -19467,13 +19467,13 @@ var rbmViz = (() => {
       ctx.lineWidth = strokeWidth;
       ctx.strokeStyle = strokeColor;
     }
-    for (i2 = 0, ilen = lines.length; i2 < ilen; ++i2) {
-      drawTextLine(ctx, lines[i2], {
+    for (i = 0, ilen = lines.length; i < ilen; ++i) {
+      drawTextLine(ctx, lines[i], {
         stroked,
         filled,
         w: rect.w,
         x: rect.x,
-        y: rect.y + rect.h * i2
+        y: rect.y + rect.h * i
       });
     }
   }
@@ -19600,9 +19600,9 @@ var rbmViz = (() => {
     var min3 = MAX_INTEGER;
     var max3 = MIN_INTEGER;
     var origin = axis.origin;
-    var i2, pt, vx, vy, dp;
-    for (i2 = 0; i2 < points.length; ++i2) {
-      pt = points[i2];
+    var i, pt, vx, vy, dp;
+    for (i = 0; i < points.length; ++i) {
+      pt = points[i];
       vx = pt.x - origin.x;
       vy = pt.y - origin.y;
       dp = axis.vx * vx + axis.vy * vy;
@@ -19667,16 +19667,16 @@ var rbmViz = (() => {
         toAxis(r0[0], r0[1]),
         toAxis(r0[0], r0[3])
       ];
-      var i2, pr0, pr1;
+      var i, pr0, pr1;
       if (this._rotation !== other._rotation) {
         axes.push(
           toAxis(r1[0], r1[1]),
           toAxis(r1[0], r1[3])
         );
       }
-      for (i2 = 0; i2 < axes.length; ++i2) {
-        pr0 = projected(r0, axes[i2]);
-        pr1 = projected(r1, axes[i2]);
+      for (i = 0; i < axes.length; ++i) {
+        pr0 = projected(r0, axes[i]);
+        pr1 = projected(r1, axes[i]);
         if (pr0.max < pr1.min || pr1.max < pr0.min) {
           return false;
         }
@@ -19722,10 +19722,10 @@ var rbmViz = (() => {
     };
   }
   function collide(labels, collider) {
-    var i2, j, s0, s1;
-    for (i2 = labels.length - 1; i2 >= 0; --i2) {
-      s0 = labels[i2].$layout;
-      for (j = i2 - 1; j >= 0 && s0._visible; --j) {
+    var i, j, s0, s1;
+    for (i = labels.length - 1; i >= 0; --i) {
+      s0 = labels[i].$layout;
+      for (j = i - 1; j >= 0 && s0._visible; --j) {
         s1 = labels[j].$layout;
         if (s1._visible && s0._box.intersects(s1._box)) {
           collider(s0, s1);
@@ -19735,9 +19735,9 @@ var rbmViz = (() => {
     return labels;
   }
   function compute(labels) {
-    var i2, ilen, label, state, geometry, center, proxy;
-    for (i2 = 0, ilen = labels.length; i2 < ilen; ++i2) {
-      label = labels[i2];
+    var i, ilen, label, state, geometry, center, proxy;
+    for (i = 0, ilen = labels.length; i < ilen; ++i) {
+      label = labels[i];
       state = label.$layout;
       if (state._visible) {
         proxy = new Proxy(label._el, { get: (el, p) => el.getProps([p], true)[p] });
@@ -19759,16 +19759,16 @@ var rbmViz = (() => {
   var layout = {
     prepare: function(datasets) {
       var labels = [];
-      var i2, j, ilen, jlen, label;
-      for (i2 = 0, ilen = datasets.length; i2 < ilen; ++i2) {
-        for (j = 0, jlen = datasets[i2].length; j < jlen; ++j) {
-          label = datasets[i2][j];
+      var i, j, ilen, jlen, label;
+      for (i = 0, ilen = datasets.length; i < ilen; ++i) {
+        for (j = 0, jlen = datasets[i].length; j < jlen; ++j) {
+          label = datasets[i][j];
           labels.push(label);
           label.$layout = {
             _box: new HitBox(),
             _hidable: false,
             _visible: true,
-            _set: i2,
+            _set: i,
             _idx: label._index
           };
         }
@@ -19783,9 +19783,9 @@ var rbmViz = (() => {
     },
     update: function(labels) {
       var dirty = false;
-      var i2, ilen, label, model, state;
-      for (i2 = 0, ilen = labels.length; i2 < ilen; ++i2) {
-        label = labels[i2];
+      var i, ilen, label, model, state;
+      for (i = 0, ilen = labels.length; i < ilen; ++i) {
+        label = labels[i];
         model = label.model();
         state = label.$layout;
         state._hidable = model && model.display === "auto";
@@ -19797,19 +19797,19 @@ var rbmViz = (() => {
       }
     },
     lookup: function(labels, point) {
-      var i2, state;
-      for (i2 = labels.length - 1; i2 >= 0; --i2) {
-        state = labels[i2].$layout;
+      var i, state;
+      for (i = labels.length - 1; i >= 0; --i) {
+        state = labels[i].$layout;
         if (state && state._visible && state._box.contains(point)) {
-          return labels[i2];
+          return labels[i];
         }
       }
       return null;
     },
     draw: function(chart, labels) {
-      var i2, ilen, label, state, geometry, center;
-      for (i2 = 0, ilen = labels.length; i2 < ilen; ++i2) {
-        label = labels[i2];
+      var i, ilen, label, state, geometry, center;
+      for (i = 0, ilen = labels.length; i < ilen; ++i) {
+        label = labels[i];
         state = label.$layout;
         if (state._visible) {
           geometry = label.geometry();
@@ -20006,16 +20006,16 @@ var rbmViz = (() => {
       var config = configure(dataset, options);
       var elements2 = args.meta.data || [];
       var ctx = chart.ctx;
-      var i2, j, ilen, jlen, cfg, key, el, label;
+      var i, j, ilen, jlen, cfg, key, el, label;
       ctx.save();
-      for (i2 = 0, ilen = elements2.length; i2 < ilen; ++i2) {
-        el = elements2[i2];
+      for (i = 0, ilen = elements2.length; i < ilen; ++i) {
+        el = elements2[i];
         el[EXPANDO_KEY2] = [];
-        if (visible && el && chart.getDataVisibility(i2) && !el.skip) {
+        if (visible && el && chart.getDataVisibility(i) && !el.skip) {
           for (j = 0, jlen = config.labels.length; j < jlen; ++j) {
             cfg = config.labels[j];
             key = cfg._key;
-            label = new Label(cfg, ctx, el, i2);
+            label = new Label(cfg, ctx, el, i);
             label.$groups = {
               _set: datasetIndex,
               _key: key || DEFAULT_KEY
@@ -20023,7 +20023,7 @@ var rbmViz = (() => {
             label.$context = {
               active: false,
               chart,
-              dataIndex: i2,
+              dataIndex: i,
               dataset,
               datasetIndex
             };
@@ -20070,9 +20070,9 @@ var rbmViz = (() => {
       var previous = expando._actives;
       var actives = expando._actives = chart.getActiveElements();
       var updates = utils.arrayDiff(previous, actives);
-      var i2, ilen, j, jlen, update, label, labels;
-      for (i2 = 0, ilen = updates.length; i2 < ilen; ++i2) {
-        update = updates[i2];
+      var i, ilen, j, jlen, update, label, labels;
+      for (i = 0, ilen = updates.length; i < ilen; ++i) {
+        update = updates[i];
         if (update[1]) {
           labels = update[0].element[EXPANDO_KEY2] || [];
           for (j = 0, jlen = labels.length; j < jlen; ++j) {
@@ -20682,7 +20682,7 @@ var rbmViz = (() => {
     properties,
     parameter = null,
     module = null,
-    i: i2 = null
+    i = null
   }) {
     const actualProps = Object.keys(obj);
     const expectedProps = Object.keys(properties);
@@ -20698,10 +20698,10 @@ var rbmViz = (() => {
           (actualProp) => alternateProps.includes(actualProp)
         ) === false) {
           let message = `Missing property: [ ${requiredProp} ] property expected but not found`;
-          if (i2 !== null)
-            message = `${message} in item ${i2}`;
+          if (i !== null)
+            message = `${message} in item ${i}`;
           if (parameter !== null)
-            message = `${message} ${i2 === null ? "in" : "of"} [ ${parameter} ] argument`;
+            message = `${message} ${i === null ? "in" : "of"} [ ${parameter} ] argument`;
           if (module !== null)
             message = `${message} to [ ${module}() ]`;
           throw new Error(`${message}.`);
@@ -20750,11 +20750,11 @@ var rbmViz = (() => {
       );
     }
     if (schema2.type === "array") {
-      argument.forEach((item, i2) => {
+      argument.forEach((item, i) => {
         const itemType = getType(item);
         if (itemType !== schema2.items.type) {
           throw new Error(
-            `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i2} of [ ${parameter} ] argument to [ ${module}() ].`
+            `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
           );
         }
         if (schema2.items.type === "object") {
@@ -20764,7 +20764,7 @@ var rbmViz = (() => {
             properties,
             parameter,
             module,
-            i: i2
+            i
           });
         }
       });
@@ -20856,17 +20856,17 @@ var rbmViz = (() => {
   function mapThresholdsToFlags(_thresholds_) {
     const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending);
     const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
-    const negativeFlags = negativeThresholds.map((threshold, i2) => {
+    const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
         threshold,
-        flag: -(i2 + 1)
+        flag: -(i + 1)
       };
     });
     const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
-    const positiveFlags = positiveThresholds.map((threshold, i2) => {
+    const positiveFlags = positiveThresholds.map((threshold, i) => {
       return {
         threshold,
-        flag: i2 + 1
+        flag: i + 1
       };
     });
     const zeroFlag = thresholds2.filter((threshold) => threshold === 0).map((threshold) => {
@@ -21110,8 +21110,8 @@ var rbmViz = (() => {
       rollup(
         data,
         (group2) => {
-          group2.forEach((d2, i2) => {
-            d2.duplicate = i2 > 0;
+          group2.forEach((d2, i) => {
+            d2.duplicate = i > 0;
           });
         },
         (d2) => d2[config.x],
@@ -21127,7 +21127,7 @@ var rbmViz = (() => {
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
     const activeData = data.filter(
-      (d2, i2) => activeElements.map((activeElement) => activeElement.index).includes(i2)
+      (d2, i) => activeElements.map((activeElement) => activeElement.index).includes(i)
     );
     identifyDuplicatePoints(activeData, chart.data.config, false);
     const datum2 = activeData[0];
@@ -21161,7 +21161,7 @@ var rbmViz = (() => {
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i2) => {
+      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => {
         const content = colorScheme_default.find(
           (y) => y.flag.includes(+x.flag)
         ).description;
@@ -21429,9 +21429,9 @@ var rbmViz = (() => {
       const overlappingPoints = data.filter(
         (d2) => d2.x === point.x && d2.y === point.y
       );
-      const pointIndices = data.filter((d2, i2) => overlappingPoints.includes(d2)).map((d2, i2) => ({
+      const pointIndices = data.filter((d2, i) => overlappingPoints.includes(d2)).map((d2, i) => ({
         datasetIndex: 0,
-        index: data.findIndex((d1, i3) => d1 === d2)
+        index: data.findIndex((d1, i2) => d1 === d2)
       }));
       tooltip5.setActiveElements(pointIndices);
     }
@@ -21471,11 +21471,11 @@ var rbmViz = (() => {
   function updateOption(chart, option, value) {
     const objPath = option.split(".");
     let obj = chart.options;
-    for (let i2 = 0; i2 < objPath.length; i2++) {
-      if (i2 < objPath.length - 1)
-        obj = obj[objPath[i2]];
+    for (let i = 0; i < objPath.length; i++) {
+      if (i < objPath.length - 1)
+        obj = obj[objPath[i]];
       else
-        obj[objPath[i2]] = value;
+        obj[objPath[i]] = value;
     }
     chart.update();
     triggerTooltip(chart);
@@ -21729,7 +21729,7 @@ var rbmViz = (() => {
         (d2) => d2.threshold
       );
       const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
-      const bounds = boundUps.map((bound, i2) => {
+      const bounds = boundUps.map((bound, i) => {
         const group2 = bound[1];
         group2.threshold = +bound[0];
         group2.flag = flags.find(
@@ -21753,8 +21753,8 @@ var rbmViz = (() => {
       rollup(
         bounds,
         (group2) => {
-          group2.forEach((d2, i2) => {
-            if (i2 > 0)
+          group2.forEach((d2, i) => {
+            if (i > 0)
               d2.label = "";
           });
         },
@@ -21841,7 +21841,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const dataSorted = sortByGroupID(data, config);
-            const titles = dataSorted.map((d2, i2) => {
+            const titles = dataSorted.map((d2, i) => {
               let title4;
               if (data.length === 1) {
                 title4 = `${config.group} ${d2.dataset.data[d2.dataIndex].groupid}`;
@@ -21849,7 +21849,7 @@ var rbmViz = (() => {
                   title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
                 }
               } else {
-                title4 = i2 === 0 ? `${config.group}s ${d2.dataset.data[d2.dataIndex].groupid}` : d2.dataset.data[d2.dataIndex].groupid;
+                title4 = i === 0 ? `${config.group}s ${d2.dataset.data[d2.dataIndex].groupid}` : d2.dataset.data[d2.dataIndex].groupid;
               }
               return title4;
             });
@@ -22067,15 +22067,15 @@ var rbmViz = (() => {
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
     const labels = data.map((d2) => d2.snapshot_date);
-    const pointBackgroundColor = data.map((d2, i2) => {
+    const pointBackgroundColor = data.map((d2, i) => {
       return config.dataType === "continuous" ? colorScheme_default[d2.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
     });
     const datasets = [
       {
         type: "line",
-        data: data.map((d2, i2) => {
+        data: data.map((d2, i) => {
           const datum2 = { ...d2 };
-          datum2.x = i2;
+          datum2.x = i;
           datum2.y = +d2[config.y];
           return datum2;
         }),
@@ -22093,7 +22093,7 @@ var rbmViz = (() => {
   function thresholds(config) {
     let thresholds2 = null;
     if (config.displayThresholds && config.thresholds) {
-      thresholds2 = config.thresholds.map((threshold, i2) => {
+      thresholds2 = config.thresholds.map((threshold, i) => {
         const color3 = colorScheme_default.find(
           (color4) => color4.flag.includes(+threshold.flag)
         );
@@ -22438,8 +22438,8 @@ var rbmViz = (() => {
         }
       },
       borderColor: borderColor4,
-      data: [...aggregateData].map(([key, value], i2) => {
-        const x = labels[i2];
+      data: [...aggregateData].map(([key, value], i) => {
+        const x = labels[i];
         const y = value;
         return {
           ...data.find((d2) => d2[config.x] === x),
@@ -22468,14 +22468,14 @@ var rbmViz = (() => {
       (d2) => d2.param,
       (d2) => d2.snapshot_date
     );
-    const datasets = [...intervals].map(([key, value], i2) => {
+    const datasets = [...intervals].map(([key, value], i) => {
       return {
         borderColor: "#666",
         borderDash: [2],
         borderWidth: 1,
         data: [...value.values()],
         hoverRadius: 0,
-        label: i2 === 0 ? "Confidence Interval" : "",
+        label: i === 0 ? "Confidence Interval" : "",
         pointStyle: "line",
         purpose: "aggregate",
         radius: 0,
@@ -22489,7 +22489,7 @@ var rbmViz = (() => {
   function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0)
       return null;
-    const lineData = data.filter((d2) => config.selectedGroupIDs.includes(d2.groupid)).map((d2, i2) => {
+    const lineData = data.filter((d2) => config.selectedGroupIDs.includes(d2.groupid)).map((d2, i) => {
       const datum2 = { ...d2 };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
@@ -22728,10 +22728,10 @@ var rbmViz = (() => {
     const dataset = {
       backgroundColor: backgroundColor4,
       borderColor: borderColor4,
-      data: [...aggregateData].map(([key, value], i2) => {
-        const x = labels[i2];
+      data: [...aggregateData].map(([key, value], i) => {
+        const x = labels[i];
         const y = value;
-        const counts = [...countsBySnapshot.get(labels[i2])];
+        const counts = [...countsBySnapshot.get(labels[i])];
         return {
           //...data.find((d) => d[config.x] === x),
           x,
@@ -22855,7 +22855,7 @@ var rbmViz = (() => {
   function annotations4(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.map((x, i2) => {
+      annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
           adjustScaleRange: config.group === "Study",
           drawTime: "beforeDatasetsDraw",
@@ -22901,9 +22901,9 @@ var rbmViz = (() => {
           filter: (legendItem, chartData) => {
             return legendItem.text !== "";
           },
-          generateLabels: (chart) => chart.data.datasets.map((dataset, i2) => {
+          generateLabels: (chart) => chart.data.datasets.map((dataset, i) => {
             return {
-              datasetIndex: i2,
+              datasetIndex: i,
               fillStyle: dataset.backgroundColor,
               lineWidth: dataset.label !== "Study Average" ? 1 : 3,
               lineDash: dataset.borderDash,
@@ -22973,7 +22973,7 @@ var rbmViz = (() => {
                 console.log(err);
                 console.log(data);
               }
-              const titles = dataSorted.map(function(d2, i2) {
+              const titles = dataSorted.map(function(d2, i) {
                 let title4;
                 if (data.length === 1) {
                   title4 = `${config.group} ${d2.dataset.data[d2.dataIndex].groupid}`;
@@ -22981,7 +22981,7 @@ var rbmViz = (() => {
                     title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
                   }
                 } else {
-                  title4 = i2 === 0 ? `${config.group}s ${d2.dataset.data[d2.dataIndex].groupid}` : d2.dataset.data[d2.dataIndex].groupid;
+                  title4 = i === 0 ? `${config.group}s ${d2.dataset.data[d2.dataIndex].groupid}` : d2.dataset.data[d2.dataIndex].groupid;
                 }
                 return title4;
               });
@@ -23130,20 +23130,39 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/defineColumns/sortString.js
-  function sortString(sortAscending, sortKey, data) {
-    return data.sort((a, b) => {
-      const defaultSort = sortAscending ? a[sortKey].value.localeCompare(b[sortKey].value) : b[sortKey].value.localeCompare(a[sortKey].value);
+  function sortString(bodyRows, column) {
+    const sortAscending = column.sortState < 1;
+    bodyRows.sort((a, b) => {
+      const aVal = a[column.index].value;
+      const bVal = b[column.index].value;
+      if (aVal === void 0 || aVal === null) {
+        return 1;
+      }
+      if (bVal === void 0 || bVal === null) {
+        return -1;
+      }
+      const defaultSort = sortAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
       return defaultSort;
     });
+    column.sortState = sortAscending ? 1 : -1;
   }
 
   // src/siteOverview/defineColumns/sortNumber.js
-  function sortNumber(sortAscending, sortKey, data) {
-    return data.sort((a, b) => {
-      const defaultSort = sortAscending ? a[i].value - b[i].value : b[i].value - a[i].value;
-      const nanSort = isNaN(a[i].value) ? 1 : -1;
-      return defaultSort || nanSort;
+  function sortNumber(bodyRows, column) {
+    const sortAscending = column.sortState < 1;
+    bodyRows.sort((a, b) => {
+      const aVal = a[column.index].sortValue;
+      const bVal = b[column.index].sortValue;
+      if (aVal === void 0 || aVal === null) {
+        return 1;
+      }
+      if (bVal === void 0 || bVal === null) {
+        return -1;
+      }
+      const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
+      return defaultSort;
     });
+    column.sortState = sortAscending ? 1 : -1;
   }
 
   // src/siteOverview/defineColumns/defineSiteColumns.js
@@ -23210,7 +23229,7 @@ var rbmViz = (() => {
         label: workflow.abbreviation,
         data: results.filter((d2) => d2.workflowid === workflow.workflowid),
         filterKey: "groupid",
-        valueKey: null,
+        valueKey: "score",
         headerTooltip: workflow.metric,
         sort: sortNumber,
         tooltip: true,
@@ -23269,9 +23288,9 @@ var rbmViz = (() => {
       ...siteColumns,
       ...workflowColumns
     ];
-    columns.forEach((column, i2) => {
+    columns.forEach((column, i) => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
-      column.index = i2;
+      column.index = i;
       column.defineTooltip = defineTooltip;
       column.sortState = 0;
     });
@@ -23308,6 +23327,7 @@ var rbmViz = (() => {
         };
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
+        datum2.sortValue = column.type === "kri" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
         datum2.class = [
           column.type,
           column.valueKey
@@ -23330,19 +23350,9 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/makeTable/addSorting.js
-  function addSorting(thead, tbody, columns) {
-    thead.selectAll("th").on("click", function(event, d2) {
-      console.log(d2);
-      const sortAscending = d2.sort === 1;
-      this.classList.contains("ascending");
-      const sortKey = d2.value;
-      const data = tbody.selectAll("tr").data();
-      tbody.selectAll("tr").sort((a, b) => {
-        const defaultSort = sortAscending ? a[i].value - b[i].value : b[i].value - a[i].value;
-        const nanSort = isNaN(a[i].value) ? 1 : -1;
-        return defaultSort || nanSort;
-      });
-      this.classList.toggle("ascending", !sortAscending);
+  function addSorting(headerRow, bodyRows) {
+    headerRow.on("click", function(event, column) {
+      column.sort(bodyRows, column);
     });
   }
 
@@ -23354,7 +23364,7 @@ var rbmViz = (() => {
   // src/siteOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting(rows) {
     const kriCells = rows.selectAll("td.kri");
-    kriCells.style("background-color", function(d2, i2) {
+    kriCells.style("background-color", function(d2, i) {
       switch (Math.abs(parseInt(d2.flag))) {
         case 0:
           return colorScheme_default.find((color3) => color3.flag.includes(0)).color;
@@ -23393,7 +23403,7 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeTable/addFlagIcons.js
   function addFlagIcons(rows) {
-    const kriCells = rows.selectAll("td.kri");
+    const kriCells = rows.selectAll("td.kri").text("");
     kriCells.each(function(d2) {
       const flag = parseInt(d2.flag);
       const absFlag = Math.abs(flag);
@@ -23433,7 +23443,7 @@ var rbmViz = (() => {
       (d2) => d2,
       (d2) => d2.key
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
-    addSorting(thead, tbody, columns);
+    addSorting(headerRow, bodyRows, columns);
     identifyInactiveSites(bodyRows);
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);

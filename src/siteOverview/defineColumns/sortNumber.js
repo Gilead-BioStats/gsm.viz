@@ -1,14 +1,24 @@
-export default function sortNumber(sortAscending, sortKey, data) {
-    return data.sort((a, b) => {
+export default function sortNumber(bodyRows, column) {
+    const sortAscending = column.sortState < 1;
+
+    bodyRows.sort((a, b) => {
+        const aVal = a[column.index].sortValue;
+        const bVal = b[column.index].sortValue;
+
+        if (aVal === undefined || aVal === null) {
+            return 1;
+        }
+
+        if (bVal === undefined || bVal === null) {
+            return -1;
+        }
+
         const defaultSort = sortAscending
-            ? a[i].value - b[i].value
-            : b[i].value - a[i].value;
+            ? aVal - bVal
+            : bVal - aVal;
 
-        // sort NaN last
-        const nanSort = isNaN(a[i].value)
-            ? 1
-            : -1;
-
-        return defaultSort || nanSort;
+        return defaultSort;
     });
+
+    column.sortState = sortAscending ? 1 : -1;
 }

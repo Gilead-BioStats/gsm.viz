@@ -22,8 +22,13 @@ export default function structureData(results, columns, sites) {
                     siteid: key,
                 };
 
+                // TODO: get rid of value or text
                 datum.value = datum[column.valueKey];
                 datum.text = datum.value;
+                // TODO: This is a hack to get the correct sort value for KRI columns.
+                datum.sortValue = column.type === 'kri'
+                    ? Math.abs(parseFloat(datum.value))
+                    : datum.value;
                 datum.class = [
                     column.type,
                     column.valueKey,

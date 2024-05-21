@@ -8,7 +8,7 @@ export default function defineWorkflowColumns(workflows, results) {
             data: results
                 .filter(d => d.workflowid === workflow.workflowid),
             filterKey: 'groupid',
-            valueKey: null,
+            valueKey: 'score',
 
             headerTooltip: workflow.metric,
             sort: sortNumber,
