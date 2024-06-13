@@ -104,7 +104,7 @@ const rbmViz = {
         dataType: 'continuous',
     }),
     // site overview
-    siteOverview
+    siteOverview,
 };
 
 export default rbmViz;
