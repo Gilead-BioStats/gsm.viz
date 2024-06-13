@@ -8,7 +8,7 @@ export default function radius(context, options) {
         const defaultRadius = 3;
         const hoverRadius = 4;
 
-        if (datum.Site !== undefined) {
+        if (datum.site !== undefined) {
             // a = pi*r^2 => a/pi = r^2 => sqrt(a/pi) = r
             const enrollmentFactor = Math.sqrt(
                 datum.site.enrolled_participants / Math.PI
@@ -16,7 +16,7 @@ export default function radius(context, options) {
 
             return enrollmentFactor * defaultRadius;
         } else {
-            return config.selectedGroupIDs.includes(datum.GroupID)
+            return config.selectedGroupIDs.includes(datum.groupid)
                 ? hoverRadius
                 : defaultRadius;
         }

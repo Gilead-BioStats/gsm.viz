@@ -22,7 +22,7 @@ export default function updateConfig(
     // Update chart configuration.
     const config = configure(
         _config_,
-        chart.data.datasets.find((dataset) => dataset.Type === 'scatter').data
+        chart.data.datasets.find((dataset) => dataset.type === 'scatter').data
     );
 
     // Update chart plugins.
