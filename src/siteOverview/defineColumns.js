@@ -1,6 +1,6 @@
 import defineSiteColumns from './defineColumns/defineSiteColumns.js';
 import defineWorkflowColumns from './defineColumns/defineWorkflowColumns.js';
-import defineTooltip from './structureData/defineTooltip.js';
+import defineTooltip from './defineColumns/defineTooltip.js';
 
 /**
  * Define column metadata for site overview table. Column metadata includes the following properties:
@@ -29,7 +29,7 @@ export default function defineColumns(sites, workflows, results) {
             .find(d => d[ column.filterKey ] === key );
         column.index = i;
         column.defineTooltip = defineTooltip;
-        column.sortState = 0;
+        column.sortState = column.dataType === 'string' ? 0 : 1;
     });
 
     return columns;

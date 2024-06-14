@@ -23176,7 +23176,8 @@ var rbmViz = (() => {
         headerTooltip: null,
         sort: sortString,
         tooltip: true,
-        type: "site"
+        type: "site",
+        dataType: "string"
       },
       {
         label: "ID",
@@ -23186,7 +23187,8 @@ var rbmViz = (() => {
         headerTooltip: null,
         sort: sortString,
         tooltip: true,
-        type: "site"
+        type: "site",
+        dataType: "string"
       },
       {
         label: "Enrolled",
@@ -23196,7 +23198,8 @@ var rbmViz = (() => {
         headerTooltip: null,
         sort: sortNumber,
         tooltip: false,
-        type: "site"
+        type: "site",
+        dataType: "number"
       },
       {
         label: "Red Flags",
@@ -23206,7 +23209,8 @@ var rbmViz = (() => {
         headerTooltip: null,
         sort: sortNumber,
         tooltip: false,
-        type: "site"
+        type: "site",
+        dataType: "number"
       },
       {
         label: "Amber Flags",
@@ -23216,7 +23220,8 @@ var rbmViz = (() => {
         headerTooltip: null,
         sort: sortNumber,
         tooltip: false,
-        type: "site"
+        type: "site",
+        dataType: "number"
       }
     ];
     return columns;
@@ -23227,23 +23232,27 @@ var rbmViz = (() => {
     const workflowColumns = workflows.map((workflow) => {
       const column = {
         label: workflow.abbreviation,
-        data: results.filter((d2) => d2.workflowid === workflow.workflowid),
+        data: results.filter(
+          (d2) => d2.workflowid === workflow.workflowid
+        ),
         filterKey: "groupid",
         valueKey: "score",
         headerTooltip: workflow.metric,
         sort: sortNumber,
         tooltip: true,
-        type: "kri"
+        type: "kri",
+        dataType: "number",
+        meta: workflow
       };
       return column;
     });
     return workflowColumns;
   }
 
-  // src/siteOverview/structureData/defineTooltip.js
-  function defineTooltip(type2, content, workflows = null) {
+  // src/siteOverview/defineColumns/defineTooltip.js
+  function defineTooltip(column, content, workflows = null) {
     let tooltipKeys = {};
-    switch (type2) {
+    switch (column.type) {
       case "site":
         tooltipKeys = {
           "status": "Status",
@@ -23260,11 +23269,12 @@ var rbmViz = (() => {
         };
         break;
       case "kri":
+        console.log(column.meta);
         tooltipKeys = {
-          "score": "KRI Score",
-          "metric": "KRI Metric",
-          "numerator": "Numerator",
-          "denominator": "Denominator"
+          "score": column.meta.score,
+          "metric": column.meta.metric,
+          "numerator": column.meta.numerator,
+          "denominator": column.meta.denominator
         };
         break;
       default:
@@ -23272,9 +23282,18 @@ var rbmViz = (() => {
         break;
     }
     const tooltipContent = [];
-    for (const [key, value] of Object.entries(tooltipKeys)) {
+    for (const [key, label] of Object.entries(tooltipKeys)) {
       if (content[key] !== void 0) {
-        tooltipContent.push(`${value}: ${content[key]}`);
+        let value = content[key];
+        if (column.type === "kri") {
+          value = parseFloat(value);
+          if (Number.isInteger(value)) {
+            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+          } else {
+            value = value.toFixed(2).toString();
+          }
+        }
+        tooltipContent.push(`${label}: ${value}`);
       }
     }
     return tooltipContent.join("\n");
@@ -23292,7 +23311,7 @@ var rbmViz = (() => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
       column.index = i;
       column.defineTooltip = defineTooltip;
-      column.sortState = 0;
+      column.sortState = column.dataType === "string" ? 0 : 1;
     });
     return columns;
   }
@@ -23333,7 +23352,7 @@ var rbmViz = (() => {
           column.valueKey
         ].join(" ");
         datum2.tooltip = column.tooltip;
-        datum2.tooltipContent = defineTooltip(column.type, datum2);
+        datum2.tooltipContent = column.defineTooltip(column, datum2);
         return datum2;
       });
       rowDatum.key = key;

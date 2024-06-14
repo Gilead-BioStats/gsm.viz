@@ -1,6 +1,5 @@
 import { group } from 'd3';
 
-import defineTooltip from './structureData/defineTooltip';
 import sortByFlags from './structureData/sortByFlags';
 
 export default function structureData(results, columns, sites) {
@@ -34,7 +33,7 @@ export default function structureData(results, columns, sites) {
                     column.valueKey,
                 ].join(' ');
                 datum.tooltip = column.tooltip;
-                datum.tooltipContent = defineTooltip(column.type, datum);
+                datum.tooltipContent = column.defineTooltip(column, datum);
 
                 return datum;
             });
@@ -54,7 +53,6 @@ export default function structureData(results, columns, sites) {
 //import { group } from 'd3';
 //import getSite from './structureData/getSite';
 //import countFlags from './structureData/countFlags';
-//import defineTooltip from './structureData/defineTooltip';
 //import addWorkflows from './structureData/addWorkflows';
 //import sortByFlags from './structureData/sortByFlags';
 //
@@ -85,8 +83,6 @@ export default function structureData(results, columns, sites) {
 //        //// Count flags.
 //        //site = countFlags(site, value);
 //
-//        //site.tooltipContent = defineTooltip('site', site);
-//
 //        const test = columns
 //            .map((column) => {
 //                let datum = {
@@ -101,7 +97,6 @@ export default function structureData(results, columns, sites) {
 //                    'tooltip'
 //                ].join(' ');
 //                datum.tooltip = true;
-//                //datum.tooltipContent = defineTooltip(column.type, datum);
 //
 //                return datum;
 //            });

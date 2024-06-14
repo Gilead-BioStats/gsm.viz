@@ -13,6 +13,7 @@ export default function defineSiteColumns(sites) {
             sort: sortString,
             tooltip: true,
             type: 'site',
+            dataType: 'string',
         },
         {
             label: 'ID',
@@ -24,6 +25,7 @@ export default function defineSiteColumns(sites) {
             sort: sortString,
             tooltip: true,
             type: 'site',
+            dataType: 'string',
         },
         {
             label: 'Enrolled',
@@ -35,6 +37,7 @@ export default function defineSiteColumns(sites) {
             sort: sortNumber,
             tooltip: false,
             type: 'site',
+            dataType: 'number',
         },
         {
             label: 'Red Flags',
@@ -46,6 +49,7 @@ export default function defineSiteColumns(sites) {
             sort: sortNumber,
             tooltip: false,
             type: 'site',
+            dataType: 'number',
         },
         {
             label: 'Amber Flags',
@@ -57,6 +61,7 @@ export default function defineSiteColumns(sites) {
             sort: sortNumber,
             tooltip: false,
             type: 'site',
+            dataType: 'number',
         },
     ];
 
