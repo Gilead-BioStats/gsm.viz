@@ -19,7 +19,7 @@ export default function makeTable(_element_, rows, columns) {
 
     // add body bodyRows
     const bodyRows = tbody.selectAll('tr').data(rows).join('tr');
-    bodyRows.selectAll('td')
+    const cells = bodyRows.selectAll('td')
         .data(
             (d) => d,
             (d) => d.key
@@ -44,6 +44,12 @@ export default function makeTable(_element_, rows, columns) {
 
     // add row highlighting
     addRowHighlighting(bodyRows);
+
+    // add click and hover events
+    console.log(cells)
+    cells.on('click', function(event, d) {
+        console.log(d);
+    });
 
     return table;
 }

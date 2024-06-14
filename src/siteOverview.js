@@ -18,7 +18,12 @@ import makeTable from './siteOverview/makeTable';
 export default function siteOverview(
     _element_ = 'body',
     _results_ = [],
-    _config_ = {},
+    _config_ = {
+        hoverCallback: (datum) => {},
+        clickCallback: (datum) => {
+            console.log(datum);
+        },
+    },
     _sites_ = null,
     _workflows_ = null
 ) {

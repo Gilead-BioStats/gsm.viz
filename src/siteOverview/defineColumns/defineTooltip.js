@@ -24,7 +24,6 @@ export default function defineTooltip(column, content, workflows = null) {
             break;
         // Define tooltip content for KRI columns.
         case 'kri':
-            console.log(column.meta);
             tooltipKeys = {
                 'score': column.meta.score,
                 'metric': column.meta.metric,

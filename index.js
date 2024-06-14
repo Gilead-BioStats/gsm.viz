@@ -23269,7 +23269,6 @@ var rbmViz = (() => {
         };
         break;
       case "kri":
-        console.log(column.meta);
         tooltipKeys = {
           "score": column.meta.score,
           "metric": column.meta.metric,
@@ -23458,7 +23457,7 @@ var rbmViz = (() => {
     const tbody = table.append("tbody");
     const headerRow = addHeaderRow(thead, columns);
     const bodyRows = tbody.selectAll("tr").data(rows).join("tr");
-    bodyRows.selectAll("td").data(
+    const cells = bodyRows.selectAll("td").data(
       (d2) => d2,
       (d2) => d2.key
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
@@ -23467,11 +23466,21 @@ var rbmViz = (() => {
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);
     addRowHighlighting(bodyRows);
+    console.log(cells);
+    cells.on("click", function(event, d2) {
+      console.log(d2);
+    });
     return table;
   }
 
   // src/siteOverview.js
-  function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
+  function siteOverview(_element_ = "body", _results_ = [], _config_ = {
+    hoverCallback: (datum2) => {
+    },
+    clickCallback: (datum2) => {
+      console.log(datum2);
+    }
+  }, _sites_ = null, _workflows_ = null) {
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites, _workflows_);
