@@ -23367,6 +23367,29 @@ var rbmViz = (() => {
     return headerRow;
   }
 
+  // src/siteOverview/makeTable/addBodyRows.js
+  function addBodyRows(tbody, rows) {
+    const bodyRows = tbody.selectAll("tr").data(
+      rows,
+      // Define a unique key for each row.
+      (d2) => d2.key
+    ).join("tr");
+    return bodyRows;
+  }
+
+  // src/siteOverview/makeTable/addCells.js
+  function addCells(bodyRows) {
+    const cells = bodyRows.selectAll("td").data(
+      (d2) => d2,
+      // Define a unique key for each cell.
+      (d2) => {
+        const id2 = d2.column.type === "kri" ? `${d2.siteid}-${d2.column.meta.workflowid}` : `${d2.siteid}-${d2.column.valueKey}`;
+        return id2;
+      }
+    ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
+    return cells;
+  }
+
   // src/siteOverview/makeTable/addSorting.js
   function addSorting(headerRow, bodyRows) {
     headerRow.on("click", function(event, column) {
@@ -23450,26 +23473,33 @@ var rbmViz = (() => {
     });
   }
 
+  // src/siteOverview/makeTable/addClickEvents.js
+  function addClickEvents(bodyRows, cells, _config_) {
+    cells.on("click", function(event, d2) {
+      const datum2 = d2.column.type === "kri" ? {
+        groupid: d2.groupid,
+        metricid: d2.workflowid
+      } : {
+        groupid: d2.siteid
+      };
+      _config_.clickCallback(datum2);
+    });
+  }
+
   // src/siteOverview/makeTable.js
-  function makeTable(_element_, rows, columns) {
+  function makeTable(_element_, rows, columns, _config_) {
     const table = select_default2(_element_).append("table");
     const thead = table.append("thead");
     const tbody = table.append("tbody");
     const headerRow = addHeaderRow(thead, columns);
-    const bodyRows = tbody.selectAll("tr").data(rows).join("tr");
-    const cells = bodyRows.selectAll("td").data(
-      (d2) => d2,
-      (d2) => d2.key
-    ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
+    const bodyRows = addBodyRows(tbody, rows);
+    const cells = addCells(bodyRows);
     addSorting(headerRow, bodyRows, columns);
     identifyInactiveSites(bodyRows);
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);
     addRowHighlighting(bodyRows);
-    console.log(cells);
-    cells.on("click", function(event, d2) {
-      console.log(d2);
-    });
+    addClickEvents(bodyRows, cells, _config_);
     return table;
   }
 
@@ -23484,7 +23514,7 @@ var rbmViz = (() => {
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites, _workflows_);
-    const table = makeTable(_element_, rows, columns);
+    const table = makeTable(_element_, rows, columns, _config_);
     return table;
   }
 

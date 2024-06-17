@@ -23,6 +23,9 @@ Promise.all(dataPromises)
             results,
             {
                 group: 'site',
+                clickCallback: function (datum) {
+                    console.log(datum);
+                },
             },
             sites,
             workflows

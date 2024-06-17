@@ -1,34 +1,24 @@
 import { select } from 'd3';
 
 import addHeaderRow from './makeTable/addHeaderRow.js';
+import addBodyRows from './makeTable/addBodyRows.js';
+import addCells from './makeTable/addCells.js';
 import addSorting from './makeTable/addSorting.js';
 
 import identifyInactiveSites from './makeTable/identifyInactiveSites.js';
 import addTrafficLighting from './makeTable/addTrafficLighting.js';
 import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
+import addClickEvents from './makeTable/addClickEvents.js';
 
-export default function makeTable(_element_, rows, columns) {
+export default function makeTable(_element_, rows, columns, _config_) {
     // create table
     const table = select(_element_).append('table');
     const thead = table.append('thead');
     const tbody = table.append('tbody');
-
-    // add header row
     const headerRow = addHeaderRow(thead, columns);
-
-    // add body bodyRows
-    const bodyRows = tbody.selectAll('tr').data(rows).join('tr');
-    const cells = bodyRows.selectAll('td')
-        .data(
-            (d) => d,
-            (d) => d.key
-        )
-        .join('td')
-        .text((d) => (d.text === 'NA' ? '-' : d.text))
-        .attr('class', (d) => d.class)
-        .classed('tooltip', (d) => d.tooltip)
-        .attr('title', (d) => d.tooltip ? d.tooltipContent: null);
+    const bodyRows = addBodyRows(tbody, rows);
+    const cells = addCells(bodyRows);
 
     // add column sorting
     addSorting(headerRow, bodyRows, columns);
@@ -45,11 +35,8 @@ export default function makeTable(_element_, rows, columns) {
     // add row highlighting
     addRowHighlighting(bodyRows);
 
-    // add click and hover events
-    console.log(cells)
-    cells.on('click', function(event, d) {
-        console.log(d);
-    });
+    // add click events
+    addClickEvents(bodyRows, cells, _config_);
 
     return table;
 }

@@ -1,5 +1,12 @@
 import colorScheme from '../../util/colorScheme.js';
 
+/**
+ * Adds traffic light coloring to KRI cells.
+ *
+ * @param {object} rows - The rows of the table.
+ *
+ * @returns {void}
+ */
 export default function addTrafficLighting(rows) {
     const kriCells = rows.selectAll('td.kri');
 

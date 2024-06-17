@@ -36,7 +36,7 @@ export default function siteOverview(
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData(_results_, columns, sites, _workflows_);
-    const table = makeTable(_element_, rows, columns);
+    const table = makeTable(_element_, rows, columns, _config_);
 
     return table;
 }
