@@ -23475,14 +23475,16 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeTable/addClickEvents.js
   function addClickEvents(bodyRows, cells, _config_) {
-    cells.on("click", function(event, d2) {
-      const datum2 = d2.column.type === "kri" ? {
+    cells.filter(".kri").on("click", function(event, d2) {
+      _config_.metricClickCallback({
         groupid: d2.groupid,
         metricid: d2.workflowid
-      } : {
+      });
+    });
+    cells.filter(".siteid").on("click", function(event, d2) {
+      _config_.groupClickCallback({
         groupid: d2.siteid
-      };
-      _config_.clickCallback(datum2);
+      });
     });
   }
 
@@ -23505,9 +23507,10 @@ var rbmViz = (() => {
 
   // src/siteOverview.js
   function siteOverview(_element_ = "body", _results_ = [], _config_ = {
-    hoverCallback: (datum2) => {
+    groupClickCallback: (datum2) => {
+      console.log(datum2);
     },
-    clickCallback: (datum2) => {
+    metricClickCallback: (datum2) => {
       console.log(datum2);
     }
   }, _sites_ = null, _workflows_ = null) {

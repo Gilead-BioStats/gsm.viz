@@ -19,8 +19,10 @@ export default function siteOverview(
     _element_ = 'body',
     _results_ = [],
     _config_ = {
-        hoverCallback: (datum) => {},
-        clickCallback: (datum) => {
+        groupClickCallback: (datum) => {
+            console.log(datum);
+        },
+        metricClickCallback: (datum) => {
             console.log(datum);
         },
     },

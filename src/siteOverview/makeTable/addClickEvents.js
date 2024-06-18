@@ -8,15 +8,22 @@
  * @returns {void}
  */ 
 export default function addClickEvents(bodyRows, cells, _config_) {
-    cells.on('click', function(event, d) {
-        const datum = d.column.type === 'kri'
-            ? {
+    // add click event to KRI cells
+    cells
+        .filter('.kri')
+        .on('click', function(event, d) {
+            _config_.metricClickCallback({
                 groupid: d.groupid,
                 metricid: d.workflowid,
-            } : {
-                groupid: d.siteid,
-            };
+            });
+        });
 
-        _config_.clickCallback(datum);
-    });
+    // add click event to group cells
+    cells
+        .filter('.siteid')
+        .on('click', function(event, d) {
+            _config_.groupClickCallback({
+                groupid: d.siteid,
+            });
+        });
 }

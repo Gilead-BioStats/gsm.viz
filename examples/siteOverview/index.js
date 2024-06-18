@@ -23,7 +23,10 @@ Promise.all(dataPromises)
             results,
             {
                 group: 'site',
-                clickCallback: function (datum) {
+                groupClickCallback: function (datum) {
+                    console.log(datum);
+                },
+                metricClickCallback: function (datum) {
                     console.log(datum);
                 },
             },
