@@ -6,8 +6,8 @@
  *
  * @returns {void}
  */
-export default function addSorting(headerRow, bodyRows) {
+export default function addSorting(headerRow, body) {
     headerRow.on('click', function(event, column) {
-        column.sort(bodyRows, column);
+        column.sort(body.selectAll('tr'), column);
     });
 }

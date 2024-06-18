@@ -23421,9 +23421,9 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/makeTable/addSorting.js
-  function addSorting(headerRow, bodyRows) {
+  function addSorting(headerRow, body) {
     headerRow.on("click", function(event, column) {
-      column.sort(bodyRows, column);
+      column.sort(body.selectAll("tr"), column);
     });
   }
 
@@ -23528,7 +23528,7 @@ var rbmViz = (() => {
     const headerRow = addHeaderRow(thead, columns);
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
-    addSorting(headerRow, bodyRows, columns);
+    addSorting(headerRow, tbody, columns);
     identifyInactiveSites(bodyRows);
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);
@@ -23539,6 +23539,7 @@ var rbmViz = (() => {
 
   // src/siteOverview/updateTable.js
   function updateTable(_results_) {
+    console.log(this.columns.map((d2) => d2.sortState));
     const rows = structureData5(
       _results_,
       this.columns,

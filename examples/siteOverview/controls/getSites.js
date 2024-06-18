@@ -1,7 +1,5 @@
 const getSites = function(results) {
     const siteSubset = document.querySelector('#site-subset');
-    console.log(siteSubset);
-    console.log(siteSubset.value);
 
     // filter array on unique values
     const unique = (value, index, self) => self.indexOf(value) === index;
@@ -29,8 +27,6 @@ const getSites = function(results) {
         default:
             sites = results.map((d) => d.groupid).filter(unique);
     }
-
-    console.log(sites.length);
 
     return sites;
 }

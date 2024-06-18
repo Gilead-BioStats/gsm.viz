@@ -21,7 +21,7 @@ export default function makeTable(_element_, rows, columns, config) {
     const cells = addCells(bodyRows);
 
     // add column sorting
-    addSorting(headerRow, bodyRows, columns);
+    addSorting(headerRow, tbody, columns);
 
     // identify inactive sites
     identifyInactiveSites(bodyRows);

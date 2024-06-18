@@ -14,6 +14,8 @@ import addClickEvents from './makeTable/addClickEvents.js';
 export default function updateTable(
     _results_
 ) {
+    console.log(this.columns.map(d => d.sortState));
+
     const rows = structureData(
         _results_,
         this.columns,
