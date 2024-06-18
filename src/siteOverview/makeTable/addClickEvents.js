@@ -20,7 +20,7 @@ export default function addClickEvents(bodyRows, cells, _config_) {
 
     // add click event to group cells
     cells
-        .filter('.siteid')
+        .filter('.site')
         .on('click', function(event, d) {
             _config_.groupClickCallback({
                 groupid: d.siteid,

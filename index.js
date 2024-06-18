@@ -23110,6 +23110,36 @@ var rbmViz = (() => {
     return chart;
   }
 
+  // src/siteOverview/checkInputs.js
+  function checkInputs5(_results_, _config_, _sites_, _workflows_) {
+    checkInput({
+      parameter: "_results_",
+      argument: _results_,
+      schemaName: "results",
+      module: "siteOverview"
+    });
+    checkInput({
+      parameter: "_sites_",
+      argument: _sites_,
+      schemaName: "sites",
+      module: "siteOverview"
+    });
+  }
+
+  // src/siteOverview/configure.js
+  function configure7(_config_, _data_) {
+    const defaults3 = {};
+    defaults3.groupLevel = "site";
+    defaults3.groupClickCallback = (datum2) => {
+      console.log(datum2);
+    };
+    defaults3.metricClickCallback = (datum2) => {
+      console.log(datum2);
+    };
+    const config = configure2(defaults3, _config_);
+    return config;
+  }
+
   // src/siteOverview/deriveSiteMetrics.js
   function deriveSiteMetrics(sites, results) {
     const missingSites = results.map((result) => result.groupid).filter((siteid) => !sites.find((site) => site.siteid === siteid)).map((siteid) => ({ siteid }));
@@ -23172,7 +23202,7 @@ var rbmViz = (() => {
         label: "Investigator",
         data: sites,
         filterKey: "siteid",
-        valueKey: "invname",
+        valueKey: "pi_last_name",
         headerTooltip: null,
         sort: sortString,
         tooltip: true,
@@ -23481,7 +23511,7 @@ var rbmViz = (() => {
         metricid: d2.workflowid
       });
     });
-    cells.filter(".siteid").on("click", function(event, d2) {
+    cells.filter(".site").on("click", function(event, d2) {
       _config_.groupClickCallback({
         groupid: d2.siteid
       });
@@ -23506,18 +23536,14 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview.js
-  function siteOverview(_element_ = "body", _results_ = [], _config_ = {
-    groupClickCallback: (datum2) => {
-      console.log(datum2);
-    },
-    metricClickCallback: (datum2) => {
-      console.log(datum2);
-    }
-  }, _sites_ = null, _workflows_ = null) {
+  function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
+    checkInputs5(_results_, _config_, _sites_, _workflows_);
+    const config = configure7(_config_);
+    console.log(config);
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites, _workflows_);
-    const table = makeTable(_element_, rows, columns, _config_);
+    const table = makeTable(_element_, rows, columns, config);
     return table;
   }
 

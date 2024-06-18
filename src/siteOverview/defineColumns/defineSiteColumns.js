@@ -7,7 +7,7 @@ export default function defineSiteColumns(sites) {
             label: 'Investigator',
             data: sites,
             filterKey: 'siteid',
-            valueKey: 'invname',
+            valueKey: 'pi_last_name',
 
             headerTooltip: null,
             sort: sortString,

@@ -13,22 +13,19 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const results = datasets[0].filter((d) => /^kri/.test(d.workflowid));
         const workflows = datasets[1].filter((d) => /^kri/.test(d.workflowid));
-        const sites = datasets[2].map(d => {
-            d.invname = d.invname.split(',')[0]
-            return d;
-        });
+        const sites = datasets[2];
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),
             results,
             {
-                group: 'site',
-                groupClickCallback: function (datum) {
-                    console.log(datum);
-                },
-                metricClickCallback: function (datum) {
-                    console.log(datum);
-                },
+                //group: 'site',
+                //groupClickCallback: function (datum) {
+                //    console.log(datum);
+                //},
+                //metricClickCallback: function (datum) {
+                //    console.log(datum);
+                //},
             },
             sites,
             workflows
