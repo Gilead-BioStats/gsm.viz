@@ -12,7 +12,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         : 'continuous';
 
     if (defaults.dataType === 'discrete')
-        defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
+        defaults.discreteUnit = Object.keys(_data_[0]).includes('GroupID')
             ? 'KRI'
             : 'Site';
     else defaults.discreteUnit = null;

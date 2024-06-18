@@ -67,7 +67,7 @@ export default function barChart(
             padding: {
                 top:
                     config.y === 'metric'
-                        ? max(datasets[0].data, (d) => d.groupid.length) * 8
+                        ? max(datasets[0].data, (d) => d.GroupID.length) * 8
                         : null,
             },
         },

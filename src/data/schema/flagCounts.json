@@ -6,14 +6,14 @@
     "items": {
         "type": "object",
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "groupid": {
+            "GroupID": {
                 "title": "Group ID",
                 "description": "Unique group identifier",
                 "type": "string",

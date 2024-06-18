@@ -16,7 +16,7 @@ export default function triggerTooltip(chart) {
 
         // get data point corresponding to selected group ID
         const point = data.find((d) =>
-            chart.data.config.selectedGroupIDs.includes(d.groupid)
+            chart.data.config.selectedGroupIDs.includes(d.GroupID)
         );
 
         // get array of data points overlapping data point

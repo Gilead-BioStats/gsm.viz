@@ -1,4 +1,4 @@
-studyid,groupid,snapshot_date,n,n_at_risk,n_flagged,n_at_risk_or_flagged
+StudyID,GroupID,snapshot_date,n,n_at_risk,n_flagged,n_at_risk_or_flagged
 AA-AA-000-0000,1,2009-03-01,1,0,0,0
 AA-AA-000-0000,1,2009-06-01,1,0,0,0
 AA-AA-000-0000,1,2009-09-01,1,0,0,0

@@ -5,7 +5,7 @@ export default function mutate(_data_, config, _sites_ = null) {
         .map((d) => {
             // attach site metadata to results
             if (_sites_ !== null) {
-                const site = _sites_.find((site) => site.siteid === d.groupid);
+                const site = _sites_.find((site) => site.siteid === d.GroupID);
 
                 if (site !== undefined) {
                     d.site = site;
@@ -24,8 +24,8 @@ export default function mutate(_data_, config, _sites_ = null) {
             return datum;
         })
         .sort((a, b) => {
-            const aSelected = config.selectedGroupIDs.indexOf(a.groupid) > -1;
-            const bSelected = config.selectedGroupIDs.indexOf(b.groupid) > -1;
+            const aSelected = config.selectedGroupIDs.indexOf(a.GroupID) > -1;
+            const bSelected = config.selectedGroupIDs.indexOf(b.GroupID) > -1;
             const stratum = b.stratum - a.stratum;
 
             return aSelected ? 1 : bSelected ? -1 : stratum;

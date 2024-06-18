@@ -57,6 +57,6 @@ Promise.all(dataPromises)
 
         if (by === 'group') site(datasets, true);
         else
-            document.getElementById('groupid').parentElement.style.display =
+            document.getElementById('GroupID').parentElement.style.display =
                 'none';
     });

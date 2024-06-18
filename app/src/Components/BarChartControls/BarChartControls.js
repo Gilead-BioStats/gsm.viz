@@ -12,7 +12,7 @@ import DownloadChart from '../DownloadChart/DownloadChart';
 
 const uniqueGroups = (results) => {
     return results
-        .map((result) => Math.floor(result.groupid))
+        .map((result) => Math.floor(result.GroupID))
         .filter(function (x, i, a) {
             return a.indexOf(x) === i;
         })

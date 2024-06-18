@@ -1,4 +1,4 @@
-"studyid","workflowid","gsm_version","active","status","notes","gsm_analysis_date"
+"StudyID","workflowid","gsm_version","active","status","notes","gsm_analysis_date"
 "AA-AA-000-0000","kri0001","1.4.1","TRUE",TRUE,NA,2023-01-05
 "AA-AA-000-0000","kri0002","1.4.1","TRUE",TRUE,NA,2023-01-05
 "AA-AA-000-0000","kri0003","1.4.1","TRUE",TRUE,NA,2023-01-05

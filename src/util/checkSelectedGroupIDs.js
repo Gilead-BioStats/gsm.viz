@@ -11,8 +11,8 @@ export default function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
 
     // check selected group IDs against actual group IDs
     if (Array.isArray(selectedGroupIDs)) {
-        // TODO: pull key for groupid from config
-        const actualGroupIDs = [...new Set(_data_.map((d) => d.groupid))];
+        // TODO: pull key for GroupID from config
+        const actualGroupIDs = [...new Set(_data_.map((d) => d.GroupID))];
         for (const selectedGroupID of selectedGroupIDs) {
             if (actualGroupIDs.includes(selectedGroupID) === false)
                 selectedGroupIDs = selectedGroupIDs.filter(

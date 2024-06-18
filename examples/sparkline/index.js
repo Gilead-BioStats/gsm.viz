@@ -23,9 +23,9 @@ Promise.all(dataPromises)
         // continuous outcome: KRI results
         let results = filterOnWorkflowID(datasets[0], workflowID);
 
-        const groupIDs = [...new Set(results.map((d) => d.groupid))];
+        const groupIDs = [...new Set(results.map((d) => d.GroupID))];
         const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())];
-        results = results.filter((d) => d.groupid === groupID);
+        results = results.filter((d) => d.GroupID === groupID);
 
         // discrete outcome: flag counts by KRI
         const flagCountsByKRI = datasets[4].filter(
@@ -37,7 +37,7 @@ Promise.all(dataPromises)
 
         // discrete outcome: flag counts by group
         const flagCountsByGroup = datasets[5].filter(
-            (d) => d.groupid === groupID
+            (d) => d.GroupID === groupID
         );
         flagCountsByGroup.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;

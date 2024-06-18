@@ -14,7 +14,7 @@ export default function mutate(
             const datum = { ...d };
 
             if (_sites_ !== null) {
-                let site = _sites_.filter((site) => site.siteid === d.groupid);
+                let site = _sites_.filter((site) => site.siteid === d.GroupID);
 
                 if (site.length > 1) {
                     site = site.find(

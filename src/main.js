@@ -29,19 +29,19 @@ Chart.register(
 const rbmViz = {
     // bar chart
     barChart: barChart.bind({
-        x: 'groupid',
+        x: 'GroupID',
         y: 'score',
         chartType: 'bar',
         dataType: 'continuous',
     }),
     barChartMetric: barChart.bind({
-        x: 'groupid',
+        x: 'GroupID',
         y: 'metric',
         chartType: 'bar',
         dataType: 'continuous',
     }),
     barChartScore: barChart.bind({
-        x: 'groupid',
+        x: 'GroupID',
         y: 'score',
         chartType: 'bar',
         dataType: 'continuous',
@@ -104,7 +104,7 @@ const rbmViz = {
         dataType: 'continuous',
     }),
     // site overview
-    siteOverview
+    siteOverview,
 };
 
 export default rbmViz;

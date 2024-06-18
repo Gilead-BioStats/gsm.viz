@@ -8,7 +8,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
     // horizontal
-    defaults.x = 'groupid';
+    defaults.x = 'GroupID';
     defaults.xType = 'category';
 
     // vertical

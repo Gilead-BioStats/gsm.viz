@@ -26,13 +26,13 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
+            //console.log(datum.GroupID);
         };
         workflow.clickCallback = function (datum) {
-            instance.data.config.selectedGroupIDs = datum.groupid;
+            instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
-            document.querySelector('#groupid').value = datum.groupid;
+            document.querySelector('#GroupID').value = datum.GroupID;
         };
 
         // threshold annotations

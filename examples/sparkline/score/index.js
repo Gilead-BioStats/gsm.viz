@@ -33,9 +33,9 @@ Promise.all(dataPromises)
         );
 
         // loop over group IDs
-        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
-        for (const i in groupids) {
-            const groupid = groupids[i];
+        const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];
+        for (const i in GroupIDs) {
+            const GroupID = GroupIDs[i];
 
             // container
             const container = document.getElementById('container');
@@ -47,7 +47,7 @@ Promise.all(dataPromises)
             // display
             const instance = rbmViz.default.sparkline(
                 subcontainer,
-                results.filter((d) => d.groupid === groupid),
+                results.filter((d) => d.GroupID === GroupID),
                 workflow,
                 parameters
             );

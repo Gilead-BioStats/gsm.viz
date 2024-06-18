@@ -14,8 +14,8 @@ export default function tooltip(config) {
                     const datum = data[0].dataset.data[data[0].dataIndex];
 
                     return datum.site !== undefined
-                        ? `${config.group} ${datum.groupid} (${datum.site.pi_last_name} / ${datum.site.enrolled_participants} enrolled)`
-                        : `${config.group} ${datum.groupid}`;
+                        ? `${config.group} ${datum.GroupID} (${datum.site.pi_last_name} / ${datum.site.enrolled_participants} enrolled)`
+                        : `${config.group} ${datum.GroupID}`;
                 }
             },
         },

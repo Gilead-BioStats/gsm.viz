@@ -47,7 +47,7 @@ export default function tooltip(config) {
 
                             if (data.length === 1) {
                                 title = `${config.group} ${
-                                    d.dataset.data[d.dataIndex].groupid
+                                    d.dataset.data[d.dataIndex].GroupID
                                 }`;
 
                                 if (d.raw.site !== undefined) {
@@ -58,9 +58,9 @@ export default function tooltip(config) {
                                     i === 0
                                         ? `${config.group}s ${
                                               d.dataset.data[d.dataIndex]
-                                                  .groupid
+                                                  .GroupID
                                           }`
-                                        : d.dataset.data[d.dataIndex].groupid;
+                                        : d.dataset.data[d.dataIndex].GroupID;
                             }
 
                             return title;
@@ -83,7 +83,7 @@ export default function tooltip(config) {
             const datum = data.dataset.data[data.dataIndex];
             const isAnnotation = data.dataset.purpose === 'annotation';
             const isObject = typeof datum === 'object';
-            const isSelected = config.selectedGroupIDs.includes(datum.groupid);
+            const isSelected = config.selectedGroupIDs.includes(datum.GroupID);
             const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.

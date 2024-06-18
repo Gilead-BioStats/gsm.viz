@@ -62,7 +62,7 @@ describe('flag counts schema with flag counts by KRI', () => {
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter((prop) => prop !== 'groupid')
+            .filter((prop) => prop !== 'GroupID')
             .sort();
 
         expect(propsResult).toEqual(propsSchema);

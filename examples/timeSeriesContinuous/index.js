@@ -28,11 +28,11 @@ Promise.all(dataPromises)
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.y = 'score';
         workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
+            //console.log(datum.GroupID);
         };
         workflow.clickCallback = function (datum) {
-            instance.helpers.updateSelectedGroupIDs(datum.groupid);
-            document.querySelector('#groupid').value = datum.groupid;
+            instance.helpers.updateSelectedGroupIDs(datum.GroupID);
+            document.querySelector('#GroupID').value = datum.GroupID;
         };
 
         // threshold annotations

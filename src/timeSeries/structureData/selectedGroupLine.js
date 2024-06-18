@@ -6,7 +6,7 @@ export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;
 
     const lineData = data
-        .filter((d) => config.selectedGroupIDs.includes(d.groupid))
+        .filter((d) => config.selectedGroupIDs.includes(d.GroupID))
         .map((d, i) => {
             const datum = { ...d };
             datum.x = datum[config.x];
