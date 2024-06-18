@@ -31,7 +31,6 @@ export default function siteOverview(
 
     // Merge custom settings with default settings.
     const config = configure(_config_);
-    console.log(config);
 
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);

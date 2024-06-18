@@ -11,7 +11,7 @@ import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
-export default function makeTable(_element_, rows, columns, _config_) {
+export default function makeTable(_element_, rows, columns, config) {
     // create table
     const table = select(_element_).append('table');
     const thead = table.append('thead');
@@ -36,7 +36,7 @@ export default function makeTable(_element_, rows, columns, _config_) {
     addRowHighlighting(bodyRows);
 
     // add click events
-    addClickEvents(bodyRows, cells, _config_);
+    addClickEvents(bodyRows, cells, config);
 
     return table;
 }

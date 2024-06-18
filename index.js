@@ -23196,7 +23196,7 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/defineColumns/defineSiteColumns.js
-  function defineSiteColumns(sites) {
+  function defineGroupColumns(sites) {
     const columns = [
       {
         label: "Investigator",
@@ -23330,7 +23330,7 @@ var rbmViz = (() => {
 
   // src/siteOverview/defineColumns.js
   function defineColumns(sites, workflows, results) {
-    const siteColumns = defineSiteColumns(sites);
+    const siteColumns = defineGroupColumns(sites);
     const workflowColumns = defineWorkflowColumns(workflows, results);
     const columns = [
       ...siteColumns,
@@ -23504,22 +23504,24 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/makeTable/addClickEvents.js
-  function addClickEvents(bodyRows, cells, _config_) {
+  function addClickEvents(bodyRows, cells, config) {
     cells.filter(".kri").on("click", function(event, d2) {
-      _config_.metricClickCallback({
+      config.metricClickCallback({
+        groupLevel: config.groupLevel,
         groupid: d2.groupid,
         metricid: d2.workflowid
       });
     });
     cells.filter(".site").on("click", function(event, d2) {
-      _config_.groupClickCallback({
+      config.groupClickCallback({
+        groupLevel: config.groupLevel,
         groupid: d2.siteid
       });
     });
   }
 
   // src/siteOverview/makeTable.js
-  function makeTable(_element_, rows, columns, _config_) {
+  function makeTable(_element_, rows, columns, config) {
     const table = select_default2(_element_).append("table");
     const thead = table.append("thead");
     const tbody = table.append("tbody");
@@ -23531,7 +23533,7 @@ var rbmViz = (() => {
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);
     addRowHighlighting(bodyRows);
-    addClickEvents(bodyRows, cells, _config_);
+    addClickEvents(bodyRows, cells, config);
     return table;
   }
 
@@ -23539,7 +23541,6 @@ var rbmViz = (() => {
   function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
     checkInputs5(_results_, _config_, _sites_, _workflows_);
     const config = configure7(_config_);
-    console.log(config);
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites, _workflows_);

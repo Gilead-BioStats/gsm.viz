@@ -11,15 +11,26 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const results = datasets[0].filter((d) => /^kri/.test(d.workflowid));
-        const workflows = datasets[1].filter((d) => /^kri/.test(d.workflowid));
+        const groupLevel = 'site';
+
+        let workflowPrefix;
+        if (groupLevel === 'site') {
+            workflowPrefix = 'kri';
+        } else if (groupLevel === 'country') {
+            workflowPrefix = 'cou';
+        }
+
+        const regex = new RegExp(`^${workflowPrefix}`);
+
+        const results = datasets[0].filter((d) => regex.test(d.workflowid));
+        const workflows = datasets[1].filter((d) => regex.test(d.workflowid));
         const sites = datasets[2];
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),
             results,
             {
-                //group: 'site',
+                groupLevel,
                 //groupClickCallback: function (datum) {
                 //    console.log(datum);
                 //},

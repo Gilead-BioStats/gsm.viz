@@ -7,12 +7,13 @@
  *
  * @returns {void}
  */ 
-export default function addClickEvents(bodyRows, cells, _config_) {
+export default function addClickEvents(bodyRows, cells, config) {
     // add click event to KRI cells
     cells
         .filter('.kri')
         .on('click', function(event, d) {
-            _config_.metricClickCallback({
+            config.metricClickCallback({
+                groupLevel: config.groupLevel,
                 groupid: d.groupid,
                 metricid: d.workflowid,
             });
@@ -22,7 +23,8 @@ export default function addClickEvents(bodyRows, cells, _config_) {
     cells
         .filter('.site')
         .on('click', function(event, d) {
-            _config_.groupClickCallback({
+            config.groupClickCallback({
+                groupLevel: config.groupLevel,
                 groupid: d.siteid,
             });
         });

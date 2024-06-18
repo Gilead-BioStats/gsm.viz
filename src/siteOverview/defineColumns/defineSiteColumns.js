@@ -1,7 +1,7 @@
 import sortString from './sortString';
 import sortNumber from './sortNumber';
 
-export default function defineSiteColumns(sites) {
+export default function defineGroupColumns(sites) {
     const columns = [
         {
             label: 'Investigator',
