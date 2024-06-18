@@ -25,10 +25,13 @@ Promise.all(dataPromises)
         const results = datasets[0].filter((d) => regex.test(d.workflowid));
         const workflows = datasets[1].filter((d) => regex.test(d.workflowid));
         const sites = datasets[2];
+        const siteSubset = getSites(results);
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),
-            results,
+            results.filter(
+                (d) => siteSubset.includes(d.groupid)
+            ),
             {
                 groupLevel,
                 //groupClickCallback: function (datum) {
@@ -41,4 +44,13 @@ Promise.all(dataPromises)
             sites,
             workflows
         );
+
+        document.querySelector('#site-subset').onchange = function () {
+            const siteSubset = getSites(results);
+            const updatedResults = results.filter(
+                (d) => siteSubset.includes(d.groupid)
+            );
+
+            instance.updateTable(updatedResults);
+        };
     });

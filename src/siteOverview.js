@@ -6,6 +6,7 @@ import deriveSiteMetrics from './siteOverview/deriveSiteMetrics';
 import defineColumns from './siteOverview/defineColumns';
 import structureData from './siteOverview/structureData';
 import makeTable from './siteOverview/makeTable';
+import updateTable from './siteOverview/updateTable';
 
 /**
  * Generate site overview table.
@@ -36,6 +37,15 @@ export default function siteOverview(
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData(_results_, columns, sites, _workflows_);
     const table = makeTable(_element_, rows, columns, config);
+
+    table.updateTable = updateTable.bind({
+        config,
+        sites,
+        _workflows_,
+        columns,
+        rows,
+        table,
+    });
 
     return table;
 }

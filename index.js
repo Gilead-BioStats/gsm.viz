@@ -23537,6 +23537,23 @@ var rbmViz = (() => {
     return table;
   }
 
+  // src/siteOverview/updateTable.js
+  function updateTable(_results_) {
+    const rows = structureData5(
+      _results_,
+      this.columns,
+      this.sites,
+      this._workflows_
+    );
+    const bodyRows = addBodyRows(this.table.select("tbody"), rows);
+    const cells = addCells(bodyRows);
+    identifyInactiveSites(bodyRows);
+    addTrafficLighting(bodyRows);
+    addFlagIcons(bodyRows);
+    addRowHighlighting(bodyRows);
+    addClickEvents(bodyRows, cells, this.config);
+  }
+
   // src/siteOverview.js
   function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
     checkInputs5(_results_, _config_, _sites_, _workflows_);
@@ -23545,6 +23562,14 @@ var rbmViz = (() => {
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites, _workflows_);
     const table = makeTable(_element_, rows, columns, config);
+    table.updateTable = updateTable.bind({
+      config,
+      sites,
+      _workflows_,
+      columns,
+      rows,
+      table
+    });
     return table;
   }
 
