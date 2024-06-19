@@ -4,9 +4,7 @@ const qtl = function (workflow, datasets, setup = false) {
     const qtlDropdown = document.querySelector('#qtl');
 
     if (setup === true) {
-        const qtls = [
-            ...new Set(datasets[1].map((d) => d.workflowid)).values(),
-        ];
+        const qtls = [...new Set(datasets[1].map((d) => d.MetricID)).values()];
 
         for (const i in qtls) {
             const option = document.createElement('option');
@@ -15,7 +13,7 @@ const qtl = function (workflow, datasets, setup = false) {
             qtlDropdown.appendChild(option);
         }
 
-        qtlDropdown.value = workflow.workflowid;
+        qtlDropdown.value = workflow.MetricID;
         qtlDropdown.addEventListener('change', (event) => {
             const workflowID = event.target.value;
 
@@ -24,7 +22,7 @@ const qtl = function (workflow, datasets, setup = false) {
 
             // chart configuration
             const workflow = selectWorkflowID(datasets[1], workflowID);
-            workflow.y = 'metric';
+            workflow.y = 'Metric';
 
             // threshold annotations
             const parameters = mergeParameters(

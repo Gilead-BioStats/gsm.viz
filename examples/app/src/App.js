@@ -56,13 +56,13 @@ const App = () => {
     const flagCountsByKRI = filterWorkflowID(flagCountsByKRIAll, workflowID);
 
     // configuration
-    const barChartScoreConfig = { ...workflow, y: 'score' };
+    const barChartScoreConfig = { ...workflow, y: 'Score' };
     const scatterPlotConfig = { ...workflow };
-    const barChartMetricConfig = { ...workflow, y: 'metric' };
+    const barChartMetricConfig = { ...workflow, y: 'Metric' };
     const timeSeriesContinuousConfig = { ...workflow };
     const timeSeriesContinuousWithCIConfig = {
         ...findWorkflowID(workflows, 'qtl0006'),
-        y: 'metric',
+        y: 'Metric',
     };
     const sparklineConfig = { ...workflow, nSnapshots: 25 };
     const timeSeriesDiscreteByGroupConfig = { y: 'n_at_risk_or_flagged' };

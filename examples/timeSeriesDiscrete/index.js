@@ -24,14 +24,14 @@ Promise.all(dataPromises)
         });
         let flagCounts = datasets[0];
         if (by === 'kri')
-            flagCounts = flagCounts.filter((d) => d.workflowid === workflowID);
+            flagCounts = flagCounts.filter((d) => d.MetricID === workflowID);
 
         // config
         const config =
             by === 'kri'
                 ? {
                       ...datasets[1].find(
-                          (workflow) => workflow.workflowid === workflowID
+                          (workflow) => workflow.MetricID === workflowID
                       ),
                       //discreteUnit: 'Country',
                   }

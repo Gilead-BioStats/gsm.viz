@@ -13,8 +13,8 @@
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
@@ -27,14 +27,14 @@
                 "required": true,
                 "key": true
             },
-            "numerator": {
+            "Numerator": {
                 "title": "Predicted Numerator",
                 "description": "Predicted numerator of KRI metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "denominator": {
+            "Denominator": {
                 "title": "Predicted Denominator",
                 "description": "Predicted denominator of KRI metric",
                 "type": "number",

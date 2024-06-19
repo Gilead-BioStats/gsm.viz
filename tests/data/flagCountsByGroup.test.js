@@ -31,7 +31,7 @@ describe('flag counts schema with flag counts by group', () => {
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter((prop) => prop !== 'workflowid')
+            .filter((prop) => prop !== 'MetricID')
             .sort();
 
         expect(propsResult).toEqual(propsSchema);

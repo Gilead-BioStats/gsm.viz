@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -27229,8 +27230,8 @@ var rbmViz = (() => {
     version: "0.14.0",
     type: "object",
     properties: {
-      workflowid: {
-        title: "Workflow ID",
+      MetricID: {
+        title: "Metric ID",
         description: "Unique workflow identifier",
         type: "string",
         required: false
@@ -27241,35 +27242,35 @@ var rbmViz = (() => {
         type: "string",
         required: true
       },
-      numerator: {
+      Numerator: {
         title: "KRI Numerator",
-        description: "Unit of KRI numerator",
+        description: "Unit of KRI Numerator",
         type: "string",
         required: true,
         key: false
       },
-      denominator: {
+      Denominator: {
         title: "KRI Denominator",
-        description: "Unit of KRI denominator",
+        description: "Unit of KRI Denominator",
         type: "string",
         required: true,
         key: false
       },
-      metric: {
+      Metric: {
         title: "KRI Metric",
-        description: "Unit of KRI metric",
+        description: "Unit of KRI Metric",
         type: "string",
         required: true,
         key: false
       },
       outcome: {
         title: "KRI Type",
-        description: "Type of KRI metric",
+        description: "Type of KRI Metric",
         type: "string",
         required: false,
         key: false
       },
-      score: {
+      Score: {
         title: "KRI Score",
         description: "Unit of KRI score",
         type: "string",
@@ -27337,8 +27338,8 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        workflowid: {
-          title: "Workflow ID",
+        MetricID: {
+          title: "Metric ID",
           description: "Unique workflow identifier",
           type: "string",
           required: false,
@@ -27405,15 +27406,15 @@ var rbmViz = (() => {
           type: "string",
           required: true,
           key: true,
-          alternate: "workflowid"
+          alternate: "metricid"
         },
-        workflowid: {
-          title: "Workflow ID",
+        MetricID: {
+          title: "Metric ID",
           description: "Unique workflow identifier",
           type: "string",
           required: true,
           key: true,
-          alternate: "workflowid"
+          alternate: "metricid"
         },
         n: {
           title: "# of Groups/KRIs",
@@ -27463,8 +27464,8 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        workflowid: {
-          title: "Workflow ID",
+        MetricID: {
+          title: "Metric ID",
           description: "Unique workflow identifier",
           type: "string",
           required: false,
@@ -27477,28 +27478,28 @@ var rbmViz = (() => {
           required: true,
           key: true
         },
-        numerator: {
+        Numerator: {
           title: "Numerator",
-          description: "Numerator of KRI metric",
+          description: "Numerator of KRI Metric",
           type: "number",
           required: true,
           key: false
         },
-        denominator: {
+        Denominator: {
           title: "Denominator",
-          description: "Denominator of KRI metric",
+          description: "Denominator of KRI Metric",
           type: "number",
           required: true,
           key: false
         },
-        metric: {
+        Metric: {
           title: "KRI Metric",
-          description: "KRI metric",
+          description: "KRI Metric",
           type: "number",
           required: true,
           key: false
         },
-        score: {
+        Score: {
           title: "KRI Score",
           description: "KRI score",
           type: "number",
@@ -27539,8 +27540,8 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        workflowid: {
-          title: "Workflow ID",
+        MetricID: {
+          title: "Metric ID",
           description: "Unique workflow identifier",
           type: "string",
           required: false,
@@ -27553,14 +27554,14 @@ var rbmViz = (() => {
           required: true,
           key: true
         },
-        numerator: {
+        Numerator: {
           title: "Predicted Numerator",
           description: "Predicted numerator of KRI metric",
           type: "number",
           required: true,
           key: false
         },
-        denominator: {
+        Denominator: {
           title: "Predicted Denominator",
           description: "Predicted denominator of KRI metric",
           type: "number",
@@ -27601,8 +27602,8 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        workflowid: {
-          title: "Workflow ID",
+        MetricID: {
+          title: "Metric ID",
           description: "Unique workflow identifier",
           type: "string",
           required: false,
@@ -28045,7 +28046,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.x = "GroupID";
     defaults3.xType = "category";
-    defaults3.y = "score";
+    defaults3.y = "Score";
     defaults3.yType = "linear";
     defaults3.color = "flag";
     defaults3.hoverCallback = (datum2) => {
@@ -28066,7 +28067,7 @@ var rbmViz = (() => {
     config.xLabel = coalesce(_config_.xLabel, config["group"]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y === "metric")
+    if (config.y === "Metric")
       delete config.thresholds;
     if (config.hoverCallbackWrapper === void 0)
       config.hoverCallbackWrapper = getCallbackWrapper(config.hoverCallback);
@@ -28330,8 +28331,8 @@ var rbmViz = (() => {
   // src/barChart/getPlugins/dataLabels.js
   function dataLabels(config) {
     return {
-      align: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
-      anchor: (context) => config.y === "score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      align: (context) => config.y === "Score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "Metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
+      anchor: (context) => config.y === "Score" && Math.sign(context.dataset.data[context.dataIndex].y) === 1 || config.y === "Metric" && Math.sign(context.dataset.data[context.dataIndex].y) === -1 ? "start" : "end",
       color: "black",
       display: (context) => {
         return context.chart.getDatasetMeta(0).data[0].width >= context.chart.options.font.size - 3;
@@ -28360,7 +28361,7 @@ var rbmViz = (() => {
   function title(config) {
     return {
       display: config.displayTitle,
-      text: `${config.metric} by ${config.group}`
+      text: `${config.Metric} by ${config.group}`
     };
   }
 
@@ -28370,20 +28371,20 @@ var rbmViz = (() => {
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
       content = config.group === "Study" ? [
-        `${config.yLabel}: ${falsy_default.includes(datum2.metric) ? "\u2014" : format(".3f")(datum2.metric)}`,
+        `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
         `Confidence Interval: (${format(".3f")(
           datum2.lowerCI
         )}, ${format(".3f")(datum2.upperCI)})`,
-        `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(
-          datum2.denominator
+        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
+        `${config.Denominator}: ${format(",")(
+          datum2.Denominator
         )}`
       ] : [
-        `KRI Score: ${falsy_default.includes(datum2.score) ? "\u2014" : format(".1f")(datum2.score)} (${config.score})`,
-        `KRI Value: ${falsy_default.includes(datum2.metric) ? "\u2014" : format(".3f")(datum2.metric)} (${config.metric})`,
-        `${config.numerator}: ${format(",")(datum2.numerator)}`,
-        `${config.denominator}: ${format(",")(
-          datum2.denominator
+        `KRI Score: ${falsy_default.includes(datum2.Score) ? "\u2014" : format(".1f")(datum2.Score)} (${config.Score})`,
+        `KRI Value: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)} (${config.Metric})`,
+        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
+        `${config.Denominator}: ${format(",")(
+          datum2.Denominator
         )}`
       ];
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
@@ -28617,7 +28618,7 @@ var rbmViz = (() => {
       },
       layout: {
         padding: {
-          top: config.y === "metric" ? max(datasets[0].data, (d) => d.GroupID.length) * 8 : null
+          top: config.y === "Metric" ? max(datasets[0].data, (d) => d.GroupID.length) * 8 : null
         }
       },
       maintainAspectRatio: config.maintainAspectRatio,
@@ -28681,9 +28682,9 @@ var rbmViz = (() => {
   // src/scatterPlot/configure.js
   function configure4(_config_, _data_) {
     const defaults3 = {};
-    defaults3.x = "denominator";
+    defaults3.x = "Denominator";
     defaults3.xType = "logarithmic";
-    defaults3.y = "numerator";
+    defaults3.y = "Numerator";
     defaults3.yType = "linear";
     defaults3.color = "flag";
     defaults3.hoverCallback = (datum2) => {
@@ -28837,8 +28838,8 @@ var rbmViz = (() => {
             data: group2.map((d) => ({
               stratum: Math.abs(+d.threshold),
               threshold: d.threshold,
-              x: +d.denominator,
-              y: +d.numerator
+              x: +d.Denominator,
+              y: +d.Numerator
             })),
             borderWidth: 1,
             hoverRadius: 0,
@@ -28933,7 +28934,7 @@ var rbmViz = (() => {
   function title2(config) {
     return {
       display: config.displayTitle,
-      text: `${config.metric} by ${config.group}`
+      text: `${config.Metric} by ${config.group}`
     };
   }
 
@@ -29111,7 +29112,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
-    defaults3.y = "score";
+    defaults3.y = "Score";
     defaults3.yType = "linear";
     defaults3.color = "flag";
     defaults3.hoverCallback = (datum2) => {
@@ -29125,8 +29126,8 @@ var rbmViz = (() => {
     const config = configure2(defaults3, _config_, {
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
-    config.annotation = ["metric", "score"].includes(config.y) ? "numerator" : config.y;
-    config.dataType = ["metric", "score"].includes(config.y) ? "continuous" : "discrete";
+    config.annotation = ["Metric", "Score"].includes(config.y) ? "Numerator" : config.y;
+    config.dataType = ["Metric", "Score"].includes(config.y) ? "continuous" : "discrete";
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Sparkline of ${config.yLabel} by ${config.xLabel}`;
@@ -29232,7 +29233,7 @@ var rbmViz = (() => {
     const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
-    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "metric" ? `.3f` : `.1f`;
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "Metric" ? `.3f` : `.1f`;
     const datum2 = data.filter((d) => falsy_default.includes(d.y) === false).slice(-1)[0];
     const content = [format(format2)(datum2?.y)];
     const value = {
@@ -29283,7 +29284,7 @@ var rbmViz = (() => {
     return {
       callbacks: {
         label: function(data) {
-          const fmt = config.y === "score" ? ".1f" : config.y === "metric" ? ".3f" : ",d";
+          const fmt = config.y === "Score" ? ".1f" : config.y === "Metric" ? ".3f" : ",d";
           return config.dataType === "continuous" ? `${data.label}: ${format(fmt)(data.parsed.y)}` : `${data.label}: ${format(fmt)(
             data.raw.n_flagged
           )} red / ${format(fmt)(data.raw.n_at_risk)} amber`;
@@ -29430,7 +29431,7 @@ var rbmViz = (() => {
     defaults3.distributionDisplay = "boxplot";
     defaults3.x = "snapshot_date";
     defaults3.xType = "category";
-    defaults3.y = "score";
+    defaults3.y = "Score";
     defaults3.yType = "linear";
     defaults3.color = "flag";
     defaults3.hoverCallback = (datum2) => {
@@ -30467,43 +30468,43 @@ var rbmViz = (() => {
   var rbmViz = {
     barChart: barChart.bind({
       x: "GroupID",
-      y: "score",
+      y: "Score",
       chartType: "bar",
       dataType: "continuous"
     }),
     barChartMetric: barChart.bind({
       x: "GroupID",
-      y: "metric",
+      y: "Metric",
       chartType: "bar",
       dataType: "continuous"
     }),
     barChartScore: barChart.bind({
       x: "GroupID",
-      y: "score",
+      y: "Score",
       chartType: "bar",
       dataType: "continuous"
     }),
     scatterPlot: scatterPlot.bind({
-      x: "denominator",
-      y: "numerator",
+      x: "Denominator",
+      y: "Numerator",
       chartType: "scatter",
       dataType: "discrete"
     }),
     sparkline: sparkline.bind({
       x: "snapshot_date",
-      y: "score",
+      y: "Score",
       chartType: "line",
       dataType: "continuous"
     }),
     sparklineMetric: sparkline.bind({
       x: "snapshot_date",
-      y: "metric",
+      y: "Metric",
       chartType: "line",
       dataType: "continuous"
     }),
     sparklineScore: sparkline.bind({
       x: "snapshot_date",
-      y: "score",
+      y: "Score",
       chartType: "line",
       dataType: "continuous"
     }),
@@ -30515,13 +30516,13 @@ var rbmViz = (() => {
     }),
     timeSeries: timeSeries.bind({
       x: "snapshot_date",
-      y: "score",
+      y: "Score",
       chartType: "boxplot",
       dataType: "continuous"
     }),
     timeSeriesScore: timeSeries.bind({
       x: "snapshot_date",
-      y: "score",
+      y: "Score",
       chartType: "boxplot",
       dataType: "continuous"
     }),
@@ -30533,7 +30534,7 @@ var rbmViz = (() => {
     }),
     timeSeriesQTL: timeSeries.bind({
       x: "snapshot_date",
-      y: "metric",
+      y: "Metric",
       chartType: "identity",
       dataType: "continuous"
     }),

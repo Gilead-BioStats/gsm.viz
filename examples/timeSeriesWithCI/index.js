@@ -16,7 +16,7 @@ Promise.all(dataPromises)
         const workflowID = 'qtl0006';
 
         datasets = datasets.map((dataset) => {
-            return dataset.filter((d) => /^qtl/.test(d.workflowid));
+            return dataset.filter((d) => /^qtl/.test(d.MetricID));
         });
 
         // analysis results
@@ -24,7 +24,7 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'metric';
+        workflow.y = 'Metric';
 
         // threshold annotations
         const parameters = mergeParameters(

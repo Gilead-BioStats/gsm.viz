@@ -10,7 +10,7 @@ const threshold = function (workflow, datasets, setup = false) {
 
         // threshold annotations
         const parameters =
-            workflow.y === 'score' &&
+            workflow.y === 'Score' &&
             document.getElementById('threshold').checked
                 ? mergeParameters(
                       filterOnWorkflowID(datasets[2], workflowID),

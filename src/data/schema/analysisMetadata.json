@@ -4,8 +4,8 @@
     "version": "0.14.0",
     "type": "object",
     "properties": {
-        "workflowid": {
-            "title": "Workflow ID",
+        "MetricID": {
+            "title": "Metric ID",
             "description": "Unique workflow identifier",
             "type": "string",
             "required": false
@@ -16,35 +16,35 @@
             "type": "string",
             "required": true
         },
-        "numerator": {
+        "Numerator": {
             "title": "KRI Numerator",
-            "description": "Unit of KRI numerator",
+            "description": "Unit of KRI Numerator",
             "type": "string",
             "required": true,
             "key": false
         },
-        "denominator": {
+        "Denominator": {
             "title": "KRI Denominator",
-            "description": "Unit of KRI denominator",
+            "description": "Unit of KRI Denominator",
             "type": "string",
             "required": true,
             "key": false
         },
-        "metric": {
+        "Metric": {
             "title": "KRI Metric",
-            "description": "Unit of KRI metric",
+            "description": "Unit of KRI Metric",
             "type": "string",
             "required": true,
             "key": false
         },
         "outcome": {
             "title": "KRI Type",
-            "description": "Type of KRI metric",
+            "description": "Type of KRI Metric",
             "type": "string",
             "required": false,
             "key": false
         },
-        "score": {
+        "Score": {
             "title": "KRI Score",
             "description": "Unit of KRI score",
             "type": "string",

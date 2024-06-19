@@ -13,17 +13,17 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            dataset.filter((d) => /^kri/.test(d.MetricID))
         );
 
         const workflowID = kri(datasets, true);
 
         // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        const results = datasets[0].filter((d) => d.MetricID === workflowID);
 
         // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.y = 'score';
+        const workflow = datasets[1].find((d) => d.MetricID === workflowID);
+        workflow.y = 'Score';
         workflow.nSnapshots = 10;
 
         // threshold annotations

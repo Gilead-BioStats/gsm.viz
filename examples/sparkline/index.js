@@ -29,7 +29,7 @@ Promise.all(dataPromises)
 
         // discrete outcome: flag counts by KRI
         const flagCountsByKRI = datasets[4].filter(
-            (d) => d.workflowid === workflowID
+            (d) => d.MetricID === workflowID
         );
         flagCountsByKRI.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
@@ -55,18 +55,18 @@ Promise.all(dataPromises)
 
         // continuous outcomes
         rbmViz.default.sparkline(
-            document.getElementById('score'),
+            document.getElementById('Score'),
             results,
             {
                 ...workflow,
-                y: 'score',
+                y: 'Score',
             },
             parameters
         );
 
-        rbmViz.default.sparkline(document.getElementById('metric'), results, {
+        rbmViz.default.sparkline(document.getElementById('Metric'), results, {
             ...workflow,
-            y: 'metric',
+            y: 'Metric',
         });
 
         // discrete outcomes

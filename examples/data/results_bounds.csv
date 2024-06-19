@@ -1,4 +1,4 @@
-StudyID,workflowid,threshold,numerator,denominator,log_denominator,gsm_analysis_date
+StudyID,MetricID,threshold,Numerator,Denominator,log_denominator,gsm_analysis_date
 AA-AA-000-0000,cou0001,-3,375.1387688,115225.14,11.65464323,1/5/2023
 AA-AA-000-0000,cou0001,-3,383.4867897,117262,11.67216603,1/5/2023
 AA-AA-000-0000,cou0001,-3,391.8495265,119298.86,11.68938705,1/5/2023

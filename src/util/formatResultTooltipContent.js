@@ -14,32 +14,32 @@ export default function formatResultTooltipContent(config, data) {
             config.group === 'Study'
                 ? [
                       `${config.yLabel}: ${
-                          falsy.includes(datum.metric)
+                          falsy.includes(datum.Metric)
                               ? '—'
-                              : format('.3f')(datum.metric)
+                              : format('.3f')(datum.Metric)
                       }`,
                       `Confidence Interval: (${format('.3f')(
                           datum.lowerCI
                       )}, ${format('.3f')(datum.upperCI)})`,
-                      `${config.numerator}: ${format(',')(datum.numerator)}`,
-                      `${config.denominator}: ${format(',')(
-                          datum.denominator
+                      `${config.Numerator}: ${format(',')(datum.Numerator)}`,
+                      `${config.Denominator}: ${format(',')(
+                          datum.Denominator
                       )}`,
                   ]
                 : [
                       `KRI Score: ${
-                          falsy.includes(datum.score)
+                          falsy.includes(datum.Score)
                               ? '—'
-                              : format('.1f')(datum.score)
-                      } (${config.score})`,
+                              : format('.1f')(datum.Score)
+                      } (${config.Score})`,
                       `KRI Value: ${
-                          falsy.includes(datum.metric)
+                          falsy.includes(datum.Metric)
                               ? '—'
-                              : format('.3f')(datum.metric)
-                      } (${config.metric})`,
-                      `${config.numerator}: ${format(',')(datum.numerator)}`,
-                      `${config.denominator}: ${format(',')(
-                          datum.denominator
+                              : format('.3f')(datum.Metric)
+                      } (${config.Metric})`,
+                      `${config.Numerator}: ${format(',')(datum.Numerator)}`,
+                      `${config.Denominator}: ${format(',')(
+                          datum.Denominator
                       )}`,
                   ];
     }

@@ -19,15 +19,15 @@
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "workflowid"
+                "alternate": "metricid"
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "workflowid"
+                "alternate": "metricid"
             },
             "n": {
                 "title": "# of Groups/KRIs",

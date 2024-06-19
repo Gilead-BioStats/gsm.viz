@@ -11,7 +11,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color
@@ -34,10 +34,10 @@ export default function configure(_config_, _data_, _thresholds_) {
     });
 
     // annotation
-    config.annotation = ['metric', 'score'].includes(config.y)
-        ? 'numerator'
+    config.annotation = ['Metric', 'Score'].includes(config.y)
+        ? 'Numerator'
         : config.y;
-    config.dataType = ['metric', 'score'].includes(config.y)
+    config.dataType = ['Metric', 'Score'].includes(config.y)
         ? 'continuous'
         : 'discrete';
 

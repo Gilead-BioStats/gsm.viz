@@ -10,9 +10,9 @@ export default function tooltip(config) {
         callbacks: {
             label: function (data) {
                 const fmt =
-                    config.y === 'score'
+                    config.y === 'Score'
                         ? '.1f'
-                        : config.y === 'metric'
+                        : config.y === 'Metric'
                         ? '.3f'
                         : ',d';
 

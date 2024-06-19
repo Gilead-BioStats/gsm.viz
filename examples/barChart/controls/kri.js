@@ -3,9 +3,7 @@ const kri = function (workflow, datasets, setup = false) {
     const kriDropdown = document.querySelector('#kri');
 
     if (setup === true) {
-        const kris = [
-            ...new Set(datasets[1].map((d) => d.workflowid)).values(),
-        ];
+        const kris = [...new Set(datasets[1].map((d) => d.MetricID)).values()];
 
         for (const i in kris) {
             const option = document.createElement('option');
@@ -14,7 +12,7 @@ const kri = function (workflow, datasets, setup = false) {
             kriDropdown.appendChild(option);
         }
 
-        kriDropdown.value = workflow.workflowid;
+        kriDropdown.value = workflow.MetricID;
         kriDropdown.addEventListener('change', (event) => {
             // analysis results
             const results = filterOnWorkflowID(datasets[0], event.target.value);
@@ -26,7 +24,7 @@ const kri = function (workflow, datasets, setup = false) {
 
             // threshold annotations
             const parameters =
-                workflow.y === 'score' &&
+                workflow.y === 'Score' &&
                 document.getElementById('threshold').checked
                     ? mergeParameters(
                           filterOnWorkflowID(datasets[2], event.target.value),

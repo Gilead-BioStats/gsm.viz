@@ -16,8 +16,8 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('MetricID')
+                ? dataset.filter((d) => /^kri/.test(d.MetricID))
                 : dataset
         );
 
@@ -26,7 +26,7 @@ Promise.all(dataPromises)
 
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'score';
+        workflow.y = 'Score';
         workflow.hoverCallback = function (datum) {
             //console.log(datum.GroupID);
         };

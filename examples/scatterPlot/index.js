@@ -15,8 +15,8 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('MetricID')
+                ? dataset.filter((d) => /^kri/.test(d.MetricID))
                 : dataset
         );
 

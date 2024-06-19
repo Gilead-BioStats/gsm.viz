@@ -12,8 +12,8 @@ export default function rollupBounds(_bounds_, config) {
                     data: group.map((d) => ({
                         stratum: Math.abs(+d.threshold),
                         threshold: d.threshold,
-                        x: +d.denominator,
-                        y: +d.numerator,
+                        x: +d.Denominator,
+                        y: +d.Numerator,
                     })),
                     borderWidth: 1,
                     hoverRadius: 0,

@@ -24,7 +24,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color

@@ -9,7 +9,7 @@ const yaxis = function (workflow, datasets, setup = false) {
             const workflowID = kri();
 
             datasets = datasets.map((dataset) =>
-                dataset.filter((d) => /^kri/.test(d.workflowid))
+                dataset.filter((d) => /^kri/.test(d.MetricID))
             );
 
             // analysis results
@@ -22,7 +22,7 @@ const yaxis = function (workflow, datasets, setup = false) {
 
             // threshold annotations
             const parameters =
-                workflow.y === 'score' &&
+                workflow.y === 'Score' &&
                 document.getElementById('threshold').checked
                     ? mergeParameters(
                           filterOnWorkflowID(datasets[2], workflowID),

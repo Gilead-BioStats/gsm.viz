@@ -13,8 +13,8 @@
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
