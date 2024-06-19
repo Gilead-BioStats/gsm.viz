@@ -24,7 +24,8 @@ export default function updateTable(
     );
 
     // create table
-    const bodyRows = addBodyRows(this.table.select('tbody'), rows);
+    const tbody = this.table.select('tbody');
+    const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
 
     // identify inactive sites
@@ -41,4 +42,11 @@ export default function updateTable(
 
     // add click events
     addClickEvents(bodyRows, cells, this.config);
+
+    // preserve existing column sort
+    const sortedColumn = this.columns.find(d => d.activeSort);
+    if (sortedColumn !== undefined) {
+        sortedColumn.sortState = -sortedColumn.sortState;
+        sortedColumn.sort(tbody.selectAll('tr'), sortedColumn);
+    }
 }

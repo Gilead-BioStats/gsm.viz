@@ -30,6 +30,7 @@ export default function defineColumns(sites, workflows, results) {
         column.index = i;
         column.defineTooltip = defineTooltip;
         column.sortState = column.dataType === 'string' ? 0 : 1;
+        column.activeSort = false;
     });
 
     return columns;

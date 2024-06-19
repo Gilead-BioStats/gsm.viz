@@ -23341,6 +23341,7 @@ var rbmViz = (() => {
       column.index = i;
       column.defineTooltip = defineTooltip;
       column.sortState = column.dataType === "string" ? 0 : 1;
+      column.activeSort = false;
     });
     return columns;
   }
@@ -23423,7 +23424,11 @@ var rbmViz = (() => {
   // src/siteOverview/makeTable/addSorting.js
   function addSorting(headerRow, body) {
     headerRow.on("click", function(event, column) {
+      headerRow.data().forEach((d2) => {
+        d2.activeSort = false;
+      });
       column.sort(body.selectAll("tr"), column);
+      column.activeSort = true;
     });
   }
 
@@ -23546,13 +23551,19 @@ var rbmViz = (() => {
       this.sites,
       this._workflows_
     );
-    const bodyRows = addBodyRows(this.table.select("tbody"), rows);
+    const tbody = this.table.select("tbody");
+    const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
     identifyInactiveSites(bodyRows);
     addTrafficLighting(bodyRows);
     addFlagIcons(bodyRows);
     addRowHighlighting(bodyRows);
     addClickEvents(bodyRows, cells, this.config);
+    const sortedColumn = this.columns.find((d2) => d2.activeSort);
+    if (sortedColumn !== void 0) {
+      sortedColumn.sortState = -sortedColumn.sortState;
+      sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
+    }
   }
 
   // src/siteOverview.js

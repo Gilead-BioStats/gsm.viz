@@ -7,25 +7,27 @@ const getSites = function(results) {
     let sites;
     switch (siteSubset.value) {
         case 'red':
-            sites = results
+            sites = [...new Set(results
                 .filter((d) => Math.abs(parseInt(d.flag)) === 2)
                 .map((d) => d.groupid)
-                .filter(unique);
+            )];
             break;
         case 'amber':
-            sites = results
+            sites = [...new Set(results
                 .filter((d) => Math.abs(parseInt(d.flag)) === 1)
                 .map((d) => d.groupid)
-                .filter(unique);
+            )];
             break;
         case 'red-amber':
-            sites = results
+            sites = [...new Set(results
                 .filter((d) => Math.abs(parseInt(d.flag)) >= 1)
                 .map((d) => d.groupid)
-                .filter(unique);
+            )];
             break;
         default:
-            sites = results.map((d) => d.groupid).filter(unique);
+            sites = [...new Set(
+                results.map((d) => d.groupid)
+            )];
     }
 
     return sites;
