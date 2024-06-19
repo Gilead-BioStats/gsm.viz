@@ -14,6 +14,7 @@ import scatterPlot from './scatterPlot.js';
 import sparkline from './sparkline.js';
 import timeSeries from './timeSeries.js';
 import siteOverview from './siteOverview.js';
+import countryOverview from './countryOverview.js';
 
 Chart.register(
     annotationPlugin,
@@ -109,6 +110,9 @@ const rbmViz = {
 
     // site overview
     siteOverview,
+
+    // country overview
+    countryOverview,
 };
 
 export default rbmViz;

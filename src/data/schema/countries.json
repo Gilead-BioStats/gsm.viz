@@ -1,0 +1,53 @@
+{
+    "title": "Country Metadata",
+    "description": "JSON schema of country metadta",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "studyid": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "groupid": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "group_label": {
+                "title": "Group Label",
+                "description": "Label of group",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "enrolled_participants": {
+                "title": "Enrolled Participants",
+                "description": "Number of participants enrolled at group",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "status": {
+                "title": "Group Status",
+                "description": "Status of group",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "gsm_analysis_date": {
+                "title": "Analysis Date",
+                "description": "Date of analysis",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}

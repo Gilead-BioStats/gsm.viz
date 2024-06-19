@@ -5,7 +5,6 @@ import structureData from './structureData.js';
 import addBodyRows from './makeTable/addBodyRows.js';
 import addCells from './makeTable/addCells.js';
 
-import identifyInactiveSites from './makeTable/identifyInactiveSites.js';
 import addTrafficLighting from './makeTable/addTrafficLighting.js';
 import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
@@ -17,7 +16,7 @@ export default function updateTable(
     const rows = structureData(
         _results_,
         this.columns,
-        this.sites,
+        this.countries,
         this._workflows_
     );
 
@@ -25,9 +24,6 @@ export default function updateTable(
     const tbody = this.table.select('tbody');
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
-
-    // identify inactive sites
-    identifyInactiveSites(bodyRows);
 
     // add traffic light coloring to cells
     addTrafficLighting(bodyRows);

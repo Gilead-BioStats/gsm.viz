@@ -1,6 +1,6 @@
 {
-    "title": "Siite Metadata",
-    "description": "JSON schema of supplemental data to barChart and scatterPlot modules",
+    "title": "Site Metadata",
+    "description": "JSON schema of site metadata",
     "version": "0.14.0",
     "type": "array",
     "items": {
