@@ -56,7 +56,7 @@ describe('configuration', () => {
                 'distributionDisplay',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
-                'Thresholds',
+                'thresholds',
                 'variableThresholds',
             ].sort()
         );

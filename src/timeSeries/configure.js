@@ -20,7 +20,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.distributionDisplay = 'boxplot';
 
     // horizontal
-    defaults.x = 'snapshot_date';
+    defaults.x = 'SnapshotDate';
     defaults.xType = 'category';
 
     // vertical
@@ -52,7 +52,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
               (Threshold) =>
-                  Threshold.snapshot_date !== _thresholds_[0].snapshot_date
+                  Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
           )
         : false;
 

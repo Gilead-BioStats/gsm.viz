@@ -55,50 +55,50 @@ const rbmViz = {
     }),
     // sparkline
     sparkline: sparkline.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Score',
         chartType: 'line',
         dataType: 'continuous',
     }),
     sparklineMetric: sparkline.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Metric',
         chartType: 'line',
         dataType: 'continuous',
     }),
     sparklineScore: sparkline.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Score',
         chartType: 'line',
         dataType: 'continuous',
     }),
     sparklineDiscrete: sparkline.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'n_at_risk_or_flagged',
         chartType: 'line',
         dataType: 'discrete',
     }),
     // time series
     timeSeries: timeSeries.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Score',
         chartType: 'boxplot',
         dataType: 'continuous',
     }),
     timeSeriesScore: timeSeries.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Score',
         chartType: 'boxplot',
         dataType: 'continuous',
     }),
     timeSeriesDiscrete: timeSeries.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'n_at_risk_or_flagged',
         chartType: 'line',
         dataType: 'discrete',
     }),
     timeSeriesQTL: timeSeries.bind({
-        x: 'snapshot_date',
+        x: 'SnapshotDate',
         y: 'Metric',
         chartType: 'identity',
         dataType: 'continuous',

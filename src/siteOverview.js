@@ -12,7 +12,7 @@ const makeSiteSummaryData = function (data) {
         .map((item) => {
             const obj = {
                 site_data: {
-                    site_id: item.site_id,
+                    SiteID: item.SiteID,
                     ...item.site_id_details,
                     site_investigator: item.site_investigator,
                 },
@@ -32,7 +32,7 @@ const makeSiteSummaryData = function (data) {
                 .reduce((kriItems, kriItem) => {
                     kriItems[Object.keys(kriItem)] = {
                         ...kriItem[Object.keys(kriItem)],
-                        site_id: item.site_id,
+                        SiteID: item.SiteID,
                     };
                     return kriItems;
                 }, {});
@@ -52,8 +52,8 @@ const defineColumns = function (kriObj, study_id) {
             <div className="tooltip">
             <div className='align darkTxt tooltiptext'>
                 ${
-                    props.getValue().site_id
-                        ? `<p><b>Site ID:</b> ${props.getValue().site_id}</p>`
+                    props.getValue().SiteID
+                        ? `<p><b>Site ID:</b> ${props.getValue().SiteID}</p>`
                         : ''
                 }
                 <hr/>
@@ -88,8 +88,8 @@ const defineColumns = function (kriObj, study_id) {
                 }
               </div>
               <span className='help'>
-                <a href="/${study_id}/site-summary/${props.getValue().site_id}">
-                  ${props.getValue().site_id}
+                <a href="/${study_id}/site-summary/${props.getValue().SiteID}">
+                  ${props.getValue().SiteID}
                   <img src=${InfoCircleOutlined} className="info-icon" />
                 </a>
               </span>
@@ -129,9 +129,9 @@ const callSparkline = function (obj, kri, sparklineData, sparklineWorkflow) {
     if (sparklineWorkflow?.[kri.kri_id] !== undefined) {
         sparkline(
             document.getElementById(
-                `chartContainer${[obj?.site_id]}-${[kri.kri_id]}`
+                `chartContainer${[obj?.SiteID]}-${[kri.kri_id]}`
             ),
-            sparklineData?.[obj?.site_id]?.[kri.kri_id],
+            sparklineData?.[obj?.SiteID]?.[kri.kri_id],
             sparklineWorkflow?.[kri.kri_id]
         );
     }
@@ -155,7 +155,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper' id="red">
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -180,7 +180,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -205,7 +205,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -230,7 +230,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -255,7 +255,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -280,7 +280,7 @@ const flagStatusIcon = function (
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
                 kri.kri_id,
             ]}' style="width: 100%;height: 50px"></div>
               </div>

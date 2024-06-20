@@ -58,7 +58,7 @@ describe('configuration', () => {
                 'displayTitle',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
-                'Thresholds',
+                'thresholds',
             ].sort()
         );
     });

@@ -32,7 +32,7 @@ Promise.all(dataPromises)
             const config = workflows.find(
                 (workflow) => workflow.MetricID === workflowID
             );
-            config.x = 'snapshot_date';
+            config.x = 'SnapshotDate';
             config.y = 'n_at_risk_or_flagged';
             config.color = null;
             config.nSnapshots = 25;

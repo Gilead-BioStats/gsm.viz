@@ -5,7 +5,7 @@ export default function mutate(_data_, config, _sites_ = null) {
         .map((d) => {
             // attach site metadata to results
             if (_sites_ !== null) {
-                const site = _sites_.find((site) => site.siteid === d.GroupID);
+                const site = _sites_.find((site) => site.SiteID === d.GroupID);
 
                 if (site !== undefined) {
                     d.site = site;

@@ -27650,7 +27650,7 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        siteid: {
+        SiteID: {
           title: "Site ID",
           description: "Unique site identifier",
           type: "string",
@@ -27867,7 +27867,7 @@ var rbmViz = (() => {
     }
     const schema2 = JSON.parse(JSON.stringify(schema_default[schemaName]));
     if (module === "timeSeries" && ["flagCounts", "results", "resultsVertical"].includes(schemaName)) {
-      schema2.items.properties.snapshot_date = schema_default.snapshotDate;
+      schema2.items.properties.SnapshotDate = schema_default.snapshotDate;
     }
     if (argument === null) {
       if (verbose)
@@ -28126,7 +28126,7 @@ var rbmViz = (() => {
   function mutate(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
       if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.siteid === d.GroupID);
+        const site = _sites_.find((site2) => site2.SiteID === d.GroupID);
         if (site !== void 0) {
           d.site = site;
         }
@@ -28717,7 +28717,7 @@ var rbmViz = (() => {
   function mutate2(_data_, config, _sites_ = null) {
     const data = _data_.map((d) => {
       if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.siteid === d.GroupID);
+        const site = _sites_.find((site2) => site2.SiteID === d.GroupID);
         if (site !== void 0) {
           d.site = site;
         }
@@ -29110,7 +29110,7 @@ var rbmViz = (() => {
   // src/sparkline/configure.js
   function configure5(_config_, _data_, _thresholds_) {
     const defaults3 = {};
-    defaults3.x = "snapshot_date";
+    defaults3.x = "SnapshotDate";
     defaults3.xType = "category";
     defaults3.y = "Score";
     defaults3.yType = "linear";
@@ -29143,7 +29143,7 @@ var rbmViz = (() => {
         stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
-    }).sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
+    }).sort((a, b) => ascending(a.SnapshotDate, b.SnapshotDate));
     return data.slice(-config.nSnapshots);
   }
 
@@ -29180,7 +29180,7 @@ var rbmViz = (() => {
   // src/sparkline/structureData.js
   function structureData3(_data_, config) {
     const data = mutate3(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
+    const labels = data.map((d) => d.SnapshotDate);
     const pointBackgroundColor = data.map((d, i) => {
       return config.dataType === "continuous" ? colorScheme_default[d.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
     });
@@ -29429,7 +29429,7 @@ var rbmViz = (() => {
     else
       defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
-    defaults3.x = "snapshot_date";
+    defaults3.x = "SnapshotDate";
     defaults3.xType = "category";
     defaults3.y = "Score";
     defaults3.yType = "linear";
@@ -29444,7 +29444,7 @@ var rbmViz = (() => {
     defaults3.annotateThreshold = _thresholds_ !== null;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
-      (Threshold) => Threshold.snapshot_date !== _thresholds_[0].snapshot_date
+      (Threshold) => Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
     ) : false;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
@@ -29479,10 +29479,10 @@ var rbmViz = (() => {
     const data = _data_.map((d) => {
       const datum2 = { ...d };
       if (_sites_ !== null) {
-        let site = _sites_.filter((site2) => site2.siteid === d.GroupID);
+        let site = _sites_.filter((site2) => site2.SiteID === d.GroupID);
         if (site.length > 1) {
           site = site.find(
-            (site2) => site2.snapshot_date === datum2.snapshot_date
+            (site2) => site2.SnapshotDate === datum2.SnapshotDate
           );
         } else {
           site = site[0];
@@ -29493,7 +29493,7 @@ var rbmViz = (() => {
       }
       if ([void 0, null].includes(_intervals_) === false) {
         const intervals2 = _intervals_.filter(
-          (interval2) => interval2.snapshot_date === datum2.snapshot_date
+          (interval2) => interval2.SnapshotDate === datum2.SnapshotDate
         );
         datum2.lowerCI = intervals2.find(
           (interval2) => interval2.param === "LowCI"
@@ -29573,7 +29573,7 @@ var rbmViz = (() => {
       _intervals_.filter((d) => /ci/i.test(d.param)),
       (Group) => +Group[0].value,
       (d) => d.param,
-      (d) => d.snapshot_date
+      (d) => d.SnapshotDate
     );
     const datasets = [...intervals].map(([key, value], i) => {
       return {
@@ -29691,7 +29691,7 @@ var rbmViz = (() => {
     const grouped = rollups(
       data,
       (Group) => Group.map((d) => +d[config.y]),
-      (d) => d.snapshot_date
+      (d) => d.SnapshotDate
     );
     const dataset = {
       data: grouped.map((d) => d[1]),
@@ -29714,7 +29714,7 @@ var rbmViz = (() => {
     const grouped = rollups(
       data,
       (Group) => Group.map((d) => +d[config.y]),
-      (d) => d.snapshot_date
+      (d) => d.SnapshotDate
     );
     const dataset = {
       data: grouped.map((d) => d[1]),
@@ -29743,9 +29743,9 @@ var rbmViz = (() => {
           (Group) => {
             const flags = checkThresholds({}, Group);
             flags.forEach((Flag) => {
-              Flag.snapshot_date = Group[0].snapshot_date;
-              Flag.snapshot_date = Group[0].snapshot_date;
-              Flag.x = Flag.snapshot_date;
+              Flag.SnapshotDate = Group[0].SnapshotDate;
+              Flag.SnapshotDate = Group[0].SnapshotDate;
+              Flag.x = Flag.SnapshotDate;
               Flag.y = Flag.Threshold;
               Flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
                 (color3) => color3.Flag.includes(Flag.Flag)
@@ -29753,7 +29753,7 @@ var rbmViz = (() => {
             });
             return flags;
           },
-          (d) => d.snapshot_date
+          (d) => d.SnapshotDate
         )
       ].flatMap((d) => d[1]);
       const latestSnapshotDate = max(labels);
@@ -30211,7 +30211,7 @@ var rbmViz = (() => {
     const siteSummaryData = data.site_grid_details.filter((d) => d.subject_enrolled > 0).map((item) => {
       const obj = {
         site_data: {
-          site_id: item.site_id,
+          SiteID: item.SiteID,
           ...item.site_id_details,
           site_investigator: item.site_investigator
         },
@@ -30224,7 +30224,7 @@ var rbmViz = (() => {
       ).reduce((kriItems, kriItem) => {
         kriItems[Object.keys(kriItem)] = {
           ...kriItem[Object.keys(kriItem)],
-          site_id: item.site_id
+          SiteID: item.SiteID
         };
         return kriItems;
       }, {});
@@ -30240,7 +30240,7 @@ var rbmViz = (() => {
         cell: (props) => esm_default(`
             <div className="tooltip">
             <div className='align darkTxt tooltiptext'>
-                ${props.getValue().site_id ? `<p><b>Site ID:</b> ${props.getValue().site_id}</p>` : ""}
+                ${props.getValue().SiteID ? `<p><b>Site ID:</b> ${props.getValue().SiteID}</p>` : ""}
                 <hr/>
                 ${props.getValue().site_name ? `<p>Site name: <b>${props.getValue().site_name}</b></p>` : ""}
                 ${props.getValue().city ? `<p>City: <b>${props.getValue().city}</b></p>` : ""}
@@ -30249,8 +30249,8 @@ var rbmViz = (() => {
                 ${props.getValue().site_status ? `<p>Status: <b>${props.getValue().site_status}</b></p>` : ""}
               </div>
               <span className='help'>
-                <a href="/${study_id}/site-summary/${props.getValue().site_id}">
-                  ${props.getValue().site_id}
+                <a href="/${study_id}/site-summary/${props.getValue().SiteID}">
+                  ${props.getValue().SiteID}
                   <img src=${InfoCircleOutlined} className="info-icon" />
                 </a>
               </span>
@@ -30285,9 +30285,9 @@ var rbmViz = (() => {
     if (sparklineWorkflow?.[kri.kri_id] !== void 0) {
       sparkline(
         document.getElementById(
-          `chartContainer${[obj?.site_id]}-${[kri.kri_id]}`
+          `chartContainer${[obj?.SiteID]}-${[kri.kri_id]}`
         ),
-        sparklineData?.[obj?.site_id]?.[kri.kri_id],
+        sparklineData?.[obj?.SiteID]?.[kri.kri_id],
         sparklineWorkflow?.[kri.kri_id]
       );
     }
@@ -30304,7 +30304,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper' id="red">
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30325,7 +30325,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30346,7 +30346,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30367,7 +30367,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30388,7 +30388,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30409,7 +30409,7 @@ var rbmViz = (() => {
             <div className='kri-popover-wrap'>
               <div className='kri-metric-value'>KRI Score Sparkline</div>
               <div className='kri-metric-sparkline-wrapper'>
-                <div id='chartContainer${[obj?.site_id]}-${[
+                <div id='chartContainer${[obj?.SiteID]}-${[
           kri.kri_id
         ]}' style="width: 100%;height: 50px"></div>
               </div>
@@ -30491,49 +30491,49 @@ var rbmViz = (() => {
       dataType: "discrete"
     }),
     sparkline: sparkline.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Score",
       chartType: "line",
       dataType: "continuous"
     }),
     sparklineMetric: sparkline.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Metric",
       chartType: "line",
       dataType: "continuous"
     }),
     sparklineScore: sparkline.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Score",
       chartType: "line",
       dataType: "continuous"
     }),
     sparklineDiscrete: sparkline.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "n_at_risk_or_flagged",
       chartType: "line",
       dataType: "discrete"
     }),
     timeSeries: timeSeries.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Score",
       chartType: "boxplot",
       dataType: "continuous"
     }),
     timeSeriesScore: timeSeries.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Score",
       chartType: "boxplot",
       dataType: "continuous"
     }),
     timeSeriesDiscrete: timeSeries.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "n_at_risk_or_flagged",
       chartType: "line",
       dataType: "discrete"
     }),
     timeSeriesQTL: timeSeries.bind({
-      x: "snapshot_date",
+      x: "SnapshotDate",
       y: "Metric",
       chartType: "identity",
       dataType: "continuous"

@@ -7,7 +7,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
     // horizontal
-    defaults.x = 'snapshot_date';
+    defaults.x = 'SnapshotDate';
     defaults.xType = 'category';
 
     // vertical

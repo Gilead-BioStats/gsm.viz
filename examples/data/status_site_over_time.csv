@@ -1,4 +1,4 @@
-StudyID,siteid,institution,status,enrolled_participants,start_date,city,state,country,invname,protocol_row_id,site_num,site_row_id,pi_number,pi_last_name,pi_first_name,is_satellite,gsm_analysis_date,snapshot_date
+StudyID,SiteID,institution,status,enrolled_participants,start_date,city,state,country,invname,protocol_row_id,site_num,site_row_id,pi_number,pi_last_name,pi_first_name,is_satellite,gsm_analysis_date,SnapshotDate
 AA-AA-000-0000,106,city 1 Medical Center,Active,1,2006-07-14,city 1,state 1,US,"Porter, Gabriella",1-1G9113,106,123-1234-0X040,0X040,Porter,Gabriella,FALSE,2003-12-01,2003-12-01
 AA-AA-000-0000,13,city 1 Medical Center,Active,1,2005-09-02,city 1,state 1,China,"Gonzalez, Crystal",1-1G9113,13,123-1234-0X077,0X077,Gonzalez,Crystal,FALSE,2003-12-01,2003-12-01
 AA-AA-000-0000,189,city 1 Medical Center,Active,1,2006-06-21,city 1,state 1,US,"Depoyster, Annestaisia",1-1G9113,189,123-1234-0X093,0X093,Depoyster,Annestaisia,FALSE,2003-12-01,2003-12-01

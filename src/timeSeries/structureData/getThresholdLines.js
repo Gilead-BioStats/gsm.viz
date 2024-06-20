@@ -15,9 +15,9 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                     const flags = checkThresholds({}, Group);
 
                     flags.forEach((Flag) => {
-                        Flag.snapshot_date = Group[0].snapshot_date;
-                        Flag.snapshot_date = Group[0].snapshot_date;
-                        Flag.x = Flag.snapshot_date;
+                        Flag.SnapshotDate = Group[0].SnapshotDate;
+                        Flag.SnapshotDate = Group[0].SnapshotDate;
+                        Flag.x = Flag.SnapshotDate;
                         Flag.y = Flag.Threshold;
                         Flag.color =
                             flags.length === 1
@@ -29,7 +29,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
 
                     return flags;
                 },
-                (d) => d.snapshot_date
+                (d) => d.SnapshotDate
             ),
         ].flatMap((d) => d[1]);
 

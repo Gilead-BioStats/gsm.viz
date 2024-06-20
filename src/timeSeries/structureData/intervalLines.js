@@ -7,7 +7,7 @@ export default function intervalLines(_intervals_, config, labels) {
         _intervals_.filter((d) => /ci/i.test(d.param)),
         (Group) => +Group[0].value,
         (d) => d.param,
-        (d) => d.snapshot_date
+        (d) => d.SnapshotDate
     );
 
     const datasets = [...intervals].map(([key, value], i) => {

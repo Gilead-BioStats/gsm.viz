@@ -4,7 +4,7 @@ export default function boxplot(data, config) {
     const grouped = rollups(
         data, //.filter(d => +d.Flag === 0),
         (Group) => Group.map((d) => +d[config.y]),
-        (d) => d.snapshot_date
+        (d) => d.SnapshotDate
     );
 
     const dataset = {

@@ -1,4 +1,4 @@
-StudyID,MetricID,snapshot_date,n,n_at_risk,n_flagged,n_at_risk_or_flagged
+StudyID,MetricID,SnapshotDate,n,n_at_risk,n_flagged,n_at_risk_or_flagged
 AA-AA-000-0000,cou0001,2003-12-01,2,0,0,0
 AA-AA-000-0000,cou0001,2004-03-01,3,0,0,0
 AA-AA-000-0000,cou0001,2004-06-01,3,0,0,0

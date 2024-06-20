@@ -30,7 +30,7 @@ Promise.all(dataPromises)
 
             // configuration
             const config = {};
-            config.x = 'snapshot_date';
+            config.x = 'SnapshotDate';
             config.y = 'n_at_risk_or_flagged';
             config.color = null;
             config.nSnapshots = 25;

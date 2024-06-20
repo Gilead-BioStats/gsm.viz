@@ -22,7 +22,7 @@ export default function mergeParameters(defaultParameters, customParameters) {
                 };
 
                 parameter.gsm_analysis_date = date;
-                parameter.snapshot_date = date;
+                parameter.SnapshotDate = date;
                 parameter.value =
                     customParameter !== undefined
                         ? customParameter.value

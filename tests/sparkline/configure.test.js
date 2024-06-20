@@ -52,7 +52,7 @@ describe('configuration', () => {
                 'displayThresholds',
                 'maintainAspectRatio',
                 'nSnapshots',
-                'Thresholds',
+                'thresholds',
             ].sort()
         );
     });

@@ -49,7 +49,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             workflow,
-            parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            parameters, //.filter(parameter => parameter.SnapshotDate === parameters[0].SnapshotDate),
             null,
             sites
         );

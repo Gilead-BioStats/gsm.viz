@@ -42,7 +42,7 @@ Promise.all(dataPromises)
             workflow,
             parameters.filter(
                 (parameter) =>
-                    parameter.snapshot_date === parameters[0].snapshot_date
+                    parameter.SnapshotDate === parameters[0].SnapshotDate
             ),
             resultsVertical
         );

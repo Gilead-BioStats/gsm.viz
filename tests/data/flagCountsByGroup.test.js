@@ -5,7 +5,7 @@ import snapshotDate from '../../src/data/schema/snapshotDate.json';
 import checkInput from '../../src/data/checkInput';
 import getType from '../../src/data/checkInput/getType';
 
-schema.items.properties.snapshot_date = snapshotDate;
+schema.items.properties.SnapshotDate = snapshotDate;
 
 describe('Flag counts schema with Flag counts by Group', () => {
     const flagCounts = flagCountsByGroup;

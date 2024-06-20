@@ -13,7 +13,7 @@
                 "required": false,
                 "key": true
             },
-            "siteid": {
+            "SiteID": {
                 "title": "Site ID",
                 "description": "Unique site identifier",
                 "type": "string",
