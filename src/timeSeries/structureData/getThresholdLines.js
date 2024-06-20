@@ -11,19 +11,19 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                 _thresholds_
                     .filter((d) => d.param === 'vThreshold')
                     .sort((a, b) => (a < b ? -1 : b < a ? 1 : 0)),
-                (group) => {
-                    const flags = checkThresholds({}, group);
+                (Group) => {
+                    const flags = checkThresholds({}, Group);
 
-                    flags.forEach((flag) => {
-                        flag.snapshot_date = group[0].snapshot_date;
-                        flag.snapshot_date = group[0].snapshot_date;
-                        flag.x = flag.snapshot_date;
-                        flag.y = flag.threshold;
-                        flag.color =
+                    flags.forEach((Flag) => {
+                        Flag.snapshot_date = Group[0].snapshot_date;
+                        Flag.snapshot_date = Group[0].snapshot_date;
+                        Flag.x = Flag.snapshot_date;
+                        Flag.y = Flag.threshold;
+                        Flag.color =
                             flags.length === 1
                                 ? colorScheme.amberRed
                                 : colorScheme.find((color) =>
-                                      color.flag.includes(flag.flag)
+                                      color.Flag.includes(Flag.Flag)
                                   );
                     });
 
@@ -37,16 +37,16 @@ export default function getThresholdLines(_thresholds_, config, labels) {
         thresholdData = [
             ...rollup(
                 thresholds,
-                (group) => {
+                (Group) => {
                     const dataset = {
                         adjustScaleRange: false,
-                        borderColor: group[0].color.color,
+                        borderColor: Group[0].color.color,
                         //function (d) {
                         //    return d.color.color;
                         //},
                         borderDash: [2],
                         borderWidth: 1,
-                        data: group,
+                        data: Group,
                         hoverRadius: 0,
                         label: '',
                         purpose: 'annotation',
@@ -56,7 +56,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                     };
 
                     const snapshotDates = [
-                        ...new Set(group.map((d) => d[config.x])),
+                        ...new Set(Group.map((d) => d[config.x])),
                     ];
                     const snapshotDate = max(snapshotDates);
                     if (snapshotDate < latestSnapshotDate) {
@@ -74,7 +74,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
 
                     return dataset;
                 },
-                (d) => d.flag
+                (d) => d.Flag
             ),
         ].map((d) => d[1]);
     }

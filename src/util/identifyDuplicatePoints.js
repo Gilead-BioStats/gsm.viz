@@ -1,7 +1,7 @@
 import { ascending, rollup } from 'd3';
 
 export default function identifyDuplicatePoints(data, config, mutate = true) {
-    // Check whether all group IDs are numeric.
+    // Check whether all Group IDs are numeric.
     const numericGroupIDs = data.every((d) => /^\d+$/.test(d.GroupID));
 
     data.sort((a, b) => {
@@ -19,13 +19,13 @@ export default function identifyDuplicatePoints(data, config, mutate = true) {
         return x || y || selected || GroupID;
     });
 
-    // Apply custom sort to control display of group IDs in tooltip of overlapping points. Within
-    // each combination of x- and y-values sort selected group ID first and then by group ID.
+    // Apply custom sort to control display of Group IDs in tooltip of overlapping points. Within
+    // each combination of x- and y-values sort selected Group ID first and then by Group ID.
     if (mutate)
         rollup(
             data,
-            (group) => {
-                group.forEach((d, i) => {
+            (Group) => {
+                Group.forEach((d, i) => {
                     d.duplicate = i > 0;
                 });
             },

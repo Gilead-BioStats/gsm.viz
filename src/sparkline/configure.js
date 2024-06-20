@@ -15,7 +15,7 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // event callbacks
     defaults.hoverCallback = (datum) => {};

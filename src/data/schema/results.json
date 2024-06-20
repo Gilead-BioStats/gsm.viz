@@ -55,7 +55,7 @@
                 "required": true,
                 "key": false
             },
-            "flag": {
+            "Flag": {
                 "title": "Flag Status",
                 "description": "Flag assigned given KRI score and specified thresholds",
                 "type": "number",

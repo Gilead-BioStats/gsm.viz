@@ -27,7 +27,7 @@ Promise.all(dataPromises)
         workflow.y = 'Metric';
         workflow.nSnapshots = 25;
 
-        // loop over group IDs
+        // loop over Group IDs
         for (const i in GroupIDs) {
             const GroupID = GroupIDs[i];
 

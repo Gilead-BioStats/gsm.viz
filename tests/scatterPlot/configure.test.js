@@ -20,8 +20,8 @@ describe('configuration', () => {
                 // workflow metadata
                 'MetricID',
                 'gsm_version',
-                'group',
-                'abbreviation',
+                'Group',
+                'Abbreviation',
                 'Metric',
                 'Numerator',
                 'Denominator',

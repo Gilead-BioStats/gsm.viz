@@ -5,7 +5,7 @@ export default function checkThresholds(_config_, _thresholds_) {
 
     if (_config_.variableThresholds) return null;
 
-    // TODO: flag groups given user-defined thresholds
+    // TODO: Flag groups given user-defined thresholds
     // user-defined thresholds
     if (
         Array.isArray(thresholds) &&
@@ -22,7 +22,7 @@ export default function checkThresholds(_config_, _thresholds_) {
             (threshold) =>
                 typeof threshold === 'object' &&
                 threshold.hasOwnProperty('threshold') &&
-                threshold.hasOwnProperty('flag')
+                threshold.hasOwnProperty('Flag')
         )
     )
         return thresholds;

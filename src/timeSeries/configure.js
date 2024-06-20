@@ -7,7 +7,7 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
 
-    defaults.dataType = /flag|risk/.test(_config_.y)
+    defaults.dataType = /Flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
 
@@ -28,7 +28,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -37,7 +37,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     };
 
     // miscellaneous
-    defaults.group = 'Site';
+    defaults.Group = 'Site';
     defaults.aggregateLabel = 'Study';
     defaults.annotateThreshold = _thresholds_ !== null;
     //defaults.displayTitle = false;
@@ -74,9 +74,9 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         _config_.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
-            : /flag/.test(config.y) && /risk/.test(config.y)
+            : /Flag/.test(config.y) && /risk/.test(config.y)
             ? `Red or Amber ${discreteUnits}`
-            : /flag/.test(config.y)
+            : /Flag/.test(config.y)
             ? `Red ${discreteUnits}`
             : /risk/.test(config.y)
             ? `Amber ${discreteUnits}`

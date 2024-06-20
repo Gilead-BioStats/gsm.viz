@@ -21,7 +21,7 @@ export default function tooltip(config) {
                         let title;
 
                         if (data.length === 1) {
-                            title = `${config.group} ${
+                            title = `${config.Group} ${
                                 d.dataset.data[d.dataIndex].GroupID
                             }`;
 
@@ -31,7 +31,7 @@ export default function tooltip(config) {
                         } else {
                             title =
                                 i === 0
-                                    ? `${config.group}s ${
+                                    ? `${config.Group}s ${
                                           d.dataset.data[d.dataIndex].GroupID
                                       }`
                                     : d.dataset.data[d.dataIndex].GroupID;

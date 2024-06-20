@@ -1,4 +1,4 @@
-"MetricID","gsm_version","group","abbreviation","Metric","Numerator","Denominator","outcome","model","Score","data_inputs","data_filters","gsm_analysis_date"
+"MetricID","gsm_version","Group","Abbreviation","Metric","Numerator","Denominator","outcome","model","Score","data_inputs","data_filters","gsm_analysis_date"
 "kri0001","1.4.1","Site","AE","Non-serious AE Reporting Rate","AEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Non-Serious, TreatmentEmergent",2023-01-05
 "kri0002","1.4.1","Site","SAE","SAE Reporting Rate","SAEs","Days on Treatment","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.ae, rawplus.dm","Serious, TreatmentEmergent",2023-01-05
 "kri0003","1.4.1","Site","PD","Non-important PD Rate","Non-important PDs","Days in Study","Rate","Normal Approximation (Rate)","Adjusted Z-Score ","rawplus.pd, rawplus.dm","Non-Important",2023-01-05

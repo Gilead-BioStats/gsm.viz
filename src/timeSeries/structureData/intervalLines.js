@@ -5,7 +5,7 @@ export default function intervalLines(_intervals_, config, labels) {
 
     const intervals = rollup(
         _intervals_.filter((d) => /ci/i.test(d.param)),
-        (group) => +group[0].value,
+        (Group) => +Group[0].value,
         (d) => d.param,
         (d) => d.snapshot_date
     );

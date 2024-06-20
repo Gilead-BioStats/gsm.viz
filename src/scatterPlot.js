@@ -88,7 +88,7 @@ export default function scatterPlot(
         triggerTooltip,
     };
 
-    // Trigger tooltip when a group ID is selected.
+    // Trigger tooltip when a Group ID is selected.
     triggerTooltip(chart);
 
     return chart;

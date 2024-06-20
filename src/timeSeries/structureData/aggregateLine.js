@@ -4,17 +4,17 @@ import colorScheme from '../../util/colorScheme.js';
 export default function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
         data,
-        (group) => mean(group, (d) => d[config.y]),
+        (Group) => mean(Group, (d) => d[config.y]),
         (d) => d[config.x]
     );
 
     const countsBySnapshot = rollup(
         data,
-        (group) => {
-            const N = group.length;
+        (Group) => {
+            const N = Group.length;
 
             return rollup(
-                group,
+                Group,
                 (subgroup) => ({
                     n: subgroup.length,
                     N,
@@ -30,9 +30,9 @@ export default function aggregateLine(data, config, labels) {
         /at.risk/.test(config.y) && /flagged/.test(config.y)
             ? colorScheme.amberRed.color
             : /at.risk/.test(config.y)
-            ? colorScheme.find((color) => color.flag.includes(1)).color
+            ? colorScheme.find((color) => color.Flag.includes(1)).color
             : /flagged/.test(config.y)
-            ? colorScheme.find((color) => color.flag.includes(2)).color
+            ? colorScheme.find((color) => color.Flag.includes(2)).color
             : '#aaaaaa';
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 1;

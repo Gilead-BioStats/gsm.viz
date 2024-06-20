@@ -27,7 +27,7 @@ Promise.all(dataPromises)
         const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())];
         results = results.filter((d) => d.GroupID === groupID);
 
-        // discrete outcome: flag counts by KRI
+        // discrete outcome: Flag counts by KRI
         const flagCountsByKRI = datasets[4].filter(
             (d) => d.MetricID === workflowID
         );
@@ -35,7 +35,7 @@ Promise.all(dataPromises)
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 
-        // discrete outcome: flag counts by group
+        // discrete outcome: Flag counts by Group
         const flagCountsByGroup = datasets[5].filter(
             (d) => d.GroupID === groupID
         );

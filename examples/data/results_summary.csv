@@ -1,4 +1,4 @@
-StudyID,MetricID,GroupID,Numerator,Denominator,Metric,Score,flag,gsm_analysis_date
+StudyID,MetricID,GroupID,Numerator,Denominator,Metric,Score,Flag,gsm_analysis_date
 AA-AA-000-0000,cou0001,US,3240,626477,0.005171778,0.991556532,0,1/5/2023
 AA-AA-000-0000,cou0001,Japan,528,117262,0.004502737,-0.777538791,0,1/5/2023
 AA-AA-000-0000,cou0001,China,841,190411,0.004416762,-1.188380862,0,1/5/2023

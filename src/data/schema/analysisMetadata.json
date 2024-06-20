@@ -10,7 +10,7 @@
             "type": "string",
             "required": false
         },
-        "group": {
+        "Group": {
             "title": "Grouping Variable",
             "description": "Grouping variable of analysis, one of Site, Country, or Study",
             "type": "string",
@@ -58,9 +58,9 @@
             "required": false,
             "key": false
         },
-        "abbreviation": {
+        "Abbreviation": {
             "title": "Abbreviation",
-            "description": "KRI abbreviation",
+            "description": "KRI Abbreviation",
             "type": "string",
             "required": false,
             "key": false

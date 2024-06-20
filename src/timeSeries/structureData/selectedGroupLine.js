@@ -30,9 +30,9 @@ export default function selectedGroupLine(data, config, labels) {
 
             // point elements
             const color = colorScheme.find((color) =>
-                falsy.includes(d.raw.flag)
-                    ? color.flag.includes(d.raw?.flag)
-                    : color.flag.includes(+d.raw?.flag)
+                falsy.includes(d.raw.Flag)
+                    ? color.Flag.includes(d.raw?.Flag)
+                    : color.Flag.includes(+d.raw?.Flag)
             );
             color.rgba.opacity = 0.75;
 

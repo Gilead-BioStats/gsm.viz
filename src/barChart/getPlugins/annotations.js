@@ -8,23 +8,23 @@ export default function annotations(config) {
             .sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold))
             .map((x, i) => {
                 const content = colorScheme.find((y) =>
-                    y.flag.includes(+x.flag)
+                    y.Flag.includes(+x.Flag)
                 ).description;
 
                 return {
                     adjustScaleRange: false,
                     borderColor: colorScheme.filter((y) =>
-                        y.flag.includes(+x.flag)
+                        y.Flag.includes(+x.Flag)
                     )[0].color,
                     borderDash: [2],
                     borderWidth: 1,
                     label: {
                         backgroundColor: 'white',
                         color: colorScheme.filter((y) =>
-                            y.flag.includes(+x.flag)
+                            y.Flag.includes(+x.Flag)
                         )[0].color,
                         content:
-                            Math.sign(+x.flag) === 1
+                            Math.sign(+x.Flag) === 1
                                 ? `${content} ↑`
                                 : `↓ ${content}`,
                         display: true,
@@ -32,7 +32,7 @@ export default function annotations(config) {
                             size: 12,
                         },
                         padding: 2,
-                        position: Math.sign(+x.flag) === 1 ? 'end' : 'start',
+                        position: Math.sign(+x.Flag) === 1 ? 'end' : 'start',
                         rotation: 'auto',
                         yValue: x.threshold,
                         yAdjust: 0,

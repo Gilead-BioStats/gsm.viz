@@ -6,7 +6,7 @@ export default function thresholds(config) {
     if (config.displayThresholds && config.thresholds) {
         thresholds = config.thresholds.map((threshold, i) => {
             const color = colorScheme.find((color) =>
-                color.flag.includes(+threshold.flag)
+                color.Flag.includes(+threshold.Flag)
             );
             color.rgba.opacity = 0.5;
 

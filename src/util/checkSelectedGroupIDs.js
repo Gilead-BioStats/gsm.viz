@@ -9,7 +9,7 @@ export default function checkSelectedGroupIDs(selectedGroupIDs, _data_) {
     // coerce to array
     if (!Array.isArray(selectedGroupIDs)) selectedGroupIDs = [selectedGroupIDs];
 
-    // check selected group IDs against actual group IDs
+    // check selected Group IDs against actual Group IDs
     if (Array.isArray(selectedGroupIDs)) {
         // TODO: pull key for GroupID from config
         const actualGroupIDs = [...new Set(_data_.map((d) => d.GroupID))];

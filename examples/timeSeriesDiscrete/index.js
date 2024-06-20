@@ -1,4 +1,4 @@
-const by = 'group'; // 'kri'
+const by = 'Group'; // 'kri'
 
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
@@ -55,7 +55,7 @@ Promise.all(dataPromises)
         else
             document.getElementById('kri').parentElement.style.display = 'none';
 
-        if (by === 'group') site(datasets, true);
+        if (by === 'Group') site(datasets, true);
         else
             document.getElementById('GroupID').parentElement.style.display =
                 'none';

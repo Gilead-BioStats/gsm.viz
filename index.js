@@ -27236,7 +27236,7 @@ var rbmViz = (() => {
         type: "string",
         required: false
       },
-      group: {
+      Group: {
         title: "Grouping Variable",
         description: "Grouping variable of analysis, one of Site, Country, or Study",
         type: "string",
@@ -27284,9 +27284,9 @@ var rbmViz = (() => {
         required: false,
         key: false
       },
-      abbreviation: {
+      Abbreviation: {
         title: "Abbreviation",
-        description: "KRI abbreviation",
+        description: "KRI Abbreviation",
         type: "string",
         required: false,
         key: false
@@ -27506,7 +27506,7 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
-        flag: {
+        Flag: {
           title: "Flag Status",
           description: "Flag assigned given KRI score and specified thresholds",
           type: "number",
@@ -27992,24 +27992,24 @@ var rbmViz = (() => {
     const negativeFlags = negativeThresholds.map((threshold, i) => {
       return {
         threshold,
-        flag: -(i + 1)
+        Flag: -(i + 1)
       };
     });
     const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
     const positiveFlags = positiveThresholds.map((threshold, i) => {
       return {
         threshold,
-        flag: i + 1
+        Flag: i + 1
       };
     });
     const zeroFlag = thresholds2.filter((threshold) => threshold === 0).map((threshold) => {
       return {
         threshold,
-        flag: 0
+        Flag: 0
       };
     });
     const flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
-      (a, b) => a.flag - b.flag
+      (a, b) => a.Flag - b.Flag
     );
     return flags;
   }
@@ -28022,7 +28022,7 @@ var rbmViz = (() => {
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every(
-      (threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("flag")
+      (threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("Flag")
     ))
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
@@ -28048,7 +28048,7 @@ var rbmViz = (() => {
     defaults3.xType = "category";
     defaults3.y = "Score";
     defaults3.yType = "linear";
-    defaults3.color = "flag";
+    defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -28064,7 +28064,7 @@ var rbmViz = (() => {
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
-    config.xLabel = coalesce(_config_.xLabel, config["group"]);
+    config.xLabel = coalesce(_config_.xLabel, config["Group"]);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
     if (config.y === "Metric")
@@ -28148,39 +28148,39 @@ var rbmViz = (() => {
       color: "#52C41A",
       order: 0,
       description: "Green Flag",
-      flag: [0]
+      Flag: [0]
     },
     {
       color: "#FFBF00",
       order: 1,
       description: "Amber Flag",
-      flag: [-1, 1]
+      Flag: [-1, 1]
     },
     {
       color: "#ff0040",
       order: 2,
       description: "Red Flag",
-      flag: [-2, 2]
+      Flag: [-2, 2]
     },
     {
       color: "#aaaaaa",
       order: 3,
       description: "No Flag",
-      flag: falsy_default
+      Flag: falsy_default
     }
   ];
   colorScheme.forEach((color3) => {
     color3.rgba = color2(color3.color);
   });
-  var amber = colorScheme.find((color3) => color3.flag.includes(1));
-  var red = colorScheme.find((color3) => color3.flag.includes(2));
+  var amber = colorScheme.find((color3) => color3.Flag.includes(1));
+  var red = colorScheme.find((color3) => color3.Flag.includes(2));
   colorScheme.amberRed = {
     color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
       (amber.rgba.g + red.rgba.g) / 2
     )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: "Amber or Red Flag",
-    flag: [...amber.flag, ...red.flag].sort(ascending)
+    Flag: [...amber.Flag, ...red.Flag].sort(ascending)
   };
   colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
@@ -28241,8 +28241,8 @@ var rbmViz = (() => {
     if (mutate5)
       rollup(
         data,
-        (group2) => {
-          group2.forEach((d, i) => {
+        (Group) => {
+          Group.forEach((d, i) => {
             d.duplicate = i > 0;
           });
         },
@@ -28294,27 +28294,27 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => {
         const content = colorScheme_default.find(
-          (y) => y.flag.includes(+x.flag)
+          (y) => y.Flag.includes(+x.Flag)
         ).description;
         return {
           adjustScaleRange: false,
           borderColor: colorScheme_default.filter(
-            (y) => y.flag.includes(+x.flag)
+            (y) => y.Flag.includes(+x.Flag)
           )[0].color,
           borderDash: [2],
           borderWidth: 1,
           label: {
             backgroundColor: "white",
             color: colorScheme_default.filter(
-              (y) => y.flag.includes(+x.flag)
+              (y) => y.Flag.includes(+x.Flag)
             )[0].color,
-            content: Math.sign(+x.flag) === 1 ? `${content} \u2191` : `\u2193 ${content}`,
+            content: Math.sign(+x.Flag) === 1 ? `${content} \u2191` : `\u2193 ${content}`,
             display: true,
             font: {
               size: 12
             },
             padding: 2,
-            position: Math.sign(+x.flag) === 1 ? "end" : "start",
+            position: Math.sign(+x.Flag) === 1 ? "end" : "start",
             rotation: "auto",
             yValue: x.threshold,
             yAdjust: 0
@@ -28361,7 +28361,7 @@ var rbmViz = (() => {
   function title(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.group}`
+      text: `${config.Metric} by ${config.Group}`
     };
   }
 
@@ -28370,7 +28370,7 @@ var rbmViz = (() => {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
-      content = config.group === "Study" ? [
+      content = config.Group === "Study" ? [
         `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
         `Confidence Interval: (${format(".3f")(
           datum2.lowerCI
@@ -28401,7 +28401,7 @@ var rbmViz = (() => {
       ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? [
         `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
         ...datum2.counts.map(
-          (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.group}s`
+          (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.Group}s`
         )
       ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
     }
@@ -28448,7 +28448,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.site !== void 0 ? `${config.group} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.group} ${datum2.GroupID}`;
+            return datum2.site !== void 0 ? `${config.Group} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.Group} ${datum2.GroupID}`;
           }
         }
       },
@@ -28686,7 +28686,7 @@ var rbmViz = (() => {
     defaults3.xType = "logarithmic";
     defaults3.y = "Numerator";
     defaults3.yType = "linear";
-    defaults3.color = "flag";
+    defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -28832,10 +28832,10 @@ var rbmViz = (() => {
     if (_bounds_ !== null) {
       const boundUps = rollups(
         _bounds_.sort((a, b) => a.threshold - b.threshold),
-        (group2) => {
+        (Group) => {
           return {
             type: "line",
-            data: group2.map((d) => ({
+            data: Group.map((d) => ({
               stratum: Math.abs(+d.threshold),
               threshold: d.threshold,
               x: +d.Denominator,
@@ -28850,35 +28850,35 @@ var rbmViz = (() => {
       );
       const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
       const bounds = boundUps.map((bound, i) => {
-        const group2 = bound[1];
-        group2.threshold = +bound[0];
-        group2.flag = flags.find(
-          (flag2) => flag2.threshold === group2.threshold
+        const Group = bound[1];
+        Group.threshold = +bound[0];
+        Group.Flag = flags.find(
+          (Flag2) => Flag2.threshold === Group.threshold
         );
-        const flag = group2.flag.flag;
-        group2.label = colorScheme_default.find(
-          (color4) => color4.flag.includes(flag)
+        const Flag = Group.Flag.Flag;
+        Group.label = colorScheme_default.find(
+          (color4) => color4.Flag.includes(Flag)
         ).description;
-        const color3 = colorScheme_default[Math.abs(flag)].color;
-        group2.borderColor = color3;
+        const color3 = colorScheme_default[Math.abs(Flag)].color;
+        Group.borderColor = color3;
         const backgroundColor4 = color2(color3);
         backgroundColor4.opacity = 0.75;
-        group2.backgroundColor = backgroundColor4 + "";
-        group2.borderDash = [2];
-        if (config.displayTrendLine === false && group2.threshold === 0) {
-          group2.borderColor = "rgba(0,0,0,0)";
+        Group.backgroundColor = backgroundColor4 + "";
+        Group.borderDash = [2];
+        if (config.displayTrendLine === false && Group.threshold === 0) {
+          Group.borderColor = "rgba(0,0,0,0)";
         }
-        return group2;
+        return Group;
       });
       rollup(
         bounds,
-        (group2) => {
-          group2.forEach((d, i) => {
+        (Group) => {
+          Group.forEach((d, i) => {
             if (i > 0)
               d.label = "";
           });
         },
-        (d) => Math.abs(d.flag.flag)
+        (d) => Math.abs(d.Flag.Flag)
       );
       return bounds;
     }
@@ -28902,7 +28902,7 @@ var rbmViz = (() => {
       bounds.forEach((bound) => {
         datasets.push(bound);
       });
-    if (data.some((d) => falsy_default.includes(d.flag)))
+    if (data.some((d) => falsy_default.includes(d.Flag)))
       datasets.push({
         type: "line",
         label: "No Flag"
@@ -28934,7 +28934,7 @@ var rbmViz = (() => {
   function title2(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.group}`
+      text: `${config.Metric} by ${config.Group}`
     };
   }
 
@@ -28964,12 +28964,12 @@ var rbmViz = (() => {
             const titles = dataSorted.map((d, i) => {
               let title4;
               if (data.length === 1) {
-                title4 = `${config.group} ${d.dataset.data[d.dataIndex].GroupID}`;
+                title4 = `${config.Group} ${d.dataset.data[d.dataIndex].GroupID}`;
                 if (d.raw.site !== void 0) {
                   title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                 }
               } else {
-                title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
+                title4 = i === 0 ? `${config.Group}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
               }
               return title4;
             });
@@ -29114,7 +29114,7 @@ var rbmViz = (() => {
     defaults3.xType = "category";
     defaults3.y = "Score";
     defaults3.yType = "linear";
-    defaults3.color = "flag";
+    defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
@@ -29208,7 +29208,7 @@ var rbmViz = (() => {
     if (config.displayThresholds && config.thresholds) {
       thresholds2 = config.thresholds.map((threshold, i) => {
         const color3 = colorScheme_default.find(
-          (color4) => color4.flag.includes(+threshold.flag)
+          (color4) => color4.Flag.includes(+threshold.Flag)
         );
         color3.rgba.opacity = 0.5;
         const annotation2 = {
@@ -29423,7 +29423,7 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_, _intervals_) {
     const defaults3 = {};
-    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
+    defaults3.dataType = /Flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "KRI" : "Site";
     else
@@ -29433,13 +29433,13 @@ var rbmViz = (() => {
     defaults3.xType = "category";
     defaults3.y = "Score";
     defaults3.yType = "linear";
-    defaults3.color = "flag";
+    defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
     };
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
-    defaults3.group = "Site";
+    defaults3.Group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.annotateThreshold = _thresholds_ !== null;
     defaults3.maintainAspectRatio = false;
@@ -29458,7 +29458,7 @@ var rbmViz = (() => {
     const discreteUnits = config.dataType === "discrete" ? `${config.discreteUnit.replace(/y$/, "ie")}s` : "";
     config.yLabel = coalesce(
       _config_.yLabel,
-      config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
+      config.dataType === "continuous" ? config[config.y] : /Flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /Flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
     if (config.hoverCallbackWrapper === void 0)
@@ -29526,7 +29526,7 @@ var rbmViz = (() => {
   function identityLine(data, config, labels) {
     const aggregateData = rollup(
       data,
-      (group2) => mean(group2, (d) => d[config.y]),
+      (Group) => mean(Group, (d) => d[config.y]),
       (d) => d[config.x]
     );
     const color3 = "#666666";
@@ -29540,7 +29540,7 @@ var rbmViz = (() => {
           return backgroundColor4;
         } else {
           return colorScheme_default.find(
-            (color4) => color4.flag.includes(+d.raw.flag)
+            (color4) => color4.Flag.includes(+d.raw.Flag)
           ).color;
         }
       },
@@ -29571,7 +29571,7 @@ var rbmViz = (() => {
       return [null];
     const intervals = rollup(
       _intervals_.filter((d) => /ci/i.test(d.param)),
-      (group2) => +group2[0].value,
+      (Group) => +Group[0].value,
       (d) => d.param,
       (d) => d.snapshot_date
     );
@@ -29614,7 +29614,7 @@ var rbmViz = (() => {
           return backgroundColor4;
         }
         const color4 = colorScheme_default.find(
-          (color5) => falsy_default.includes(d.raw.flag) ? color5.flag.includes(d.raw?.flag) : color5.flag.includes(+d.raw?.flag)
+          (color5) => falsy_default.includes(d.raw.Flag) ? color5.Flag.includes(d.raw?.Flag) : color5.Flag.includes(+d.raw?.Flag)
         );
         color4.rgba.opacity = 0.75;
         return color4.rgba + "";
@@ -29634,14 +29634,14 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/flagAmber.js
   function flagAmber(data, config, labels) {
-    const pointData = data.filter((d) => Math.abs(+d.flag) === 1).map((d) => {
+    const pointData = data.filter((d) => Math.abs(+d.Flag) === 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
       return datum2;
     });
     const color3 = colorScheme_default.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) === 1)
+      (color4) => color4.Flag.some((Flag) => Math.abs(Flag) === 1)
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
@@ -29661,14 +29661,14 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/flagRed.js
   function flagRed(data, config, labels) {
-    const pointData = data.filter((d) => Math.abs(+d.flag) > 1).map((d) => {
+    const pointData = data.filter((d) => Math.abs(+d.Flag) > 1).map((d) => {
       const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
       return datum2;
     });
     const color3 = colorScheme_default.find(
-      (color4) => color4.flag.some((flag) => Math.abs(flag) > 1)
+      (color4) => color4.Flag.some((Flag) => Math.abs(Flag) > 1)
     );
     color3.rgba.opacity = 0.5;
     const dataset = {
@@ -29690,7 +29690,7 @@ var rbmViz = (() => {
   function boxplot2(data, config) {
     const grouped = rollups(
       data,
-      (group2) => group2.map((d) => +d[config.y]),
+      (Group) => Group.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
     const dataset = {
@@ -29698,7 +29698,7 @@ var rbmViz = (() => {
       maxBarThickness: 7,
       maxWhiskerThickness: 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
       outlierRadius: 0,
       pointRadius: 0,
       pointStyle: "rect",
@@ -29713,12 +29713,12 @@ var rbmViz = (() => {
   function violin(data, config) {
     const grouped = rollups(
       data,
-      (group2) => group2.map((d) => +d[config.y]),
+      (Group) => Group.map((d) => +d[config.y]),
       (d) => d.snapshot_date
     );
     const dataset = {
       data: grouped.map((d) => d[1]),
-      label: /flag|at.risk/.test(config.y) ? `Distribution` : `${config.group} Distribution`,
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
       purpose: "distribution",
       type: "violin"
     };
@@ -29740,15 +29740,15 @@ var rbmViz = (() => {
       const thresholds2 = [
         ...rollup(
           _thresholds_.filter((d) => d.param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
-          (group2) => {
-            const flags = checkThresholds({}, group2);
-            flags.forEach((flag) => {
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.snapshot_date = group2[0].snapshot_date;
-              flag.x = flag.snapshot_date;
-              flag.y = flag.threshold;
-              flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
-                (color3) => color3.flag.includes(flag.flag)
+          (Group) => {
+            const flags = checkThresholds({}, Group);
+            flags.forEach((Flag) => {
+              Flag.snapshot_date = Group[0].snapshot_date;
+              Flag.snapshot_date = Group[0].snapshot_date;
+              Flag.x = Flag.snapshot_date;
+              Flag.y = Flag.threshold;
+              Flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
+                (color3) => color3.Flag.includes(Flag.Flag)
               );
             });
             return flags;
@@ -29760,13 +29760,13 @@ var rbmViz = (() => {
       thresholdData = [
         ...rollup(
           thresholds2,
-          (group2) => {
+          (Group) => {
             const dataset = {
               adjustScaleRange: false,
-              borderColor: group2[0].color.color,
+              borderColor: Group[0].color.color,
               borderDash: [2],
               borderWidth: 1,
-              data: group2,
+              data: Group,
               hoverRadius: 0,
               label: "",
               purpose: "annotation",
@@ -29775,7 +29775,7 @@ var rbmViz = (() => {
               type: "line"
             };
             const snapshotDates = [
-              ...new Set(group2.map((d) => d[config.x]))
+              ...new Set(Group.map((d) => d[config.x]))
             ];
             const snapshotDate = max(snapshotDates);
             if (snapshotDate < latestSnapshotDate) {
@@ -29790,7 +29790,7 @@ var rbmViz = (() => {
             }
             return dataset;
           },
-          (d) => d.flag
+          (d) => d.Flag
         )
       ].map((d) => d[1]);
     }
@@ -29801,15 +29801,15 @@ var rbmViz = (() => {
   function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
       data,
-      (group2) => mean(group2, (d) => d[config.y]),
+      (Group) => mean(Group, (d) => d[config.y]),
       (d) => d[config.x]
     );
     const countsBySnapshot = rollup(
       data,
-      (group2) => {
-        const N = group2.length;
+      (Group) => {
+        const N = Group.length;
         return rollup(
-          group2,
+          Group,
           (subgroup) => ({
             n: subgroup.length,
             N,
@@ -29820,7 +29820,7 @@ var rbmViz = (() => {
       },
       (d) => d[config.x]
     );
-    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? colorScheme_default.amberRed.color : /at.risk/.test(config.y) ? colorScheme_default.find((color4) => color4.flag.includes(1)).color : /flagged/.test(config.y) ? colorScheme_default.find((color4) => color4.flag.includes(2)).color : "#aaaaaa";
+    const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? colorScheme_default.amberRed.color : /at.risk/.test(config.y) ? colorScheme_default.find((color4) => color4.Flag.includes(1)).color : /flagged/.test(config.y) ? colorScheme_default.find((color4) => color4.Flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
     backgroundColor4.opacity = 1;
     const borderColor4 = color2("#aaaaaa");
@@ -29891,7 +29891,7 @@ var rbmViz = (() => {
           selectedGroupLine(data, config, labels),
           {
             type: "scatter",
-            label: config.selectedGroupIDs.length > 0 ? `${config.group} ${config.selectedGroupIDs[0]}` : "",
+            label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
             pointStyle: "line",
             pointStyleWidth: 24,
             boxWidth: 24,
@@ -29922,7 +29922,7 @@ var rbmViz = (() => {
         } : null,
         {
           type: "scatter",
-          label: config.selectedGroupIDs.length > 0 ? `${config.group} ${config.selectedGroupIDs[0]}` : "",
+          label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -29954,20 +29954,20 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
-          adjustScaleRange: config.group === "Study",
+          adjustScaleRange: config.Group === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.threshold,
           yMax: x.threshold,
-          borderColor: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+          borderColor: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.annotateThreshold === true && config.group === "Study") {
+        if (config.annotateThreshold === true && config.Group === "Study") {
           annotation2.label = {
             rotation: "auto",
-            position: Math.sign(+x.flag) >= 0 ? "end" : "start",
-            color: config.group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.flag.includes(+x.flag)).color,
+            position: Math.sign(+x.Flag) >= 0 ? "end" : "start",
+            color: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
             backgroundColor: "white",
             content: `QTL: ${Math.round(+config.thresholds[0].threshold * 1e3) / 1e3 .toString()}`,
             display: true,
@@ -29987,8 +29987,8 @@ var rbmViz = (() => {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift(`${config.group} Distribution`);
-    if (config.group === "Study")
+    legendOrder.unshift(`${config.Group} Distribution`);
+    if (config.Group === "Study")
       return {
         display: true,
         labels: {
@@ -30054,9 +30054,9 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             if (data[0].dataset.purpose === "distribution") {
-              return `${config.group} Distribution on ${data[0].label}`;
+              return `${config.Group} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
-              return `${config.group} Summary on ${data[0].label}`;
+              return `${config.Group} Summary on ${data[0].label}`;
             } else {
               let dataSorted = data;
               try {
@@ -30068,12 +30068,12 @@ var rbmViz = (() => {
               const titles = dataSorted.map(function(d, i) {
                 let title4;
                 if (data.length === 1) {
-                  title4 = `${config.group} ${d.dataset.data[d.dataIndex].GroupID}`;
+                  title4 = `${config.Group} ${d.dataset.data[d.dataIndex].GroupID}`;
                   if (d.raw.site !== void 0) {
                     title4 = `${title4} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
                   }
                 } else {
-                  title4 = i === 0 ? `${config.group}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
+                  title4 = i === 0 ? `${config.Group}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
                 }
                 return title4;
               });

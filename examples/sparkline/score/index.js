@@ -32,7 +32,7 @@ Promise.all(dataPromises)
             filterOnWorkflowID(datasets[3], workflowID)
         );
 
-        // loop over group IDs
+        // loop over Group IDs
         const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];
         for (const i in GroupIDs) {
             const GroupID = GroupIDs[i];
