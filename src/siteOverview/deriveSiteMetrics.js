@@ -1,3 +1,4 @@
+// TODO: exclude sites absent from the results
 export default function deriveSiteMetrics(sites, results) {
     const missingSites = results
         .map((result) => result.groupid)
