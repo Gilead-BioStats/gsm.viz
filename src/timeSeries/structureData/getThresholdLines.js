@@ -18,7 +18,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                         Flag.snapshot_date = Group[0].snapshot_date;
                         Flag.snapshot_date = Group[0].snapshot_date;
                         Flag.x = Flag.snapshot_date;
-                        Flag.y = Flag.threshold;
+                        Flag.y = Flag.Threshold;
                         Flag.color =
                             flags.length === 1
                                 ? colorScheme.amberRed
@@ -60,16 +60,16 @@ export default function getThresholdLines(_thresholds_, config, labels) {
                     ];
                     const snapshotDate = max(snapshotDates);
                     if (snapshotDate < latestSnapshotDate) {
-                        const threshold = {
+                        const Threshold = {
                             ...dataset.data.find(
                                 (d) => d[config.x] === snapshotDate
                             ),
                         };
 
-                        threshold[config.x] = latestSnapshotDate;
-                        threshold.x = latestSnapshotDate;
+                        Threshold[config.x] = latestSnapshotDate;
+                        Threshold.x = latestSnapshotDate;
 
-                        dataset.data.push(threshold);
+                        dataset.data.push(Threshold);
                     }
 
                     return dataset;

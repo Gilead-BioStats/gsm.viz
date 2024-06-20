@@ -35,7 +35,7 @@ Promise.all(dataPromises)
             document.querySelector('#GroupID').value = datum.GroupID;
         };
 
-        // threshold annotations
+        // Threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);
 
         // site metadata

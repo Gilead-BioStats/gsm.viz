@@ -9,8 +9,8 @@ export default function annotations(config) {
                 adjustScaleRange: config.Group === 'Study',
                 drawTime: 'beforeDatasetsDraw',
                 type: 'line',
-                yMin: x.threshold,
-                yMax: x.threshold,
+                yMin: x.Threshold,
+                yMax: x.Threshold,
                 borderColor:
                     config.Group === 'Study'
                         ? colorScheme.amberRed.color
@@ -31,7 +31,7 @@ export default function annotations(config) {
                                   .color,
                     backgroundColor: 'white',
                     content: `QTL: ${
-                        Math.round(+config.thresholds[0].threshold * 1000) /
+                        Math.round(+config.thresholds[0].Threshold * 1000) /
                         (1000).toString()
                     }`,
                     //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.Flag.includes(+x.Flag))[0].description,

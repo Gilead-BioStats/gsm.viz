@@ -22,10 +22,10 @@ const kri = function (workflow, datasets, setup = false) {
             workflow.y = yaxis();
             workflow.selectedGroupIDs = site();
 
-            // threshold annotations
+            // Threshold annotations
             const parameters =
                 workflow.y === 'Score' &&
-                document.getElementById('threshold').checked
+                document.getElementById('Threshold').checked
                     ? mergeParameters(
                           filterOnWorkflowID(datasets[2], event.target.value),
                           filterOnWorkflowID(datasets[3], event.target.value)

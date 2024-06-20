@@ -3,37 +3,37 @@ import { ascending, descending } from 'd3';
 export default function mapThresholdsToFlags(_thresholds_) {
     // Capture complete set of thresholds.
     const thresholds = [...new Set(_thresholds_)] // remove duplicate thresholds
-        .map((threshold) => +threshold)
+        .map((Threshold) => +Threshold)
         .sort(ascending);
 
     // Sort negative thresholds in descending order to impute corresponding Flag.
     const negativeThresholds = thresholds
-        .filter((threshold) => threshold < 0)
+        .filter((Threshold) => Threshold < 0)
         .sort(descending);
-    const negativeFlags = negativeThresholds.map((threshold, i) => {
+    const negativeFlags = negativeThresholds.map((Threshold, i) => {
         return {
-            threshold,
+            Threshold,
             Flag: -(i + 1),
         };
     });
 
     // Sort positive thresholds in ascending order to impute corresponding Flag.
     const positiveThresholds = thresholds
-        .filter((threshold) => threshold > 0)
+        .filter((Threshold) => Threshold > 0)
         .sort(ascending);
-    const positiveFlags = positiveThresholds.map((threshold, i) => {
+    const positiveFlags = positiveThresholds.map((Threshold, i) => {
         return {
-            threshold,
+            Threshold,
             Flag: i + 1,
         };
     });
 
-    // If zero threshold exists, set Flag to 0.
+    // If zero Threshold exists, set Flag to 0.
     const zeroFlag = thresholds
-        .filter((threshold) => threshold === 0)
-        .map((threshold) => {
+        .filter((Threshold) => Threshold === 0)
+        .map((Threshold) => {
             return {
-                threshold,
+                Threshold,
                 Flag: 0,
             };
         });

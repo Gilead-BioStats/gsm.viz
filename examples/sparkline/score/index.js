@@ -26,7 +26,7 @@ Promise.all(dataPromises)
         workflow.y = 'Score';
         workflow.nSnapshots = 10;
 
-        // threshold annotations
+        // Threshold annotations
         const parameters = mergeParameters(
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)

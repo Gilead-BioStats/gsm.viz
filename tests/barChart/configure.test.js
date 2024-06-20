@@ -32,7 +32,7 @@ describe('configuration', () => {
                 'Numerator',
                 'Denominator',
                 'outcome',
-                'model',
+                'Model',
                 'Score',
                 'data_inputs',
                 'data_filters',
@@ -58,7 +58,7 @@ describe('configuration', () => {
                 'displayTitle',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
-                'thresholds',
+                'Thresholds',
             ].sort()
         );
     });

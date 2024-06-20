@@ -22,7 +22,7 @@ const yaxis = function (workflow, datasets, setup = false) {
             workflow.y = event.target.value;
             workflow.selectedGroupIDs = site();
 
-            // threshold annotations
+            // Threshold annotations
             let parameters = mergeParameters(
                 filterOnWorkflowID(datasets[2], workflowID),
                 filterOnWorkflowID(datasets[3], workflowID)

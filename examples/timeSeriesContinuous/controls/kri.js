@@ -26,7 +26,7 @@ const kri = function (workflow, datasets, setup = false) {
             workflow.y = yaxis();
             workflow.selectedGroupIDs = site();
 
-            // threshold annotations
+            // Threshold annotations
             let parameters = mergeParameters(
                 datasets[2].filter((d) => d.MetricID === workflowID),
                 datasets[3].filter((d) => d.MetricID === workflowID)

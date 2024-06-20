@@ -5,7 +5,7 @@ export default function annotations(config) {
 
     if (config.thresholds) {
         annotations = config.thresholds
-            .sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold))
+            .sort((a, b) => Math.abs(a.Threshold) - Math.abs(b.Threshold))
             .map((x, i) => {
                 const content = colorScheme.find((y) =>
                     y.Flag.includes(+x.Flag)
@@ -34,12 +34,12 @@ export default function annotations(config) {
                         padding: 2,
                         position: Math.sign(+x.Flag) === 1 ? 'end' : 'start',
                         rotation: 'auto',
-                        yValue: x.threshold,
+                        yValue: x.Threshold,
                         yAdjust: 0,
                     },
                     type: 'line',
-                    yMin: x.threshold,
-                    yMax: x.threshold,
+                    yMin: x.Threshold,
+                    yMax: x.Threshold,
                 };
             });
     }

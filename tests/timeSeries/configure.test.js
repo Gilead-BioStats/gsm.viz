@@ -26,7 +26,7 @@ describe('configuration', () => {
                 'Numerator',
                 'Denominator',
                 'outcome',
-                'model',
+                'Model',
                 'Score',
                 'data_inputs',
                 'data_filters',
@@ -56,7 +56,7 @@ describe('configuration', () => {
                 'distributionDisplay',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
-                'thresholds',
+                'Thresholds',
                 'variableThresholds',
             ].sort()
         );

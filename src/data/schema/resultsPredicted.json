@@ -20,7 +20,7 @@
                 "required": false,
                 "key": true
             },
-            "threshold": {
+            "Threshold": {
                 "title": "Threshold",
                 "description": "Directional factor of predicted results",
                 "type": "number",
@@ -41,7 +41,7 @@
                 "required": true,
                 "key": false
             },
-            "log_denominator": {
+            "LogDenominator": {
                 "title": "Predicted Denominator (log)",
                 "description": "Predicted Denominator of KRI metric (log)",
                 "type": "number",

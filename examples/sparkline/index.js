@@ -47,7 +47,7 @@ Promise.all(dataPromises)
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.nSnapshots = 25;
 
-        // threshold annotations
+        // Threshold annotations
         const parameters = mergeParameters(
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)

@@ -8,7 +8,7 @@ describe('map thresholds to flags', () => {
     test('thresholds are sorted', () => {
         expect(
             mapThresholdsToFlags([0, -2, 2, -3, 3]).map(
-                (Flag) => Flag.threshold
+                (Flag) => Flag.Threshold
             )
         ).toEqual([-3, -2, 0, 2, 3]);
     });

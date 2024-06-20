@@ -5,13 +5,13 @@ import colorScheme from '../../util/colorScheme.js';
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
         const boundUps = rollups(
-            _bounds_.sort((a, b) => a.threshold - b.threshold),
+            _bounds_.sort((a, b) => a.Threshold - b.Threshold),
             (Group) => {
                 return {
                     type: 'line',
                     data: Group.map((d) => ({
-                        stratum: Math.abs(+d.threshold),
-                        threshold: d.threshold,
+                        stratum: Math.abs(+d.Threshold),
+                        Threshold: d.Threshold,
                         x: +d.Denominator,
                         y: +d.Numerator,
                     })),
@@ -20,7 +20,7 @@ export default function rollupBounds(_bounds_, config) {
                     pointRadius: 0,
                 };
             },
-            (d) => d.threshold
+            (d) => d.Threshold
         );
 
         // Map thresholds to flags, e.g. -7 > -2, -5 > -1, 5 > 1, 7 > 2.
@@ -29,9 +29,9 @@ export default function rollupBounds(_bounds_, config) {
         // TODO: figure out how to hide trend line while maintaining consistent legend marks
         const bounds = boundUps.map((bound, i) => {
             const Group = bound[1];
-            Group.threshold = +bound[0];
+            Group.Threshold = +bound[0];
             Group.Flag = flags.find(
-                (Flag) => Flag.threshold === Group.threshold
+                (Flag) => Flag.Threshold === Group.Threshold
             );
             const Flag = Group.Flag.Flag;
 
@@ -46,15 +46,15 @@ export default function rollupBounds(_bounds_, config) {
 
             Group.borderDash = [2];
 
-            //Group.hidden = config.displayTrendLine === false && Group.threshold === 0;
+            //Group.hidden = config.displayTrendLine === false && Group.Threshold === 0;
 
-            if (config.displayTrendLine === false && Group.threshold === 0) {
+            if (config.displayTrendLine === false && Group.Threshold === 0) {
                 Group.borderColor = 'rgba(0,0,0,0)';
             }
 
             return Group;
         });
-        //.filter(bound => !(config.displayTrendLine === false && bound.threshold === 0));
+        //.filter(bound => !(config.displayTrendLine === false && bound.Threshold === 0));
 
         // Remove labels to avoid displaying duplicate legend items.
         rollup(

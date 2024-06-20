@@ -24,7 +24,7 @@ const qtl = function (workflow, datasets, setup = false) {
             const workflow = selectWorkflowID(datasets[1], workflowID);
             workflow.y = 'Metric';
 
-            // threshold annotations
+            // Threshold annotations
             const parameters = mergeParameters(
                 filterOnWorkflowID(datasets[2], workflowID),
                 filterOnWorkflowID(datasets[3], workflowID)

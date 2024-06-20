@@ -1,7 +1,7 @@
 // import thresholds from '../../util/colors';
 
 export default function legend(config) {
-    //const legendOrder = thresholds.map(threshold => threshold.description);
+    //const legendOrder = thresholds.map(Threshold => Threshold.description);
     return {
         display: true, //!config.thresholds,
         labels: {

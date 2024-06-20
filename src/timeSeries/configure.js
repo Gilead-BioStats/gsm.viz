@@ -51,8 +51,8 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
 
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
-              (threshold) =>
-                  threshold.snapshot_date !== _thresholds_[0].snapshot_date
+              (Threshold) =>
+                  Threshold.snapshot_date !== _thresholds_[0].snapshot_date
           )
         : false;
 

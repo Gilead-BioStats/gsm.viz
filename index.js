@@ -27277,7 +27277,7 @@ var rbmViz = (() => {
         required: true,
         key: false
       },
-      model: {
+      Model: {
         title: "KRI Score Method",
         description: "Statistical model used to evaluate KRI",
         type: "string",
@@ -27547,7 +27547,7 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        threshold: {
+        Threshold: {
           title: "Threshold",
           description: "Directional factor of predicted results",
           type: "number",
@@ -27568,7 +27568,7 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
-        log_denominator: {
+        LogDenominator: {
           title: "Predicted Denominator (log)",
           description: "Predicted Denominator of KRI metric (log)",
           type: "number",
@@ -27987,24 +27987,24 @@ var rbmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
-    const thresholds2 = [...new Set(_thresholds_)].map((threshold) => +threshold).sort(ascending);
-    const negativeThresholds = thresholds2.filter((threshold) => threshold < 0).sort(descending);
-    const negativeFlags = negativeThresholds.map((threshold, i) => {
+    const thresholds2 = [...new Set(_thresholds_)].map((Threshold) => +Threshold).sort(ascending);
+    const negativeThresholds = thresholds2.filter((Threshold) => Threshold < 0).sort(descending);
+    const negativeFlags = negativeThresholds.map((Threshold, i) => {
       return {
-        threshold,
+        Threshold,
         Flag: -(i + 1)
       };
     });
-    const positiveThresholds = thresholds2.filter((threshold) => threshold > 0).sort(ascending);
-    const positiveFlags = positiveThresholds.map((threshold, i) => {
+    const positiveThresholds = thresholds2.filter((Threshold) => Threshold > 0).sort(ascending);
+    const positiveFlags = positiveThresholds.map((Threshold, i) => {
       return {
-        threshold,
+        Threshold,
         Flag: i + 1
       };
     });
-    const zeroFlag = thresholds2.filter((threshold) => threshold === 0).map((threshold) => {
+    const zeroFlag = thresholds2.filter((Threshold) => Threshold === 0).map((Threshold) => {
       return {
-        threshold,
+        Threshold,
         Flag: 0
       };
     });
@@ -28019,13 +28019,13 @@ var rbmViz = (() => {
     let thresholds2 = _config_.thresholds;
     if (_config_.variableThresholds)
       return null;
-    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((threshold) => typeof threshold === "number"))
+    if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every((Threshold) => typeof Threshold === "number"))
       return mapThresholdsToFlags(thresholds2);
     if (Array.isArray(thresholds2) && thresholds2.length > 0 && thresholds2.every(
-      (threshold) => typeof threshold === "object" && threshold.hasOwnProperty("threshold") && threshold.hasOwnProperty("Flag")
+      (Threshold) => typeof Threshold === "object" && Threshold.hasOwnProperty("Threshold") && Threshold.hasOwnProperty("Flag")
     ))
       return thresholds2;
-    if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((threshold) => typeof threshold !== "number")))
+    if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((Threshold) => typeof Threshold !== "number")))
       return null;
     thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.value !== void 0 ? +d.value : +d.default);
     return mapThresholdsToFlags(thresholds2);
@@ -28292,7 +28292,7 @@ var rbmViz = (() => {
   function annotations(config) {
     let annotations5 = null;
     if (config.thresholds) {
-      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold)).map((x, i) => {
+      annotations5 = config.thresholds.sort((a, b) => Math.abs(a.Threshold) - Math.abs(b.Threshold)).map((x, i) => {
         const content = colorScheme_default.find(
           (y) => y.Flag.includes(+x.Flag)
         ).description;
@@ -28316,12 +28316,12 @@ var rbmViz = (() => {
             padding: 2,
             position: Math.sign(+x.Flag) === 1 ? "end" : "start",
             rotation: "auto",
-            yValue: x.threshold,
+            yValue: x.Threshold,
             yAdjust: 0
           },
           type: "line",
-          yMin: x.threshold,
-          yMax: x.threshold
+          yMin: x.Threshold,
+          yMax: x.Threshold
         };
       });
     }
@@ -28831,13 +28831,13 @@ var rbmViz = (() => {
   function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
       const boundUps = rollups(
-        _bounds_.sort((a, b) => a.threshold - b.threshold),
+        _bounds_.sort((a, b) => a.Threshold - b.Threshold),
         (Group) => {
           return {
             type: "line",
             data: Group.map((d) => ({
-              stratum: Math.abs(+d.threshold),
-              threshold: d.threshold,
+              stratum: Math.abs(+d.Threshold),
+              Threshold: d.Threshold,
               x: +d.Denominator,
               y: +d.Numerator
             })),
@@ -28846,14 +28846,14 @@ var rbmViz = (() => {
             pointRadius: 0
           };
         },
-        (d) => d.threshold
+        (d) => d.Threshold
       );
       const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
       const bounds = boundUps.map((bound, i) => {
         const Group = bound[1];
-        Group.threshold = +bound[0];
+        Group.Threshold = +bound[0];
         Group.Flag = flags.find(
-          (Flag2) => Flag2.threshold === Group.threshold
+          (Flag2) => Flag2.Threshold === Group.Threshold
         );
         const Flag = Group.Flag.Flag;
         Group.label = colorScheme_default.find(
@@ -28865,7 +28865,7 @@ var rbmViz = (() => {
         backgroundColor4.opacity = 0.75;
         Group.backgroundColor = backgroundColor4 + "";
         Group.borderDash = [2];
-        if (config.displayTrendLine === false && Group.threshold === 0) {
+        if (config.displayTrendLine === false && Group.Threshold === 0) {
           Group.borderColor = "rgba(0,0,0,0)";
         }
         return Group;
@@ -29206,15 +29206,15 @@ var rbmViz = (() => {
   function thresholds(config) {
     let thresholds2 = null;
     if (config.displayThresholds && config.thresholds) {
-      thresholds2 = config.thresholds.map((threshold, i) => {
+      thresholds2 = config.thresholds.map((Threshold, i) => {
         const color3 = colorScheme_default.find(
-          (color4) => color4.Flag.includes(+threshold.Flag)
+          (color4) => color4.Flag.includes(+Threshold.Flag)
         );
         color3.rgba.opacity = 0.5;
         const annotation2 = {
           type: "line",
-          yMin: threshold.threshold,
-          yMax: threshold.threshold,
+          yMin: Threshold.Threshold,
+          yMax: Threshold.Threshold,
           borderColor: color3.rgba + "",
           borderWidth: 1
         };
@@ -29263,8 +29263,8 @@ var rbmViz = (() => {
       annotations: [value]
     };
     if (thresholds2 !== null)
-      thresholds2.forEach((threshold) => {
-        annotations5.annotations.push(threshold);
+      thresholds2.forEach((Threshold) => {
+        annotations5.annotations.push(Threshold);
       });
     return annotations5;
   }
@@ -29444,7 +29444,7 @@ var rbmViz = (() => {
     defaults3.annotateThreshold = _thresholds_ !== null;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
-      (threshold) => threshold.snapshot_date !== _thresholds_[0].snapshot_date
+      (Threshold) => Threshold.snapshot_date !== _thresholds_[0].snapshot_date
     ) : false;
     const config = configure2(defaults3, _config_, {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
@@ -29746,7 +29746,7 @@ var rbmViz = (() => {
               Flag.snapshot_date = Group[0].snapshot_date;
               Flag.snapshot_date = Group[0].snapshot_date;
               Flag.x = Flag.snapshot_date;
-              Flag.y = Flag.threshold;
+              Flag.y = Flag.Threshold;
               Flag.color = flags.length === 1 ? colorScheme_default.amberRed : colorScheme_default.find(
                 (color3) => color3.Flag.includes(Flag.Flag)
               );
@@ -29779,14 +29779,14 @@ var rbmViz = (() => {
             ];
             const snapshotDate = max(snapshotDates);
             if (snapshotDate < latestSnapshotDate) {
-              const threshold = {
+              const Threshold = {
                 ...dataset.data.find(
                   (d) => d[config.x] === snapshotDate
                 )
               };
-              threshold[config.x] = latestSnapshotDate;
-              threshold.x = latestSnapshotDate;
-              dataset.data.push(threshold);
+              Threshold[config.x] = latestSnapshotDate;
+              Threshold.x = latestSnapshotDate;
+              dataset.data.push(Threshold);
             }
             return dataset;
           },
@@ -29957,8 +29957,8 @@ var rbmViz = (() => {
           adjustScaleRange: config.Group === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
-          yMin: x.threshold,
-          yMax: x.threshold,
+          yMin: x.Threshold,
+          yMax: x.Threshold,
           borderColor: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
           borderWidth: 1,
           borderDash: [2]
@@ -29969,7 +29969,7 @@ var rbmViz = (() => {
             position: Math.sign(+x.Flag) >= 0 ? "end" : "start",
             color: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
             backgroundColor: "white",
-            content: `QTL: ${Math.round(+config.thresholds[0].threshold * 1e3) / 1e3 .toString()}`,
+            content: `QTL: ${Math.round(+config.thresholds[0].Threshold * 1e3) / 1e3 .toString()}`,
             display: true,
             font: {
               size: 12

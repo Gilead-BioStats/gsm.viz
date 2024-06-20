@@ -51,7 +51,7 @@
             "required": true,
             "key": false
         },
-        "model": {
+        "Model": {
             "title": "KRI Score Method",
             "description": "Statistical model used to evaluate KRI",
             "type": "string",
