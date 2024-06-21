@@ -28,7 +28,7 @@ export default function checkInputs(_results_, _config_, _sites_, _workflows_) {
     checkInput({
         parameter: '_sites_',
         argument: _sites_,
-        schemaName: 'sites',
+        schemaName: 'siteMetadata',
         module: 'siteOverview',
     });
 

@@ -5,7 +5,7 @@ import flagCounts from './flagCounts.json';
 import results from './results.json';
 import resultsPredicted from './resultsPredicted.json';
 import resultsVertical from './resultsVertical.json';
-import sites from './sites.json';
+import siteMetadata from './siteMetadata.json';
 import snapshotDate from './snapshotDate.json';
 
 const schema = {
@@ -16,7 +16,7 @@ const schema = {
     results,
     resultsPredicted,
     resultsVertical,
-    sites,
+    siteMetadata,
     snapshotDate,
 };
 

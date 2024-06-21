@@ -8,7 +8,8 @@
   "scripts": {
     "build": "npm run bundle && npm run format && npm run transpile && npm run test",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
-    "deploy": "npm --prefix app run deploy",
+    "deploy-react": "npm --prefix app run deploy",
+    "deploy": "gh-pages -d examples",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
