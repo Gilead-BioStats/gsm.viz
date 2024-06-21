@@ -7,7 +7,7 @@
  * @returns {void}
  */
 export default function addSorting(headerRow, body) {
-    headerRow.on('click', function(event, column) {
+    headerRow.on('click', function (event, column) {
         headerRow.data().forEach((d) => {
             d.activeSort = false;
         });

@@ -32,18 +32,26 @@ Promise.all(dataPromises)
             d.groupid = d.siteid;
             d.group_label = d.pi_last_name;
         });
-        const countries = d3.rollups(
-            sites,
-            group => {
-                return {
-                    groupid: group[0].country.substring(0, 2).toUpperCase(),
-                    group_label: group[0].country,
-                    enrolled_participants: d3.sum(group, d => d.enrolled_participants),
-                    status: `${group.filter(d => d.enrolled_participants > 0).length} sites active`,
-                };
-            },
-            d => d.country
-        ).map(d => d[1]);
+        const countries = d3
+            .rollups(
+                sites,
+                (group) => {
+                    return {
+                        groupid: group[0].country.substring(0, 2).toUpperCase(),
+                        group_label: group[0].country,
+                        enrolled_participants: d3.sum(
+                            group,
+                            (d) => d.enrolled_participants
+                        ),
+                        status: `${
+                            group.filter((d) => d.enrolled_participants > 0)
+                                .length
+                        } sites active`,
+                    };
+                },
+                (d) => d.country
+            )
+            .map((d) => d[1]);
         console.log(countries);
 
         let groupMetadata;
@@ -59,9 +67,7 @@ Promise.all(dataPromises)
 
         const instance = rbmViz.default.countryOverview(
             document.getElementById('container'),
-            results.filter(
-                (d) => groupSubset.includes(d.groupid)
-            ),
+            results.filter((d) => groupSubset.includes(d.groupid)),
             {
                 groupLevel,
                 groupClickCallback: function (datum) {
@@ -77,8 +83,8 @@ Promise.all(dataPromises)
 
         document.querySelector('#country-subset').onchange = function () {
             const groupSubset = getCountries(results);
-            const updatedResults = results.filter(
-                (d) => groupSubset.includes(d.groupid)
+            const updatedResults = results.filter((d) =>
+                groupSubset.includes(d.groupid)
             );
 
             instance.updateTable(updatedResults);

@@ -6,14 +6,16 @@
  * @returns {object} - The cells of the table.
  */
 export default function addCells(bodyRows) {
-    const cells = bodyRows.selectAll('td')
+    const cells = bodyRows
+        .selectAll('td')
         .data(
             (d) => d,
             // Define a unique key for each cell.
             (d) => {
-                const id = d.column.type === 'kri'
-                    ? `${d.groupid}-${d.column.meta.workflowid}`
-                    : `${d.groupid}-${d.column.valueKey}`;
+                const id =
+                    d.column.type === 'kri'
+                        ? `${d.groupid}-${d.column.meta.workflowid}`
+                        : `${d.groupid}-${d.column.valueKey}`;
 
                 return id;
             }
@@ -22,7 +24,7 @@ export default function addCells(bodyRows) {
         .text((d) => (d.text === 'NA' ? '-' : d.text))
         .attr('class', (d) => d.class)
         .classed('tooltip', (d) => d.tooltip)
-        .attr('title', (d) => d.tooltip ? d.tooltipContent: null);
+        .attr('title', (d) => (d.tooltip ? d.tooltipContent : null));
 
     return cells;
 }

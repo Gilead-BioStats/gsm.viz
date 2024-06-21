@@ -1,5 +1,7 @@
 import { select } from 'd3';
 
+import deriveSiteMetrics from './deriveSiteMetrics.js';
+import defineColumns from './defineColumns.js';
 import structureData from './structureData.js';
 
 import addBodyRows from './makeTable/addBodyRows.js';
@@ -11,15 +13,10 @@ import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
-export default function updateTable(
-    _results_
-) {
-    const rows = structureData(
-        _results_,
-        this.columns,
-        this.sites,
-        this._workflows_
-    );
+export default function updateTable(_results_) {
+    const sites = deriveSiteMetrics(this._sites_, _results_);
+    const columns = defineColumns(sites, this._workflows_, _results_);
+    const rows = structureData(_results_, columns, sites);
 
     // create table
     const tbody = this.table.select('tbody');
@@ -42,9 +39,23 @@ export default function updateTable(
     addClickEvents(bodyRows, cells, this.config);
 
     // preserve existing column sort
-    const sortedColumn = this.columns.find(d => d.activeSort);
+    const sortedColumn = this.columns.find((d) => d.activeSort);
     if (sortedColumn !== undefined) {
         sortedColumn.sortState = -sortedColumn.sortState;
         sortedColumn.sort(tbody.selectAll('tr'), sortedColumn);
+    } else {
+        tbody.selectAll('tr').sort((a, b) => {
+            const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+            const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+            const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+            const siteComparison = a.key.localeCompare(b.key);
+
+            return (
+                redComparison ||
+                amberComparison ||
+                greenComparison ||
+                siteComparison
+            );
+        });
     }
 }

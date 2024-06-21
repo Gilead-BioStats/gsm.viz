@@ -35,13 +35,17 @@ export default function siteOverview(
 
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
-    const rows = structureData(_results_, columns, sites, _workflows_);
+    const rows = structureData(_results_, columns, sites);
     const table = makeTable(_element_, rows, columns, config);
 
     table.updateTable = updateTable.bind({
+        _results_,
+        _config_,
+        _sites_,
+        _workflows_,
+
         config,
         sites,
-        _workflows_,
         columns,
         rows,
         table,

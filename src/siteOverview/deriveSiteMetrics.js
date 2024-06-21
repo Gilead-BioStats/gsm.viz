@@ -1,4 +1,3 @@
-// TODO: exclude sites absent from the results
 export default function deriveSiteMetrics(sites, results) {
     const missingSites = results
         .map((result) => result.groupid)
@@ -8,9 +7,11 @@ export default function deriveSiteMetrics(sites, results) {
     const allSites = sites.concat(missingSites);
 
     allSites.forEach((site) => {
-        const siteResults = results.filter((result) => result.groupid === site.siteid);
+        const siteResults = results.filter(
+            (result) => result.groupid === site.siteid
+        );
 
-        // coun red flags
+        // count red flags
         site.nRedFlags = siteResults.filter(
             (result) => Math.abs(parseInt(result.flag)) === 2
         ).length;
@@ -27,5 +28,4 @@ export default function deriveSiteMetrics(sites, results) {
     });
 
     return allSites;
-};
-
+}

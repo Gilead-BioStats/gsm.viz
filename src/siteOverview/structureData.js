@@ -12,31 +12,28 @@ export default function structureData(results, columns, sites) {
     const rowData = Array.from(lookup, ([key, value]) => {
         const site = sites.find((site) => site.siteid === key);
 
-        const rowDatum = columns
-            .map((column) => {
-                const datum = {
-                    ...column.getDatum(key) || {},
-                    column: column,
-                    site: site,
-                    siteid: key,
-                };
+        const rowDatum = columns.map((column) => {
+            const datum = {
+                ...(column.getDatum(key) || {}),
+                column: column,
+                site: site,
+                siteid: key,
+            };
 
-                // TODO: get rid of value or text
-                datum.value = datum[column.valueKey];
-                datum.text = datum.value;
-                // TODO: This is a hack to get the correct sort value for KRI columns.
-                datum.sortValue = column.type === 'kri'
+            // TODO: get rid of value or text
+            datum.value = datum[column.valueKey];
+            datum.text = datum.value;
+            // TODO: This is a hack to get the correct sort value for KRI columns.
+            datum.sortValue =
+                column.type === 'kri'
                     ? Math.abs(parseFloat(datum.value))
                     : datum.value;
-                datum.class = [
-                    column.type,
-                    column.valueKey,
-                ].join(' ');
-                datum.tooltip = column.tooltip;
-                datum.tooltipContent = column.defineTooltip(column, datum);
+            datum.class = [column.type, column.valueKey].join(' ');
+            datum.tooltip = column.tooltip;
+            datum.tooltipContent = column.defineTooltip(column, datum);
 
-                return datum;
-            });
+            return datum;
+        });
 
         rowDatum.key = key;
 

@@ -1,13 +1,18 @@
 export default function deriveCountryMetrics(countries, results) {
     const missingCountries = results
         .map((result) => result.groupid)
-        .filter((groupid) => !countries.find((country) => country.groupid === groupid))
+        .filter(
+            (groupid) =>
+                !countries.find((country) => country.groupid === groupid)
+        )
         .map((groupid) => ({ groupid }));
 
     const allCountries = countries.concat(missingCountries);
 
     allCountries.forEach((country) => {
-        const countryResults = results.filter((result) => result.groupid === country.groupid);
+        const countryResults = results.filter(
+            (result) => result.groupid === country.groupid
+        );
 
         // coun red flags
         country.nRedFlags = countryResults.filter(
@@ -26,5 +31,4 @@ export default function deriveCountryMetrics(countries, results) {
     });
 
     return allCountries;
-};
-
+}

@@ -29,9 +29,7 @@ Promise.all(dataPromises)
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),
-            results.filter(
-                (d) => siteSubset.includes(d.groupid)
-            ),
+            results.filter((d) => siteSubset.includes(d.groupid)),
             {
                 groupLevel,
                 //groupClickCallback: function (datum) {
@@ -47,8 +45,8 @@ Promise.all(dataPromises)
 
         document.querySelector('#site-subset').onchange = function () {
             const siteSubset = getSites(results);
-            const updatedResults = results.filter(
-                (d) => siteSubset.includes(d.groupid)
+            const updatedResults = results.filter((d) =>
+                siteSubset.includes(d.groupid)
             );
 
             instance.updateTable(updatedResults);

@@ -13,9 +13,7 @@ export default function sortNumber(bodyRows, column) {
             return -1;
         }
 
-        const defaultSort = sortAscending
-            ? aVal - bVal
-            : bVal - aVal;
+        const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
 
         return defaultSort;
     });

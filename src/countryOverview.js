@@ -39,9 +39,13 @@ export default function countryOverview(
     const table = makeTable(_element_, rows, columns, config);
 
     table.updateTable = updateTable.bind({
+        _results_,
+        _config_,
+        _countries_,
+        _workflows_,
+
         config,
         countries,
-        _workflows_,
         columns,
         rows,
         table,

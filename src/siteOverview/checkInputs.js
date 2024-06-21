@@ -10,12 +10,7 @@ import checkInput from '../data/checkInput.js';
  *
  * @returns {void}
  */
-export default function checkInputs(
-    _results_,
-    _config_,
-    _sites_,
-    _workflows_
-) {
+export default function checkInputs(_results_, _config_, _sites_, _workflows_) {
     checkInput({
         parameter: '_results_',
         argument: _results_,

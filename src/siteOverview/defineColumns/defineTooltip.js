@@ -5,30 +5,30 @@ export default function defineTooltip(column, content, workflows = null) {
         // Define tooltip content for site columns.
         case 'site':
             tooltipKeys = {
-                'status': 'Status',
+                status: 'Status',
 
-                'pi_last_name': 'Last Name',
-                'pi_first_name': 'First Name',
-                'siteid': 'Investigator ID',
+                pi_last_name: 'Last Name',
+                pi_first_name: 'First Name',
+                siteid: 'Investigator ID',
 
-                'institution': 'Site',
-                'site_num': 'Site ID',
-                'city': 'City',
-                'state': 'State',
-                'country': 'Country',
+                institution: 'Site',
+                site_num: 'Site ID',
+                city: 'City',
+                state: 'State',
+                country: 'Country',
 
-                'start_date': 'Activation Date',
-                'is_satellite': 'Satellite',
+                start_date: 'Activation Date',
+                is_satellite: 'Satellite',
             };
 
             break;
         // Define tooltip content for KRI columns.
         case 'kri':
             tooltipKeys = {
-                'score': column.meta.score,
-                'metric': column.meta.metric,
-                'numerator': column.meta.numerator,
-                'denominator': column.meta.denominator,
+                score: column.meta.score,
+                metric: column.meta.metric,
+                numerator: column.meta.numerator,
+                denominator: column.meta.denominator,
             };
 
             break;
@@ -49,7 +49,9 @@ export default function defineTooltip(column, content, workflows = null) {
 
                 if (Number.isInteger(value)) {
                     // format integer with commas
-                    value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                    value = value
+                        .toString()
+                        .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 } else {
                     // round float to two decimal places
                     value = value.toFixed(2).toString();
@@ -61,4 +63,4 @@ export default function defineTooltip(column, content, workflows = null) {
     }
 
     return tooltipContent.join('\n');
-};
+}

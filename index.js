@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -23239,10 +23240,10 @@ var rbmViz = (() => {
     bodyRows.sort((a, b) => {
       const aVal = a[column.index].sortValue;
       const bVal = b[column.index].sortValue;
-      if (aVal === void 0 || aVal === null) {
+      if (aVal === void 0 || aVal === null || isNaN(aVal)) {
         return 1;
       }
-      if (bVal === void 0 || bVal === null) {
+      if (bVal === void 0 || bVal === null || isNaN(bVal)) {
         return -1;
       }
       const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
@@ -23600,12 +23601,9 @@ var rbmViz = (() => {
 
   // src/siteOverview/updateTable.js
   function updateTable(_results_) {
-    const rows = structureData5(
-      _results_,
-      this.columns,
-      this.sites,
-      this._workflows_
-    );
+    const sites = deriveSiteMetrics(this._sites_, _results_);
+    const columns = defineColumns(sites, this._workflows_, _results_);
+    const rows = structureData5(_results_, columns, sites);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
@@ -23618,6 +23616,14 @@ var rbmViz = (() => {
     if (sortedColumn !== void 0) {
       sortedColumn.sortState = -sortedColumn.sortState;
       sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
+    } else {
+      tbody.selectAll("tr").sort((a, b) => {
+        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+        const siteComparison = a.key.localeCompare(b.key);
+        return redComparison || amberComparison || greenComparison || siteComparison;
+      });
     }
   }
 
@@ -23627,12 +23633,15 @@ var rbmViz = (() => {
     const config = configure7(_config_);
     const sites = deriveSiteMetrics(_sites_, _results_);
     const columns = defineColumns(sites, _workflows_, _results_);
-    const rows = structureData5(_results_, columns, sites, _workflows_);
+    const rows = structureData5(_results_, columns, sites);
     const table = makeTable(_element_, rows, columns, config);
     table.updateTable = updateTable.bind({
+      _results_,
+      _config_,
+      _sites_,
+      _workflows_,
       config,
       sites,
-      _workflows_,
       columns,
       rows,
       table
@@ -24059,12 +24068,9 @@ var rbmViz = (() => {
 
   // src/countryOverview/updateTable.js
   function updateTable2(_results_) {
-    const rows = structureData6(
-      _results_,
-      this.columns,
-      this.countries,
-      this._workflows_
-    );
+    const countries = deriveCountryMetrics(this._countries_, _results_);
+    const columns = defineColumns2(countries, this._workflows_, _results_);
+    const rows = structureData6(_results_, columns, countries);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows2(tbody, rows);
     const cells = addCells2(bodyRows);
@@ -24076,6 +24082,14 @@ var rbmViz = (() => {
     if (sortedColumn !== void 0) {
       sortedColumn.sortState = -sortedColumn.sortState;
       sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
+    } else {
+      tbody.selectAll("tr").sort((a, b) => {
+        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+        const groupComparison = a.key.localeCompare(b.key);
+        return redComparison || amberComparison || greenComparison || groupComparison;
+      });
     }
   }
 
@@ -24088,9 +24102,12 @@ var rbmViz = (() => {
     const rows = structureData6(_results_, columns, countries, _workflows_);
     const table = makeTable2(_element_, rows, columns, config);
     table.updateTable = updateTable2.bind({
+      _results_,
+      _config_,
+      _countries_,
+      _workflows_,
       config,
       countries,
-      _workflows_,
       columns,
       rows,
       table

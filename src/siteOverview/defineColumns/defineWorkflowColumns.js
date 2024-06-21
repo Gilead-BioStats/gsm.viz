@@ -5,9 +5,7 @@ export default function defineWorkflowColumns(workflows, results) {
     const workflowColumns = workflows.map((workflow) => {
         const column = {
             label: workflow.abbreviation,
-            data: results.filter(
-                d => d.workflowid === workflow.workflowid
-            ),
+            data: results.filter((d) => d.workflowid === workflow.workflowid),
             filterKey: 'groupid',
             valueKey: 'score',
 
@@ -25,4 +23,3 @@ export default function defineWorkflowColumns(workflows, results) {
 
     return workflowColumns;
 }
-

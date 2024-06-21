@@ -19,14 +19,11 @@ import defineTooltip from './defineColumns/defineTooltip.js';
 export default function defineColumns(countries, workflows, results) {
     const countryColumns = defineCountryColumns(countries);
     const workflowColumns = defineWorkflowColumns(workflows, results);
-    const columns = [
-        ...countryColumns,
-        ...workflowColumns,
-    ];
+    const columns = [...countryColumns, ...workflowColumns];
 
     columns.forEach((column, i) => {
-        column.getDatum = (key) => column.data
-            .find(d => d[ column.filterKey ] === key );
+        column.getDatum = (key) =>
+            column.data.find((d) => d[column.filterKey] === key);
         column.index = i;
         column.defineTooltip = defineTooltip;
         column.sortState = column.dataType === 'string' ? 0 : 1;

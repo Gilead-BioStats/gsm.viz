@@ -25,8 +25,8 @@ const country = function (datasets, setup = false) {
         countryDropdown.addEventListener('change', (event) => {
             instance = getChart();
             instance.data.config.selectedGroupIDs = datasets[3]
-                .filter(d => d.country === event.target.value)
-                .map(d => d.siteid);
+                .filter((d) => d.country === event.target.value)
+                .map((d) => d.siteid);
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
         });

@@ -1,5 +1,7 @@
 import { select } from 'd3';
 
+import deriveCountryMetrics from './deriveCountryMetrics.js';
+import defineColumns from './defineColumns.js';
 import structureData from './structureData.js';
 
 import addBodyRows from './makeTable/addBodyRows.js';
@@ -10,20 +12,18 @@ import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
-export default function updateTable(
-    _results_
-) {
-    const rows = structureData(
-        _results_,
-        this.columns,
-        this.countries,
-        this._workflows_
-    );
+export default function updateTable(_results_) {
+    const countries = deriveCountryMetrics(this._countries_, _results_);
+    const columns = defineColumns(countries, this._workflows_, _results_);
+    const rows = structureData(_results_, columns, countries);
 
     // create table
     const tbody = this.table.select('tbody');
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
+
+    // identify inactive countries
+    //identifyInactiveCountries(bodyRows);
 
     // add traffic light coloring to cells
     addTrafficLighting(bodyRows);
@@ -38,19 +38,23 @@ export default function updateTable(
     addClickEvents(bodyRows, cells, this.config);
 
     // preserve existing column sort
-    const sortedColumn = this.columns.find(d => d.activeSort);
+    const sortedColumn = this.columns.find((d) => d.activeSort);
     if (sortedColumn !== undefined) {
         sortedColumn.sortState = -sortedColumn.sortState;
         sortedColumn.sort(tbody.selectAll('tr'), sortedColumn);
-    }
-    //else {
-    //    tbody.selectAll('tr').sort((a, b) => {
-    //        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
-    //        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
-    //        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
-    //        const groupComparison = a.key.localeCompare(b.key);
+    } else {
+        tbody.selectAll('tr').sort((a, b) => {
+            const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+            const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+            const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+            const groupComparison = a.key.localeCompare(b.key);
 
-    //        return redComparison || amberComparison || greenComparison || groupComparison;
-    //    });
-    //}
+            return (
+                redComparison ||
+                amberComparison ||
+                greenComparison ||
+                groupComparison
+            );
+        });
+    }
 }
