@@ -1,0 +1,29 @@
+[
+	{
+		"studyid": "AA-AA-000-0000",
+		"enrolled_sites": "176",
+		"enrolled_participants": "1301",
+		"planned_sites": "190",
+		"planned_participants": "1300",
+		"title": "Protocol Title",
+		"nickname": "Protocol Nickname",
+		"enrolled_sites_ctms": "176",
+		"enrolled_participants_ctms": "1301",
+		"fpfv": "2003-01-01 00:00:00",
+		"lpfv": "2020-06-01 00:00:00",
+		"lplv": "2021-06-01 00:00:00",
+		"ta": "Therapeutic Area",
+		"indication": "Protocol Indication",
+		"phase": "P3",
+		"status": "Active",
+		"rbm_flag": "Y",
+		"product": "Product",
+		"protocol_type": "Investigator Sponsored",
+		"protocol_row_id": "1-1G9113",
+		"est_fpfv": "2003-01-01 00:00:00",
+		"est_lpfv": "2020-06-01 00:00:00",
+		"est_lplv": "2021-06-01 00:00:00",
+		"protocol_product_number": "123",
+		"gsm_analysis_date": "2023-01-05"
+	}
+]

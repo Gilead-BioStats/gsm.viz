@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Time Series: KRI</title>
+        <meta charset="utf-8" />
+
+        <link rel="stylesheet" href="../style.css" />
+        <link rel="stylesheet" href="style.css" />
+
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="../../index.js"></script>
+
+        <script src="../data/helpers/filterOnWorkflowID.js"></script>
+        <script src="../data/helpers/selectWorkflowID.js"></script>
+        <script src="../data/helpers/mergeParameters.js"></script>
+
+        <script src="../controls/getChart.js"></script>
+        <script src="./controls/kri.js"></script>
+        <script src="./controls/site.js"></script>
+        <script src="./controls/yaxis.js"></script>
+        <script src="../controls/download.js"></script>
+    </head>
+
+    <body>
+        <div id="controls">
+            <fieldset>
+                <legend>KRI</legend>
+                <select id="kri"></select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Highlighted Site</legend>
+                <select id="groupid"></select>
+            </fieldset>
+
+            <fieldset>
+                <legend>Y-axis</legend>
+                <select id="yaxis">
+                    <option value="numerator">numerator</option>
+                    <option value="metric">metric</option>
+                    <option value="score">score</option>
+                </select>
+            </fieldset>
+        </div>
+
+        <div id="container">
+            <canvas id="canvas"></canvas>
+        </div>
+    </body>
+
+    <script src="index.js"></script>
+</html>

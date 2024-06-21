@@ -1,0 +1,13 @@
+#controls {
+    display: flex;
+    justify-content: center;
+}
+fieldset {
+    display: flex;
+    justify-content: center;
+}
+#container {
+    margin: auto;
+    width: 100%;
+    height: 40vw;
+}
