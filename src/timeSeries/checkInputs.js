@@ -41,7 +41,7 @@ export default function checkInputs(
         checkInput({
             parameter: '_sites_',
             argument: _sites_,
-            schemaName: 'sites',
+            schemaName: 'siteMetadata',
             module: 'timeSeries',
         });
     }

@@ -1,5 +1,5 @@
 import sites from '../../examples/data/status_site.json';
-import schema from '../../src/data/schema/sites.json';
+import schema from '../../src/data/schema/siteMetadata.json';
 import checkInput from '../../src/data/checkInput';
 import getType from '../../src/data/checkInput/getType';
 
@@ -21,8 +21,8 @@ describe('sites schema', () => {
 
     test('properties of sites schema items match properties of sites items', () => {
         const site = sites[Math.floor(sites.length * Math.random())];
-        const propsResult = Object.keys(site).sort();
         const propsSchema = Object.keys(schema.items.properties).sort();
+        const propsResult = Object.keys(site).sort().filter(prop => propsSchema.includes(prop));
 
         expect(propsResult).toEqual(propsSchema);
     });

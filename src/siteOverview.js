@@ -34,6 +34,7 @@ export default function siteOverview(
     const config = configure(_config_);
 
     const sites = deriveSiteMetrics(_sites_, _results_);
+    console.log(sites);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData(_results_, columns, sites);
     const table = makeTable(_element_, rows, columns, config);
