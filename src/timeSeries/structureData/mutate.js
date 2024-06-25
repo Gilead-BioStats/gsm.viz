@@ -47,16 +47,13 @@ export default function mutate(
         .sort((a, b) => ascending(a[config.x], b[config.x]));
 
     const labels = getLabels(data, config);
-    console.log(labels);
 
     let thresholds = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
-        console.log([...new Set(_thresholds_.map(d => d[config.x]))]);
         thresholds = _thresholds_
             .filter((d) => labels.includes(d[config.x]))
             .map((d) => ({ ...d }))
             .sort((a, b) => ascending(a[config.x], b[config.x]));
-        console.log(thresholds);
     }
 
     let intervals = null;

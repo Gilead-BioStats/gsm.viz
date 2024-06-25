@@ -22,6 +22,7 @@ Promise.all(dataPromises)
         datasets[0].forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
+
         let flagCounts = datasets[0];
         if (by === 'kri')
             flagCounts = flagCounts.filter((d) => d.MetricID === workflowID);

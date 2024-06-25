@@ -27749,7 +27749,7 @@ var rbmViz = (() => {
           type: "string",
           required: true,
           key: true,
-          alternate: "metricid"
+          alternate: "MetricID"
         },
         MetricID: {
           title: "Metric ID",
@@ -27757,7 +27757,7 @@ var rbmViz = (() => {
           type: "string",
           required: true,
           key: true,
-          alternate: "metricid"
+          alternate: "GroupID"
         },
         n: {
           title: "# of Groups/KRIs",
@@ -29792,7 +29792,7 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_, _intervals_) {
     const defaults3 = {};
-    defaults3.dataType = /Flag|risk/.test(_config_.y) ? "discrete" : "continuous";
+    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "KRI" : "Site";
     else
@@ -29827,7 +29827,7 @@ var rbmViz = (() => {
     const discreteUnits = config.dataType === "discrete" ? `${config.discreteUnit.replace(/y$/, "ie")}s` : "";
     config.yLabel = coalesce(
       _config_.yLabel,
-      config.dataType === "continuous" ? config[config.y] : /Flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /Flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
+      config.dataType === "continuous" ? config[config.y] : /flag/.test(config.y) && /risk/.test(config.y) ? `Red or Amber ${discreteUnits}` : /flag/.test(config.y) ? `Red ${discreteUnits}` : /risk/.test(config.y) ? `Amber ${discreteUnits}` : ""
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
     if (config.hoverCallbackWrapper === void 0)
@@ -29874,12 +29874,9 @@ var rbmViz = (() => {
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(data, config);
-    console.log(labels);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
-      console.log([...new Set(_thresholds_.map((d) => d[config.x]))]);
       thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
-      console.log(thresholds2);
     }
     let intervals = null;
     if (Array.isArray(_intervals_)) {
@@ -30547,8 +30544,6 @@ var rbmViz = (() => {
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
-    console.log(_thresholds_);
-    console.log(config.thresholds);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData4(
       _data_,

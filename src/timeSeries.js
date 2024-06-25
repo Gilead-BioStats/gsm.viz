@@ -45,8 +45,6 @@ export default function timeSeries(
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _data_, _thresholds_, _intervals_);
-    console.log(_thresholds_);
-    console.log(config.thresholds);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);

@@ -19,7 +19,7 @@
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "metricid"
+                "alternate": "MetricID"
             },
             "MetricID": {
                 "title": "Metric ID",
@@ -27,7 +27,7 @@
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "metricid"
+                "alternate": "GroupID"
             },
             "n": {
                 "title": "# of Groups/KRIs",

@@ -7,7 +7,7 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
 
-    defaults.dataType = /Flag|risk/.test(_config_.y)
+    defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';
 
@@ -74,9 +74,9 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         _config_.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
-            : /Flag/.test(config.y) && /risk/.test(config.y)
+            : /flag/.test(config.y) && /risk/.test(config.y)
             ? `Red or Amber ${discreteUnits}`
-            : /Flag/.test(config.y)
+            : /flag/.test(config.y)
             ? `Red ${discreteUnits}`
             : /risk/.test(config.y)
             ? `Amber ${discreteUnits}`
