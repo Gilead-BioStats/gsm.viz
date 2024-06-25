@@ -1,7 +1,7 @@
 const mergeParameters = function (defaultParameters, customParameters) {
     const dates = [
         ...new Set(
-            customParameters.map((parameter) => parameter.gsm_analysis_date)
+            customParameters.map((parameter) => parameter.SnapshotDate)
         ),
     ];
 
@@ -10,7 +10,7 @@ const mergeParameters = function (defaultParameters, customParameters) {
             const parameters = defaultParameters.map((defaultParameter) => {
                 const customParameter = customParameters.find(
                     (customParameter) =>
-                        customParameter.gsm_analysis_date === date &&
+                        customParameter.SnapshotDate === date &&
                         customParameter.MetricID ===
                             defaultParameter.MetricID &&
                         customParameter.index === defaultParameter.index
@@ -21,7 +21,7 @@ const mergeParameters = function (defaultParameters, customParameters) {
                     ...customParameter,
                 };
 
-                parameter.gsm_analysis_date = date;
+                parameter.SnapshotDate = date;
                 parameter.SnapshotDate = date;
                 parameter.value =
                     customParameter !== undefined

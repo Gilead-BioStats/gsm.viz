@@ -1,4 +1,4 @@
-StudyID,MetricID,Threshold,Numerator,Denominator,LogDenominator,gsm_analysis_date
+StudyID,MetricID,Threshold,Numerator,Denominator,LogDenominator,SnapshotDate
 AA-AA-000-0000,cou0001,-03,375.1387688,115225.14,11.65464323,2023-05-01
 AA-AA-000-0000,cou0001,-03,383.4867897,117262,11.67216603,2023-05-01
 AA-AA-000-0000,cou0001,-03,391.8495265,119298.86,11.68938705,2023-05-01

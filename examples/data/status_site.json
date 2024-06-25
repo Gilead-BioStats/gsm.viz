@@ -17,7 +17,7 @@
 		"pi_last_name": "Torres",
 		"pi_first_name": "Ariel",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -37,7 +37,7 @@
 		"pi_last_name": "Spangler",
 		"pi_first_name": "Cheyenne",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -57,7 +57,7 @@
 		"pi_last_name": "Broughton",
 		"pi_first_name": "Macallyson",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -77,7 +77,7 @@
 		"pi_last_name": "Lester",
 		"pi_first_name": "Asa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -97,7 +97,7 @@
 		"pi_last_name": "Salazar",
 		"pi_first_name": "Manaal",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -117,7 +117,7 @@
 		"pi_last_name": "Rollins",
 		"pi_first_name": "Dominico",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -137,7 +137,7 @@
 		"pi_last_name": "Terry",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -157,7 +157,7 @@
 		"pi_last_name": "Porter",
 		"pi_first_name": "Gabriella",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -177,7 +177,7 @@
 		"pi_last_name": "Lopez",
 		"pi_first_name": "Peter",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -197,7 +197,7 @@
 		"pi_last_name": "Pascual",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -217,7 +217,7 @@
 		"pi_last_name": "Ashcroft-Bitsilly",
 		"pi_first_name": "Michael",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -237,7 +237,7 @@
 		"pi_last_name": "al-Rais",
 		"pi_first_name": "Trang",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -257,7 +257,7 @@
 		"pi_last_name": "Mancilla",
 		"pi_first_name": "Yueh-Ya",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -277,7 +277,7 @@
 		"pi_last_name": "el-Dia",
 		"pi_first_name": "Trevor",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -297,7 +297,7 @@
 		"pi_last_name": "al-Hasen",
 		"pi_first_name": "Brittany",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -317,7 +317,7 @@
 		"pi_last_name": "el-Shaker",
 		"pi_first_name": "Aatika",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -337,7 +337,7 @@
 		"pi_last_name": "el-Mostafa",
 		"pi_first_name": "Sabriyya",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -357,7 +357,7 @@
 		"pi_last_name": "Patalan",
 		"pi_first_name": "Alexander",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -377,7 +377,7 @@
 		"pi_last_name": "al-Badour",
 		"pi_first_name": "Nazeeha",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -397,7 +397,7 @@
 		"pi_last_name": "Farr",
 		"pi_first_name": "Mujaahida",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -417,7 +417,7 @@
 		"pi_last_name": "Keese",
 		"pi_first_name": "Ashlee",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -437,7 +437,7 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Shaleena",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -457,7 +457,7 @@
 		"pi_last_name": "Kanack",
 		"pi_first_name": "Andres",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -477,7 +477,7 @@
 		"pi_last_name": "Strock",
 		"pi_first_name": "Nicholas",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -497,7 +497,7 @@
 		"pi_last_name": "Bocanegra",
 		"pi_first_name": "Aquilah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -517,7 +517,7 @@
 		"pi_last_name": "Ha",
 		"pi_first_name": "Mariah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -537,7 +537,7 @@
 		"pi_last_name": "Truong",
 		"pi_first_name": "Christopher",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -557,7 +557,7 @@
 		"pi_last_name": "Schmidt",
 		"pi_first_name": "Joseph",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -577,7 +577,7 @@
 		"pi_last_name": "Ford",
 		"pi_first_name": "Saaya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -597,7 +597,7 @@
 		"pi_last_name": "Lesley",
 		"pi_first_name": "Nkaujiaong",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -617,7 +617,7 @@
 		"pi_last_name": "Friedrich",
 		"pi_first_name": "Anna",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -637,7 +637,7 @@
 		"pi_last_name": "Gonzalez",
 		"pi_first_name": "Crystal",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -657,7 +657,7 @@
 		"pi_last_name": "al-Radi",
 		"pi_first_name": "Carissa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -677,7 +677,7 @@
 		"pi_last_name": "Smith",
 		"pi_first_name": "Eric",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -697,7 +697,7 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Aqsa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -717,7 +717,7 @@
 		"pi_last_name": "el-Massoud",
 		"pi_first_name": "Musaddiq",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -737,7 +737,7 @@
 		"pi_last_name": "Aragon",
 		"pi_first_name": "Hailey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -757,7 +757,7 @@
 		"pi_last_name": "Garnett",
 		"pi_first_name": "Alix",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -777,7 +777,7 @@
 		"pi_last_name": "Cleckley",
 		"pi_first_name": "Zakariyya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -797,7 +797,7 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Lindsey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -817,7 +817,7 @@
 		"pi_last_name": "Kapoor",
 		"pi_first_name": "Tateh",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -837,7 +837,7 @@
 		"pi_last_name": "Agenar",
 		"pi_first_name": "Angelo",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -857,7 +857,7 @@
 		"pi_last_name": "Taylor",
 		"pi_first_name": "Bianca",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -877,7 +877,7 @@
 		"pi_last_name": "Vangoey",
 		"pi_first_name": "Cydnie",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -897,7 +897,7 @@
 		"pi_last_name": "Tran",
 		"pi_first_name": "Raelina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -917,7 +917,7 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Benjamin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -937,7 +937,7 @@
 		"pi_last_name": "Voss",
 		"pi_first_name": "Hamdoona",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -957,7 +957,7 @@
 		"pi_last_name": "Jiron",
 		"pi_first_name": "Essence",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -977,7 +977,7 @@
 		"pi_last_name": "el-Yusuf",
 		"pi_first_name": "Christine",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -997,7 +997,7 @@
 		"pi_last_name": "Jenkins",
 		"pi_first_name": "Ashuka",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1017,7 +1017,7 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Carlos",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1037,7 +1037,7 @@
 		"pi_last_name": "Gallegos-Neiberger",
 		"pi_first_name": "Caroline",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1057,7 +1057,7 @@
 		"pi_last_name": "Dabit",
 		"pi_first_name": "Derrick",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1077,7 +1077,7 @@
 		"pi_last_name": "Kimler",
 		"pi_first_name": "Marceen",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1097,7 +1097,7 @@
 		"pi_last_name": "Vargas Padilla",
 		"pi_first_name": "Darien",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1117,7 +1117,7 @@
 		"pi_last_name": "Pinch",
 		"pi_first_name": "Haileigh",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1137,7 +1137,7 @@
 		"pi_last_name": "el-Allam",
 		"pi_first_name": "Felicity",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1157,7 +1157,7 @@
 		"pi_last_name": "al-Nouri",
 		"pi_first_name": "Caerra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1177,7 +1177,7 @@
 		"pi_last_name": "el-Attar",
 		"pi_first_name": "Kristie",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1197,7 +1197,7 @@
 		"pi_last_name": "Pond",
 		"pi_first_name": "Qu Onu",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1217,7 +1217,7 @@
 		"pi_last_name": "Arellano",
 		"pi_first_name": "Talia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1237,7 +1237,7 @@
 		"pi_last_name": "Pinto",
 		"pi_first_name": "Justin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1257,7 +1257,7 @@
 		"pi_last_name": "Gray",
 		"pi_first_name": "Louisa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1277,7 +1277,7 @@
 		"pi_last_name": "Rodriguez-Cruz",
 		"pi_first_name": "Kevin",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1297,7 +1297,7 @@
 		"pi_last_name": "Suess",
 		"pi_first_name": "Christina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1317,7 +1317,7 @@
 		"pi_last_name": "el-Agha",
 		"pi_first_name": "Mu,Aawiya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1337,7 +1337,7 @@
 		"pi_last_name": "Gallegos",
 		"pi_first_name": "Mansoor",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1357,7 +1357,7 @@
 		"pi_last_name": "Mccracken",
 		"pi_first_name": "Byung",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1377,7 +1377,7 @@
 		"pi_last_name": "Garrison",
 		"pi_first_name": "Raquel",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1397,7 +1397,7 @@
 		"pi_last_name": "Campa",
 		"pi_first_name": "April",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1417,7 +1417,7 @@
 		"pi_last_name": "Tran",
 		"pi_first_name": "Briana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1437,7 +1437,7 @@
 		"pi_last_name": "Solis",
 		"pi_first_name": "Safwa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1457,7 +1457,7 @@
 		"pi_last_name": "Foster",
 		"pi_first_name": "Tracee",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1477,7 +1477,7 @@
 		"pi_last_name": "Orio",
 		"pi_first_name": "Shaqeeqa",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1497,7 +1497,7 @@
 		"pi_last_name": "Hoffpauir",
 		"pi_first_name": "Adam",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1517,7 +1517,7 @@
 		"pi_last_name": "Vigo",
 		"pi_first_name": "Edeyanira",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1537,7 +1537,7 @@
 		"pi_last_name": "Nguyen",
 		"pi_first_name": "Abdul Wadood",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1557,7 +1557,7 @@
 		"pi_last_name": "el-Vaziri",
 		"pi_first_name": "Theador",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1577,7 +1577,7 @@
 		"pi_last_name": "Salas Dominguez",
 		"pi_first_name": "Dominick",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1597,7 +1597,7 @@
 		"pi_last_name": "al-Miah",
 		"pi_first_name": "Carsyn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1617,7 +1617,7 @@
 		"pi_last_name": "Zamora",
 		"pi_first_name": "John",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1637,7 +1637,7 @@
 		"pi_last_name": "Hill",
 		"pi_first_name": "Joan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1657,7 +1657,7 @@
 		"pi_last_name": "Hamlin",
 		"pi_first_name": "Ivy",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1677,7 +1677,7 @@
 		"pi_last_name": "el-Kaber",
 		"pi_first_name": "Darrell",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1697,7 +1697,7 @@
 		"pi_last_name": "Lee",
 		"pi_first_name": "Omar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1717,7 +1717,7 @@
 		"pi_last_name": "al-Sesay",
 		"pi_first_name": "Ana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1737,7 +1737,7 @@
 		"pi_last_name": "Harrison",
 		"pi_first_name": "Audreana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1757,7 +1757,7 @@
 		"pi_last_name": "Robb",
 		"pi_first_name": "Muslih",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1777,7 +1777,7 @@
 		"pi_last_name": "Guevara",
 		"pi_first_name": "Rubin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1797,7 +1797,7 @@
 		"pi_last_name": "Hutchinson",
 		"pi_first_name": "Jocelyn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1817,7 +1817,7 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "Aayaat",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1837,7 +1837,7 @@
 		"pi_last_name": "Harrison",
 		"pi_first_name": "Jose",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1857,7 +1857,7 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Janiro",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1877,7 +1877,7 @@
 		"pi_last_name": "Cousins",
 		"pi_first_name": "Xin Hong",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1897,7 +1897,7 @@
 		"pi_last_name": "Garcia",
 		"pi_first_name": "Intisaar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1917,7 +1917,7 @@
 		"pi_last_name": "Depoyster",
 		"pi_first_name": "Annestaisia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1937,7 +1937,7 @@
 		"pi_last_name": "Black",
 		"pi_first_name": "Cynthia",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1957,7 +1957,7 @@
 		"pi_last_name": "Arshad",
 		"pi_first_name": "Sulaimaan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1977,7 +1977,7 @@
 		"pi_last_name": "Landry",
 		"pi_first_name": "Kasey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -1997,7 +1997,7 @@
 		"pi_last_name": "Choi",
 		"pi_first_name": "Aranda",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2017,7 +2017,7 @@
 		"pi_last_name": "Grant-Perry",
 		"pi_first_name": "Makayla",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2037,7 +2037,7 @@
 		"pi_last_name": "Yazzie",
 		"pi_first_name": "Aaron",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2057,7 +2057,7 @@
 		"pi_last_name": "Batchelder",
 		"pi_first_name": "Savanna",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2077,7 +2077,7 @@
 		"pi_last_name": "Wilde",
 		"pi_first_name": "Naasiruddeen",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2097,7 +2097,7 @@
 		"pi_last_name": "al-Mona",
 		"pi_first_name": "Andrew",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2117,7 +2117,7 @@
 		"pi_last_name": "el-Ameen",
 		"pi_first_name": "Latisha",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2137,7 +2137,7 @@
 		"pi_last_name": "el-Khalifa",
 		"pi_first_name": "Fuaada",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2157,7 +2157,7 @@
 		"pi_last_name": "Browne",
 		"pi_first_name": "Wyatt",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2177,7 +2177,7 @@
 		"pi_last_name": "Lipps",
 		"pi_first_name": "Marcus",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2197,7 +2197,7 @@
 		"pi_last_name": "Gomez",
 		"pi_first_name": "Shane",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2217,7 +2217,7 @@
 		"pi_last_name": "Esquibel",
 		"pi_first_name": "Shakoora",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2237,7 +2237,7 @@
 		"pi_last_name": "Ramirez",
 		"pi_first_name": "Kailey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2257,7 +2257,7 @@
 		"pi_last_name": "Mansfield",
 		"pi_first_name": "Elle-Han",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2277,7 +2277,7 @@
 		"pi_last_name": "John",
 		"pi_first_name": "Jose",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2297,7 +2297,7 @@
 		"pi_last_name": "Pinar",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2317,7 +2317,7 @@
 		"pi_last_name": "Horton",
 		"pi_first_name": "Drew",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2337,7 +2337,7 @@
 		"pi_last_name": "Anderson",
 		"pi_first_name": "Taamir",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2357,7 +2357,7 @@
 		"pi_last_name": "Lamping",
 		"pi_first_name": "Tad",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2377,7 +2377,7 @@
 		"pi_last_name": "Ronquillo",
 		"pi_first_name": "Alejandra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2397,7 +2397,7 @@
 		"pi_last_name": "el-Hoque",
 		"pi_first_name": "Grace",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2417,7 +2417,7 @@
 		"pi_last_name": "Flores",
 		"pi_first_name": "Sufyaan",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2437,7 +2437,7 @@
 		"pi_last_name": "Keys",
 		"pi_first_name": "Isiah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2457,7 +2457,7 @@
 		"pi_last_name": "Handley",
 		"pi_first_name": "Kelsey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2477,7 +2477,7 @@
 		"pi_last_name": "Phouansavanh",
 		"pi_first_name": "Francine",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2497,7 +2497,7 @@
 		"pi_last_name": "Davis Jr",
 		"pi_first_name": "Robert",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2517,7 +2517,7 @@
 		"pi_last_name": "Longwolf",
 		"pi_first_name": "Angelique",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2537,7 +2537,7 @@
 		"pi_last_name": "al-Daoud",
 		"pi_first_name": "Ami",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2557,7 +2557,7 @@
 		"pi_last_name": "al-Koroma",
 		"pi_first_name": "Amanda",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2577,7 +2577,7 @@
 		"pi_last_name": "el-Salih",
 		"pi_first_name": "Yushan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2597,7 +2597,7 @@
 		"pi_last_name": "Correa",
 		"pi_first_name": "Evan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2617,7 +2617,7 @@
 		"pi_last_name": "al-Nawaz",
 		"pi_first_name": "Ghaaliya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2637,7 +2637,7 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "April",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2657,7 +2657,7 @@
 		"pi_last_name": "el-Mousa",
 		"pi_first_name": "Saalim",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2677,7 +2677,7 @@
 		"pi_last_name": "Tull",
 		"pi_first_name": "Rayyaan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2697,7 +2697,7 @@
 		"pi_last_name": "Som",
 		"pi_first_name": "Josiah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2717,7 +2717,7 @@
 		"pi_last_name": "Jung",
 		"pi_first_name": "Tawfeeqa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2737,7 +2737,7 @@
 		"pi_last_name": "Ostrom",
 		"pi_first_name": "Diego",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2757,7 +2757,7 @@
 		"pi_last_name": "al-Yusuf",
 		"pi_first_name": "Elizabeth",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2777,7 +2777,7 @@
 		"pi_last_name": "Johnson",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2797,7 +2797,7 @@
 		"pi_last_name": "Herlin",
 		"pi_first_name": "Tyler",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2817,7 +2817,7 @@
 		"pi_last_name": "Poveromo",
 		"pi_first_name": "Jack",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2837,7 +2837,7 @@
 		"pi_last_name": "Avena",
 		"pi_first_name": "Maren",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2857,7 +2857,7 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "Moses",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2877,7 +2877,7 @@
 		"pi_last_name": "al-Sultana",
 		"pi_first_name": "Trevon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2897,7 +2897,7 @@
 		"pi_last_name": "Pope",
 		"pi_first_name": "Hilario",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2917,7 +2917,7 @@
 		"pi_last_name": "Crowe",
 		"pi_first_name": "Kendall",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2937,7 +2937,7 @@
 		"pi_last_name": "Kessenich",
 		"pi_first_name": "Tyler",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2957,7 +2957,7 @@
 		"pi_last_name": "al-Sani",
 		"pi_first_name": "Mary",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2977,7 +2977,7 @@
 		"pi_last_name": "Culhane",
 		"pi_first_name": "Autumn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -2997,7 +2997,7 @@
 		"pi_last_name": "Burroughs-Chock",
 		"pi_first_name": "Selena",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3017,7 +3017,7 @@
 		"pi_last_name": "Cooley",
 		"pi_first_name": "Carson",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3037,7 +3037,7 @@
 		"pi_last_name": "el-Aman",
 		"pi_first_name": "Lathan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3057,7 +3057,7 @@
 		"pi_last_name": "Flood",
 		"pi_first_name": "Tori",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3077,7 +3077,7 @@
 		"pi_last_name": "Ello",
 		"pi_first_name": "April",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3097,7 +3097,7 @@
 		"pi_last_name": "Owens",
 		"pi_first_name": "Olivia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3117,7 +3117,7 @@
 		"pi_last_name": "James",
 		"pi_first_name": "Ryan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3137,7 +3137,7 @@
 		"pi_last_name": "el-Salameh",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3157,7 +3157,7 @@
 		"pi_last_name": "Biolchini",
 		"pi_first_name": "Abrina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3177,7 +3177,7 @@
 		"pi_last_name": "Cloud",
 		"pi_first_name": "Ian",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3197,7 +3197,7 @@
 		"pi_last_name": "Thompson",
 		"pi_first_name": "Troslyn",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3217,7 +3217,7 @@
 		"pi_last_name": "Liggett",
 		"pi_first_name": "Joseph",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3237,7 +3237,7 @@
 		"pi_last_name": "Hager",
 		"pi_first_name": "Hafsa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3257,7 +3257,7 @@
 		"pi_last_name": "Rinard",
 		"pi_first_name": "Najwa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3277,7 +3277,7 @@
 		"pi_last_name": "Touch",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3297,7 +3297,7 @@
 		"pi_last_name": "Drake",
 		"pi_first_name": "Leonard",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3317,7 +3317,7 @@
 		"pi_last_name": "el-Saladin",
 		"pi_first_name": "Viola",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3337,7 +3337,7 @@
 		"pi_last_name": "Yeadon",
 		"pi_first_name": "Zakiyya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3357,7 +3357,7 @@
 		"pi_last_name": "Wilson",
 		"pi_first_name": "Justin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3377,7 +3377,7 @@
 		"pi_last_name": "Luong",
 		"pi_first_name": "Nina Angelica",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3397,7 +3397,7 @@
 		"pi_last_name": "Gonzalez",
 		"pi_first_name": "Bibek",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3417,7 +3417,7 @@
 		"pi_last_name": "el-Samra",
 		"pi_first_name": "Omar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3437,7 +3437,7 @@
 		"pi_last_name": "Hill",
 		"pi_first_name": "Jordan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3457,7 +3457,7 @@
 		"pi_last_name": "Hendee",
 		"pi_first_name": "Dhareef",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3477,7 +3477,7 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Derika",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3497,7 +3497,7 @@
 		"pi_last_name": "Moran",
 		"pi_first_name": "Myles",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"StudyID": "AA-AA-000-0000",
@@ -3517,6 +3517,6 @@
 		"pi_last_name": "Ruvalcaba",
 		"pi_first_name": "Alexandra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	}
 ]

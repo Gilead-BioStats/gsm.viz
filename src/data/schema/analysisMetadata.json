@@ -79,9 +79,9 @@
             "required": false,
             "key": false
         },
-        "gsm_analysis_date": {
-            "title": "Analysis Date",
-            "description": "Date of analysis",
+        "SnapshotDate": {
+            "title": "Snapshot Date",
+            "description": "Date of data refresh",
             "type": "string",
             "required": false,
             "key": false

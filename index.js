@@ -27648,9 +27648,9 @@ var rbmViz = (() => {
         required: false,
         key: false
       },
-      gsm_analysis_date: {
-        title: "Analysis Date",
-        description: "Date of analysis",
+      SnapshotDate: {
+        title: "Snapshot Date",
+        description: "Date of data refresh",
         type: "string",
         required: false,
         key: false
@@ -27709,9 +27709,9 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
+        SnapshotDate: {
+          title: "Snapshot Date",
+          description: "Date of data refresh",
           type: "string",
           required: false,
           key: false
@@ -27856,9 +27856,9 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
+        SnapshotDate: {
+          title: "Snapshot Date",
+          description: "Date of data refresh",
           type: "string",
           required: false,
           key: false
@@ -27918,9 +27918,9 @@ var rbmViz = (() => {
           required: false,
           key: false
         },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
+        SnapshotDate: {
+          title: "Snapshot Date",
+          description: "Date of data refresh",
           type: "string",
           required: false,
           key: false
@@ -27966,9 +27966,9 @@ var rbmViz = (() => {
           required: true,
           key: false
         },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
+        SnapshotDate: {
+          title: "Snapshot Date",
+          description: "Date of data refresh",
           type: "string",
           required: false,
           key: false
@@ -28105,9 +28105,9 @@ var rbmViz = (() => {
           required: false,
           key: false
         },
-        gsm_analysis_date: {
-          title: "Analysis Date",
-          description: "Date of analysis",
+        SnapshotDate: {
+          title: "Snapshot Date",
+          description: "Date of data refresh",
           type: "string",
           required: false,
           key: false
@@ -28119,7 +28119,7 @@ var rbmViz = (() => {
   // src/data/schema/snapshotDate.json
   var snapshotDate_default = {
     title: "Snapshot Date",
-    description: "Date of data snapshot",
+    description: "Date of data refresh",
     type: "string",
     required: true,
     key: true

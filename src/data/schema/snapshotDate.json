@@ -1,6 +1,6 @@
 {
     "title": "Snapshot Date",
-    "description": "Date of data snapshot",
+    "description": "Date of data refresh",
     "type": "string",
     "required": true,
     "key": true

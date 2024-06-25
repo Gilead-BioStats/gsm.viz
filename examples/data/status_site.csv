@@ -1,4 +1,4 @@
-StudyID,SiteID,institution,status,enrolled_participants,start_date,city,state,country,invname,protocol_row_id,site_num,site_row_id,pi_number,pi_last_name,pi_first_name,is_satellite,gsm_analysis_date
+StudyID,SiteID,institution,status,enrolled_participants,start_date,city,state,country,invname,protocol_row_id,site_num,site_row_id,pi_number,pi_last_name,pi_first_name,is_satellite,SnapshotDate
 AA-AA-000-0000,10,city 1 Medical Center,Active,20,2006-12-04,city 1,state 1,China,"Torres, Ariel",1-1G9113,10,123-1234-0X126,0X126,Torres,Ariel,FALSE,2023-05-01
 AA-AA-000-0000,100,city 1 Medical Center,Active,2,2013-18-09,city 1,state 1,Japan,"Spangler, Cheyenne",1-1G9113,100,123-1234-X060X,X060X,Spangler,Cheyenne,FALSE,2023-05-01
 AA-AA-000-0000,101,city 1 Medical Center,Active,3,2008-18-07,city 1,state 1,US,"Broughton, Macallyson",1-1G9113,101,123-1234-0X174,0X174,Broughton,Macallyson,FALSE,2023-05-01
