@@ -1,3 +1,4 @@
+'use strict'
 var rbmViz = (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -27688,21 +27689,21 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        param: {
+        Param: {
           title: "Analysis Parameter",
           description: "Analysis parameter",
           type: "string",
           required: true,
           key: true
         },
-        index: {
+        Index: {
           title: "Parameter Index",
           description: "Index of analysis parameter",
           type: "number",
           required: false,
           key: true
         },
-        value: {
+        Value: {
           title: "Parameter Value",
           description: "Parameter value",
           type: "string",
@@ -27952,14 +27953,14 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
-        param: {
+        Param: {
           title: "Analysis Parameter",
           description: "Analysis parameter",
           type: "string",
           required: true,
           key: true
         },
-        value: {
+        Value: {
           title: "Analysis Result",
           description: "Analysis result",
           type: "number",
@@ -28370,7 +28371,7 @@ var rbmViz = (() => {
       return thresholds2;
     if (_thresholds_ === null || [null].includes(thresholds2) || Array.isArray(thresholds2) && (thresholds2.length === 0 || thresholds2.some((Threshold) => typeof Threshold !== "number")))
       return null;
-    thresholds2 = _thresholds_.filter((d) => d.param === "vThreshold").map((d) => d.value !== void 0 ? +d.value : +d.default);
+    thresholds2 = _thresholds_.filter((d) => d.Param === "vThreshold").map((d) => d.Value !== void 0 ? +d.Value : +d.Default);
     return mapThresholdsToFlags(thresholds2);
   }
 
@@ -29865,11 +29866,11 @@ var rbmViz = (() => {
           (interval2) => interval2.SnapshotDate === datum2.SnapshotDate
         );
         datum2.lowerCI = intervals2.find(
-          (interval2) => interval2.param === "LowCI"
-        )?.value;
+          (interval2) => interval2.Param === "LowCI"
+        )?.Value;
         datum2.upperCI = intervals2.find(
-          (interval2) => interval2.param === "UpCI"
-        )?.value;
+          (interval2) => interval2.Param === "UpCI"
+        )?.Value;
       }
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
@@ -29939,9 +29940,9 @@ var rbmViz = (() => {
     if (_intervals_ === null)
       return [null];
     const intervals = rollup(
-      _intervals_.filter((d) => /ci/i.test(d.param)),
-      (Group) => +Group[0].value,
-      (d) => d.param,
+      _intervals_.filter((d) => /ci/i.test(d.Param)),
+      (Group) => +Group[0].Value,
+      (d) => d.Param,
       (d) => d.SnapshotDate
     );
     const datasets = [...intervals].map(([key, value], i) => {
@@ -30111,7 +30112,7 @@ var rbmViz = (() => {
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
       const thresholds2 = [
         ...rollup(
-          _thresholds_.filter((d) => d.param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
+          _thresholds_.filter((d) => d.Param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
           (Group) => {
             const flags = checkThresholds({}, Group);
             flags.forEach((Flag) => {

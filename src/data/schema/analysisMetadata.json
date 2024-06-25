@@ -37,7 +37,7 @@
             "required": true,
             "key": false
         },
-        "outcome": {
+        "Outcome": {
             "title": "KRI Type",
             "description": "Type of KRI Metric",
             "type": "string",

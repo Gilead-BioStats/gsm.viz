@@ -4,9 +4,9 @@ export default function intervalLines(_intervals_, config, labels) {
     if (_intervals_ === null) return [null];
 
     const intervals = rollup(
-        _intervals_.filter((d) => /ci/i.test(d.param)),
-        (Group) => +Group[0].value,
-        (d) => d.param,
+        _intervals_.filter((d) => /ci/i.test(d.Param)),
+        (Group) => +Group[0].Value,
+        (d) => d.Param,
         (d) => d.SnapshotDate
     );
 

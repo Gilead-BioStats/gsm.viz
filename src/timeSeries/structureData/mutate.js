@@ -35,11 +35,11 @@ export default function mutate(
                     (interval) => interval.SnapshotDate === datum.SnapshotDate
                 );
                 datum.lowerCI = intervals.find(
-                    (interval) => interval.param === 'LowCI'
-                )?.value;
+                    (interval) => interval.Param === 'LowCI'
+                )?.Value;
                 datum.upperCI = intervals.find(
-                    (interval) => interval.param === 'UpCI'
-                )?.value;
+                    (interval) => interval.Param === 'UpCI'
+                )?.Value;
             }
 
             return datum;

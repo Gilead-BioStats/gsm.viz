@@ -20,14 +20,14 @@
                 "required": false,
                 "key": true
             },
-            "param": {
+            "Param": {
                 "title": "Analysis Parameter",
                 "description": "Analysis parameter",
                 "type": "string",
                 "required": true,
                 "key": true
             },
-            "value": {
+            "Value": {
                 "title": "Analysis Result",
                 "description": "Analysis result",
                 "type": "number",

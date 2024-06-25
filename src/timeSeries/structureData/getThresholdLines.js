@@ -9,7 +9,7 @@ export default function getThresholdLines(_thresholds_, config, labels) {
         const thresholds = [
             ...rollup(
                 _thresholds_
-                    .filter((d) => d.param === 'vThreshold')
+                    .filter((d) => d.Param === 'vThreshold')
                     .sort((a, b) => (a < b ? -1 : b < a ? 1 : 0)),
                 (Group) => {
                     const flags = checkThresholds({}, Group);

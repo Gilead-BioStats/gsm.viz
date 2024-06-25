@@ -25,12 +25,12 @@ describe('configuration', () => {
                 'Metric',
                 'Numerator',
                 'Denominator',
-                'outcome',
+                'Outcome',
                 'Model',
                 'Score',
                 'data_inputs',
                 'data_filters',
-                'gsm_analysis_date',
+                'SnapshotDate',
 
                 // time series settings
                 'x',

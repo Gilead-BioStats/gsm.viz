@@ -1,8 +1,6 @@
 const mergeParameters = function (defaultParameters, customParameters) {
     const dates = [
-        ...new Set(
-            customParameters.map((parameter) => parameter.SnapshotDate)
-        ),
+        ...new Set(customParameters.map((parameter) => parameter.SnapshotDate)),
     ];
 
     const parametersOverTime = dates
@@ -13,7 +11,7 @@ const mergeParameters = function (defaultParameters, customParameters) {
                         customParameter.SnapshotDate === date &&
                         customParameter.MetricID ===
                             defaultParameter.MetricID &&
-                        customParameter.index === defaultParameter.index
+                        customParameter.Index === defaultParameter.Index
                 );
 
                 const parameter = {
@@ -23,12 +21,12 @@ const mergeParameters = function (defaultParameters, customParameters) {
 
                 parameter.SnapshotDate = date;
                 parameter.SnapshotDate = date;
-                parameter.value =
+                parameter.Value =
                     customParameter !== undefined
-                        ? customParameter.value
-                        : defaultParameter.default;
-                delete parameter.default;
-                delete parameter.configurable;
+                        ? customParameter.Value
+                        : defaultParameter.Default;
+                delete parameter.Default;
+                delete parameter.Configurable;
 
                 return parameter;
             });

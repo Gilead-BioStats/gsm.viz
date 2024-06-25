@@ -20,21 +20,21 @@
                 "required": false,
                 "key": true
             },
-            "param": {
+            "Param": {
                 "title": "Analysis Parameter",
                 "description": "Analysis parameter",
                 "type": "string",
                 "required": true,
                 "key": true
             },
-            "index": {
+            "Index": {
                 "title": "Parameter Index",
                 "description": "Index of analysis parameter",
                 "type": "number",
                 "required": false,
                 "key": true
             },
-            "value": {
+            "Value": {
                 "title": "Parameter Value",
                 "description": "Parameter value",
                 "type": "string",

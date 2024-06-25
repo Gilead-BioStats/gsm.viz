@@ -1,4 +1,4 @@
-"MetricID","gsm_version","param","index","default","configurable","SnapshotDate"
+"MetricID","gsm_version","Param","Index","Default","Configurable","SnapshotDate"
 "kri0001","1.4.1","strGroup",NA,"Site",FALSE,2023-01-05
 "kri0001","1.4.1","vThreshold",1,"-3",TRUE,2023-01-05
 "kri0001","1.4.1","vThreshold",2,"-2",TRUE,2023-01-05
