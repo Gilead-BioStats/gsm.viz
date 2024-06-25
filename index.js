@@ -1,4 +1,3 @@
-'use strict'
 var rbmViz = (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -29875,9 +29874,12 @@ var rbmViz = (() => {
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
     const labels = getLabels(data, config);
+    console.log(labels);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
+      console.log([...new Set(_thresholds_.map((d) => d[config.x]))]);
       thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
+      console.log(thresholds2);
     }
     let intervals = null;
     if (Array.isArray(_intervals_)) {
@@ -30545,6 +30547,8 @@ var rbmViz = (() => {
   function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
     checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
+    console.log(_thresholds_);
+    console.log(config.thresholds);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData4(
       _data_,
