@@ -4,10 +4,10 @@ export default function intervalLines(_intervals_, config, labels) {
     if (_intervals_ === null) return [null];
 
     const intervals = rollup(
-        _intervals_.filter((d) => /ci/i.test(d.param)),
-        (group) => +group[0].value,
-        (d) => d.param,
-        (d) => d.snapshot_date
+        _intervals_.filter((d) => /ci/i.test(d.Param)),
+        (Group) => +Group[0].Value,
+        (d) => d.Param,
+        (d) => d.SnapshotDate
     );
 
     const datasets = [...intervals].map(([key, value], i) => {

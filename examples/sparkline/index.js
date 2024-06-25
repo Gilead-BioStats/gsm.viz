@@ -23,21 +23,21 @@ Promise.all(dataPromises)
         // continuous outcome: KRI results
         let results = filterOnWorkflowID(datasets[0], workflowID);
 
-        const groupIDs = [...new Set(results.map((d) => d.groupid))];
+        const groupIDs = [...new Set(results.map((d) => d.GroupID))];
         const groupID = groupIDs[Math.floor(groupIDs.length * Math.random())];
-        results = results.filter((d) => d.groupid === groupID);
+        results = results.filter((d) => d.GroupID === groupID);
 
-        // discrete outcome: flag counts by KRI
+        // discrete outcome: Flag counts by KRI
         const flagCountsByKRI = datasets[4].filter(
-            (d) => d.workflowid === workflowID
+            (d) => d.MetricID === workflowID
         );
         flagCountsByKRI.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
 
-        // discrete outcome: flag counts by group
+        // discrete outcome: Flag counts by Group
         const flagCountsByGroup = datasets[5].filter(
-            (d) => d.groupid === groupID
+            (d) => d.GroupID === groupID
         );
         flagCountsByGroup.forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
@@ -47,7 +47,7 @@ Promise.all(dataPromises)
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.nSnapshots = 25;
 
-        // threshold annotations
+        // Threshold annotations
         const parameters = mergeParameters(
             filterOnWorkflowID(datasets[2], workflowID),
             filterOnWorkflowID(datasets[3], workflowID)
@@ -55,18 +55,18 @@ Promise.all(dataPromises)
 
         // continuous outcomes
         rbmViz.default.sparkline(
-            document.getElementById('score'),
+            document.getElementById('Score'),
             results,
             {
                 ...workflow,
-                y: 'score',
+                y: 'Score',
             },
             parameters
         );
 
-        rbmViz.default.sparkline(document.getElementById('metric'), results, {
+        rbmViz.default.sparkline(document.getElementById('Metric'), results, {
             ...workflow,
-            y: 'metric',
+            y: 'Metric',
         });
 
         // discrete outcomes

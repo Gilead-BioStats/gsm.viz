@@ -6,28 +6,28 @@
     "items": {
         "type": "object",
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "groupid": {
+            "GroupID": {
                 "title": "Group ID",
                 "description": "Unique group identifier",
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "workflowid"
+                "alternate": "MetricID"
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": true,
                 "key": true,
-                "alternate": "workflowid"
+                "alternate": "GroupID"
             },
             "n": {
                 "title": "# of Groups/KRIs",

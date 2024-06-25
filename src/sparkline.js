@@ -25,7 +25,7 @@ import updateOption from './util/updateOption.js';
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _thresholds_ - optional auxiliary data of threshold parameters
+ * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
  *
  * @returns {Object} Chart.js chart object
  */

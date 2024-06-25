@@ -4,7 +4,7 @@ import colorScheme from '../../util/colorScheme.js';
 export default function identityLine(data, config, labels) {
     const aggregateData = rollup(
         data,
-        (group) => mean(group, (d) => d[config.y]),
+        (Group) => mean(Group, (d) => d[config.y]),
         (d) => d[config.x]
     );
 
@@ -20,7 +20,7 @@ export default function identityLine(data, config, labels) {
                 return backgroundColor;
             } else {
                 return colorScheme.find((color) =>
-                    color.flag.includes(+d.raw.flag)
+                    color.Flag.includes(+d.raw.Flag)
                 ).color;
             }
         },

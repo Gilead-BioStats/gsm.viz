@@ -4,63 +4,63 @@
     "version": "0.14.0",
     "type": "object",
     "properties": {
-        "workflowid": {
-            "title": "Workflow ID",
+        "MetricID": {
+            "title": "Metric ID",
             "description": "Unique workflow identifier",
             "type": "string",
             "required": false
         },
-        "group": {
+        "Group": {
             "title": "Grouping Variable",
             "description": "Grouping variable of analysis, one of Site, Country, or Study",
             "type": "string",
             "required": true
         },
-        "numerator": {
+        "Numerator": {
             "title": "KRI Numerator",
-            "description": "Unit of KRI numerator",
+            "description": "Unit of KRI Numerator",
             "type": "string",
             "required": true,
             "key": false
         },
-        "denominator": {
+        "Denominator": {
             "title": "KRI Denominator",
-            "description": "Unit of KRI denominator",
+            "description": "Unit of KRI Denominator",
             "type": "string",
             "required": true,
             "key": false
         },
-        "metric": {
+        "Metric": {
             "title": "KRI Metric",
-            "description": "Unit of KRI metric",
+            "description": "Unit of KRI Metric",
             "type": "string",
             "required": true,
             "key": false
         },
-        "outcome": {
+        "Outcome": {
             "title": "KRI Type",
-            "description": "Type of KRI metric",
+            "description": "Type of KRI Metric",
             "type": "string",
             "required": false,
             "key": false
         },
-        "score": {
+        "Score": {
             "title": "KRI Score",
             "description": "Unit of KRI score",
             "type": "string",
             "required": true,
             "key": false
         },
-        "model": {
+        "Model": {
             "title": "KRI Score Method",
             "description": "Statistical model used to evaluate KRI",
             "type": "string",
             "required": false,
             "key": false
         },
-        "abbreviation": {
+        "Abbreviation": {
             "title": "Abbreviation",
-            "description": "KRI abbreviation",
+            "description": "KRI Abbreviation",
             "type": "string",
             "required": false,
             "key": false
@@ -79,9 +79,9 @@
             "required": false,
             "key": false
         },
-        "gsm_analysis_date": {
-            "title": "Analysis Date",
-            "description": "Date of analysis",
+        "SnapshotDate": {
+            "title": "Snapshot Date",
+            "description": "Date of data refresh",
             "type": "string",
             "required": false,
             "key": false

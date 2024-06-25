@@ -8,15 +8,15 @@ export default function configure(_config_, _data_, _thresholds_) {
     const defaults = {};
 
     // horizontal
-    defaults.x = 'groupid';
+    defaults.x = 'GroupID';
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -38,10 +38,10 @@ export default function configure(_config_, _data_, _thresholds_) {
     });
 
     // configuration-driven settings
-    config.xLabel = coalesce(_config_.xLabel, config['group']);
+    config.xLabel = coalesce(_config_.xLabel, config['Group']);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y === 'metric') delete config.thresholds;
+    if (config.y === 'Metric') delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

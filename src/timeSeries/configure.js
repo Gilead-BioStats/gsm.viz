@@ -12,7 +12,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         : 'continuous';
 
     if (defaults.dataType === 'discrete')
-        defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
+        defaults.discreteUnit = Object.keys(_data_[0]).includes('GroupID')
             ? 'KRI'
             : 'Site';
     else defaults.discreteUnit = null;
@@ -20,15 +20,15 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     defaults.distributionDisplay = 'boxplot';
 
     // horizontal
-    defaults.x = 'snapshot_date';
+    defaults.x = 'SnapshotDate';
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -37,7 +37,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     };
 
     // miscellaneous
-    defaults.group = 'Site';
+    defaults.Group = 'Site';
     defaults.aggregateLabel = 'Study';
     defaults.annotateThreshold = _thresholds_ !== null;
     //defaults.displayTitle = false;
@@ -51,8 +51,8 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
 
     _config_.variableThresholds = Array.isArray(_thresholds_)
         ? _thresholds_.some(
-              (threshold) =>
-                  threshold.snapshot_date !== _thresholds_[0].snapshot_date
+              (Threshold) =>
+                  Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
           )
         : false;
 

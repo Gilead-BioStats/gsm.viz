@@ -9,7 +9,7 @@ const yaxis = function (workflow, datasets, setup = false) {
             const workflowID = kri();
 
             datasets = datasets.map((dataset) =>
-                dataset.filter((d) => /^kri/.test(d.workflowid))
+                dataset.filter((d) => /^kri/.test(d.MetricID))
             );
 
             // analysis results
@@ -20,10 +20,10 @@ const yaxis = function (workflow, datasets, setup = false) {
             workflow.y = event.target.value;
             workflow.selectedGroupIDs = site();
 
-            // threshold annotations
+            // Threshold annotations
             const parameters =
-                workflow.y === 'score' &&
-                document.getElementById('threshold').checked
+                workflow.y === 'Score' &&
+                document.getElementById('Threshold').checked
                     ? mergeParameters(
                           filterOnWorkflowID(datasets[2], workflowID),
                           filterOnWorkflowID(datasets[3], workflowID)

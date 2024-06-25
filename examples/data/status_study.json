@@ -1,6 +1,6 @@
 [
 	{
-		"studyid": "AA-AA-000-0000",
+		"StudyID": "AA-AA-000-0000",
 		"enrolled_sites": "176",
 		"enrolled_participants": "1301",
 		"planned_sites": "190",
@@ -24,6 +24,6 @@
 		"est_lpfv": "2020-06-01 00:00:00",
 		"est_lplv": "2021-06-01 00:00:00",
 		"protocol_product_number": "123",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	}
 ]

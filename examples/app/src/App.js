@@ -56,13 +56,13 @@ const App = () => {
     const flagCountsByKRI = filterWorkflowID(flagCountsByKRIAll, workflowID);
 
     // configuration
-    const barChartScoreConfig = { ...workflow, y: 'score' };
+    const barChartScoreConfig = { ...workflow, y: 'Score' };
     const scatterPlotConfig = { ...workflow };
-    const barChartMetricConfig = { ...workflow, y: 'metric' };
+    const barChartMetricConfig = { ...workflow, y: 'Metric' };
     const timeSeriesContinuousConfig = { ...workflow };
     const timeSeriesContinuousWithCIConfig = {
         ...findWorkflowID(workflows, 'qtl0006'),
-        y: 'metric',
+        y: 'Metric',
     };
     const sparklineConfig = { ...workflow, nSnapshots: 25 };
     const timeSeriesDiscreteByGroupConfig = { y: 'n_at_risk_or_flagged' };
@@ -83,13 +83,13 @@ const App = () => {
     );
 
     // sparklines
-    const groupIDs = [...new Set(resultsOverTime.map((d) => d.groupid))].filter(
+    const groupIDs = [...new Set(resultsOverTime.map((d) => d.GroupID))].filter(
         () => Math.random() < 0.15
     );
     const sparklines = [];
     for (let i = 0; i < groupIDs.length; i++) {
         const groupID = groupIDs[i];
-        const data = resultsOverTime.filter((d) => d.groupid === groupID);
+        const data = resultsOverTime.filter((d) => d.GroupID === groupID);
         const sparkline = (
             <Sparkline
                 data={shuffle(data).slice(0, 25)}

@@ -12,7 +12,7 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const flagCounts = datasets[0];
         const workflows = datasets[1];
-        const groupIDs = [...new Set(flagCounts.map((d) => d.groupid))];
+        const groupIDs = [...new Set(flagCounts.map((d) => d.GroupID))];
         const container = document.getElementById('container');
 
         for (const groupID of groupIDs) {
@@ -23,14 +23,14 @@ Promise.all(dataPromises)
             subcontainer.style.display = 'inline-block';
 
             // data
-            const data = flagCounts.filter((d) => d.groupid === groupID);
+            const data = flagCounts.filter((d) => d.GroupID === groupID);
             data.forEach((d) => {
                 d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
             });
 
             // configuration
             const config = {};
-            config.x = 'snapshot_date';
+            config.x = 'SnapshotDate';
             config.y = 'n_at_risk_or_flagged';
             config.color = null;
             config.nSnapshots = 25;

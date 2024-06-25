@@ -6,7 +6,7 @@ export default function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0) return null;
 
     const lineData = data
-        .filter((d) => config.selectedGroupIDs.includes(d.groupid))
+        .filter((d) => config.selectedGroupIDs.includes(d.GroupID))
         .map((d, i) => {
             const datum = { ...d };
             datum.x = datum[config.x];
@@ -30,9 +30,9 @@ export default function selectedGroupLine(data, config, labels) {
 
             // point elements
             const color = colorScheme.find((color) =>
-                falsy.includes(d.raw.flag)
-                    ? color.flag.includes(d.raw?.flag)
-                    : color.flag.includes(+d.raw?.flag)
+                falsy.includes(d.raw.Flag)
+                    ? color.Flag.includes(d.raw?.Flag)
+                    : color.Flag.includes(+d.raw?.Flag)
             );
             color.rgba.opacity = 0.75;
 

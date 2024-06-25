@@ -5,6 +5,6 @@ export default function borderWidth(context, options) {
     const datum = dataset.data[context.dataIndex];
 
     if (dataset.type === 'line') {
-        return config.selectedGroupIDs.includes(datum.groupid) ? 3 : 1;
+        return config.selectedGroupIDs.includes(datum.GroupID) ? 3 : 1;
     }
 }

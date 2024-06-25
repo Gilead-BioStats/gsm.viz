@@ -44,7 +44,7 @@ export default function structureData(
 
     // If unevaluable analysis output exists, add an additional dataset object to ensure the
     // corresponding legend item appears.
-    if (data.some((d) => falsy.includes(d.flag)))
+    if (data.some((d) => falsy.includes(d.Flag)))
         datasets.push({
             type: 'line',
             label: 'No Flag',

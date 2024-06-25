@@ -5,12 +5,12 @@ export default function checkThresholds(_config_, _thresholds_) {
 
     if (_config_.variableThresholds) return null;
 
-    // TODO: flag groups given user-defined thresholds
+    // TODO: Flag groups given user-defined thresholds
     // user-defined thresholds
     if (
         Array.isArray(thresholds) &&
         thresholds.length > 0 &&
-        thresholds.every((threshold) => typeof threshold === 'number')
+        thresholds.every((Threshold) => typeof Threshold === 'number')
     )
         return mapThresholdsToFlags(thresholds);
 
@@ -19,10 +19,10 @@ export default function checkThresholds(_config_, _thresholds_) {
         Array.isArray(thresholds) &&
         thresholds.length > 0 &&
         thresholds.every(
-            (threshold) =>
-                typeof threshold === 'object' &&
-                threshold.hasOwnProperty('threshold') &&
-                threshold.hasOwnProperty('flag')
+            (Threshold) =>
+                typeof Threshold === 'object' &&
+                Threshold.hasOwnProperty('Threshold') &&
+                Threshold.hasOwnProperty('Flag')
         )
     )
         return thresholds;
@@ -33,14 +33,14 @@ export default function checkThresholds(_config_, _thresholds_) {
         [null].includes(thresholds) ||
         (Array.isArray(thresholds) &&
             (thresholds.length === 0 ||
-                thresholds.some((threshold) => typeof threshold !== 'number')))
+                thresholds.some((Threshold) => typeof Threshold !== 'number')))
     )
         return null;
 
     // Filter workflow thresholds and get associated metadata.
     thresholds = _thresholds_
-        .filter((d) => d.param === 'vThreshold')
-        .map((d) => (d.value !== undefined ? +d.value : +d.default));
+        .filter((d) => d.Param === 'vThreshold')
+        .map((d) => (d.Value !== undefined ? +d.Value : +d.Default));
 
     return mapThresholdsToFlags(thresholds);
 }

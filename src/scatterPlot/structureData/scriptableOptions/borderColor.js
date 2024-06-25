@@ -11,7 +11,7 @@ export default function borderColor(context, options) {
         const color = colorScheme[datum.stratum].rgba;
         color.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
 
-        return config.selectedGroupIDs.includes(datum.groupid)
+        return config.selectedGroupIDs.includes(datum.GroupID)
             ? 'black'
             : color + '';
     }

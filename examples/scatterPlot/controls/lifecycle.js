@@ -19,14 +19,14 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 2. click event updates to destroy
     // 3. button text changes to KILL
     const create = () => {
-        const workflow = datasets[1].find((d) => d.workflowid === kri());
+        const workflow = datasets[1].find((d) => d.MetricID === kri());
 
         const results = datasets[0].filter(
-            (d) => d.workflowid === workflow.workflowid
+            (d) => d.MetricID === workflow.MetricID
         );
 
         const bounds = datasets[2].filter(
-            (d) => d.workflowid === workflow.workflowid
+            (d) => d.MetricID === workflow.MetricID
         );
         workflow.xType = xAxisType();
         workflow.selectedGroupIDs = [site()];

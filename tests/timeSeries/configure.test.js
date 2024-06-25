@@ -5,11 +5,9 @@ import parameters from '../../examples/data/meta_param.json';
 import configure from '../../src/timeSeries/configure';
 
 const workflowID = 'kri0001';
-const dataSubset = data.filter((d) => d.workflowid === workflowID);
-const workflow = metadata.find(
-    (workflow) => workflow.workflowid === workflowID
-);
-const parametersSubset = parameters.filter((d) => d.workflowid === workflowID);
+const dataSubset = data.filter((d) => d.MetricID === workflowID);
+const workflow = metadata.find((workflow) => workflow.MetricID === workflowID);
+const parametersSubset = parameters.filter((d) => d.MetricID === workflowID);
 
 describe('configuration', () => {
     const config = configure(workflow, dataSubset, parametersSubset);
@@ -20,19 +18,19 @@ describe('configuration', () => {
         expect(settings).toEqual(
             [
                 // workflow metadata
-                'workflowid',
+                'MetricID',
                 'gsm_version',
-                'group',
-                'abbreviation',
-                'metric',
-                'numerator',
-                'denominator',
-                'outcome',
-                'model',
-                'score',
+                'Group',
+                'Abbreviation',
+                'Metric',
+                'Numerator',
+                'Denominator',
+                'Outcome',
+                'Model',
+                'Score',
                 'data_inputs',
                 'data_filters',
-                'gsm_analysis_date',
+                'SnapshotDate',
 
                 // time series settings
                 'x',

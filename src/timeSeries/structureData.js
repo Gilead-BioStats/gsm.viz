@@ -66,7 +66,7 @@ export default function structureData(
                     type: 'scatter',
                     label:
                         config.selectedGroupIDs.length > 0
-                            ? `${config.group} ${config.selectedGroupIDs[0]}`
+                            ? `${config.Group} ${config.selectedGroupIDs[0]}`
                             : '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
@@ -117,7 +117,7 @@ export default function structureData(
                 type: 'scatter',
                 label:
                     config.selectedGroupIDs.length > 0
-                        ? `${config.group} ${config.selectedGroupIDs[0]}`
+                        ? `${config.Group} ${config.selectedGroupIDs[0]}`
                         : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
@@ -125,7 +125,7 @@ export default function structureData(
                 backgroundColor: 'rgba(0,0,0,.5)',
                 borderColor: 'rgba(0,0,0,.5)',
                 borderWidth: 3,
-            }, // legend item for selected group ID line
+            }, // legend item for selected Group ID line
             getAggregateLine(data, config, labels),
             {
                 type: 'scatter',

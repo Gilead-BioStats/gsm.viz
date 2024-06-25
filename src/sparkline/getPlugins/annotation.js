@@ -10,8 +10,8 @@ export default function annotations(config, data) {
     };
 
     if (thresholds !== null)
-        thresholds.forEach((threshold) => {
-            annotations.annotations.push(threshold);
+        thresholds.forEach((Threshold) => {
+            annotations.annotations.push(Threshold);
         });
 
     return annotations;

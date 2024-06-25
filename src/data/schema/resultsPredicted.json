@@ -6,51 +6,51 @@
     "items": {
         "type": "object",
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "threshold": {
+            "Threshold": {
                 "title": "Threshold",
                 "description": "Directional factor of predicted results",
                 "type": "number",
                 "required": true,
                 "key": true
             },
-            "numerator": {
+            "Numerator": {
                 "title": "Predicted Numerator",
                 "description": "Predicted numerator of KRI metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "denominator": {
+            "Denominator": {
                 "title": "Predicted Denominator",
                 "description": "Predicted denominator of KRI metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "log_denominator": {
+            "LogDenominator": {
                 "title": "Predicted Denominator (log)",
                 "description": "Predicted Denominator of KRI metric (log)",
                 "type": "number",
                 "required": false,
                 "key": false
             },
-            "gsm_analysis_date": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
                 "type": "string",
                 "required": false,
                 "key": false

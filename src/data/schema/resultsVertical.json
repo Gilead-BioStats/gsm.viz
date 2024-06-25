@@ -6,37 +6,37 @@
     "items": {
         "type": "object",
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "param": {
+            "Param": {
                 "title": "Analysis Parameter",
                 "description": "Analysis parameter",
                 "type": "string",
                 "required": true,
                 "key": true
             },
-            "value": {
+            "Value": {
                 "title": "Analysis Result",
                 "description": "Analysis result",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "gsm_analysis_date": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
                 "type": "string",
                 "required": false,
                 "key": false

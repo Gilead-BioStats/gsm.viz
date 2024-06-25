@@ -11,8 +11,8 @@ export default function mergeParameters(defaultParameters, customParameters) {
                 const customParameter = customParameters.find(
                     (customParameter) =>
                         customParameter.gsm_analysis_date === date &&
-                        customParameter.workflowid ===
-                            defaultParameter.workflowid &&
+                        customParameter.MetricID ===
+                            defaultParameter.MetricID &&
                         customParameter.index === defaultParameter.index
                 );
 
@@ -22,7 +22,7 @@ export default function mergeParameters(defaultParameters, customParameters) {
                 };
 
                 parameter.gsm_analysis_date = date;
-                parameter.snapshot_date = date;
+                parameter.SnapshotDate = date;
                 parameter.value =
                     customParameter !== undefined
                         ? customParameter.value
