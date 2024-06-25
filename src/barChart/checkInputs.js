@@ -20,12 +20,12 @@ export default function checkInputs(
         module: 'barChart',
     });
 
-    checkInput({
-        parameter: '_thresholds_',
-        argument: _thresholds_,
-        schemaName: 'analysisParameters',
-        module: 'barChart',
-    });
+    //checkInput({
+    //    parameter: '_thresholds_',
+    //    argument: _thresholds_,
+    //    schemaName: 'analysisParameters',
+    //    module: 'barChart',
+    //});
 
     if (_sites_ !== null) {
         checkInput({

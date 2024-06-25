@@ -48,8 +48,11 @@ Promise.all(dataPromises)
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
+            {
+                ...workflow,
+                thresholds: [-2,-1,1,2]
+            },//parameters,
+            null,//parameters, //.filter(parameter => parameter.snapshot_date === parameters[0].snapshot_date),
             null,
             sites
         );
