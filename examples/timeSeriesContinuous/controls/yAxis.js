@@ -1,12 +1,12 @@
 // Add event listener to yaxis dropdown.
 const yAxis = function (config, datasets, setup = false) {
-    const yAxisDropdown = document.getElementById('yaxis');
+    const yAxisDropdown = document.getElementById('yAxis');
 
     if (setup) {
         yAxisDropdown.value = config.y;
         yAxisDropdown.addEventListener('change', (event) => {
             const instance = getChart();
-            const MetricID = kri();
+            const MetricID = metric();
 
             datasets = datasets.map((dataset) =>
                 Object.keys(dataset[0]).includes('MetricID')
@@ -20,7 +20,7 @@ const yAxis = function (config, datasets, setup = false) {
             // chart configuration
             const config = selectMetricID(datasets[1], MetricID);
             config.y = event.target.value;
-            config.selectedGroupIDs = site();
+            config.selectedGroupIDs = group();
 
             // Threshold annotations
             let parameters = mergeParameters(

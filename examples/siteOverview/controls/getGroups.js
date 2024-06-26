@@ -1,10 +1,10 @@
-const getSites = function (results) {
-    const siteSubset = document.querySelector('#site-subset');
+const getGroups = function (results) {
+    const groupSubset = document.querySelector('#group-subset');
 
-    let sites;
-    switch (siteSubset.value) {
+    let groups;
+    switch (groupSubset.value) {
         case 'red':
-            sites = [
+            groups = [
                 ...new Set(
                     results
                         .filter((d) => Math.abs(parseInt(d.Flag)) === 2)
@@ -13,7 +13,7 @@ const getSites = function (results) {
             ];
             break;
         case 'amber':
-            sites = [
+            groups = [
                 ...new Set(
                     results
                         .filter((d) => Math.abs(parseInt(d.Flag)) === 1)
@@ -22,7 +22,7 @@ const getSites = function (results) {
             ];
             break;
         case 'red-or-amber':
-            sites = [
+            groups = [
                 ...new Set(
                     results
                         .filter((d) => Math.abs(parseInt(d.Flag)) >= 1)
@@ -31,8 +31,8 @@ const getSites = function (results) {
             ];
             break;
         default:
-            sites = [...new Set(results.map((d) => d.GroupID))];
+            groups = [...new Set(results.map((d) => d.GroupID))];
     }
 
-    return sites;
+    return groups;
 };
