@@ -1,38 +1,38 @@
-// Add event listener to KRI dropdown.
-const kri = function (workflowID, datasets, setup = false) {
-    const kriDropdown = document.querySelector('#kri');
+// Add event listener to metric dropdown.
+const metric = function (MetricID, datasets, setup = false) {
+    const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
-        const kris = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
+        const metrics = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
 
-        for (const i in kris) {
+        for (const i in metrics) {
             const option = document.createElement('option');
-            option.value = kris[i];
-            option.innerHTML = kris[i];
-            kriDropdown.appendChild(option);
+            option.value = metrics[i];
+            option.innerHTML = metrics[i];
+            metricDropdown.appendChild(option);
         }
 
-        kriDropdown.value = workflowID;
-        kriDropdown.addEventListener('change', (event) => {
+        metricDropdown.value = MetricID;
+        metricDropdown.addEventListener('change', (event) => {
             const instance = getChart();
 
-            const results = filterOnWorkflowID(datasets[0], event.target.value);
+            const results = filterOnMetricID(datasets[0], event.target.value);
 
-            const workflow = selectWorkflowID(datasets[1], event.target.value);
-            workflow.xType = xAxisType();
-            workflow.selectedGroupIDs = site();
+            const config = selectMetricID(datasets[1], event.target.value);
+            config.xType = xAxisType();
+            config.selectedGroupIDs = group();
 
-            const bounds = filterOnWorkflowID(datasets[2], event.target.value);
+            const bounds = filterOnMetricID(datasets[2], event.target.value);
 
             instance.helpers.updateData(
                 instance,
                 results,
-                workflow,
+                config,
                 bounds,
                 datasets[3]
             );
         });
     }
 
-    return kriDropdown.value;
+    return metricDropdown.value;
 };

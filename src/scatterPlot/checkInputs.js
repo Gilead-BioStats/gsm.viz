@@ -6,7 +6,6 @@ export default function checkInputs(
     _bounds_,
     _sites_ = null
 ) {
-    console.log(_data_);
     checkInput({
         parameter: '_data_',
         argument: _data_,

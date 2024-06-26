@@ -21574,7 +21574,6 @@ var rbmViz = (() => {
 
   // src/scatterPlot/checkInputs.js
   function checkInputs2(_data_, _config_, _bounds_, _sites_ = null) {
-    console.log(_data_);
     checkInput({
       parameter: "_data_",
       argument: _data_,
@@ -21975,7 +21974,6 @@ var rbmViz = (() => {
 
   // src/scatterPlot.js
   function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null, _sites_ = null) {
-    console.log(_data_);
     checkInputs2(_data_, _config_, _bounds_, _sites_);
     const config = configure4(_config_, _data_);
     const canvas = addCanvas(_element_, config);

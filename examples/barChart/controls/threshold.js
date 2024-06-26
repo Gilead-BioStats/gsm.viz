@@ -1,6 +1,6 @@
 // Add event listener to Threshold dropdown.
 const threshold = function (workflow, datasets, setup = false) {
-    const thresholdToggle = document.getElementById('Threshold');
+    const thresholdToggle = document.getElementById('threshold');
 
     thresholdToggle.addEventListener('change', (event) => {
         const instance = getChart();
@@ -11,7 +11,7 @@ const threshold = function (workflow, datasets, setup = false) {
         // Threshold annotations
         const parameters =
             workflow.y === 'Score' &&
-            document.getElementById('Threshold').checked
+            document.getElementById('threshold').checked
                 ? mergeParameters(
                       filterOnMetricID(datasets[2], MetricID),
                       filterOnMetricID(datasets[3], MetricID)

@@ -1,7 +1,7 @@
 // Add event listener to highlight groups.
 const group = function (datasets, setup = false) {
     let instance = getChart();
-    const groupDropdown = document.querySelector('#GroupID');
+    const groupDropdown = document.querySelector('#group');
 
     if (setup) {
         const option = document.createElement('option');
