@@ -23,7 +23,7 @@ const yAxis = function (config, datasets, setup = false) {
             // Threshold annotations
             const parameters =
                 config.y === 'Score' &&
-                document.getElementById('Threshold').checked
+                document.getElementById('threshold').checked
                     ? mergeParameters(
                           filterOnMetricID(datasets[2], MetricID),
                           filterOnMetricID(datasets[3], MetricID)

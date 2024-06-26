@@ -1,12 +1,12 @@
 // Add event listener to yaxis dropdown.
-const yaxis = function (workflow, datasets, setup = false) {
+const yAxis = function (config, datasets, setup = false) {
     const yAxisDropdown = document.getElementById('yaxis');
 
     if (setup) {
-        yAxisDropdown.value = workflow.y;
+        yAxisDropdown.value = config.y;
         yAxisDropdown.addEventListener('change', (event) => {
             const instance = getChart();
-            const workflowID = kri();
+            const MetricID = kri();
 
             datasets = datasets.map((dataset) =>
                 Object.keys(dataset[0]).includes('MetricID')
@@ -15,30 +15,30 @@ const yaxis = function (workflow, datasets, setup = false) {
             );
 
             // analysis results
-            const results = filterOnWorkflowID(datasets[0], workflowID);
+            const results = filterOnMetricID(datasets[0], MetricID);
 
             // chart configuration
-            const workflow = selectWorkflowID(datasets[1], workflowID);
-            workflow.y = event.target.value;
-            workflow.selectedGroupIDs = site();
+            const config = selectMetricID(datasets[1], MetricID);
+            config.y = event.target.value;
+            config.selectedGroupIDs = site();
 
             // Threshold annotations
             let parameters = mergeParameters(
-                filterOnWorkflowID(datasets[2], workflowID),
-                filterOnWorkflowID(datasets[3], workflowID)
+                filterOnMetricID(datasets[2], MetricID),
+                filterOnMetricID(datasets[3], MetricID)
             );
-            if (workflow.y !== 'Score') parameters = null;
+            if (config.y !== 'Score') parameters = null;
 
-            // site metadata
-            const sites = datasets[4];
+            // group metadata
+            const groupMetadata = datasets[4];
 
             instance.helpers.updateData(
                 instance,
                 results,
-                workflow,
+                config,
                 parameters,
                 null,
-                sites
+                groupMetadata
             );
         });
     }

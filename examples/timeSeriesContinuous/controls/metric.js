@@ -1,50 +1,50 @@
-// Add event listener to KRI dropdown.
-const kri = function (workflow, datasets, setup = false) {
-    const kriDropdown = document.querySelector('#kri');
+// Add event listener to metric dropdown.
+const metric = function (config, datasets, setup = false) {
+    const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
-        const kris = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
+        const metrics = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
 
-        for (const i in kris) {
+        for (const i in metrics) {
             const option = document.createElement('option');
-            option.value = kris[i];
-            option.innerHTML = kris[i];
-            kriDropdown.appendChild(option);
+            option.value = metrics[i];
+            option.innerHTML = metrics[i];
+            metricDropdown.appendChild(option);
         }
 
-        kriDropdown.value = workflow.MetricID;
-        kriDropdown.addEventListener('change', (event) => {
+        metricDropdown.value = config.MetricID;
+        metricDropdown.addEventListener('change', (event) => {
             const instance = getChart();
 
-            const workflowID = event.target.value;
+            const MetricID = event.target.value;
 
             // analysis results
-            const results = filterOnWorkflowID(datasets[0], workflowID);
+            const results = filterOnMetricID(datasets[0], MetricID);
 
             // chart configuration
-            const workflow = selectWorkflowID(datasets[1], workflowID);
-            workflow.y = yaxis();
-            workflow.selectedGroupIDs = site();
+            const config = selectMetricID(datasets[1], MetricID);
+            config.y = yAxis();
+            config.selectedGroupIDs = group();
 
             // Threshold annotations
             let parameters = mergeParameters(
-                datasets[2].filter((d) => d.MetricID === workflowID),
-                datasets[3].filter((d) => d.MetricID === workflowID)
+                datasets[2].filter((d) => d.MetricID === MetricID),
+                datasets[3].filter((d) => d.MetricID === MetricID)
             );
-            if (workflow.y !== 'Score') parameters = null;
+            if (config.y !== 'Score') parameters = null;
 
-            const sites = datasets[4];
+            const groupMetadata = datasets[4];
 
             instance.helpers.updateData(
                 instance,
                 results,
-                workflow,
+                config,
                 parameters,
                 null,
-                sites
+                groupMetadata
             );
         });
     }
 
-    return kriDropdown.value;
+    return metricDropdown.value;
 };

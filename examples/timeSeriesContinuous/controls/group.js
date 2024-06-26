@@ -1,13 +1,13 @@
-// Add event listener to highlight sites.
-const site = function (datasets, setup = false) {
+// Add event listener to highlight groups.
+const group = function (datasets, setup = false) {
     const instance = getChart();
-    const siteDropdown = document.querySelector('#GroupID');
+    const groupDropdown = document.querySelector('#group');
 
     if (setup) {
         const option = document.createElement('option');
         option.value = 'None';
         option.innerHTML = 'None';
-        siteDropdown.appendChild(option);
+        groupDropdown.appendChild(option);
 
         const groupIDs = Array.from(
             new Set(datasets[0].map((d) => d.GroupID)).values()
@@ -17,17 +17,17 @@ const site = function (datasets, setup = false) {
             const option = document.createElement('option');
             option.value = groupIDs[i];
             option.innerHTML = groupIDs[i];
-            siteDropdown.appendChild(option);
+            groupDropdown.appendChild(option);
         }
 
-        siteDropdown.value = instance.data.config.selectedGroupIDs.length
+        groupDropdown.value = instance.data.config.selectedGroupIDs.length
             ? instance.data.config.selectedGroupIDs[0]
             : 'None';
 
-        siteDropdown.addEventListener('change', (event) => {
+        groupDropdown.addEventListener('change', (event) => {
             instance.helpers.updateSelectedGroupIDs(event.target.value);
         });
     }
 
-    return siteDropdown.value;
+    return groupDropdown.value;
 };
