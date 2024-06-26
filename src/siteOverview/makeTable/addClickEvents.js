@@ -8,8 +8,8 @@
  * @returns {void}
  */
 export default function addClickEvents(bodyRows, cells, config) {
-    // add click event to KRI cells
-    cells.filter('.kri').on('click', function (event, d) {
+    // add click event to Metric cells
+    cells.filter('.metric').on('click', function (event, d) {
         config.metricClickCallback({
             GroupLevel: config.groupLevel,
             GroupID: d.GroupID,

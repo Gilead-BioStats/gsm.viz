@@ -20,32 +20,32 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 3. button text changes to KILL
     const create = () => {
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], kri());
+        const results = filterOnMetricID(datasets[0], metric());
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], kri());
-        workflow.y = yaxis();
-        workflow.selectedGroupIDs = site();
+        const config = selectMetricID(datasets[1], metric());
+        config.y = yaxis();
+        config.selectedGroupIDs = group();
 
         // Threshold annotations
         const parameters =
-            workflow.y === 'Score' &&
+            config.y === 'Score' &&
             document.getElementById('Threshold').checked
                 ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], kri()),
-                      filterOnWorkflowID(datasets[3], kri())
+                      filterOnMetricID(datasets[2], metric()),
+                      filterOnMetricID(datasets[3], metric())
                   )
                 : null;
 
-        // site metadata
-        const sites = datasets[4];
+        // group metadata
+        const groupMetadata = datasets[4];
 
         instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
+            config,
             parameters,
-            sites
+            groupMetadata
         );
 
         lifecycleButton.innerHTML = '<strong>KILL</strong>';

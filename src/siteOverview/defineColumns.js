@@ -1,5 +1,5 @@
 import defineSiteColumns from './defineColumns/defineSiteColumns.js';
-import defineWorkflowColumns from './defineColumns/defineWorkflowColumns.js';
+import defineMetricColumns from './defineColumns/defineMetricColumns.js';
 import defineTooltip from './defineColumns/defineTooltip.js';
 
 /**
@@ -11,15 +11,15 @@ import defineTooltip from './defineColumns/defineTooltip.js';
  * - column sort state (sortState)
  *
  * @param {Array} sites - site metadata
- * @param {Array} workflows - workflow metadata
- * @param {Array} results - workflow results
+ * @param {Array} metrics - metric metadata
+ * @param {Array} results - metric results
  *
  * @returns {Array} columns
  */
-export default function defineColumns(sites, workflows, results) {
+export default function defineColumns(sites, metrics, results) {
     const siteColumns = defineSiteColumns(sites);
-    const workflowColumns = defineWorkflowColumns(workflows, results);
-    const columns = [...siteColumns, ...workflowColumns];
+    const metricColumns = defineMetricColumns(metrics, results);
+    const columns = [...siteColumns, ...metricColumns];
 
     columns.forEach((column, i) => {
         column.getDatum = (key) =>

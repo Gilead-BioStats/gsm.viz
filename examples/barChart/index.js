@@ -13,7 +13,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
+        const MetricID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
             Object.keys(dataset[0]).includes('MetricID')
@@ -22,15 +22,15 @@ Promise.all(dataPromises)
         );
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'Score';
-        workflow.hoverCallback = function (datum) {
+        const config = selectMetricID(datasets[1], MetricID);
+        config.y = 'Score';
+        config.hoverCallback = function (datum) {
             //console.log(datum.GroupID);
         };
-        workflow.clickCallback = function (datum) {
+        config.clickCallback = function (datum) {
             instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.helpers.updateConfig(
                 instance,
@@ -42,27 +42,27 @@ Promise.all(dataPromises)
 
         // Threshold annotations
         const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
+            filterOnMetricID(datasets[2], MetricID),
+            filterOnMetricID(datasets[3], MetricID)
         );
 
-        // site metadata
-        const sites = datasets[4];
+        // group metadata
+        const groups = datasets[4];
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
+            config,
             parameters,
-            sites
+            groups
         );
 
         // controls
-        kri(workflow, datasets, true);
-        site(datasets, true);
-        yaxis(workflow, datasets, true);
-        threshold(workflow, datasets, true);
+        metric(config, datasets, true);
+        group(datasets, true);
+        yaxis(config, datasets, true);
+        threshold(config, datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);
     });

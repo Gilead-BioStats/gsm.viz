@@ -2,16 +2,16 @@ import singleArrow from './icons/singleArrow';
 import doubleArrow from './icons/doubleArrow';
 
 /**
- * Adds flag icons to the KRI cells.
+ * Adds flag icons to the Metric cells.
  *
  * @param {object} rows - The rows of the table.
  *
  * @returns {void}
  */
 export default function addFlagIcons(rows) {
-    const kriCells = rows.selectAll('td.kri').text('');
+    const metricCells = rows.selectAll('td.metric').text('');
 
-    kriCells.each(function (d) {
+    metricCells.each(function (d) {
         const flag = parseInt(d.Flag);
         const absFlag = Math.abs(flag);
 

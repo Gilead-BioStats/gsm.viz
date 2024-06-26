@@ -20092,8 +20092,8 @@ var rbmViz = (() => {
 
   // src/data/schema/analysisMetadata.json
   var analysisMetadata_default = {
-    title: "KRI Analysis Metadata",
-    description: "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    title: "Metric Analysis Metadata",
+    description: "JSON schema of Metric analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
     version: "0.14.0",
     type: "object",
     properties: {
@@ -20110,57 +20110,57 @@ var rbmViz = (() => {
         required: true
       },
       Numerator: {
-        title: "KRI Numerator",
-        description: "Unit of KRI Numerator",
+        title: "Metric Numerator",
+        description: "Unit of Metric Numerator",
         type: "string",
         required: true,
         key: false
       },
       Denominator: {
-        title: "KRI Denominator",
-        description: "Unit of KRI Denominator",
+        title: "Metric Denominator",
+        description: "Unit of Metric Denominator",
         type: "string",
         required: true,
         key: false
       },
       Metric: {
-        title: "KRI Metric",
-        description: "Unit of KRI Metric",
+        title: "Metric Metric",
+        description: "Unit of Metric Metric",
         type: "string",
         required: true,
         key: false
       },
       Outcome: {
-        title: "KRI Type",
-        description: "Type of KRI Metric",
+        title: "Metric Type",
+        description: "Type of Metric Metric",
         type: "string",
         required: false,
         key: false
       },
       Score: {
-        title: "KRI Score",
-        description: "Unit of KRI score",
+        title: "Metric Score",
+        description: "Unit of Metric score",
         type: "string",
         required: true,
         key: false
       },
       Model: {
-        title: "KRI Score Method",
-        description: "Statistical model used to evaluate KRI",
+        title: "Metric Score Method",
+        description: "Statistical model used to evaluate Metric",
         type: "string",
         required: false,
         key: false
       },
       Abbreviation: {
         title: "Abbreviation",
-        description: "KRI Abbreviation",
+        description: "Metric Abbreviation",
         type: "string",
         required: false,
         key: false
       },
       data_inputs: {
         title: "Input Data Domains",
-        description: "Data domains used to evaluate KRI",
+        description: "Data domains used to evaluate Metric",
         type: "string",
         required: false,
         key: false
@@ -20191,8 +20191,8 @@ var rbmViz = (() => {
 
   // src/data/schema/analysisParameters.json
   var analysisParameters_default = {
-    title: "KRI Analysis Parameters",
-    description: "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
+    title: "Metric Analysis Parameters",
+    description: "JSON schema of input Metric analysis parameters to barChart and timeSeries modules",
     version: "0.14.0",
     type: "array",
     items: {
@@ -20339,29 +20339,29 @@ var rbmViz = (() => {
           alternate: "GroupID"
         },
         n: {
-          title: "# of Groups/KRIs",
-          description: "Total number of assessed groups/KRIs",
+          title: "# of Groups/Metrics",
+          description: "Total number of assessed groups/Metrics",
           type: "number",
           required: true,
           key: false
         },
         n_at_risk: {
-          title: "# of Amber Groups/KRIs",
-          description: "Number of amber groups/KRIs",
+          title: "# of Amber Groups/Metrics",
+          description: "Number of amber groups/Metrics",
           type: "number",
           required: true,
           key: false
         },
         n_flagged: {
-          title: "# of Red Groups/KRIs",
-          description: "Number of red groups/KRIs",
+          title: "# of Red Groups/Metrics",
+          description: "Number of red groups/Metrics",
           type: "number",
           required: true,
           key: false
         },
         n_at_risk_or_flagged: {
-          title: "# of Amber of Red Groups/KRIs",
-          description: "Number of amber or red groups/KRIs",
+          title: "# of Amber of Red Groups/Metrics",
+          description: "Number of amber or red groups/Metrics",
           type: "number",
           required: true,
           key: false
@@ -20372,7 +20372,7 @@ var rbmViz = (() => {
 
   // src/data/schema/results.json
   var results_default = {
-    title: "Standard KRI Analysis Output",
+    title: "Standard Metric Analysis Output",
     description: "JSON schema of input data to barChart and scatterPlot modules",
     version: "0.14.0",
     type: "array",
@@ -20402,35 +20402,35 @@ var rbmViz = (() => {
         },
         Numerator: {
           title: "Numerator",
-          description: "Numerator of KRI Metric",
+          description: "Numerator of Metric Metric",
           type: "number",
           required: true,
           key: false
         },
         Denominator: {
           title: "Denominator",
-          description: "Denominator of KRI Metric",
+          description: "Denominator of Metric Metric",
           type: "number",
           required: true,
           key: false
         },
         Metric: {
-          title: "KRI Metric",
-          description: "KRI Metric",
+          title: "Metric Metric",
+          description: "Metric Metric",
           type: "number",
           required: true,
           key: false
         },
         Score: {
-          title: "KRI Score",
-          description: "KRI score",
+          title: "Metric Score",
+          description: "Metric score",
           type: "number",
           required: true,
           key: false
         },
         Flag: {
           title: "Flag Status",
-          description: "Flag assigned given KRI score and specified thresholds",
+          description: "Flag assigned given Metric score and specified thresholds",
           type: "number",
           required: true,
           key: false
@@ -20448,7 +20448,7 @@ var rbmViz = (() => {
 
   // src/data/schema/resultsPredicted.json
   var resultsPredicted_default = {
-    title: "Predicted KRI Analysis Output",
+    title: "Predicted Metric Analysis Output",
     description: "JSON schema of predicted input data to scatterPlot module",
     version: "0.14.0",
     type: "array",
@@ -20478,21 +20478,21 @@ var rbmViz = (() => {
         },
         Numerator: {
           title: "Predicted Numerator",
-          description: "Predicted numerator of KRI metric",
+          description: "Predicted numerator of Metric metric",
           type: "number",
           required: true,
           key: false
         },
         Denominator: {
           title: "Predicted Denominator",
-          description: "Predicted denominator of KRI metric",
+          description: "Predicted denominator of Metric metric",
           type: "number",
           required: true,
           key: false
         },
         LogDenominator: {
           title: "Predicted Denominator (log)",
-          description: "Predicted Denominator of KRI metric (log)",
+          description: "Predicted Denominator of Metric metric (log)",
           type: "number",
           required: false,
           key: false
@@ -20510,7 +20510,7 @@ var rbmViz = (() => {
 
   // src/data/schema/resultsVertical.json
   var resultsVertical_default = {
-    title: "Additional KRI Analysis Output",
+    title: "Additional Metric Analysis Output",
     description: "JSON schema of ancillary input data to timeSeries module",
     version: "0.14.0",
     type: "array",
@@ -21300,8 +21300,8 @@ var rbmViz = (() => {
           datum2.Denominator
         )}`
       ] : [
-        `KRI Score: ${falsy_default.includes(datum2.Score) ? "\u2014" : format(".1f")(datum2.Score)} (${config.Score})`,
-        `KRI Value: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)} (${config.Metric})`,
+        `Metric Score: ${falsy_default.includes(datum2.Score) ? "\u2014" : format(".1f")(datum2.Score)} (${config.Score})`,
+        `Metric Value: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)} (${config.Metric})`,
         `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
         `${config.Denominator}: ${format(",")(
           datum2.Denominator
@@ -21318,7 +21318,7 @@ var rbmViz = (() => {
       content = data.dataset.purpose === "highlight" ? [
         `${datum2.n_flagged} Red ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
         `${datum2.n_at_risk} Amber ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "KRI" ? [
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
         `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
         ...datum2.counts.map(
           (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.Group}s`
@@ -22363,7 +22363,7 @@ var rbmViz = (() => {
     const defaults3 = {};
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
-      defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "KRI" : "Site";
+      defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "Metric" : "Site";
     else
       defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
@@ -22857,7 +22857,7 @@ var rbmViz = (() => {
         ];
       }
     } else if (config.dataType === "discrete") {
-      const color3 = config.yLabel === "Red or Amber KRIs" ? colorScheme_default.amberRed.color : config.yLabel === "Red KRIs" ? colorScheme_default.find((color4) => /red/i.test(color4.description)).color : config.yLabel === "Amber KRIs" ? colorScheme_default.find((color4) => /amber/i.test(color4.description)).color : "#1890FF";
+      const color3 = config.yLabel === "Red or Amber Metrics" ? colorScheme_default.amberRed.color : config.yLabel === "Red Metrics" ? colorScheme_default.find((color4) => /red/i.test(color4.description)).color : config.yLabel === "Amber Metrics" ? colorScheme_default.find((color4) => /amber/i.test(color4.description)).color : "#1890FF";
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
           ...selectedGroupLine(data, config, labels),
@@ -22880,7 +22880,7 @@ var rbmViz = (() => {
         aggregateLine(data, config, labels),
         {
           type: "scatter",
-          label: config.discreteUnit === "KRI" ? `${config.aggregateLabel} Average` : "",
+          label: config.discreteUnit === "Metric" ? `${config.aggregateLabel} Average` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -23156,7 +23156,7 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/checkInputs.js
-  function checkInputs5(_results_, _config_, _sites_, _workflows_) {
+  function checkInputs5(_results_, _config_, _sites_, _metrics_) {
     checkInput({
       parameter: "_results_",
       argument: _results_,
@@ -23304,28 +23304,28 @@ var rbmViz = (() => {
     return columns;
   }
 
-  // src/siteOverview/defineColumns/defineWorkflowColumns.js
-  function defineWorkflowColumns(workflows, results) {
-    const workflowColumns = workflows.map((workflow) => {
+  // src/siteOverview/defineColumns/defineMetricColumns.js
+  function defineMetricColumns(metrics, results) {
+    const metricColumns = metrics.map((metric) => {
       const column = {
-        label: workflow.Abbreviation,
-        data: results.filter((d2) => d2.MetricID === workflow.MetricID),
+        label: metric.Abbreviation,
+        data: results.filter((d2) => d2.MetricID === metric.MetricID),
         filterKey: "GroupID",
         valueKey: "score",
-        headerTooltip: workflow.Metric,
+        headerTooltip: metric.Metric,
         sort: sortNumber,
         tooltip: true,
-        type: "kri",
+        type: "metric",
         dataType: "number",
-        meta: workflow
+        meta: metric
       };
       return column;
     });
-    return workflowColumns;
+    return metricColumns;
   }
 
   // src/siteOverview/defineColumns/defineTooltip.js
-  function defineTooltip(column, content, workflows = null) {
+  function defineTooltip(column, content, metrics = null) {
     let tooltipKeys = {};
     switch (column.type) {
       case "site":
@@ -23343,7 +23343,7 @@ var rbmViz = (() => {
           is_satellite: "Satellite"
         };
         break;
-      case "kri":
+      case "metric":
         tooltipKeys = {
           Score: column.meta.Score,
           Metric: column.meta.Metric,
@@ -23359,7 +23359,7 @@ var rbmViz = (() => {
     for (const [key, label] of Object.entries(tooltipKeys)) {
       if (content[key] !== void 0) {
         let value = content[key];
-        if (column.type === "kri") {
+        if (column.type === "metric") {
           value = parseFloat(value);
           if (Number.isInteger(value)) {
             value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -23374,10 +23374,10 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview/defineColumns.js
-  function defineColumns(sites, workflows, results) {
+  function defineColumns(sites, metrics, results) {
     const siteColumns = defineSiteColumns(sites);
-    const workflowColumns = defineWorkflowColumns(workflows, results);
-    const columns = [...siteColumns, ...workflowColumns];
+    const metricColumns = defineMetricColumns(metrics, results);
+    const columns = [...siteColumns, ...metricColumns];
     columns.forEach((column, i) => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
       column.index = i;
@@ -23418,7 +23418,7 @@ var rbmViz = (() => {
         };
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
-        datum2.sortValue = column.type === "kri" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
+        datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
         datum2.class = [column.type, column.valueKey].join(" ");
         datum2.tooltip = column.tooltip;
         datum2.tooltipContent = column.defineTooltip(column, datum2);
@@ -23453,7 +23453,7 @@ var rbmViz = (() => {
       (d2) => d2,
       // Define a unique key for each cell.
       (d2) => {
-        const id2 = d2.column.type === "kri" ? `${d2.SiteID}-${d2.column.meta.MetricID}` : `${d2.SiteID}-${d2.column.valueKey}`;
+        const id2 = d2.column.type === "metric" ? `${d2.SiteID}-${d2.column.meta.MetricID}` : `${d2.SiteID}-${d2.column.valueKey}`;
         return id2;
       }
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
@@ -23481,8 +23481,8 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting(rows) {
-    const kriCells = rows.selectAll("td.kri");
-    kriCells.style("background-color", function(d2, i) {
+    const metricCells = rows.selectAll("td.metric");
+    metricCells.style("background-color", function(d2, i) {
       switch (Math.abs(parseInt(d2.Flag))) {
         case 0:
           return colorScheme_default.find(
@@ -23527,8 +23527,8 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeTable/addFlagIcons.js
   function addFlagIcons(rows) {
-    const kriCells = rows.selectAll("td.kri").text("");
-    kriCells.each(function(d2) {
+    const metricCells = rows.selectAll("td.metric").text("");
+    metricCells.each(function(d2) {
       const flag = parseInt(d2.Flag);
       const absFlag = Math.abs(flag);
       switch (absFlag) {
@@ -23558,7 +23558,7 @@ var rbmViz = (() => {
 
   // src/siteOverview/makeTable/addClickEvents.js
   function addClickEvents(bodyRows, cells, config) {
-    cells.filter(".kri").on("click", function(event, d2) {
+    cells.filter(".metric").on("click", function(event, d2) {
       config.metricClickCallback({
         GroupLevel: config.groupLevel,
         GroupID: d2.GroupID,
@@ -23593,7 +23593,7 @@ var rbmViz = (() => {
   // src/siteOverview/updateTable.js
   function updateTable(_results_) {
     const sites = deriveSiteMetrics(this._sites_, _results_);
-    const columns = defineColumns(sites, this._workflows_, _results_);
+    const columns = defineColumns(sites, this._metrics_, _results_);
     const rows = structureData5(_results_, columns, sites);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows(tbody, rows);
@@ -23619,18 +23619,18 @@ var rbmViz = (() => {
   }
 
   // src/siteOverview.js
-  function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _workflows_ = null) {
-    checkInputs5(_results_, _config_, _sites_, _workflows_);
+  function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _metrics_ = null) {
+    checkInputs5(_results_, _config_, _sites_, _metrics_);
     const config = configure7(_config_);
     const sites = deriveSiteMetrics(_sites_, _results_);
-    const columns = defineColumns(sites, _workflows_, _results_);
+    const columns = defineColumns(sites, _metrics_, _results_);
     const rows = structureData5(_results_, columns, sites);
     const table = makeTable(_element_, rows, columns, config);
     table.updateTable = updateTable.bind({
       _results_,
       _config_,
       _sites_,
-      _workflows_,
+      _metrics_,
       config,
       sites,
       columns,
@@ -23641,7 +23641,7 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/checkInputs.js
-  function checkInputs6(_results_, _config_, _countries_, _workflows_) {
+  function checkInputs6(_results_, _config_, _countries_, _metrics_) {
     checkInput({
       parameter: "_results_",
       argument: _results_,
@@ -23690,7 +23690,6 @@ var rbmViz = (() => {
         (result) => Math.abs(parseInt(result.Flag)) === 0
       ).length;
     });
-    console.log(allGroups);
     return allGroups;
   }
 
@@ -23792,28 +23791,28 @@ var rbmViz = (() => {
     return columns;
   }
 
-  // src/groupOverview/defineColumns/defineWorkflowColumns.js
-  function defineWorkflowColumns2(workflows, results) {
-    const workflowColumns = workflows.map((workflow) => {
+  // src/groupOverview/defineColumns/defineMetricColumns.js
+  function defineMetricColumns2(metrics, results) {
+    const metricColumns = metrics.map((metric) => {
       const column = {
-        label: workflow.Abbreviation,
-        data: results.filter((d2) => d2.MetricID === workflow.MetricID),
+        label: metric.Abbreviation,
+        data: results.filter((d2) => d2.MetricID === metric.MetricID),
         filterKey: "GroupID",
         valueKey: "Score",
-        headerTooltip: workflow.Metric,
+        headerTooltip: metric.Metric,
         sort: sortNumber2,
         tooltip: true,
-        type: "kri",
+        type: "metric",
         dataType: "number",
-        meta: workflow
+        meta: metric
       };
       return column;
     });
-    return workflowColumns;
+    return metricColumns;
   }
 
   // src/groupOverview/defineColumns/defineTooltip.js
-  function defineTooltip2(column, content, workflows = null) {
+  function defineTooltip2(column, content, metrics = null) {
     let tooltipKeys = {};
     switch (column.type) {
       case "group":
@@ -23821,7 +23820,7 @@ var rbmViz = (() => {
           status: "Status"
         };
         break;
-      case "kri":
+      case "metric":
         tooltipKeys = {
           Score: column.meta.Score,
           Metric: column.meta.Metric,
@@ -23837,7 +23836,7 @@ var rbmViz = (() => {
     for (const [key, label] of Object.entries(tooltipKeys)) {
       if (content[key] !== void 0) {
         let value = content[key];
-        if (column.type === "kri") {
+        if (column.type === "metric") {
           value = parseFloat(value);
           if (Number.isInteger(value)) {
             value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -23852,10 +23851,10 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/defineColumns.js
-  function defineColumns2(groups2, workflows, results) {
+  function defineColumns2(groups2, metrics, results) {
     const groupColumns = defineGroupColumns(groups2);
-    const workflowColumns = defineWorkflowColumns2(workflows, results);
-    const columns = [...groupColumns, ...workflowColumns];
+    const metricColumns = defineMetricColumns2(metrics, results);
+    const columns = [...groupColumns, ...metricColumns];
     columns.forEach((column, i) => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
       column.index = i;
@@ -23896,7 +23895,7 @@ var rbmViz = (() => {
         };
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
-        datum2.sortValue = column.type === "kri" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
+        datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
         datum2.class = [column.type, column.valueKey].join(" ");
         datum2.tooltip = column.tooltip;
         datum2.tooltipContent = column.defineTooltip(column, datum2);
@@ -23931,7 +23930,7 @@ var rbmViz = (() => {
       (d2) => d2,
       // Define a unique key for each cell.
       (d2) => {
-        const id2 = d2.column.type === "kri" ? `${d2.GroupID}-${d2.column.meta.MetricID}` : `${d2.GroupID}-${d2.column.valueKey}`;
+        const id2 = d2.column.type === "metric" ? `${d2.GroupID}-${d2.column.meta.MetricID}` : `${d2.GroupID}-${d2.column.valueKey}`;
         return id2;
       }
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
@@ -23951,8 +23950,8 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting2(rows) {
-    const kriCells = rows.selectAll("td.kri");
-    kriCells.style("background-color", function(d2, i) {
+    const metricCells = rows.selectAll("td.metric");
+    metricCells.style("background-color", function(d2, i) {
       switch (Math.abs(parseInt(d2.Flag))) {
         case 0:
           return colorScheme_default.find(
@@ -23997,8 +23996,8 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addFlagIcons.js
   function addFlagIcons2(rows) {
-    const kriCells = rows.selectAll("td.kri").text("");
-    kriCells.each(function(d2) {
+    const metricCells = rows.selectAll("td.metric").text("");
+    metricCells.each(function(d2) {
       const flag = parseInt(d2.Flag);
       const absFlag = Math.abs(flag);
       switch (absFlag) {
@@ -24028,7 +24027,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addClickEvents.js
   function addClickEvents2(bodyRows, cells, config) {
-    cells.filter(".kri").on("click", function(event, d2) {
+    cells.filter(".metric").on("click", function(event, d2) {
       config.metricClickCallback({
         GroupLevel: config.GroupLevel,
         GroupID: d2.GroupID,
@@ -24062,7 +24061,7 @@ var rbmViz = (() => {
   // src/groupOverview/updateTable.js
   function updateTable2(_results_) {
     const groups2 = deriveGroupMetrics(this._groups_, _results_);
-    const columns = defineColumns2(groups2, this._workflows_, _results_);
+    const columns = defineColumns2(groups2, this._metrics_, _results_);
     const rows = structureData6(_results_, columns, groups2);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows2(tbody, rows);
@@ -24087,18 +24086,18 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview.js
-  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groups_ = null, _workflows_ = null) {
-    checkInputs6(_results_, _config_, _groups_, _workflows_);
+  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groups_ = null, _metrics_ = null) {
+    checkInputs6(_results_, _config_, _groups_, _metrics_);
     const config = configure8(_config_);
     const groups2 = deriveGroupMetrics(_groups_, _results_);
-    const columns = defineColumns2(groups2, _workflows_, _results_);
-    const rows = structureData6(_results_, columns, groups2, _workflows_);
+    const columns = defineColumns2(groups2, _metrics_, _results_);
+    const rows = structureData6(_results_, columns, groups2, _metrics_);
     const table = makeTable2(_element_, rows, columns, config);
     table.updateTable = updateTable2.bind({
       _results_,
       _config_,
       _groups_,
-      _workflows_,
+      _metrics_,
       config,
       groups: groups2,
       columns,

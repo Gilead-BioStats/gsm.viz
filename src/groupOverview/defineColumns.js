@@ -1,5 +1,5 @@
 import defineGroupColumns from './defineColumns/defineGroupColumns.js';
-import defineWorkflowColumns from './defineColumns/defineWorkflowColumns.js';
+import defineMetricColumns from './defineColumns/defineMetricColumns.js';
 import defineTooltip from './defineColumns/defineTooltip.js';
 
 /**
@@ -11,15 +11,15 @@ import defineTooltip from './defineColumns/defineTooltip.js';
  * - column sort state (sortState)
  *
  * @param {Array} groups - group metadata
- * @param {Array} workflows - workflow metadata
- * @param {Array} results - workflow results
+ * @param {Array} metrics - metric metadata
+ * @param {Array} results - metric results
  *
  * @returns {Array} columns
  */
-export default function defineColumns(groups, workflows, results) {
+export default function defineColumns(groups, metrics, results) {
     const groupColumns = defineGroupColumns(groups);
-    const workflowColumns = defineWorkflowColumns(workflows, results);
-    const columns = [...groupColumns, ...workflowColumns];
+    const metricColumns = defineMetricColumns(metrics, results);
+    const columns = [...groupColumns, ...metricColumns];
 
     columns.forEach((column, i) => {
         column.getDatum = (key) =>

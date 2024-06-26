@@ -4,21 +4,21 @@ const threshold = function (workflow, datasets, setup = false) {
 
     thresholdToggle.addEventListener('change', (event) => {
         const instance = getChart();
-        const workflowID = kri();
-        const results = filterOnWorkflowID(datasets[0], workflowID);
-        const workflow = selectWorkflowID(datasets[1], workflowID);
+        const MetricID = metric();
+        const results = filterOnMetricID(datasets[0], MetricID);
+        const workflow = selectMetricID(datasets[1], MetricID);
 
         // Threshold annotations
         const parameters =
             workflow.y === 'Score' &&
             document.getElementById('Threshold').checked
                 ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], workflowID),
-                      filterOnWorkflowID(datasets[3], workflowID)
+                      filterOnMetricID(datasets[2], MetricID),
+                      filterOnMetricID(datasets[3], MetricID)
                   )
                 : null;
 
-        workflow.selectedGroupIDs = site();
+        workflow.selectedGroupIDs = group();
         instance.helpers.updateData(instance, results, workflow, parameters);
     });
 };

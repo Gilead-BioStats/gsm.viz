@@ -10,15 +10,15 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../index.js"></script>
 
-        <script src="../data/helpers/filterOnWorkflowID.js"></script>
-        <script src="../data/helpers/selectWorkflowID.js"></script>
+        <script src="../data/helpers/filterOnMetricID.js"></script>
+        <script src="../data/helpers/selectMetricID.js"></script>
         <script src="../data/helpers/mergeParameters.js"></script>
 
         <script src="../controls/getChart.js"></script>
-        <script src="./controls/kri.js"></script>
+        <script src="./controls/metric.js"></script>
         <script src="./controls/yaxis.js"></script>
         <script src="./controls/threshold.js"></script>
-        <script src="./controls/site.js"></script>
+        <script src="./controls/group.js"></script>
         <script src="./controls/lifecycle.js"></script>
         <script src="../controls/download.js"></script>
     </head>
@@ -26,12 +26,12 @@
     <body>
         <div id="controls">
             <fieldset>
-                <legend>KRI</legend>
-                <select id="kri"></select>
+                <legend>Metric</legend>
+                <select id="metric"></select>
             </fieldset>
 
             <fieldset>
-                <legend>Highlighted Site</legend>
+                <legend>Highlighted Group</legend>
                 <select id="GroupID"></select>
             </fieldset>
 

@@ -29,7 +29,6 @@ export default function deriveGroupMetrics(groups, results) {
             (result) => Math.abs(parseInt(result.Flag)) === 0
         ).length;
     });
-    console.log(allGroups);
 
     return allGroups;
 }

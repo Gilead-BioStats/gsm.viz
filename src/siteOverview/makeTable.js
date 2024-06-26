@@ -29,7 +29,7 @@ export default function makeTable(_element_, rows, columns, config) {
     // add traffic light coloring to cells
     addTrafficLighting(bodyRows);
 
-    // add directional arrows to KRI cells
+    // add directional arrows to Metric cells
     addFlagIcons(bodyRows);
 
     // add row highlighting

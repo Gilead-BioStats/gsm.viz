@@ -13,7 +13,7 @@ export default function addCells(bodyRows) {
             // Define a unique key for each cell.
             (d) => {
                 const id =
-                    d.column.type === 'kri'
+                    d.column.type === 'metric'
                         ? `${d.SiteID}-${d.column.meta.MetricID}`
                         : `${d.SiteID}-${d.column.valueKey}`;
 

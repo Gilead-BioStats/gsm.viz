@@ -6,7 +6,7 @@ import checkInput from '../data/checkInput.js';
  * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - table configuration and metadata
  * @param {Array} _countries_ - optional country metadata
- * @param {Array} _workflows_ - optional workflow metadata
+ * @param {Array} _metrics_ - optional metric metadata
  *
  * @returns {void}
  */
@@ -14,7 +14,7 @@ export default function checkInputs(
     _results_,
     _config_,
     _countries_,
-    _workflows_
+    _metrics_
 ) {
     checkInput({
         parameter: '_results_',
@@ -38,9 +38,9 @@ export default function checkInputs(
     });
 
     //checkInput({
-    //    parameter: '_workflows_',
-    //    argument: _workflows_,
-    //    schemaName: 'workflows',
+    //    parameter: '_metrics_',
+    //    argument: _metrics_,
+    //    schemaName: 'metrics',
     //    module: 'countryOverview',
     //});
 }

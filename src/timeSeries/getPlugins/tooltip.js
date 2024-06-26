@@ -28,7 +28,7 @@ export default function tooltip(config) {
                     if (data[0].dataset.purpose === 'distribution') {
                         return `${config.Group} Distribution on ${data[0].label}`;
                     }
-                    // aggregate (discrete KRI distribution, QTL)
+                    // aggregate (discrete Metric distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
                         return `${config.Group} Summary on ${data[0].label}`;
                     }

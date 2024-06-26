@@ -1,5 +1,5 @@
 {
-    "title": "Predicted KRI Analysis Output",
+    "title": "Predicted Metric Analysis Output",
     "description": "JSON schema of predicted input data to scatterPlot module",
     "version": "0.14.0",
     "type": "array",
@@ -29,21 +29,21 @@
             },
             "Numerator": {
                 "title": "Predicted Numerator",
-                "description": "Predicted numerator of KRI metric",
+                "description": "Predicted numerator of Metric metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "Denominator": {
                 "title": "Predicted Denominator",
-                "description": "Predicted denominator of KRI metric",
+                "description": "Predicted denominator of Metric metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "LogDenominator": {
                 "title": "Predicted Denominator (log)",
-                "description": "Predicted Denominator of KRI metric (log)",
+                "description": "Predicted Denominator of Metric metric (log)",
                 "type": "number",
                 "required": false,
                 "key": false

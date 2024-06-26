@@ -1,6 +1,6 @@
 {
-    "title": "KRI Analysis Metadata",
-    "description": "JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    "title": "Metric Analysis Metadata",
+    "description": "JSON schema of Metric analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
     "version": "0.14.0",
     "type": "object",
     "properties": {
@@ -17,57 +17,57 @@
             "required": true
         },
         "Numerator": {
-            "title": "KRI Numerator",
-            "description": "Unit of KRI Numerator",
+            "title": "Metric Numerator",
+            "description": "Unit of Metric Numerator",
             "type": "string",
             "required": true,
             "key": false
         },
         "Denominator": {
-            "title": "KRI Denominator",
-            "description": "Unit of KRI Denominator",
+            "title": "Metric Denominator",
+            "description": "Unit of Metric Denominator",
             "type": "string",
             "required": true,
             "key": false
         },
         "Metric": {
-            "title": "KRI Metric",
-            "description": "Unit of KRI Metric",
+            "title": "Metric Metric",
+            "description": "Unit of Metric Metric",
             "type": "string",
             "required": true,
             "key": false
         },
         "Outcome": {
-            "title": "KRI Type",
-            "description": "Type of KRI Metric",
+            "title": "Metric Type",
+            "description": "Type of Metric Metric",
             "type": "string",
             "required": false,
             "key": false
         },
         "Score": {
-            "title": "KRI Score",
-            "description": "Unit of KRI score",
+            "title": "Metric Score",
+            "description": "Unit of Metric score",
             "type": "string",
             "required": true,
             "key": false
         },
         "Model": {
-            "title": "KRI Score Method",
-            "description": "Statistical model used to evaluate KRI",
+            "title": "Metric Score Method",
+            "description": "Statistical model used to evaluate Metric",
             "type": "string",
             "required": false,
             "key": false
         },
         "Abbreviation": {
             "title": "Abbreviation",
-            "description": "KRI Abbreviation",
+            "description": "Metric Abbreviation",
             "type": "string",
             "required": false,
             "key": false
         },
         "data_inputs": {
             "title": "Input Data Domains",
-            "description": "Data domains used to evaluate KRI",
+            "description": "Data domains used to evaluate Metric",
             "type": "string",
             "required": false,
             "key": false

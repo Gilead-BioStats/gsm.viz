@@ -14,7 +14,7 @@ import addClickEvents from './makeTable/addClickEvents.js';
 
 export default function updateTable(_results_) {
     const groups = deriveGroupMetrics(this._groups_, _results_);
-    const columns = defineColumns(groups, this._workflows_, _results_);
+    const columns = defineColumns(groups, this._metrics_, _results_);
     const rows = structureData(_results_, columns, groups);
 
     // create table
@@ -28,7 +28,7 @@ export default function updateTable(_results_) {
     // add traffic light coloring to cells
     addTrafficLighting(bodyRows);
 
-    // add directional arrows to KRI cells
+    // add directional arrows to Metric cells
     addFlagIcons(bodyRows);
 
     // add row highlighting

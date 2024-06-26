@@ -1,4 +1,4 @@
-export default function defineTooltip(column, content, workflows = null) {
+export default function defineTooltip(column, content, metrics = null) {
     let tooltipKeys = {};
 
     switch (column.type) {
@@ -22,8 +22,8 @@ export default function defineTooltip(column, content, workflows = null) {
             };
 
             break;
-        // Define tooltip content for KRI columns.
-        case 'kri':
+        // Define tooltip content for Metric columns.
+        case 'metric':
             tooltipKeys = {
                 Score: column.meta.Score,
                 Metric: column.meta.Metric,
@@ -44,7 +44,7 @@ export default function defineTooltip(column, content, workflows = null) {
             let value = content[key];
 
             // Format numbers.
-            if (column.type === 'kri') {
+            if (column.type === 'metric') {
                 value = parseFloat(value);
 
                 if (Number.isInteger(value)) {

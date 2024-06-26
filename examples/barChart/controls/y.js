@@ -6,7 +6,7 @@ const yaxis = function (workflow, datasets, setup = false) {
         yAxisDropdown.value = workflow.y;
         yAxisDropdown.addEventListener('change', (event) => {
             const instance = getChart();
-            const workflowID = kri();
+            const workflowID = metric();
 
             datasets = datasets.map((dataset) =>
                 dataset.filter((d) => /^kri/.test(d.MetricID))
@@ -18,7 +18,7 @@ const yaxis = function (workflow, datasets, setup = false) {
             // chart configuration
             const workflow = selectWorkflowID(datasets[1], workflowID);
             workflow.y = event.target.value;
-            workflow.selectedGroupIDs = site();
+            workflow.selectedGroupIDs = group();
 
             // Threshold annotations
             const parameters =

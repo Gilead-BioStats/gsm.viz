@@ -23,9 +23,9 @@ export default function structureData(results, columns, groups) {
             // TODO: get rid of value or text
             datum.value = datum[column.valueKey];
             datum.text = datum.value;
-            // TODO: This is a hack to get the correct sort value for KRI columns.
+            // TODO: This is a hack to get the correct sort value for Metric columns.
             datum.sortValue =
-                column.type === 'kri'
+                column.type === 'metric'
                     ? Math.abs(parseFloat(datum.value))
                     : datum.value;
             datum.class = [column.type, column.valueKey].join(' ');
