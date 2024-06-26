@@ -40,6 +40,7 @@ export default function scatterPlot(
     _bounds_ = null,
     _sites_ = null
 ) {
+    console.log(_data_);
     // Check input data against data schema.
     checkInputs(_data_, _config_, _bounds_, _sites_);
 
@@ -88,7 +89,7 @@ export default function scatterPlot(
         triggerTooltip,
     };
 
-    // Trigger tooltip when a group ID is selected.
+    // Trigger tooltip when a Group ID is selected.
     triggerTooltip(chart);
 
     return chart;

@@ -5,12 +5,12 @@ import snapshotDate from '../../src/data/schema/snapshotDate.json';
 import checkInput from '../../src/data/checkInput';
 import getType from '../../src/data/checkInput/getType';
 
-schema.items.properties.snapshot_date = snapshotDate;
+schema.items.properties.SnapshotDate = snapshotDate;
 
-describe('flag counts schema with flag counts by group', () => {
+describe('Flag counts schema with Flag counts by Group', () => {
     const flagCounts = flagCountsByGroup;
 
-    test('flag counts schema type matches data type of flag counts', () => {
+    test('Flag counts schema type matches data type of Flag counts', () => {
         let flagCountsType = typeof flagCounts;
 
         if (flagCountsType === 'object' && Array.isArray(flagCounts))
@@ -19,29 +19,29 @@ describe('flag counts schema with flag counts by group', () => {
         expect(flagCountsType).toBe(schema.type);
     });
 
-    test('type of flag counts schema items matches data type of flag counts items', () => {
+    test('type of Flag counts schema items matches data type of Flag counts items', () => {
         const flagCount =
             flagCounts[Math.floor(flagCounts.length * Math.random())];
 
         expect(typeof flagCount).toBe(schema.items.type);
     });
 
-    test('properties of flag counts schema items match properties of flag counts items', () => {
+    test('properties of Flag counts schema items match properties of Flag counts items', () => {
         const flagCount =
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter((prop) => prop !== 'workflowid')
+            .filter((prop) => prop !== 'MetricID')
             .sort();
 
         expect(propsResult).toEqual(propsSchema);
     });
 });
 
-describe('flag counts schema with flag counts by KRI', () => {
+describe('Flag counts schema with Flag counts by KRI', () => {
     const flagCounts = flagCountsByKRI;
 
-    test('flag counts schema type matches data type of flag counts', () => {
+    test('Flag counts schema type matches data type of Flag counts', () => {
         let flagCountsType = typeof flagCounts;
 
         if (flagCountsType === 'object' && Array.isArray(flagCounts))
@@ -50,19 +50,19 @@ describe('flag counts schema with flag counts by KRI', () => {
         expect(flagCountsType).toBe(schema.type);
     });
 
-    test('type of flag counts schema items matches data type of flag counts items', () => {
+    test('type of Flag counts schema items matches data type of Flag counts items', () => {
         const flagCount =
             flagCounts[Math.floor(flagCounts.length * Math.random())];
 
         expect(typeof flagCount).toBe(schema.items.type);
     });
 
-    test('properties of flag counts schema items match properties of flag counts items', () => {
+    test('properties of Flag counts schema items match properties of Flag counts items', () => {
         const flagCount =
             flagCounts[Math.floor(flagCounts.length * Math.random())];
         const propsResult = Object.keys(flagCount).sort();
         const propsSchema = Object.keys(schema.items.properties)
-            .filter((prop) => prop !== 'groupid')
+            .filter((prop) => prop !== 'GroupID')
             .sort();
 
         expect(propsResult).toEqual(propsSchema);

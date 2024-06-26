@@ -1,7 +1,7 @@
 [
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "10",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "10",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "20",
@@ -17,11 +17,11 @@
 		"pi_last_name": "Torres",
 		"pi_first_name": "Ariel",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "100",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "100",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -37,11 +37,11 @@
 		"pi_last_name": "Spangler",
 		"pi_first_name": "Cheyenne",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "101",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "101",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -57,11 +57,11 @@
 		"pi_last_name": "Broughton",
 		"pi_first_name": "Macallyson",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "102",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "102",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -77,11 +77,11 @@
 		"pi_last_name": "Lester",
 		"pi_first_name": "Asa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "103",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "103",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -97,11 +97,11 @@
 		"pi_last_name": "Salazar",
 		"pi_first_name": "Manaal",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "104",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "104",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -117,11 +117,11 @@
 		"pi_last_name": "Rollins",
 		"pi_first_name": "Dominico",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "105",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "105",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -137,11 +137,11 @@
 		"pi_last_name": "Terry",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "106",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "106",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -157,11 +157,11 @@
 		"pi_last_name": "Porter",
 		"pi_first_name": "Gabriella",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "107",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "107",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -177,11 +177,11 @@
 		"pi_last_name": "Lopez",
 		"pi_first_name": "Peter",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "109",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "109",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -197,11 +197,11 @@
 		"pi_last_name": "Pascual",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "11",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "11",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -217,11 +217,11 @@
 		"pi_last_name": "Ashcroft-Bitsilly",
 		"pi_first_name": "Michael",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "110",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "110",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -237,11 +237,11 @@
 		"pi_last_name": "al-Rais",
 		"pi_first_name": "Trang",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "111",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "111",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -257,11 +257,11 @@
 		"pi_last_name": "Mancilla",
 		"pi_first_name": "Yueh-Ya",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "112",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "112",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -277,11 +277,11 @@
 		"pi_last_name": "el-Dia",
 		"pi_first_name": "Trevor",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "113",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "113",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -297,11 +297,11 @@
 		"pi_last_name": "al-Hasen",
 		"pi_first_name": "Brittany",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "114",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "114",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -317,11 +317,11 @@
 		"pi_last_name": "el-Shaker",
 		"pi_first_name": "Aatika",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "115",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "115",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -337,11 +337,11 @@
 		"pi_last_name": "el-Mostafa",
 		"pi_first_name": "Sabriyya",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "116",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "116",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -357,11 +357,11 @@
 		"pi_last_name": "Patalan",
 		"pi_first_name": "Alexander",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "117",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "117",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -377,11 +377,11 @@
 		"pi_last_name": "al-Badour",
 		"pi_first_name": "Nazeeha",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "118",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "118",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "17",
@@ -397,11 +397,11 @@
 		"pi_last_name": "Farr",
 		"pi_first_name": "Mujaahida",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "119",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "119",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -417,11 +417,11 @@
 		"pi_last_name": "Keese",
 		"pi_first_name": "Ashlee",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "12",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "12",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -437,11 +437,11 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Shaleena",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "120",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "120",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -457,11 +457,11 @@
 		"pi_last_name": "Kanack",
 		"pi_first_name": "Andres",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "121",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "121",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -477,11 +477,11 @@
 		"pi_last_name": "Strock",
 		"pi_first_name": "Nicholas",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "122",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "122",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -497,11 +497,11 @@
 		"pi_last_name": "Bocanegra",
 		"pi_first_name": "Aquilah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "123",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "123",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -517,11 +517,11 @@
 		"pi_last_name": "Ha",
 		"pi_first_name": "Mariah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "124",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "124",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -537,11 +537,11 @@
 		"pi_last_name": "Truong",
 		"pi_first_name": "Christopher",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "126",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "126",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -557,11 +557,11 @@
 		"pi_last_name": "Schmidt",
 		"pi_first_name": "Joseph",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "127",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "127",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -577,11 +577,11 @@
 		"pi_last_name": "Ford",
 		"pi_first_name": "Saaya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "128",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "128",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -597,11 +597,11 @@
 		"pi_last_name": "Lesley",
 		"pi_first_name": "Nkaujiaong",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "129",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "129",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -617,11 +617,11 @@
 		"pi_last_name": "Friedrich",
 		"pi_first_name": "Anna",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "13",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "13",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -637,11 +637,11 @@
 		"pi_last_name": "Gonzalez",
 		"pi_first_name": "Crystal",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "130",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "130",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -657,11 +657,11 @@
 		"pi_last_name": "al-Radi",
 		"pi_first_name": "Carissa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "131",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "131",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -677,11 +677,11 @@
 		"pi_last_name": "Smith",
 		"pi_first_name": "Eric",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "132",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "132",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -697,11 +697,11 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Aqsa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "133",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "133",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -717,11 +717,11 @@
 		"pi_last_name": "el-Massoud",
 		"pi_first_name": "Musaddiq",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "134",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "134",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -737,11 +737,11 @@
 		"pi_last_name": "Aragon",
 		"pi_first_name": "Hailey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "135",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "135",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -757,11 +757,11 @@
 		"pi_last_name": "Garnett",
 		"pi_first_name": "Alix",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "136",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "136",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -777,11 +777,11 @@
 		"pi_last_name": "Cleckley",
 		"pi_first_name": "Zakariyya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "137",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "137",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -797,11 +797,11 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Lindsey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "138",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "138",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -817,11 +817,11 @@
 		"pi_last_name": "Kapoor",
 		"pi_first_name": "Tateh",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "139",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "139",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "58",
@@ -837,11 +837,11 @@
 		"pi_last_name": "Agenar",
 		"pi_first_name": "Angelo",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "14",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "14",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -857,11 +857,11 @@
 		"pi_last_name": "Taylor",
 		"pi_first_name": "Bianca",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "140",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "140",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "69",
@@ -877,11 +877,11 @@
 		"pi_last_name": "Vangoey",
 		"pi_first_name": "Cydnie",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "141",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "141",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "12",
@@ -897,11 +897,11 @@
 		"pi_last_name": "Tran",
 		"pi_first_name": "Raelina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "142",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "142",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -917,11 +917,11 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Benjamin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "143",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "143",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "28",
@@ -937,11 +937,11 @@
 		"pi_last_name": "Voss",
 		"pi_first_name": "Hamdoona",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "144",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "144",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -957,11 +957,11 @@
 		"pi_last_name": "Jiron",
 		"pi_first_name": "Essence",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "145",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "145",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -977,11 +977,11 @@
 		"pi_last_name": "el-Yusuf",
 		"pi_first_name": "Christine",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "146",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "146",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -997,11 +997,11 @@
 		"pi_last_name": "Jenkins",
 		"pi_first_name": "Ashuka",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "147",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "147",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1017,11 +1017,11 @@
 		"pi_last_name": "Gonzales",
 		"pi_first_name": "Carlos",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "148",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "148",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1037,11 +1037,11 @@
 		"pi_last_name": "Gallegos-Neiberger",
 		"pi_first_name": "Caroline",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "149",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "149",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -1057,11 +1057,11 @@
 		"pi_last_name": "Dabit",
 		"pi_first_name": "Derrick",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "15",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "15",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1077,11 +1077,11 @@
 		"pi_last_name": "Kimler",
 		"pi_first_name": "Marceen",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "150",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "150",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1097,11 +1097,11 @@
 		"pi_last_name": "Vargas Padilla",
 		"pi_first_name": "Darien",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "151",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "151",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1117,11 +1117,11 @@
 		"pi_last_name": "Pinch",
 		"pi_first_name": "Haileigh",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "152",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "152",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -1137,11 +1137,11 @@
 		"pi_last_name": "el-Allam",
 		"pi_first_name": "Felicity",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "153",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "153",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -1157,11 +1157,11 @@
 		"pi_last_name": "al-Nouri",
 		"pi_first_name": "Caerra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "154",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "154",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1177,11 +1177,11 @@
 		"pi_last_name": "el-Attar",
 		"pi_first_name": "Kristie",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "155",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "155",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "10",
@@ -1197,11 +1197,11 @@
 		"pi_last_name": "Pond",
 		"pi_first_name": "Qu Onu",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "156",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "156",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -1217,11 +1217,11 @@
 		"pi_last_name": "Arellano",
 		"pi_first_name": "Talia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "157",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "157",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -1237,11 +1237,11 @@
 		"pi_last_name": "Pinto",
 		"pi_first_name": "Justin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "158",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "158",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1257,11 +1257,11 @@
 		"pi_last_name": "Gray",
 		"pi_first_name": "Louisa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "159",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "159",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1277,11 +1277,11 @@
 		"pi_last_name": "Rodriguez-Cruz",
 		"pi_first_name": "Kevin",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "16",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "16",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1297,11 +1297,11 @@
 		"pi_last_name": "Suess",
 		"pi_first_name": "Christina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "160",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "160",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -1317,11 +1317,11 @@
 		"pi_last_name": "el-Agha",
 		"pi_first_name": "Mu,Aawiya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "161",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "161",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1337,11 +1337,11 @@
 		"pi_last_name": "Gallegos",
 		"pi_first_name": "Mansoor",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "162",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "162",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1357,11 +1357,11 @@
 		"pi_last_name": "Mccracken",
 		"pi_first_name": "Byung",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "163",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "163",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1377,11 +1377,11 @@
 		"pi_last_name": "Garrison",
 		"pi_first_name": "Raquel",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "164",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "164",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -1397,11 +1397,11 @@
 		"pi_last_name": "Campa",
 		"pi_first_name": "April",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "165",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "165",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1417,11 +1417,11 @@
 		"pi_last_name": "Tran",
 		"pi_first_name": "Briana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "166",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "166",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "20",
@@ -1437,11 +1437,11 @@
 		"pi_last_name": "Solis",
 		"pi_first_name": "Safwa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "167",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "167",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "15",
@@ -1457,11 +1457,11 @@
 		"pi_last_name": "Foster",
 		"pi_first_name": "Tracee",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "168",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "168",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1477,11 +1477,11 @@
 		"pi_last_name": "Orio",
 		"pi_first_name": "Shaqeeqa",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "17",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "17",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "12",
@@ -1497,11 +1497,11 @@
 		"pi_last_name": "Hoffpauir",
 		"pi_first_name": "Adam",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "170",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "170",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "27",
@@ -1517,11 +1517,11 @@
 		"pi_last_name": "Vigo",
 		"pi_first_name": "Edeyanira",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "171",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "171",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1537,11 +1537,11 @@
 		"pi_last_name": "Nguyen",
 		"pi_first_name": "Abdul Wadood",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "172",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "172",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "28",
@@ -1557,11 +1557,11 @@
 		"pi_last_name": "el-Vaziri",
 		"pi_first_name": "Theador",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "173",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "173",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "27",
@@ -1577,11 +1577,11 @@
 		"pi_last_name": "Salas Dominguez",
 		"pi_first_name": "Dominick",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "174",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "174",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -1597,11 +1597,11 @@
 		"pi_last_name": "al-Miah",
 		"pi_first_name": "Carsyn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "175",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "175",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1617,11 +1617,11 @@
 		"pi_last_name": "Zamora",
 		"pi_first_name": "John",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "176",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "176",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1637,11 +1637,11 @@
 		"pi_last_name": "Hill",
 		"pi_first_name": "Joan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "177",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "177",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1657,11 +1657,11 @@
 		"pi_last_name": "Hamlin",
 		"pi_first_name": "Ivy",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "178",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "178",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1677,11 +1677,11 @@
 		"pi_last_name": "el-Kaber",
 		"pi_first_name": "Darrell",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "179",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "179",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -1697,11 +1697,11 @@
 		"pi_last_name": "Lee",
 		"pi_first_name": "Omar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "18",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "18",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1717,11 +1717,11 @@
 		"pi_last_name": "al-Sesay",
 		"pi_first_name": "Ana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "180",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "180",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1737,11 +1737,11 @@
 		"pi_last_name": "Harrison",
 		"pi_first_name": "Audreana",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "181",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "181",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1757,11 +1757,11 @@
 		"pi_last_name": "Robb",
 		"pi_first_name": "Muslih",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "182",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "182",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1777,11 +1777,11 @@
 		"pi_last_name": "Guevara",
 		"pi_first_name": "Rubin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "183",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "183",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1797,11 +1797,11 @@
 		"pi_last_name": "Hutchinson",
 		"pi_first_name": "Jocelyn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "184",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "184",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1817,11 +1817,11 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "Aayaat",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "185",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "185",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -1837,11 +1837,11 @@
 		"pi_last_name": "Harrison",
 		"pi_first_name": "Jose",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "186",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "186",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1857,11 +1857,11 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Janiro",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "187",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "187",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1877,11 +1877,11 @@
 		"pi_last_name": "Cousins",
 		"pi_first_name": "Xin Hong",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "188",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "188",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1897,11 +1897,11 @@
 		"pi_last_name": "Garcia",
 		"pi_first_name": "Intisaar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "189",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "189",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "28",
@@ -1917,11 +1917,11 @@
 		"pi_last_name": "Depoyster",
 		"pi_first_name": "Annestaisia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "19",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "19",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -1937,11 +1937,11 @@
 		"pi_last_name": "Black",
 		"pi_first_name": "Cynthia",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "190",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "190",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -1957,11 +1957,11 @@
 		"pi_last_name": "Arshad",
 		"pi_first_name": "Sulaimaan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "20",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "20",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -1977,11 +1977,11 @@
 		"pi_last_name": "Landry",
 		"pi_first_name": "Kasey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "22",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "22",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -1997,11 +1997,11 @@
 		"pi_last_name": "Choi",
 		"pi_first_name": "Aranda",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "23",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "23",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -2017,11 +2017,11 @@
 		"pi_last_name": "Grant-Perry",
 		"pi_first_name": "Makayla",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "25",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "25",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2037,11 +2037,11 @@
 		"pi_last_name": "Yazzie",
 		"pi_first_name": "Aaron",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "26",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "26",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -2057,11 +2057,11 @@
 		"pi_last_name": "Batchelder",
 		"pi_first_name": "Savanna",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "27",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "27",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2077,11 +2077,11 @@
 		"pi_last_name": "Wilde",
 		"pi_first_name": "Naasiruddeen",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "28",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "28",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -2097,11 +2097,11 @@
 		"pi_last_name": "al-Mona",
 		"pi_first_name": "Andrew",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "29",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "29",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -2117,11 +2117,11 @@
 		"pi_last_name": "el-Ameen",
 		"pi_first_name": "Latisha",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "3",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "3",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -2137,11 +2137,11 @@
 		"pi_last_name": "el-Khalifa",
 		"pi_first_name": "Fuaada",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "30",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "30",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -2157,11 +2157,11 @@
 		"pi_last_name": "Browne",
 		"pi_first_name": "Wyatt",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "31",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "31",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2177,11 +2177,11 @@
 		"pi_last_name": "Lipps",
 		"pi_first_name": "Marcus",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "32",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "32",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2197,11 +2197,11 @@
 		"pi_last_name": "Gomez",
 		"pi_first_name": "Shane",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "33",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "33",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2217,11 +2217,11 @@
 		"pi_last_name": "Esquibel",
 		"pi_first_name": "Shakoora",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "34",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "34",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -2237,11 +2237,11 @@
 		"pi_last_name": "Ramirez",
 		"pi_first_name": "Kailey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "35",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "35",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -2257,11 +2257,11 @@
 		"pi_last_name": "Mansfield",
 		"pi_first_name": "Elle-Han",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "36",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "36",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2277,11 +2277,11 @@
 		"pi_last_name": "John",
 		"pi_first_name": "Jose",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "38",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "38",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2297,11 +2297,11 @@
 		"pi_last_name": "Pinar",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "39",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "39",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2317,11 +2317,11 @@
 		"pi_last_name": "Horton",
 		"pi_first_name": "Drew",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "4",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "4",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -2337,11 +2337,11 @@
 		"pi_last_name": "Anderson",
 		"pi_first_name": "Taamir",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "40",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "40",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2357,11 +2357,11 @@
 		"pi_last_name": "Lamping",
 		"pi_first_name": "Tad",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "41",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "41",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -2377,11 +2377,11 @@
 		"pi_last_name": "Ronquillo",
 		"pi_first_name": "Alejandra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "42",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "42",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2397,11 +2397,11 @@
 		"pi_last_name": "el-Hoque",
 		"pi_first_name": "Grace",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "43",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "43",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "33",
@@ -2417,11 +2417,11 @@
 		"pi_last_name": "Flores",
 		"pi_first_name": "Sufyaan",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "44",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "44",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2437,11 +2437,11 @@
 		"pi_last_name": "Keys",
 		"pi_first_name": "Isiah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "45",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "45",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2457,11 +2457,11 @@
 		"pi_last_name": "Handley",
 		"pi_first_name": "Kelsey",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "46",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "46",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -2477,11 +2477,11 @@
 		"pi_last_name": "Phouansavanh",
 		"pi_first_name": "Francine",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "47",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "47",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2497,11 +2497,11 @@
 		"pi_last_name": "Davis Jr",
 		"pi_first_name": "Robert",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "48",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "48",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2517,11 +2517,11 @@
 		"pi_last_name": "Longwolf",
 		"pi_first_name": "Angelique",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "49",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "49",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2537,11 +2537,11 @@
 		"pi_last_name": "al-Daoud",
 		"pi_first_name": "Ami",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "5",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "5",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "43",
@@ -2557,11 +2557,11 @@
 		"pi_last_name": "al-Koroma",
 		"pi_first_name": "Amanda",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "50",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "50",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -2577,11 +2577,11 @@
 		"pi_last_name": "el-Salih",
 		"pi_first_name": "Yushan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "51",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "51",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "11",
@@ -2597,11 +2597,11 @@
 		"pi_last_name": "Correa",
 		"pi_first_name": "Evan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "52",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "52",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2617,11 +2617,11 @@
 		"pi_last_name": "al-Nawaz",
 		"pi_first_name": "Ghaaliya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "53",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "53",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -2637,11 +2637,11 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "April",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "54",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "54",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "17",
@@ -2657,11 +2657,11 @@
 		"pi_last_name": "el-Mousa",
 		"pi_first_name": "Saalim",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "55",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "55",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2677,11 +2677,11 @@
 		"pi_last_name": "Tull",
 		"pi_first_name": "Rayyaan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "56",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "56",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "25",
@@ -2697,11 +2697,11 @@
 		"pi_last_name": "Som",
 		"pi_first_name": "Josiah",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "57",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "57",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -2717,11 +2717,11 @@
 		"pi_last_name": "Jung",
 		"pi_first_name": "Tawfeeqa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "58",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "58",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "20",
@@ -2737,11 +2737,11 @@
 		"pi_last_name": "Ostrom",
 		"pi_first_name": "Diego",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "59",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "59",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "8",
@@ -2757,11 +2757,11 @@
 		"pi_last_name": "al-Yusuf",
 		"pi_first_name": "Elizabeth",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "6",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "6",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2777,11 +2777,11 @@
 		"pi_last_name": "Johnson",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "60",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "60",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2797,11 +2797,11 @@
 		"pi_last_name": "Herlin",
 		"pi_first_name": "Tyler",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "61",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "61",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "15",
@@ -2817,11 +2817,11 @@
 		"pi_last_name": "Poveromo",
 		"pi_first_name": "Jack",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "62",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "62",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "34",
@@ -2837,11 +2837,11 @@
 		"pi_last_name": "Avena",
 		"pi_first_name": "Maren",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "63",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "63",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "10",
@@ -2857,11 +2857,11 @@
 		"pi_last_name": "Martinez",
 		"pi_first_name": "Moses",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "64",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "64",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2877,11 +2877,11 @@
 		"pi_last_name": "al-Sultana",
 		"pi_first_name": "Trevon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "65",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "65",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2897,11 +2897,11 @@
 		"pi_last_name": "Pope",
 		"pi_first_name": "Hilario",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "66",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "66",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -2917,11 +2917,11 @@
 		"pi_last_name": "Crowe",
 		"pi_first_name": "Kendall",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "67",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "67",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "11",
@@ -2937,11 +2937,11 @@
 		"pi_last_name": "Kessenich",
 		"pi_first_name": "Tyler",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "68",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "68",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -2957,11 +2957,11 @@
 		"pi_last_name": "al-Sani",
 		"pi_first_name": "Mary",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "69",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "69",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "12",
@@ -2977,11 +2977,11 @@
 		"pi_last_name": "Culhane",
 		"pi_first_name": "Autumn",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "7",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "7",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "9",
@@ -2997,11 +2997,11 @@
 		"pi_last_name": "Burroughs-Chock",
 		"pi_first_name": "Selena",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "70",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "70",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -3017,11 +3017,11 @@
 		"pi_last_name": "Cooley",
 		"pi_first_name": "Carson",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "71",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "71",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "10",
@@ -3037,11 +3037,11 @@
 		"pi_last_name": "el-Aman",
 		"pi_first_name": "Lathan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "72",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "72",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -3057,11 +3057,11 @@
 		"pi_last_name": "Flood",
 		"pi_first_name": "Tori",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "73",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "73",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -3077,11 +3077,11 @@
 		"pi_last_name": "Ello",
 		"pi_first_name": "April",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "75",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "75",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "10",
@@ -3097,11 +3097,11 @@
 		"pi_last_name": "Owens",
 		"pi_first_name": "Olivia",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "76",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "76",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "12",
@@ -3117,11 +3117,11 @@
 		"pi_last_name": "James",
 		"pi_first_name": "Ryan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "77",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "77",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "17",
@@ -3137,11 +3137,11 @@
 		"pi_last_name": "el-Salameh",
 		"pi_first_name": "Austin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "78",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "78",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -3157,11 +3157,11 @@
 		"pi_last_name": "Biolchini",
 		"pi_first_name": "Abrina",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "8",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "8",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "23",
@@ -3177,11 +3177,11 @@
 		"pi_last_name": "Cloud",
 		"pi_first_name": "Ian",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "80",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "80",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -3197,11 +3197,11 @@
 		"pi_last_name": "Thompson",
 		"pi_first_name": "Troslyn",
 		"is_satellite": "TRUE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "81",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "81",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -3217,11 +3217,11 @@
 		"pi_last_name": "Liggett",
 		"pi_first_name": "Joseph",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "82",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "82",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -3237,11 +3237,11 @@
 		"pi_last_name": "Hager",
 		"pi_first_name": "Hafsa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "83",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "83",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "7",
@@ -3257,11 +3257,11 @@
 		"pi_last_name": "Rinard",
 		"pi_first_name": "Najwa",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "84",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "84",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "3",
@@ -3277,11 +3277,11 @@
 		"pi_last_name": "Touch",
 		"pi_first_name": "Brandon",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "85",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "85",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "13",
@@ -3297,11 +3297,11 @@
 		"pi_last_name": "Drake",
 		"pi_first_name": "Leonard",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "86",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "86",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "22",
@@ -3317,11 +3317,11 @@
 		"pi_last_name": "el-Saladin",
 		"pi_first_name": "Viola",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "87",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "87",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -3337,11 +3337,11 @@
 		"pi_last_name": "Yeadon",
 		"pi_first_name": "Zakiyya",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "89",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "89",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "6",
@@ -3357,11 +3357,11 @@
 		"pi_last_name": "Wilson",
 		"pi_first_name": "Justin",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "9",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "9",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -3377,11 +3377,11 @@
 		"pi_last_name": "Luong",
 		"pi_first_name": "Nina Angelica",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "91",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "91",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "16",
@@ -3397,11 +3397,11 @@
 		"pi_last_name": "Gonzalez",
 		"pi_first_name": "Bibek",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "92",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "92",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "15",
@@ -3417,11 +3417,11 @@
 		"pi_last_name": "el-Samra",
 		"pi_first_name": "Omar",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "94",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "94",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "36",
@@ -3437,11 +3437,11 @@
 		"pi_last_name": "Hill",
 		"pi_first_name": "Jordan",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "96",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "96",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "4",
@@ -3457,11 +3457,11 @@
 		"pi_last_name": "Hendee",
 		"pi_first_name": "Dhareef",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "97",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "97",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "5",
@@ -3477,11 +3477,11 @@
 		"pi_last_name": "al-Mussa",
 		"pi_first_name": "Derika",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "98",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "98",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "2",
@@ -3497,11 +3497,11 @@
 		"pi_last_name": "Moran",
 		"pi_first_name": "Myles",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"siteid": "99",
+		"StudyID": "AA-AA-000-0000",
+		"SiteID": "99",
 		"institution": "city 1 Medical Center",
 		"status": "Active",
 		"enrolled_participants": "1",
@@ -3517,6 +3517,6 @@
 		"pi_last_name": "Ruvalcaba",
 		"pi_first_name": "Alexandra",
 		"is_satellite": "FALSE",
-		"gsm_analysis_date": "2023-01-05"
+		"SnapshotDate": "2023-01-05"
 	}
 ]

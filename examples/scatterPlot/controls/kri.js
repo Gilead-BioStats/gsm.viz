@@ -3,9 +3,7 @@ const kri = function (workflowID, datasets, setup = false) {
     const kriDropdown = document.querySelector('#kri');
 
     if (setup === true) {
-        const kris = [
-            ...new Set(datasets[0].map((d) => d.workflowid)).values(),
-        ];
+        const kris = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
 
         for (const i in kris) {
             const option = document.createElement('option');

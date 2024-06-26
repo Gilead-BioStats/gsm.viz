@@ -15,7 +15,7 @@ import scriptableOptions from './structureData/scriptableOptions.js';
 export default function structureData(_data_, config) {
     // Update data.
     const data = mutate(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
+    const labels = data.map((d) => d.SnapshotDate);
     const pointBackgroundColor = data.map((d, i) => {
         return config.dataType === 'continuous'
             ? colorScheme[d.stratum].color

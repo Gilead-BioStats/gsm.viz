@@ -27,10 +27,10 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
         workflow.y = yaxis();
         workflow.selectedGroupIDs = site();
 
-        // threshold annotations
+        // Threshold annotations
         const parameters =
-            workflow.y === 'score' &&
-            document.getElementById('threshold').checked
+            workflow.y === 'Score' &&
+            document.getElementById('Threshold').checked
                 ? mergeParameters(
                       filterOnWorkflowID(datasets[2], kri()),
                       filterOnWorkflowID(datasets[3], kri())

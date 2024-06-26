@@ -44,7 +44,7 @@ export default function checkInput({
         module === 'timeSeries' &&
         ['flagCounts', 'results', 'resultsVertical'].includes(schemaName)
     ) {
-        schema.items.properties.snapshot_date = schemata.snapshotDate;
+        schema.items.properties.SnapshotDate = schemata.snapshotDate;
     }
 
     if (argument === null) {

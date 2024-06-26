@@ -9,8 +9,8 @@ const yaxis = function (workflow, datasets, setup = false) {
             const workflowID = kri();
 
             datasets = datasets.map((dataset) =>
-                Object.keys(dataset[0]).includes('workflowid')
-                    ? dataset.filter((d) => /^kri/.test(d.workflowid))
+                Object.keys(dataset[0]).includes('MetricID')
+                    ? dataset.filter((d) => /^kri/.test(d.MetricID))
                     : dataset
             );
 
@@ -22,12 +22,12 @@ const yaxis = function (workflow, datasets, setup = false) {
             workflow.y = event.target.value;
             workflow.selectedGroupIDs = site();
 
-            // threshold annotations
+            // Threshold annotations
             let parameters = mergeParameters(
                 filterOnWorkflowID(datasets[2], workflowID),
                 filterOnWorkflowID(datasets[3], workflowID)
             );
-            if (workflow.y !== 'score') parameters = null;
+            if (workflow.y !== 'Score') parameters = null;
 
             // site metadata
             const sites = datasets[4];

@@ -31,7 +31,7 @@ import triggerTooltip from './util/triggerTooltip.js';
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
  * @param {Array} _data_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _thresholds_ - optional auxiliary data of threshold parameters
+ * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
  * @param {Array} _sites_ - optional site metadata
  *
  * @returns {Object} Chart.js chart object
@@ -66,8 +66,8 @@ export default function barChart(
         layout: {
             padding: {
                 top:
-                    config.y === 'metric'
-                        ? max(datasets[0].data, (d) => d.groupid.length) * 8
+                    config.y === 'Metric'
+                        ? max(datasets[0].data, (d) => d.GroupID.length) * 8
                         : null,
             },
         },
@@ -104,7 +104,7 @@ export default function barChart(
         triggerTooltip,
     };
 
-    // Trigger tooltip when a group ID is selected.
+    // Trigger tooltip when a Group ID is selected.
     triggerTooltip(chart);
 
     return chart;

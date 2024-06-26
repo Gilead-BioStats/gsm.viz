@@ -16,7 +16,7 @@ export default function pointHoverRadius(context, options) {
 
             return enrollmentFactor * hoverRadius;
         } else {
-            return config.selectedGroupIDs.includes(datum.groupid)
+            return config.selectedGroupIDs.includes(datum.GroupID)
                 ? hoverRadius
                 : defaultRadius;
         }

@@ -15,8 +15,8 @@ Promise.all(dataPromises)
         const workflowID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('MetricID')
+                ? dataset.filter((d) => /^kri/.test(d.MetricID))
                 : dataset
         );
 
@@ -26,16 +26,16 @@ Promise.all(dataPromises)
         // chart configuration
         const workflow = selectWorkflowID(datasets[1], workflowID);
         workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
+            //console.log(datum.GroupID);
         };
         workflow.clickCallback = function (datum) {
-            instance.data.config.selectedGroupIDs = datum.groupid;
+            instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
-            document.querySelector('#groupid').value = datum.groupid;
+            document.querySelector('#GroupID').value = datum.GroupID;
         };
 
-        // threshold annotations
+        // Threshold annotations
         const bounds = filterOnWorkflowID(datasets[2], workflowID);
 
         // site metadata

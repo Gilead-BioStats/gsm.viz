@@ -22,10 +22,14 @@ Promise.all(dataPromises)
 
         const regex = new RegExp(`^${workflowPrefix}`);
 
-        const results = datasets[0].filter((d) => regex.test(d.workflowid));
-        const workflows = datasets[1].filter((d) => regex.test(d.workflowid));
+        const results = datasets[0].filter((d) => regex.test(d.MetricID));
+        console.log(results);
+        const workflows = datasets[1].filter((d) => regex.test(d.MetricID));
+        console.log(workflows);
         const sites = datasets[2];
+        console.log(sites);
         const siteSubset = getSites(results);
+        console.log(siteSubset);
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),

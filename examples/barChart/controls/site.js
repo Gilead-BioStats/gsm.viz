@@ -1,7 +1,7 @@
 // Add event listener to highlight sites.
 const site = function (datasets, setup = false) {
     let instance = getChart();
-    const siteDropdown = document.querySelector('#groupid');
+    const siteDropdown = document.querySelector('#GroupID');
 
     if (setup) {
         const option = document.createElement('option');
@@ -10,7 +10,7 @@ const site = function (datasets, setup = false) {
         siteDropdown.appendChild(option);
 
         const groupIDs = Array.from(
-            new Set(datasets[0].map((d) => d.groupid)).values()
+            new Set(datasets[0].map((d) => d.GroupID)).values()
         ).sort((a, b) => a - b);
 
         for (i in groupIDs) {

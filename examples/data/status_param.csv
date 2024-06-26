@@ -1,4 +1,4 @@
-"studyid","workflowid","gsm_version","param","index","value","gsm_analysis_date"
+"StudyID","MetricID","gsm_version","Param","Index","Value","SnapshotDate"
 "AA-AA-000-0000","kri0001","1.4.1","vThreshold","1","-3",2023-01-05
 "AA-AA-000-0000","kri0001","1.4.1","vThreshold","2","-2",2023-01-05
 "AA-AA-000-0000","kri0001","1.4.1","vThreshold","3","2",2023-01-05

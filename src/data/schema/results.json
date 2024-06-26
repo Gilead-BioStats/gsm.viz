@@ -6,65 +6,65 @@
     "items": {
         "type": "object",
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "groupid": {
+            "GroupID": {
                 "title": "Group ID",
                 "description": "Unique group identifier",
                 "type": "string",
                 "required": true,
                 "key": true
             },
-            "numerator": {
+            "Numerator": {
                 "title": "Numerator",
-                "description": "Numerator of KRI metric",
+                "description": "Numerator of KRI Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "denominator": {
+            "Denominator": {
                 "title": "Denominator",
-                "description": "Denominator of KRI metric",
+                "description": "Denominator of KRI Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "metric": {
+            "Metric": {
                 "title": "KRI Metric",
-                "description": "KRI metric",
+                "description": "KRI Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "score": {
+            "Score": {
                 "title": "KRI Score",
                 "description": "KRI score",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "flag": {
+            "Flag": {
                 "title": "Flag Status",
                 "description": "Flag assigned given KRI score and specified thresholds",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "gsm_analysis_date": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
                 "type": "string",
                 "required": false,
                 "key": false

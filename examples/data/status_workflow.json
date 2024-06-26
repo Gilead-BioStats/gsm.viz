@@ -1,236 +1,236 @@
 [
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0001",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0001",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0002",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0002",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0003",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0003",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0004",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0004",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0005",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0005",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0006",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0006",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0007",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0007",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0008",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0008",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0009",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0009",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0010",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0010",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0011",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0011",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "kri0012",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "kri0012",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0001",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0001",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0002",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0002",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0003",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0003",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0004",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0004",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0005",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0005",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0006",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0006",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0007",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0007",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0008",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0008",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0009",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0009",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0010",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0010",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0011",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0011",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "cou0012",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "cou0012",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "qtl0004",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "qtl0004",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	},
 	{
-		"studyid": "AA-AA-000-0000",
-		"workflowid": "qtl0006",
+		"StudyID": "AA-AA-000-0000",
+		"MetricID": "qtl0006",
 		"gsm_version": "1.4.1",
-		"active": "TRUE",
-		"status": "TRUE",
-		"notes": "NA",
-		"gsm_analysis_date": "2023-01-05"
+		"Active": "TRUE",
+		"Status": "TRUE",
+		"Notes": "NA",
+		"SnapshotDate": "2023-01-05"
 	}
 ]

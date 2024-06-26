@@ -26,11 +26,11 @@ export default function tooltip(config) {
                 if (data.length) {
                     // distribution (boxplot, violin plot)
                     if (data[0].dataset.purpose === 'distribution') {
-                        return `${config.group} Distribution on ${data[0].label}`;
+                        return `${config.Group} Distribution on ${data[0].label}`;
                     }
                     // aggregate (discrete KRI distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
-                        return `${config.group} Summary on ${data[0].label}`;
+                        return `${config.Group} Summary on ${data[0].label}`;
                     }
                     // data point
                     else {
@@ -46,8 +46,8 @@ export default function tooltip(config) {
                             let title;
 
                             if (data.length === 1) {
-                                title = `${config.group} ${
-                                    d.dataset.data[d.dataIndex].groupid
+                                title = `${config.Group} ${
+                                    d.dataset.data[d.dataIndex].GroupID
                                 }`;
 
                                 if (d.raw.site !== undefined) {
@@ -56,11 +56,11 @@ export default function tooltip(config) {
                             } else {
                                 title =
                                     i === 0
-                                        ? `${config.group}s ${
+                                        ? `${config.Group}s ${
                                               d.dataset.data[d.dataIndex]
-                                                  .groupid
+                                                  .GroupID
                                           }`
-                                        : d.dataset.data[d.dataIndex].groupid;
+                                        : d.dataset.data[d.dataIndex].GroupID;
                             }
 
                             return title;
@@ -83,7 +83,7 @@ export default function tooltip(config) {
             const datum = data.dataset.data[data.dataIndex];
             const isAnnotation = data.dataset.purpose === 'annotation';
             const isObject = typeof datum === 'object';
-            const isSelected = config.selectedGroupIDs.includes(datum.groupid);
+            const isSelected = config.selectedGroupIDs.includes(datum.GroupID);
             const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.

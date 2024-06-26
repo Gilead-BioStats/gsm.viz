@@ -5,22 +5,22 @@ import colorScheme from '../../util/colorScheme.js';
 export default function rollupBounds(_bounds_, config) {
     if (_bounds_ !== null) {
         const boundUps = rollups(
-            _bounds_.sort((a, b) => a.threshold - b.threshold),
-            (group) => {
+            _bounds_.sort((a, b) => a.Threshold - b.Threshold),
+            (Group) => {
                 return {
                     type: 'line',
-                    data: group.map((d) => ({
-                        stratum: Math.abs(+d.threshold),
-                        threshold: d.threshold,
-                        x: +d.denominator,
-                        y: +d.numerator,
+                    data: Group.map((d) => ({
+                        stratum: Math.abs(+d.Threshold),
+                        Threshold: d.Threshold,
+                        x: +d.Denominator,
+                        y: +d.Numerator,
                     })),
                     borderWidth: 1,
                     hoverRadius: 0,
                     pointRadius: 0,
                 };
             },
-            (d) => d.threshold
+            (d) => d.Threshold
         );
 
         // Map thresholds to flags, e.g. -7 > -2, -5 > -1, 5 > 1, 7 > 2.
@@ -28,43 +28,43 @@ export default function rollupBounds(_bounds_, config) {
 
         // TODO: figure out how to hide trend line while maintaining consistent legend marks
         const bounds = boundUps.map((bound, i) => {
-            const group = bound[1];
-            group.threshold = +bound[0];
-            group.flag = flags.find(
-                (flag) => flag.threshold === group.threshold
+            const Group = bound[1];
+            Group.Threshold = +bound[0];
+            Group.Flag = flags.find(
+                (Flag) => Flag.Threshold === Group.Threshold
             );
-            const flag = group.flag.flag;
+            const Flag = Group.Flag.Flag;
 
-            group.label = colorScheme.find((color) =>
-                color.flag.includes(flag)
+            Group.label = colorScheme.find((color) =>
+                color.Flag.includes(Flag)
             ).description;
-            const color = colorScheme[Math.abs(flag)].color;
-            group.borderColor = color;
+            const color = colorScheme[Math.abs(Flag)].color;
+            Group.borderColor = color;
             const backgroundColor = d3color(color);
             backgroundColor.opacity = 0.75;
-            group.backgroundColor = backgroundColor + '';
+            Group.backgroundColor = backgroundColor + '';
 
-            group.borderDash = [2];
+            Group.borderDash = [2];
 
-            //group.hidden = config.displayTrendLine === false && group.threshold === 0;
+            //Group.hidden = config.displayTrendLine === false && Group.Threshold === 0;
 
-            if (config.displayTrendLine === false && group.threshold === 0) {
-                group.borderColor = 'rgba(0,0,0,0)';
+            if (config.displayTrendLine === false && Group.Threshold === 0) {
+                Group.borderColor = 'rgba(0,0,0,0)';
             }
 
-            return group;
+            return Group;
         });
-        //.filter(bound => !(config.displayTrendLine === false && bound.threshold === 0));
+        //.filter(bound => !(config.displayTrendLine === false && bound.Threshold === 0));
 
         // Remove labels to avoid displaying duplicate legend items.
         rollup(
             bounds,
-            (group) => {
-                group.forEach((d, i) => {
+            (Group) => {
+                Group.forEach((d, i) => {
                     if (i > 0) d.label = '';
                 });
             },
-            (d) => Math.abs(d.flag.flag)
+            (d) => Math.abs(d.Flag.Flag)
         );
 
         return bounds;

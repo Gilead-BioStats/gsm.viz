@@ -1,8 +1,6 @@
 const mergeParameters = function (defaultParameters, customParameters) {
     const dates = [
-        ...new Set(
-            customParameters.map((parameter) => parameter.gsm_analysis_date)
-        ),
+        ...new Set(customParameters.map((parameter) => parameter.SnapshotDate)),
     ];
 
     const parametersOverTime = dates
@@ -10,10 +8,10 @@ const mergeParameters = function (defaultParameters, customParameters) {
             const parameters = defaultParameters.map((defaultParameter) => {
                 const customParameter = customParameters.find(
                     (customParameter) =>
-                        customParameter.gsm_analysis_date === date &&
-                        customParameter.workflowid ===
-                            defaultParameter.workflowid &&
-                        customParameter.index === defaultParameter.index
+                        customParameter.SnapshotDate === date &&
+                        customParameter.MetricID ===
+                            defaultParameter.MetricID &&
+                        customParameter.Index === defaultParameter.Index
                 );
 
                 const parameter = {
@@ -21,14 +19,14 @@ const mergeParameters = function (defaultParameters, customParameters) {
                     ...customParameter,
                 };
 
-                parameter.gsm_analysis_date = date;
-                parameter.snapshot_date = date;
-                parameter.value =
+                parameter.SnapshotDate = date;
+                parameter.SnapshotDate = date;
+                parameter.Value =
                     customParameter !== undefined
-                        ? customParameter.value
-                        : defaultParameter.default;
-                delete parameter.default;
-                delete parameter.configurable;
+                        ? customParameter.Value
+                        : defaultParameter.Default;
+                delete parameter.Default;
+                delete parameter.Configurable;
 
                 return parameter;
             });

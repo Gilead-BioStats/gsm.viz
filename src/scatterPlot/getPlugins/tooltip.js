@@ -21,8 +21,8 @@ export default function tooltip(config) {
                         let title;
 
                         if (data.length === 1) {
-                            title = `${config.group} ${
-                                d.dataset.data[d.dataIndex].groupid
+                            title = `${config.Group} ${
+                                d.dataset.data[d.dataIndex].GroupID
                             }`;
 
                             if (d.raw.site !== undefined) {
@@ -31,10 +31,10 @@ export default function tooltip(config) {
                         } else {
                             title =
                                 i === 0
-                                    ? `${config.group}s ${
-                                          d.dataset.data[d.dataIndex].groupid
+                                    ? `${config.Group}s ${
+                                          d.dataset.data[d.dataIndex].GroupID
                                       }`
-                                    : d.dataset.data[d.dataIndex].groupid;
+                                    : d.dataset.data[d.dataIndex].GroupID;
                         }
 
                         return title;

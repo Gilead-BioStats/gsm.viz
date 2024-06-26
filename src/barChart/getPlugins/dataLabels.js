@@ -1,16 +1,16 @@
 export default function dataLabels(config) {
     return {
         align: (context) =>
-            (config.y === 'score' &&
+            (config.y === 'Score' &&
                 Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
-            (config.y === 'metric' &&
+            (config.y === 'Metric' &&
                 Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                 ? 'start'
                 : 'end',
         anchor: (context) =>
-            (config.y === 'score' &&
+            (config.y === 'Score' &&
                 Math.sign(context.dataset.data[context.dataIndex].y) === 1) ||
-            (config.y === 'metric' &&
+            (config.y === 'Metric' &&
                 Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                 ? 'start'
                 : 'end',

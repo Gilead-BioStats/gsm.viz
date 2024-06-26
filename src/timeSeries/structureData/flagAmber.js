@@ -2,7 +2,7 @@ import colorScheme from '../../util/colorScheme.js';
 
 export default function flagAmber(data, config, labels) {
     const pointData = data
-        .filter((d) => Math.abs(+d.flag) === 1)
+        .filter((d) => Math.abs(+d.Flag) === 1)
         .map((d) => {
             const datum = { ...d };
             datum.x = datum[config.x]; //labels
@@ -12,7 +12,7 @@ export default function flagAmber(data, config, labels) {
         });
 
     const color = colorScheme.find((color) =>
-        color.flag.some((flag) => Math.abs(flag) === 1)
+        color.Flag.some((Flag) => Math.abs(Flag) === 1)
     );
     color.rgba.opacity = 0.5;
 

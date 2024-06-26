@@ -7,15 +7,15 @@ export default function configure(_config_, _data_) {
     const defaults = {};
 
     // horizontal
-    defaults.x = 'denominator';
+    defaults.x = 'Denominator';
     defaults.xType = 'logarithmic';
 
     // vertical
-    defaults.y = 'numerator';
+    defaults.y = 'Numerator';
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};

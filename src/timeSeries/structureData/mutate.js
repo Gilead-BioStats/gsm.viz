@@ -14,11 +14,11 @@ export default function mutate(
             const datum = { ...d };
 
             if (_sites_ !== null) {
-                let site = _sites_.filter((site) => site.siteid === d.groupid);
+                let site = _sites_.filter((site) => site.SiteID === d.GroupID);
 
                 if (site.length > 1) {
                     site = site.find(
-                        (site) => site.snapshot_date === datum.snapshot_date
+                        (site) => site.SnapshotDate === datum.SnapshotDate
                     );
                 } else {
                     site = site[0];
@@ -32,14 +32,14 @@ export default function mutate(
             // Merge confidence intervals onto standard analysis output.
             if ([undefined, null].includes(_intervals_) === false) {
                 const intervals = _intervals_.filter(
-                    (interval) => interval.snapshot_date === datum.snapshot_date
+                    (interval) => interval.SnapshotDate === datum.SnapshotDate
                 );
                 datum.lowerCI = intervals.find(
-                    (interval) => interval.param === 'LowCI'
-                )?.value;
+                    (interval) => interval.Param === 'LowCI'
+                )?.Value;
                 datum.upperCI = intervals.find(
-                    (interval) => interval.param === 'UpCI'
-                )?.value;
+                    (interval) => interval.Param === 'UpCI'
+                )?.Value;
             }
 
             return datum;

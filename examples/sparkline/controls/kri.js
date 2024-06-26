@@ -5,19 +5,19 @@ const kri = function (datasets, setup = false, workflowID = null) {
 
     if (setup === true) {
         const workflowIDs = [
-            ...new Set(datasets[0].map((d) => d.workflowid)).values(),
+            ...new Set(datasets[0].map((d) => d.MetricID)).values(),
         ];
         const workflows = datasets[1].filter((workflow) =>
-            workflowIDs.includes(workflow.workflowid)
+            workflowIDs.includes(workflow.MetricID)
         );
 
         for (const workflowID of workflowIDs) {
             const option = document.createElement('option');
             const workflow = workflows.find(
-                (workflow) => workflow.workflowid === workflowID
+                (workflow) => workflow.MetricID === workflowID
             );
             option.value = workflowID;
-            option.innerHTML = workflow.metric;
+            option.innerHTML = workflow.Metric;
             kriDropdown.appendChild(option);
         }
 
@@ -25,10 +25,10 @@ const kri = function (datasets, setup = false, workflowID = null) {
 
         kriDropdown.addEventListener('change', (event) => {
             const results = datasets[0].filter(
-                (d) => d.workflowid === event.target.value
+                (d) => d.MetricID === event.target.value
             );
             const workflow = datasets[1].find(
-                (d) => d.workflowid === event.target.value
+                (d) => d.MetricID === event.target.value
             );
 
             const charts = getCharts();
@@ -42,8 +42,8 @@ const kri = function (datasets, setup = false, workflowID = null) {
                     chart,
                     results.filter(
                         (d) =>
-                            d.groupid ===
-                            chart.data.datasets[0].data[0]?.groupid
+                            d.GroupID ===
+                            chart.data.datasets[0].data[0]?.GroupID
                     ),
                     config
                 );
