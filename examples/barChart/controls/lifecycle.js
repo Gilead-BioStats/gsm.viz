@@ -24,7 +24,7 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
 
         // chart configuration
         const config = selectMetricID(datasets[1], metric());
-        config.y = yaxis();
+        config.y = yAxis();
         config.selectedGroupIDs = group();
 
         // Threshold annotations

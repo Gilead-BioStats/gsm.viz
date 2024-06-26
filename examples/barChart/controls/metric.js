@@ -19,7 +19,7 @@ const metric = function (config, datasets, setup = false) {
 
             // chart configuration
             const config = selectMetricID(datasets[1], event.target.value);
-            config.y = yaxis();
+            config.y = yAxis();
             config.selectedGroupIDs = group();
 
             // Threshold annotations

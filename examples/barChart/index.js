@@ -47,7 +47,7 @@ Promise.all(dataPromises)
         );
 
         // group metadata
-        const groups = datasets[4];
+        const groupMetadata = datasets[4];
 
         // visualization
         const instance = rbmViz.default.barChart(
@@ -55,13 +55,13 @@ Promise.all(dataPromises)
             results,
             config,
             parameters,
-            groups
+            groupMetadata
         );
 
         // controls
         metric(config, datasets, true);
         group(datasets, true);
-        yaxis(config, datasets, true);
+        yAxis(config, datasets, true);
         threshold(config, datasets, true);
         lifecycle(datasets, 'barChart', true);
         download(true);

@@ -1,39 +1,39 @@
-// Add event listener to yaxis dropdown.
-const yaxis = function (workflow, datasets, setup = false) {
-    const yAxisDropdown = document.getElementById('yaxis');
+// Add event listener to y-axis dropdown.
+const yAxis = function (config, datasets, setup = false) {
+    const yAxisDropdown = document.getElementById('yAxis');
 
     if (setup) {
-        yAxisDropdown.value = workflow.y;
+        yAxisDropdown.value = config.y;
         yAxisDropdown.addEventListener('change', (event) => {
             const instance = getChart();
-            const workflowID = metric();
+            const MetricID = metric();
 
             datasets = datasets.map((dataset) =>
                 dataset.filter((d) => /^kri/.test(d.MetricID))
             );
 
             // analysis results
-            const results = filterOnWorkflowID(datasets[0], workflowID);
+            const results = filterOnMetricID(datasets[0], MetricID);
 
             // chart configuration
-            const workflow = selectWorkflowID(datasets[1], workflowID);
-            workflow.y = event.target.value;
-            workflow.selectedGroupIDs = group();
+            const config = selectMetricID(datasets[1], MetricID);
+            config.y = event.target.value;
+            config.selectedGroupIDs = group();
 
             // Threshold annotations
             const parameters =
-                workflow.y === 'Score' &&
+                config.y === 'Score' &&
                 document.getElementById('Threshold').checked
                     ? mergeParameters(
-                          filterOnWorkflowID(datasets[2], workflowID),
-                          filterOnWorkflowID(datasets[3], workflowID)
+                          filterOnMetricID(datasets[2], MetricID),
+                          filterOnMetricID(datasets[3], MetricID)
                       )
                     : null;
 
             instance.helpers.updateData(
                 instance,
                 results,
-                workflow,
+                config,
                 parameters
             );
         });
