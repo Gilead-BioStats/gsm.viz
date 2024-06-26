@@ -22,7 +22,9 @@ describe('sites schema', () => {
     test('properties of sites schema items match properties of sites items', () => {
         const site = sites[Math.floor(sites.length * Math.random())];
         const propsSchema = Object.keys(schema.items.properties).sort();
-        const propsResult = Object.keys(site).sort().filter(prop => propsSchema.includes(prop));
+        const propsResult = Object.keys(site)
+            .sort()
+            .filter((prop) => propsSchema.includes(prop));
 
         expect(propsResult).toEqual(propsSchema);
     });

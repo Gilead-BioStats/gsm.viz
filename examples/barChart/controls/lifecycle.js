@@ -29,8 +29,7 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
 
         // Threshold annotations
         const parameters =
-            config.y === 'Score' &&
-            document.getElementById('Threshold').checked
+            config.y === 'Score' && document.getElementById('Threshold').checked
                 ? mergeParameters(
                       filterOnMetricID(datasets[2], metric()),
                       filterOnMetricID(datasets[3], metric())

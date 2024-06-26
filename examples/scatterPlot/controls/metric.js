@@ -3,7 +3,9 @@ const metric = function (MetricID, datasets, setup = false) {
     const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
-        const metrics = [...new Set(datasets[0].map((d) => d.MetricID)).values()];
+        const metrics = [
+            ...new Set(datasets[0].map((d) => d.MetricID)).values(),
+        ];
 
         for (const i in metrics) {
             const option = document.createElement('option');

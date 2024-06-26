@@ -30,12 +30,7 @@ const yAxis = function (config, datasets, setup = false) {
                       )
                     : null;
 
-            instance.helpers.updateData(
-                instance,
-                results,
-                config,
-                parameters
-            );
+            instance.helpers.updateData(instance, results, config, parameters);
         });
     }
 

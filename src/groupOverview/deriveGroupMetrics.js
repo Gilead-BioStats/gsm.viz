@@ -1,10 +1,7 @@
 export default function deriveGroupMetrics(groups, results) {
     const missingGroups = results
         .map((result) => result.GroupID)
-        .filter(
-            (GroupID) =>
-                !groups.find((group) => group.GroupID === GroupID)
-        )
+        .filter((GroupID) => !groups.find((group) => group.GroupID === GroupID))
         .map((GroupID) => ({ GroupID }));
 
     const allGroups = groups.concat(missingGroups);

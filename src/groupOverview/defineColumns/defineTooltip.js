@@ -5,7 +5,7 @@ export default function defineTooltip(column, content, metrics = null) {
         // Define tooltip content for group columns.
         case 'group':
             tooltipKeys = {
-                status: 'Status',
+                Status: 'Status',
             };
 
             break;
