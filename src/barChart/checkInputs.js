@@ -1,6 +1,11 @@
 import checkInput from '../data/checkInput.js';
 
-export default function checkInputs(_data_, _config_, _thresholds_) {
+export default function checkInputs(
+    _data_,
+    _config_,
+    _thresholds_,
+    _sites_ = null
+) {
     checkInput({
         parameter: '_data_',
         argument: _data_,
@@ -21,4 +26,13 @@ export default function checkInputs(_data_, _config_, _thresholds_) {
         schemaName: 'analysisParameters',
         module: 'barChart',
     });
+
+    if (_sites_ !== null) {
+        checkInput({
+            parameter: '_sites_',
+            argument: _sites_,
+            schemaName: 'siteMetadata',
+            module: 'scatterPlot',
+        });
+    }
 }

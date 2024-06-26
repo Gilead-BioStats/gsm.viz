@@ -1,0 +1,53 @@
+{
+    "title": "Group Metadata",
+    "description": "JSON schema of group metadata",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "StudyID": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "GroupID": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "GroupLabel": {
+                "title": "Group Label",
+                "description": "Label of group",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "EnrolledParticipants": {
+                "title": "Enrolled Participants",
+                "description": "Number of participants enrolled at group",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Status": {
+                "title": "Group Status",
+                "description": "Status of group",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "SnapshotDate": {
+                "title": "Analysis Date",
+                "description": "Date of analysis",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}

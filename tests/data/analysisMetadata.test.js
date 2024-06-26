@@ -3,7 +3,7 @@ import schema from '../../src/data/schema/analysisMetadata.json';
 import checkInput from '../../src/data/checkInput';
 
 describe('analysis metadata schema', () => {
-    test('analysis metatadata schema type matches data type of analysis metadata', () => {
+    test('analysis metadata schema type matches data type of analysis metadata', () => {
         for (const analysisMetadatum of analysisMetadata) {
             expect(typeof analysisMetadatum).toBe(schema.type);
         }

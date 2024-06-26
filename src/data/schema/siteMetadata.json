@@ -1,0 +1,116 @@
+{
+    "title": "Site Metadata",
+    "description": "JSON schema of site metadata",
+    "version": "0.14.0",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "StudyID": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "SiteID": {
+                "title": "Site ID",
+                "description": "Unique site identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "site_num": {
+                "title": "Site Number",
+                "description": "Site ID",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "pi_number": {
+                "title": "Investigator Number",
+                "description": "Investigator ID",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "pi_first_name": {
+                "title": "Investigator First Name",
+                "description": "First name of investigator",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "pi_last_name": {
+                "title": "Investigator Last Name",
+                "description": "Last name of investigator",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "is_satellite": {
+                "title": "Satellite Site?",
+                "description": "Is site a satellite site?",
+                "type": "boolean",
+                "required": false,
+                "key": false
+            },
+            "status": {
+                "title": "Site Status",
+                "description": "Status of site",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "enrolled_participants": {
+                "title": "Enrolled Participants",
+                "description": "Number of participants enrolled at site",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "institution": {
+                "title": "Site Name",
+                "description": "Name of site",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "start_date": {
+                "title": "Site Activation Date",
+                "description": "Date site was activated",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "city": {
+                "title": "City",
+                "description": "City in which site is located",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "state": {
+                "title": "State",
+                "description": "State in which site is located",
+                "type": "string",
+                "required": false,
+                "key": false
+            },
+            "country": {
+                "title": "Country",
+                "description": "Country in which site is located",
+                "type": "string",
+                "required": true,
+                "key": false
+            },
+            "SnapshotDate": {
+                "title": "Analysis Date",
+                "description": "Date of analysis",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}

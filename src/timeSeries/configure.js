@@ -13,7 +13,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
 
     if (defaults.dataType === 'discrete')
         defaults.discreteUnit = Object.keys(_data_[0]).includes('GroupID')
-            ? 'KRI'
+            ? 'Metric'
             : 'Site';
     else defaults.discreteUnit = null;
 

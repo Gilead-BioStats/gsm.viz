@@ -93,12 +93,12 @@ export default function structureData(
         }
     } else if (config.dataType === 'discrete') {
         const color =
-            config.yLabel === 'Red or Amber KRIs'
+            config.yLabel === 'Red or Amber Metrics'
                 ? colorScheme.amberRed.color
-                : config.yLabel === 'Red KRIs'
+                : config.yLabel === 'Red Metrics'
                 ? colorScheme.find((color) => /red/i.test(color.description))
                       .color
-                : config.yLabel === 'Amber KRIs'
+                : config.yLabel === 'Amber Metrics'
                 ? colorScheme.find((color) => /amber/i.test(color.description))
                       .color
                 : '#1890FF';
@@ -130,7 +130,7 @@ export default function structureData(
             {
                 type: 'scatter',
                 label:
-                    config.discreteUnit === 'KRI'
+                    config.discreteUnit === 'Metric'
                         ? `${config.aggregateLabel} Average`
                         : '',
                 pointStyle: 'line',

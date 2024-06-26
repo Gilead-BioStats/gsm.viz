@@ -1,6 +1,6 @@
 {
-    "title": "KRI Analysis Parameters",
-    "description": "JSON schema of input KRI analysis parameters to barChart and timeSeries modules",
+    "title": "Metric Analysis Parameters",
+    "description": "JSON schema of input Metric analysis parameters to barChart and timeSeries modules",
     "version": "0.14.0",
     "type": "array",
     "items": {

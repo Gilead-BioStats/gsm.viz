@@ -27,12 +27,12 @@ export default function formatResultTooltipContent(config, data) {
                       )}`,
                   ]
                 : [
-                      `KRI Score: ${
+                      `Metric Score: ${
                           falsy.includes(datum.Score)
                               ? '—'
                               : format('.1f')(datum.Score)
                       } (${config.Score})`,
-                      `KRI Value: ${
+                      `Metric Value: ${
                           falsy.includes(datum.Metric)
                               ? '—'
                               : format('.3f')(datum.Metric)
@@ -66,7 +66,7 @@ export default function formatResultTooltipContent(config, data) {
                       }`,
                   ]
                 : data.dataset.purpose === 'aggregate' &&
-                  config.discreteUnit === 'KRI'
+                  config.discreteUnit === 'Metric'
                 ? [
                       `${format('.1f')(datum.y)} Average ${config.yLabel}`,
                       ...datum.counts.map(

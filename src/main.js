@@ -14,6 +14,7 @@ import scatterPlot from './scatterPlot.js';
 import sparkline from './sparkline.js';
 import timeSeries from './timeSeries.js';
 import siteOverview from './siteOverview.js';
+import groupOverview from './groupOverview.js';
 
 Chart.register(
     annotationPlugin,
@@ -46,6 +47,7 @@ const rbmViz = {
         chartType: 'bar',
         dataType: 'continuous',
     }),
+
     // scatter plot
     scatterPlot: scatterPlot.bind({
         x: 'Denominator',
@@ -53,6 +55,7 @@ const rbmViz = {
         chartType: 'scatter',
         dataType: 'discrete',
     }),
+
     // sparkline
     sparkline: sparkline.bind({
         x: 'SnapshotDate',
@@ -78,6 +81,7 @@ const rbmViz = {
         chartType: 'line',
         dataType: 'discrete',
     }),
+
     // time series
     timeSeries: timeSeries.bind({
         x: 'SnapshotDate',
@@ -103,8 +107,12 @@ const rbmViz = {
         chartType: 'identity',
         dataType: 'continuous',
     }),
+
     // site overview
     siteOverview,
+
+    // group overview
+    groupOverview,
 };
 
 export default rbmViz;

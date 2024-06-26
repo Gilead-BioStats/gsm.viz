@@ -30,29 +30,29 @@
                 "alternate": "GroupID"
             },
             "n": {
-                "title": "# of Groups/KRIs",
-                "description": "Total number of assessed groups/KRIs",
+                "title": "# of Groups/Metrics",
+                "description": "Total number of assessed groups/Metrics",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "n_at_risk": {
-                "title": "# of Amber Groups/KRIs",
-                "description": "Number of amber groups/KRIs",
+                "title": "# of Amber Groups/Metrics",
+                "description": "Number of amber groups/Metrics",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "n_flagged": {
-                "title": "# of Red Groups/KRIs",
-                "description": "Number of red groups/KRIs",
+                "title": "# of Red Groups/Metrics",
+                "description": "Number of red groups/Metrics",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "n_at_risk_or_flagged": {
-                "title": "# of Amber of Red Groups/KRIs",
-                "description": "Number of amber or red groups/KRIs",
+                "title": "# of Amber of Red Groups/Metrics",
+                "description": "Number of amber or red groups/Metrics",
                 "type": "number",
                 "required": true,
                 "key": false

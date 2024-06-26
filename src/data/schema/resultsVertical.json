@@ -1,5 +1,5 @@
 {
-    "title": "Additional KRI Analysis Output",
+    "title": "Additional Metric Analysis Output",
     "description": "JSON schema of ancillary input data to timeSeries module",
     "version": "0.14.0",
     "type": "array",

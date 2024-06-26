@@ -19,22 +19,22 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 2. click event updates to destroy
     // 3. button text changes to KILL
     const create = () => {
-        const workflow = datasets[1].find((d) => d.MetricID === kri());
+        const config = datasets[1].find((d) => d.MetricID === metric());
 
         const results = datasets[0].filter(
-            (d) => d.MetricID === workflow.MetricID
+            (d) => d.MetricID === config.MetricID
         );
 
         const bounds = datasets[2].filter(
-            (d) => d.MetricID === workflow.MetricID
+            (d) => d.MetricID === config.MetricID
         );
-        workflow.xType = xAxisType();
-        workflow.selectedGroupIDs = [site()];
+        config.xType = xAxisType();
+        config.selectedGroupIDs = [group()];
 
         instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
-            workflow,
+            config,
             bounds
         );
 
