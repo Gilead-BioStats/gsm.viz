@@ -5,19 +5,19 @@ import sortByFlags from './structureData/sortByFlags';
 export default function structureData(results, columns, sites) {
     const lookup = group(
         results,
-        (d) => d.groupid,
-        (d) => d.workflowid
+        (d) => d.GroupID,
+        (d) => d.MetricID
     );
 
     const rowData = Array.from(lookup, ([key, value]) => {
-        const site = sites.find((site) => site.siteid === key);
+        const site = sites.find((site) => site.SiteID === key);
 
         const rowDatum = columns.map((column) => {
             const datum = {
                 ...(column.getDatum(key) || {}),
                 column: column,
                 site: site,
-                siteid: key,
+                SiteID: key,
             };
 
             // TODO: get rid of value or text

@@ -9,7 +9,7 @@ export default function defineTooltip(column, content, workflows = null) {
 
                 pi_last_name: 'Last Name',
                 pi_first_name: 'First Name',
-                siteid: 'Investigator ID',
+                SiteID: 'Investigator ID',
 
                 institution: 'Site',
                 site_num: 'Site ID',
@@ -25,10 +25,10 @@ export default function defineTooltip(column, content, workflows = null) {
         // Define tooltip content for KRI columns.
         case 'kri':
             tooltipKeys = {
-                score: column.meta.score,
-                metric: column.meta.metric,
-                numerator: column.meta.numerator,
-                denominator: column.meta.denominator,
+                score: column.meta.Score,
+                metric: column.meta.Metric,
+                numerator: column.meta.Numerator,
+                denominator: column.meta.Denominator,
             };
 
             break;

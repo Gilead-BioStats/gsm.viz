@@ -11,17 +11,17 @@ export default function addClickEvents(bodyRows, cells, config) {
     // add click event to KRI cells
     cells.filter('.kri').on('click', function (event, d) {
         config.metricClickCallback({
-            groupLevel: config.groupLevel,
-            groupid: d.groupid,
-            metricid: d.workflowid,
+            GroupLevel: config.groupLevel,
+            GroupID: d.GroupID,
+            MetricID: d.MetricID,
         });
     });
 
     // add click event to group cells
     cells.filter('.site').on('click', function (event, d) {
         config.groupClickCallback({
-            groupLevel: config.groupLevel,
-            groupid: d.siteid,
+            GroupLevel: config.groupLevel,
+            GroupID: d.SiteID,
         });
     });
 }

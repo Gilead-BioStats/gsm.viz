@@ -12,7 +12,7 @@ export default function addFlagIcons(rows) {
     const kriCells = rows.selectAll('td.kri').text('');
 
     kriCells.each(function (d) {
-        const flag = parseInt(d.flag);
+        const flag = parseInt(d.Flag);
         const absFlag = Math.abs(flag);
 
         switch (absFlag) {

@@ -23187,20 +23187,20 @@ var rbmViz = (() => {
 
   // src/siteOverview/deriveSiteMetrics.js
   function deriveSiteMetrics(sites, results) {
-    const missingSites = results.map((result) => result.groupid).filter((siteid) => !sites.find((site) => site.siteid === siteid)).map((siteid) => ({ siteid }));
+    const missingSites = results.map((result) => result.GroupID).filter((GroupID) => !sites.find((site) => site.SiteID === GroupID)).map((SiteID) => ({ SiteID }));
     const allSites = sites.concat(missingSites);
     allSites.forEach((site) => {
       const siteResults = results.filter(
-        (result) => result.groupid === site.siteid
+        (result) => result.GroupID === site.SiteID
       );
       site.nRedFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 2
+        (result) => Math.abs(parseInt(result.Flag)) === 2
       ).length;
       site.nAmberFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 1
+        (result) => Math.abs(parseInt(result.Flag)) === 1
       ).length;
       site.nGreenFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 0
+        (result) => Math.abs(parseInt(result.Flag)) === 0
       ).length;
     });
     return allSites;
@@ -23248,7 +23248,7 @@ var rbmViz = (() => {
       {
         label: "Investigator",
         data: sites,
-        filterKey: "siteid",
+        filterKey: "SiteID",
         valueKey: "pi_last_name",
         headerTooltip: null,
         sort: sortString,
@@ -23259,8 +23259,8 @@ var rbmViz = (() => {
       {
         label: "ID",
         data: sites,
-        filterKey: "siteid",
-        valueKey: "siteid",
+        filterKey: "SiteID",
+        valueKey: "SiteID",
         headerTooltip: null,
         sort: sortString,
         tooltip: true,
@@ -23270,7 +23270,7 @@ var rbmViz = (() => {
       {
         label: "Enrolled",
         data: sites,
-        filterKey: "siteid",
+        filterKey: "SiteID",
         valueKey: "enrolled_participants",
         headerTooltip: null,
         sort: sortNumber,
@@ -23281,7 +23281,7 @@ var rbmViz = (() => {
       {
         label: "Red Flags",
         data: sites,
-        filterKey: "siteid",
+        filterKey: "SiteID",
         valueKey: "nRedFlags",
         headerTooltip: null,
         sort: sortNumber,
@@ -23292,7 +23292,7 @@ var rbmViz = (() => {
       {
         label: "Amber Flags",
         data: sites,
-        filterKey: "siteid",
+        filterKey: "SiteID",
         valueKey: "nAmberFlags",
         headerTooltip: null,
         sort: sortNumber,
@@ -23308,11 +23308,11 @@ var rbmViz = (() => {
   function defineWorkflowColumns(workflows, results) {
     const workflowColumns = workflows.map((workflow) => {
       const column = {
-        label: workflow.abbreviation,
-        data: results.filter((d2) => d2.workflowid === workflow.workflowid),
-        filterKey: "groupid",
+        label: workflow.Abbreviation,
+        data: results.filter((d2) => d2.MetricID === workflow.MetricID),
+        filterKey: "GroupID",
         valueKey: "score",
-        headerTooltip: workflow.metric,
+        headerTooltip: workflow.Metric,
         sort: sortNumber,
         tooltip: true,
         type: "kri",
@@ -23333,7 +23333,7 @@ var rbmViz = (() => {
           status: "Status",
           pi_last_name: "Last Name",
           pi_first_name: "First Name",
-          siteid: "Investigator ID",
+          SiteID: "Investigator ID",
           institution: "Site",
           site_num: "Site ID",
           city: "City",
@@ -23345,10 +23345,10 @@ var rbmViz = (() => {
         break;
       case "kri":
         tooltipKeys = {
-          score: column.meta.score,
-          metric: column.meta.metric,
-          numerator: column.meta.numerator,
-          denominator: column.meta.denominator
+          score: column.meta.Score,
+          metric: column.meta.Metric,
+          numerator: column.meta.Numerator,
+          denominator: column.meta.Denominator
         };
         break;
       default:
@@ -23404,17 +23404,17 @@ var rbmViz = (() => {
   function structureData5(results, columns, sites) {
     const lookup = group(
       results,
-      (d2) => d2.groupid,
-      (d2) => d2.workflowid
+      (d2) => d2.GroupID,
+      (d2) => d2.MetricID
     );
     const rowData = Array.from(lookup, ([key, value]) => {
-      const site = sites.find((site2) => site2.siteid === key);
+      const site = sites.find((site2) => site2.SiteID === key);
       const rowDatum = columns.map((column) => {
         const datum2 = {
           ...column.getDatum(key) || {},
           column,
           site,
-          siteid: key
+          SiteID: key
         };
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
@@ -23453,7 +23453,7 @@ var rbmViz = (() => {
       (d2) => d2,
       // Define a unique key for each cell.
       (d2) => {
-        const id2 = d2.column.type === "kri" ? `${d2.siteid}-${d2.column.meta.workflowid}` : `${d2.siteid}-${d2.column.valueKey}`;
+        const id2 = d2.column.type === "kri" ? `${d2.SiteID}-${d2.column.meta.MetricID}` : `${d2.SiteID}-${d2.column.valueKey}`;
         return id2;
       }
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
@@ -23483,18 +23483,18 @@ var rbmViz = (() => {
   function addTrafficLighting(rows) {
     const kriCells = rows.selectAll("td.kri");
     kriCells.style("background-color", function(d2, i) {
-      switch (Math.abs(parseInt(d2.flag))) {
+      switch (Math.abs(parseInt(d2.Flag))) {
         case 0:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(0)
+            (color3) => color3.Flag.includes(0)
           ).color;
         case 1:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(1)
+            (color3) => color3.Flag.includes(1)
           ).color;
         case 2:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(2)
+            (color3) => color3.Flag.includes(2)
           ).color;
         default:
           return "#eee";
@@ -23529,7 +23529,7 @@ var rbmViz = (() => {
   function addFlagIcons(rows) {
     const kriCells = rows.selectAll("td.kri").text("");
     kriCells.each(function(d2) {
-      const flag = parseInt(d2.flag);
+      const flag = parseInt(d2.Flag);
       const absFlag = Math.abs(flag);
       switch (absFlag) {
         case 0:
@@ -23560,15 +23560,15 @@ var rbmViz = (() => {
   function addClickEvents(bodyRows, cells, config) {
     cells.filter(".kri").on("click", function(event, d2) {
       config.metricClickCallback({
-        groupLevel: config.groupLevel,
-        groupid: d2.groupid,
-        metricid: d2.workflowid
+        GroupLevel: config.groupLevel,
+        GroupID: d2.GroupID,
+        MetricID: d2.MetricID
       });
     });
     cells.filter(".site").on("click", function(event, d2) {
       config.groupClickCallback({
-        groupLevel: config.groupLevel,
-        groupid: d2.siteid
+        GroupLevel: config.groupLevel,
+        GroupID: d2.SiteID
       });
     });
   }
@@ -23623,7 +23623,6 @@ var rbmViz = (() => {
     checkInputs5(_results_, _config_, _sites_, _workflows_);
     const config = configure7(_config_);
     const sites = deriveSiteMetrics(_sites_, _results_);
-    console.log(sites);
     const columns = defineColumns(sites, _workflows_, _results_);
     const rows = structureData5(_results_, columns, sites);
     const table = makeTable(_element_, rows, columns, config);

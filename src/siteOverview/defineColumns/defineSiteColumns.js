@@ -6,7 +6,7 @@ export default function defineSiteColumns(sites) {
         {
             label: 'Investigator',
             data: sites,
-            filterKey: 'siteid',
+            filterKey: 'SiteID',
             valueKey: 'pi_last_name',
 
             headerTooltip: null,
@@ -18,8 +18,8 @@ export default function defineSiteColumns(sites) {
         {
             label: 'ID',
             data: sites,
-            filterKey: 'siteid',
-            valueKey: 'siteid',
+            filterKey: 'SiteID',
+            valueKey: 'SiteID',
 
             headerTooltip: null,
             sort: sortString,
@@ -30,7 +30,7 @@ export default function defineSiteColumns(sites) {
         {
             label: 'Enrolled',
             data: sites,
-            filterKey: 'siteid',
+            filterKey: 'SiteID',
             valueKey: 'enrolled_participants',
 
             headerTooltip: null,
@@ -42,7 +42,7 @@ export default function defineSiteColumns(sites) {
         {
             label: 'Red Flags',
             data: sites,
-            filterKey: 'siteid',
+            filterKey: 'SiteID',
             valueKey: 'nRedFlags',
 
             headerTooltip: null,
@@ -54,7 +54,7 @@ export default function defineSiteColumns(sites) {
         {
             label: 'Amber Flags',
             data: sites,
-            filterKey: 'siteid',
+            filterKey: 'SiteID',
             valueKey: 'nAmberFlags',
 
             headerTooltip: null,
