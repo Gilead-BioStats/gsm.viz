@@ -2,8 +2,8 @@ export default function defineTooltip(column, content, workflows = null) {
     let tooltipKeys = {};
 
     switch (column.type) {
-        // Define tooltip content for country columns.
-        case 'country':
+        // Define tooltip content for group columns.
+        case 'group':
             tooltipKeys = {
                 status: 'Status',
             };
@@ -12,15 +12,14 @@ export default function defineTooltip(column, content, workflows = null) {
         // Define tooltip content for KRI columns.
         case 'kri':
             tooltipKeys = {
-                score: column.meta.score,
-                metric: column.meta.metric,
-                numerator: column.meta.numerator,
-                denominator: column.meta.denominator,
+                Score: column.meta.Score,
+                Metric: column.meta.Metric,
+                Numerator: column.meta.Numerator,
+                Denominator: column.meta.Denominator,
             };
 
             break;
         default:
-            console.log(content);
             tooltipKeys = Object.entries(content);
 
             break;

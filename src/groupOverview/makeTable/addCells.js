@@ -14,8 +14,8 @@ export default function addCells(bodyRows) {
             (d) => {
                 const id =
                     d.column.type === 'kri'
-                        ? `${d.groupid}-${d.column.meta.workflowid}`
-                        : `${d.groupid}-${d.column.valueKey}`;
+                        ? `${d.GroupID}-${d.column.meta.MetricID}`
+                        : `${d.GroupID}-${d.column.valueKey}`;
 
                 return id;
             }

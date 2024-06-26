@@ -1,25 +1,25 @@
-import defineCountryColumns from './defineColumns/defineCountryColumns.js';
+import defineGroupColumns from './defineColumns/defineGroupColumns.js';
 import defineWorkflowColumns from './defineColumns/defineWorkflowColumns.js';
 import defineTooltip from './defineColumns/defineTooltip.js';
 
 /**
- * Define column metadata for country overview table. Column metadata includes the following properties:
+ * Define column metadata for group overview table. Column metadata includes the following properties:
  * - column label (label)
  * - column data (data)
  * - column key (valueKey)
  * - column sort (sort)
  * - column sort state (sortState)
  *
- * @param {Array} countries - country metadata
+ * @param {Array} groups - group metadata
  * @param {Array} workflows - workflow metadata
  * @param {Array} results - workflow results
  *
  * @returns {Array} columns
  */
-export default function defineColumns(countries, workflows, results) {
-    const countryColumns = defineCountryColumns(countries);
+export default function defineColumns(groups, workflows, results) {
+    const groupColumns = defineGroupColumns(groups);
     const workflowColumns = defineWorkflowColumns(workflows, results);
-    const columns = [...countryColumns, ...workflowColumns];
+    const columns = [...groupColumns, ...workflowColumns];
 
     columns.forEach((column, i) => {
         column.getDatum = (key) =>

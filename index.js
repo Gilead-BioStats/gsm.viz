@@ -20251,51 +20251,51 @@ var rbmViz = (() => {
     }
   };
 
-  // src/data/schema/countries.json
-  var countries_default = {
-    title: "Country Metadata",
-    description: "JSON schema of country metadta",
+  // src/data/schema/groupMetadata.json
+  var groupMetadata_default = {
+    title: "Group Metadata",
+    description: "JSON schema of group metadata",
     version: "0.14.0",
     type: "array",
     items: {
       type: "object",
       properties: {
-        studyid: {
+        StudyID: {
           title: "Study ID",
           description: "Unique study identifier",
           type: "string",
           required: false,
           key: true
         },
-        groupid: {
+        GroupID: {
           title: "Group ID",
           description: "Unique group identifier",
           type: "string",
           required: true,
           key: true
         },
-        group_label: {
+        GroupLabel: {
           title: "Group Label",
           description: "Label of group",
           type: "string",
           required: true,
           key: false
         },
-        enrolled_participants: {
+        EnrolledParticipants: {
           title: "Enrolled Participants",
           description: "Number of participants enrolled at group",
           type: "number",
           required: true,
           key: false
         },
-        status: {
+        Status: {
           title: "Group Status",
           description: "Status of group",
           type: "string",
           required: true,
           key: false
         },
-        gsm_analysis_date: {
+        SnapshotDate: {
           title: "Analysis Date",
           description: "Date of analysis",
           type: "string",
@@ -20687,7 +20687,7 @@ var rbmViz = (() => {
   var schema = {
     analysisMetadata: analysisMetadata_default,
     analysisParameters: analysisParameters_default,
-    countries: countries_default,
+    groupMetadata: groupMetadata_default,
     flagCounts: flagCounts_default,
     results: results_default,
     resultsPredicted: resultsPredicted_default,
@@ -23345,10 +23345,10 @@ var rbmViz = (() => {
         break;
       case "kri":
         tooltipKeys = {
-          score: column.meta.Score,
-          metric: column.meta.Metric,
-          numerator: column.meta.Numerator,
-          denominator: column.meta.Denominator
+          Score: column.meta.Score,
+          Metric: column.meta.Metric,
+          Numerator: column.meta.Numerator,
+          Denominator: column.meta.Denominator
         };
         break;
       default:
@@ -23640,7 +23640,7 @@ var rbmViz = (() => {
     return table;
   }
 
-  // src/countryOverview/checkInputs.js
+  // src/groupOverview/checkInputs.js
   function checkInputs6(_results_, _config_, _countries_, _workflows_) {
     checkInput({
       parameter: "_results_",
@@ -23651,15 +23651,15 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_countries_",
       argument: _countries_,
-      schemaName: "countries",
+      schemaName: "groupMetadata",
       module: "countryOverview"
     });
   }
 
-  // src/countryOverview/configure.js
+  // src/groupOverview/configure.js
   function configure8(_config_, _data_) {
     const defaults3 = {};
-    defaults3.groupLevel = "country";
+    defaults3.GroupLevel = "country";
     defaults3.groupClickCallback = (datum2) => {
       console.log(datum2);
     };
@@ -23670,30 +23670,31 @@ var rbmViz = (() => {
     return config;
   }
 
-  // src/countryOverview/deriveCountryMetrics.js
-  function deriveCountryMetrics(countries, results) {
-    const missingCountries = results.map((result) => result.groupid).filter(
-      (groupid) => !countries.find((country) => country.groupid === groupid)
-    ).map((groupid) => ({ groupid }));
-    const allCountries = countries.concat(missingCountries);
-    allCountries.forEach((country) => {
-      const countryResults = results.filter(
-        (result) => result.groupid === country.groupid
+  // src/groupOverview/deriveGroupMetrics.js
+  function deriveGroupMetrics(groups2, results) {
+    const missingGroups = results.map((result) => result.GroupID).filter(
+      (GroupID) => !groups2.find((group2) => group2.GroupID === GroupID)
+    ).map((GroupID) => ({ GroupID }));
+    const allGroups = groups2.concat(missingGroups);
+    allGroups.forEach((group2) => {
+      const groupResults = results.filter(
+        (result) => result.GroupID === group2.GroupID
       );
-      country.nRedFlags = countryResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 2
+      group2.nRedFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 2
       ).length;
-      country.nAmberFlags = countryResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 1
+      group2.nAmberFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 1
       ).length;
-      country.nGreenFlags = countryResults.filter(
-        (result) => Math.abs(parseInt(result.flag)) === 0
+      group2.nGreenFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 0
       ).length;
     });
-    return allCountries;
+    console.log(allGroups);
+    return allGroups;
   }
 
-  // src/countryOverview/defineColumns/sortString.js
+  // src/groupOverview/defineColumns/sortString.js
   function sortString2(bodyRows, column) {
     const sortAscending = column.sortState < 1;
     bodyRows.sort((a, b) => {
@@ -23711,7 +23712,7 @@ var rbmViz = (() => {
     column.sortState = sortAscending ? 1 : -1;
   }
 
-  // src/countryOverview/defineColumns/sortNumber.js
+  // src/groupOverview/defineColumns/sortNumber.js
   function sortNumber2(bodyRows, column) {
     const sortAscending = column.sortState < 1;
     bodyRows.sort((a, b) => {
@@ -23729,77 +23730,77 @@ var rbmViz = (() => {
     column.sortState = sortAscending ? 1 : -1;
   }
 
-  // src/countryOverview/defineColumns/defineCountryColumns.js
-  function defineCountryColumns(countries) {
+  // src/groupOverview/defineColumns/defineGroupColumns.js
+  function defineGroupColumns(groups2) {
     const columns = [
       {
-        label: "Country",
-        data: countries,
-        filterKey: "groupid",
-        valueKey: "group_label",
+        label: "Group",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "GroupLabel",
         headerTooltip: null,
         sort: sortString2,
         tooltip: true,
-        type: "country",
+        type: "group",
         dataType: "string"
       },
       {
         label: "ID",
-        data: countries,
-        filterKey: "groupid",
-        valueKey: "groupid",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "GroupID",
         headerTooltip: null,
         sort: sortString2,
         tooltip: true,
-        type: "country",
+        type: "group",
         dataType: "string"
       },
       {
         label: "Enrolled",
-        data: countries,
-        filterKey: "groupid",
-        valueKey: "enrolled_participants",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "EnrolledParticipants",
         headerTooltip: null,
         sort: sortNumber2,
         tooltip: false,
-        type: "country",
+        type: "group",
         dataType: "number"
       },
       {
         label: "Red Flags",
-        data: countries,
-        filterKey: "groupid",
+        data: groups2,
+        filterKey: "GroupID",
         valueKey: "nRedFlags",
         headerTooltip: null,
         sort: sortNumber2,
         tooltip: false,
-        type: "country",
+        type: "group",
         dataType: "number"
       },
       {
         label: "Amber Flags",
-        data: countries,
-        filterKey: "groupid",
+        data: groups2,
+        filterKey: "GroupID",
         valueKey: "nAmberFlags",
         headerTooltip: null,
         sort: sortNumber2,
         tooltip: false,
-        type: "country",
+        type: "group",
         dataType: "number"
       }
     ];
     return columns;
   }
 
-  // src/countryOverview/defineColumns/defineWorkflowColumns.js
+  // src/groupOverview/defineColumns/defineWorkflowColumns.js
   function defineWorkflowColumns2(workflows, results) {
     const workflowColumns = workflows.map((workflow) => {
       const column = {
-        label: workflow.abbreviation,
-        data: results.filter((d2) => d2.workflowid === workflow.workflowid),
-        filterKey: "groupid",
-        valueKey: "score",
-        headerTooltip: workflow.metric,
+        label: workflow.Abbreviation,
+        data: results.filter((d2) => d2.MetricID === workflow.MetricID),
+        filterKey: "GroupID",
+        valueKey: "Score",
+        headerTooltip: workflow.Metric,
         sort: sortNumber2,
         tooltip: true,
         type: "kri",
@@ -23811,25 +23812,24 @@ var rbmViz = (() => {
     return workflowColumns;
   }
 
-  // src/countryOverview/defineColumns/defineTooltip.js
+  // src/groupOverview/defineColumns/defineTooltip.js
   function defineTooltip2(column, content, workflows = null) {
     let tooltipKeys = {};
     switch (column.type) {
-      case "country":
+      case "group":
         tooltipKeys = {
           status: "Status"
         };
         break;
       case "kri":
         tooltipKeys = {
-          score: column.meta.score,
-          metric: column.meta.metric,
-          numerator: column.meta.numerator,
-          denominator: column.meta.denominator
+          Score: column.meta.Score,
+          Metric: column.meta.Metric,
+          Numerator: column.meta.Numerator,
+          Denominator: column.meta.Denominator
         };
         break;
       default:
-        console.log(content);
         tooltipKeys = Object.entries(content);
         break;
     }
@@ -23851,11 +23851,11 @@ var rbmViz = (() => {
     return tooltipContent.join("\n");
   }
 
-  // src/countryOverview/defineColumns.js
-  function defineColumns2(countries, workflows, results) {
-    const countryColumns = defineCountryColumns(countries);
+  // src/groupOverview/defineColumns.js
+  function defineColumns2(groups2, workflows, results) {
+    const groupColumns = defineGroupColumns(groups2);
     const workflowColumns = defineWorkflowColumns2(workflows, results);
-    const columns = [...countryColumns, ...workflowColumns];
+    const columns = [...groupColumns, ...workflowColumns];
     columns.forEach((column, i) => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
       column.index = i;
@@ -23866,7 +23866,7 @@ var rbmViz = (() => {
     return columns;
   }
 
-  // src/countryOverview/structureData/sortByFlags.js
+  // src/groupOverview/structureData/sortByFlags.js
   function sortByFlags2(rowData) {
     const sortedRowData = rowData.sort((a, b) => {
       const redComparison = b[1].nRedFlags - a[1].nRedFlags;
@@ -23878,21 +23878,21 @@ var rbmViz = (() => {
     return sortedRowData;
   }
 
-  // src/countryOverview/structureData.js
-  function structureData6(results, columns, countries) {
+  // src/groupOverview/structureData.js
+  function structureData6(results, columns, groups2) {
     const lookup = group(
       results,
-      (d2) => d2.groupid,
-      (d2) => d2.workflowid
+      (d2) => d2.GroupID,
+      (d2) => d2.MetricID
     );
     const rowData = Array.from(lookup, ([key, value]) => {
-      const country = countries.find((country2) => country2.groupid === key);
+      const group2 = groups2.find((group3) => group3.GroupID === key);
       const rowDatum = columns.map((column) => {
         const datum2 = {
           ...column.getDatum(key) || {},
           column,
-          country,
-          groupid: key
+          group: group2,
+          GroupID: key
         };
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
@@ -23909,13 +23909,13 @@ var rbmViz = (() => {
     return sortedData;
   }
 
-  // src/countryOverview/makeTable/addHeaderRow.js
+  // src/groupOverview/makeTable/addHeaderRow.js
   function addHeaderRow2(thead, columns) {
     const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("tooltip", (d2) => d2.headerTooltip !== null).text((d2) => d2.label).attr("title", (d2) => d2.headerTooltip);
     return headerRow;
   }
 
-  // src/countryOverview/makeTable/addBodyRows.js
+  // src/groupOverview/makeTable/addBodyRows.js
   function addBodyRows2(tbody, rows) {
     const bodyRows = tbody.selectAll("tr").data(
       rows,
@@ -23925,20 +23925,20 @@ var rbmViz = (() => {
     return bodyRows;
   }
 
-  // src/countryOverview/makeTable/addCells.js
+  // src/groupOverview/makeTable/addCells.js
   function addCells2(bodyRows) {
     const cells = bodyRows.selectAll("td").data(
       (d2) => d2,
       // Define a unique key for each cell.
       (d2) => {
-        const id2 = d2.column.type === "kri" ? `${d2.groupid}-${d2.column.meta.workflowid}` : `${d2.groupid}-${d2.column.valueKey}`;
+        const id2 = d2.column.type === "kri" ? `${d2.GroupID}-${d2.column.meta.MetricID}` : `${d2.GroupID}-${d2.column.valueKey}`;
         return id2;
       }
     ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
     return cells;
   }
 
-  // src/countryOverview/makeTable/addSorting.js
+  // src/groupOverview/makeTable/addSorting.js
   function addSorting2(headerRow, body) {
     headerRow.on("click", function(event, column) {
       headerRow.data().forEach((d2) => {
@@ -23949,22 +23949,22 @@ var rbmViz = (() => {
     });
   }
 
-  // src/countryOverview/makeTable/addTrafficLighting.js
+  // src/groupOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting2(rows) {
     const kriCells = rows.selectAll("td.kri");
     kriCells.style("background-color", function(d2, i) {
-      switch (Math.abs(parseInt(d2.flag))) {
+      switch (Math.abs(parseInt(d2.Flag))) {
         case 0:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(0)
+            (color3) => color3.Flag.includes(0)
           ).color;
         case 1:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(1)
+            (color3) => color3.Flag.includes(1)
           ).color;
         case 2:
           return colorScheme_default.find(
-            (color3) => color3.flag.includes(2)
+            (color3) => color3.Flag.includes(2)
           ).color;
         default:
           return "#eee";
@@ -23972,7 +23972,7 @@ var rbmViz = (() => {
     });
   }
 
-  // src/countryOverview/makeTable/icons/singleArrow.js
+  // src/groupOverview/makeTable/icons/singleArrow.js
   function singleArrow2(flag, color3 = "white") {
     const direction = Math.sign(flag) === 1 ? "up" : "down";
     return [
@@ -23983,7 +23983,7 @@ var rbmViz = (() => {
     ].join("");
   }
 
-  // src/countryOverview/makeTable/icons/doubleArrow.js
+  // src/groupOverview/makeTable/icons/doubleArrow.js
   function doubleArrow2(flag, color3 = "white") {
     const direction = Math.sign(flag) === 1 ? "up" : "down";
     return [
@@ -23995,11 +23995,11 @@ var rbmViz = (() => {
     ].join(``);
   }
 
-  // src/countryOverview/makeTable/addFlagIcons.js
+  // src/groupOverview/makeTable/addFlagIcons.js
   function addFlagIcons2(rows) {
     const kriCells = rows.selectAll("td.kri").text("");
     kriCells.each(function(d2) {
-      const flag = parseInt(d2.flag);
+      const flag = parseInt(d2.Flag);
       const absFlag = Math.abs(flag);
       switch (absFlag) {
         case 0:
@@ -24017,7 +24017,7 @@ var rbmViz = (() => {
     });
   }
 
-  // src/countryOverview/makeTable/addRowHighlighting.js
+  // src/groupOverview/makeTable/addRowHighlighting.js
   function addRowHighlighting2(rows) {
     rows.on("mouseover", function() {
       select_default2(this).style("background-color", "lightgray");
@@ -24026,24 +24026,24 @@ var rbmViz = (() => {
     });
   }
 
-  // src/countryOverview/makeTable/addClickEvents.js
+  // src/groupOverview/makeTable/addClickEvents.js
   function addClickEvents2(bodyRows, cells, config) {
     cells.filter(".kri").on("click", function(event, d2) {
       config.metricClickCallback({
-        groupLevel: config.groupLevel,
-        groupid: d2.groupid,
-        metricid: d2.workflowid
+        GroupLevel: config.GroupLevel,
+        GroupID: d2.GroupID,
+        MetricID: d2.MetricID
       });
     });
-    cells.filter(".country").on("click", function(event, d2) {
+    cells.filter(".group").on("click", function(event, d2) {
       config.groupClickCallback({
-        groupLevel: config.groupLevel,
-        groupid: d2.groupid
+        GroupLevel: config.GroupLevel,
+        GroupID: d2.GroupID
       });
     });
   }
 
-  // src/countryOverview/makeTable.js
+  // src/groupOverview/makeTable.js
   function makeTable2(_element_, rows, columns, config) {
     const table = select_default2(_element_).append("table");
     const thead = table.append("thead");
@@ -24059,11 +24059,11 @@ var rbmViz = (() => {
     return table;
   }
 
-  // src/countryOverview/updateTable.js
+  // src/groupOverview/updateTable.js
   function updateTable2(_results_) {
-    const countries = deriveCountryMetrics(this._countries_, _results_);
-    const columns = defineColumns2(countries, this._workflows_, _results_);
-    const rows = structureData6(_results_, columns, countries);
+    const groups2 = deriveGroupMetrics(this._groups_, _results_);
+    const columns = defineColumns2(groups2, this._workflows_, _results_);
+    const rows = structureData6(_results_, columns, groups2);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows2(tbody, rows);
     const cells = addCells2(bodyRows);
@@ -24086,21 +24086,21 @@ var rbmViz = (() => {
     }
   }
 
-  // src/countryOverview.js
-  function countryOverview(_element_ = "body", _results_ = [], _config_ = {}, _countries_ = null, _workflows_ = null) {
-    checkInputs6(_results_, _config_, _countries_, _workflows_);
+  // src/groupOverview.js
+  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groups_ = null, _workflows_ = null) {
+    checkInputs6(_results_, _config_, _groups_, _workflows_);
     const config = configure8(_config_);
-    const countries = deriveCountryMetrics(_countries_, _results_);
-    const columns = defineColumns2(countries, _workflows_, _results_);
-    const rows = structureData6(_results_, columns, countries, _workflows_);
+    const groups2 = deriveGroupMetrics(_groups_, _results_);
+    const columns = defineColumns2(groups2, _workflows_, _results_);
+    const rows = structureData6(_results_, columns, groups2, _workflows_);
     const table = makeTable2(_element_, rows, columns, config);
     table.updateTable = updateTable2.bind({
       _results_,
       _config_,
-      _countries_,
+      _groups_,
       _workflows_,
       config,
-      countries,
+      groups: groups2,
       columns,
       rows,
       table
@@ -24197,8 +24197,8 @@ var rbmViz = (() => {
     }),
     // site overview
     siteOverview,
-    // country overview
-    countryOverview
+    // group overview
+    groupOverview
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);

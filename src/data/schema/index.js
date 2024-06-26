@@ -1,6 +1,6 @@
 import analysisMetadata from './analysisMetadata.json';
 import analysisParameters from './analysisParameters.json';
-import countries from './countries.json';
+import groupMetadata from './groupMetadata.json';
 import flagCounts from './flagCounts.json';
 import results from './results.json';
 import resultsPredicted from './resultsPredicted.json';
@@ -11,7 +11,7 @@ import snapshotDate from './snapshotDate.json';
 const schema = {
     analysisMetadata,
     analysisParameters,
-    countries,
+    groupMetadata,
     flagCounts,
     results,
     resultsPredicted,

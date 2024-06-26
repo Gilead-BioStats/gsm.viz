@@ -4,7 +4,7 @@ import coalesce from '../util/coalesce.js';
 export default function configure(_config_, _data_) {
     const defaults = {};
 
-    defaults.groupLevel = 'country';
+    defaults.GroupLevel = 'country';
 
     // callbacks
     defaults.groupClickCallback = (datum) => {

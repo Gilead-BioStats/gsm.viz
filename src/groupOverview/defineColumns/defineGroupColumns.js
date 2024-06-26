@@ -1,66 +1,66 @@
 import sortString from './sortString';
 import sortNumber from './sortNumber';
 
-export default function defineCountryColumns(countries) {
+export default function defineGroupColumns(groups) {
     const columns = [
         {
-            label: 'Country',
-            data: countries,
-            filterKey: 'groupid',
-            valueKey: 'group_label',
+            label: 'Group',
+            data: groups,
+            filterKey: 'GroupID',
+            valueKey: 'GroupLabel',
 
             headerTooltip: null,
             sort: sortString,
             tooltip: true,
-            type: 'country',
+            type: 'group',
             dataType: 'string',
         },
         {
             label: 'ID',
-            data: countries,
-            filterKey: 'groupid',
-            valueKey: 'groupid',
+            data: groups,
+            filterKey: 'GroupID',
+            valueKey: 'GroupID',
 
             headerTooltip: null,
             sort: sortString,
             tooltip: true,
-            type: 'country',
+            type: 'group',
             dataType: 'string',
         },
         {
             label: 'Enrolled',
-            data: countries,
-            filterKey: 'groupid',
-            valueKey: 'enrolled_participants',
+            data: groups,
+            filterKey: 'GroupID',
+            valueKey: 'EnrolledParticipants',
 
             headerTooltip: null,
             sort: sortNumber,
             tooltip: false,
-            type: 'country',
+            type: 'group',
             dataType: 'number',
         },
         {
             label: 'Red Flags',
-            data: countries,
-            filterKey: 'groupid',
+            data: groups,
+            filterKey: 'GroupID',
             valueKey: 'nRedFlags',
 
             headerTooltip: null,
             sort: sortNumber,
             tooltip: false,
-            type: 'country',
+            type: 'group',
             dataType: 'number',
         },
         {
             label: 'Amber Flags',
-            data: countries,
-            filterKey: 'groupid',
+            data: groups,
+            filterKey: 'GroupID',
             valueKey: 'nAmberFlags',
 
             headerTooltip: null,
             sort: sortNumber,
             tooltip: false,
-            type: 'country',
+            type: 'group',
             dataType: 'number',
         },
     ];

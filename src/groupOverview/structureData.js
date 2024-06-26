@@ -2,22 +2,22 @@ import { group } from 'd3';
 
 import sortByFlags from './structureData/sortByFlags';
 
-export default function structureData(results, columns, countries) {
+export default function structureData(results, columns, groups) {
     const lookup = group(
         results,
-        (d) => d.groupid,
-        (d) => d.workflowid
+        (d) => d.GroupID,
+        (d) => d.MetricID
     );
 
     const rowData = Array.from(lookup, ([key, value]) => {
-        const country = countries.find((country) => country.groupid === key);
+        const group = groups.find((group) => group.GroupID === key);
 
         const rowDatum = columns.map((column) => {
             const datum = {
                 ...(column.getDatum(key) || {}),
                 column: column,
-                country: country,
-                groupid: key,
+                group: group,
+                GroupID: key,
             };
 
             // TODO: get rid of value or text

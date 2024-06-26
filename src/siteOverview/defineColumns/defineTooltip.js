@@ -25,10 +25,10 @@ export default function defineTooltip(column, content, workflows = null) {
         // Define tooltip content for KRI columns.
         case 'kri':
             tooltipKeys = {
-                score: column.meta.Score,
-                metric: column.meta.Metric,
-                numerator: column.meta.Numerator,
-                denominator: column.meta.Denominator,
+                Score: column.meta.Score,
+                Metric: column.meta.Metric,
+                Numerator: column.meta.Numerator,
+                Denominator: column.meta.Denominator,
             };
 
             break;

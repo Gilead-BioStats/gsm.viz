@@ -22,14 +22,14 @@ Promise.all(dataPromises)
 
         const regex = new RegExp(`^${workflowPrefix}`);
 
-        const results = datasets[0].filter((d) => regex.test(d.workflowid));
+        const results = datasets[0].filter((d) => regex.test(d.MetricID));
         results.forEach((d) => {
-            d.groupid = d.groupid.substring(0, 2).toUpperCase();
+            d.GroupID = d.GroupID.substring(0, 2).toUpperCase();
         });
-        const workflows = datasets[1].filter((d) => regex.test(d.workflowid));
+        const workflows = datasets[1].filter((d) => regex.test(d.MetricID));
         const sites = datasets[2];
         sites.forEach((d) => {
-            d.groupid = d.siteid;
+            d.groupid = d.SiteID;
             d.group_label = d.pi_last_name;
         });
         const countries = d3
@@ -37,13 +37,13 @@ Promise.all(dataPromises)
                 sites,
                 (group) => {
                     return {
-                        groupid: group[0].country.substring(0, 2).toUpperCase(),
-                        group_label: group[0].country,
-                        enrolled_participants: d3.sum(
+                        GroupID: group[0].country.substring(0, 2).toUpperCase(),
+                        GroupLabel: group[0].country,
+                        EnrolledParticipants: d3.sum(
                             group,
                             (d) => d.enrolled_participants
                         ),
-                        status: `${
+                        Status: `${
                             group.filter((d) => d.enrolled_participants > 0)
                                 .length
                         } sites active`,
@@ -52,7 +52,6 @@ Promise.all(dataPromises)
                 (d) => d.country
             )
             .map((d) => d[1]);
-        console.log(countries);
 
         let groupMetadata;
         if (groupLevel === 'site') {
@@ -60,14 +59,12 @@ Promise.all(dataPromises)
         } else if (groupLevel === 'country') {
             groupMetadata = countries;
         }
-        console.log(groupMetadata);
 
         const groupSubset = getCountries(results);
-        console.log(groupSubset);
 
-        const instance = rbmViz.default.countryOverview(
+        const instance = rbmViz.default.groupOverview(
             document.getElementById('container'),
-            results.filter((d) => groupSubset.includes(d.groupid)),
+            results.filter((d) => groupSubset.includes(d.GroupID)),
             {
                 groupLevel,
                 groupClickCallback: function (datum) {
@@ -84,7 +81,7 @@ Promise.all(dataPromises)
         document.querySelector('#country-subset').onchange = function () {
             const groupSubset = getCountries(results);
             const updatedResults = results.filter((d) =>
-                groupSubset.includes(d.groupid)
+                groupSubset.includes(d.GroupID)
             );
 
             instance.updateTable(updatedResults);

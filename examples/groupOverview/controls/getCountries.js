@@ -7,8 +7,8 @@ const getCountries = function (results) {
             countries = [
                 ...new Set(
                     results
-                        .filter((d) => Math.abs(parseInt(d.flag)) === 2)
-                        .map((d) => d.groupid)
+                        .filter((d) => Math.abs(parseInt(d.Flag)) === 2)
+                        .map((d) => d.GroupID)
                 ),
             ];
             break;
@@ -16,8 +16,8 @@ const getCountries = function (results) {
             countries = [
                 ...new Set(
                     results
-                        .filter((d) => Math.abs(parseInt(d.flag)) === 1)
-                        .map((d) => d.groupid)
+                        .filter((d) => Math.abs(parseInt(d.Flag)) === 1)
+                        .map((d) => d.GroupID)
                 ),
             ];
             break;
@@ -25,13 +25,13 @@ const getCountries = function (results) {
             countries = [
                 ...new Set(
                     results
-                        .filter((d) => Math.abs(parseInt(d.flag)) >= 1)
-                        .map((d) => d.groupid)
+                        .filter((d) => Math.abs(parseInt(d.Flag)) >= 1)
+                        .map((d) => d.GroupID)
                 ),
             ];
             break;
         default:
-            countries = [...new Set(results.map((d) => d.groupid))];
+            countries = [...new Set(results.map((d) => d.GroupID))];
     }
 
     return countries;

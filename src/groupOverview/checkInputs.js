@@ -33,7 +33,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_countries_',
         argument: _countries_,
-        schemaName: 'countries',
+        schemaName: 'groupMetadata',
         module: 'countryOverview',
     });
 

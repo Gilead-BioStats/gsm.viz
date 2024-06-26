@@ -1,6 +1,6 @@
 import { select } from 'd3';
 
-import deriveCountryMetrics from './deriveCountryMetrics.js';
+import deriveGroupMetrics from './deriveGroupMetrics.js';
 import defineColumns from './defineColumns.js';
 import structureData from './structureData.js';
 
@@ -13,17 +13,17 @@ import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
 export default function updateTable(_results_) {
-    const countries = deriveCountryMetrics(this._countries_, _results_);
-    const columns = defineColumns(countries, this._workflows_, _results_);
-    const rows = structureData(_results_, columns, countries);
+    const groups = deriveGroupMetrics(this._groups_, _results_);
+    const columns = defineColumns(groups, this._workflows_, _results_);
+    const rows = structureData(_results_, columns, groups);
 
     // create table
     const tbody = this.table.select('tbody');
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
 
-    // identify inactive countries
-    //identifyInactiveCountries(bodyRows);
+    // identify inactive groups
+    //identifyInactivegroups(bodyRows);
 
     // add traffic light coloring to cells
     addTrafficLighting(bodyRows);
