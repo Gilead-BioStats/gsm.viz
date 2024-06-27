@@ -1,8 +1,6 @@
 const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
-    '../data/status_param_over_time.csv',
     '../data/results_analysis_over_time.csv',
 ];
 
@@ -13,39 +11,33 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'qtl0006';
+        const MetricID = 'qtl0006';
 
         datasets = datasets.map((dataset) => {
             return dataset.filter((d) => /^qtl/.test(d.MetricID));
         });
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'Metric';
+        const config = selectMetricID(datasets[1], MetricID);
+        config.y = 'Metric';
 
         // Threshold annotations
-        const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
-        );
+        const thresholds = [+config.Thresholds];
 
         // additional analysis output
-        const resultsVertical = filterOnWorkflowID(datasets[4], workflowID);
+        const resultsVertical = filterOnMetricID(datasets[2], MetricID);
 
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters.filter(
-                (parameter) =>
-                    parameter.SnapshotDate === parameters[0].SnapshotDate
-            ),
+            config,
+            thresholds,
             resultsVertical
         );
 
-        qtl(workflow, datasets, true);
+        metric(datasets, true, config.MetricID);
     });
