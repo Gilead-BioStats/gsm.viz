@@ -24962,69 +24962,6 @@ var rbmViz = (() => {
         },
     };
 
-    // src/data/schema/analysisParameters.json
-    var analysisParameters_default = {
-        title: 'Metric Analysis Parameters',
-        description:
-            'JSON schema of input Metric analysis parameters to barChart and timeSeries modules',
-        version: '0.14.0',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                StudyID: {
-                    title: 'Study ID',
-                    description: 'Unique study identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                MetricID: {
-                    title: 'Metric ID',
-                    description: 'Unique workflow identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                Param: {
-                    title: 'Analysis Parameter',
-                    description: 'Analysis parameter',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                Index: {
-                    title: 'Parameter Index',
-                    description: 'Index of analysis parameter',
-                    type: 'number',
-                    required: false,
-                    key: true,
-                },
-                Value: {
-                    title: 'Parameter Value',
-                    description: 'Parameter value',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                SnapshotDate: {
-                    title: 'Snapshot Date',
-                    description: 'Date of data refresh',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                gsm_version: {
-                    title: '{gsm} Version',
-                    description: '{gsm} version when analysis ran',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-            },
-        },
-    };
-
     // src/data/schema/groupMetadata.json
     var groupMetadata_default = {
         title: 'Group Metadata',
@@ -25460,16 +25397,26 @@ var rbmViz = (() => {
         key: true,
     };
 
+    // src/data/schema/thresholds.json
+    var thresholds_default = {
+        title: 'Thresholds',
+        description: 'Threshold values',
+        type: 'array',
+        items: {
+            type: 'number',
+        },
+    };
+
     // src/data/schema/index.js
     var schema = {
         analysisMetadata: analysisMetadata_default,
-        analysisParameters: analysisParameters_default,
         groupMetadata: groupMetadata_default,
         flagCounts: flagCounts_default,
         results: results_default,
         resultsPredicted: resultsPredicted_default,
         resultsVertical: resultsVertical_default,
         siteMetadata: siteMetadata_default,
+        thresholds: thresholds_default,
         snapshotDate: snapshotDate_default,
     };
     var schema_default = schema;
@@ -25612,7 +25559,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'barChart',
         });
         if (_sites_ !== null) {
@@ -25720,14 +25667,8 @@ var rbmViz = (() => {
 
     // src/util/checkThresholds.js
     function checkThresholds(_config_, _thresholds_) {
-        let thresholds2 = _config_.thresholds;
+        let thresholds2 = _config_.thresholds || _thresholds_ || [];
         if (_config_.variableThresholds) return null;
-        if (
-            Array.isArray(thresholds2) &&
-            thresholds2.length > 0 &&
-            thresholds2.every((Threshold) => typeof Threshold === 'number')
-        )
-            return mapThresholdsToFlags(thresholds2);
         if (
             Array.isArray(thresholds2) &&
             thresholds2.length > 0 &&
@@ -25739,19 +25680,6 @@ var rbmViz = (() => {
             )
         )
             return thresholds2;
-        if (
-            _thresholds_ === null ||
-            [null].includes(thresholds2) ||
-            (Array.isArray(thresholds2) &&
-                (thresholds2.length === 0 ||
-                    thresholds2.some(
-                        (Threshold) => typeof Threshold !== 'number'
-                    )))
-        )
-            return null;
-        thresholds2 = _thresholds_
-            .filter((d2) => d2.Param === 'vThreshold')
-            .map((d2) => (d2.Value !== void 0 ? +d2.Value : +d2.Default));
         return mapThresholdsToFlags(thresholds2);
     }
 
@@ -26446,7 +26374,7 @@ var rbmViz = (() => {
         _element_ = 'body',
         _data_ = [],
         _config_ = {},
-        _thresholds_ = null,
+        _thresholds_ = [],
         _sites_ = null
     ) {
         checkInputs(_data_, _config_, _thresholds_, _sites_);
@@ -27017,7 +26945,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'sparkline',
         });
     }
@@ -27375,7 +27303,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'timeSeries',
         });
         checkInput({
@@ -28314,7 +28242,7 @@ var rbmViz = (() => {
         _element_,
         _data_,
         _config_ = {},
-        _thresholds_ = null,
+        _thresholds_ = [],
         _intervals_ = null,
         _sites_ = null
     ) {
@@ -29080,7 +29008,7 @@ var rbmViz = (() => {
         switch (column.type) {
             case 'group':
                 tooltipKeys = {
-                    status: 'Status',
+                    Status: 'Status',
                 };
                 break;
             case 'metric':

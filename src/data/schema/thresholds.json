@@ -1,0 +1,8 @@
+{
+    "title": "Thresholds",
+    "description": "Threshold values",
+    "type": "array",
+    "items": {
+        "type": "number"
+    }
+}

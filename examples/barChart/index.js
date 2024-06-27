@@ -1,8 +1,6 @@
 const dataFiles = [
     '../data/results_summary.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
-    '../data/status_param.csv',
     '../data/status_site.csv',
 ];
 
@@ -37,32 +35,29 @@ Promise.all(dataPromises)
                 instance.data.config,
                 instance.data._thresholds_
             );
-            document.querySelector('#GroupID').value = datum.GroupID;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
         // Threshold annotations
-        const parameters = mergeParameters(
-            filterOnMetricID(datasets[2], MetricID),
-            filterOnMetricID(datasets[3], MetricID)
-        );
+        const thresholds = config.Thresholds.split(',').map((d) => +d);
 
         // group metadata
-        const groupMetadata = datasets[4];
+        const groupMetadata = datasets[2];
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             config,
-            parameters,
+            thresholds,
             groupMetadata
         );
 
         // controls
-        metric(config, datasets, true);
+        metric(datasets, true, MetricID);
         group(datasets, true);
-        yAxis(config, datasets, true);
-        threshold(config, datasets, true);
-        lifecycle(datasets, 'barChart', true);
+        yAxis(datasets, true, config.y);
+        threshold(datasets, true);
+        lifecycle(datasets, true);
         download(true);
     });

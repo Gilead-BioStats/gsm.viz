@@ -1,23 +1,23 @@
-import data from '../../examples/data/results_summary.json';
-import metadata from '../../examples/data/meta_workflow.json';
-import bounds from '../../examples/data/results_summary.json';
+import results from '../../examples/data/results_summary.json';
+import metrics from '../../examples/data/meta_workflow.json';
+import bounds from '../../examples/data/results_bounds.json';
 
 import configure from '../../src/scatterPlot/configure';
 
-const workflowID = 'kri0001';
-const dataSubset = data.filter((d) => d.MetricID === workflowID);
-const workflow = metadata.find((workflow) => workflow.MetricID === workflowID);
-const boundsSubset = bounds.filter((d) => d.MetricID === workflowID);
+const MetricID = 'kri0001';
+const resultsSubset = results.filter((d) => d.MetricID === MetricID);
+const metricMetadata = metrics.find((metric) => metric.MetricID === MetricID);
+const boundsSubset = bounds.filter((d) => d.MetricID === MetricID);
 
 describe('configuration', () => {
-    const config = configure(workflow);
+    const config = configure(metricMetadata, resultsSubset);
 
-    test('configure() accepts workflow object and returns config object', () => {
+    test('configure() accepts metric metadata object and returns config object', () => {
         const settings = Object.keys(config).sort();
 
         expect(settings).toEqual(
             [
-                // workflow metadata
+                // metric metadata
                 'MetricID',
                 'gsm_version',
                 'Group',
@@ -28,6 +28,7 @@ describe('configuration', () => {
                 'Outcome',
                 'Model',
                 'Score',
+                'Thresholds',
                 'data_inputs',
                 'data_filters',
                 'SnapshotDate',

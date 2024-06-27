@@ -23,7 +23,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_thresholds_',
         argument: _thresholds_,
-        schemaName: 'analysisParameters',
+        schemaName: 'thresholds',
         module: 'barChart',
     });
 

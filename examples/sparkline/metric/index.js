@@ -14,7 +14,7 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^kri/.test(d.MetricID))
         );
 
-        const MetricID = kri(datasets, true);
+        const MetricID = metric(datasets, true);
 
         // data
         const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];
@@ -23,9 +23,9 @@ Promise.all(dataPromises)
         );
 
         // configuration
-        const workflow = datasets[1].find((d) => d.MetricID === MetricID);
-        workflow.y = 'Metric';
-        workflow.nSnapshots = 25;
+        const config = datasets[1].find((d) => d.MetricID === MetricID);
+        config.y = 'Metric';
+        config.nSnapshots = 25;
 
         // loop over Group IDs
         for (const i in GroupIDs) {
@@ -42,7 +42,7 @@ Promise.all(dataPromises)
             const instance = rbmViz.default.sparkline(
                 subcontainer,
                 results.filter((d) => d.GroupID === GroupID),
-                workflow
+                config
             );
         }
     });

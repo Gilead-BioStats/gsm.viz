@@ -1,8 +1,6 @@
 const dataFiles = [
     '../../data/results_summary_over_time.csv',
     '../../data/meta_workflow.csv',
-    '../../data/meta_param.csv',
-    '../../data/status_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -16,20 +14,19 @@ Promise.all(dataPromises)
             dataset.filter((d) => /^kri/.test(d.MetricID))
         );
 
-        const workflowID = kri(datasets, true);
+        const MetricID = metric(datasets, true);
 
         // data
-        const results = datasets[0].filter((d) => d.MetricID === workflowID);
+        const results = datasets[0].filter((d) => d.MetricID === MetricID);
 
         // configuration
-        const workflow = datasets[1].find((d) => d.MetricID === workflowID);
-        workflow.y = 'Score';
-        workflow.nSnapshots = 10;
+        const config = datasets[1].find((d) => d.MetricID === MetricID);
+        config.y = 'Score';
+        config.nSnapshots = 25;
 
         // Threshold annotations
-        const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
+        const thresholds = config.Thresholds.split(',').map(
+            (threshold) => +threshold
         );
 
         // loop over Group IDs
@@ -48,8 +45,8 @@ Promise.all(dataPromises)
             const instance = rbmViz.default.sparkline(
                 subcontainer,
                 results.filter((d) => d.GroupID === GroupID),
-                workflow,
-                parameters
+                config,
+                thresholds
             );
         }
     });

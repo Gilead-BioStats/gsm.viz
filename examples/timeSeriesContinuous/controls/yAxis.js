@@ -23,11 +23,8 @@ const yAxis = function (config, datasets, setup = false) {
             config.selectedGroupIDs = group();
 
             // Threshold annotations
-            let parameters = mergeParameters(
-                filterOnMetricID(datasets[2], MetricID),
-                filterOnMetricID(datasets[3], MetricID)
-            );
-            if (config.y !== 'Score') parameters = null;
+            let thresholds = config.Thresholds.split(',').map((d) => +d);
+            if (config.y !== 'Score') thresholds = null;
 
             // group metadata
             const groupMetadata = datasets[4];
@@ -36,7 +33,7 @@ const yAxis = function (config, datasets, setup = false) {
                 instance,
                 results,
                 config,
-                parameters,
+                thresholds,
                 null,
                 groupMetadata
             );

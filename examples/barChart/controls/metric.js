@@ -1,5 +1,5 @@
 // Add event listener to metric dropdown.
-const metric = function (config, datasets, setup = false) {
+const metric = function (datasets, setup = false, initialValue = null) {
     const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
@@ -14,7 +14,7 @@ const metric = function (config, datasets, setup = false) {
             metricDropdown.appendChild(option);
         }
 
-        metricDropdown.value = config.MetricID;
+        metricDropdown.value = initialValue;
         metricDropdown.addEventListener('change', (event) => {
             // analysis results
             const results = filterOnMetricID(datasets[0], event.target.value);
@@ -25,17 +25,14 @@ const metric = function (config, datasets, setup = false) {
             config.selectedGroupIDs = group();
 
             // Threshold annotations
-            const parameters =
+            const thresholds =
                 config.y === 'Score' &&
                 document.getElementById('threshold').checked
-                    ? mergeParameters(
-                          filterOnMetricID(datasets[2], event.target.value),
-                          filterOnMetricID(datasets[3], event.target.value)
-                      )
+                    ? config.Thresholds.split(',').map((d) => +d)
                     : null;
 
             // group metadata
-            const groupMetadata = datasets[4];
+            const groupMetadata = datasets[2];
 
             // update
             const instance = getChart();
@@ -43,7 +40,7 @@ const metric = function (config, datasets, setup = false) {
                 instance,
                 results,
                 config,
-                parameters,
+                thresholds,
                 groupMetadata
             );
         });

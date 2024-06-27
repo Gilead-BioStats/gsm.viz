@@ -9,7 +9,8 @@
 		"Denominator": "Days on Treatment",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-2,-1,2,3",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
@@ -24,7 +25,8 @@
 		"Denominator": "Days on Treatment",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-2,-1,2,3",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
@@ -39,7 +41,8 @@
 		"Denominator": "Days in Study",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
 		"SnapshotDate": "2023-01-05"
@@ -54,7 +57,8 @@
 		"Denominator": "Days in Study",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
@@ -69,7 +73,8 @@
 		"Denominator": "Total Lab Samples",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
 		"SnapshotDate": "2023-01-05"
@@ -84,7 +89,8 @@
 		"Denominator": "Total Subjects",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -99,7 +105,8 @@
 		"Denominator": "Total Subjects",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -114,7 +121,8 @@
 		"Denominator": "Total Data Points",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -129,7 +137,8 @@
 		"Denominator": "Total Queries",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -144,7 +153,8 @@
 		"Denominator": "Total Data Pages",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -159,7 +169,8 @@
 		"Denominator": "Total Data Points",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -174,7 +185,8 @@
 		"Denominator": "Total Screened",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -189,7 +201,8 @@
 		"Denominator": "Days on Treatment",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-2,-1,2,3",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Non-Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
@@ -204,7 +217,8 @@
 		"Denominator": "Days on Treatment",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-2,-1,2,3",
 		"data_inputs": "rawplus.ae, rawplus.dm",
 		"data_filters": "Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
@@ -219,7 +233,8 @@
 		"Denominator": "Days in Study",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Non-Important",
 		"SnapshotDate": "2023-01-05"
@@ -234,7 +249,8 @@
 		"Denominator": "Days in Study",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
@@ -249,7 +265,8 @@
 		"Denominator": "Total Lab Samples",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.lb, rawplus.dm",
 		"data_filters": "Treatment emergent, Grade >= 3",
 		"SnapshotDate": "2023-01-05"
@@ -264,7 +281,8 @@
 		"Denominator": "Total Subjects",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -279,7 +297,8 @@
 		"Denominator": "Total Subjects",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -294,7 +313,8 @@
 		"Denominator": "Total Data Points",
 		"Outcome": "Rate",
 		"Model": "Normal Approximation (Rate)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -309,7 +329,8 @@
 		"Denominator": "Total Queries",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.queries",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -324,7 +345,8 @@
 		"Denominator": "Total Data Pages",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.data_entry_lag",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -339,7 +361,8 @@
 		"Denominator": "Total Data Points",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.dm, edc.data_change_rate",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -354,7 +377,8 @@
 		"Denominator": "Total Screened",
 		"Outcome": "Percent",
 		"Model": "Normal Approximation (Percent)",
-		"Score": "Adjusted Z-Score ",
+		"Score": "Adjusted Z-Score",
+		"Thresholds": "-3,-2,2,3",
 		"data_inputs": "rawplus.enroll",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
@@ -370,6 +394,7 @@
 		"Outcome": "Rate",
 		"Model": "Poisson Test",
 		"Score": "Poisson Confidence Interval - Lower Bound",
+		"Thresholds": "0.01",
 		"data_inputs": "rawplus.pd, rawplus.dm",
 		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
@@ -385,6 +410,7 @@
 		"Outcome": "Percent",
 		"Model": "Binomial Test",
 		"Score": "Binomial Confidence Interval - Lower Bound",
+		"Thresholds": "0.2",
 		"data_inputs": "rawplus.studcomp, rawplus.dm",
 		"data_filters": "",
 		"SnapshotDate": "2023-01-05"

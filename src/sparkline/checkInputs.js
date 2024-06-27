@@ -20,7 +20,7 @@ export default function checkInputs(_data_, _config_, _thresholds_) {
     checkInput({
         parameter: '_thresholds_',
         argument: _thresholds_,
-        schemaName: 'analysisParameters',
+        schemaName: 'thresholds',
         module: 'sparkline',
     });
 }

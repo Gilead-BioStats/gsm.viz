@@ -32,7 +32,7 @@ Promise.all(dataPromises)
             instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
-            document.querySelector('#GroupID').value = datum.GroupID;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
         // Threshold annotations

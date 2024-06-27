@@ -29,11 +29,8 @@ const metric = function (config, datasets, setup = false) {
             config.selectedGroupIDs = group();
 
             // Threshold annotations
-            let parameters = mergeParameters(
-                datasets[2].filter((d) => d.MetricID === MetricID),
-                datasets[3].filter((d) => d.MetricID === MetricID)
-            );
-            if (config.y !== 'Score') parameters = null;
+            let thresholds = config.Thresholds.split(',').map((d) => +d);
+            if (config.y !== 'Score') thresholds = null;
 
             const groupMetadata = datasets[4];
 
@@ -41,7 +38,7 @@ const metric = function (config, datasets, setup = false) {
                 instance,
                 results,
                 config,
-                parameters,
+                thresholds,
                 null,
                 groupMetadata
             );
