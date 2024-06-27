@@ -21971,7 +21971,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_thresholds_",
       argument: _thresholds_,
-      schemaName: "analysisParameters",
+      schemaName: "thresholds",
       module: "sparkline"
     });
   }
@@ -23051,7 +23051,7 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
+  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = [], _intervals_ = null, _sites_ = null) {
     checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
     const config = configure6(_config_, _data_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);

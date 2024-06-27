@@ -36,7 +36,7 @@ export default function timeSeries(
     _element_,
     _data_,
     _config_ = {},
-    _thresholds_ = null,
+    _thresholds_ = [],
     _intervals_ = null,
     _sites_ = null
 ) {

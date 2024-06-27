@@ -1,39 +1,39 @@
-// Add event listener to KRI dropdown.
-const kri = function (datasets, setup = false, workflowID = null) {
+// Add event listener to metric dropdown.
+const metric = function (datasets, setup = false, metricID = null) {
     //const instance = getChart();
-    const kriDropdown = document.querySelector('#kri');
+    const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
-        const workflowIDs = [
+        const metricIDs = [
             ...new Set(datasets[0].map((d) => d.MetricID)).values(),
         ];
-        const workflows = datasets[1].filter((workflow) =>
-            workflowIDs.includes(workflow.MetricID)
+        const metrics = datasets[1].filter((metric) =>
+            metricIDs.includes(metric.MetricID)
         );
 
-        for (const workflowID of workflowIDs) {
+        for (const metricID of metricIDs) {
             const option = document.createElement('option');
-            const workflow = workflows.find(
-                (workflow) => workflow.MetricID === workflowID
+            const metric = metrics.find(
+                (metric) => metric.MetricID === metricID
             );
-            option.value = workflowID;
-            option.innerHTML = workflow.Metric;
-            kriDropdown.appendChild(option);
+            option.value = metricID;
+            option.innerHTML = metric.Metric;
+            metricDropdown.appendChild(option);
         }
 
-        kriDropdown.value = workflowID === null ? workflowIDs[0] : workflowID;
+        metricDropdown.value = metricID === null ? metricIDs[0] : metricID;
 
-        kriDropdown.addEventListener('change', (event) => {
+        metricDropdown.addEventListener('change', (event) => {
             const results = datasets[0].filter(
                 (d) => d.MetricID === event.target.value
             );
-            const workflow = datasets[1].find(
+            const metric = datasets[1].find(
                 (d) => d.MetricID === event.target.value
             );
 
             const charts = getCharts();
             for (const chart of charts) {
-                const config = { ...workflow };
+                const config = { ...metric };
                 config.y = chart.data.config.y;
                 config.nSnapshots = chart.data.config.nSnapshots;
                 config.thresholds = null;
@@ -51,5 +51,5 @@ const kri = function (datasets, setup = false, workflowID = null) {
         });
     }
 
-    return kriDropdown.value;
+    return metricDropdown.value;
 };
