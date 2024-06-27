@@ -17,6 +17,7 @@ const schema = {
     resultsVertical,
     siteMetadata,
     thresholds,
+    snapshotDate,
 };
 
 export default schema;

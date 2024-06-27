@@ -1,8 +1,6 @@
 const dataFiles = [
     '../data/results_summary_over_time.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
-    '../data/status_param_over_time.csv',
     '../data/status_site_over_time.csv',
 ];
 
@@ -36,20 +34,17 @@ Promise.all(dataPromises)
         };
 
         // Threshold annotations
-        const parameters = mergeParameters(
-            filterOnMetricID(datasets[2], MetricID),
-            filterOnMetricID(datasets[3], MetricID)
-        );
+        const thresholds = config.Thresholds.split(',').map((d) => +d);
 
         // group metadata
-        const groupMetadata = datasets[4];
+        const groupMetadata = datasets[2];
 
         // visualization
         const instance = rbmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             config,
-            parameters, //.filter(parameter => parameter.SnapshotDate === parameters[0].SnapshotDate),
+            thresholds,
             null,
             groupMetadata
         );

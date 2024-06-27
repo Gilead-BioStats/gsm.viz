@@ -20612,6 +20612,15 @@ var rbmViz = (() => {
     }
   };
 
+  // src/data/schema/snapshotDate.json
+  var snapshotDate_default = {
+    title: "Snapshot Date",
+    description: "Date of data refresh",
+    type: "string",
+    required: true,
+    key: true
+  };
+
   // src/data/schema/thresholds.json
   var thresholds_default = {
     title: "Thresholds",
@@ -20631,7 +20640,8 @@ var rbmViz = (() => {
     resultsPredicted: resultsPredicted_default,
     resultsVertical: resultsVertical_default,
     siteMetadata: siteMetadata_default,
-    thresholds: thresholds_default
+    thresholds: thresholds_default,
+    snapshotDate: snapshotDate_default
   };
   var schema_default = schema;
 
@@ -22270,7 +22280,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_thresholds_",
       argument: _thresholds_,
-      schemaName: "analysisParameters",
+      schemaName: "thresholds",
       module: "timeSeries"
     });
     checkInput({
