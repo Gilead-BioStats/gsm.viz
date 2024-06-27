@@ -1,24 +1,20 @@
-// Add event listener to threshold dropdown.
-const threshold = function (workflow, datasets, setup = false) {
+// Add event listener to Threshold dropdown.
+const threshold = function (datasets, setup = false) {
     const thresholdToggle = document.getElementById('threshold');
 
     thresholdToggle.addEventListener('change', (event) => {
         const instance = getChart();
-        const workflowID = kri();
-        const results = filterOnWorkflowID(datasets[0], workflowID);
-        const workflow = selectWorkflowID(datasets[1], workflowID);
+        const MetricID = metric();
+        const results = filterOnMetricID(datasets[0], MetricID);
+        const config = selectMetricID(datasets[1], MetricID);
 
-        // threshold annotations
-        const parameters =
-            workflow.y === 'score' &&
-            document.getElementById('threshold').checked
-                ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], workflowID),
-                      filterOnWorkflowID(datasets[3], workflowID)
-                  )
+        // Threshold annotations
+        const thresholds =
+            config.y === 'Score' && document.getElementById('threshold').checked
+                ? config.Thresholds.split(',').map((d) => +d)
                 : null;
 
-        workflow.selectedGroupIDs = site();
-        instance.helpers.updateData(instance, results, workflow, parameters);
+        config.selectedGroupIDs = group();
+        instance.helpers.updateData(instance, results, config, thresholds);
     });
 };

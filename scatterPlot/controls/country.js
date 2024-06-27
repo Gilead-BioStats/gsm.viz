@@ -26,7 +26,7 @@ const country = function (datasets, setup = false) {
             instance = getChart();
             instance.data.config.selectedGroupIDs = datasets[3]
                 .filter((d) => d.country === event.target.value)
-                .map((d) => d.siteid);
+                .map((d) => d.SiteID);
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
         });

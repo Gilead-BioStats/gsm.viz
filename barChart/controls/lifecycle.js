@@ -1,5 +1,5 @@
 // Add event listener to chart lifecycle button.
-const lifecycle = function (datasets, chartFunction, setup = false) {
+const lifecycle = function (datasets, setup = false) {
     let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
@@ -20,32 +20,28 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
     // 3. button text changes to KILL
     const create = () => {
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], kri());
+        const results = filterOnMetricID(datasets[0], metric());
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], kri());
-        workflow.y = yaxis();
-        workflow.selectedGroupIDs = site();
+        const config = selectMetricID(datasets[1], metric());
+        config.y = yAxis();
+        config.selectedGroupIDs = group();
 
-        // threshold annotations
-        const parameters =
-            workflow.y === 'score' &&
-            document.getElementById('threshold').checked
-                ? mergeParameters(
-                      filterOnWorkflowID(datasets[2], kri()),
-                      filterOnWorkflowID(datasets[3], kri())
-                  )
+        // Threshold annotations
+        const thresholds =
+            config.y === 'Score' && document.getElementById('threshold').checked
+                ? config.Thresholds.split(',').map((d) => +d)
                 : null;
 
-        // site metadata
-        const sites = datasets[4];
+        // group metadata
+        const groupMetadata = datasets[2];
 
         instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters,
-            sites
+            config,
+            thresholds,
+            groupMetadata
         );
 
         lifecycleButton.innerHTML = '<strong>KILL</strong>';

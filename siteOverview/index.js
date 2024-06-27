@@ -13,23 +13,23 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const groupLevel = 'site';
 
-        let workflowPrefix;
+        let metricPrefix;
         if (groupLevel === 'site') {
-            workflowPrefix = 'kri';
+            metricPrefix = 'kri';
         } else if (groupLevel === 'country') {
-            workflowPrefix = 'cou';
+            metricPrefix = 'cou';
         }
 
-        const regex = new RegExp(`^${workflowPrefix}`);
+        const regex = new RegExp(`^${metricPrefix}`);
 
-        const results = datasets[0].filter((d) => regex.test(d.workflowid));
-        const workflows = datasets[1].filter((d) => regex.test(d.workflowid));
-        const sites = datasets[2];
-        const siteSubset = getSites(results);
+        const results = datasets[0].filter((d) => regex.test(d.MetricID));
+        const metrics = datasets[1].filter((d) => regex.test(d.MetricID));
+        const groupMetadata = datasets[2];
+        const groupSubset = getGroups(results);
 
         const instance = rbmViz.default.siteOverview(
             document.getElementById('container'),
-            results.filter((d) => siteSubset.includes(d.groupid)),
+            results.filter((d) => groupSubset.includes(d.GroupID)),
             {
                 groupLevel,
                 //groupClickCallback: function (datum) {
@@ -39,14 +39,14 @@ Promise.all(dataPromises)
                 //    console.log(datum);
                 //},
             },
-            sites,
-            workflows
+            groupMetadata,
+            metrics
         );
 
-        document.querySelector('#site-subset').onchange = function () {
-            const siteSubset = getSites(results);
+        document.querySelector('#group-subset').onchange = function () {
+            const siteSubset = getGroups(results);
             const updatedResults = results.filter((d) =>
-                siteSubset.includes(d.groupid)
+                siteSubset.includes(d.GroupID)
             );
 
             instance.updateTable(updatedResults);

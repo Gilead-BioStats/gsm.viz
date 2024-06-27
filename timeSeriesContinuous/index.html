@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Time Series: KRI</title>
+        <title>Time Series: Metric</title>
         <meta charset="utf-8" />
 
         <link rel="stylesheet" href="../style.css" />
@@ -10,35 +10,34 @@
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../index.js"></script>
 
-        <script src="../data/helpers/filterOnWorkflowID.js"></script>
-        <script src="../data/helpers/selectWorkflowID.js"></script>
-        <script src="../data/helpers/mergeParameters.js"></script>
+        <script src="../data/helpers/filterOnMetricID.js"></script>
+        <script src="../data/helpers/selectMetricID.js"></script>
 
         <script src="../controls/getChart.js"></script>
-        <script src="./controls/kri.js"></script>
-        <script src="./controls/site.js"></script>
-        <script src="./controls/yaxis.js"></script>
+        <script src="./controls/metric.js"></script>
+        <script src="./controls/group.js"></script>
+        <script src="./controls/yAxis.js"></script>
         <script src="../controls/download.js"></script>
     </head>
 
     <body>
         <div id="controls">
             <fieldset>
-                <legend>KRI</legend>
-                <select id="kri"></select>
+                <legend>Metric</legend>
+                <select id="metric"></select>
             </fieldset>
 
             <fieldset>
-                <legend>Highlighted Site</legend>
-                <select id="groupid"></select>
+                <legend>Highlighted Group</legend>
+                <select id="group"></select>
             </fieldset>
 
             <fieldset>
                 <legend>Y-axis</legend>
-                <select id="yaxis">
-                    <option value="numerator">numerator</option>
-                    <option value="metric">metric</option>
-                    <option value="score">score</option>
+                <select id="yAxis">
+                    <option value="Numerator">Numerator</option>
+                    <option value="Metric">Metric</option>
+                    <option value="Score">Score</option>
                 </select>
             </fieldset>
         </div>

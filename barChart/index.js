@@ -1,8 +1,6 @@
 const dataFiles = [
     '../data/results_summary.csv',
     '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
-    '../data/status_param.csv',
     '../data/status_site.csv',
 ];
 
@@ -13,56 +11,53 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
+        const MetricID = 'kri0001';
 
         datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
+            Object.keys(dataset[0]).includes('MetricID')
+                ? dataset.filter((d) => /^kri/.test(d.MetricID))
                 : dataset
         );
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'score';
-        workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
+        const config = selectMetricID(datasets[1], MetricID);
+        config.y = 'Score';
+        config.hoverCallback = function (datum) {
+            //console.log(datum.GroupID);
         };
-        workflow.clickCallback = function (datum) {
-            instance.data.config.selectedGroupIDs = datum.groupid;
+        config.clickCallback = function (datum) {
+            instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.helpers.updateConfig(
                 instance,
                 instance.data.config,
                 instance.data._thresholds_
             );
-            document.querySelector('#groupid').value = datum.groupid;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
-        // threshold annotations
-        const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
-        );
+        // Threshold annotations
+        const thresholds = config.Thresholds.split(',').map((d) => +d);
 
-        // site metadata
-        const sites = datasets[4];
+        // group metadata
+        const groupMetadata = datasets[2];
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters,
-            sites
+            config,
+            thresholds,
+            groupMetadata
         );
 
         // controls
-        kri(workflow, datasets, true);
-        site(datasets, true);
-        yaxis(workflow, datasets, true);
-        threshold(workflow, datasets, true);
-        lifecycle(datasets, 'barChart', true);
+        metric(datasets, true, MetricID);
+        group(datasets, true);
+        yAxis(datasets, true, config.y);
+        threshold(datasets, true);
+        lifecycle(datasets, true);
         download(true);
     });

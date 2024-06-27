@@ -24863,77 +24863,77 @@ var rbmViz = (() => {
 
     // src/data/schema/analysisMetadata.json
     var analysisMetadata_default = {
-        title: 'KRI Analysis Metadata',
+        title: 'Metric Analysis Metadata',
         description:
-            'JSON schema of KRI analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules',
+            'JSON schema of Metric analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules',
         version: '0.14.0',
         type: 'object',
         properties: {
-            workflowid: {
-                title: 'Workflow ID',
+            MetricID: {
+                title: 'Metric ID',
                 description: 'Unique workflow identifier',
                 type: 'string',
                 required: false,
             },
-            group: {
+            Group: {
                 title: 'Grouping Variable',
                 description:
                     'Grouping variable of analysis, one of Site, Country, or Study',
                 type: 'string',
                 required: true,
             },
-            numerator: {
-                title: 'KRI Numerator',
-                description: 'Unit of KRI numerator',
+            Numerator: {
+                title: 'Metric Numerator',
+                description: 'Unit of Metric Numerator',
                 type: 'string',
                 required: true,
                 key: false,
             },
-            denominator: {
-                title: 'KRI Denominator',
-                description: 'Unit of KRI denominator',
+            Denominator: {
+                title: 'Metric Denominator',
+                description: 'Unit of Metric Denominator',
                 type: 'string',
                 required: true,
                 key: false,
             },
-            metric: {
-                title: 'KRI Metric',
-                description: 'Unit of KRI metric',
+            Metric: {
+                title: 'Metric Metric',
+                description: 'Unit of Metric Metric',
                 type: 'string',
                 required: true,
                 key: false,
             },
-            outcome: {
-                title: 'KRI Type',
-                description: 'Type of KRI metric',
+            Outcome: {
+                title: 'Metric Type',
+                description: 'Type of Metric Metric',
                 type: 'string',
                 required: false,
                 key: false,
             },
-            score: {
-                title: 'KRI Score',
-                description: 'Unit of KRI score',
+            Score: {
+                title: 'Metric Score',
+                description: 'Unit of Metric score',
                 type: 'string',
                 required: true,
                 key: false,
             },
-            model: {
-                title: 'KRI Score Method',
-                description: 'Statistical model used to evaluate KRI',
+            Model: {
+                title: 'Metric Score Method',
+                description: 'Statistical model used to evaluate Metric',
                 type: 'string',
                 required: false,
                 key: false,
             },
-            abbreviation: {
+            Abbreviation: {
                 title: 'Abbreviation',
-                description: 'KRI abbreviation',
+                description: 'Metric Abbreviation',
                 type: 'string',
                 required: false,
                 key: false,
             },
             data_inputs: {
                 title: 'Input Data Domains',
-                description: 'Data domains used to evaluate KRI',
+                description: 'Data domains used to evaluate Metric',
                 type: 'string',
                 required: false,
                 key: false,
@@ -24945,9 +24945,9 @@ var rbmViz = (() => {
                 required: false,
                 key: false,
             },
-            gsm_analysis_date: {
-                title: 'Analysis Date',
-                description: 'Date of analysis',
+            SnapshotDate: {
+                title: 'Snapshot Date',
+                description: 'Date of data refresh',
                 type: 'string',
                 required: false,
                 key: false,
@@ -24962,114 +24962,51 @@ var rbmViz = (() => {
         },
     };
 
-    // src/data/schema/analysisParameters.json
-    var analysisParameters_default = {
-        title: 'KRI Analysis Parameters',
-        description:
-            'JSON schema of input KRI analysis parameters to barChart and timeSeries modules',
+    // src/data/schema/groupMetadata.json
+    var groupMetadata_default = {
+        title: 'Group Metadata',
+        description: 'JSON schema of group metadata',
         version: '0.14.0',
         type: 'array',
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                workflowid: {
-                    title: 'Workflow ID',
-                    description: 'Unique workflow identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                param: {
-                    title: 'Analysis Parameter',
-                    description: 'Analysis parameter',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                index: {
-                    title: 'Parameter Index',
-                    description: 'Index of analysis parameter',
-                    type: 'number',
-                    required: false,
-                    key: true,
-                },
-                value: {
-                    title: 'Parameter Value',
-                    description: 'Parameter value',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                gsm_analysis_date: {
-                    title: 'Analysis Date',
-                    description: 'Date of analysis',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                gsm_version: {
-                    title: '{gsm} Version',
-                    description: '{gsm} version when analysis ran',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-            },
-        },
-    };
-
-    // src/data/schema/countries.json
-    var countries_default = {
-        title: 'Country Metadata',
-        description: 'JSON schema of country metadta',
-        version: '0.14.0',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                studyid: {
-                    title: 'Study ID',
-                    description: 'Unique study identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                groupid: {
+                GroupID: {
                     title: 'Group ID',
                     description: 'Unique group identifier',
                     type: 'string',
                     required: true,
                     key: true,
                 },
-                group_label: {
+                GroupLabel: {
                     title: 'Group Label',
                     description: 'Label of group',
                     type: 'string',
                     required: true,
                     key: false,
                 },
-                enrolled_participants: {
+                EnrolledParticipants: {
                     title: 'Enrolled Participants',
                     description: 'Number of participants enrolled at group',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                status: {
+                Status: {
                     title: 'Group Status',
                     description: 'Status of group',
                     type: 'string',
                     required: true,
                     key: false,
                 },
-                gsm_analysis_date: {
+                SnapshotDate: {
                     title: 'Analysis Date',
                     description: 'Date of analysis',
                     type: 'string',
@@ -25089,53 +25026,53 @@ var rbmViz = (() => {
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                groupid: {
+                GroupID: {
                     title: 'Group ID',
                     description: 'Unique group identifier',
                     type: 'string',
                     required: true,
                     key: true,
-                    alternate: 'workflowid',
+                    alternate: 'MetricID',
                 },
-                workflowid: {
-                    title: 'Workflow ID',
+                MetricID: {
+                    title: 'Metric ID',
                     description: 'Unique workflow identifier',
                     type: 'string',
                     required: true,
                     key: true,
-                    alternate: 'workflowid',
+                    alternate: 'GroupID',
                 },
                 n: {
-                    title: '# of Groups/KRIs',
-                    description: 'Total number of assessed groups/KRIs',
+                    title: '# of Groups/Metrics',
+                    description: 'Total number of assessed groups/Metrics',
                     type: 'number',
                     required: true,
                     key: false,
                 },
                 n_at_risk: {
-                    title: '# of Amber Groups/KRIs',
-                    description: 'Number of amber groups/KRIs',
+                    title: '# of Amber Groups/Metrics',
+                    description: 'Number of amber groups/Metrics',
                     type: 'number',
                     required: true,
                     key: false,
                 },
                 n_flagged: {
-                    title: '# of Red Groups/KRIs',
-                    description: 'Number of red groups/KRIs',
+                    title: '# of Red Groups/Metrics',
+                    description: 'Number of red groups/Metrics',
                     type: 'number',
                     required: true,
                     key: false,
                 },
                 n_at_risk_or_flagged: {
-                    title: '# of Amber of Red Groups/KRIs',
-                    description: 'Number of amber or red groups/KRIs',
+                    title: '# of Amber of Red Groups/Metrics',
+                    description: 'Number of amber or red groups/Metrics',
                     type: 'number',
                     required: true,
                     key: false,
@@ -25146,7 +25083,7 @@ var rbmViz = (() => {
 
     // src/data/schema/results.json
     var results_default = {
-        title: 'Standard KRI Analysis Output',
+        title: 'Standard Metric Analysis Output',
         description:
             'JSON schema of input data to barChart and scatterPlot modules',
         version: '0.14.0',
@@ -25154,66 +25091,66 @@ var rbmViz = (() => {
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                workflowid: {
-                    title: 'Workflow ID',
+                MetricID: {
+                    title: 'Metric ID',
                     description: 'Unique workflow identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                groupid: {
+                GroupID: {
                     title: 'Group ID',
                     description: 'Unique group identifier',
                     type: 'string',
                     required: true,
                     key: true,
                 },
-                numerator: {
+                Numerator: {
                     title: 'Numerator',
-                    description: 'Numerator of KRI metric',
+                    description: 'Numerator of Metric Metric',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                denominator: {
+                Denominator: {
                     title: 'Denominator',
-                    description: 'Denominator of KRI metric',
+                    description: 'Denominator of Metric Metric',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                metric: {
-                    title: 'KRI Metric',
-                    description: 'KRI metric',
+                Metric: {
+                    title: 'Metric Metric',
+                    description: 'Metric Metric',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                score: {
-                    title: 'KRI Score',
-                    description: 'KRI score',
+                Score: {
+                    title: 'Metric Score',
+                    description: 'Metric score',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                flag: {
+                Flag: {
                     title: 'Flag Status',
                     description:
-                        'Flag assigned given KRI score and specified thresholds',
+                        'Flag assigned given Metric score and specified thresholds',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                gsm_analysis_date: {
-                    title: 'Analysis Date',
-                    description: 'Date of analysis',
+                SnapshotDate: {
+                    title: 'Snapshot Date',
+                    description: 'Date of data refresh',
                     type: 'string',
                     required: false,
                     key: false,
@@ -25224,7 +25161,7 @@ var rbmViz = (() => {
 
     // src/data/schema/resultsPredicted.json
     var resultsPredicted_default = {
-        title: 'Predicted KRI Analysis Output',
+        title: 'Predicted Metric Analysis Output',
         description:
             'JSON schema of predicted input data to scatterPlot module',
         version: '0.14.0',
@@ -25232,51 +25169,51 @@ var rbmViz = (() => {
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                workflowid: {
-                    title: 'Workflow ID',
+                MetricID: {
+                    title: 'Metric ID',
                     description: 'Unique workflow identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                threshold: {
+                Threshold: {
                     title: 'Threshold',
                     description: 'Directional factor of predicted results',
                     type: 'number',
                     required: true,
                     key: true,
                 },
-                numerator: {
+                Numerator: {
                     title: 'Predicted Numerator',
-                    description: 'Predicted numerator of KRI metric',
+                    description: 'Predicted numerator of Metric metric',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                denominator: {
+                Denominator: {
                     title: 'Predicted Denominator',
-                    description: 'Predicted denominator of KRI metric',
+                    description: 'Predicted denominator of Metric metric',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                log_denominator: {
+                LogDenominator: {
                     title: 'Predicted Denominator (log)',
-                    description: 'Predicted Denominator of KRI metric (log)',
+                    description: 'Predicted Denominator of Metric metric (log)',
                     type: 'number',
                     required: false,
                     key: false,
                 },
-                gsm_analysis_date: {
-                    title: 'Analysis Date',
-                    description: 'Date of analysis',
+                SnapshotDate: {
+                    title: 'Snapshot Date',
+                    description: 'Date of data refresh',
                     type: 'string',
                     required: false,
                     key: false,
@@ -25287,44 +25224,44 @@ var rbmViz = (() => {
 
     // src/data/schema/resultsVertical.json
     var resultsVertical_default = {
-        title: 'Additional KRI Analysis Output',
+        title: 'Additional Metric Analysis Output',
         description: 'JSON schema of ancillary input data to timeSeries module',
         version: '0.14.0',
         type: 'array',
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                workflowid: {
-                    title: 'Workflow ID',
+                MetricID: {
+                    title: 'Metric ID',
                     description: 'Unique workflow identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                param: {
+                Param: {
                     title: 'Analysis Parameter',
                     description: 'Analysis parameter',
                     type: 'string',
                     required: true,
                     key: true,
                 },
-                value: {
+                Value: {
                     title: 'Analysis Result',
                     description: 'Analysis result',
                     type: 'number',
                     required: true,
                     key: false,
                 },
-                gsm_analysis_date: {
-                    title: 'Analysis Date',
-                    description: 'Date of analysis',
+                SnapshotDate: {
+                    title: 'Snapshot Date',
+                    description: 'Date of data refresh',
                     type: 'string',
                     required: false,
                     key: false,
@@ -25342,14 +25279,14 @@ var rbmViz = (() => {
         items: {
             type: 'object',
             properties: {
-                studyid: {
+                StudyID: {
                     title: 'Study ID',
                     description: 'Unique study identifier',
                     type: 'string',
                     required: false,
                     key: true,
                 },
-                siteid: {
+                SiteID: {
                     title: 'Site ID',
                     description: 'Unique site identifier',
                     type: 'string',
@@ -25440,7 +25377,7 @@ var rbmViz = (() => {
                     required: true,
                     key: false,
                 },
-                gsm_analysis_date: {
+                SnapshotDate: {
                     title: 'Analysis Date',
                     description: 'Date of analysis',
                     type: 'string',
@@ -25454,22 +25391,32 @@ var rbmViz = (() => {
     // src/data/schema/snapshotDate.json
     var snapshotDate_default = {
         title: 'Snapshot Date',
-        description: 'Date of data snapshot',
+        description: 'Date of data refresh',
         type: 'string',
         required: true,
         key: true,
     };
 
+    // src/data/schema/thresholds.json
+    var thresholds_default = {
+        title: 'Thresholds',
+        description: 'Threshold values',
+        type: 'array',
+        items: {
+            type: 'number',
+        },
+    };
+
     // src/data/schema/index.js
     var schema = {
         analysisMetadata: analysisMetadata_default,
-        analysisParameters: analysisParameters_default,
-        countries: countries_default,
+        groupMetadata: groupMetadata_default,
         flagCounts: flagCounts_default,
         results: results_default,
         resultsPredicted: resultsPredicted_default,
         resultsVertical: resultsVertical_default,
         siteMetadata: siteMetadata_default,
+        thresholds: thresholds_default,
         snapshotDate: snapshotDate_default,
     };
     var schema_default = schema;
@@ -25548,8 +25495,7 @@ var rbmViz = (() => {
             module === 'timeSeries' &&
             ['flagCounts', 'results', 'resultsVertical'].includes(schemaName)
         ) {
-            schema2.items.properties.snapshot_date =
-                schema_default.snapshotDate;
+            schema2.items.properties.SnapshotDate = schema_default.snapshotDate;
         }
         if (argument === null) {
             if (verbose)
@@ -25613,7 +25559,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'barChart',
         });
         if (_sites_ !== null) {
@@ -25671,7 +25617,7 @@ var rbmViz = (() => {
         if (!Array.isArray(selectedGroupIDs))
             selectedGroupIDs = [selectedGroupIDs];
         if (Array.isArray(selectedGroupIDs)) {
-            const actualGroupIDs = [...new Set(_data_.map((d2) => d2.groupid))];
+            const actualGroupIDs = [...new Set(_data_.map((d2) => d2.GroupID))];
             for (const selectedGroupID of selectedGroupIDs) {
                 if (actualGroupIDs.includes(selectedGroupID) === false)
                     selectedGroupIDs = selectedGroupIDs.filter(
@@ -25685,74 +25631,55 @@ var rbmViz = (() => {
     // src/util/mapThresholdsToFlags.js
     function mapThresholdsToFlags(_thresholds_) {
         const thresholds2 = [...new Set(_thresholds_)]
-            .map((threshold) => +threshold)
+            .map((Threshold) => +Threshold)
             .sort(ascending);
         const negativeThresholds = thresholds2
-            .filter((threshold) => threshold < 0)
+            .filter((Threshold) => Threshold < 0)
             .sort(descending);
-        const negativeFlags = negativeThresholds.map((threshold, i) => {
+        const negativeFlags = negativeThresholds.map((Threshold, i) => {
             return {
-                threshold,
-                flag: -(i + 1),
+                Threshold,
+                Flag: -(i + 1),
             };
         });
         const positiveThresholds = thresholds2
-            .filter((threshold) => threshold > 0)
+            .filter((Threshold) => Threshold > 0)
             .sort(ascending);
-        const positiveFlags = positiveThresholds.map((threshold, i) => {
+        const positiveFlags = positiveThresholds.map((Threshold, i) => {
             return {
-                threshold,
-                flag: i + 1,
+                Threshold,
+                Flag: i + 1,
             };
         });
         const zeroFlag = thresholds2
-            .filter((threshold) => threshold === 0)
-            .map((threshold) => {
+            .filter((Threshold) => Threshold === 0)
+            .map((Threshold) => {
                 return {
-                    threshold,
-                    flag: 0,
+                    Threshold,
+                    Flag: 0,
                 };
             });
         const flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
-            (a, b) => a.flag - b.flag
+            (a, b) => a.Flag - b.Flag
         );
         return flags;
     }
 
     // src/util/checkThresholds.js
     function checkThresholds(_config_, _thresholds_) {
-        let thresholds2 = _config_.thresholds;
+        let thresholds2 = _config_.thresholds || _thresholds_ || [];
         if (_config_.variableThresholds) return null;
         if (
             Array.isArray(thresholds2) &&
             thresholds2.length > 0 &&
-            thresholds2.every((threshold) => typeof threshold === 'number')
-        )
-            return mapThresholdsToFlags(thresholds2);
-        if (
-            Array.isArray(thresholds2) &&
-            thresholds2.length > 0 &&
             thresholds2.every(
-                (threshold) =>
-                    typeof threshold === 'object' &&
-                    threshold.hasOwnProperty('threshold') &&
-                    threshold.hasOwnProperty('flag')
+                (Threshold) =>
+                    typeof Threshold === 'object' &&
+                    Threshold.hasOwnProperty('Threshold') &&
+                    Threshold.hasOwnProperty('Flag')
             )
         )
             return thresholds2;
-        if (
-            _thresholds_ === null ||
-            [null].includes(thresholds2) ||
-            (Array.isArray(thresholds2) &&
-                (thresholds2.length === 0 ||
-                    thresholds2.some(
-                        (threshold) => typeof threshold !== 'number'
-                    )))
-        )
-            return null;
-        thresholds2 = _thresholds_
-            .filter((d2) => d2.param === 'vThreshold')
-            .map((d2) => (d2.value !== void 0 ? +d2.value : +d2.default));
         return mapThresholdsToFlags(thresholds2);
     }
 
@@ -25769,11 +25696,11 @@ var rbmViz = (() => {
     // src/barChart/configure.js
     function configure3(_config_, _data_, _thresholds_) {
         const defaults3 = {};
-        defaults3.x = 'groupid';
+        defaults3.x = 'GroupID';
         defaults3.xType = 'category';
-        defaults3.y = 'score';
+        defaults3.y = 'Score';
         defaults3.yType = 'linear';
-        defaults3.color = 'flag';
+        defaults3.color = 'Flag';
         defaults3.hoverCallback = (datum2) => {};
         defaults3.clickCallback = (datum2) => {
             console.log(datum2);
@@ -25788,10 +25715,10 @@ var rbmViz = (() => {
             ),
             thresholds: checkThresholds.bind(null, _config_, _thresholds_),
         });
-        config.xLabel = coalesce(_config_.xLabel, config['group']);
+        config.xLabel = coalesce(_config_.xLabel, config['Group']);
         config.yLabel = coalesce(_config_.yLabel, config[config.y]);
         config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-        if (config.y === 'metric') delete config.thresholds;
+        if (config.y === 'Metric') delete config.thresholds;
         if (config.hoverCallbackWrapper === void 0)
             config.hoverCallbackWrapper = getCallbackWrapper(
                 config.hoverCallback
@@ -25857,7 +25784,7 @@ var rbmViz = (() => {
             .map((d2) => {
                 if (_sites_ !== null) {
                     const site = _sites_.find(
-                        (site2) => site2.siteid === d2.groupid
+                        (site2) => site2.SiteID === d2.GroupID
                     );
                     if (site !== void 0) {
                         d2.site = site;
@@ -25883,39 +25810,39 @@ var rbmViz = (() => {
             color: '#52C41A',
             order: 0,
             description: 'Green Flag',
-            flag: [0],
+            Flag: [0],
         },
         {
             color: '#FFBF00',
             order: 1,
             description: 'Amber Flag',
-            flag: [-1, 1],
+            Flag: [-1, 1],
         },
         {
             color: '#ff0040',
             order: 2,
             description: 'Red Flag',
-            flag: [-2, 2],
+            Flag: [-2, 2],
         },
         {
             color: '#aaaaaa',
             order: 3,
             description: 'No Flag',
-            flag: falsy_default,
+            Flag: falsy_default,
         },
     ];
     colorScheme.forEach((color3) => {
         color3.rgba = color2(color3.color);
     });
-    var amber = colorScheme.find((color3) => color3.flag.includes(1));
-    var red = colorScheme.find((color3) => color3.flag.includes(2));
+    var amber = colorScheme.find((color3) => color3.Flag.includes(1));
+    var red = colorScheme.find((color3) => color3.Flag.includes(2));
     colorScheme.amberRed = {
         color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
             (amber.rgba.g + red.rgba.g) / 2
         )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
         order: -1,
         description: 'Amber or Red Flag',
-        flag: [...amber.flag, ...red.flag].sort(ascending),
+        Flag: [...amber.Flag, ...red.Flag].sort(ascending),
     };
     colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
     var colorScheme_default = colorScheme;
@@ -25929,7 +25856,7 @@ var rbmViz = (() => {
         if (dataset.type === 'bar') {
             const color3 = colorScheme_default[datum2.stratum];
             color3.rgba.opacity =
-                config.selectedGroupIDs.includes(datum2.groupid) |
+                config.selectedGroupIDs.includes(datum2.GroupID) |
                 (config.selectedGroupIDs.length === 0)
                     ? 1
                     : 0.25;
@@ -25970,23 +25897,23 @@ var rbmViz = (() => {
 
     // src/util/identifyDuplicatePoints.js
     function identifyDuplicatePoints(data, config, mutate5 = true) {
-        const numericGroupIDs = data.every((d2) => /^\d+$/.test(d2.groupid));
+        const numericGroupIDs = data.every((d2) => /^\d+$/.test(d2.GroupID));
         data.sort((a, b) => {
             const x = ascending(a[config.x], b[config.x]);
             const y = ascending(a[config.y], b[config.y]);
             const selected =
-                config.selectedGroupIDs.includes(b.groupid) -
-                config.selectedGroupIDs.includes(a.groupid);
-            const groupid = numericGroupIDs
-                ? ascending(+a.groupid, +b.groupid)
-                : ascending(a.groupid, b.groupid);
-            return x || y || selected || groupid;
+                config.selectedGroupIDs.includes(b.GroupID) -
+                config.selectedGroupIDs.includes(a.GroupID);
+            const GroupID = numericGroupIDs
+                ? ascending(+a.GroupID, +b.GroupID)
+                : ascending(a.GroupID, b.GroupID);
+            return x || y || selected || GroupID;
         });
         if (mutate5)
             rollup(
                 data,
-                (group2) => {
-                    group2.forEach((d2, i) => {
+                (Group) => {
+                    Group.forEach((d2, i) => {
                         d2.duplicate = i > 0;
                     });
                 },
@@ -26048,25 +25975,25 @@ var rbmViz = (() => {
         let annotations5 = null;
         if (config.thresholds) {
             annotations5 = config.thresholds
-                .sort((a, b) => Math.abs(a.threshold) - Math.abs(b.threshold))
+                .sort((a, b) => Math.abs(a.Threshold) - Math.abs(b.Threshold))
                 .map((x, i) => {
                     const content = colorScheme_default.find((y) =>
-                        y.flag.includes(+x.flag)
+                        y.Flag.includes(+x.Flag)
                     ).description;
                     return {
                         adjustScaleRange: false,
                         borderColor: colorScheme_default.filter((y) =>
-                            y.flag.includes(+x.flag)
+                            y.Flag.includes(+x.Flag)
                         )[0].color,
                         borderDash: [2],
                         borderWidth: 1,
                         label: {
                             backgroundColor: 'white',
                             color: colorScheme_default.filter((y) =>
-                                y.flag.includes(+x.flag)
+                                y.Flag.includes(+x.Flag)
                             )[0].color,
                             content:
-                                Math.sign(+x.flag) === 1
+                                Math.sign(+x.Flag) === 1
                                     ? `${content} \u2191`
                                     : `\u2193 ${content}`,
                             display: true,
@@ -26075,14 +26002,14 @@ var rbmViz = (() => {
                             },
                             padding: 2,
                             position:
-                                Math.sign(+x.flag) === 1 ? 'end' : 'start',
+                                Math.sign(+x.Flag) === 1 ? 'end' : 'start',
                             rotation: 'auto',
-                            yValue: x.threshold,
+                            yValue: x.Threshold,
                             yAdjust: 0,
                         },
                         type: 'line',
-                        yMin: x.threshold,
-                        yMax: x.threshold,
+                        yMin: x.Threshold,
+                        yMax: x.Threshold,
                     };
                 });
         }
@@ -26093,18 +26020,18 @@ var rbmViz = (() => {
     function dataLabels(config) {
         return {
             align: (context) =>
-                (config.y === 'score' &&
+                (config.y === 'Score' &&
                     Math.sign(context.dataset.data[context.dataIndex].y) ===
                         1) ||
-                (config.y === 'metric' &&
+                (config.y === 'Metric' &&
                     Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                     ? 'start'
                     : 'end',
             anchor: (context) =>
-                (config.y === 'score' &&
+                (config.y === 'Score' &&
                     Math.sign(context.dataset.data[context.dataIndex].y) ===
                         1) ||
-                (config.y === 'metric' &&
+                (config.y === 'Metric' &&
                     Math.sign(context.dataset.data[context.dataIndex].y) === -1)
                     ? 'start'
                     : 'end',
@@ -26148,7 +26075,7 @@ var rbmViz = (() => {
     function title(config) {
         return {
             display: config.displayTitle,
-            text: `${config.metric} by ${config.group}`,
+            text: `${config.Metric} by ${config.Group}`,
         };
     }
 
@@ -26161,39 +26088,39 @@ var rbmViz = (() => {
             config.dataType !== 'discrete'
         ) {
             content =
-                config.group === 'Study'
+                config.Group === 'Study'
                     ? [
                           `${config.yLabel}: ${
-                              falsy_default.includes(datum2.metric)
+                              falsy_default.includes(datum2.Metric)
                                   ? '\u2014'
-                                  : format('.3f')(datum2.metric)
+                                  : format('.3f')(datum2.Metric)
                           }`,
                           `Confidence Interval: (${format('.3f')(
                               datum2.lowerCI
                           )}, ${format('.3f')(datum2.upperCI)})`,
-                          `${config.numerator}: ${format(',')(
-                              datum2.numerator
+                          `${config.Numerator}: ${format(',')(
+                              datum2.Numerator
                           )}`,
-                          `${config.denominator}: ${format(',')(
-                              datum2.denominator
+                          `${config.Denominator}: ${format(',')(
+                              datum2.Denominator
                           )}`,
                       ]
                     : [
-                          `KRI Score: ${
-                              falsy_default.includes(datum2.score)
+                          `Metric Score: ${
+                              falsy_default.includes(datum2.Score)
                                   ? '\u2014'
-                                  : format('.1f')(datum2.score)
-                          } (${config.score})`,
-                          `KRI Value: ${
-                              falsy_default.includes(datum2.metric)
+                                  : format('.1f')(datum2.Score)
+                          } (${config.Score})`,
+                          `Metric Value: ${
+                              falsy_default.includes(datum2.Metric)
                                   ? '\u2014'
-                                  : format('.3f')(datum2.metric)
-                          } (${config.metric})`,
-                          `${config.numerator}: ${format(',')(
-                              datum2.numerator
+                                  : format('.3f')(datum2.Metric)
+                          } (${config.Metric})`,
+                          `${config.Numerator}: ${format(',')(
+                              datum2.Numerator
                           )}`,
-                          `${config.denominator}: ${format(',')(
-                              datum2.denominator
+                          `${config.Denominator}: ${format(',')(
+                              datum2.Denominator
                           )}`,
                       ];
         } else if (['boxplot', 'violin'].includes(data.dataset.type)) {
@@ -26216,14 +26143,14 @@ var rbmViz = (() => {
                           }`,
                       ]
                     : data.dataset.purpose === 'aggregate' &&
-                      config.discreteUnit === 'KRI'
+                      config.discreteUnit === 'Metric'
                     ? [
                           `${format('.1f')(datum2.y)} Average ${config.yLabel}`,
                           ...datum2.counts.map(
                               (d2) =>
                                   `${d2[config.y]} ${config.yLabel}: ${d2.n}/${
                                       d2.N
-                                  } (${d2.pct}%) ${config.group}s`
+                                  } (${d2.pct}%) ${config.Group}s`
                           ),
                       ]
                     : data.dataset.purpose === 'aggregate' &&
@@ -26276,8 +26203,8 @@ var rbmViz = (() => {
                     if (data.length) {
                         const datum2 = data[0].dataset.data[data[0].dataIndex];
                         return datum2.site !== void 0
-                            ? `${config.group} ${datum2.groupid} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)`
-                            : `${config.group} ${datum2.groupid}`;
+                            ? `${config.Group} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)`
+                            : `${config.Group} ${datum2.GroupID}`;
                     }
                 },
             },
@@ -26375,7 +26302,7 @@ var rbmViz = (() => {
         if (chart.data.config.selectedGroupIDs.length > 0) {
             const data = chart.data.datasets[0].data;
             const point = data.find((d2) =>
-                chart.data.config.selectedGroupIDs.includes(d2.groupid)
+                chart.data.config.selectedGroupIDs.includes(d2.GroupID)
             );
             const overlappingPoints = data.filter(
                 (d2) => d2.x === point.x && d2.y === point.y
@@ -26447,7 +26374,7 @@ var rbmViz = (() => {
         _element_ = 'body',
         _data_ = [],
         _config_ = {},
-        _thresholds_ = null,
+        _thresholds_ = [],
         _sites_ = null
     ) {
         checkInputs(_data_, _config_, _thresholds_, _sites_);
@@ -26464,8 +26391,8 @@ var rbmViz = (() => {
             layout: {
                 padding: {
                     top:
-                        config.y === 'metric'
-                            ? max(datasets[0].data, (d2) => d2.groupid.length) *
+                        config.y === 'Metric'
+                            ? max(datasets[0].data, (d2) => d2.GroupID.length) *
                               8
                             : null,
                 },
@@ -26533,11 +26460,11 @@ var rbmViz = (() => {
     // src/scatterPlot/configure.js
     function configure4(_config_, _data_) {
         const defaults3 = {};
-        defaults3.x = 'denominator';
+        defaults3.x = 'Denominator';
         defaults3.xType = 'logarithmic';
-        defaults3.y = 'numerator';
+        defaults3.y = 'Numerator';
         defaults3.yType = 'linear';
-        defaults3.color = 'flag';
+        defaults3.color = 'Flag';
         defaults3.hoverCallback = (datum2) => {};
         defaults3.clickCallback = (datum2) => {
             console.log(datum2);
@@ -26573,7 +26500,7 @@ var rbmViz = (() => {
             .map((d2) => {
                 if (_sites_ !== null) {
                     const site = _sites_.find(
-                        (site2) => site2.siteid === d2.groupid
+                        (site2) => site2.SiteID === d2.GroupID
                     );
                     if (site !== void 0) {
                         d2.site = site;
@@ -26591,9 +26518,9 @@ var rbmViz = (() => {
             })
             .sort((a, b) => {
                 const aSelected =
-                    config.selectedGroupIDs.indexOf(a.groupid) > -1;
+                    config.selectedGroupIDs.indexOf(a.GroupID) > -1;
                 const bSelected =
-                    config.selectedGroupIDs.indexOf(b.groupid) > -1;
+                    config.selectedGroupIDs.indexOf(b.GroupID) > -1;
                 const stratum = b.stratum - a.stratum;
                 return aSelected ? 1 : bSelected ? -1 : stratum;
             });
@@ -26609,7 +26536,7 @@ var rbmViz = (() => {
         const datum2 = dataset.data[context.dataIndex];
         if (dataset.type === 'scatter') {
             const color3 = colorScheme_default[datum2.stratum].rgba;
-            color3.opacity = config.selectedGroupIDs.includes(datum2.groupid)
+            color3.opacity = config.selectedGroupIDs.includes(datum2.GroupID)
                 ? 1
                 : config.selectedGroupIDs.length === 0
                 ? 0.5
@@ -26627,7 +26554,7 @@ var rbmViz = (() => {
         if (dataset.type === 'scatter') {
             const color3 = colorScheme_default[datum2.stratum].rgba;
             color3.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
-            return config.selectedGroupIDs.includes(datum2.groupid)
+            return config.selectedGroupIDs.includes(datum2.GroupID)
                 ? 'black'
                 : color3 + '';
         }
@@ -26659,7 +26586,7 @@ var rbmViz = (() => {
                 );
                 return enrollmentFactor * hoverRadius;
             } else {
-                return config.selectedGroupIDs.includes(datum2.groupid)
+                return config.selectedGroupIDs.includes(datum2.GroupID)
                     ? hoverRadius
                     : defaultRadius;
             }
@@ -26681,7 +26608,7 @@ var rbmViz = (() => {
                 );
                 return enrollmentFactor * defaultRadius;
             } else {
-                return config.selectedGroupIDs.includes(datum2.groupid)
+                return config.selectedGroupIDs.includes(datum2.GroupID)
                     ? hoverRadius
                     : defaultRadius;
             }
@@ -26703,58 +26630,58 @@ var rbmViz = (() => {
     function rollupBounds(_bounds_, config) {
         if (_bounds_ !== null) {
             const boundUps = rollups(
-                _bounds_.sort((a, b) => a.threshold - b.threshold),
-                (group2) => {
+                _bounds_.sort((a, b) => a.Threshold - b.Threshold),
+                (Group) => {
                     return {
                         type: 'line',
-                        data: group2.map((d2) => ({
-                            stratum: Math.abs(+d2.threshold),
-                            threshold: d2.threshold,
-                            x: +d2.denominator,
-                            y: +d2.numerator,
+                        data: Group.map((d2) => ({
+                            stratum: Math.abs(+d2.Threshold),
+                            Threshold: d2.Threshold,
+                            x: +d2.Denominator,
+                            y: +d2.Numerator,
                         })),
                         borderWidth: 1,
                         hoverRadius: 0,
                         pointRadius: 0,
                     };
                 },
-                (d2) => d2.threshold
+                (d2) => d2.Threshold
             );
             const flags = mapThresholdsToFlags(
                 boundUps.map((bound) => bound[0])
             );
             const bounds = boundUps.map((bound, i) => {
-                const group2 = bound[1];
-                group2.threshold = +bound[0];
-                group2.flag = flags.find(
-                    (flag2) => flag2.threshold === group2.threshold
+                const Group = bound[1];
+                Group.Threshold = +bound[0];
+                Group.Flag = flags.find(
+                    (Flag2) => Flag2.Threshold === Group.Threshold
                 );
-                const flag = group2.flag.flag;
-                group2.label = colorScheme_default.find((color4) =>
-                    color4.flag.includes(flag)
+                const Flag = Group.Flag.Flag;
+                Group.label = colorScheme_default.find((color4) =>
+                    color4.Flag.includes(Flag)
                 ).description;
-                const color3 = colorScheme_default[Math.abs(flag)].color;
-                group2.borderColor = color3;
+                const color3 = colorScheme_default[Math.abs(Flag)].color;
+                Group.borderColor = color3;
                 const backgroundColor4 = color2(color3);
                 backgroundColor4.opacity = 0.75;
-                group2.backgroundColor = backgroundColor4 + '';
-                group2.borderDash = [2];
+                Group.backgroundColor = backgroundColor4 + '';
+                Group.borderDash = [2];
                 if (
                     config.displayTrendLine === false &&
-                    group2.threshold === 0
+                    Group.Threshold === 0
                 ) {
-                    group2.borderColor = 'rgba(0,0,0,0)';
+                    Group.borderColor = 'rgba(0,0,0,0)';
                 }
-                return group2;
+                return Group;
             });
             rollup(
                 bounds,
-                (group2) => {
-                    group2.forEach((d2, i) => {
+                (Group) => {
+                    Group.forEach((d2, i) => {
                         if (i > 0) d2.label = '';
                     });
                 },
-                (d2) => Math.abs(d2.flag.flag)
+                (d2) => Math.abs(d2.Flag.Flag)
             );
             return bounds;
         }
@@ -26778,7 +26705,7 @@ var rbmViz = (() => {
             bounds.forEach((bound) => {
                 datasets.push(bound);
             });
-        if (data.some((d2) => falsy_default.includes(d2.flag)))
+        if (data.some((d2) => falsy_default.includes(d2.Flag)))
             datasets.push({
                 type: 'line',
                 label: 'No Flag',
@@ -26815,22 +26742,22 @@ var rbmViz = (() => {
     function title2(config) {
         return {
             display: config.displayTitle,
-            text: `${config.metric} by ${config.group}`,
+            text: `${config.Metric} by ${config.Group}`,
         };
     }
 
     // src/util/sortByGroupID.js
     function sortByGroupID(data, config) {
         const numericGroupIDs = data.every((d2) =>
-            /^\d+$/.test(d2.raw.groupid)
+            /^\d+$/.test(d2.raw.GroupID)
         );
         const dataSorted = data.sort((a, b) => {
             const selected =
-                config.selectedGroupIDs.includes(b.raw.groupid) -
-                config.selectedGroupIDs.includes(a.raw.groupid);
+                config.selectedGroupIDs.includes(b.raw.GroupID) -
+                config.selectedGroupIDs.includes(a.raw.GroupID);
             const alphanumeric = numericGroupIDs
-                ? ascending(+a.raw.groupid, +b.raw.groupid)
-                : ascending(a.raw.groupid, b.raw.groupid);
+                ? ascending(+a.raw.GroupID, +b.raw.GroupID)
+                : ascending(a.raw.GroupID, b.raw.GroupID);
             return selected || alphanumeric;
         });
         return dataSorted;
@@ -26851,8 +26778,8 @@ var rbmViz = (() => {
                         const titles = dataSorted.map((d2, i) => {
                             let title4;
                             if (data.length === 1) {
-                                title4 = `${config.group} ${
-                                    d2.dataset.data[d2.dataIndex].groupid
+                                title4 = `${config.Group} ${
+                                    d2.dataset.data[d2.dataIndex].GroupID
                                 }`;
                                 if (d2.raw.site !== void 0) {
                                     title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
@@ -26860,11 +26787,11 @@ var rbmViz = (() => {
                             } else {
                                 title4 =
                                     i === 0
-                                        ? `${config.group}s ${
+                                        ? `${config.Group}s ${
                                               d2.dataset.data[d2.dataIndex]
-                                                  .groupid
+                                                  .GroupID
                                           }`
-                                        : d2.dataset.data[d2.dataIndex].groupid;
+                                        : d2.dataset.data[d2.dataIndex].GroupID;
                             }
                             return title4;
                         });
@@ -27018,7 +26945,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'sparkline',
         });
     }
@@ -27026,11 +26953,11 @@ var rbmViz = (() => {
     // src/sparkline/configure.js
     function configure5(_config_, _data_, _thresholds_) {
         const defaults3 = {};
-        defaults3.x = 'snapshot_date';
+        defaults3.x = 'SnapshotDate';
         defaults3.xType = 'category';
-        defaults3.y = 'score';
+        defaults3.y = 'Score';
         defaults3.yType = 'linear';
-        defaults3.color = 'flag';
+        defaults3.color = 'Flag';
         defaults3.hoverCallback = (datum2) => {};
         defaults3.clickCallback = (datum2) => {
             console.log(datum2);
@@ -27041,10 +26968,10 @@ var rbmViz = (() => {
         const config = configure2(defaults3, _config_, {
             thresholds: checkThresholds.bind(null, _config_, _thresholds_),
         });
-        config.annotation = ['metric', 'score'].includes(config.y)
-            ? 'numerator'
+        config.annotation = ['Metric', 'Score'].includes(config.y)
+            ? 'Numerator'
             : config.y;
-        config.dataType = ['metric', 'score'].includes(config.y)
+        config.dataType = ['Metric', 'Score'].includes(config.y)
             ? 'continuous'
             : 'discrete';
         config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
@@ -27067,7 +26994,7 @@ var rbmViz = (() => {
                 };
                 return datum2;
             })
-            .sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
+            .sort((a, b) => ascending(a.SnapshotDate, b.SnapshotDate));
         return data.slice(-config.nSnapshots);
     }
 
@@ -27108,7 +27035,7 @@ var rbmViz = (() => {
     // src/sparkline/structureData.js
     function structureData3(_data_, config) {
         const data = mutate3(_data_, config);
-        const labels = data.map((d2) => d2.snapshot_date);
+        const labels = data.map((d2) => d2.SnapshotDate);
         const pointBackgroundColor = data.map((d2, i) => {
             return config.dataType === 'continuous'
                 ? colorScheme_default[d2.stratum].color
@@ -27147,15 +27074,15 @@ var rbmViz = (() => {
     function thresholds(config) {
         let thresholds2 = null;
         if (config.displayThresholds && config.thresholds) {
-            thresholds2 = config.thresholds.map((threshold, i) => {
+            thresholds2 = config.thresholds.map((Threshold, i) => {
                 const color3 = colorScheme_default.find((color4) =>
-                    color4.flag.includes(+threshold.flag)
+                    color4.Flag.includes(+Threshold.Flag)
                 );
                 color3.rgba.opacity = 0.5;
                 const annotation2 = {
                     type: 'line',
-                    yMin: threshold.threshold,
-                    yMax: threshold.threshold,
+                    yMin: Threshold.Threshold,
+                    yMax: Threshold.Threshold,
                     borderColor: color3.rgba + '',
                     borderWidth: 1,
                 };
@@ -27176,7 +27103,7 @@ var rbmViz = (() => {
         const yValue = yMin === yMax ? yMin : yMin + range / 2;
         const format2 = data.every((d2) => +d2[config.y] % 1 === 0)
             ? `d`
-            : config.y === 'metric'
+            : config.y === 'Metric'
             ? `.3f`
             : `.1f`;
         const datum2 = data
@@ -27210,8 +27137,8 @@ var rbmViz = (() => {
             annotations: [value],
         };
         if (thresholds2 !== null)
-            thresholds2.forEach((threshold) => {
-                annotations5.annotations.push(threshold);
+            thresholds2.forEach((Threshold) => {
+                annotations5.annotations.push(Threshold);
             });
         return annotations5;
     }
@@ -27232,9 +27159,9 @@ var rbmViz = (() => {
             callbacks: {
                 label: function (data) {
                     const fmt =
-                        config.y === 'score'
+                        config.y === 'Score'
                             ? '.1f'
-                            : config.y === 'metric'
+                            : config.y === 'Metric'
                             ? '.3f'
                             : ',d';
                     return config.dataType === 'continuous'
@@ -27376,7 +27303,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_thresholds_',
             argument: _thresholds_,
-            schemaName: 'analysisParameters',
+            schemaName: 'thresholds',
             module: 'timeSeries',
         });
         checkInput({
@@ -27402,28 +27329,28 @@ var rbmViz = (() => {
             ? 'discrete'
             : 'continuous';
         if (defaults3.dataType === 'discrete')
-            defaults3.discreteUnit = Object.keys(_data_[0]).includes('groupid')
-                ? 'KRI'
+            defaults3.discreteUnit = Object.keys(_data_[0]).includes('GroupID')
+                ? 'Metric'
                 : 'Site';
         else defaults3.discreteUnit = null;
         defaults3.distributionDisplay = 'boxplot';
-        defaults3.x = 'snapshot_date';
+        defaults3.x = 'SnapshotDate';
         defaults3.xType = 'category';
-        defaults3.y = 'score';
+        defaults3.y = 'Score';
         defaults3.yType = 'linear';
-        defaults3.color = 'flag';
+        defaults3.color = 'Flag';
         defaults3.hoverCallback = (datum2) => {};
         defaults3.clickCallback = (datum2) => {
             console.log(datum2);
         };
-        defaults3.group = 'Site';
+        defaults3.Group = 'Site';
         defaults3.aggregateLabel = 'Study';
         defaults3.annotateThreshold = _thresholds_ !== null;
         defaults3.maintainAspectRatio = false;
         _config_.variableThresholds = Array.isArray(_thresholds_)
             ? _thresholds_.some(
-                  (threshold) =>
-                      threshold.snapshot_date !== _thresholds_[0].snapshot_date
+                  (Threshold) =>
+                      Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
               )
             : false;
         const config = configure2(defaults3, _config_, {
@@ -27482,12 +27409,12 @@ var rbmViz = (() => {
                 const datum2 = { ...d2 };
                 if (_sites_ !== null) {
                     let site = _sites_.filter(
-                        (site2) => site2.siteid === d2.groupid
+                        (site2) => site2.SiteID === d2.GroupID
                     );
                     if (site.length > 1) {
                         site = site.find(
                             (site2) =>
-                                site2.snapshot_date === datum2.snapshot_date
+                                site2.SnapshotDate === datum2.SnapshotDate
                         );
                     } else {
                         site = site[0];
@@ -27499,14 +27426,14 @@ var rbmViz = (() => {
                 if ([void 0, null].includes(_intervals_) === false) {
                     const intervals2 = _intervals_.filter(
                         (interval2) =>
-                            interval2.snapshot_date === datum2.snapshot_date
+                            interval2.SnapshotDate === datum2.SnapshotDate
                     );
                     datum2.lowerCI = intervals2.find(
-                        (interval2) => interval2.param === 'LowCI'
-                    )?.value;
+                        (interval2) => interval2.Param === 'LowCI'
+                    )?.Value;
                     datum2.upperCI = intervals2.find(
-                        (interval2) => interval2.param === 'UpCI'
-                    )?.value;
+                        (interval2) => interval2.Param === 'UpCI'
+                    )?.Value;
                 }
                 return datum2;
             })
@@ -27539,7 +27466,7 @@ var rbmViz = (() => {
     function identityLine(data, config, labels) {
         const aggregateData = rollup(
             data,
-            (group2) => mean(group2, (d2) => d2[config.y]),
+            (Group) => mean(Group, (d2) => d2[config.y]),
             (d2) => d2[config.x]
         );
         const color3 = '#666666';
@@ -27553,7 +27480,7 @@ var rbmViz = (() => {
                     return backgroundColor4;
                 } else {
                     return colorScheme_default.find((color4) =>
-                        color4.flag.includes(+d2.raw.flag)
+                        color4.Flag.includes(+d2.raw.Flag)
                     ).color;
                 }
             },
@@ -27582,10 +27509,10 @@ var rbmViz = (() => {
     function intervalLines(_intervals_, config, labels) {
         if (_intervals_ === null) return [null];
         const intervals = rollup(
-            _intervals_.filter((d2) => /ci/i.test(d2.param)),
-            (group2) => +group2[0].value,
-            (d2) => d2.param,
-            (d2) => d2.snapshot_date
+            _intervals_.filter((d2) => /ci/i.test(d2.Param)),
+            (Group) => +Group[0].Value,
+            (d2) => d2.Param,
+            (d2) => d2.SnapshotDate
         );
         const datasets = [...intervals].map(([key, value], i) => {
             return {
@@ -27608,7 +27535,7 @@ var rbmViz = (() => {
     function selectedGroupLine(data, config, labels) {
         if (config.selectedGroupIDs.length === 0) return null;
         const lineData = data
-            .filter((d2) => config.selectedGroupIDs.includes(d2.groupid))
+            .filter((d2) => config.selectedGroupIDs.includes(d2.GroupID))
             .map((d2, i) => {
                 const datum2 = { ...d2 };
                 datum2.x = datum2[config.x];
@@ -27627,9 +27554,9 @@ var rbmViz = (() => {
                     return backgroundColor4;
                 }
                 const color4 = colorScheme_default.find((color5) =>
-                    falsy_default.includes(d2.raw.flag)
-                        ? color5.flag.includes(d2.raw?.flag)
-                        : color5.flag.includes(+d2.raw?.flag)
+                    falsy_default.includes(d2.raw.Flag)
+                        ? color5.Flag.includes(d2.raw?.Flag)
+                        : color5.Flag.includes(+d2.raw?.Flag)
                 );
                 color4.rgba.opacity = 0.75;
                 return color4.rgba + '';
@@ -27650,7 +27577,7 @@ var rbmViz = (() => {
     // src/timeSeries/structureData/flagAmber.js
     function flagAmber(data, config, labels) {
         const pointData = data
-            .filter((d2) => Math.abs(+d2.flag) === 1)
+            .filter((d2) => Math.abs(+d2.Flag) === 1)
             .map((d2) => {
                 const datum2 = { ...d2 };
                 datum2.x = datum2[config.x];
@@ -27658,7 +27585,7 @@ var rbmViz = (() => {
                 return datum2;
             });
         const color3 = colorScheme_default.find((color4) =>
-            color4.flag.some((flag) => Math.abs(flag) === 1)
+            color4.Flag.some((Flag) => Math.abs(Flag) === 1)
         );
         color3.rgba.opacity = 0.5;
         const dataset = {
@@ -27679,7 +27606,7 @@ var rbmViz = (() => {
     // src/timeSeries/structureData/flagRed.js
     function flagRed(data, config, labels) {
         const pointData = data
-            .filter((d2) => Math.abs(+d2.flag) > 1)
+            .filter((d2) => Math.abs(+d2.Flag) > 1)
             .map((d2) => {
                 const datum2 = { ...d2 };
                 datum2.x = datum2[config.x];
@@ -27687,7 +27614,7 @@ var rbmViz = (() => {
                 return datum2;
             });
         const color3 = colorScheme_default.find((color4) =>
-            color4.flag.some((flag) => Math.abs(flag) > 1)
+            color4.Flag.some((Flag) => Math.abs(Flag) > 1)
         );
         color3.rgba.opacity = 0.5;
         const dataset = {
@@ -27709,18 +27636,18 @@ var rbmViz = (() => {
     function boxplot2(data, config) {
         const grouped = rollups(
             data,
-            //.filter(d => +d.flag === 0),
-            (group2) => group2.map((d2) => +d2[config.y]),
-            (d2) => d2.snapshot_date
+            //.filter(d => +d.Flag === 0),
+            (Group) => Group.map((d2) => +d2[config.y]),
+            (d2) => d2.SnapshotDate
         );
         const dataset = {
             data: grouped.map((d2) => d2[1]),
             maxBarThickness: 7,
             maxWhiskerThickness: 0,
             meanRadius: /^n_/.test(config.y) ? 3 : 0,
-            label: /flag|at.risk/.test(config.y)
+            label: /Flag|at.risk/.test(config.y)
                 ? `Distribution`
-                : `${config.group} Distribution`,
+                : `${config.Group} Distribution`,
             outlierRadius: 0,
             ///^n_/.test(config.y) ? 2 : 0,
             pointRadius: 0,
@@ -27736,15 +27663,15 @@ var rbmViz = (() => {
     function violin(data, config) {
         const grouped = rollups(
             data,
-            //.filter((d) => +d.flag === 0),
-            (group2) => group2.map((d2) => +d2[config.y]),
-            (d2) => d2.snapshot_date
+            //.filter((d) => +d.Flag === 0),
+            (Group) => Group.map((d2) => +d2[config.y]),
+            (d2) => d2.SnapshotDate
         );
         const dataset = {
             data: grouped.map((d2) => d2[1]),
-            label: /flag|at.risk/.test(config.y)
+            label: /Flag|at.risk/.test(config.y)
                 ? `Distribution`
-                : `${config.group} Distribution`,
+                : `${config.Group} Distribution`,
             purpose: 'distribution',
             type: 'violin',
         };
@@ -27771,41 +27698,41 @@ var rbmViz = (() => {
             const thresholds2 = [
                 ...rollup(
                     _thresholds_
-                        .filter((d2) => d2.param === 'vThreshold')
+                        .filter((d2) => d2.Param === 'vThreshold')
                         .sort((a, b) => (a < b ? -1 : b < a ? 1 : 0)),
-                    (group2) => {
-                        const flags = checkThresholds({}, group2);
-                        flags.forEach((flag) => {
-                            flag.snapshot_date = group2[0].snapshot_date;
-                            flag.snapshot_date = group2[0].snapshot_date;
-                            flag.x = flag.snapshot_date;
-                            flag.y = flag.threshold;
-                            flag.color =
+                    (Group) => {
+                        const flags = checkThresholds({}, Group);
+                        flags.forEach((Flag) => {
+                            Flag.SnapshotDate = Group[0].SnapshotDate;
+                            Flag.SnapshotDate = Group[0].SnapshotDate;
+                            Flag.x = Flag.SnapshotDate;
+                            Flag.y = Flag.Threshold;
+                            Flag.color =
                                 flags.length === 1
                                     ? colorScheme_default.amberRed
                                     : colorScheme_default.find((color3) =>
-                                          color3.flag.includes(flag.flag)
+                                          color3.Flag.includes(Flag.Flag)
                                       );
                         });
                         return flags;
                     },
-                    (d2) => d2.snapshot_date
+                    (d2) => d2.SnapshotDate
                 ),
             ].flatMap((d2) => d2[1]);
             const latestSnapshotDate = max(labels);
             thresholdData = [
                 ...rollup(
                     thresholds2,
-                    (group2) => {
+                    (Group) => {
                         const dataset = {
                             adjustScaleRange: false,
-                            borderColor: group2[0].color.color,
+                            borderColor: Group[0].color.color,
                             //function (d) {
                             //    return d.color.color;
                             //},
                             borderDash: [2],
                             borderWidth: 1,
-                            data: group2,
+                            data: Group,
                             hoverRadius: 0,
                             label: '',
                             purpose: 'annotation',
@@ -27815,22 +27742,22 @@ var rbmViz = (() => {
                             type: 'line',
                         };
                         const snapshotDates = [
-                            ...new Set(group2.map((d2) => d2[config.x])),
+                            ...new Set(Group.map((d2) => d2[config.x])),
                         ];
                         const snapshotDate = max(snapshotDates);
                         if (snapshotDate < latestSnapshotDate) {
-                            const threshold = {
+                            const Threshold = {
                                 ...dataset.data.find(
                                     (d2) => d2[config.x] === snapshotDate
                                 ),
                             };
-                            threshold[config.x] = latestSnapshotDate;
-                            threshold.x = latestSnapshotDate;
-                            dataset.data.push(threshold);
+                            Threshold[config.x] = latestSnapshotDate;
+                            Threshold.x = latestSnapshotDate;
+                            dataset.data.push(Threshold);
                         }
                         return dataset;
                     },
-                    (d2) => d2.flag
+                    (d2) => d2.Flag
                 ),
             ].map((d2) => d2[1]);
         }
@@ -27841,15 +27768,15 @@ var rbmViz = (() => {
     function aggregateLine(data, config, labels) {
         const aggregateData = rollup(
             data,
-            (group2) => mean(group2, (d2) => d2[config.y]),
+            (Group) => mean(Group, (d2) => d2[config.y]),
             (d2) => d2[config.x]
         );
         const countsBySnapshot = rollup(
             data,
-            (group2) => {
-                const N = group2.length;
+            (Group) => {
+                const N = Group.length;
                 return rollup(
-                    group2,
+                    Group,
                     (subgroup) => ({
                         n: subgroup.length,
                         N,
@@ -27864,10 +27791,10 @@ var rbmViz = (() => {
             /at.risk/.test(config.y) && /flagged/.test(config.y)
                 ? colorScheme_default.amberRed.color
                 : /at.risk/.test(config.y)
-                ? colorScheme_default.find((color4) => color4.flag.includes(1))
+                ? colorScheme_default.find((color4) => color4.Flag.includes(1))
                       .color
                 : /flagged/.test(config.y)
-                ? colorScheme_default.find((color4) => color4.flag.includes(2))
+                ? colorScheme_default.find((color4) => color4.Flag.includes(2))
                       .color
                 : '#aaaaaa';
         const backgroundColor4 = color2(color3);
@@ -27952,7 +27879,7 @@ var rbmViz = (() => {
                         type: 'scatter',
                         label:
                             config.selectedGroupIDs.length > 0
-                                ? `${config.group} ${config.selectedGroupIDs[0]}`
+                                ? `${config.Group} ${config.selectedGroupIDs[0]}`
                                 : '',
                         pointStyle: 'line',
                         pointStyleWidth: 24,
@@ -27979,13 +27906,13 @@ var rbmViz = (() => {
             }
         } else if (config.dataType === 'discrete') {
             const color3 =
-                config.yLabel === 'Red or Amber KRIs'
+                config.yLabel === 'Red or Amber Metrics'
                     ? colorScheme_default.amberRed.color
-                    : config.yLabel === 'Red KRIs'
+                    : config.yLabel === 'Red Metrics'
                     ? colorScheme_default.find((color4) =>
                           /red/i.test(color4.description)
                       ).color
-                    : config.yLabel === 'Amber KRIs'
+                    : config.yLabel === 'Amber Metrics'
                     ? colorScheme_default.find((color4) =>
                           /amber/i.test(color4.description)
                       ).color
@@ -28004,7 +27931,7 @@ var rbmViz = (() => {
                     type: 'scatter',
                     label:
                         config.selectedGroupIDs.length > 0
-                            ? `${config.group} ${config.selectedGroupIDs[0]}`
+                            ? `${config.Group} ${config.selectedGroupIDs[0]}`
                             : '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
@@ -28013,12 +27940,12 @@ var rbmViz = (() => {
                     borderColor: 'rgba(0,0,0,.5)',
                     borderWidth: 3,
                 },
-                // legend item for selected group ID line
+                // legend item for selected Group ID line
                 aggregateLine(data, config, labels),
                 {
                     type: 'scatter',
                     label:
-                        config.discreteUnit === 'KRI'
+                        config.discreteUnit === 'Metric'
                             ? `${config.aggregateLabel} Average`
                             : '',
                     pointStyle: 'line',
@@ -28042,41 +27969,41 @@ var rbmViz = (() => {
         if (config.thresholds) {
             annotations5 = config.thresholds.map((x, i) => {
                 const annotation2 = {
-                    adjustScaleRange: config.group === 'Study',
+                    adjustScaleRange: config.Group === 'Study',
                     drawTime: 'beforeDatasetsDraw',
                     type: 'line',
-                    yMin: x.threshold,
-                    yMax: x.threshold,
+                    yMin: x.Threshold,
+                    yMax: x.Threshold,
                     borderColor:
-                        config.group === 'Study'
+                        config.Group === 'Study'
                             ? colorScheme_default.amberRed.color
                             : colorScheme_default.find((y) =>
-                                  y.flag.includes(+x.flag)
+                                  y.Flag.includes(+x.Flag)
                               ).color,
                     borderWidth: 1,
                     borderDash: [2],
                 };
                 if (
                     config.annotateThreshold === true &&
-                    config.group === 'Study'
+                    config.Group === 'Study'
                 ) {
                     annotation2.label = {
                         rotation: 'auto',
-                        position: Math.sign(+x.flag) >= 0 ? 'end' : 'start',
+                        position: Math.sign(+x.Flag) >= 0 ? 'end' : 'start',
                         color:
-                            config.group === 'Study'
+                            config.Group === 'Study'
                                 ? colorScheme_default.amberRed.color
                                 : colorScheme_default.find((y) =>
-                                      y.flag.includes(+x.flag)
+                                      y.Flag.includes(+x.Flag)
                                   ).color,
                         backgroundColor: 'white',
                         content: `QTL: ${
-                            Math.round(+config.thresholds[0].threshold * 1e3) /
+                            Math.round(+config.thresholds[0].Threshold * 1e3) /
                             (1e3).toString()
                         }`,
-                        //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
+                        //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.Flag.includes(+x.Flag))[0].description,
                         display: true,
-                        //Math.sign(+x.flag) === 1,
+                        //Math.sign(+x.Flag) === 1,
                         font: {
                             size: 12,
                         },
@@ -28095,8 +28022,8 @@ var rbmViz = (() => {
             .map((color3) => color3.description);
         legendOrder.unshift('Confidence Interval');
         legendOrder.unshift(`${config.aggregateLabel} Average`);
-        legendOrder.unshift(`${config.group} Distribution`);
-        if (config.group === 'Study')
+        legendOrder.unshift(`${config.Group} Distribution`);
+        if (config.Group === 'Study')
             return {
                 display: true,
                 labels: {
@@ -28185,9 +28112,9 @@ var rbmViz = (() => {
                 title: (data) => {
                     if (data.length) {
                         if (data[0].dataset.purpose === 'distribution') {
-                            return `${config.group} Distribution on ${data[0].label}`;
+                            return `${config.Group} Distribution on ${data[0].label}`;
                         } else if (data[0].dataset.purpose === 'aggregate') {
-                            return `${config.group} Summary on ${data[0].label}`;
+                            return `${config.Group} Summary on ${data[0].label}`;
                         } else {
                             let dataSorted = data;
                             try {
@@ -28199,8 +28126,8 @@ var rbmViz = (() => {
                             const titles = dataSorted.map(function (d2, i) {
                                 let title4;
                                 if (data.length === 1) {
-                                    title4 = `${config.group} ${
-                                        d2.dataset.data[d2.dataIndex].groupid
+                                    title4 = `${config.Group} ${
+                                        d2.dataset.data[d2.dataIndex].GroupID
                                     }`;
                                     if (d2.raw.site !== void 0) {
                                         title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
@@ -28208,12 +28135,12 @@ var rbmViz = (() => {
                                 } else {
                                     title4 =
                                         i === 0
-                                            ? `${config.group}s ${
+                                            ? `${config.Group}s ${
                                                   d2.dataset.data[d2.dataIndex]
-                                                      .groupid
+                                                      .GroupID
                                               }`
                                             : d2.dataset.data[d2.dataIndex]
-                                                  .groupid;
+                                                  .GroupID;
                                 }
                                 return title4;
                             });
@@ -28235,7 +28162,7 @@ var rbmViz = (() => {
                 const isAnnotation = data.dataset.purpose === 'annotation';
                 const isObject2 = typeof datum2 === 'object';
                 const isSelected = config.selectedGroupIDs.includes(
-                    datum2.groupid
+                    datum2.GroupID
                 );
                 const isScatter = data.dataset.type === 'scatter';
                 return !isAnnotation && isObject2 && !(isSelected && isScatter);
@@ -28315,7 +28242,7 @@ var rbmViz = (() => {
         _element_,
         _data_,
         _config_ = {},
-        _thresholds_ = null,
+        _thresholds_ = [],
         _intervals_ = null,
         _sites_ = null
     ) {
@@ -28364,7 +28291,7 @@ var rbmViz = (() => {
     }
 
     // src/siteOverview/checkInputs.js
-    function checkInputs5(_results_, _config_, _sites_, _workflows_) {
+    function checkInputs5(_results_, _config_, _sites_, _metrics_) {
         checkInput({
             parameter: '_results_',
             argument: _results_,
@@ -28396,22 +28323,22 @@ var rbmViz = (() => {
     // src/siteOverview/deriveSiteMetrics.js
     function deriveSiteMetrics(sites, results) {
         const missingSites = results
-            .map((result) => result.groupid)
-            .filter((siteid) => !sites.find((site) => site.siteid === siteid))
-            .map((siteid) => ({ siteid }));
+            .map((result) => result.GroupID)
+            .filter((GroupID) => !sites.find((site) => site.SiteID === GroupID))
+            .map((SiteID) => ({ SiteID }));
         const allSites = sites.concat(missingSites);
         allSites.forEach((site) => {
             const siteResults = results.filter(
-                (result) => result.groupid === site.siteid
+                (result) => result.GroupID === site.SiteID
             );
             site.nRedFlags = siteResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 2
+                (result) => Math.abs(parseInt(result.Flag)) === 2
             ).length;
             site.nAmberFlags = siteResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 1
+                (result) => Math.abs(parseInt(result.Flag)) === 1
             ).length;
             site.nGreenFlags = siteResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 0
+                (result) => Math.abs(parseInt(result.Flag)) === 0
             ).length;
         });
         return allSites;
@@ -28461,7 +28388,7 @@ var rbmViz = (() => {
             {
                 label: 'Investigator',
                 data: sites,
-                filterKey: 'siteid',
+                filterKey: 'SiteID',
                 valueKey: 'pi_last_name',
                 headerTooltip: null,
                 sort: sortString,
@@ -28472,8 +28399,8 @@ var rbmViz = (() => {
             {
                 label: 'ID',
                 data: sites,
-                filterKey: 'siteid',
-                valueKey: 'siteid',
+                filterKey: 'SiteID',
+                valueKey: 'SiteID',
                 headerTooltip: null,
                 sort: sortString,
                 tooltip: true,
@@ -28483,7 +28410,7 @@ var rbmViz = (() => {
             {
                 label: 'Enrolled',
                 data: sites,
-                filterKey: 'siteid',
+                filterKey: 'SiteID',
                 valueKey: 'enrolled_participants',
                 headerTooltip: null,
                 sort: sortNumber,
@@ -28494,7 +28421,7 @@ var rbmViz = (() => {
             {
                 label: 'Red Flags',
                 data: sites,
-                filterKey: 'siteid',
+                filterKey: 'SiteID',
                 valueKey: 'nRedFlags',
                 headerTooltip: null,
                 sort: sortNumber,
@@ -28505,7 +28432,7 @@ var rbmViz = (() => {
             {
                 label: 'Amber Flags',
                 data: sites,
-                filterKey: 'siteid',
+                filterKey: 'SiteID',
                 valueKey: 'nAmberFlags',
                 headerTooltip: null,
                 sort: sortNumber,
@@ -28517,30 +28444,28 @@ var rbmViz = (() => {
         return columns;
     }
 
-    // src/siteOverview/defineColumns/defineWorkflowColumns.js
-    function defineWorkflowColumns(workflows, results) {
-        const workflowColumns = workflows.map((workflow) => {
+    // src/siteOverview/defineColumns/defineMetricColumns.js
+    function defineMetricColumns(metrics, results) {
+        const metricColumns = metrics.map((metric) => {
             const column = {
-                label: workflow.abbreviation,
-                data: results.filter(
-                    (d2) => d2.workflowid === workflow.workflowid
-                ),
-                filterKey: 'groupid',
+                label: metric.Abbreviation,
+                data: results.filter((d2) => d2.MetricID === metric.MetricID),
+                filterKey: 'GroupID',
                 valueKey: 'score',
-                headerTooltip: workflow.metric,
+                headerTooltip: metric.Metric,
                 sort: sortNumber,
                 tooltip: true,
-                type: 'kri',
+                type: 'metric',
                 dataType: 'number',
-                meta: workflow,
+                meta: metric,
             };
             return column;
         });
-        return workflowColumns;
+        return metricColumns;
     }
 
     // src/siteOverview/defineColumns/defineTooltip.js
-    function defineTooltip(column, content, workflows = null) {
+    function defineTooltip(column, content, metrics = null) {
         let tooltipKeys = {};
         switch (column.type) {
             case 'site':
@@ -28548,7 +28473,7 @@ var rbmViz = (() => {
                     status: 'Status',
                     pi_last_name: 'Last Name',
                     pi_first_name: 'First Name',
-                    siteid: 'Investigator ID',
+                    SiteID: 'Investigator ID',
                     institution: 'Site',
                     site_num: 'Site ID',
                     city: 'City',
@@ -28558,12 +28483,12 @@ var rbmViz = (() => {
                     is_satellite: 'Satellite',
                 };
                 break;
-            case 'kri':
+            case 'metric':
                 tooltipKeys = {
-                    score: column.meta.score,
-                    metric: column.meta.metric,
-                    numerator: column.meta.numerator,
-                    denominator: column.meta.denominator,
+                    Score: column.meta.Score,
+                    Metric: column.meta.Metric,
+                    Numerator: column.meta.Numerator,
+                    Denominator: column.meta.Denominator,
                 };
                 break;
             default:
@@ -28574,7 +28499,7 @@ var rbmViz = (() => {
         for (const [key, label] of Object.entries(tooltipKeys)) {
             if (content[key] !== void 0) {
                 let value = content[key];
-                if (column.type === 'kri') {
+                if (column.type === 'metric') {
                     value = parseFloat(value);
                     if (Number.isInteger(value)) {
                         value = value
@@ -28591,10 +28516,10 @@ var rbmViz = (() => {
     }
 
     // src/siteOverview/defineColumns.js
-    function defineColumns(sites, workflows, results) {
+    function defineColumns(sites, metrics, results) {
         const siteColumns = defineSiteColumns(sites);
-        const workflowColumns = defineWorkflowColumns(workflows, results);
-        const columns = [...siteColumns, ...workflowColumns];
+        const metricColumns = defineMetricColumns(metrics, results);
+        const columns = [...siteColumns, ...metricColumns];
         columns.forEach((column, i) => {
             column.getDatum = (key) =>
                 column.data.find((d2) => d2[column.filterKey] === key);
@@ -28627,22 +28552,22 @@ var rbmViz = (() => {
     function structureData5(results, columns, sites) {
         const lookup = group(
             results,
-            (d2) => d2.groupid,
-            (d2) => d2.workflowid
+            (d2) => d2.GroupID,
+            (d2) => d2.MetricID
         );
         const rowData = Array.from(lookup, ([key, value]) => {
-            const site = sites.find((site2) => site2.siteid === key);
+            const site = sites.find((site2) => site2.SiteID === key);
             const rowDatum = columns.map((column) => {
                 const datum2 = {
                     ...(column.getDatum(key) || {}),
                     column,
                     site,
-                    siteid: key,
+                    SiteID: key,
                 };
                 datum2.value = datum2[column.valueKey];
                 datum2.text = datum2.value;
                 datum2.sortValue =
-                    column.type === 'kri'
+                    column.type === 'metric'
                         ? Math.abs(parseFloat(datum2.value))
                         : datum2.value;
                 datum2.class = [column.type, column.valueKey].join(' ');
@@ -28692,9 +28617,9 @@ var rbmViz = (() => {
                 // Define a unique key for each cell.
                 (d2) => {
                     const id2 =
-                        d2.column.type === 'kri'
-                            ? `${d2.siteid}-${d2.column.meta.workflowid}`
-                            : `${d2.siteid}-${d2.column.valueKey}`;
+                        d2.column.type === 'metric'
+                            ? `${d2.SiteID}-${d2.column.meta.MetricID}`
+                            : `${d2.SiteID}-${d2.column.valueKey}`;
                     return id2;
                 }
             )
@@ -28726,20 +28651,20 @@ var rbmViz = (() => {
 
     // src/siteOverview/makeTable/addTrafficLighting.js
     function addTrafficLighting(rows) {
-        const kriCells = rows.selectAll('td.kri');
-        kriCells.style('background-color', function (d2, i) {
-            switch (Math.abs(parseInt(d2.flag))) {
+        const metricCells = rows.selectAll('td.metric');
+        metricCells.style('background-color', function (d2, i) {
+            switch (Math.abs(parseInt(d2.Flag))) {
                 case 0:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(0)
+                        color3.Flag.includes(0)
                     ).color;
                 case 1:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(1)
+                        color3.Flag.includes(1)
                     ).color;
                 case 2:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(2)
+                        color3.Flag.includes(2)
                     ).color;
                 default:
                     return '#eee';
@@ -28776,9 +28701,9 @@ var rbmViz = (() => {
 
     // src/siteOverview/makeTable/addFlagIcons.js
     function addFlagIcons(rows) {
-        const kriCells = rows.selectAll('td.kri').text('');
-        kriCells.each(function (d2) {
-            const flag = parseInt(d2.flag);
+        const metricCells = rows.selectAll('td.metric').text('');
+        metricCells.each(function (d2) {
+            const flag = parseInt(d2.Flag);
             const absFlag = Math.abs(flag);
             switch (absFlag) {
                 case 0:
@@ -28807,17 +28732,17 @@ var rbmViz = (() => {
 
     // src/siteOverview/makeTable/addClickEvents.js
     function addClickEvents(bodyRows, cells, config) {
-        cells.filter('.kri').on('click', function (event, d2) {
+        cells.filter('.metric').on('click', function (event, d2) {
             config.metricClickCallback({
-                groupLevel: config.groupLevel,
-                groupid: d2.groupid,
-                metricid: d2.workflowid,
+                GroupLevel: config.groupLevel,
+                GroupID: d2.GroupID,
+                MetricID: d2.MetricID,
             });
         });
         cells.filter('.site').on('click', function (event, d2) {
             config.groupClickCallback({
-                groupLevel: config.groupLevel,
-                groupid: d2.siteid,
+                GroupLevel: config.groupLevel,
+                GroupID: d2.SiteID,
             });
         });
     }
@@ -28842,7 +28767,7 @@ var rbmViz = (() => {
     // src/siteOverview/updateTable.js
     function updateTable(_results_) {
         const sites = deriveSiteMetrics(this._sites_, _results_);
-        const columns = defineColumns(sites, this._workflows_, _results_);
+        const columns = defineColumns(sites, this._metrics_, _results_);
         const rows = structureData5(_results_, columns, sites);
         const tbody = this.table.select('tbody');
         const bodyRows = addBodyRows(tbody, rows);
@@ -28878,20 +28803,19 @@ var rbmViz = (() => {
         _results_ = [],
         _config_ = {},
         _sites_ = null,
-        _workflows_ = null
+        _metrics_ = null
     ) {
-        checkInputs5(_results_, _config_, _sites_, _workflows_);
+        checkInputs5(_results_, _config_, _sites_, _metrics_);
         const config = configure7(_config_);
         const sites = deriveSiteMetrics(_sites_, _results_);
-        console.log(sites);
-        const columns = defineColumns(sites, _workflows_, _results_);
+        const columns = defineColumns(sites, _metrics_, _results_);
         const rows = structureData5(_results_, columns, sites);
         const table = makeTable(_element_, rows, columns, config);
         table.updateTable = updateTable.bind({
             _results_,
             _config_,
             _sites_,
-            _workflows_,
+            _metrics_,
             config,
             sites,
             columns,
@@ -28901,8 +28825,8 @@ var rbmViz = (() => {
         return table;
     }
 
-    // src/countryOverview/checkInputs.js
-    function checkInputs6(_results_, _config_, _countries_, _workflows_) {
+    // src/groupOverview/checkInputs.js
+    function checkInputs6(_results_, _config_, _countries_, _metrics_) {
         checkInput({
             parameter: '_results_',
             argument: _results_,
@@ -28912,15 +28836,15 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_countries_',
             argument: _countries_,
-            schemaName: 'countries',
+            schemaName: 'groupMetadata',
             module: 'countryOverview',
         });
     }
 
-    // src/countryOverview/configure.js
+    // src/groupOverview/configure.js
     function configure8(_config_, _data_) {
         const defaults3 = {};
-        defaults3.groupLevel = 'country';
+        defaults3.GroupLevel = 'country';
         defaults3.groupClickCallback = (datum2) => {
             console.log(datum2);
         };
@@ -28931,34 +28855,34 @@ var rbmViz = (() => {
         return config;
     }
 
-    // src/countryOverview/deriveCountryMetrics.js
-    function deriveCountryMetrics(countries, results) {
-        const missingCountries = results
-            .map((result) => result.groupid)
+    // src/groupOverview/deriveGroupMetrics.js
+    function deriveGroupMetrics(groups2, results) {
+        const missingGroups = results
+            .map((result) => result.GroupID)
             .filter(
-                (groupid) =>
-                    !countries.find((country) => country.groupid === groupid)
+                (GroupID) =>
+                    !groups2.find((group2) => group2.GroupID === GroupID)
             )
-            .map((groupid) => ({ groupid }));
-        const allCountries = countries.concat(missingCountries);
-        allCountries.forEach((country) => {
-            const countryResults = results.filter(
-                (result) => result.groupid === country.groupid
+            .map((GroupID) => ({ GroupID }));
+        const allGroups = groups2.concat(missingGroups);
+        allGroups.forEach((group2) => {
+            const groupResults = results.filter(
+                (result) => result.GroupID === group2.GroupID
             );
-            country.nRedFlags = countryResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 2
+            group2.nRedFlags = groupResults.filter(
+                (result) => Math.abs(parseInt(result.Flag)) === 2
             ).length;
-            country.nAmberFlags = countryResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 1
+            group2.nAmberFlags = groupResults.filter(
+                (result) => Math.abs(parseInt(result.Flag)) === 1
             ).length;
-            country.nGreenFlags = countryResults.filter(
-                (result) => Math.abs(parseInt(result.flag)) === 0
+            group2.nGreenFlags = groupResults.filter(
+                (result) => Math.abs(parseInt(result.Flag)) === 0
             ).length;
         });
-        return allCountries;
+        return allGroups;
     }
 
-    // src/countryOverview/defineColumns/sortString.js
+    // src/groupOverview/defineColumns/sortString.js
     function sortString2(bodyRows, column) {
         const sortAscending = column.sortState < 1;
         bodyRows.sort((a, b) => {
@@ -28978,7 +28902,7 @@ var rbmViz = (() => {
         column.sortState = sortAscending ? 1 : -1;
     }
 
-    // src/countryOverview/defineColumns/sortNumber.js
+    // src/groupOverview/defineColumns/sortNumber.js
     function sortNumber2(bodyRows, column) {
         const sortAscending = column.sortState < 1;
         bodyRows.sort((a, b) => {
@@ -28996,109 +28920,106 @@ var rbmViz = (() => {
         column.sortState = sortAscending ? 1 : -1;
     }
 
-    // src/countryOverview/defineColumns/defineCountryColumns.js
-    function defineCountryColumns(countries) {
+    // src/groupOverview/defineColumns/defineGroupColumns.js
+    function defineGroupColumns(groups2) {
         const columns = [
             {
-                label: 'Country',
-                data: countries,
-                filterKey: 'groupid',
-                valueKey: 'group_label',
+                label: 'Group',
+                data: groups2,
+                filterKey: 'GroupID',
+                valueKey: 'GroupLabel',
                 headerTooltip: null,
                 sort: sortString2,
                 tooltip: true,
-                type: 'country',
+                type: 'group',
                 dataType: 'string',
             },
             {
                 label: 'ID',
-                data: countries,
-                filterKey: 'groupid',
-                valueKey: 'groupid',
+                data: groups2,
+                filterKey: 'GroupID',
+                valueKey: 'GroupID',
                 headerTooltip: null,
                 sort: sortString2,
                 tooltip: true,
-                type: 'country',
+                type: 'group',
                 dataType: 'string',
             },
             {
                 label: 'Enrolled',
-                data: countries,
-                filterKey: 'groupid',
-                valueKey: 'enrolled_participants',
+                data: groups2,
+                filterKey: 'GroupID',
+                valueKey: 'EnrolledParticipants',
                 headerTooltip: null,
                 sort: sortNumber2,
                 tooltip: false,
-                type: 'country',
+                type: 'group',
                 dataType: 'number',
             },
             {
                 label: 'Red Flags',
-                data: countries,
-                filterKey: 'groupid',
+                data: groups2,
+                filterKey: 'GroupID',
                 valueKey: 'nRedFlags',
                 headerTooltip: null,
                 sort: sortNumber2,
                 tooltip: false,
-                type: 'country',
+                type: 'group',
                 dataType: 'number',
             },
             {
                 label: 'Amber Flags',
-                data: countries,
-                filterKey: 'groupid',
+                data: groups2,
+                filterKey: 'GroupID',
                 valueKey: 'nAmberFlags',
                 headerTooltip: null,
                 sort: sortNumber2,
                 tooltip: false,
-                type: 'country',
+                type: 'group',
                 dataType: 'number',
             },
         ];
         return columns;
     }
 
-    // src/countryOverview/defineColumns/defineWorkflowColumns.js
-    function defineWorkflowColumns2(workflows, results) {
-        const workflowColumns = workflows.map((workflow) => {
+    // src/groupOverview/defineColumns/defineMetricColumns.js
+    function defineMetricColumns2(metrics, results) {
+        const metricColumns = metrics.map((metric) => {
             const column = {
-                label: workflow.abbreviation,
-                data: results.filter(
-                    (d2) => d2.workflowid === workflow.workflowid
-                ),
-                filterKey: 'groupid',
-                valueKey: 'score',
-                headerTooltip: workflow.metric,
+                label: metric.Abbreviation,
+                data: results.filter((d2) => d2.MetricID === metric.MetricID),
+                filterKey: 'GroupID',
+                valueKey: 'Score',
+                headerTooltip: metric.Metric,
                 sort: sortNumber2,
                 tooltip: true,
-                type: 'kri',
+                type: 'metric',
                 dataType: 'number',
-                meta: workflow,
+                meta: metric,
             };
             return column;
         });
-        return workflowColumns;
+        return metricColumns;
     }
 
-    // src/countryOverview/defineColumns/defineTooltip.js
-    function defineTooltip2(column, content, workflows = null) {
+    // src/groupOverview/defineColumns/defineTooltip.js
+    function defineTooltip2(column, content, metrics = null) {
         let tooltipKeys = {};
         switch (column.type) {
-            case 'country':
+            case 'group':
                 tooltipKeys = {
-                    status: 'Status',
+                    Status: 'Status',
                 };
                 break;
-            case 'kri':
+            case 'metric':
                 tooltipKeys = {
-                    score: column.meta.score,
-                    metric: column.meta.metric,
-                    numerator: column.meta.numerator,
-                    denominator: column.meta.denominator,
+                    Score: column.meta.Score,
+                    Metric: column.meta.Metric,
+                    Numerator: column.meta.Numerator,
+                    Denominator: column.meta.Denominator,
                 };
                 break;
             default:
-                console.log(content);
                 tooltipKeys = Object.entries(content);
                 break;
         }
@@ -29106,7 +29027,7 @@ var rbmViz = (() => {
         for (const [key, label] of Object.entries(tooltipKeys)) {
             if (content[key] !== void 0) {
                 let value = content[key];
-                if (column.type === 'kri') {
+                if (column.type === 'metric') {
                     value = parseFloat(value);
                     if (Number.isInteger(value)) {
                         value = value
@@ -29122,11 +29043,11 @@ var rbmViz = (() => {
         return tooltipContent.join('\n');
     }
 
-    // src/countryOverview/defineColumns.js
-    function defineColumns2(countries, workflows, results) {
-        const countryColumns = defineCountryColumns(countries);
-        const workflowColumns = defineWorkflowColumns2(workflows, results);
-        const columns = [...countryColumns, ...workflowColumns];
+    // src/groupOverview/defineColumns.js
+    function defineColumns2(groups2, metrics, results) {
+        const groupColumns = defineGroupColumns(groups2);
+        const metricColumns = defineMetricColumns2(metrics, results);
+        const columns = [...groupColumns, ...metricColumns];
         columns.forEach((column, i) => {
             column.getDatum = (key) =>
                 column.data.find((d2) => d2[column.filterKey] === key);
@@ -29138,7 +29059,7 @@ var rbmViz = (() => {
         return columns;
     }
 
-    // src/countryOverview/structureData/sortByFlags.js
+    // src/groupOverview/structureData/sortByFlags.js
     function sortByFlags2(rowData) {
         const sortedRowData = rowData.sort((a, b) => {
             const redComparison = b[1].nRedFlags - a[1].nRedFlags;
@@ -29155,28 +29076,26 @@ var rbmViz = (() => {
         return sortedRowData;
     }
 
-    // src/countryOverview/structureData.js
-    function structureData6(results, columns, countries) {
+    // src/groupOverview/structureData.js
+    function structureData6(results, columns, groups2) {
         const lookup = group(
             results,
-            (d2) => d2.groupid,
-            (d2) => d2.workflowid
+            (d2) => d2.GroupID,
+            (d2) => d2.MetricID
         );
         const rowData = Array.from(lookup, ([key, value]) => {
-            const country = countries.find(
-                (country2) => country2.groupid === key
-            );
+            const group2 = groups2.find((group3) => group3.GroupID === key);
             const rowDatum = columns.map((column) => {
                 const datum2 = {
                     ...(column.getDatum(key) || {}),
                     column,
-                    country,
-                    groupid: key,
+                    group: group2,
+                    GroupID: key,
                 };
                 datum2.value = datum2[column.valueKey];
                 datum2.text = datum2.value;
                 datum2.sortValue =
-                    column.type === 'kri'
+                    column.type === 'metric'
                         ? Math.abs(parseFloat(datum2.value))
                         : datum2.value;
                 datum2.class = [column.type, column.valueKey].join(' ');
@@ -29191,7 +29110,7 @@ var rbmViz = (() => {
         return sortedData;
     }
 
-    // src/countryOverview/makeTable/addHeaderRow.js
+    // src/groupOverview/makeTable/addHeaderRow.js
     function addHeaderRow2(thead, columns) {
         const headerRow = thead
             .append('tr')
@@ -29204,7 +29123,7 @@ var rbmViz = (() => {
         return headerRow;
     }
 
-    // src/countryOverview/makeTable/addBodyRows.js
+    // src/groupOverview/makeTable/addBodyRows.js
     function addBodyRows2(tbody, rows) {
         const bodyRows = tbody
             .selectAll('tr')
@@ -29217,7 +29136,7 @@ var rbmViz = (() => {
         return bodyRows;
     }
 
-    // src/countryOverview/makeTable/addCells.js
+    // src/groupOverview/makeTable/addCells.js
     function addCells2(bodyRows) {
         const cells = bodyRows
             .selectAll('td')
@@ -29226,9 +29145,9 @@ var rbmViz = (() => {
                 // Define a unique key for each cell.
                 (d2) => {
                     const id2 =
-                        d2.column.type === 'kri'
-                            ? `${d2.groupid}-${d2.column.meta.workflowid}`
-                            : `${d2.groupid}-${d2.column.valueKey}`;
+                        d2.column.type === 'metric'
+                            ? `${d2.GroupID}-${d2.column.meta.MetricID}`
+                            : `${d2.GroupID}-${d2.column.valueKey}`;
                     return id2;
                 }
             )
@@ -29240,7 +29159,7 @@ var rbmViz = (() => {
         return cells;
     }
 
-    // src/countryOverview/makeTable/addSorting.js
+    // src/groupOverview/makeTable/addSorting.js
     function addSorting2(headerRow, body) {
         headerRow.on('click', function (event, column) {
             headerRow.data().forEach((d2) => {
@@ -29251,22 +29170,22 @@ var rbmViz = (() => {
         });
     }
 
-    // src/countryOverview/makeTable/addTrafficLighting.js
+    // src/groupOverview/makeTable/addTrafficLighting.js
     function addTrafficLighting2(rows) {
-        const kriCells = rows.selectAll('td.kri');
-        kriCells.style('background-color', function (d2, i) {
-            switch (Math.abs(parseInt(d2.flag))) {
+        const metricCells = rows.selectAll('td.metric');
+        metricCells.style('background-color', function (d2, i) {
+            switch (Math.abs(parseInt(d2.Flag))) {
                 case 0:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(0)
+                        color3.Flag.includes(0)
                     ).color;
                 case 1:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(1)
+                        color3.Flag.includes(1)
                     ).color;
                 case 2:
                     return colorScheme_default.find((color3) =>
-                        color3.flag.includes(2)
+                        color3.Flag.includes(2)
                     ).color;
                 default:
                     return '#eee';
@@ -29274,7 +29193,7 @@ var rbmViz = (() => {
         });
     }
 
-    // src/countryOverview/makeTable/icons/singleArrow.js
+    // src/groupOverview/makeTable/icons/singleArrow.js
     function singleArrow2(flag, color3 = 'white') {
         const direction = Math.sign(flag) === 1 ? 'up' : 'down';
         return [
@@ -29287,7 +29206,7 @@ var rbmViz = (() => {
         ].join('');
     }
 
-    // src/countryOverview/makeTable/icons/doubleArrow.js
+    // src/groupOverview/makeTable/icons/doubleArrow.js
     function doubleArrow2(flag, color3 = 'white') {
         const direction = Math.sign(flag) === 1 ? 'up' : 'down';
         return [
@@ -29301,11 +29220,11 @@ var rbmViz = (() => {
         ].join(``);
     }
 
-    // src/countryOverview/makeTable/addFlagIcons.js
+    // src/groupOverview/makeTable/addFlagIcons.js
     function addFlagIcons2(rows) {
-        const kriCells = rows.selectAll('td.kri').text('');
-        kriCells.each(function (d2) {
-            const flag = parseInt(d2.flag);
+        const metricCells = rows.selectAll('td.metric').text('');
+        metricCells.each(function (d2) {
+            const flag = parseInt(d2.Flag);
             const absFlag = Math.abs(flag);
             switch (absFlag) {
                 case 0:
@@ -29323,7 +29242,7 @@ var rbmViz = (() => {
         });
     }
 
-    // src/countryOverview/makeTable/addRowHighlighting.js
+    // src/groupOverview/makeTable/addRowHighlighting.js
     function addRowHighlighting2(rows) {
         rows.on('mouseover', function () {
             select_default2(this).style('background-color', 'lightgray');
@@ -29332,24 +29251,24 @@ var rbmViz = (() => {
         });
     }
 
-    // src/countryOverview/makeTable/addClickEvents.js
+    // src/groupOverview/makeTable/addClickEvents.js
     function addClickEvents2(bodyRows, cells, config) {
-        cells.filter('.kri').on('click', function (event, d2) {
+        cells.filter('.metric').on('click', function (event, d2) {
             config.metricClickCallback({
-                groupLevel: config.groupLevel,
-                groupid: d2.groupid,
-                metricid: d2.workflowid,
+                GroupLevel: config.GroupLevel,
+                GroupID: d2.GroupID,
+                MetricID: d2.MetricID,
             });
         });
-        cells.filter('.country').on('click', function (event, d2) {
+        cells.filter('.group').on('click', function (event, d2) {
             config.groupClickCallback({
-                groupLevel: config.groupLevel,
-                groupid: d2.groupid,
+                GroupLevel: config.GroupLevel,
+                GroupID: d2.GroupID,
             });
         });
     }
 
-    // src/countryOverview/makeTable.js
+    // src/groupOverview/makeTable.js
     function makeTable2(_element_, rows, columns, config) {
         const table = select_default2(_element_).append('table');
         const thead = table.append('thead');
@@ -29365,11 +29284,11 @@ var rbmViz = (() => {
         return table;
     }
 
-    // src/countryOverview/updateTable.js
+    // src/groupOverview/updateTable.js
     function updateTable2(_results_) {
-        const countries = deriveCountryMetrics(this._countries_, _results_);
-        const columns = defineColumns2(countries, this._workflows_, _results_);
-        const rows = structureData6(_results_, columns, countries);
+        const groups2 = deriveGroupMetrics(this._groups_, _results_);
+        const columns = defineColumns2(groups2, this._metrics_, _results_);
+        const rows = structureData6(_results_, columns, groups2);
         const tbody = this.table.select('tbody');
         const bodyRows = addBodyRows2(tbody, rows);
         const cells = addCells2(bodyRows);
@@ -29397,27 +29316,27 @@ var rbmViz = (() => {
         }
     }
 
-    // src/countryOverview.js
-    function countryOverview(
+    // src/groupOverview.js
+    function groupOverview(
         _element_ = 'body',
         _results_ = [],
         _config_ = {},
-        _countries_ = null,
-        _workflows_ = null
+        _groups_ = null,
+        _metrics_ = null
     ) {
-        checkInputs6(_results_, _config_, _countries_, _workflows_);
+        checkInputs6(_results_, _config_, _groups_, _metrics_);
         const config = configure8(_config_);
-        const countries = deriveCountryMetrics(_countries_, _results_);
-        const columns = defineColumns2(countries, _workflows_, _results_);
-        const rows = structureData6(_results_, columns, countries, _workflows_);
+        const groups2 = deriveGroupMetrics(_groups_, _results_);
+        const columns = defineColumns2(groups2, _metrics_, _results_);
+        const rows = structureData6(_results_, columns, groups2, _metrics_);
         const table = makeTable2(_element_, rows, columns, config);
         table.updateTable = updateTable2.bind({
             _results_,
             _config_,
-            _countries_,
-            _workflows_,
+            _groups_,
+            _metrics_,
             config,
-            countries,
+            groups: groups2,
             columns,
             rows,
             table,
@@ -29438,84 +29357,84 @@ var rbmViz = (() => {
     var rbmViz = {
         // bar chart
         barChart: barChart.bind({
-            x: 'groupid',
-            y: 'score',
+            x: 'GroupID',
+            y: 'Score',
             chartType: 'bar',
             dataType: 'continuous',
         }),
         barChartMetric: barChart.bind({
-            x: 'groupid',
-            y: 'metric',
+            x: 'GroupID',
+            y: 'Metric',
             chartType: 'bar',
             dataType: 'continuous',
         }),
         barChartScore: barChart.bind({
-            x: 'groupid',
-            y: 'score',
+            x: 'GroupID',
+            y: 'Score',
             chartType: 'bar',
             dataType: 'continuous',
         }),
         // scatter plot
         scatterPlot: scatterPlot.bind({
-            x: 'denominator',
-            y: 'numerator',
+            x: 'Denominator',
+            y: 'Numerator',
             chartType: 'scatter',
             dataType: 'discrete',
         }),
         // sparkline
         sparkline: sparkline.bind({
-            x: 'snapshot_date',
-            y: 'score',
+            x: 'SnapshotDate',
+            y: 'Score',
             chartType: 'line',
             dataType: 'continuous',
         }),
         sparklineMetric: sparkline.bind({
-            x: 'snapshot_date',
-            y: 'metric',
+            x: 'SnapshotDate',
+            y: 'Metric',
             chartType: 'line',
             dataType: 'continuous',
         }),
         sparklineScore: sparkline.bind({
-            x: 'snapshot_date',
-            y: 'score',
+            x: 'SnapshotDate',
+            y: 'Score',
             chartType: 'line',
             dataType: 'continuous',
         }),
         sparklineDiscrete: sparkline.bind({
-            x: 'snapshot_date',
+            x: 'SnapshotDate',
             y: 'n_at_risk_or_flagged',
             chartType: 'line',
             dataType: 'discrete',
         }),
         // time series
         timeSeries: timeSeries.bind({
-            x: 'snapshot_date',
-            y: 'score',
+            x: 'SnapshotDate',
+            y: 'Score',
             chartType: 'boxplot',
             dataType: 'continuous',
         }),
         timeSeriesScore: timeSeries.bind({
-            x: 'snapshot_date',
-            y: 'score',
+            x: 'SnapshotDate',
+            y: 'Score',
             chartType: 'boxplot',
             dataType: 'continuous',
         }),
         timeSeriesDiscrete: timeSeries.bind({
-            x: 'snapshot_date',
+            x: 'SnapshotDate',
             y: 'n_at_risk_or_flagged',
             chartType: 'line',
             dataType: 'discrete',
         }),
         timeSeriesQTL: timeSeries.bind({
-            x: 'snapshot_date',
-            y: 'metric',
+            x: 'SnapshotDate',
+            y: 'Metric',
             chartType: 'identity',
             dataType: 'continuous',
         }),
         // site overview
         siteOverview,
-        // country overview
-        countryOverview,
+        // group overview
+        groupOverview,
     };
     var main_default = rbmViz;
     return __toCommonJS(main_exports);

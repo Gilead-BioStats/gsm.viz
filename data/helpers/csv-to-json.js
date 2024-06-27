@@ -15,9 +15,9 @@ const dataDir = 'examples/data';
         const files = await fs.promises.readdir(dataDir);
 
         // Loop them all with the new for...of
-        for (const file of files) {
-            if (/csv$/.test(file)) {
-                const filePath = `${dataDir}/${file}`;
+        for (const File of files) {
+            if (/csv$/.test(File)) {
+                const filePath = `${dataDir}/${File}`;
                 console.log(filePath);
                 csv()
                     .fromFile(filePath)

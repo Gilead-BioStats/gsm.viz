@@ -1,4 +1,4 @@
-const by = 'group'; // 'kri'
+const by = 'Group'; // 'kri'
 
 const dataFiles = [
     `../data/flag_counts_by_${by}.csv`,
@@ -22,16 +22,17 @@ Promise.all(dataPromises)
         datasets[0].forEach((d) => {
             d.n_at_risk_or_flagged = +d.n_at_risk + +d.n_flagged;
         });
+
         let flagCounts = datasets[0];
         if (by === 'kri')
-            flagCounts = flagCounts.filter((d) => d.workflowid === workflowID);
+            flagCounts = flagCounts.filter((d) => d.MetricID === workflowID);
 
         // config
         const config =
             by === 'kri'
                 ? {
                       ...datasets[1].find(
-                          (workflow) => workflow.workflowid === workflowID
+                          (workflow) => workflow.MetricID === workflowID
                       ),
                       //discreteUnit: 'Country',
                   }
@@ -55,8 +56,8 @@ Promise.all(dataPromises)
         else
             document.getElementById('kri').parentElement.style.display = 'none';
 
-        if (by === 'group') site(datasets, true);
+        if (by === 'Group') site(datasets, true);
         else
-            document.getElementById('groupid').parentElement.style.display =
+            document.getElementById('GroupID').parentElement.style.display =
                 'none';
     });
