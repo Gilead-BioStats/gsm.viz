@@ -9,7 +9,7 @@
 - [time series](https://fluffy-disco-22959532.pages.github.io/timeSeriesContinuous/)
 - [sparkline](https://fluffy-disco-22959532.pages.github.io/sparkline/)
 - [site overview](https://fluffy-disco-22959532.pages.github.io/siteOverview/)
-- [country overview](https://fluffy-disco-22959532.pages.github.io/countryOverview/)
+- [country overview](https://fluffy-disco-22959532.pages.github.io/groupOverview/)
 
 ## Installation
 
