@@ -40,7 +40,7 @@ export default function barChart(
     _element_ = 'body',
     _data_ = [],
     _config_ = {},
-    _thresholds_ = null,
+    _thresholds_ = [],
     _sites_ = null
 ) {
     // Check input data against data schema.

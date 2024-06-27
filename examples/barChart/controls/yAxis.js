@@ -1,9 +1,9 @@
 // Add event listener to y-axis dropdown.
-const yAxis = function (config, datasets, setup = false) {
+const yAxis = function (datasets, setup = false, initialValue = null) {
     const yAxisDropdown = document.getElementById('yAxis');
 
     if (setup) {
-        yAxisDropdown.value = config.y;
+        yAxisDropdown.value = initialValue;
         yAxisDropdown.addEventListener('change', (event) => {
             const instance = getChart();
             const MetricID = metric();
@@ -21,16 +21,13 @@ const yAxis = function (config, datasets, setup = false) {
             config.selectedGroupIDs = group();
 
             // Threshold annotations
-            const parameters =
+            const thresholds =
                 config.y === 'Score' &&
                 document.getElementById('threshold').checked
-                    ? mergeParameters(
-                          filterOnMetricID(datasets[2], MetricID),
-                          filterOnMetricID(datasets[3], MetricID)
-                      )
+                    ? config.Thresholds.split(',').map((d) => +d)
                     : null;
 
-            instance.helpers.updateData(instance, results, config, parameters);
+            instance.helpers.updateData(instance, results, config, thresholds);
         });
     }
 

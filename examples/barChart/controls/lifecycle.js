@@ -1,5 +1,5 @@
 // Add event listener to chart lifecycle button.
-const lifecycle = function (datasets, chartFunction, setup = false) {
+const lifecycle = function (datasets, setup = false) {
     let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
@@ -28,22 +28,19 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
         config.selectedGroupIDs = group();
 
         // Threshold annotations
-        const parameters =
-            config.y === 'Score' && document.getElementById('Threshold').checked
-                ? mergeParameters(
-                      filterOnMetricID(datasets[2], metric()),
-                      filterOnMetricID(datasets[3], metric())
-                  )
+        const thresholds =
+            config.y === 'Score' && document.getElementById('threshold').checked
+                ? config.Thresholds.split(',').map((d) => +d)
                 : null;
 
         // group metadata
-        const groupMetadata = datasets[4];
+        const groupMetadata = datasets[2];
 
         instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
             config,
-            parameters,
+            thresholds,
             groupMetadata
         );
 
