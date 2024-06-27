@@ -1,27 +1,26 @@
 // Add event listener to metric dropdown.
-const metric = function (datasets, setup = false, metricID = null) {
-    //const instance = getChart();
+const metric = function (datasets, setup = false, MetricID = null) {
     const metricDropdown = document.querySelector('#metric');
 
     if (setup === true) {
-        const metricIDs = [
+        const MetricIDs = [
             ...new Set(datasets[0].map((d) => d.MetricID)).values(),
         ];
-        const metrics = datasets[1].filter((metric) =>
-            metricIDs.includes(metric.MetricID)
+        const metricMetadata = datasets[1].filter((metric) =>
+            MetricIDs.includes(metric.MetricID)
         );
 
-        for (const metricID of metricIDs) {
+        for (const MetricID of MetricIDs) {
             const option = document.createElement('option');
-            const metric = metrics.find(
-                (metric) => metric.MetricID === metricID
+            const metric = metricMetadata.find(
+                (metric) => metric.MetricID === MetricID
             );
-            option.value = metricID;
+            option.value = MetricID;
             option.innerHTML = metric.Metric;
             metricDropdown.appendChild(option);
         }
 
-        metricDropdown.value = metricID === null ? metricIDs[0] : metricID;
+        metricDropdown.value = MetricID === null ? MetricIDs[0] : MetricID;
 
         metricDropdown.addEventListener('change', (event) => {
             const results = datasets[0].filter(

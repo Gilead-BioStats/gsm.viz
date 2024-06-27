@@ -22,10 +22,12 @@ Promise.all(dataPromises)
         // configuration
         const config = datasets[1].find((d) => d.MetricID === MetricID);
         config.y = 'Score';
-        config.nSnapshots = 10;
+        config.nSnapshots = 25;
 
         // Threshold annotations
-        const thresholds = config.Thresholds.split(',').map(threshold => +threshold);
+        const thresholds = config.Thresholds.split(',').map(
+            (threshold) => +threshold
+        );
 
         // loop over Group IDs
         const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];

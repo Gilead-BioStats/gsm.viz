@@ -35,7 +35,7 @@ Promise.all(dataPromises)
                 instance.data.config,
                 instance.data._thresholds_
             );
-            document.querySelector('#GroupID').value = datum.GroupID;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
         // Threshold annotations

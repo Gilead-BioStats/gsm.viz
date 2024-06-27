@@ -1,5 +1,5 @@
 import flagCountsByGroup from '../../examples/data/flag_counts_by_group.json';
-import flagCountsByKRI from '../../examples/data/flag_counts_by_kri.json';
+import flagCountsByMetric from '../../examples/data/flag_counts_by_metric.json';
 import schema from '../../src/data/schema/flagCounts.json';
 import snapshotDate from '../../src/data/schema/snapshotDate.json';
 import checkInput from '../../src/data/checkInput';
@@ -38,8 +38,8 @@ describe('Flag counts schema with Flag counts by Group', () => {
     });
 });
 
-describe('Flag counts schema with Flag counts by KRI', () => {
-    const flagCounts = flagCountsByKRI;
+describe('Flag counts schema with Flag counts by metric', () => {
+    const flagCounts = flagCountsByMetric;
 
     test('Flag counts schema type matches data type of Flag counts', () => {
         let flagCountsType = typeof flagCounts;

@@ -30,7 +30,7 @@ Promise.all(dataPromises)
         };
         config.clickCallback = function (datum) {
             instance.helpers.updateSelectedGroupIDs(datum.GroupID);
-            document.querySelector('#GroupID').value = datum.GroupID;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
         // Threshold annotations

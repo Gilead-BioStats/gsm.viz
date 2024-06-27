@@ -51,6 +51,14 @@
             "required": true,
             "key": false
         },
+        "Thresholds": {
+            "title": "Thresholds",
+            "description": "Thresholds with which to flag scores",
+
+            "type": "string",
+            "required": false,
+            "key": false
+        },
         "Model": {
             "title": "Metric Score Method",
             "description": "Statistical model used to evaluate Metric",

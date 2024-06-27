@@ -10,8 +10,7 @@ const threshold = function (datasets, setup = false) {
 
         // Threshold annotations
         const thresholds =
-            config.y === 'Score' &&
-            document.getElementById('threshold').checked
+            config.y === 'Score' && document.getElementById('threshold').checked
                 ? config.Thresholds.split(',').map((d) => +d)
                 : null;
 

@@ -46,7 +46,9 @@ Promise.all(dataPromises)
         config.nSnapshots = 25;
 
         // Threshold annotations
-        const thresholds = config.Thresholds.split(',').map(threshold => +threshold);
+        const thresholds = config.Thresholds.split(',').map(
+            (threshold) => +threshold
+        );
 
         // continuous outcomes
         rbmViz.default.sparkline(
@@ -59,14 +61,10 @@ Promise.all(dataPromises)
             thresholds
         );
 
-        rbmViz.default.sparkline(
-            document.getElementById('Metric'),
-            results,
-            {
-                ...config,
-                y: 'Metric',
-            }
-        );
+        rbmViz.default.sparkline(document.getElementById('Metric'), results, {
+            ...config,
+            y: 'Metric',
+        });
 
         // discrete outcomes
         const discreteOutcomes = [
