@@ -1,4 +1,5 @@
 import { group } from 'd3';
+import structureGroupMetadata from '../util/structureGroupMetadata.js';
 import mutate from './structureData/mutate.js';
 import scriptableOptions from './structureData/scriptableOptions.js';
 import rollupBounds from './structureData/rollupBounds.js';
@@ -8,20 +9,22 @@ import falsy from '../util/falsy.js';
  * Given input data, returns an array of arrays, each of which map to one or more graphical elements
  * in the visualization.
  *
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} config - chart configuration and metadata
  * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
  *
  * @returns {Array} data formatted for consumption by Chart.js
  */
 export default function structureData(
-    _data_,
+    _results_,
     config,
     _bounds_,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+
     // Modify properties and sort order of data.
-    const data = mutate(_data_, config, _sites_);
+    const data = mutate(_results_, config, groupMetadata);
 
     // Define array of Chart.js dataset objects.
     const datasets = [

@@ -21,12 +21,12 @@ export default function tooltip(config) {
                         let title;
 
                         if (data.length === 1) {
-                            title = `${config.GroupLevel} ${
+                            title = `${config.GroupLevel}: ${
                                 d.dataset.data[d.dataIndex].GroupID
                             }`;
 
-                            if (d.raw.site !== undefined) {
-                                title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                            if (d.raw.group !== undefined) {
+                                title = `${title} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
                             }
                         } else {
                             title =

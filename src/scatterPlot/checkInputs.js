@@ -1,14 +1,14 @@
 import checkInput from '../data/checkInput.js';
 
 export default function checkInputs(
-    _data_,
+    _results_,
     _config_,
     _bounds_,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
     checkInput({
-        parameter: '_data_',
-        argument: _data_,
+        parameter: '_results_',
+        argument: _results_,
         schemaName: 'results',
         module: 'scatterPlot',
     });
@@ -27,11 +27,11 @@ export default function checkInputs(
         module: 'scatterPlot',
     });
 
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
         checkInput({
-            parameter: '_sites_',
-            argument: _sites_,
-            schemaName: 'siteMetadata',
+            parameter: '_groupMetadata_',
+            argument: _groupMetadata_,
+            schemaName: 'groupMetadata',
             module: 'scatterPlot',
         });
     }

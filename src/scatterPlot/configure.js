@@ -6,6 +6,9 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 export default function configure(_config_, _data_) {
     const defaults = {};
 
+    defaults.GroupLevel = 'Site';
+    defaults.GroupLabelKey = 'InvestigatorLastName';
+
     // horizontal
     defaults.x = 'Denominator';
     defaults.xType = 'logarithmic';

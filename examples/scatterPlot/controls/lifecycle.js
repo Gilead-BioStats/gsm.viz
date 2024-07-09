@@ -28,6 +28,7 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
         const bounds = datasets[2].filter(
             (d) => d.MetricID === config.MetricID
         );
+        config.displayTitle = instance.data.config.displayTitle;
         config.xType = xAxisType();
         config.selectedGroupIDs = [group()];
 
@@ -35,7 +36,8 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
             document.getElementById('container'),
             results,
             config,
-            bounds
+            bounds,
+            datasets[3]
         );
 
         lifecycleButton.innerHTML = '<strong>KILL</strong>';

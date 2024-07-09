@@ -20205,11 +20205,11 @@ var rbmViz = (() => {
     items: {
       type: "object",
       properties: {
-        StudyID: {
-          title: "Study ID",
-          description: "Unique study identifier",
+        GroupLevel: {
+          title: "Grouping Variable",
+          description: "Grouping variable of analysis, one of Site, Country, or Study",
           type: "string",
-          required: false,
+          required: true,
           key: true
         },
         GroupID: {
@@ -20219,32 +20219,18 @@ var rbmViz = (() => {
           required: true,
           key: true
         },
-        GroupLabel: {
-          title: "Group Label",
-          description: "Label of group",
+        Param: {
+          title: "Group Attribute Name",
+          description: "Name of group attribute",
           type: "string",
           required: true,
-          key: false
+          key: true
         },
-        EnrolledParticipants: {
-          title: "Enrolled Participants",
-          description: "Number of participants enrolled at group",
-          type: "number",
-          required: true,
-          key: false
-        },
-        Status: {
-          title: "Group Status",
-          description: "Status of group",
+        Value: {
+          title: "Group Attribute Value",
+          description: "Value of group attribute",
           type: "string",
           required: true,
-          key: false
-        },
-        SnapshotDate: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
           key: false
         }
       }
@@ -21523,10 +21509,10 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/checkInputs.js
-  function checkInputs2(_data_, _config_, _bounds_, _sites_ = null) {
+  function checkInputs2(_results_, _config_, _bounds_, _groupMetadata_ = null) {
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
       schemaName: "results",
       module: "scatterPlot"
     });
@@ -21542,11 +21528,11 @@ var rbmViz = (() => {
       schemaName: "resultsPredicted",
       module: "scatterPlot"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
         module: "scatterPlot"
       });
     }
@@ -21555,6 +21541,8 @@ var rbmViz = (() => {
   // src/scatterPlot/configure.js
   function configure4(_config_, _data_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.x = "Denominator";
     defaults3.xType = "logarithmic";
     defaults3.y = "Numerator";
@@ -21586,13 +21574,30 @@ var rbmViz = (() => {
     return config;
   }
 
+  // src/util/structureGroupMetadata.js
+  function structureGroupMetadata(groupMetadata, config) {
+    if (groupMetadata === null)
+      return null;
+    const structuredGroupMetadata = d3.rollup(
+      groupMetadata,
+      (group2) => group2.reduce((acc, cur) => {
+        acc[cur.Param] = cur.Value;
+        return acc;
+      }, {}),
+      (d2) => d2.GroupLevel,
+      (d2) => d2.GroupID
+    );
+    return config === null ? structuredGroupMetadata : structuredGroupMetadata.get(config.GroupLevel);
+  }
+
   // src/scatterPlot/structureData/mutate.js
-  function mutate2(_data_, config, _sites_ = null) {
-    const data = _data_.map((d2) => {
-      if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.SiteID === d2.GroupID);
-        if (site !== void 0) {
-          d2.site = site;
+  function mutate2(_results_, config, groupMetadata = null) {
+    const results = _results_.map((d2) => {
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d2.GroupID);
+        if (group2 !== void 0) {
+          d2.group = group2;
+          d2.group.GroupLabel = d2.group.hasOwnProperty(config.GroupLabelKey) ? d2.group[config.GroupLabelKey] : d2.GroupID;
         }
       }
       const datum2 = {
@@ -21608,8 +21613,8 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    identifyDuplicatePoints(data, config);
-    return data;
+    identifyDuplicatePoints(results, config);
+    return results;
   }
 
   // src/scatterPlot/structureData/scriptableOptions/backgroundColor.js
@@ -21658,9 +21663,9 @@ var rbmViz = (() => {
     if (dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
-      if (datum2.site !== void 0) {
+      if (datum2.group !== void 0) {
         const enrollmentFactor = Math.sqrt(
-          datum2.site.enrolled_participants / Math.PI
+          datum2.group.ParticipantCount / Math.PI
         );
         return enrollmentFactor * hoverRadius;
       } else {
@@ -21678,9 +21683,9 @@ var rbmViz = (() => {
     if (dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
-      if (datum2.site !== void 0) {
+      if (datum2.group !== void 0) {
         const enrollmentFactor = Math.sqrt(
-          datum2.site.enrolled_participants / Math.PI
+          datum2.group.ParticipantCount / Math.PI
         );
         return enrollmentFactor * defaultRadius;
       } else {
@@ -21758,8 +21763,9 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData.js
-  function structureData2(_data_, config, _bounds_, _sites_ = null) {
-    const data = mutate2(_data_, config, _sites_);
+  function structureData2(_results_, config, _bounds_, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const data = mutate2(_results_, config, groupMetadata);
     const datasets = [
       {
         data,
@@ -21837,9 +21843,9 @@ var rbmViz = (() => {
             const titles = dataSorted.map((d2, i) => {
               let title4;
               if (data.length === 1) {
-                title4 = `${config.GroupLevel} ${d2.dataset.data[d2.dataIndex].GroupID}`;
-                if (d2.raw.site !== void 0) {
-                  title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
+                title4 = `${config.GroupLevel}: ${d2.dataset.data[d2.dataIndex].GroupID}`;
+                if (d2.raw.group !== void 0) {
+                  title4 = `${title4} (${d2.raw.group.GroupLabel} / ${d2.raw.group.ParticipantCount} enrolled)`;
                 }
               } else {
                 title4 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
@@ -21913,9 +21919,9 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateData.js
-  function updateData2(chart, _data_, _config_, _bounds_, _sites_) {
+  function updateData2(chart, _results_, _config_, _bounds_, _groupMetadata_) {
     const config = updateConfig2(chart, _config_, false, false);
-    const datasets = structureData2(_data_, config, _bounds_, _sites_);
+    const datasets = structureData2(_results_, config, _bounds_, _groupMetadata_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21923,11 +21929,11 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot.js
-  function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null, _sites_ = null) {
-    checkInputs2(_data_, _config_, _bounds_, _sites_);
-    const config = configure4(_config_, _data_);
+  function scatterPlot(_element_ = "body", _results_ = [], _config_ = {}, _bounds_ = null, _groupMetadata_ = null) {
+    checkInputs2(_results_, _config_, _bounds_, _groupMetadata_);
+    const config = configure4(_config_, _results_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData2(_data_, config, _bounds_, _sites_);
+    const datasets = structureData2(_results_, config, _bounds_, _groupMetadata_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
@@ -21942,7 +21948,7 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _bounds_
       },
