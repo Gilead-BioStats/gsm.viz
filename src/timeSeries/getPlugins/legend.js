@@ -7,9 +7,9 @@ export default function legend(config) {
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift(`${config.Group} Distribution`);
+    legendOrder.unshift(`${config.GroupLevel} Distribution`);
 
-    if (config.Group === 'Study')
+    if (config.GroupLevel === 'Study')
         return {
             display: true,
             labels: {

@@ -11,7 +11,7 @@ export default function formatResultTooltipContent(config, data) {
         config.dataType !== 'discrete'
     ) {
         content =
-            config.Group === 'Study'
+            config.GroupLevel === 'Study'
                 ? [
                       `${config.yLabel}: ${
                           falsy.includes(datum.Metric)
@@ -73,7 +73,7 @@ export default function formatResultTooltipContent(config, data) {
                           (d) =>
                               `${d[config.y]} ${config.yLabel}: ${d.n}/${
                                   d.N
-                              } (${d.pct}%) ${config.Group}s`
+                              } (${d.pct}%) ${config.GroupLevel}s`
                       ),
                   ]
                 : data.dataset.purpose === 'aggregate' &&

@@ -66,7 +66,7 @@ export default function structureData(
                     type: 'scatter',
                     label:
                         config.selectedGroupIDs.length > 0
-                            ? `${config.Group} ${config.selectedGroupIDs[0]}`
+                            ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                             : '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
@@ -117,7 +117,7 @@ export default function structureData(
                 type: 'scatter',
                 label:
                     config.selectedGroupIDs.length > 0
-                        ? `${config.Group} ${config.selectedGroupIDs[0]}`
+                        ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                         : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,

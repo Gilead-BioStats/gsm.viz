@@ -26,11 +26,11 @@ export default function tooltip(config) {
                 if (data.length) {
                     // distribution (boxplot, violin plot)
                     if (data[0].dataset.purpose === 'distribution') {
-                        return `${config.Group} Distribution on ${data[0].label}`;
+                        return `${config.GroupLevel} Distribution on ${data[0].label}`;
                     }
                     // aggregate (discrete Metric distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
-                        return `${config.Group} Summary on ${data[0].label}`;
+                        return `${config.GroupLevel} Summary on ${data[0].label}`;
                     }
                     // data point
                     else {
@@ -46,7 +46,7 @@ export default function tooltip(config) {
                             let title;
 
                             if (data.length === 1) {
-                                title = `${config.Group} ${
+                                title = `${config.GroupLevel} ${
                                     d.dataset.data[d.dataIndex].GroupID
                                 }`;
 
@@ -56,7 +56,7 @@ export default function tooltip(config) {
                             } else {
                                 title =
                                     i === 0
-                                        ? `${config.Group}s ${
+                                        ? `${config.GroupLevel}s ${
                                               d.dataset.data[d.dataIndex]
                                                   .GroupID
                                           }`

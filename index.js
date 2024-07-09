@@ -20103,7 +20103,7 @@ var rbmViz = (() => {
         type: "string",
         required: false
       },
-      Group: {
+      GroupLevel: {
         title: "Grouping Variable",
         description: "Grouping variable of analysis, one of Site, Country, or Study",
         type: "string",
@@ -21231,7 +21231,7 @@ var rbmViz = (() => {
   function title(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.Group}`
+      text: `${config.Metric} by ${config.GroupLevel}`
     };
   }
 
@@ -21240,7 +21240,7 @@ var rbmViz = (() => {
     const datum2 = data.dataset.data[data.dataIndex];
     let content;
     if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
-      content = config.Group === "Study" ? [
+      content = config.GroupLevel === "Study" ? [
         `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
         `Confidence Interval: (${format(".3f")(
           datum2.lowerCI
@@ -21271,7 +21271,7 @@ var rbmViz = (() => {
       ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
         `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
         ...datum2.counts.map(
-          (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.Group}s`
+          (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.GroupLevel}s`
         )
       ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
     }
@@ -21319,7 +21319,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.site !== void 0 ? `${config.Group} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.Group} ${datum2.GroupID}`;
+            return datum2.site !== void 0 ? `${config.GroupLevel} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.GroupLevel} ${datum2.GroupID}`;
           }
         }
       },
@@ -21807,7 +21807,7 @@ var rbmViz = (() => {
   function title2(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.Group}`
+      text: `${config.Metric} by ${config.GroupLevel}`
     };
   }
 
@@ -21837,12 +21837,12 @@ var rbmViz = (() => {
             const titles = dataSorted.map((d2, i) => {
               let title4;
               if (data.length === 1) {
-                title4 = `${config.Group} ${d2.dataset.data[d2.dataIndex].GroupID}`;
+                title4 = `${config.GroupLevel} ${d2.dataset.data[d2.dataIndex].GroupID}`;
                 if (d2.raw.site !== void 0) {
                   title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
                 }
               } else {
-                title4 = i === 0 ? `${config.Group}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                title4 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
               }
               return title4;
             });
@@ -22585,7 +22585,7 @@ var rbmViz = (() => {
       maxBarThickness: 7,
       maxWhiskerThickness: 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.GroupLevel} Distribution`,
       outlierRadius: 0,
       ///^n_/.test(config.y) ? 2 : 0,
       pointRadius: 0,
@@ -22607,7 +22607,7 @@ var rbmViz = (() => {
     );
     const dataset = {
       data: grouped.map((d2) => d2[1]),
-      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.GroupLevel} Distribution`,
       purpose: "distribution",
       type: "violin"
     };
@@ -22785,7 +22785,7 @@ var rbmViz = (() => {
           selectedGroupLine(data, config, labels),
           {
             type: "scatter",
-            label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
+            label: config.selectedGroupIDs.length > 0 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}` : "",
             pointStyle: "line",
             pointStyleWidth: 24,
             boxWidth: 24,
@@ -22816,7 +22816,7 @@ var rbmViz = (() => {
         } : null,
         {
           type: "scatter",
-          label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
+          label: config.selectedGroupIDs.length > 0 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -22850,20 +22850,20 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
-          adjustScaleRange: config.Group === "Study",
+          adjustScaleRange: config.GroupLevel === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.Threshold,
           yMax: x.Threshold,
-          borderColor: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
+          borderColor: config.GroupLevel === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.annotateThreshold === true && config.Group === "Study") {
+        if (config.annotateThreshold === true && config.GroupLevel === "Study") {
           annotation2.label = {
             rotation: "auto",
             position: Math.sign(+x.Flag) >= 0 ? "end" : "start",
-            color: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
+            color: config.GroupLevel === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
             backgroundColor: "white",
             content: `QTL: ${Math.round(+config.thresholds[0].Threshold * 1e3) / 1e3.toString()}`,
             //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.Flag.includes(+x.Flag))[0].description,
@@ -22885,8 +22885,8 @@ var rbmViz = (() => {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift(`${config.Group} Distribution`);
-    if (config.Group === "Study")
+    legendOrder.unshift(`${config.GroupLevel} Distribution`);
+    if (config.GroupLevel === "Study")
       return {
         display: true,
         labels: {
@@ -22955,9 +22955,9 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             if (data[0].dataset.purpose === "distribution") {
-              return `${config.Group} Distribution on ${data[0].label}`;
+              return `${config.GroupLevel} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
-              return `${config.Group} Summary on ${data[0].label}`;
+              return `${config.GroupLevel} Summary on ${data[0].label}`;
             } else {
               let dataSorted = data;
               try {
@@ -22969,12 +22969,12 @@ var rbmViz = (() => {
               const titles = dataSorted.map(function(d2, i) {
                 let title4;
                 if (data.length === 1) {
-                  title4 = `${config.Group} ${d2.dataset.data[d2.dataIndex].GroupID}`;
+                  title4 = `${config.GroupLevel} ${d2.dataset.data[d2.dataIndex].GroupID}`;
                   if (d2.raw.site !== void 0) {
                     title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
                   }
                 } else {
-                  title4 = i === 0 ? `${config.Group}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                  title4 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
                 }
                 return title4;
               });

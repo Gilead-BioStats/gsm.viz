@@ -6,13 +6,13 @@ export default function annotations(config) {
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => {
             const annotation = {
-                adjustScaleRange: config.Group === 'Study',
+                adjustScaleRange: config.GroupLevel === 'Study',
                 drawTime: 'beforeDatasetsDraw',
                 type: 'line',
                 yMin: x.Threshold,
                 yMax: x.Threshold,
                 borderColor:
-                    config.Group === 'Study'
+                    config.GroupLevel === 'Study'
                         ? colorScheme.amberRed.color
                         : colorScheme.find((y) => y.Flag.includes(+x.Flag))
                               .color,
@@ -20,12 +20,12 @@ export default function annotations(config) {
                 borderDash: [2],
             };
 
-            if (config.annotateThreshold === true && config.Group === 'Study') {
+            if (config.annotateThreshold === true && config.GroupLevel === 'Study') {
                 annotation.label = {
                     rotation: 'auto',
                     position: Math.sign(+x.Flag) >= 0 ? 'end' : 'start',
                     color:
-                        config.Group === 'Study'
+                        config.GroupLevel === 'Study'
                             ? colorScheme.amberRed.color
                             : colorScheme.find((y) => y.Flag.includes(+x.Flag))
                                   .color,

@@ -10,7 +10,7 @@
             "type": "string",
             "required": false
         },
-        "Group": {
+        "GroupLevel": {
             "title": "Grouping Variable",
             "description": "Grouping variable of analysis, one of Site, Country, or Study",
             "type": "string",
