@@ -20099,7 +20099,7 @@ var rbmViz = (() => {
     properties: {
       MetricID: {
         title: "Metric ID",
-        description: "Unique workflow identifier",
+        description: "Unique metric identifier",
         type: "string",
         required: false
       },
@@ -20111,35 +20111,35 @@ var rbmViz = (() => {
       },
       Numerator: {
         title: "Metric Numerator",
-        description: "Unit of Metric Numerator",
+        description: "Unit of metric numerator",
         type: "string",
         required: true,
         key: false
       },
       Denominator: {
         title: "Metric Denominator",
-        description: "Unit of Metric Denominator",
+        description: "Unit of metric denominator",
         type: "string",
         required: true,
         key: false
       },
       Metric: {
-        title: "Metric Metric",
-        description: "Unit of Metric Metric",
+        title: "Metric Description",
+        description: "Description of metric",
         type: "string",
         required: true,
         key: false
       },
       Outcome: {
         title: "Metric Type",
-        description: "Type of Metric Metric",
+        description: "Type of metric",
         type: "string",
         required: false,
         key: false
       },
       Score: {
         title: "Metric Score",
-        description: "Unit of Metric score",
+        description: "Analysis method of metric",
         type: "string",
         required: true,
         key: false
@@ -20182,13 +20182,6 @@ var rbmViz = (() => {
       SnapshotDate: {
         title: "Snapshot Date",
         description: "Date of data refresh",
-        type: "string",
-        required: false,
-        key: false
-      },
-      gsm_version: {
-        title: "{gsm} Version",
-        description: "{gsm} version when analysis ran",
         type: "string",
         required: false,
         key: false
@@ -21587,7 +21580,15 @@ var rbmViz = (() => {
       (d2) => d2.GroupLevel,
       (d2) => d2.GroupID
     );
-    return config === null ? structuredGroupMetadata : structuredGroupMetadata.get(config.GroupLevel);
+    const keys = Array.from(structuredGroupMetadata.keys());
+    if (keys.includes(config.GroupLevel)) {
+      return structuredGroupMetadata.get(config.GroupLevel);
+    } else {
+      console.warn(
+        `Group level "${config.GroupLevel}" not found in group metadata.`
+      );
+      return null;
+    }
   }
 
   // src/scatterPlot/structureData/mutate.js

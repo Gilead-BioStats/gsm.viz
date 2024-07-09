@@ -6,7 +6,7 @@
     "properties": {
         "MetricID": {
             "title": "Metric ID",
-            "description": "Unique workflow identifier",
+            "description": "Unique metric identifier",
             "type": "string",
             "required": false
         },
@@ -18,35 +18,35 @@
         },
         "Numerator": {
             "title": "Metric Numerator",
-            "description": "Unit of Metric Numerator",
+            "description": "Unit of metric numerator",
             "type": "string",
             "required": true,
             "key": false
         },
         "Denominator": {
             "title": "Metric Denominator",
-            "description": "Unit of Metric Denominator",
+            "description": "Unit of metric denominator",
             "type": "string",
             "required": true,
             "key": false
         },
         "Metric": {
-            "title": "Metric Metric",
-            "description": "Unit of Metric Metric",
+            "title": "Metric Description",
+            "description": "Description of metric",
             "type": "string",
             "required": true,
             "key": false
         },
         "Outcome": {
             "title": "Metric Type",
-            "description": "Type of Metric Metric",
+            "description": "Type of metric",
             "type": "string",
             "required": false,
             "key": false
         },
         "Score": {
             "title": "Metric Score",
-            "description": "Unit of Metric score",
+            "description": "Analysis method of metric",
             "type": "string",
             "required": true,
             "key": false
@@ -90,13 +90,6 @@
         "SnapshotDate": {
             "title": "Snapshot Date",
             "description": "Date of data refresh",
-            "type": "string",
-            "required": false,
-            "key": false
-        },
-        "gsm_version": {
-            "title": "{gsm} Version",
-            "description": "{gsm} version when analysis ran",
             "type": "string",
             "required": false,
             "key": false

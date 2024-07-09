@@ -12,7 +12,15 @@ export default function structureGroupMetadata(groupMetadata, config) {
         d => d.GroupID
     );
 
-    return config === null
-        ? structuredGroupMetadata
-        : structuredGroupMetadata.get(config.GroupLevel);
+    const keys = Array.from(structuredGroupMetadata.keys());
+
+    if (keys.includes(config.GroupLevel)) {
+        return structuredGroupMetadata.get(config.GroupLevel);
+    } else {
+        console.warn(
+            `Group level "${config.GroupLevel}" not found in group metadata.`
+        );
+
+        return null;
+    }
 };
