@@ -1,6 +1,6 @@
 import data from '../../examples/data/meta_workflow.json';
 import schema from '../../src/data/schema/analysisMetadata.json';
-import checkInput from '../../src/data/checkInput';
+import checkInput from '../../src/data/checkInput.js';
 
 describe('checkInput identifies required and optional properties', () => {
     test('a missing required analysis metadata property throws an error', () => {

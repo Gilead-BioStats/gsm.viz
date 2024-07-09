@@ -1,4 +1,4 @@
-import coalesce from '../../src/util/coalesce';
+import coalesce from '../../src/util/coalesce.js';
 
 describe('utility functions', () => {
     test('coalese returns default when undefined value supplied', () => {

@@ -2,8 +2,8 @@ import flagCountsByGroup from '../../examples/data/flag_counts_by_group.json';
 import flagCountsByMetric from '../../examples/data/flag_counts_by_metric.json';
 import schema from '../../src/data/schema/flagCounts.json';
 import snapshotDate from '../../src/data/schema/snapshotDate.json';
-import checkInput from '../../src/data/checkInput';
-import getType from '../../src/data/checkInput/getType';
+import checkInput from '../../src/data/checkInput.js';
+import getType from '../../src/data/checkInput/getType.js';
 
 schema.items.properties.SnapshotDate = snapshotDate;
 

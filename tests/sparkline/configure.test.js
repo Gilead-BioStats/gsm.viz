@@ -1,7 +1,7 @@
 import results from '../../examples/data/results_summary_over_time.json';
 import metrics from '../../examples/data/meta_workflow.json';
 
-import configure from '../../src/sparkline/configure';
+import configure from '../../src/sparkline/configure.js';
 
 const MetricID = 'kri0001';
 const resultsSubset = results.filter((d) => d.MetricID === MetricID);

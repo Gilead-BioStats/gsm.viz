@@ -1,13 +1,7 @@
 import data from '../../examples/data/results_summary.json';
 import metadata from '../../examples/data/meta_workflow.json';
 
-import configure from '../../src/barChart/configure';
-
-//import structureData from '../../src/barChart/structureData';
-//import getScales from '../../src/barChart/getScales';
-//import annotations from '../../src/barChart/getPlugins/annotations';
-//import legend from '../../src/barChart/getPlugins/legend';
-//import tooltip from '../../src/barChart/getPlugins/tooltip';
+import configure from '../../src/barChart/configure.js';
 
 const MetricID = 'kri0001';
 const results = data.filter((d) => d.MetricID === MetricID);

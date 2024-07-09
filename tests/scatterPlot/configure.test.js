@@ -2,7 +2,7 @@ import results from '../../examples/data/results_summary.json';
 import metrics from '../../examples/data/meta_workflow.json';
 import bounds from '../../examples/data/results_bounds.json';
 
-import configure from '../../src/scatterPlot/configure';
+import configure from '../../src/scatterPlot/configure.js';
 
 const MetricID = 'kri0001';
 const resultsSubset = results.filter((d) => d.MetricID === MetricID);
