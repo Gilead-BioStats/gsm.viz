@@ -1,40 +1,30 @@
-//const dataFiles = [
-//    '../data/results_summary.csv',
-//    '../data/meta_workflow.csv',
-//    '../data/status_site.csv',
-//];
 const dataFiles = [
     '../data/results.csv',
     '../data/metricMetadata.csv',
     '../data/groupMetadata.csv'
 ];
 
-
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
 );
 
+// TODO: update controls as in scatterPlot
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         const MetricID = 'kri0001';
 
-        //datasets = datasets.map((dataset) =>
-        //    Object.keys(dataset[0]).includes('MetricID')
-        //        ? dataset.filter((d) => /^kri/.test(d.MetricID))
-        //        : dataset
-        //);
-
         // analysis results
+        const SnapshotDate = d3.max(datasets[0], d => d.SnapshotDate);
+        datasets[0] = datasets[0].filter(
+            d => d.SnapshotDate === SnapshotDate
+        );
         const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
         const config = selectMetricID(datasets[1], MetricID);
         config.displayTitle = true;
         config.y = 'Score';
-        config.hoverCallback = function (datum) {
-            //console.log(datum.GroupID);
-        };
         config.clickCallback = function (datum) {
             instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.helpers.updateConfig(
@@ -45,7 +35,7 @@ Promise.all(dataPromises)
             document.querySelector('#group').value = datum.GroupID;
         };
 
-        // Threshold annotations
+        // threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);
 
         // group metadata

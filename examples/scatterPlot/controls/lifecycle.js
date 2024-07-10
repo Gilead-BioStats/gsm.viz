@@ -1,5 +1,5 @@
 // Add event listener to chart lifecycle button.
-const lifecycle = function (datasets, chartFunction, setup = false) {
+const lifecycle = function (datasets, setup = false) {
     let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 

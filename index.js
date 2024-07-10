@@ -22281,11 +22281,11 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/checkInputs.js
-  function checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_ = null) {
+  function checkInputs4(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_ = null) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
       schemaName: discrete ? "flagCounts" : "results",
       module: "timeSeries"
     });
@@ -22307,11 +22307,11 @@ var rbmViz = (() => {
       schemaName: "resultsVertical",
       module: "timeSeries"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
         module: "timeSeries"
       });
     }
@@ -22320,6 +22320,8 @@ var rbmViz = (() => {
   // src/timeSeries/configure.js
   function configure6(_config_, _data_, _thresholds_, _intervals_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "Metric" : "Site";
@@ -23069,16 +23071,16 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = [], _intervals_ = null, _sites_ = null) {
-    checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
-    const config = configure6(_config_, _data_, _thresholds_, _intervals_);
+  function timeSeries(_element_, _results_, _config_ = {}, _thresholds_ = [], _intervals_ = null, _groupMetadata_ = null) {
+    checkInputs4(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_);
+    const config = configure6(_config_, _results_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
     const datasets = structureData4(
-      _data_,
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     );
     const options = {
       animation: false,
@@ -23087,7 +23089,7 @@ var rbmViz = (() => {
       onHover,
       plugins: getPlugins4(config),
       responsive: true,
-      scales: getScales4(config, _data_)
+      scales: getScales4(config, _results_)
     };
     const chart = new auto_default(canvas, {
       data: {
@@ -23097,11 +23099,11 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _thresholds_,
         _intervals_,
-        _sites_
+        _groupMetadata_
       },
       options,
       plugins: [displayWhiteBackground()]

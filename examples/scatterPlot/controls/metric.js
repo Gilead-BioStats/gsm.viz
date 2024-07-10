@@ -1,5 +1,5 @@
 // Add event listener to metric dropdown.
-const metric = function (MetricID, datasets, setup = false) {
+const metric = function (datasets, setup = false, initialValue = null) {
     const metricDropdown = document.querySelector('#metric');
     const groupDropdown = document.querySelector('#group');
 
@@ -36,7 +36,7 @@ const metric = function (MetricID, datasets, setup = false) {
             metricDropdown.appendChild(option);
         }
 
-        metricDropdown.value = MetricID;
+        metricDropdown.value = initialValue;
         metricDropdown.addEventListener('change', (event) => {
             const instance = getChart();
 

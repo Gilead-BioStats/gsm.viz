@@ -7,6 +7,9 @@ import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     const defaults = {};
 
+    defaults.GroupLevel = 'Site';
+    defaults.GroupLabelKey = 'InvestigatorLastName';
+
     defaults.dataType = /flag|risk/.test(_config_.y)
         ? 'discrete'
         : 'continuous';

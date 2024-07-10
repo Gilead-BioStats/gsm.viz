@@ -14,21 +14,16 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const MetricID = 'kri0001';
 
-        //datasets = datasets.map((dataset) =>
-        //    Object.keys(dataset[0]).includes('MetricID')
-        //        ? dataset.filter((d) => /^kri/.test(d.MetricID))
-        //        : dataset
-        //);
-
         // analysis results
+        const SnapshotDate = d3.max(datasets[0], d => d.SnapshotDate);
+        datasets[0] = datasets[0].filter(
+            d => d.SnapshotDate === SnapshotDate
+        );
         const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
         const config = selectMetricID(datasets[1], MetricID);
         config.displayTitle = true;
-        config.hoverCallback = function (datum) {
-            //console.log(datum.GroupID);
-        };
         config.clickCallback = function (datum) {
             instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.data.config.xType = xAxisType();
@@ -36,7 +31,7 @@ Promise.all(dataPromises)
             document.querySelector('#group').value = datum.GroupID;
         };
 
-        // Threshold annotations
+        // predicted bounds
         const bounds = filterOnMetricID(datasets[2], MetricID);
 
         // group metadata
@@ -52,10 +47,10 @@ Promise.all(dataPromises)
         );
 
         // controls
-        metric(MetricID, datasets, true);
+        metric(datasets, true, MetricID);
         group(datasets, true);
         country(datasets, true);
         xAxisType(true);
-        lifecycle(datasets, 'scatterPlot', true);
+        lifecycle(datasets, true);
         download(true);
     });
