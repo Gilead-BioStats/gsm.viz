@@ -1,14 +1,17 @@
 import falsy from '../../util/falsy.js';
 
-export default function mutate(_data_, config, _sites_ = null) {
-    const data = _data_
+export default function mutate(_results_, config, groupMetadata = null) {
+    const data = _results_
         .map((d) => {
-            // attach site metadata to results
-            if (_sites_ !== null) {
-                const site = _sites_.find((site) => site.SiteID === d.GroupID);
+            // attach group metadata to results
+            if (groupMetadata !== null) {
+                const group = groupMetadata.get(d.GroupID);
 
-                if (site !== undefined) {
-                    d.site = site;
+                if (group !== undefined) {
+                    d.group = group;
+                    d.group.GroupLabel = d.group.hasOwnProperty(config.GroupLabelKey)
+                        ? d.group[config.GroupLabelKey]
+                        : d.GroupID
                 }
             }
 

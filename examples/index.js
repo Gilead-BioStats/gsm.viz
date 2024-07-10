@@ -20751,10 +20751,10 @@ var rbmViz = (() => {
   }
 
   // src/barChart/checkInputs.js
-  function checkInputs(_data_, _config_, _thresholds_, _sites_ = null) {
+  function checkInputs(_results_, _config_, _thresholds_, _groupMetadata_ = null) {
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
       schemaName: "results",
       module: "barChart"
     });
@@ -20770,12 +20770,12 @@ var rbmViz = (() => {
       schemaName: "thresholds",
       module: "barChart"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
-        module: "scatterPlot"
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
+        module: "barChart"
       });
     }
   }
@@ -20881,8 +20881,10 @@ var rbmViz = (() => {
   }
 
   // src/barChart/configure.js
-  function configure3(_config_, _data_, _thresholds_) {
+  function configure3(_config_, _results_, _thresholds_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.x = "GroupID";
     defaults3.xType = "category";
     defaults3.y = "Score";
@@ -20899,7 +20901,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
@@ -20957,17 +20959,42 @@ var rbmViz = (() => {
     return canvas;
   }
 
+  // src/util/structureGroupMetadata.js
+  function structureGroupMetadata(groupMetadata, config) {
+    if (groupMetadata === null)
+      return null;
+    const structuredGroupMetadata = rollup(
+      groupMetadata,
+      (group2) => group2.reduce((acc, cur) => {
+        acc[cur.Param] = cur.Value;
+        return acc;
+      }, {}),
+      (d2) => d2.GroupLevel,
+      (d2) => d2.GroupID
+    );
+    const keys = Array.from(structuredGroupMetadata.keys());
+    if (keys.includes(config.GroupLevel)) {
+      return structuredGroupMetadata.get(config.GroupLevel);
+    } else {
+      console.warn(
+        `Group level "${config.GroupLevel}" not found in group metadata.`
+      );
+      return null;
+    }
+  }
+
   // src/util/falsy.js
   var falsy = [void 0, null, NaN, "", "NA"];
   var falsy_default = falsy;
 
   // src/barChart/structureData/mutate.js
-  function mutate(_data_, config, _sites_ = null) {
-    const data = _data_.map((d2) => {
-      if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.SiteID === d2.GroupID);
-        if (site !== void 0) {
-          d2.site = site;
+  function mutate(_results_, config, groupMetadata = null) {
+    const data = _results_.map((d2) => {
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d2.GroupID);
+        if (group2 !== void 0) {
+          d2.group = group2;
+          d2.group.GroupLabel = d2.group.hasOwnProperty(config.GroupLabelKey) ? d2.group[config.GroupLabelKey] : d2.GroupID;
         }
       }
       const datum2 = {
@@ -21046,8 +21073,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/structureData.js
-  function structureData(_data_, config, _sites_ = null) {
-    const data = mutate(_data_, config, _sites_);
+  function structureData(_results_, config, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const data = mutate(_results_, config, groupMetadata);
     const datasets = [
       {
         type: "bar",
@@ -21298,7 +21326,7 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.site !== void 0 ? `${config.GroupLevel} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.GroupLevel} ${datum2.GroupID}`;
+            return datum2.group !== void 0 ? `${config.GroupLevel} ${datum2.GroupID} (${datum2.group.GroupLabel} / ${datum2.group.ParticipantCount} enrolled)` : `${config.GroupLevel} ${datum2.GroupID}`;
           }
         }
       },
@@ -21430,9 +21458,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_, _sites_ = null) {
+  function updateData(chart, _results_, _config_, _thresholds_, _groupMetadata_ = null) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21454,11 +21482,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = [], _sites_ = null) {
-    checkInputs(_data_, _config_, _thresholds_, _sites_);
-    const config = configure3(_config_, _data_, _thresholds_);
+  function barChart(_element_ = "body", _results_ = [], _config_ = {}, _thresholds_ = [], _groupMetadata_ = null) {
+    checkInputs(_results_, _config_, _thresholds_, _groupMetadata_);
+    const config = configure3(_config_, _results_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
     const options = {
       animation: false,
       clip: false,
@@ -21483,7 +21511,7 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _thresholds_
       },
@@ -21532,7 +21560,7 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/configure.js
-  function configure4(_config_, _data_) {
+  function configure4(_config_, _results_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
     defaults3.GroupLabelKey = "InvestigatorLastName";
@@ -21554,7 +21582,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       )
     });
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
@@ -21565,30 +21593,6 @@ var rbmViz = (() => {
     if (config.clickCallbackWrapper === void 0)
       config.clickCallbackWrapper = getCallbackWrapper(config.clickCallback);
     return config;
-  }
-
-  // src/util/structureGroupMetadata.js
-  function structureGroupMetadata(groupMetadata, config) {
-    if (groupMetadata === null)
-      return null;
-    const structuredGroupMetadata = d3.rollup(
-      groupMetadata,
-      (group2) => group2.reduce((acc, cur) => {
-        acc[cur.Param] = cur.Value;
-        return acc;
-      }, {}),
-      (d2) => d2.GroupLevel,
-      (d2) => d2.GroupID
-    );
-    const keys = Array.from(structuredGroupMetadata.keys());
-    if (keys.includes(config.GroupLevel)) {
-      return structuredGroupMetadata.get(config.GroupLevel);
-    } else {
-      console.warn(
-        `Group level "${config.GroupLevel}" not found in group metadata.`
-      );
-      return null;
-    }
   }
 
   // src/scatterPlot/structureData/mutate.js

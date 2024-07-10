@@ -29,31 +29,31 @@ import triggerTooltip from './util/triggerTooltip.js';
  * Generate a bar chart.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
- * @param {Array} _sites_ - optional site metadata
+ * @param {Array} _thresholds_ - optional threshold annotation values
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  * @returns {Object} Chart.js chart object
  */
 export default function barChart(
     _element_ = 'body',
-    _data_ = [],
+    _results_ = [],
     _config_ = {},
     _thresholds_ = [],
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_data_, _config_, _thresholds_, _sites_);
+    checkInputs(_results_, _config_, _thresholds_, _groupMetadata_);
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _results_, _thresholds_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
 
     // Configure Chart.js options.
     const options = {
@@ -85,7 +85,7 @@ export default function barChart(
             config,
 
             // inputs
-            _data_,
+            _results_,
             _config_,
             _thresholds_,
         },

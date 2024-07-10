@@ -27,10 +27,10 @@ import triggerTooltip from './util/triggerTooltip.js';
  * Generate a scatter plot.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _results_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _bounds_ - optional auxiliary data of predicted analysis output
- * @param {Array} _groupMetadata_ - optional site metadata
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  * @returns {Object} Chart.js chart object
  */

@@ -1,4 +1,3 @@
-import { group } from 'd3';
 import structureGroupMetadata from '../util/structureGroupMetadata.js';
 import mutate from './structureData/mutate.js';
 import scriptableOptions from './structureData/scriptableOptions.js';
@@ -12,6 +11,7 @@ import falsy from '../util/falsy.js';
  * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} config - chart configuration and metadata
  * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  * @returns {Array} data formatted for consumption by Chart.js
  */

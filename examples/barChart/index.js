@@ -1,8 +1,14 @@
+//const dataFiles = [
+//    '../data/results_summary.csv',
+//    '../data/meta_workflow.csv',
+//    '../data/status_site.csv',
+//];
 const dataFiles = [
-    '../data/results_summary.csv',
-    '../data/meta_workflow.csv',
-    '../data/status_site.csv',
+    '../data/results.csv',
+    '../data/metricMetadata.csv',
+    '../data/groupMetadata.csv'
 ];
+
 
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
@@ -13,17 +19,18 @@ Promise.all(dataPromises)
     .then((datasets) => {
         const MetricID = 'kri0001';
 
-        datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('MetricID')
-                ? dataset.filter((d) => /^kri/.test(d.MetricID))
-                : dataset
-        );
+        //datasets = datasets.map((dataset) =>
+        //    Object.keys(dataset[0]).includes('MetricID')
+        //        ? dataset.filter((d) => /^kri/.test(d.MetricID))
+        //        : dataset
+        //);
 
         // analysis results
         const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
         const config = selectMetricID(datasets[1], MetricID);
+        config.displayTitle = true;
         config.y = 'Score';
         config.hoverCallback = function (datum) {
             //console.log(datum.GroupID);

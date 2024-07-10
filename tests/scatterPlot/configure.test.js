@@ -20,7 +20,7 @@ describe('configuration', () => {
                 // metric metadata
                 'MetricID',
                 'gsm_version',
-                'Group',
+                'GroupLevel',
                 'Abbreviation',
                 'Metric',
                 'Numerator',
