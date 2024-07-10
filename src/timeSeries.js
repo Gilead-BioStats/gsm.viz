@@ -24,7 +24,7 @@ import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs.js';
  * Generate a time series.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _results_ - analysis results data with one object per group ID
+ * @param {Array} _results_ - analysis results data with one object per group ID per snapshot date
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _thresholds_ - optional threshold annotation values
  * @param {Array} _intervals_ - optional auxiliary data with confidence intervals

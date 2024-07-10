@@ -25,6 +25,7 @@ const metric = function (config, datasets, setup = false) {
 
             // chart configuration
             const config = selectMetricID(datasets[1], MetricID);
+            config.displayTitle = true;
             config.y = yAxis();
             config.selectedGroupIDs = group();
 

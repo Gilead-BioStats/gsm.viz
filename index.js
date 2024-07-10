@@ -6269,25 +6269,25 @@ var rbmViz = (() => {
       }
     }
     drawTitle() {
-      const { ctx, options: { position, title: title3, reverse } } = this;
-      if (!title3.display) {
+      const { ctx, options: { position, title: title4, reverse } } = this;
+      if (!title4.display) {
         return;
       }
-      const font = toFont(title3.font);
-      const padding = toPadding(title3.padding);
-      const align = title3.align;
+      const font = toFont(title4.font);
+      const padding = toPadding(title4.padding);
+      const align = title4.align;
       let offset = font.lineHeight / 2;
       if (position === "bottom" || position === "center" || isObject(position)) {
         offset += padding.bottom;
-        if (isArray(title3.text)) {
-          offset += font.lineHeight * (title3.text.length - 1);
+        if (isArray(title4.text)) {
+          offset += font.lineHeight * (title4.text.length - 1);
         }
       } else {
         offset += padding.top;
       }
       const { titleX, titleY, maxWidth, rotation } = titleArgs(this, offset, position, align);
-      renderText(ctx, title3.text, 0, 0, font, {
-        color: title3.color,
+      renderText(ctx, title4.text, 0, 0, font, {
+        color: title4.color,
         maxWidth,
         rotation,
         textAlign: titleAlign(align, position, reverse),
@@ -10747,14 +10747,14 @@ var rbmViz = (() => {
     }
   };
   function createTitle(chart, titleOpts) {
-    const title3 = new Title({
+    const title4 = new Title({
       ctx: chart.ctx,
       options: titleOpts,
       chart
     });
-    layouts.configure(chart, title3, titleOpts);
-    layouts.addBox(chart, title3);
-    chart.titleBlock = title3;
+    layouts.configure(chart, title4, titleOpts);
+    layouts.addBox(chart, title4);
+    chart.titleBlock = title4;
   }
   var plugin_title = {
     id: "title",
@@ -10768,9 +10768,9 @@ var rbmViz = (() => {
       delete chart.titleBlock;
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = chart.titleBlock;
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title4 = chart.titleBlock;
+      layouts.configure(chart, title4, options);
+      title4.options = options;
     },
     defaults: {
       align: "center",
@@ -10796,23 +10796,23 @@ var rbmViz = (() => {
   var plugin_subtitle = {
     id: "subtitle",
     start(chart, _args, options) {
-      const title3 = new Title({
+      const title4 = new Title({
         ctx: chart.ctx,
         options,
         chart
       });
-      layouts.configure(chart, title3, options);
-      layouts.addBox(chart, title3);
-      map2.set(chart, title3);
+      layouts.configure(chart, title4, options);
+      layouts.addBox(chart, title4);
+      map2.set(chart, title4);
     },
     stop(chart) {
       layouts.removeBox(chart, map2.get(chart));
       map2.delete(chart);
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = map2.get(chart);
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title4 = map2.get(chart);
+      layouts.configure(chart, title4, options);
+      title4.options = options;
     },
     defaults: {
       align: "center",
@@ -10921,12 +10921,12 @@ var rbmViz = (() => {
   }
   function getTooltipSize(tooltip5, options) {
     const ctx = tooltip5.chart.ctx;
-    const { body, footer, title: title3 } = tooltip5;
+    const { body, footer, title: title4 } = tooltip5;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
     const footerFont = toFont(options.footerFont);
-    const titleLineCount = title3.length;
+    const titleLineCount = title4.length;
     const footerLineCount = footer.length;
     const bodyLineItemCount = body.length;
     const padding = toPadding(options.padding);
@@ -11126,11 +11126,11 @@ var rbmViz = (() => {
     getTitle(context, options) {
       const { callbacks } = options;
       const beforeTitle = callbacks.beforeTitle.apply(this, [context]);
-      const title3 = callbacks.title.apply(this, [context]);
+      const title4 = callbacks.title.apply(this, [context]);
       const afterTitle = callbacks.afterTitle.apply(this, [context]);
       let lines = [];
       lines = pushOrConcat(lines, splitNewlines(beforeTitle));
-      lines = pushOrConcat(lines, splitNewlines(title3));
+      lines = pushOrConcat(lines, splitNewlines(title4));
       lines = pushOrConcat(lines, splitNewlines(afterTitle));
       return lines;
     }
@@ -11292,8 +11292,8 @@ var rbmViz = (() => {
       return { x1, x2, x3, y1, y2, y3 };
     }
     drawTitle(pt, ctx, options) {
-      const title3 = this.title;
-      const length = title3.length;
+      const title4 = this.title;
+      const length = title4.length;
       let titleFont, titleSpacing, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
@@ -11305,7 +11305,7 @@ var rbmViz = (() => {
         ctx.fillStyle = options.titleColor;
         ctx.font = titleFont.string;
         for (i = 0; i < length; ++i) {
-          ctx.fillText(title3[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+          ctx.fillText(title4[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
           pt.y += titleFont.lineHeight + titleSpacing;
           if (i + 1 === length) {
             pt.y += options.titleMarginBottom - titleSpacing;
@@ -21846,19 +21846,19 @@ var rbmViz = (() => {
           if (data.length) {
             const dataSorted = sortByGroupID(data, config);
             const titles = dataSorted.map((d2, i) => {
-              let title4;
+              let title5;
               if (data.length === 1) {
-                title4 = `${config.GroupLevel}: ${d2.dataset.data[d2.dataIndex].GroupID}`;
+                title5 = `${config.GroupLevel}: ${d2.dataset.data[d2.dataIndex].GroupID}`;
                 if (d2.raw.group !== void 0) {
-                  title4 = `${title4} (${d2.raw.group.GroupLabel} / ${d2.raw.group.ParticipantCount} enrolled)`;
+                  title5 = `${title5} (${d2.raw.group.GroupLabel} / ${d2.raw.group.ParticipantCount} enrolled)`;
                 }
               } else {
-                title4 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                title5 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
               }
-              return title4;
+              return title5;
             });
-            const title3 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
-            return title3;
+            const title4 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
+            return title4;
           }
         }
       },
@@ -22318,13 +22318,13 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _thresholds_, _intervals_) {
+  function configure6(_config_, _results_, _thresholds_, _intervals_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
     defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
-      defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "Metric" : "Site";
+      defaults3.discreteUnit = Object.keys(_results_[0]).includes("GroupID") ? "Metric" : "Site";
     else
       defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
@@ -22338,9 +22338,9 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
-    defaults3.Group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.annotateThreshold = _thresholds_ !== null;
+    defaults3.displayTitle = false;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
       (Threshold) => Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
@@ -22349,7 +22349,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
@@ -22374,20 +22374,14 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config, _thresholds_, _intervals_, _sites_ = null) {
-    const data = _data_.map((d2) => {
+  function mutate4(_results_, config, _thresholds_, _intervals_, groupMetadata = null) {
+    const results = _results_.map((d2) => {
       const datum2 = { ...d2 };
-      if (_sites_ !== null) {
-        let site = _sites_.filter((site2) => site2.SiteID === d2.GroupID);
-        if (site.length > 1) {
-          site = site.find(
-            (site2) => site2.SnapshotDate === datum2.SnapshotDate
-          );
-        } else {
-          site = site[0];
-        }
-        if (site !== void 0) {
-          datum2.site = site;
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d2.GroupID);
+        if (group2 !== void 0) {
+          datum2.group = group2;
+          datum2.group.GroupLabel = datum2.group.hasOwnProperty(config.GroupLabelKey) ? datum2.group[config.GroupLabelKey] : datum2.GroupID;
         }
       }
       if ([void 0, null].includes(_intervals_) === false) {
@@ -22403,7 +22397,7 @@ var rbmViz = (() => {
       }
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
-    const labels = getLabels(data, config);
+    const labels = getLabels(results, config);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
       thresholds2 = _thresholds_.filter((d2) => labels.includes(d2[config.x])).map((d2) => ({ ...d2 })).sort((a, b) => ascending(a[config.x], b[config.x]));
@@ -22412,9 +22406,9 @@ var rbmViz = (() => {
     if (Array.isArray(_intervals_)) {
       intervals = _intervals_.filter((d2) => labels.includes(d2[config.x])).map((d2) => ({ ...d2 })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
-    identifyDuplicatePoints(data, config);
+    identifyDuplicatePoints(results, config);
     return {
-      data,
+      results,
       labels,
       thresholds: thresholds2,
       intervals
@@ -22761,19 +22755,20 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
-    const { data, labels, thresholds: thresholds2, intervals } = mutate4(
-      _data_,
+  function structureData4(_results_, config, _thresholds_ = null, _intervals_ = null, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const { results, labels, thresholds: thresholds2, intervals } = mutate4(
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      groupMetadata
     );
     let datasets = [];
     if (config.dataType !== "discrete") {
       if (intervals !== null) {
         datasets = [
-          identityLine(data, config, labels),
+          identityLine(results, config, labels),
           ...intervalLines(intervals, config, labels),
           {
             type: "scatter",
@@ -22795,7 +22790,7 @@ var rbmViz = (() => {
         ];
       } else {
         datasets = [
-          selectedGroupLine(data, config, labels),
+          selectedGroupLine(results, config, labels),
           {
             type: "scatter",
             label: config.selectedGroupIDs.length > 0 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}` : "",
@@ -22811,9 +22806,9 @@ var rbmViz = (() => {
             label: !(color3.description === "Within Thresholds" && config.selectedGroupIDs.length === 0) ? color3.description : "",
             backgroundColor: color3.color
           })),
-          flagRed(data, config, labels),
-          flagAmber(data, config, labels),
-          distribution(data, config, labels),
+          flagRed(results, config, labels),
+          flagAmber(results, config, labels),
+          distribution(results, config, labels),
           ...getThresholdLines(thresholds2, config, labels)
         ];
       }
@@ -22821,7 +22816,7 @@ var rbmViz = (() => {
       const color3 = config.yLabel === "Red or Amber Metrics" ? colorScheme_default.amberRed.color : config.yLabel === "Red Metrics" ? colorScheme_default.find((color4) => /red/i.test(color4.description)).color : config.yLabel === "Amber Metrics" ? colorScheme_default.find((color4) => /amber/i.test(color4.description)).color : "#1890FF";
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
-          ...selectedGroupLine(data, config, labels),
+          ...selectedGroupLine(results, config, labels),
           backgroundColor: color3,
           borderColor: (d2) => {
             return d2.raw !== void 0 ? "black" : "#aaa";
@@ -22838,7 +22833,7 @@ var rbmViz = (() => {
           borderWidth: 3
         },
         // legend item for selected Group ID line
-        aggregateLine(data, config, labels),
+        aggregateLine(results, config, labels),
         {
           type: "scatter",
           label: config.discreteUnit === "Metric" ? `${config.aggregateLabel} Average` : "",
@@ -22950,6 +22945,14 @@ var rbmViz = (() => {
       };
   }
 
+  // src/timeSeries/getPlugins/title.js
+  function title3(config) {
+    return {
+      display: config.displayTitle,
+      text: `${config.Metric} by ${config.GroupLevel}`
+    };
+  }
+
   // src/timeSeries/getPlugins/tooltip.js
   function tooltip4(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -22980,19 +22983,19 @@ var rbmViz = (() => {
                 console.log(data);
               }
               const titles = dataSorted.map(function(d2, i) {
-                let title4;
+                let title5;
                 if (data.length === 1) {
-                  title4 = `${config.GroupLevel} ${d2.dataset.data[d2.dataIndex].GroupID}`;
-                  if (d2.raw.site !== void 0) {
-                    title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
+                  title5 = `${config.GroupLevel} ${d2.dataset.data[d2.dataIndex].GroupID}`;
+                  if (d2.raw.group !== void 0) {
+                    title5 = `${title5} (${d2.raw.group.GroupLabel} / ${d2.raw.group.ParticipantCount} enrolled)`;
                   }
                 } else {
-                  title4 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                  title5 = i === 0 ? `${config.GroupLevel}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
                 }
-                return title4;
+                return title5;
               });
-              const title3 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
-              return title3;
+              const title4 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
+              return title4;
             }
           }
         }
@@ -23018,6 +23021,7 @@ var rbmViz = (() => {
         annotations: annotations4(config)
       },
       legend: legend4(config),
+      title: title3(config),
       tooltip: tooltip4(config)
     };
   }
@@ -23033,24 +23037,24 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
-    const config = configure6(_config_, _data_, _thresholds_);
+  function updateData4(chart, _results_, _config_, _thresholds_ = null, _intervals_ = null, _groupMetadata_ = null) {
+    const config = configure6(_config_, _results_, _thresholds_);
     const datasets = structureData4(
-      _data_,
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     );
     chart.data = {
       datasets,
       labels: datasets.labels,
       config,
-      _data_,
+      _results_,
       _config_,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     };
     chart.options.scales = getScales4(config);
     chart.options.plugins = getPlugins4(config);
@@ -23061,11 +23065,11 @@ var rbmViz = (() => {
   function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = [selectedGroupIDs];
     this.data.datasets = structureData4(
-      this.data._data_,
+      this.data._results_,
       this.data.config,
       this.data._thresholds_,
       null,
-      this.data._sites_
+      this.data._groupMetadata_
     );
     this.update();
   }

@@ -2,7 +2,7 @@ import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
-// TODO: figure out better approach to coincidental highlight and site aggregate distribution
+// TODO: figure out better approach to coincidental highlight and group aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -50,8 +50,8 @@ export default function tooltip(config) {
                                     d.dataset.data[d.dataIndex].GroupID
                                 }`;
 
-                                if (d.raw.site !== undefined) {
-                                    title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
+                                if (d.raw.group !== undefined) {
+                                    title = `${title} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
                                 }
                             } else {
                                 title =

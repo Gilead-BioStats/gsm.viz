@@ -10,39 +10,40 @@ import getScales from './getScales.js';
  * Update chart configuration and redraw chart.
  *
  * @param {Object} chart - Chart.js chart object
- * @param {Array} _data_ - Metric/QTL results where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID per snapshot date
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _thresholds_ - Metric/QTL parameters where each array item is an object of key-value pairs
- * @param {Array} _intervals_ - additional statistical output where each array item is an object of key-value pairs
+ * @param {Array} _thresholds_ - optional threshold annotation values
+ * @param {Array} _intervals_ - optional auxiliary data with confidence intervals
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  */
 export default function updateData(
     chart,
-    _data_,
+    _results_,
     _config_,
     _thresholds_ = null,
     _intervals_ = null,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _results_, _thresholds_);
 
     const datasets = structureData(
-        _data_,
+        _results_,
         config,
         _thresholds_,
         _intervals_,
-        _sites_
+        _groupMetadata_
     );
 
     chart.data = {
         datasets,
         labels: datasets.labels,
         config,
-        _data_,
+        _results_,
         _config_,
         _thresholds_,
         _intervals_,
-        _sites_,
+        _groupMetadata_,
     };
 
     // might matter that scales come before plugins

@@ -1,3 +1,4 @@
+import structureGroupMetadata from '../util/structureGroupMetadata.js';
 import mutate from './structureData/mutate.js';
 import getLabels from './structureData/getLabels.js';
 
@@ -17,18 +18,20 @@ import getAggregateLine from './structureData/aggregateLine.js';
 import colorScheme from '../util/colorScheme.js';
 
 export default function structureData(
-    _data_,
+    _results_,
     config,
     _thresholds_ = null,
     _intervals_ = null,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
-    const { data, labels, thresholds, intervals } = mutate(
-        _data_,
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+
+    const { results, labels, thresholds, intervals } = mutate(
+        _results_,
         config,
         _thresholds_,
         _intervals_,
-        _sites_
+        groupMetadata
     );
 
     // datasets
@@ -37,7 +40,7 @@ export default function structureData(
         // TODO: find a better way to differentiate distribution and CI instances
         if (intervals !== null) {
             datasets = [
-                getIdentityLine(data, config, labels),
+                getIdentityLine(results, config, labels),
                 ...getIntervalLines(intervals, config, labels),
                 {
                     type: 'scatter',
@@ -61,7 +64,7 @@ export default function structureData(
             ];
         } else {
             datasets = [
-                getSelectedGroupLine(data, config, labels),
+                getSelectedGroupLine(results, config, labels),
                 {
                     type: 'scatter',
                     label:
@@ -85,9 +88,9 @@ export default function structureData(
                         : '',
                     backgroundColor: color.color,
                 })),
-                getFlagRed(data, config, labels),
-                getFlagAmber(data, config, labels),
-                getDistribution(data, config, labels),
+                getFlagRed(results, config, labels),
+                getFlagAmber(results, config, labels),
+                getDistribution(results, config, labels),
                 ...getThresholdLines(thresholds, config, labels),
             ];
         }
@@ -106,7 +109,7 @@ export default function structureData(
         datasets = [
             config.selectedGroupIDs.length > 0
                 ? {
-                      ...getSelectedGroupLine(data, config, labels),
+                      ...getSelectedGroupLine(results, config, labels),
                       backgroundColor: color,
                       borderColor: (d) => {
                           return d.raw !== undefined ? 'black' : '#aaa';
@@ -126,7 +129,7 @@ export default function structureData(
                 borderColor: 'rgba(0,0,0,.5)',
                 borderWidth: 3,
             }, // legend item for selected Group ID line
-            getAggregateLine(data, config, labels),
+            getAggregateLine(results, config, labels),
             {
                 type: 'scatter',
                 label:

@@ -4,7 +4,7 @@ import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
 import checkThresholds from '../util/checkThresholds.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_, _thresholds_, _intervals_) {
+export default function configure(_config_, _results_, _thresholds_, _intervals_) {
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
@@ -15,7 +15,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         : 'continuous';
 
     if (defaults.dataType === 'discrete')
-        defaults.discreteUnit = Object.keys(_data_[0]).includes('GroupID')
+        defaults.discreteUnit = Object.keys(_results_[0]).includes('GroupID')
             ? 'Metric'
             : 'Site';
     else defaults.discreteUnit = null;
@@ -40,10 +40,9 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     };
 
     // miscellaneous
-    defaults.Group = 'Site';
     defaults.aggregateLabel = 'Study';
     defaults.annotateThreshold = _thresholds_ !== null;
-    //defaults.displayTitle = false;
+    defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     //defaults.displayBoxplots = true;
     //defaults.displayViolins = false;
@@ -63,7 +62,7 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
             _config_.selectedGroupIDs,
-            _data_
+            _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
