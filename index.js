@@ -23606,25 +23606,26 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/checkInputs.js
-  function checkInputs6(_results_, _config_, _countries_, _metrics_) {
+  function checkInputs6(_results_, _config_, _groupMetadata_, _metricMetadata_) {
     checkInput({
       parameter: "_results_",
       argument: _results_,
       schemaName: "results",
-      module: "countryOverview"
+      module: "groupOverview"
     });
     checkInput({
-      parameter: "_countries_",
-      argument: _countries_,
+      parameter: "_groupMetadata_",
+      argument: _groupMetadata_,
       schemaName: "groupMetadata",
-      module: "countryOverview"
+      module: "groupOverview"
     });
   }
 
   // src/groupOverview/configure.js
   function configure8(_config_, _data_) {
     const defaults3 = {};
-    defaults3.GroupLevel = "country";
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.groupClickCallback = (datum2) => {
       console.log(datum2);
     };
@@ -23636,11 +23637,20 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/deriveGroupMetrics.js
-  function deriveGroupMetrics(groups2, results) {
-    const missingGroups = results.map((result) => result.GroupID).filter((GroupID) => !groups2.find((group2) => group2.GroupID === GroupID)).map((GroupID) => ({ GroupID }));
-    const allGroups = groups2.concat(missingGroups);
-    allGroups.forEach((group2) => {
-      const groupResults = results.filter(
+  function deriveGroupMetrics(_groupMetadata_, _results_, config) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const missingGroups = [...new Set(
+      _results_.map((result) => result.GroupID).filter(
+        (GroupID) => ![...groupMetadata.keys()].find((group2) => group2 === GroupID)
+      ).sort(ascending)
+    )];
+    missingGroups.forEach((group2) => {
+      groupMetadata.set(group2, { GroupID: group2 });
+    });
+    const groups2 = Array.from(groupMetadata).map(([key, value]) => ({ GroupLevel: config.GroupLevel, GroupID: key, ...value }));
+    groups2.forEach((group2) => {
+      group2.GroupLabel = group2.hasOwnProperty(config.GroupLabelKey) ? `${group2.GroupID} (${group2[config.GroupLabelKey]})` : group2.GroupID;
+      const groupResults = _results_.filter(
         (result) => result.GroupID === group2.GroupID
       );
       group2.nRedFlags = groupResults.filter(
@@ -23653,7 +23663,7 @@ var rbmViz = (() => {
         (result) => Math.abs(parseInt(result.Flag)) === 0
       ).length;
     });
-    return allGroups;
+    return groups2;
   }
 
   // src/groupOverview/defineColumns/sortString.js
@@ -23707,21 +23717,10 @@ var rbmViz = (() => {
         dataType: "string"
       },
       {
-        label: "ID",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "GroupID",
-        headerTooltip: null,
-        sort: sortString2,
-        tooltip: true,
-        type: "group",
-        dataType: "string"
-      },
-      {
         label: "Enrolled",
         data: groups2,
         filterKey: "GroupID",
-        valueKey: "EnrolledParticipants",
+        valueKey: "ParticipantCount",
         headerTooltip: null,
         sort: sortNumber2,
         tooltip: false,
@@ -23780,7 +23779,17 @@ var rbmViz = (() => {
     switch (column.type) {
       case "group":
         tooltipKeys = {
-          Status: "Status"
+          Status: "Status",
+          GroupID: "Investigator ID",
+          InvestigatorLastName: "Last Name",
+          InvestigatorFirstName: "First Name",
+          site_num: "Site ID",
+          account: "Site",
+          City: "City",
+          State: "State",
+          Country: "Country",
+          site_active_dt: "Activation Date",
+          is_satellite: "Satellite"
         };
         break;
       case "metric":
@@ -24049,20 +24058,20 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview.js
-  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groups_ = null, _metrics_ = null) {
-    checkInputs6(_results_, _config_, _groups_, _metrics_);
+  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groupMetadata_ = null, _metricMetadata_ = null) {
+    checkInputs6(_results_, _config_, _groupMetadata_, _metricMetadata_);
     const config = configure8(_config_);
-    const groups2 = deriveGroupMetrics(_groups_, _results_);
-    const columns = defineColumns2(groups2, _metrics_, _results_);
-    const rows = structureData6(_results_, columns, groups2, _metrics_);
+    const groupMetadata = deriveGroupMetrics(_groupMetadata_, _results_, config);
+    const columns = defineColumns2(groupMetadata, _metricMetadata_, _results_);
+    const rows = structureData6(_results_, columns, groupMetadata, _metricMetadata_);
     const table = makeTable2(_element_, rows, columns, config);
     table.updateTable = updateTable2.bind({
       _results_,
       _config_,
-      _groups_,
-      _metrics_,
+      _groupMetadata_,
+      _metricMetadata_,
       config,
-      groups: groups2,
+      groupMetadata,
       columns,
       rows,
       table

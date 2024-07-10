@@ -5,42 +5,42 @@ import checkInput from '../data/checkInput.js';
  *
  * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - table configuration and metadata
- * @param {Array} _countries_ - optional country metadata
- * @param {Array} _metrics_ - optional metric metadata
+ * @param {Array} _groupMetadata_ - optional country metadata
+ * @param {Array} _metricMetadata_ - optional metric metadata
  *
  * @returns {void}
  */
 export default function checkInputs(
     _results_,
     _config_,
-    _countries_,
-    _metrics_
+    _groupMetadata_,
+    _metricMetadata_
 ) {
     checkInput({
         parameter: '_results_',
         argument: _results_,
         schemaName: 'results',
-        module: 'countryOverview',
+        module: 'groupOverview',
     });
 
     //checkInput({
     //    parameter: '_config_',
     //    argument: _config_,
     //    schemaName: 'analysisMetadata',
-    //    module: 'countryOverview',
+    //    module: 'groupOverview',
     //});
 
     checkInput({
-        parameter: '_countries_',
-        argument: _countries_,
+        parameter: '_groupMetadata_',
+        argument: _groupMetadata_,
         schemaName: 'groupMetadata',
-        module: 'countryOverview',
+        module: 'groupOverview',
     });
 
     //checkInput({
-    //    parameter: '_metrics_',
-    //    argument: _metrics_,
+    //    parameter: '_metricMetadata_',
+    //    argument: _metricMetadata_,
     //    schemaName: 'metrics',
-    //    module: 'countryOverview',
+    //    module: 'groupOverview',
     //});
 }

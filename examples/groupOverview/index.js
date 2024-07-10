@@ -1,7 +1,7 @@
 const dataFiles = [
-    '../data/results_summary.csv',
-    '../data/meta_workflow.csv',
-    '../data/status_site.csv',
+    '../data/results.csv',
+    '../data/metricMetadata.csv',
+    '../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -11,71 +11,40 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const groupLevel = 'country';
+        const GroupLevel = 'Country';
 
-        let workflowPrefix;
-        if (groupLevel === 'site') {
-            workflowPrefix = 'kri';
-        } else if (groupLevel === 'country') {
-            workflowPrefix = 'cou';
+        let metricPrefix;
+        if (GroupLevel === 'Site') {
+            metricPrefix = 'kri';
+        } else if (GroupLevel === 'Country') {
+            metricPrefix = 'cou';
         }
 
-        const regex = new RegExp(`^${workflowPrefix}`);
+        const regex = new RegExp(`^${metricPrefix}`);
 
+        const SnapshotDate = d3.max(datasets[0], d => d.SnapshotDate);
+        datasets[0] = datasets[0].filter(
+            d => d.SnapshotDate === SnapshotDate
+        );
         const results = datasets[0].filter((d) => regex.test(d.MetricID));
-        results.forEach((d) => {
-            d.GroupID = d.GroupID.substring(0, 2).toUpperCase();
-        });
-        const metrics = datasets[1].filter((d) => regex.test(d.MetricID));
-        const siteMetadata = datasets[2];
-        siteMetadata.forEach((d) => {
-            d.groupid = d.SiteID;
-            d.group_label = d.pi_last_name;
-        });
-        const countryMetadata = d3
-            .rollups(
-                siteMetadata,
-                (group) => {
-                    return {
-                        GroupID: group[0].country.substring(0, 2).toUpperCase(),
-                        GroupLabel: group[0].country,
-                        EnrolledParticipants: d3.sum(
-                            group,
-                            (d) => d.enrolled_participants
-                        ),
-                        Status: `${
-                            group.filter((d) => d.enrolled_participants > 0)
-                                .length
-                        } sites active`,
-                    };
-                },
-                (d) => d.country
-            )
-            .map((d) => d[1]);
-
-        let groupMetadata;
-        if (groupLevel === 'site') {
-            groupMetadata = siteMetadata;
-        } else if (groupLevel === 'country') {
-            groupMetadata = countryMetadata;
-        }
-
+        const metricMetadata = datasets[1].filter((d) => regex.test(d.MetricID));
+        const groupMetadata = datasets[2];
         const groupSubset = getGroups(results);
 
         const instance = rbmViz.default.groupOverview(
             document.getElementById('container'),
             results.filter((d) => groupSubset.includes(d.GroupID)),
             {
-                groupLevel,
-                groupClickCallback: function (datum) {
-                    console.table(datum);
-                },
-                metricClickCallback: function (datum) {
-                    console.table(datum);
-                },
+                GroupLevel,
+                //groupClickCallback: function (datum) {
+                //    console.log(datum);
+                //},
+                //metricClickCallback: function (datum) {
+                //    console.log(datum);
+                //},
             },
             groupMetadata,
-            metrics
+            metricMetadata
         );
 
         document.querySelector('#group-subset').onchange = function () {

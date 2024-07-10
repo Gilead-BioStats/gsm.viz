@@ -1,3 +1,13 @@
+/**
+ * Define the content of the tooltip for a given column. TODO: use config to determine tooltip
+ * content. By default use all content.
+ *
+ * @param {Object} column - The column definition.
+ * @param {Object} content - The data content for the column.
+ * @param {Object} metrics - The metric metadata.
+ *
+ * @returns {String} The tooltip content.
+ */
 export default function defineTooltip(column, content, metrics = null) {
     let tooltipKeys = {};
 
@@ -6,6 +16,19 @@ export default function defineTooltip(column, content, metrics = null) {
         case 'group':
             tooltipKeys = {
                 Status: 'Status',
+
+                GroupID: 'Investigator ID',
+                InvestigatorLastName: 'Last Name',
+                InvestigatorFirstName: 'First Name',
+
+                site_num: 'Site ID',
+                account: 'Site',
+                City: 'City',
+                State: 'State',
+                Country: 'Country',
+
+                site_active_dt: 'Activation Date',
+                is_satellite: 'Satellite',
             };
 
             break;
