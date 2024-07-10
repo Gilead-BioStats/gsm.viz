@@ -11,13 +11,15 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const GroupLevel = 'Country';
+        const GroupLevel = 'Site';
 
         let metricPrefix;
         if (GroupLevel === 'Site') {
             metricPrefix = 'kri';
         } else if (GroupLevel === 'Country') {
             metricPrefix = 'cou';
+        } else if (GroupLevel === 'Study') {
+            metricPrefix = 'qtl';
         }
 
         const regex = new RegExp(`^${metricPrefix}`);
@@ -27,6 +29,7 @@ Promise.all(dataPromises)
             d => d.SnapshotDate === SnapshotDate
         );
         const results = datasets[0].filter((d) => regex.test(d.MetricID));
+        console.log(results);
         const metricMetadata = datasets[1].filter((d) => regex.test(d.MetricID));
         const groupMetadata = datasets[2];
         const groupSubset = getGroups(results);

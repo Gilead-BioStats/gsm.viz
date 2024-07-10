@@ -35,7 +35,7 @@ export default function groupOverview(
 
     const groupMetadata = deriveGroupMetrics(_groupMetadata_, _results_, config);
     const columns = defineColumns(groupMetadata, _metricMetadata_, _results_);
-    const rows = structureData(_results_, columns, groupMetadata, _metricMetadata_);
+    const rows = structureData(_results_, columns, groupMetadata, config);
     const table = makeTable(_element_, rows, columns, config);
 
     table.updateTable = updateTable.bind({

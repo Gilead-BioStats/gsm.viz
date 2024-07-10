@@ -1,5 +1,6 @@
 import sortString from './sortString';
 import sortNumber from './sortNumber';
+import defineGroupTooltip from './defineGroupTooltip';
 
 export default function defineGroupColumns(groups) {
     const columns = [
@@ -52,6 +53,10 @@ export default function defineGroupColumns(groups) {
             dataType: 'number',
         },
     ];
+
+    columns.forEach((column) => {
+        column.defineTooltip = defineGroupTooltip;
+    });
 
     return columns;
 }

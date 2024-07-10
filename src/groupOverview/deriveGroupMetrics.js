@@ -31,8 +31,8 @@ export default function deriveGroupMetrics(_groupMetadata_, _results_, config) {
         .map(([key, value]) => ({GroupLevel: config.GroupLevel, GroupID: key, ...value}));
 
     groups.forEach((group) => {
-        group.GroupLabel = group.hasOwnProperty(config.GroupLabelKey)
-            ? `${group.GroupID} (${group[config.GroupLabelKey]})`
+        group.GroupLabel = group.hasOwnProperty(config.groupLabelKey)
+            ? `${group.GroupID} (${group[config.groupLabelKey]})`
             : group.GroupID;
 
         const groupResults = _results_.filter(

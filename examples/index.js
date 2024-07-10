@@ -23625,14 +23625,47 @@ var rbmViz = (() => {
   function configure8(_config_, _data_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
-    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.groupClickCallback = (datum2) => {
       console.log(datum2);
     };
     defaults3.metricClickCallback = (datum2) => {
       console.log(datum2);
     };
+    const groupLabelKey = {
+      Site: "InvestigatorLastName",
+      Country: null,
+      Study: "nickname"
+    };
+    const groupTooltipKeys = {
+      Site: {
+        GroupID: "Investigator ID",
+        ParticipantCount: "Participant Count",
+        //SiteCount: 'Site Count',
+        InvestigatorLastName: "Last Name",
+        InvestigatorFirstName: "First Name",
+        Status: "Status",
+        site_num: "Site ID",
+        account: "Site",
+        City: "City",
+        State: "State",
+        Country: "Country",
+        site_active_dt: "Activation Date",
+        is_satellite: "Satellite"
+      },
+      Country: {
+        GroupID: "Country Code",
+        ParticipantCount: "Participant Count",
+        SiteCount: "Site Count"
+      },
+      Study: {
+        GroupID: "Protocol ID",
+        ParticipantCount: "Participant Count",
+        SiteCount: "Site Count"
+      }
+    };
     const config = configure2(defaults3, _config_);
+    config.groupLabelKey = groupLabelKey[config.GroupLevel];
+    config.groupTooltipKeys = groupTooltipKeys[config.GroupLevel];
     return config;
   }
 
@@ -23649,7 +23682,7 @@ var rbmViz = (() => {
     });
     const groups2 = Array.from(groupMetadata).map(([key, value]) => ({ GroupLevel: config.GroupLevel, GroupID: key, ...value }));
     groups2.forEach((group2) => {
-      group2.GroupLabel = group2.hasOwnProperty(config.GroupLabelKey) ? `${group2.GroupID} (${group2[config.GroupLabelKey]})` : group2.GroupID;
+      group2.GroupLabel = group2.hasOwnProperty(config.groupLabelKey) ? `${group2.GroupID} (${group2[config.groupLabelKey]})` : group2.GroupID;
       const groupResults = _results_.filter(
         (result) => result.GroupID === group2.GroupID
       );
@@ -23702,6 +23735,22 @@ var rbmViz = (() => {
     column.sortState = sortAscending ? 1 : -1;
   }
 
+  // src/groupOverview/defineColumns/defineGroupTooltip.js
+  function defineTooltip2(column, content, config) {
+    const tooltipKeys = config.groupTooltipKeys !== void 0 ? config.groupTooltipKeys : Object.keys(content.group).reduce((acc, key) => {
+      acc[key] = key;
+      return acc;
+    }, {});
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (content[key] !== void 0) {
+        let value = content[key];
+        tooltipContent.push(`${label}: ${value}`);
+      }
+    }
+    return tooltipContent.join("\n");
+  }
+
   // src/groupOverview/defineColumns/defineGroupColumns.js
   function defineGroupColumns(groups2) {
     const columns = [
@@ -23750,7 +23799,34 @@ var rbmViz = (() => {
         dataType: "number"
       }
     ];
+    columns.forEach((column) => {
+      column.defineTooltip = defineTooltip2;
+    });
     return columns;
+  }
+
+  // src/groupOverview/defineColumns/defineMetricTooltip.js
+  function defineTooltip3(column, content, config) {
+    const tooltipKeys = {
+      Score: column.meta.Score,
+      Metric: column.meta.Metric,
+      Numerator: column.meta.Numerator,
+      Denominator: column.meta.Denominator
+    };
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (content[key] !== void 0) {
+        let value = content[key];
+        value = parseFloat(value);
+        if (Number.isInteger(value)) {
+          value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+          value = value.toFixed(2).toString();
+        }
+        tooltipContent.push(`${label}: ${value}`);
+      }
+    }
+    return tooltipContent.join("\n");
   }
 
   // src/groupOverview/defineColumns/defineMetricColumns.js
@@ -23764,6 +23840,7 @@ var rbmViz = (() => {
         headerTooltip: metric.Metric,
         sort: sortNumber2,
         tooltip: true,
+        defineTooltip: defineTooltip3,
         type: "metric",
         dataType: "number",
         meta: metric
@@ -23771,55 +23848,6 @@ var rbmViz = (() => {
       return column;
     });
     return metricColumns;
-  }
-
-  // src/groupOverview/defineColumns/defineTooltip.js
-  function defineTooltip2(column, content, metrics = null) {
-    let tooltipKeys = {};
-    switch (column.type) {
-      case "group":
-        tooltipKeys = {
-          Status: "Status",
-          GroupID: "Investigator ID",
-          InvestigatorLastName: "Last Name",
-          InvestigatorFirstName: "First Name",
-          site_num: "Site ID",
-          account: "Site",
-          City: "City",
-          State: "State",
-          Country: "Country",
-          site_active_dt: "Activation Date",
-          is_satellite: "Satellite"
-        };
-        break;
-      case "metric":
-        tooltipKeys = {
-          Score: column.meta.Score,
-          Metric: column.meta.Metric,
-          Numerator: column.meta.Numerator,
-          Denominator: column.meta.Denominator
-        };
-        break;
-      default:
-        tooltipKeys = Object.entries(content);
-        break;
-    }
-    const tooltipContent = [];
-    for (const [key, label] of Object.entries(tooltipKeys)) {
-      if (content[key] !== void 0) {
-        let value = content[key];
-        if (column.type === "metric") {
-          value = parseFloat(value);
-          if (Number.isInteger(value)) {
-            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          } else {
-            value = value.toFixed(2).toString();
-          }
-        }
-        tooltipContent.push(`${label}: ${value}`);
-      }
-    }
-    return tooltipContent.join("\n");
   }
 
   // src/groupOverview/defineColumns.js
@@ -23830,7 +23858,6 @@ var rbmViz = (() => {
     columns.forEach((column, i) => {
       column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
       column.index = i;
-      column.defineTooltip = defineTooltip2;
       column.sortState = column.dataType === "string" ? 0 : 1;
       column.activeSort = false;
     });
@@ -23850,7 +23877,7 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/structureData.js
-  function structureData6(results, columns, groups2) {
+  function structureData6(results, columns, groups2, config) {
     const lookup = group(
       results,
       (d2) => d2.GroupID,
@@ -23870,7 +23897,7 @@ var rbmViz = (() => {
         datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
         datum2.class = [column.type, column.valueKey].join(" ");
         datum2.tooltip = column.tooltip;
-        datum2.tooltipContent = column.defineTooltip(column, datum2);
+        datum2.tooltipContent = column.defineTooltip(column, datum2, config);
         return datum2;
       });
       rowDatum.key = key;
@@ -24032,9 +24059,9 @@ var rbmViz = (() => {
 
   // src/groupOverview/updateTable.js
   function updateTable2(_results_) {
-    const groups2 = deriveGroupMetrics(this._groups_, _results_);
-    const columns = defineColumns2(groups2, this._metrics_, _results_);
-    const rows = structureData6(_results_, columns, groups2);
+    const groupMetadata = deriveGroupMetrics(this._groupMetadata_, _results_, this.config);
+    const columns = defineColumns2(groupMetadata, this._metricMetadata_, _results_);
+    const rows = structureData6(_results_, columns, groupMetadata, this.config);
     const tbody = this.table.select("tbody");
     const bodyRows = addBodyRows2(tbody, rows);
     const cells = addCells2(bodyRows);
@@ -24063,7 +24090,7 @@ var rbmViz = (() => {
     const config = configure8(_config_);
     const groupMetadata = deriveGroupMetrics(_groupMetadata_, _results_, config);
     const columns = defineColumns2(groupMetadata, _metricMetadata_, _results_);
-    const rows = structureData6(_results_, columns, groupMetadata, _metricMetadata_);
+    const rows = structureData6(_results_, columns, groupMetadata, config);
     const table = makeTable2(_element_, rows, columns, config);
     table.updateTable = updateTable2.bind({
       _results_,
