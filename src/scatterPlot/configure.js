@@ -11,10 +11,12 @@ export default function configure(_config_, _results_) {
 
     // horizontal
     defaults.x = 'Denominator';
+    defaults[defaults.x] = defaults.x;
     defaults.xType = 'logarithmic';
 
     // vertical
     defaults.y = 'Numerator';
+    defaults[defaults.y] = defaults.y;
     defaults.yType = 'linear';
 
     // color

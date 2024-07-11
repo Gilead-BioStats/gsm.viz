@@ -20107,27 +20107,27 @@ var rbmViz = (() => {
         title: "Grouping Variable",
         description: "Grouping variable of analysis, one of Site, Country, or Study",
         type: "string",
-        required: true
+        required: false
       },
       Numerator: {
         title: "Metric Numerator",
         description: "Unit of metric numerator",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Denominator: {
         title: "Metric Denominator",
         description: "Unit of metric denominator",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Metric: {
         title: "Metric Description",
         description: "Description of metric",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Outcome: {
@@ -20141,7 +20141,7 @@ var rbmViz = (() => {
         title: "Metric Score",
         description: "Analysis method of metric",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Thresholds: {
@@ -21245,10 +21245,10 @@ var rbmViz = (() => {
   // src/util/formatMetricTooltip.js
   function formatMetricTooltip(result, metricMetadata) {
     const tooltipKeys = {
-      Score: metricMetadata.Score,
-      Metric: metricMetadata.Metric,
-      Numerator: metricMetadata.Numerator,
-      Denominator: metricMetadata.Denominator
+      Score: metricMetadata.Score || "Score",
+      Metric: metricMetadata.Metric || "Metric",
+      Numerator: metricMetadata.Numerator || "Numerator",
+      Denominator: metricMetadata.Denominator || "Denominator"
     };
     const tooltipContent = [];
     for (const [key, label] of Object.entries(tooltipKeys)) {
@@ -21548,8 +21548,10 @@ var rbmViz = (() => {
     defaults3.GroupLevel = "Site";
     defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.x = "Denominator";
+    defaults3[defaults3.x] = defaults3.x;
     defaults3.xType = "logarithmic";
     defaults3.y = "Numerator";
+    defaults3[defaults3.y] = defaults3.y;
     defaults3.yType = "linear";
     defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
@@ -21722,9 +21724,7 @@ var rbmViz = (() => {
           (Flag2) => Flag2.Threshold === Group.Threshold
         );
         const Flag = Group.Flag.Flag;
-        Group.label = colorScheme_default.find(
-          (color4) => color4.Flag.includes(Flag)
-        ).description;
+        Group.label = "";
         const color3 = colorScheme_default[Math.abs(Flag)].color;
         Group.borderColor = color3;
         const backgroundColor4 = color2(color3);
@@ -21754,7 +21754,7 @@ var rbmViz = (() => {
   function structureData2(_results_, config, _bounds_, _groupMetadata_ = null) {
     const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
     const data = mutate2(_results_, config, groupMetadata);
-    const datasets = [
+    let datasets = [
       {
         data,
         label: "",
@@ -21762,18 +21762,26 @@ var rbmViz = (() => {
         listenHover: true,
         type: "scatter",
         ...scriptableOptions2()
-      }
+      },
+      ...colorScheme_default.map((color3) => {
+        const dataset = {
+          type: "scatter",
+          label: color3.description,
+          backgroundColor: color3.rgba,
+          borderColor: color3.color
+        };
+        dataset.backgroundColor.opacity = 0.5;
+        dataset.backgroundColor = dataset.backgroundColor + "";
+        return dataset;
+      })
     ];
     const bounds = rollupBounds(_bounds_, config);
     if (bounds !== void 0)
       bounds.forEach((bound) => {
         datasets.push(bound);
       });
-    if (data.some((d2) => falsy_default.includes(d2.Flag)))
-      datasets.push({
-        type: "line",
-        label: "No Flag"
-      });
+    if (data.every((d2) => falsy_default.includes(d2.Flag) === false))
+      datasets = datasets.filter((d2) => d2.label !== "No Flag");
     return datasets;
   }
 

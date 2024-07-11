@@ -35,9 +35,10 @@ export default function rollupBounds(_bounds_, config) {
             );
             const Flag = Group.Flag.Flag;
 
-            Group.label = colorScheme.find((color) =>
-                color.Flag.includes(Flag)
-            ).description;
+            Group.label = '';
+            //Group.label = colorScheme.find((color) =>
+            //    color.Flag.includes(Flag)
+            //).description;
             const color = colorScheme[Math.abs(Flag)].color;
             Group.borderColor = color;
             const backgroundColor = d3color(color);

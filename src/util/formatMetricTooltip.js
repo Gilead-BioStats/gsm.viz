@@ -2,10 +2,10 @@ import falsy from './falsy.js';
 
 export default function formatMetricTooltip(result, metricMetadata) {
     const tooltipKeys = {
-        Score: metricMetadata.Score,
-        Metric: metricMetadata.Metric,
-        Numerator: metricMetadata.Numerator,
-        Denominator: metricMetadata.Denominator,
+        Score: metricMetadata.Score || 'Score',
+        Metric: metricMetadata.Metric || 'Metric',
+        Numerator: metricMetadata.Numerator || 'Numerator',
+        Denominator: metricMetadata.Denominator || 'Denominator',
     };
 
     const tooltipContent = [];

@@ -14,27 +14,27 @@
             "title": "Grouping Variable",
             "description": "Grouping variable of analysis, one of Site, Country, or Study",
             "type": "string",
-            "required": true
+            "required": false
         },
         "Numerator": {
             "title": "Metric Numerator",
             "description": "Unit of metric numerator",
             "type": "string",
-            "required": true,
+            "required": false,
             "key": false
         },
         "Denominator": {
             "title": "Metric Denominator",
             "description": "Unit of metric denominator",
             "type": "string",
-            "required": true,
+            "required": false,
             "key": false
         },
         "Metric": {
             "title": "Metric Description",
             "description": "Description of metric",
             "type": "string",
-            "required": true,
+            "required": false,
             "key": false
         },
         "Outcome": {
@@ -48,7 +48,7 @@
             "title": "Metric Score",
             "description": "Analysis method of metric",
             "type": "string",
-            "required": true,
+            "required": false,
             "key": false
         },
         "Thresholds": {

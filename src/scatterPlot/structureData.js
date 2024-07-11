@@ -1,6 +1,7 @@
 import structureGroupMetadata from '../util/structureGroupMetadata.js';
 import mutate from './structureData/mutate.js';
 import scriptableOptions from './structureData/scriptableOptions.js';
+import colorScheme from '../util/colorScheme.js';
 import rollupBounds from './structureData/rollupBounds.js';
 import falsy from '../util/falsy.js';
 
@@ -27,7 +28,7 @@ export default function structureData(
     const data = mutate(_results_, config, groupMetadata);
 
     // Define array of Chart.js dataset objects.
-    const datasets = [
+    let datasets = [
         {
             data,
             label: '',
@@ -36,6 +37,18 @@ export default function structureData(
             type: 'scatter',
             ...scriptableOptions(),
         },
+        ...colorScheme.map((color) => {
+            const dataset = {
+                type: 'scatter',
+                label: color.description,
+                backgroundColor: color.rgba,
+                borderColor: color.color,
+            };
+            dataset.backgroundColor.opacity = 0.5;
+            dataset.backgroundColor = dataset.backgroundColor + '';
+
+            return dataset;
+        }),
     ];
 
     // Add predicted bounds dataset objects.
@@ -45,13 +58,9 @@ export default function structureData(
             datasets.push(bound);
         });
 
-    // If unevaluable analysis output exists, add an additional dataset object to ensure the
-    // corresponding legend item appears.
-    if (data.some((d) => falsy.includes(d.Flag)))
-        datasets.push({
-            type: 'line',
-            label: 'No Flag',
-        });
+    // If no unevaluable analysis output exists, remove corresponding dataset object (No Flag).
+    if (data.every((d) => falsy.includes(d.Flag) === false))
+        datasets = datasets.filter((d) => d.label !== 'No Flag');
 
     return datasets;
 }
