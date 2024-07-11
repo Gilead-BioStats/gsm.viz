@@ -10,11 +10,10 @@ import {
 
 // modules
 import barChart from './barChart.js';
+import groupOverview from './groupOverview.js';
 import scatterPlot from './scatterPlot.js';
 import sparkline from './sparkline.js';
 import timeSeries from './timeSeries.js';
-import siteOverview from './siteOverview.js';
-import groupOverview from './groupOverview.js';
 
 Chart.register(
     annotationPlugin,
@@ -28,91 +27,11 @@ Chart.register(
 
 // TODO: implement class-based modules
 const rbmViz = {
-    // bar chart
-    barChart: barChart.bind({
-        x: 'GroupID',
-        y: 'Score',
-        chartType: 'bar',
-        dataType: 'continuous',
-    }),
-    barChartMetric: barChart.bind({
-        x: 'GroupID',
-        y: 'Metric',
-        chartType: 'bar',
-        dataType: 'continuous',
-    }),
-    barChartScore: barChart.bind({
-        x: 'GroupID',
-        y: 'Score',
-        chartType: 'bar',
-        dataType: 'continuous',
-    }),
-
-    // scatter plot
-    scatterPlot: scatterPlot.bind({
-        x: 'Denominator',
-        y: 'Numerator',
-        chartType: 'scatter',
-        dataType: 'discrete',
-    }),
-
-    // sparkline
-    sparkline: sparkline.bind({
-        x: 'SnapshotDate',
-        y: 'Score',
-        chartType: 'line',
-        dataType: 'continuous',
-    }),
-    sparklineMetric: sparkline.bind({
-        x: 'SnapshotDate',
-        y: 'Metric',
-        chartType: 'line',
-        dataType: 'continuous',
-    }),
-    sparklineScore: sparkline.bind({
-        x: 'SnapshotDate',
-        y: 'Score',
-        chartType: 'line',
-        dataType: 'continuous',
-    }),
-    sparklineDiscrete: sparkline.bind({
-        x: 'SnapshotDate',
-        y: 'n_at_risk_or_flagged',
-        chartType: 'line',
-        dataType: 'discrete',
-    }),
-
-    // time series
-    timeSeries: timeSeries.bind({
-        x: 'SnapshotDate',
-        y: 'Score',
-        chartType: 'boxplot',
-        dataType: 'continuous',
-    }),
-    timeSeriesScore: timeSeries.bind({
-        x: 'SnapshotDate',
-        y: 'Score',
-        chartType: 'boxplot',
-        dataType: 'continuous',
-    }),
-    timeSeriesDiscrete: timeSeries.bind({
-        x: 'SnapshotDate',
-        y: 'n_at_risk_or_flagged',
-        chartType: 'line',
-        dataType: 'discrete',
-    }),
-    timeSeriesQTL: timeSeries.bind({
-        x: 'SnapshotDate',
-        y: 'Metric',
-        chartType: 'identity',
-        dataType: 'continuous',
-    }),
-
-    // site overview
-    siteOverview,
-
-    // group overview
+    barChart,
     groupOverview,
+    scatterPlot,
+    sparkline,
+    timeSeries,
 };
 
 export default rbmViz;
