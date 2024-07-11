@@ -14,6 +14,7 @@ export default function addClickEvents(bodyRows, cells, config) {
             GroupLevel: config.GroupLevel,
             GroupID: d.GroupID,
             MetricID: d.MetricID,
+            data: d,
         });
     });
 
@@ -22,6 +23,7 @@ export default function addClickEvents(bodyRows, cells, config) {
         config.groupClickCallback({
             GroupLevel: config.GroupLevel,
             GroupID: d.GroupID,
+            data: d,
         });
     });
 }

@@ -23625,47 +23625,15 @@ var rbmViz = (() => {
   function configure8(_config_, _data_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
+    defaults3.groupLabelKey = null;
+    defaults3.groupTooltipKeys = null;
     defaults3.groupClickCallback = (datum2) => {
       console.log(datum2);
     };
     defaults3.metricClickCallback = (datum2) => {
       console.log(datum2);
     };
-    const groupLabelKey = {
-      Site: "InvestigatorLastName",
-      Country: null,
-      Study: "nickname"
-    };
-    const groupTooltipKeys = {
-      Site: {
-        GroupID: "Investigator ID",
-        ParticipantCount: "Participant Count",
-        //SiteCount: 'Site Count',
-        InvestigatorLastName: "Last Name",
-        InvestigatorFirstName: "First Name",
-        Status: "Status",
-        site_num: "Site ID",
-        account: "Site",
-        City: "City",
-        State: "State",
-        Country: "Country",
-        site_active_dt: "Activation Date",
-        is_satellite: "Satellite"
-      },
-      Country: {
-        GroupID: "Country Code",
-        ParticipantCount: "Participant Count",
-        SiteCount: "Site Count"
-      },
-      Study: {
-        GroupID: "Protocol ID",
-        ParticipantCount: "Participant Count",
-        SiteCount: "Site Count"
-      }
-    };
     const config = configure2(defaults3, _config_);
-    config.groupLabelKey = groupLabelKey[config.GroupLevel];
-    config.groupTooltipKeys = groupTooltipKeys[config.GroupLevel];
     return config;
   }
 
@@ -23737,8 +23705,9 @@ var rbmViz = (() => {
 
   // src/groupOverview/defineColumns/defineGroupTooltip.js
   function defineTooltip2(column, content, config) {
-    const tooltipKeys = config.groupTooltipKeys !== void 0 ? config.groupTooltipKeys : Object.keys(content.group).reduce((acc, key) => {
-      acc[key] = key;
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(content.group).reduce((acc, key) => {
+      const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
+      acc[key] = label;
       return acc;
     }, {});
     const tooltipContent = [];
@@ -24030,13 +23999,15 @@ var rbmViz = (() => {
       config.metricClickCallback({
         GroupLevel: config.GroupLevel,
         GroupID: d2.GroupID,
-        MetricID: d2.MetricID
+        MetricID: d2.MetricID,
+        data: d2
       });
     });
     cells.filter(".group").on("click", function(event, d2) {
       config.groupClickCallback({
         GroupLevel: config.GroupLevel,
-        GroupID: d2.GroupID
+        GroupID: d2.GroupID,
+        data: d2
       });
     });
   }
