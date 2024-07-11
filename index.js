@@ -560,17 +560,17 @@ var rbmViz = (() => {
     easeInBounce: (t) => 1 - effects.easeOutBounce(1 - t),
     easeOutBounce(t) {
       const m = 7.5625;
-      const d2 = 2.75;
-      if (t < 1 / d2) {
+      const d = 2.75;
+      if (t < 1 / d) {
         return m * t * t;
       }
-      if (t < 2 / d2) {
-        return m * (t -= 1.5 / d2) * t + 0.75;
+      if (t < 2 / d) {
+        return m * (t -= 1.5 / d) * t + 0.75;
       }
-      if (t < 2.5 / d2) {
-        return m * (t -= 2.25 / d2) * t + 0.9375;
+      if (t < 2.5 / d) {
+        return m * (t -= 2.25 / d) * t + 0.9375;
       }
-      return m * (t -= 2.625 / d2) * t + 0.984375;
+      return m * (t -= 2.625 / d) * t + 0.984375;
     },
     easeInOutBounce: (t) => t < 0.5 ? effects.easeInBounce(t * 2) * 0.5 : effects.easeOutBounce(t * 2 - 1) * 0.5 + 0.5
   };
@@ -647,14 +647,14 @@ var rbmViz = (() => {
     }
     return rgb2;
   }
-  function hueValue(r, g, b, d2, max3) {
+  function hueValue(r, g, b, d, max3) {
     if (r === max3) {
-      return (g - b) / d2 + (g < b ? 6 : 0);
+      return (g - b) / d + (g < b ? 6 : 0);
     }
     if (g === max3) {
-      return (b - r) / d2 + 2;
+      return (b - r) / d + 2;
     }
-    return (r - g) / d2 + 4;
+    return (r - g) / d + 4;
   }
   function rgb2hsl(v) {
     const range = 255;
@@ -664,11 +664,11 @@ var rbmViz = (() => {
     const max3 = Math.max(r, g, b);
     const min3 = Math.min(r, g, b);
     const l = (max3 + min3) / 2;
-    let h, s, d2;
+    let h, s, d;
     if (max3 !== min3) {
-      d2 = max3 - min3;
-      s = l > 0.5 ? d2 / (2 - max3 - min3) : d2 / (max3 + min3);
-      h = hueValue(r, g, b, d2, max3);
+      d = max3 - min3;
+      s = l > 0.5 ? d / (2 - max3 - min3) : d / (max3 + min3);
+      h = hueValue(r, g, b, d, max3);
       h = h * 60 + 0.5;
     }
     return [h | 0, s || 0, l];
@@ -2243,9 +2243,9 @@ var rbmViz = (() => {
     const a = _pointInLine(p1, cp1, t);
     const b = _pointInLine(cp1, cp2, t);
     const c = _pointInLine(cp2, p2, t);
-    const d2 = _pointInLine(a, b, t);
+    const d = _pointInLine(a, b, t);
     const e = _pointInLine(b, c, t);
-    return _pointInLine(d2, e, t);
+    return _pointInLine(d, e, t);
   }
   var intlCache = /* @__PURE__ */ new Map();
   function getNumberFormat(locale2, options) {
@@ -6269,25 +6269,25 @@ var rbmViz = (() => {
       }
     }
     drawTitle() {
-      const { ctx, options: { position, title: title3, reverse } } = this;
-      if (!title3.display) {
+      const { ctx, options: { position, title: title4, reverse } } = this;
+      if (!title4.display) {
         return;
       }
-      const font = toFont(title3.font);
-      const padding = toPadding(title3.padding);
-      const align = title3.align;
+      const font = toFont(title4.font);
+      const padding = toPadding(title4.padding);
+      const align = title4.align;
       let offset = font.lineHeight / 2;
       if (position === "bottom" || position === "center" || isObject(position)) {
         offset += padding.bottom;
-        if (isArray(title3.text)) {
-          offset += font.lineHeight * (title3.text.length - 1);
+        if (isArray(title4.text)) {
+          offset += font.lineHeight * (title4.text.length - 1);
         }
       } else {
         offset += padding.top;
       }
       const { titleX, titleY, maxWidth, rotation } = titleArgs(this, offset, position, align);
-      renderText(ctx, title3.text, 0, 0, font, {
-        color: title3.color,
+      renderText(ctx, title4.text, 0, 0, font, {
+        color: title4.color,
         maxWidth,
         rotation,
         textAlign: titleAlign(align, position, reverse),
@@ -9652,8 +9652,8 @@ var rbmViz = (() => {
             get: function() {
               return this._decimated;
             },
-            set: function(d2) {
-              this._data = d2;
+            set: function(d) {
+              this._data = d;
             }
           });
         }
@@ -10747,14 +10747,14 @@ var rbmViz = (() => {
     }
   };
   function createTitle(chart, titleOpts) {
-    const title3 = new Title({
+    const title4 = new Title({
       ctx: chart.ctx,
       options: titleOpts,
       chart
     });
-    layouts.configure(chart, title3, titleOpts);
-    layouts.addBox(chart, title3);
-    chart.titleBlock = title3;
+    layouts.configure(chart, title4, titleOpts);
+    layouts.addBox(chart, title4);
+    chart.titleBlock = title4;
   }
   var plugin_title = {
     id: "title",
@@ -10768,9 +10768,9 @@ var rbmViz = (() => {
       delete chart.titleBlock;
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = chart.titleBlock;
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title4 = chart.titleBlock;
+      layouts.configure(chart, title4, options);
+      title4.options = options;
     },
     defaults: {
       align: "center",
@@ -10796,23 +10796,23 @@ var rbmViz = (() => {
   var plugin_subtitle = {
     id: "subtitle",
     start(chart, _args, options) {
-      const title3 = new Title({
+      const title4 = new Title({
         ctx: chart.ctx,
         options,
         chart
       });
-      layouts.configure(chart, title3, options);
-      layouts.addBox(chart, title3);
-      map2.set(chart, title3);
+      layouts.configure(chart, title4, options);
+      layouts.addBox(chart, title4);
+      map2.set(chart, title4);
     },
     stop(chart) {
       layouts.removeBox(chart, map2.get(chart));
       map2.delete(chart);
     },
     beforeUpdate(chart, _args, options) {
-      const title3 = map2.get(chart);
-      layouts.configure(chart, title3, options);
-      title3.options = options;
+      const title4 = map2.get(chart);
+      layouts.configure(chart, title4, options);
+      title4.options = options;
     },
     defaults: {
       align: "center",
@@ -10869,9 +10869,9 @@ var rbmViz = (() => {
         const el = items[i].element;
         if (el && el.hasValue()) {
           const center = el.getCenterPoint();
-          const d2 = distanceBetweenPoints(eventPosition, center);
-          if (d2 < minDistance) {
-            minDistance = d2;
+          const d = distanceBetweenPoints(eventPosition, center);
+          if (d < minDistance) {
+            minDistance = d;
             nearestElement = el;
           }
         }
@@ -10921,12 +10921,12 @@ var rbmViz = (() => {
   }
   function getTooltipSize(tooltip5, options) {
     const ctx = tooltip5.chart.ctx;
-    const { body, footer, title: title3 } = tooltip5;
+    const { body, footer, title: title4 } = tooltip5;
     const { boxWidth, boxHeight } = options;
     const bodyFont = toFont(options.bodyFont);
     const titleFont = toFont(options.titleFont);
     const footerFont = toFont(options.footerFont);
-    const titleLineCount = title3.length;
+    const titleLineCount = title4.length;
     const footerLineCount = footer.length;
     const bodyLineItemCount = body.length;
     const padding = toPadding(options.padding);
@@ -11126,11 +11126,11 @@ var rbmViz = (() => {
     getTitle(context, options) {
       const { callbacks } = options;
       const beforeTitle = callbacks.beforeTitle.apply(this, [context]);
-      const title3 = callbacks.title.apply(this, [context]);
+      const title4 = callbacks.title.apply(this, [context]);
       const afterTitle = callbacks.afterTitle.apply(this, [context]);
       let lines = [];
       lines = pushOrConcat(lines, splitNewlines(beforeTitle));
-      lines = pushOrConcat(lines, splitNewlines(title3));
+      lines = pushOrConcat(lines, splitNewlines(title4));
       lines = pushOrConcat(lines, splitNewlines(afterTitle));
       return lines;
     }
@@ -11292,8 +11292,8 @@ var rbmViz = (() => {
       return { x1, x2, x3, y1, y2, y3 };
     }
     drawTitle(pt, ctx, options) {
-      const title3 = this.title;
-      const length = title3.length;
+      const title4 = this.title;
+      const length = title4.length;
       let titleFont, titleSpacing, i;
       if (length) {
         const rtlHelper = getRtlAdapter(options.rtl, this.x, this.width);
@@ -11305,7 +11305,7 @@ var rbmViz = (() => {
         ctx.fillStyle = options.titleColor;
         ctx.font = titleFont.string;
         for (i = 0; i < length; ++i) {
-          ctx.fillText(title3[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+          ctx.fillText(title4[i], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
           pt.y += titleFont.lineHeight + titleSpacing;
           if (i + 1 === length) {
             pt.y += options.titleMarginBottom - titleSpacing;
@@ -15091,7 +15091,7 @@ var rbmViz = (() => {
   function quantilesFivenum(arr, length = arr.length) {
     const n = length;
     const n4 = Math.floor((n + 3) / 2) / 2;
-    const compute2 = (d2) => 0.5 * (arr[Math.floor(d2) - 1] + arr[Math.ceil(d2) - 1]);
+    const compute2 = (d) => 0.5 * (arr[Math.floor(d) - 1] + arr[Math.ceil(d) - 1]);
     return {
       q1: compute2(n4),
       median: compute2((n + 1) / 2),
@@ -15350,7 +15350,7 @@ var rbmViz = (() => {
     const stats = boxplot(arr, determineStatsOptions(options));
     const samples = computeSamples(stats.min, stats.max, options.points);
     const coords = samples.map((v) => ({ v, estimate: stats.kde(v) }));
-    const maxEstimate = coords.reduce((a, d2) => Math.max(a, d2.estimate), Number.NEGATIVE_INFINITY);
+    const maxEstimate = coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
     return {
       max: stats.max,
       min: stats.min,
@@ -15781,7 +15781,7 @@ var rbmViz = (() => {
     _drawCoords(ctx, props) {
       let maxEstimate;
       if (props.maxEstimate == null) {
-        maxEstimate = props.coords.reduce((a, d2) => Math.max(a, d2.estimate), Number.NEGATIVE_INFINITY);
+        maxEstimate = props.coords.reduce((a, d) => Math.max(a, d.estimate), Number.NEGATIVE_INFINITY);
       } else {
         maxEstimate = props.maxEstimate;
       }
@@ -17589,9 +17589,9 @@ var rbmViz = (() => {
   var constant_default2 = (x) => () => x;
 
   // node_modules/d3-interpolate/src/color.js
-  function linear(a, d2) {
+  function linear(a, d) {
     return function(t) {
-      return a + t * d2;
+      return a + t * d;
     };
   }
   function exponential(a, b, y) {
@@ -17605,8 +17605,8 @@ var rbmViz = (() => {
     };
   }
   function nogamma(a, b) {
-    var d2 = b - a;
-    return d2 ? linear(a, d2) : constant_default2(isNaN(a) ? b : a);
+    var d = b - a;
+    return d ? linear(a, d) : constant_default2(isNaN(a) ? b : a);
   }
 
   // node_modules/d3-interpolate/src/rgb.js
@@ -17715,15 +17715,15 @@ var rbmViz = (() => {
     scaleX: 1,
     scaleY: 1
   };
-  function decompose_default(a, b, c, d2, e, f) {
+  function decompose_default(a, b, c, d, e, f) {
     var scaleX, scaleY, skewX;
     if (scaleX = Math.sqrt(a * a + b * b))
       a /= scaleX, b /= scaleX;
-    if (skewX = a * c + b * d2)
-      c -= a * skewX, d2 -= b * skewX;
-    if (scaleY = Math.sqrt(c * c + d2 * d2))
-      c /= scaleY, d2 /= scaleY, skewX /= scaleY;
-    if (a * d2 < b * c)
+    if (skewX = a * c + b * d)
+      c -= a * skewX, d -= b * skewX;
+    if (scaleY = Math.sqrt(c * c + d * d))
+      c /= scaleY, d /= scaleY, skewX /= scaleY;
+    if (a * d < b * c)
       a = -a, b = -b, skewX = -skewX, scaleX = -scaleX;
     return {
       translateX: e,
@@ -18822,19 +18822,19 @@ var rbmViz = (() => {
   // node_modules/d3-format/src/formatPrefixAuto.js
   var prefixExponent;
   function formatPrefixAuto_default(x, p) {
-    var d2 = formatDecimalParts(x, p);
-    if (!d2)
+    var d = formatDecimalParts(x, p);
+    if (!d)
       return x + "";
-    var coefficient = d2[0], exponent = d2[1], i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n = coefficient.length;
+    var coefficient = d[0], exponent = d[1], i = exponent - (prefixExponent = Math.max(-8, Math.min(8, Math.floor(exponent / 3))) * 3) + 1, n = coefficient.length;
     return i === n ? coefficient : i > n ? coefficient + new Array(i - n + 1).join("0") : i > 0 ? coefficient.slice(0, i) + "." + coefficient.slice(i) : "0." + new Array(1 - i).join("0") + formatDecimalParts(x, Math.max(0, p + i - 1))[0];
   }
 
   // node_modules/d3-format/src/formatRounded.js
   function formatRounded_default(x, p) {
-    var d2 = formatDecimalParts(x, p);
-    if (!d2)
+    var d = formatDecimalParts(x, p);
+    if (!d)
       return x + "";
-    var coefficient = d2[0], exponent = d2[1];
+    var coefficient = d[0], exponent = d[1];
     return exponent < 0 ? "0." + new Array(-exponent).join("0") + coefficient : coefficient.length > exponent + 1 ? coefficient.slice(0, exponent + 1) + "." + coefficient.slice(exponent + 1) : coefficient + new Array(exponent - coefficient.length + 2).join("0");
   }
 
@@ -20099,49 +20099,49 @@ var rbmViz = (() => {
     properties: {
       MetricID: {
         title: "Metric ID",
-        description: "Unique workflow identifier",
+        description: "Unique metric identifier",
         type: "string",
         required: false
       },
-      Group: {
+      GroupLevel: {
         title: "Grouping Variable",
         description: "Grouping variable of analysis, one of Site, Country, or Study",
         type: "string",
-        required: true
+        required: false
       },
       Numerator: {
         title: "Metric Numerator",
-        description: "Unit of Metric Numerator",
+        description: "Unit of metric numerator",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Denominator: {
         title: "Metric Denominator",
-        description: "Unit of Metric Denominator",
+        description: "Unit of metric denominator",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Metric: {
-        title: "Metric Metric",
-        description: "Unit of Metric Metric",
+        title: "Metric Description",
+        description: "Description of metric",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Outcome: {
         title: "Metric Type",
-        description: "Type of Metric Metric",
+        description: "Type of metric",
         type: "string",
         required: false,
         key: false
       },
       Score: {
         title: "Metric Score",
-        description: "Unit of Metric score",
+        description: "Analysis method of metric",
         type: "string",
-        required: true,
+        required: false,
         key: false
       },
       Thresholds: {
@@ -20185,13 +20185,6 @@ var rbmViz = (() => {
         type: "string",
         required: false,
         key: false
-      },
-      gsm_version: {
-        title: "{gsm} Version",
-        description: "{gsm} version when analysis ran",
-        type: "string",
-        required: false,
-        key: false
       }
     }
   };
@@ -20205,11 +20198,11 @@ var rbmViz = (() => {
     items: {
       type: "object",
       properties: {
-        StudyID: {
-          title: "Study ID",
-          description: "Unique study identifier",
+        GroupLevel: {
+          title: "Grouping Variable",
+          description: "Grouping variable of analysis, one of Site, Country, or Study",
           type: "string",
-          required: false,
+          required: true,
           key: true
         },
         GroupID: {
@@ -20219,32 +20212,18 @@ var rbmViz = (() => {
           required: true,
           key: true
         },
-        GroupLabel: {
-          title: "Group Label",
-          description: "Label of group",
+        Param: {
+          title: "Group Attribute Name",
+          description: "Name of group attribute",
           type: "string",
           required: true,
-          key: false
+          key: true
         },
-        EnrolledParticipants: {
-          title: "Enrolled Participants",
-          description: "Number of participants enrolled at group",
-          type: "number",
-          required: true,
-          key: false
-        },
-        Status: {
-          title: "Group Status",
-          description: "Status of group",
+        Value: {
+          title: "Group Attribute Value",
+          description: "Value of group attribute",
           type: "string",
           required: true,
-          key: false
-        },
-        SnapshotDate: {
-          title: "Analysis Date",
-          description: "Date of analysis",
-          type: "string",
-          required: false,
           key: false
         }
       }
@@ -20772,10 +20751,10 @@ var rbmViz = (() => {
   }
 
   // src/barChart/checkInputs.js
-  function checkInputs(_data_, _config_, _thresholds_, _sites_ = null) {
+  function checkInputs(_results_, _config_, _thresholds_, _groupMetadata_ = null) {
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
       schemaName: "results",
       module: "barChart"
     });
@@ -20791,12 +20770,12 @@ var rbmViz = (() => {
       schemaName: "thresholds",
       module: "barChart"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
-        module: "scatterPlot"
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
+        module: "barChart"
       });
     }
   }
@@ -20839,7 +20818,7 @@ var rbmViz = (() => {
     if (!Array.isArray(selectedGroupIDs))
       selectedGroupIDs = [selectedGroupIDs];
     if (Array.isArray(selectedGroupIDs)) {
-      const actualGroupIDs = [...new Set(_data_.map((d2) => d2.GroupID))];
+      const actualGroupIDs = [...new Set(_data_.map((d) => d.GroupID))];
       for (const selectedGroupID of selectedGroupIDs) {
         if (actualGroupIDs.includes(selectedGroupID) === false)
           selectedGroupIDs = selectedGroupIDs.filter(
@@ -20902,8 +20881,10 @@ var rbmViz = (() => {
   }
 
   // src/barChart/configure.js
-  function configure3(_config_, _data_, _thresholds_) {
+  function configure3(_config_, _results_, _thresholds_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.x = "GroupID";
     defaults3.xType = "category";
     defaults3.y = "Score";
@@ -20920,7 +20901,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
@@ -20978,24 +20959,49 @@ var rbmViz = (() => {
     return canvas;
   }
 
+  // src/util/structureGroupMetadata.js
+  function structureGroupMetadata(groupMetadata, config) {
+    if (groupMetadata === null)
+      return null;
+    const structuredGroupMetadata = rollup(
+      groupMetadata,
+      (group2) => group2.reduce((acc, cur) => {
+        acc[cur.Param] = cur.Value;
+        return acc;
+      }, {}),
+      (d) => d.GroupLevel,
+      (d) => d.GroupID
+    );
+    const keys = Array.from(structuredGroupMetadata.keys());
+    if (keys.includes(config.GroupLevel)) {
+      return structuredGroupMetadata.get(config.GroupLevel);
+    } else {
+      console.warn(
+        `Group level "${config.GroupLevel}" not found in group metadata.`
+      );
+      return null;
+    }
+  }
+
   // src/util/falsy.js
   var falsy = [void 0, null, NaN, "", "NA"];
   var falsy_default = falsy;
 
   // src/barChart/structureData/mutate.js
-  function mutate(_data_, config, _sites_ = null) {
-    const data = _data_.map((d2) => {
-      if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.SiteID === d2.GroupID);
-        if (site !== void 0) {
-          d2.site = site;
+  function mutate(_results_, config, groupMetadata = null) {
+    const data = _results_.map((d) => {
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d.GroupID);
+        if (group2 !== void 0) {
+          d.group = group2;
+          d.group.GroupLabel = d.group.hasOwnProperty(config.GroupLabelKey) ? d.group[config.GroupLabelKey] : d.GroupID;
         }
       }
       const datum2 = {
-        ...d2,
-        x: d2[config.x],
-        y: falsy_default.includes(d2[config.y]) ? 0 : +d2[config.y],
-        stratum: falsy_default.includes(d2[config.color]) ? 3 : Math.abs(+d2[config.color])
+        ...d,
+        x: d[config.x],
+        y: falsy_default.includes(d[config.y]) ? 0 : +d[config.y],
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => b.y - a.y);
@@ -21067,8 +21073,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/structureData.js
-  function structureData(_data_, config, _sites_ = null) {
-    const data = mutate(_data_, config, _sites_);
+  function structureData(_results_, config, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const data = mutate(_results_, config, groupMetadata);
     const datasets = [
       {
         type: "bar",
@@ -21091,7 +21098,7 @@ var rbmViz = (() => {
 
   // src/util/identifyDuplicatePoints.js
   function identifyDuplicatePoints(data, config, mutate5 = true) {
-    const numericGroupIDs = data.every((d2) => /^\d+$/.test(d2.GroupID));
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.GroupID));
     data.sort((a, b) => {
       const x = ascending(a[config.x], b[config.x]);
       const y = ascending(a[config.y], b[config.y]);
@@ -21103,12 +21110,12 @@ var rbmViz = (() => {
       rollup(
         data,
         (Group) => {
-          Group.forEach((d2, i) => {
-            d2.duplicate = i > 0;
+          Group.forEach((d, i) => {
+            d.duplicate = i > 0;
           });
         },
-        (d2) => d2[config.x],
-        (d2) => d2[config.y]
+        (d) => d[config.x],
+        (d) => d[config.y]
       );
   }
 
@@ -21120,7 +21127,7 @@ var rbmViz = (() => {
     )[0];
     const data = chart.data.datasets[element.datasetIndex].data;
     const activeData = data.filter(
-      (d2, i) => activeElements.map((activeElement) => activeElement.index).includes(i)
+      (d, i) => activeElements.map((activeElement) => activeElement.index).includes(i)
     );
     identifyDuplicatePoints(activeData, chart.data.config, false);
     const datum2 = activeData[0];
@@ -21231,51 +21238,34 @@ var rbmViz = (() => {
   function title(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.Group}`
+      text: `${config.Metric} by ${config.GroupLevel}`
     };
   }
 
-  // src/util/formatResultTooltipContent.js
-  function formatResultTooltipContent(config, data) {
-    const datum2 = data.dataset.data[data.dataIndex];
-    let content;
-    if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
-      content = config.Group === "Study" ? [
-        `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
-        `Confidence Interval: (${format(".3f")(
-          datum2.lowerCI
-        )}, ${format(".3f")(datum2.upperCI)})`,
-        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
-        `${config.Denominator}: ${format(",")(
-          datum2.Denominator
-        )}`
-      ] : [
-        `Metric Score: ${falsy_default.includes(datum2.Score) ? "\u2014" : format(".1f")(datum2.Score)} (${config.Score})`,
-        `Metric Value: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)} (${config.Metric})`,
-        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
-        `${config.Denominator}: ${format(",")(
-          datum2.Denominator
-        )}`
-      ];
-    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
-      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
-        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
-          ".1f"
-        )(data.parsed[stat])}`
-      );
-      content = [...stats];
-    } else if (config.dataType === "discrete") {
-      content = data.dataset.purpose === "highlight" ? [
-        `${datum2.n_flagged} Red ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
-        `${datum2.n_at_risk} Amber ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
-        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
-        ...datum2.counts.map(
-          (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.Group}s`
-        )
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
+  // src/util/formatMetricTooltip.js
+  function formatMetricTooltip(result, metricMetadata) {
+    const tooltipKeys = {
+      Score: metricMetadata.Score || "Score",
+      Metric: metricMetadata.Metric || "Metric",
+      Numerator: metricMetadata.Numerator || "Numerator",
+      Denominator: metricMetadata.Denominator || "Denominator"
+    };
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (result[key] !== void 0) {
+        let value = result[key];
+        value = parseFloat(value);
+        if (Number.isInteger(value)) {
+          value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+          value = value.toFixed(2).toString();
+        }
+        if (falsy_default.includes(value))
+          value = "\u2014";
+        tooltipContent.push(`${label}: ${value}`);
+      }
     }
-    return content;
+    return tooltipContent;
   }
 
   // src/util/getTooltipAesthetics.js
@@ -21314,12 +21304,12 @@ var rbmViz = (() => {
     tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
-        label: formatResultTooltipContent.bind(null, config),
+        label: (d) => formatMetricTooltip(d.raw, config),
         labelPointStyle: () => ({ pointStyle: "rect" }),
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.site !== void 0 ? `${config.Group} ${datum2.GroupID} (${datum2.site.pi_last_name} / ${datum2.site.enrolled_participants} enrolled)` : `${config.Group} ${datum2.GroupID}`;
+            return datum2.group !== void 0 ? `${config.GroupLevel} ${datum2.GroupID} (${datum2.group.GroupLabel} / ${datum2.group.ParticipantCount} enrolled)` : `${config.GroupLevel} ${datum2.GroupID}`;
           }
         }
       },
@@ -21417,14 +21407,14 @@ var rbmViz = (() => {
     if (chart.data.config.selectedGroupIDs.length > 0) {
       const data = chart.data.datasets[0].data;
       const point = data.find(
-        (d2) => chart.data.config.selectedGroupIDs.includes(d2.GroupID)
+        (d) => chart.data.config.selectedGroupIDs.includes(d.GroupID)
       );
       const overlappingPoints = data.filter(
-        (d2) => d2.x === point.x && d2.y === point.y
+        (d) => d.x === point.x && d.y === point.y
       );
-      const pointIndices = data.filter((d2, i) => overlappingPoints.includes(d2)).map((d2, i) => ({
+      const pointIndices = data.filter((d, i) => overlappingPoints.includes(d)).map((d, i) => ({
         datasetIndex: 0,
-        index: data.findIndex((d1, i2) => d1 === d2)
+        index: data.findIndex((d1, i2) => d1 === d)
       }));
       tooltip5.setActiveElements(pointIndices);
     }
@@ -21451,9 +21441,9 @@ var rbmViz = (() => {
   }
 
   // src/barChart/updateData.js
-  function updateData(chart, _data_, _config_, _thresholds_, _sites_ = null) {
+  function updateData(chart, _results_, _config_, _thresholds_, _groupMetadata_ = null) {
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21475,11 +21465,11 @@ var rbmViz = (() => {
   }
 
   // src/barChart.js
-  function barChart(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = [], _sites_ = null) {
-    checkInputs(_data_, _config_, _thresholds_, _sites_);
-    const config = configure3(_config_, _data_, _thresholds_);
+  function barChart(_element_ = "body", _results_ = [], _config_ = {}, _thresholds_ = [], _groupMetadata_ = null) {
+    checkInputs(_results_, _config_, _thresholds_, _groupMetadata_);
+    const config = configure3(_config_, _results_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
     const options = {
       animation: false,
       clip: false,
@@ -21489,7 +21479,7 @@ var rbmViz = (() => {
       },
       layout: {
         padding: {
-          top: config.y === "Metric" ? max(datasets[0].data, (d2) => d2.GroupID.length) * 8 : null
+          top: config.y === "Metric" ? max(datasets[0].data, (d) => d.GroupID.length) * 8 : null
         }
       },
       maintainAspectRatio: config.maintainAspectRatio,
@@ -21504,7 +21494,7 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _thresholds_
       },
@@ -21522,11 +21512,465 @@ var rbmViz = (() => {
     return chart;
   }
 
-  // src/scatterPlot/checkInputs.js
-  function checkInputs2(_data_, _config_, _bounds_, _sites_ = null) {
+  // src/groupOverview/checkInputs.js
+  function checkInputs2(_results_, _config_, _groupMetadata_, _metricMetadata_) {
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
+      schemaName: "results",
+      module: "groupOverview"
+    });
+    checkInput({
+      parameter: "_groupMetadata_",
+      argument: _groupMetadata_,
+      schemaName: "groupMetadata",
+      module: "groupOverview"
+    });
+  }
+
+  // src/groupOverview/configure.js
+  function configure4(_config_, _data_) {
+    const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.groupLabelKey = null;
+    defaults3.groupTooltipKeys = null;
+    defaults3.groupClickCallback = (datum2) => {
+      console.log(datum2);
+    };
+    defaults3.metricClickCallback = (datum2) => {
+      console.log(datum2);
+    };
+    const config = configure2(defaults3, _config_);
+    return config;
+  }
+
+  // src/groupOverview/deriveGroupMetrics.js
+  function deriveGroupMetrics(_groupMetadata_, _results_, config) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const missingGroups = [...new Set(
+      _results_.map((result) => result.GroupID).filter(
+        (GroupID) => ![...groupMetadata.keys()].find((group2) => group2 === GroupID)
+      ).sort(ascending)
+    )];
+    missingGroups.forEach((group2) => {
+      groupMetadata.set(group2, { GroupID: group2 });
+    });
+    const groups2 = Array.from(groupMetadata).map(([key, value]) => ({ GroupLevel: config.GroupLevel, GroupID: key, ...value }));
+    groups2.forEach((group2) => {
+      group2.GroupLabel = group2.hasOwnProperty(config.groupLabelKey) ? `${group2.GroupID} (${group2[config.groupLabelKey]})` : group2.GroupID;
+      const groupResults = _results_.filter(
+        (result) => result.GroupID === group2.GroupID
+      );
+      group2.nRedFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 2
+      ).length;
+      group2.nAmberFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 1
+      ).length;
+      group2.nGreenFlags = groupResults.filter(
+        (result) => Math.abs(parseInt(result.Flag)) === 0
+      ).length;
+    });
+    return groups2;
+  }
+
+  // src/groupOverview/defineColumns/sortString.js
+  function sortString(bodyRows, column) {
+    const sortAscending = column.sortState < 1;
+    bodyRows.sort((a, b) => {
+      const aVal = a[column.index].value;
+      const bVal = b[column.index].value;
+      if (aVal === void 0 || aVal === null) {
+        return 1;
+      }
+      if (bVal === void 0 || bVal === null) {
+        return -1;
+      }
+      const defaultSort = sortAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+      return defaultSort;
+    });
+    column.sortState = sortAscending ? 1 : -1;
+  }
+
+  // src/groupOverview/defineColumns/sortNumber.js
+  function sortNumber(bodyRows, column) {
+    const sortAscending = column.sortState < 1;
+    bodyRows.sort((a, b) => {
+      const aVal = a[column.index].sortValue;
+      const bVal = b[column.index].sortValue;
+      if (aVal === void 0 || aVal === null) {
+        return 1;
+      }
+      if (bVal === void 0 || bVal === null) {
+        return -1;
+      }
+      const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
+      return defaultSort;
+    });
+    column.sortState = sortAscending ? 1 : -1;
+  }
+
+  // src/groupOverview/defineColumns/defineGroupTooltip.js
+  function defineTooltip(column, content, config) {
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(content.group).reduce((acc, key) => {
+      const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
+      acc[key] = label;
+      return acc;
+    }, {});
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (content[key] !== void 0) {
+        let value = content[key];
+        tooltipContent.push(`${label}: ${value}`);
+      }
+    }
+    return tooltipContent.join("\n");
+  }
+
+  // src/groupOverview/defineColumns/defineGroupColumns.js
+  function defineGroupColumns(groups2) {
+    const columns = [
+      {
+        label: "Group",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "GroupLabel",
+        headerTooltip: null,
+        sort: sortString,
+        tooltip: true,
+        type: "group",
+        dataType: "string"
+      },
+      {
+        label: "Enrolled",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "ParticipantCount",
+        headerTooltip: null,
+        sort: sortNumber,
+        tooltip: false,
+        type: "group",
+        dataType: "number"
+      },
+      {
+        label: "Red Flags",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "nRedFlags",
+        headerTooltip: null,
+        sort: sortNumber,
+        tooltip: false,
+        type: "group",
+        dataType: "number"
+      },
+      {
+        label: "Amber Flags",
+        data: groups2,
+        filterKey: "GroupID",
+        valueKey: "nAmberFlags",
+        headerTooltip: null,
+        sort: sortNumber,
+        tooltip: false,
+        type: "group",
+        dataType: "number"
+      }
+    ];
+    columns.forEach((column) => {
+      column.defineTooltip = defineTooltip;
+    });
+    return columns;
+  }
+
+  // src/groupOverview/defineColumns/defineMetricTooltip.js
+  function defineTooltip2(column, result) {
+    const tooltipContent = formatMetricTooltip(result, column.meta);
+    return tooltipContent.join("\n");
+  }
+
+  // src/groupOverview/defineColumns/defineMetricColumns.js
+  function defineMetricColumns(metrics, results) {
+    const metricColumns = metrics.map((metric) => {
+      const column = {
+        label: metric.Abbreviation,
+        data: results.filter((d) => d.MetricID === metric.MetricID),
+        filterKey: "GroupID",
+        valueKey: "Score",
+        headerTooltip: metric.Metric,
+        sort: sortNumber,
+        tooltip: true,
+        defineTooltip: defineTooltip2,
+        type: "metric",
+        dataType: "number",
+        meta: metric
+      };
+      return column;
+    });
+    return metricColumns;
+  }
+
+  // src/groupOverview/defineColumns.js
+  function defineColumns(groups2, metrics, results) {
+    const groupColumns = defineGroupColumns(groups2);
+    const metricColumns = defineMetricColumns(metrics, results);
+    const columns = [...groupColumns, ...metricColumns];
+    columns.forEach((column, i) => {
+      column.getDatum = (key) => column.data.find((d) => d[column.filterKey] === key);
+      column.index = i;
+      column.sortState = column.dataType === "string" ? 0 : 1;
+      column.activeSort = false;
+    });
+    return columns;
+  }
+
+  // src/groupOverview/structureData/sortByFlags.js
+  function sortByFlags(rowData) {
+    const sortedRowData = rowData.sort((a, b) => {
+      const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+      const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+      const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+      const groupComparison = a.key.localeCompare(b.key);
+      return redComparison || amberComparison || greenComparison || groupComparison;
+    });
+    return sortedRowData;
+  }
+
+  // src/groupOverview/structureData.js
+  function structureData2(results, columns, groups2, config) {
+    const lookup = group(
+      results,
+      (d) => d.GroupID,
+      (d) => d.MetricID
+    );
+    const rowData = Array.from(lookup, ([key, value]) => {
+      const group2 = groups2.find((group3) => group3.GroupID === key);
+      const rowDatum = columns.map((column) => {
+        const datum2 = {
+          ...column.getDatum(key) || {},
+          column,
+          group: group2,
+          GroupID: key
+        };
+        datum2.value = datum2[column.valueKey];
+        datum2.text = datum2.value;
+        datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
+        datum2.class = [column.type, column.valueKey].join(" ");
+        datum2.tooltip = column.tooltip;
+        datum2.tooltipContent = column.defineTooltip(column, datum2, config);
+        return datum2;
+      });
+      rowDatum.key = key;
+      return rowDatum;
+    });
+    const sortedData = sortByFlags(rowData);
+    return sortedData;
+  }
+
+  // src/groupOverview/makeTable/addHeaderRow.js
+  function addHeaderRow(thead, columns) {
+    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("tooltip", (d) => d.headerTooltip !== null).text((d) => d.label).attr("title", (d) => d.headerTooltip);
+    return headerRow;
+  }
+
+  // src/groupOverview/makeTable/addBodyRows.js
+  function addBodyRows(tbody, rows) {
+    const bodyRows = tbody.selectAll("tr").data(
+      rows,
+      // Define a unique key for each row.
+      (d) => d.key
+    ).join("tr");
+    return bodyRows;
+  }
+
+  // src/groupOverview/makeTable/addCells.js
+  function addCells(bodyRows) {
+    const cells = bodyRows.selectAll("td").data(
+      (d) => d,
+      // Define a unique key for each cell.
+      (d) => {
+        const id2 = d.column.type === "metric" ? `${d.GroupID}-${d.column.meta.MetricID}` : `${d.GroupID}-${d.column.valueKey}`;
+        return id2;
+      }
+    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.class).classed("tooltip", (d) => d.tooltip).attr("title", (d) => d.tooltip ? d.tooltipContent : null);
+    return cells;
+  }
+
+  // src/groupOverview/makeTable/addSorting.js
+  function addSorting(headerRow, body) {
+    headerRow.on("click", function(event, column) {
+      headerRow.data().forEach((d) => {
+        d.activeSort = false;
+      });
+      column.sort(body.selectAll("tr"), column);
+      column.activeSort = true;
+    });
+  }
+
+  // src/groupOverview/makeTable/addTrafficLighting.js
+  function addTrafficLighting(rows) {
+    const metricCells = rows.selectAll("td.metric");
+    metricCells.style("background-color", function(d, i) {
+      switch (Math.abs(parseInt(d.Flag))) {
+        case 0:
+          return colorScheme_default.find(
+            (color3) => color3.Flag.includes(0)
+          ).color;
+        case 1:
+          return colorScheme_default.find(
+            (color3) => color3.Flag.includes(1)
+          ).color;
+        case 2:
+          return colorScheme_default.find(
+            (color3) => color3.Flag.includes(2)
+          ).color;
+        default:
+          return "#eee";
+      }
+    });
+  }
+
+  // src/groupOverview/makeTable/icons/singleArrow.js
+  function singleArrow(flag, color3 = "white") {
+    const direction = Math.sign(flag) === 1 ? "up" : "down";
+    return [
+      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5857 11.4447C12.9763 11.8353 13.5303 11.9144 13.8232 11.6215C14.1161 11.3286 14.0369 10.7746 13.6464 10.3841L10.818 7.55565C10.5746 7.31232 10.2678 7.18988 10.0003 7.20299C9.73263 7.18973 9.42564 7.31217 9.18218 7.55563L6.35376 10.3841C5.96323 10.7746 5.88409 11.3286 6.17698 11.6215C6.46987 11.9144 7.02389 11.8352 7.41442 11.4447L10.0001 8.85907L12.5857 11.4447Z" fill="${color3}"/>`,
+      `<rect x="10" y="19.2929" width="13.1421" height="13.1421" rx="1.5" transform="rotate(-135 10 19.2929)" stroke="${color3}"/>`,
+      `</svg>`
+    ].join("");
+  }
+
+  // src/groupOverview/makeTable/icons/doubleArrow.js
+  function doubleArrow(flag, color3 = "white") {
+    const direction = Math.sign(flag) === 1 ? "up" : "down";
+    return [
+      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color3}"/>`,
+      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color3}"/>`,
+      `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color3}"/>`,
+      `</svg>`
+    ].join(``);
+  }
+
+  // src/groupOverview/makeTable/addFlagIcons.js
+  function addFlagIcons(rows) {
+    const metricCells = rows.selectAll("td.metric").text("");
+    metricCells.each(function(d) {
+      const flag = parseInt(d.Flag);
+      const absFlag = Math.abs(flag);
+      switch (absFlag) {
+        case 0:
+          break;
+        case 1:
+          this.insertAdjacentHTML("beforeend", singleArrow(flag));
+          break;
+        case 2:
+          this.insertAdjacentHTML("beforeend", doubleArrow(flag));
+          break;
+        default:
+          this.textContent = "-";
+          break;
+      }
+    });
+  }
+
+  // src/groupOverview/makeTable/addRowHighlighting.js
+  function addRowHighlighting(rows) {
+    rows.on("mouseover", function() {
+      select_default2(this).style("background-color", "lightgray");
+    }).on("mouseout", function() {
+      select_default2(this).style("background-color", null);
+    });
+  }
+
+  // src/groupOverview/makeTable/addClickEvents.js
+  function addClickEvents(bodyRows, cells, config) {
+    cells.filter(".metric").on("click", function(event, d) {
+      config.metricClickCallback({
+        GroupLevel: config.GroupLevel,
+        GroupID: d.GroupID,
+        MetricID: d.MetricID,
+        data: d
+      });
+    });
+    cells.filter(".group").on("click", function(event, d) {
+      config.groupClickCallback({
+        GroupLevel: config.GroupLevel,
+        GroupID: d.GroupID,
+        data: d
+      });
+    });
+  }
+
+  // src/groupOverview/makeTable.js
+  function makeTable(_element_, rows, columns, config) {
+    const table = select_default2(_element_).append("table");
+    const thead = table.append("thead");
+    const tbody = table.append("tbody");
+    const headerRow = addHeaderRow(thead, columns);
+    const bodyRows = addBodyRows(tbody, rows);
+    const cells = addCells(bodyRows);
+    addSorting(headerRow, tbody, columns);
+    addTrafficLighting(bodyRows);
+    addFlagIcons(bodyRows);
+    addRowHighlighting(bodyRows);
+    addClickEvents(bodyRows, cells, config);
+    return table;
+  }
+
+  // src/groupOverview/updateTable.js
+  function updateTable(_results_) {
+    const groupMetadata = deriveGroupMetrics(this._groupMetadata_, _results_, this.config);
+    const columns = defineColumns(groupMetadata, this._metricMetadata_, _results_);
+    const rows = structureData2(_results_, columns, groupMetadata, this.config);
+    const tbody = this.table.select("tbody");
+    const bodyRows = addBodyRows(tbody, rows);
+    const cells = addCells(bodyRows);
+    addTrafficLighting(bodyRows);
+    addFlagIcons(bodyRows);
+    addRowHighlighting(bodyRows);
+    addClickEvents(bodyRows, cells, this.config);
+    const sortedColumn = this.columns.find((d) => d.activeSort);
+    if (sortedColumn !== void 0) {
+      sortedColumn.sortState = -sortedColumn.sortState;
+      sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
+    } else {
+      tbody.selectAll("tr").sort((a, b) => {
+        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
+        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
+        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
+        const groupComparison = a.key.localeCompare(b.key);
+        return redComparison || amberComparison || greenComparison || groupComparison;
+      });
+    }
+  }
+
+  // src/groupOverview.js
+  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groupMetadata_ = null, _metricMetadata_ = null) {
+    checkInputs2(_results_, _config_, _groupMetadata_, _metricMetadata_);
+    const config = configure4(_config_);
+    const groupMetadata = deriveGroupMetrics(_groupMetadata_, _results_, config);
+    const columns = defineColumns(groupMetadata, _metricMetadata_, _results_);
+    const rows = structureData2(_results_, columns, groupMetadata, config);
+    const table = makeTable(_element_, rows, columns, config);
+    table.updateTable = updateTable.bind({
+      _results_,
+      _config_,
+      _groupMetadata_,
+      _metricMetadata_,
+      config,
+      groupMetadata,
+      columns,
+      rows,
+      table
+    });
+    return table;
+  }
+
+  // src/scatterPlot/checkInputs.js
+  function checkInputs3(_results_, _config_, _bounds_, _groupMetadata_ = null) {
+    checkInput({
+      parameter: "_results_",
+      argument: _results_,
       schemaName: "results",
       module: "scatterPlot"
     });
@@ -21542,22 +21986,26 @@ var rbmViz = (() => {
       schemaName: "resultsPredicted",
       module: "scatterPlot"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
         module: "scatterPlot"
       });
     }
   }
 
   // src/scatterPlot/configure.js
-  function configure4(_config_, _data_) {
+  function configure5(_config_, _results_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.x = "Denominator";
+    defaults3[defaults3.x] = defaults3.x;
     defaults3.xType = "logarithmic";
     defaults3.y = "Numerator";
+    defaults3[defaults3.y] = defaults3.y;
     defaults3.yType = "linear";
     defaults3.color = "Flag";
     defaults3.hoverCallback = (datum2) => {
@@ -21573,7 +22021,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       )
     });
     config.xLabel = coalesce(_config_.xLabel, config[config.x]);
@@ -21587,19 +22035,20 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/structureData/mutate.js
-  function mutate2(_data_, config, _sites_ = null) {
-    const data = _data_.map((d2) => {
-      if (_sites_ !== null) {
-        const site = _sites_.find((site2) => site2.SiteID === d2.GroupID);
-        if (site !== void 0) {
-          d2.site = site;
+  function mutate2(_results_, config, groupMetadata = null) {
+    const results = _results_.map((d) => {
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d.GroupID);
+        if (group2 !== void 0) {
+          d.group = group2;
+          d.group.GroupLabel = d.group.hasOwnProperty(config.GroupLabelKey) ? d.group[config.GroupLabelKey] : d.GroupID;
         }
       }
       const datum2 = {
-        ...d2,
-        x: +d2[config.x],
-        y: +d2[config.y],
-        stratum: isNaN(parseFloat(d2[config.color])) ? 3 : Math.abs(+d2[config.color])
+        ...d,
+        x: +d[config.x],
+        y: +d[config.y],
+        stratum: isNaN(parseFloat(d[config.color])) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => {
@@ -21608,8 +22057,8 @@ var rbmViz = (() => {
       const stratum = b.stratum - a.stratum;
       return aSelected ? 1 : bSelected ? -1 : stratum;
     });
-    identifyDuplicatePoints(data, config);
-    return data;
+    identifyDuplicatePoints(results, config);
+    return results;
   }
 
   // src/scatterPlot/structureData/scriptableOptions/backgroundColor.js
@@ -21658,9 +22107,9 @@ var rbmViz = (() => {
     if (dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
-      if (datum2.site !== void 0) {
+      if (datum2.group !== void 0) {
         const enrollmentFactor = Math.sqrt(
-          datum2.site.enrolled_participants / Math.PI
+          datum2.group.ParticipantCount / Math.PI
         );
         return enrollmentFactor * hoverRadius;
       } else {
@@ -21678,9 +22127,9 @@ var rbmViz = (() => {
     if (dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
-      if (datum2.site !== void 0) {
+      if (datum2.group !== void 0) {
         const enrollmentFactor = Math.sqrt(
-          datum2.site.enrolled_participants / Math.PI
+          datum2.group.ParticipantCount / Math.PI
         );
         return enrollmentFactor * defaultRadius;
       } else {
@@ -21708,18 +22157,18 @@ var rbmViz = (() => {
         (Group) => {
           return {
             type: "line",
-            data: Group.map((d2) => ({
-              stratum: Math.abs(+d2.Threshold),
-              Threshold: d2.Threshold,
-              x: +d2.Denominator,
-              y: +d2.Numerator
+            data: Group.map((d) => ({
+              stratum: Math.abs(+d.Threshold),
+              Threshold: d.Threshold,
+              x: +d.Denominator,
+              y: +d.Numerator
             })),
             borderWidth: 1,
             hoverRadius: 0,
             pointRadius: 0
           };
         },
-        (d2) => d2.Threshold
+        (d) => d.Threshold
       );
       const flags = mapThresholdsToFlags(boundUps.map((bound) => bound[0]));
       const bounds = boundUps.map((bound, i) => {
@@ -21729,9 +22178,7 @@ var rbmViz = (() => {
           (Flag2) => Flag2.Threshold === Group.Threshold
         );
         const Flag = Group.Flag.Flag;
-        Group.label = colorScheme_default.find(
-          (color4) => color4.Flag.includes(Flag)
-        ).description;
+        Group.label = "";
         const color3 = colorScheme_default[Math.abs(Flag)].color;
         Group.borderColor = color3;
         const backgroundColor4 = color2(color3);
@@ -21746,21 +22193,22 @@ var rbmViz = (() => {
       rollup(
         bounds,
         (Group) => {
-          Group.forEach((d2, i) => {
+          Group.forEach((d, i) => {
             if (i > 0)
-              d2.label = "";
+              d.label = "";
           });
         },
-        (d2) => Math.abs(d2.Flag.Flag)
+        (d) => Math.abs(d.Flag.Flag)
       );
       return bounds;
     }
   }
 
   // src/scatterPlot/structureData.js
-  function structureData2(_data_, config, _bounds_, _sites_ = null) {
-    const data = mutate2(_data_, config, _sites_);
-    const datasets = [
+  function structureData3(_results_, config, _bounds_, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const data = mutate2(_results_, config, groupMetadata);
+    let datasets = [
       {
         data,
         label: "",
@@ -21768,18 +22216,26 @@ var rbmViz = (() => {
         listenHover: true,
         type: "scatter",
         ...scriptableOptions2()
-      }
+      },
+      ...colorScheme_default.map((color3) => {
+        const dataset = {
+          type: "scatter",
+          label: color3.description,
+          backgroundColor: color3.rgba,
+          borderColor: color3.color
+        };
+        dataset.backgroundColor.opacity = 0.5;
+        dataset.backgroundColor = dataset.backgroundColor + "";
+        return dataset;
+      })
     ];
     const bounds = rollupBounds(_bounds_, config);
     if (bounds !== void 0)
       bounds.forEach((bound) => {
         datasets.push(bound);
       });
-    if (data.some((d2) => falsy_default.includes(d2.Flag)))
-      datasets.push({
-        type: "line",
-        label: "No Flag"
-      });
+    if (data.every((d) => falsy_default.includes(d.Flag) === false))
+      datasets = datasets.filter((d) => d.label !== "No Flag");
     return datasets;
   }
 
@@ -21807,13 +22263,13 @@ var rbmViz = (() => {
   function title2(config) {
     return {
       display: config.displayTitle,
-      text: `${config.Metric} by ${config.Group}`
+      text: `${config.Metric} by ${config.GroupLevel}`
     };
   }
 
   // src/util/sortByGroupID.js
   function sortByGroupID(data, config) {
-    const numericGroupIDs = data.every((d2) => /^\d+$/.test(d2.raw.GroupID));
+    const numericGroupIDs = data.every((d) => /^\d+$/.test(d.raw.GroupID));
     const dataSorted = data.sort((a, b) => {
       const selected = config.selectedGroupIDs.includes(b.raw.GroupID) - config.selectedGroupIDs.includes(a.raw.GroupID);
       const alphanumeric = numericGroupIDs ? ascending(+a.raw.GroupID, +b.raw.GroupID) : ascending(a.raw.GroupID, b.raw.GroupID);
@@ -21827,27 +22283,27 @@ var rbmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
-        label: (d2) => {
-          const content = formatResultTooltipContent(config, d2);
-          return d2.raw.duplicate ? "" : content;
+        label: (d) => {
+          const content = formatMetricTooltip(d.raw, config);
+          return d.raw.duplicate ? "" : content;
         },
         title: (data) => {
           if (data.length) {
             const dataSorted = sortByGroupID(data, config);
-            const titles = dataSorted.map((d2, i) => {
-              let title4;
+            const titles = dataSorted.map((d, i) => {
+              let title5;
               if (data.length === 1) {
-                title4 = `${config.Group} ${d2.dataset.data[d2.dataIndex].GroupID}`;
-                if (d2.raw.site !== void 0) {
-                  title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
+                title5 = `${config.GroupLevel}: ${d.dataset.data[d.dataIndex].GroupID}`;
+                if (d.raw.group !== void 0) {
+                  title5 = `${title5} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
                 }
               } else {
-                title4 = i === 0 ? `${config.Group}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                title5 = i === 0 ? `${config.GroupLevel}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
               }
-              return title4;
+              return title5;
             });
-            const title3 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
-            return title3;
+            const title4 = titles.length <= 4 ? titles.join(", ") : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more`;
+            return title4;
           }
         }
       },
@@ -21896,7 +22352,7 @@ var rbmViz = (() => {
 
   // src/scatterPlot/updateConfig.js
   function updateConfig2(chart, _config_, updateChart = true, updateTooltip = true) {
-    const config = configure4(
+    const config = configure5(
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "scatter").data
     );
@@ -21913,9 +22369,9 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot/updateData.js
-  function updateData2(chart, _data_, _config_, _bounds_, _sites_) {
+  function updateData2(chart, _results_, _config_, _bounds_, _groupMetadata_) {
     const config = updateConfig2(chart, _config_, false, false);
-    const datasets = structureData2(_data_, config, _bounds_, _sites_);
+    const datasets = structureData3(_results_, config, _bounds_, _groupMetadata_);
     chart.data.config = config;
     chart.data.datasets = datasets;
     chart.update();
@@ -21923,11 +22379,11 @@ var rbmViz = (() => {
   }
 
   // src/scatterPlot.js
-  function scatterPlot(_element_ = "body", _data_ = [], _config_ = {}, _bounds_ = null, _sites_ = null) {
-    checkInputs2(_data_, _config_, _bounds_, _sites_);
-    const config = configure4(_config_, _data_);
+  function scatterPlot(_element_ = "body", _results_ = [], _config_ = {}, _bounds_ = null, _groupMetadata_ = null) {
+    checkInputs3(_results_, _config_, _bounds_, _groupMetadata_);
+    const config = configure5(_config_, _results_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData2(_data_, config, _bounds_, _sites_);
+    const datasets = structureData3(_results_, config, _bounds_, _groupMetadata_);
     const options = {
       animation: false,
       maintainAspectRatio: config.maintainAspectRatio,
@@ -21942,7 +22398,7 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _bounds_
       },
@@ -21961,7 +22417,7 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/checkInputs.js
-  function checkInputs3(_data_, _config_, _thresholds_) {
+  function checkInputs4(_data_, _config_, _thresholds_) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInput({
       parameter: "_data_",
@@ -21984,7 +22440,7 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/configure.js
-  function configure5(_config_, _data_, _thresholds_) {
+  function configure6(_config_, _data_, _thresholds_) {
     const defaults3 = {};
     defaults3.x = "SnapshotDate";
     defaults3.xType = "category";
@@ -22012,12 +22468,12 @@ var rbmViz = (() => {
 
   // src/sparkline/structureData/mutate.js
   function mutate3(_data_, config) {
-    const data = _data_.map((d2) => {
+    const data = _data_.map((d) => {
       const datum2 = {
-        ...d2,
+        ...d,
         //x: +d[config.x],
-        y: +d2[config.y],
-        stratum: falsy_default.includes(d2[config.color]) ? 3 : Math.abs(+d2[config.color])
+        y: +d[config.y],
+        stratum: falsy_default.includes(d[config.color]) ? 3 : Math.abs(+d[config.color])
       };
       return datum2;
     }).sort((a, b) => ascending(a.SnapshotDate, b.SnapshotDate));
@@ -22057,19 +22513,19 @@ var rbmViz = (() => {
   }
 
   // src/sparkline/structureData.js
-  function structureData3(_data_, config) {
+  function structureData4(_data_, config) {
     const data = mutate3(_data_, config);
-    const labels = data.map((d2) => d2.SnapshotDate);
-    const pointBackgroundColor = data.map((d2, i) => {
-      return config.dataType === "continuous" ? colorScheme_default[d2.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
+    const labels = data.map((d) => d.SnapshotDate);
+    const pointBackgroundColor = data.map((d, i) => {
+      return config.dataType === "continuous" ? colorScheme_default[d.stratum].color : config.y === "n_at_risk" ? colorScheme_default.find((color3) => /amber/i.test(color3.description)).color : config.y === "n_flagged" ? colorScheme_default.find((color3) => /red/i.test(color3.description)).color : config.y === "n_at_risk_or_flagged" ? colorScheme_default.amberRed.color : "#1890FF";
     });
     const datasets = [
       {
         type: "line",
-        data: data.map((d2, i) => {
-          const datum2 = { ...d2 };
+        data: data.map((d, i) => {
+          const datum2 = { ...d };
           datum2.x = i;
-          datum2.y = +d2[config.y];
+          datum2.y = +d[config.y];
           return datum2;
         }),
         pointBackgroundColor,
@@ -22109,12 +22565,12 @@ var rbmViz = (() => {
     const xMin = 0;
     const xMax = data.length - 1;
     const xValue = xMax + xMax / 50;
-    const yMin = min(data, (d2) => +d2[config.y]);
-    const yMax = max(data, (d2) => +d2[config.y]);
+    const yMin = min(data, (d) => +d[config.y]);
+    const yMax = max(data, (d) => +d[config.y]);
     const range = yMin === yMax ? yMin : yMax - yMin;
     const yValue = yMin === yMax ? yMin : yMin + range / 2;
-    const format2 = data.every((d2) => +d2[config.y] % 1 === 0) ? `d` : config.y === "Metric" ? `.3f` : `.1f`;
-    const datum2 = data.filter((d2) => falsy_default.includes(d2.y) === false).slice(-1)[0];
+    const format2 = data.every((d) => +d[config.y] % 1 === 0) ? `d` : config.y === "Metric" ? `.3f` : `.1f`;
+    const datum2 = data.filter((d) => falsy_default.includes(d.y) === false).slice(-1)[0];
     const content = [format(format2)(datum2?.y)];
     const value = {
       content,
@@ -22195,8 +22651,8 @@ var rbmViz = (() => {
     const scales2 = getDefaultScales();
     scales2.x.display = false;
     scales2.x.type = config.xType;
-    const yMin = min(data, (d2) => d2.y);
-    const yMax = max(data, (d2) => d2.y);
+    const yMin = min(data, (d) => d.y);
+    const yMax = max(data, (d) => d.y);
     const range = yMin !== yMax ? yMax - yMin : yMin === yMax && yMin !== 0 ? yMin : 1;
     scales2.y.display = false;
     scales2.y.min = config.yMin !== void 0 ? config.yMin : yMin - range * 0.35;
@@ -22207,7 +22663,7 @@ var rbmViz = (() => {
 
   // src/sparkline/updateConfig.js
   function updateConfig3(chart, _config_, update = false) {
-    const config = configure5(_config_);
+    const config = configure6(_config_);
     chart.data.config = config;
     if (update)
       chart.update();
@@ -22217,7 +22673,7 @@ var rbmViz = (() => {
   // src/sparkline/updateData.js
   function updateData3(chart, _data_, _config_) {
     chart.data.config = updateConfig3(chart, _config_);
-    chart.data.datasets = structureData3(_data_, chart.data.config);
+    chart.data.datasets = structureData4(_data_, chart.data.config);
     chart.options.plugins = getPlugins3(
       chart.data.config,
       chart.data.datasets[0].data
@@ -22231,10 +22687,10 @@ var rbmViz = (() => {
 
   // src/sparkline.js
   function sparkline(_element_ = "body", _data_ = [], _config_ = {}, _thresholds_ = []) {
-    checkInputs3(_data_, _config_, _thresholds_);
-    const config = configure5(_config_, _data_, _thresholds_);
+    checkInputs4(_data_, _config_, _thresholds_);
+    const config = configure6(_config_, _data_, _thresholds_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData3(_data_, config);
+    const datasets = structureData4(_data_, config);
     const options = {
       animation: false,
       layout: {
@@ -22270,11 +22726,11 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/checkInputs.js
-  function checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_ = null) {
+  function checkInputs5(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_ = null) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
     checkInput({
-      parameter: "_data_",
-      argument: _data_,
+      parameter: "_results_",
+      argument: _results_,
       schemaName: discrete ? "flagCounts" : "results",
       module: "timeSeries"
     });
@@ -22296,22 +22752,24 @@ var rbmViz = (() => {
       schemaName: "resultsVertical",
       module: "timeSeries"
     });
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
       checkInput({
-        parameter: "_sites_",
-        argument: _sites_,
-        schemaName: "siteMetadata",
+        parameter: "_groupMetadata_",
+        argument: _groupMetadata_,
+        schemaName: "groupMetadata",
         module: "timeSeries"
       });
     }
   }
 
   // src/timeSeries/configure.js
-  function configure6(_config_, _data_, _thresholds_, _intervals_) {
+  function configure7(_config_, _results_, _thresholds_, _intervals_) {
     const defaults3 = {};
+    defaults3.GroupLevel = "Site";
+    defaults3.GroupLabelKey = "InvestigatorLastName";
     defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
-      defaults3.discreteUnit = Object.keys(_data_[0]).includes("GroupID") ? "Metric" : "Site";
+      defaults3.discreteUnit = Object.keys(_results_[0]).includes("GroupID") ? "Metric" : "Site";
     else
       defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
@@ -22325,9 +22783,9 @@ var rbmViz = (() => {
     defaults3.clickCallback = (datum2) => {
       console.log(datum2);
     };
-    defaults3.Group = "Site";
     defaults3.aggregateLabel = "Study";
     defaults3.annotateThreshold = _thresholds_ !== null;
+    defaults3.displayTitle = false;
     defaults3.maintainAspectRatio = false;
     _config_.variableThresholds = Array.isArray(_thresholds_) ? _thresholds_.some(
       (Threshold) => Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
@@ -22336,7 +22794,7 @@ var rbmViz = (() => {
       selectedGroupIDs: checkSelectedGroupIDs.bind(
         null,
         _config_.selectedGroupIDs,
-        _data_
+        _results_
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
@@ -22356,25 +22814,19 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/getLabels.js
   function getLabels(data, config) {
-    const labels = [...new Set(data.map((d2) => d2[config.x]))];
+    const labels = [...new Set(data.map((d) => d[config.x]))];
     return labels;
   }
 
   // src/timeSeries/structureData/mutate.js
-  function mutate4(_data_, config, _thresholds_, _intervals_, _sites_ = null) {
-    const data = _data_.map((d2) => {
-      const datum2 = { ...d2 };
-      if (_sites_ !== null) {
-        let site = _sites_.filter((site2) => site2.SiteID === d2.GroupID);
-        if (site.length > 1) {
-          site = site.find(
-            (site2) => site2.SnapshotDate === datum2.SnapshotDate
-          );
-        } else {
-          site = site[0];
-        }
-        if (site !== void 0) {
-          datum2.site = site;
+  function mutate4(_results_, config, _thresholds_, _intervals_, groupMetadata = null) {
+    const results = _results_.map((d) => {
+      const datum2 = { ...d };
+      if (groupMetadata !== null) {
+        const group2 = groupMetadata.get(d.GroupID);
+        if (group2 !== void 0) {
+          datum2.group = group2;
+          datum2.group.GroupLabel = datum2.group.hasOwnProperty(config.GroupLabelKey) ? datum2.group[config.GroupLabelKey] : datum2.GroupID;
         }
       }
       if ([void 0, null].includes(_intervals_) === false) {
@@ -22390,18 +22842,18 @@ var rbmViz = (() => {
       }
       return datum2;
     }).sort((a, b) => ascending(a[config.x], b[config.x]));
-    const labels = getLabels(data, config);
+    const labels = getLabels(results, config);
     let thresholds2 = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
-      thresholds2 = _thresholds_.filter((d2) => labels.includes(d2[config.x])).map((d2) => ({ ...d2 })).sort((a, b) => ascending(a[config.x], b[config.x]));
+      thresholds2 = _thresholds_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
     let intervals = null;
     if (Array.isArray(_intervals_)) {
-      intervals = _intervals_.filter((d2) => labels.includes(d2[config.x])).map((d2) => ({ ...d2 })).sort((a, b) => ascending(a[config.x], b[config.x]));
+      intervals = _intervals_.filter((d) => labels.includes(d[config.x])).map((d) => ({ ...d })).sort((a, b) => ascending(a[config.x], b[config.x]));
     }
-    identifyDuplicatePoints(data, config);
+    identifyDuplicatePoints(results, config);
     return {
-      data,
+      results,
       labels,
       thresholds: thresholds2,
       intervals
@@ -22412,8 +22864,8 @@ var rbmViz = (() => {
   function identityLine(data, config, labels) {
     const aggregateData = rollup(
       data,
-      (Group) => mean(Group, (d2) => d2[config.y]),
-      (d2) => d2[config.x]
+      (Group) => mean(Group, (d) => d[config.y]),
+      (d) => d[config.x]
     );
     const color3 = "#666666";
     const backgroundColor4 = color2(color3);
@@ -22421,12 +22873,12 @@ var rbmViz = (() => {
     const borderColor4 = color2(color3);
     borderColor4.opacity = 0.25;
     const dataset = {
-      backgroundColor: (d2) => {
-        if (d2.type === "dataset") {
+      backgroundColor: (d) => {
+        if (d.type === "dataset") {
           return backgroundColor4;
         } else {
           return colorScheme_default.find(
-            (color4) => color4.Flag.includes(+d2.raw.Flag)
+            (color4) => color4.Flag.includes(+d.raw.Flag)
           ).color;
         }
       },
@@ -22435,7 +22887,7 @@ var rbmViz = (() => {
         const x = labels[i];
         const y = value;
         return {
-          ...data.find((d2) => d2[config.x] === x),
+          ...data.find((d) => d[config.x] === x),
           x,
           y
         };
@@ -22456,10 +22908,10 @@ var rbmViz = (() => {
     if (_intervals_ === null)
       return [null];
     const intervals = rollup(
-      _intervals_.filter((d2) => /ci/i.test(d2.Param)),
+      _intervals_.filter((d) => /ci/i.test(d.Param)),
       (Group) => +Group[0].Value,
-      (d2) => d2.Param,
-      (d2) => d2.SnapshotDate
+      (d) => d.Param,
+      (d) => d.SnapshotDate
     );
     const datasets = [...intervals].map(([key, value], i) => {
       return {
@@ -22482,8 +22934,8 @@ var rbmViz = (() => {
   function selectedGroupLine(data, config, labels) {
     if (config.selectedGroupIDs.length === 0)
       return null;
-    const lineData = data.filter((d2) => config.selectedGroupIDs.includes(d2.GroupID)).map((d2, i) => {
-      const datum2 = { ...d2 };
+    const lineData = data.filter((d) => config.selectedGroupIDs.includes(d.GroupID)).map((d, i) => {
+      const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
       return datum2;
@@ -22495,18 +22947,18 @@ var rbmViz = (() => {
     borderColor4.opacity = 0.5;
     const dataset = {
       data: lineData,
-      backgroundColor: function(d2) {
-        if (d2.element === void 0) {
+      backgroundColor: function(d) {
+        if (d.element === void 0) {
           return backgroundColor4;
         }
         const color4 = colorScheme_default.find(
-          (color5) => falsy_default.includes(d2.raw.Flag) ? color5.Flag.includes(d2.raw?.Flag) : color5.Flag.includes(+d2.raw?.Flag)
+          (color5) => falsy_default.includes(d.raw.Flag) ? color5.Flag.includes(d.raw?.Flag) : color5.Flag.includes(+d.raw?.Flag)
         );
         color4.rgba.opacity = 0.75;
         return color4.rgba + "";
       },
-      borderColor: function(d2) {
-        return d2.type === "data" ? "black" : borderColor4;
+      borderColor: function(d) {
+        return d.type === "data" ? "black" : borderColor4;
       },
       label: "",
       pointStyle: "circle",
@@ -22520,8 +22972,8 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/flagAmber.js
   function flagAmber(data, config, labels) {
-    const pointData = data.filter((d2) => Math.abs(+d2.Flag) === 1).map((d2) => {
-      const datum2 = { ...d2 };
+    const pointData = data.filter((d) => Math.abs(+d.Flag) === 1).map((d) => {
+      const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
       return datum2;
@@ -22547,8 +22999,8 @@ var rbmViz = (() => {
 
   // src/timeSeries/structureData/flagRed.js
   function flagRed(data, config, labels) {
-    const pointData = data.filter((d2) => Math.abs(+d2.Flag) > 1).map((d2) => {
-      const datum2 = { ...d2 };
+    const pointData = data.filter((d) => Math.abs(+d.Flag) > 1).map((d) => {
+      const datum2 = { ...d };
       datum2.x = datum2[config.x];
       datum2.y = +datum2[config.y];
       return datum2;
@@ -22577,15 +23029,15 @@ var rbmViz = (() => {
     const grouped = rollups(
       data,
       //.filter(d => +d.Flag === 0),
-      (Group) => Group.map((d2) => +d2[config.y]),
-      (d2) => d2.SnapshotDate
+      (Group) => Group.map((d) => +d[config.y]),
+      (d) => d.SnapshotDate
     );
     const dataset = {
-      data: grouped.map((d2) => d2[1]),
+      data: grouped.map((d) => d[1]),
       maxBarThickness: 7,
       maxWhiskerThickness: 0,
       meanRadius: /^n_/.test(config.y) ? 3 : 0,
-      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.GroupLevel} Distribution`,
       outlierRadius: 0,
       ///^n_/.test(config.y) ? 2 : 0,
       pointRadius: 0,
@@ -22602,12 +23054,12 @@ var rbmViz = (() => {
     const grouped = rollups(
       data,
       //.filter((d) => +d.Flag === 0),
-      (Group) => Group.map((d2) => +d2[config.y]),
-      (d2) => d2.SnapshotDate
+      (Group) => Group.map((d) => +d[config.y]),
+      (d) => d.SnapshotDate
     );
     const dataset = {
-      data: grouped.map((d2) => d2[1]),
-      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.Group} Distribution`,
+      data: grouped.map((d) => d[1]),
+      label: /Flag|at.risk/.test(config.y) ? `Distribution` : `${config.GroupLevel} Distribution`,
       purpose: "distribution",
       type: "violin"
     };
@@ -22628,7 +23080,7 @@ var rbmViz = (() => {
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
       const thresholds2 = [
         ...rollup(
-          _thresholds_.filter((d2) => d2.Param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
+          _thresholds_.filter((d) => d.Param === "vThreshold").sort((a, b) => a < b ? -1 : b < a ? 1 : 0),
           (Group) => {
             const flags = checkThresholds({}, Group);
             flags.forEach((Flag) => {
@@ -22642,9 +23094,9 @@ var rbmViz = (() => {
             });
             return flags;
           },
-          (d2) => d2.SnapshotDate
+          (d) => d.SnapshotDate
         )
-      ].flatMap((d2) => d2[1]);
+      ].flatMap((d) => d[1]);
       const latestSnapshotDate = max(labels);
       thresholdData = [
         ...rollup(
@@ -22668,13 +23120,13 @@ var rbmViz = (() => {
               type: "line"
             };
             const snapshotDates = [
-              ...new Set(Group.map((d2) => d2[config.x]))
+              ...new Set(Group.map((d) => d[config.x]))
             ];
             const snapshotDate = max(snapshotDates);
             if (snapshotDate < latestSnapshotDate) {
               const Threshold = {
                 ...dataset.data.find(
-                  (d2) => d2[config.x] === snapshotDate
+                  (d) => d[config.x] === snapshotDate
                 )
               };
               Threshold[config.x] = latestSnapshotDate;
@@ -22683,9 +23135,9 @@ var rbmViz = (() => {
             }
             return dataset;
           },
-          (d2) => d2.Flag
+          (d) => d.Flag
         )
-      ].map((d2) => d2[1]);
+      ].map((d) => d[1]);
     }
     return thresholdData;
   }
@@ -22694,8 +23146,8 @@ var rbmViz = (() => {
   function aggregateLine(data, config, labels) {
     const aggregateData = rollup(
       data,
-      (Group) => mean(Group, (d2) => d2[config.y]),
-      (d2) => d2[config.x]
+      (Group) => mean(Group, (d) => d[config.y]),
+      (d) => d[config.x]
     );
     const countsBySnapshot = rollup(
       data,
@@ -22708,10 +23160,10 @@ var rbmViz = (() => {
             N,
             pct: Math.round(subgroup.length / N * 100 * 10) / 10
           }),
-          (d2) => d2[config.y]
+          (d) => d[config.y]
         );
       },
-      (d2) => d2[config.x]
+      (d) => d[config.x]
     );
     const color3 = /at.risk/.test(config.y) && /flagged/.test(config.y) ? colorScheme_default.amberRed.color : /at.risk/.test(config.y) ? colorScheme_default.find((color4) => color4.Flag.includes(1)).color : /flagged/.test(config.y) ? colorScheme_default.find((color4) => color4.Flag.includes(2)).color : "#aaaaaa";
     const backgroundColor4 = color2(color3);
@@ -22748,19 +23200,20 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/structureData.js
-  function structureData4(_data_, config, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
-    const { data, labels, thresholds: thresholds2, intervals } = mutate4(
-      _data_,
+  function structureData5(_results_, config, _thresholds_ = null, _intervals_ = null, _groupMetadata_ = null) {
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+    const { results, labels, thresholds: thresholds2, intervals } = mutate4(
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      groupMetadata
     );
     let datasets = [];
     if (config.dataType !== "discrete") {
       if (intervals !== null) {
         datasets = [
-          identityLine(data, config, labels),
+          identityLine(results, config, labels),
           ...intervalLines(intervals, config, labels),
           {
             type: "scatter",
@@ -22782,10 +23235,10 @@ var rbmViz = (() => {
         ];
       } else {
         datasets = [
-          selectedGroupLine(data, config, labels),
+          selectedGroupLine(results, config, labels),
           {
             type: "scatter",
-            label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
+            label: config.selectedGroupIDs.length > 0 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}` : "",
             pointStyle: "line",
             pointStyleWidth: 24,
             boxWidth: 24,
@@ -22798,9 +23251,9 @@ var rbmViz = (() => {
             label: !(color3.description === "Within Thresholds" && config.selectedGroupIDs.length === 0) ? color3.description : "",
             backgroundColor: color3.color
           })),
-          flagRed(data, config, labels),
-          flagAmber(data, config, labels),
-          distribution(data, config, labels),
+          flagRed(results, config, labels),
+          flagAmber(results, config, labels),
+          distribution(results, config, labels),
           ...getThresholdLines(thresholds2, config, labels)
         ];
       }
@@ -22808,15 +23261,15 @@ var rbmViz = (() => {
       const color3 = config.yLabel === "Red or Amber Metrics" ? colorScheme_default.amberRed.color : config.yLabel === "Red Metrics" ? colorScheme_default.find((color4) => /red/i.test(color4.description)).color : config.yLabel === "Amber Metrics" ? colorScheme_default.find((color4) => /amber/i.test(color4.description)).color : "#1890FF";
       datasets = [
         config.selectedGroupIDs.length > 0 ? {
-          ...selectedGroupLine(data, config, labels),
+          ...selectedGroupLine(results, config, labels),
           backgroundColor: color3,
-          borderColor: (d2) => {
-            return d2.raw !== void 0 ? "black" : "#aaa";
+          borderColor: (d) => {
+            return d.raw !== void 0 ? "black" : "#aaa";
           }
         } : null,
         {
           type: "scatter",
-          label: config.selectedGroupIDs.length > 0 ? `${config.Group} ${config.selectedGroupIDs[0]}` : "",
+          label: config.selectedGroupIDs.length > 0 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}` : "",
           pointStyle: "line",
           pointStyleWidth: 24,
           boxWidth: 24,
@@ -22825,7 +23278,7 @@ var rbmViz = (() => {
           borderWidth: 3
         },
         // legend item for selected Group ID line
-        aggregateLine(data, config, labels),
+        aggregateLine(results, config, labels),
         {
           type: "scatter",
           label: config.discreteUnit === "Metric" ? `${config.aggregateLabel} Average` : "",
@@ -22850,20 +23303,20 @@ var rbmViz = (() => {
     if (config.thresholds) {
       annotations5 = config.thresholds.map((x, i) => {
         const annotation2 = {
-          adjustScaleRange: config.Group === "Study",
+          adjustScaleRange: config.GroupLevel === "Study",
           drawTime: "beforeDatasetsDraw",
           type: "line",
           yMin: x.Threshold,
           yMax: x.Threshold,
-          borderColor: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
+          borderColor: config.GroupLevel === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
           borderWidth: 1,
           borderDash: [2]
         };
-        if (config.annotateThreshold === true && config.Group === "Study") {
+        if (config.annotateThreshold === true && config.GroupLevel === "Study") {
           annotation2.label = {
             rotation: "auto",
             position: Math.sign(+x.Flag) >= 0 ? "end" : "start",
-            color: config.Group === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
+            color: config.GroupLevel === "Study" ? colorScheme_default.amberRed.color : colorScheme_default.find((y) => y.Flag.includes(+x.Flag)).color,
             backgroundColor: "white",
             content: `QTL: ${Math.round(+config.thresholds[0].Threshold * 1e3) / 1e3.toString()}`,
             //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.Flag.includes(+x.Flag))[0].description,
@@ -22885,8 +23338,8 @@ var rbmViz = (() => {
     const legendOrder = colorScheme_default.sort((a, b) => a.order - b.order).map((color3) => color3.description);
     legendOrder.unshift("Confidence Interval");
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift(`${config.Group} Distribution`);
-    if (config.Group === "Study")
+    legendOrder.unshift(`${config.GroupLevel} Distribution`);
+    if (config.GroupLevel === "Study")
       return {
         display: true,
         labels: {
@@ -22937,15 +23390,59 @@ var rbmViz = (() => {
       };
   }
 
+  // src/timeSeries/getPlugins/title.js
+  function title3(config) {
+    return {
+      display: config.displayTitle,
+      text: `${config.Metric} by ${config.GroupLevel}`
+    };
+  }
+
+  // src/util/formatResultTooltipContent.js
+  function formatResultTooltipContent(data, config) {
+    const datum2 = data.dataset.data[data.dataIndex];
+    let content;
+    if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
+      content = config.GroupLevel === "Study" ? [
+        `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
+        `Confidence Interval: (${format(".3f")(
+          datum2.lowerCI
+        )}, ${format(".3f")(datum2.upperCI)})`,
+        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
+        `${config.Denominator}: ${format(",")(
+          datum2.Denominator
+        )}`
+      ] : formatMetricTooltip(datum2, config);
+    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
+      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
+          ".1f"
+        )(data.parsed[stat])}`
+      );
+      content = [...stats];
+    } else if (config.dataType === "discrete") {
+      content = data.dataset.purpose === "highlight" ? [
+        `${datum2.n_flagged} Red ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} Amber ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
+        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
+        ...datum2.counts.map(
+          (d) => `${d[config.y]} ${config.yLabel}: ${d.n}/${d.N} (${d.pct}%) ${config.GroupLevel}s`
+        )
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
+    }
+    return content;
+  }
+
   // src/timeSeries/getPlugins/tooltip.js
   function tooltip4(config) {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
         //label: formatResultTooltipContent.bind(null, config),
-        label: (d2) => {
-          const content = formatResultTooltipContent(config, d2);
-          return d2.raw.duplicate ? "" : content;
+        label: (d) => {
+          const content = formatResultTooltipContent(d, config);
+          return d.raw.duplicate ? "" : content;
         },
         labelPointStyle: (data) => {
           return {
@@ -22955,9 +23452,9 @@ var rbmViz = (() => {
         title: (data) => {
           if (data.length) {
             if (data[0].dataset.purpose === "distribution") {
-              return `${config.Group} Distribution on ${data[0].label}`;
+              return `${config.GroupLevel} Distribution on ${data[0].label}`;
             } else if (data[0].dataset.purpose === "aggregate") {
-              return `${config.Group} Summary on ${data[0].label}`;
+              return `${config.GroupLevel} Summary on ${data[0].label}`;
             } else {
               let dataSorted = data;
               try {
@@ -22966,20 +23463,20 @@ var rbmViz = (() => {
                 console.log(err);
                 console.log(data);
               }
-              const titles = dataSorted.map(function(d2, i) {
-                let title4;
+              const titles = dataSorted.map(function(d, i) {
+                let title5;
                 if (data.length === 1) {
-                  title4 = `${config.Group} ${d2.dataset.data[d2.dataIndex].GroupID}`;
-                  if (d2.raw.site !== void 0) {
-                    title4 = `${title4} (${d2.raw.site.pi_last_name} / ${d2.raw.site.enrolled_participants} enrolled)`;
+                  title5 = `${config.GroupLevel} ${d.dataset.data[d.dataIndex].GroupID}`;
+                  if (d.raw.group !== void 0) {
+                    title5 = `${title5} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
                   }
                 } else {
-                  title4 = i === 0 ? `${config.Group}s ${d2.dataset.data[d2.dataIndex].GroupID}` : d2.dataset.data[d2.dataIndex].GroupID;
+                  title5 = i === 0 ? `${config.GroupLevel}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
                 }
-                return title4;
+                return title5;
               });
-              const title3 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
-              return title3;
+              const title4 = titles.length <= 4 ? `${titles.join(", ")} on ${data[0].label}` : `${titles.slice(0, 3).join(", ")} and [ ${titles.length - 3} ] more on ${data[0].label}`;
+              return title4;
             }
           }
         }
@@ -23005,6 +23502,7 @@ var rbmViz = (() => {
         annotations: annotations4(config)
       },
       legend: legend4(config),
+      title: title3(config),
       tooltip: tooltip4(config)
     };
   }
@@ -23020,24 +23518,24 @@ var rbmViz = (() => {
   }
 
   // src/timeSeries/updateData.js
-  function updateData4(chart, _data_, _config_, _thresholds_ = null, _intervals_ = null, _sites_ = null) {
-    const config = configure6(_config_, _data_, _thresholds_);
-    const datasets = structureData4(
-      _data_,
+  function updateData4(chart, _results_, _config_, _thresholds_ = null, _intervals_ = null, _groupMetadata_ = null) {
+    const config = configure7(_config_, _results_, _thresholds_);
+    const datasets = structureData5(
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     );
     chart.data = {
       datasets,
       labels: datasets.labels,
       config,
-      _data_,
+      _results_,
       _config_,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     };
     chart.options.scales = getScales4(config);
     chart.options.plugins = getPlugins4(config);
@@ -23047,27 +23545,27 @@ var rbmViz = (() => {
   // src/timeSeries/updateSelectedGroupIDs.js
   function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = [selectedGroupIDs];
-    this.data.datasets = structureData4(
-      this.data._data_,
+    this.data.datasets = structureData5(
+      this.data._results_,
       this.data.config,
       this.data._thresholds_,
       null,
-      this.data._sites_
+      this.data._groupMetadata_
     );
     this.update();
   }
 
   // src/timeSeries.js
-  function timeSeries(_element_, _data_, _config_ = {}, _thresholds_ = [], _intervals_ = null, _sites_ = null) {
-    checkInputs4(_data_, _config_, _thresholds_, _intervals_, _sites_);
-    const config = configure6(_config_, _data_, _thresholds_, _intervals_);
+  function timeSeries(_element_, _results_, _config_ = {}, _thresholds_ = [], _intervals_ = null, _groupMetadata_ = null) {
+    checkInputs5(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_);
+    const config = configure7(_config_, _results_, _thresholds_, _intervals_);
     const canvas = addCanvas(_element_, config);
-    const datasets = structureData4(
-      _data_,
+    const datasets = structureData5(
+      _results_,
       config,
       _thresholds_,
       _intervals_,
-      _sites_
+      _groupMetadata_
     );
     const options = {
       animation: false,
@@ -23076,7 +23574,7 @@ var rbmViz = (() => {
       onHover,
       plugins: getPlugins4(config),
       responsive: true,
-      scales: getScales4(config, _data_)
+      scales: getScales4(config, _results_)
     };
     const chart = new auto_default(canvas, {
       data: {
@@ -23086,11 +23584,11 @@ var rbmViz = (() => {
         // required by Chart.js
         config,
         // inputs
-        _data_,
+        _results_,
         _config_,
         _thresholds_,
         _intervals_,
-        _sites_
+        _groupMetadata_
       },
       options,
       plugins: [displayWhiteBackground()]
@@ -23101,956 +23599,6 @@ var rbmViz = (() => {
       updateSelectedGroupIDs: updateSelectedGroupIDs.bind(chart)
     };
     return chart;
-  }
-
-  // src/siteOverview/checkInputs.js
-  function checkInputs5(_results_, _config_, _sites_, _metrics_) {
-    checkInput({
-      parameter: "_results_",
-      argument: _results_,
-      schemaName: "results",
-      module: "siteOverview"
-    });
-    checkInput({
-      parameter: "_sites_",
-      argument: _sites_,
-      schemaName: "siteMetadata",
-      module: "siteOverview"
-    });
-  }
-
-  // src/siteOverview/configure.js
-  function configure7(_config_, _data_) {
-    const defaults3 = {};
-    defaults3.groupLevel = "site";
-    defaults3.groupClickCallback = (datum2) => {
-      console.log(datum2);
-    };
-    defaults3.metricClickCallback = (datum2) => {
-      console.log(datum2);
-    };
-    const config = configure2(defaults3, _config_);
-    return config;
-  }
-
-  // src/siteOverview/deriveSiteMetrics.js
-  function deriveSiteMetrics(sites, results) {
-    const missingSites = results.map((result) => result.GroupID).filter((GroupID) => !sites.find((site) => site.SiteID === GroupID)).map((SiteID) => ({ SiteID }));
-    const allSites = sites.concat(missingSites);
-    allSites.forEach((site) => {
-      const siteResults = results.filter(
-        (result) => result.GroupID === site.SiteID
-      );
-      site.nRedFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 2
-      ).length;
-      site.nAmberFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 1
-      ).length;
-      site.nGreenFlags = siteResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 0
-      ).length;
-    });
-    return allSites;
-  }
-
-  // src/siteOverview/defineColumns/sortString.js
-  function sortString(bodyRows, column) {
-    const sortAscending = column.sortState < 1;
-    bodyRows.sort((a, b) => {
-      const aVal = a[column.index].value;
-      const bVal = b[column.index].value;
-      if (aVal === void 0 || aVal === null) {
-        return 1;
-      }
-      if (bVal === void 0 || bVal === null) {
-        return -1;
-      }
-      const defaultSort = sortAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-      return defaultSort;
-    });
-    column.sortState = sortAscending ? 1 : -1;
-  }
-
-  // src/siteOverview/defineColumns/sortNumber.js
-  function sortNumber(bodyRows, column) {
-    const sortAscending = column.sortState < 1;
-    bodyRows.sort((a, b) => {
-      const aVal = a[column.index].sortValue;
-      const bVal = b[column.index].sortValue;
-      if (aVal === void 0 || aVal === null || isNaN(aVal)) {
-        return 1;
-      }
-      if (bVal === void 0 || bVal === null || isNaN(bVal)) {
-        return -1;
-      }
-      const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
-      return defaultSort;
-    });
-    column.sortState = sortAscending ? 1 : -1;
-  }
-
-  // src/siteOverview/defineColumns/defineSiteColumns.js
-  function defineSiteColumns(sites) {
-    const columns = [
-      {
-        label: "Investigator",
-        data: sites,
-        filterKey: "SiteID",
-        valueKey: "pi_last_name",
-        headerTooltip: null,
-        sort: sortString,
-        tooltip: true,
-        type: "site",
-        dataType: "string"
-      },
-      {
-        label: "ID",
-        data: sites,
-        filterKey: "SiteID",
-        valueKey: "SiteID",
-        headerTooltip: null,
-        sort: sortString,
-        tooltip: true,
-        type: "site",
-        dataType: "string"
-      },
-      {
-        label: "Enrolled",
-        data: sites,
-        filterKey: "SiteID",
-        valueKey: "enrolled_participants",
-        headerTooltip: null,
-        sort: sortNumber,
-        tooltip: false,
-        type: "site",
-        dataType: "number"
-      },
-      {
-        label: "Red Flags",
-        data: sites,
-        filterKey: "SiteID",
-        valueKey: "nRedFlags",
-        headerTooltip: null,
-        sort: sortNumber,
-        tooltip: false,
-        type: "site",
-        dataType: "number"
-      },
-      {
-        label: "Amber Flags",
-        data: sites,
-        filterKey: "SiteID",
-        valueKey: "nAmberFlags",
-        headerTooltip: null,
-        sort: sortNumber,
-        tooltip: false,
-        type: "site",
-        dataType: "number"
-      }
-    ];
-    return columns;
-  }
-
-  // src/siteOverview/defineColumns/defineMetricColumns.js
-  function defineMetricColumns(metrics, results) {
-    const metricColumns = metrics.map((metric) => {
-      const column = {
-        label: metric.Abbreviation,
-        data: results.filter((d2) => d2.MetricID === metric.MetricID),
-        filterKey: "GroupID",
-        valueKey: "Score",
-        headerTooltip: metric.Metric,
-        sort: sortNumber,
-        tooltip: true,
-        type: "metric",
-        dataType: "number",
-        meta: metric
-      };
-      return column;
-    });
-    return metricColumns;
-  }
-
-  // src/siteOverview/defineColumns/defineTooltip.js
-  function defineTooltip(column, content, metrics = null) {
-    let tooltipKeys = {};
-    switch (column.type) {
-      case "site":
-        tooltipKeys = {
-          status: "Status",
-          pi_last_name: "Last Name",
-          pi_first_name: "First Name",
-          SiteID: "Investigator ID",
-          institution: "Site",
-          site_num: "Site ID",
-          city: "City",
-          state: "State",
-          country: "Country",
-          start_date: "Activation Date",
-          is_satellite: "Satellite"
-        };
-        break;
-      case "metric":
-        tooltipKeys = {
-          Score: column.meta.Score,
-          Metric: column.meta.Metric,
-          Numerator: column.meta.Numerator,
-          Denominator: column.meta.Denominator
-        };
-        break;
-      default:
-        tooltipKeys = Object.entries(d);
-        break;
-    }
-    const tooltipContent = [];
-    for (const [key, label] of Object.entries(tooltipKeys)) {
-      if (content[key] !== void 0) {
-        let value = content[key];
-        if (column.type === "metric") {
-          value = parseFloat(value);
-          if (Number.isInteger(value)) {
-            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          } else {
-            value = value.toFixed(2).toString();
-          }
-        }
-        tooltipContent.push(`${label}: ${value}`);
-      }
-    }
-    return tooltipContent.join("\n");
-  }
-
-  // src/siteOverview/defineColumns.js
-  function defineColumns(sites, metrics, results) {
-    const siteColumns = defineSiteColumns(sites);
-    const metricColumns = defineMetricColumns(metrics, results);
-    const columns = [...siteColumns, ...metricColumns];
-    columns.forEach((column, i) => {
-      column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
-      column.index = i;
-      column.defineTooltip = defineTooltip;
-      column.sortState = column.dataType === "string" ? 0 : 1;
-      column.activeSort = false;
-    });
-    return columns;
-  }
-
-  // src/siteOverview/structureData/sortByFlags.js
-  function sortByFlags(rowData) {
-    const sortedRowData = rowData.sort((a, b) => {
-      const redComparison = b[1].nRedFlags - a[1].nRedFlags;
-      const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
-      const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
-      const siteComparison = a.key.localeCompare(b.key);
-      return redComparison || amberComparison || greenComparison || siteComparison;
-    });
-    return sortedRowData;
-  }
-
-  // src/siteOverview/structureData.js
-  function structureData5(results, columns, sites) {
-    const lookup = group(
-      results,
-      (d2) => d2.GroupID,
-      (d2) => d2.MetricID
-    );
-    const rowData = Array.from(lookup, ([key, value]) => {
-      const site = sites.find((site2) => site2.SiteID === key);
-      const rowDatum = columns.map((column) => {
-        const datum2 = {
-          ...column.getDatum(key) || {},
-          column,
-          site,
-          SiteID: key
-        };
-        datum2.value = datum2[column.valueKey];
-        datum2.text = datum2.value;
-        datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
-        datum2.class = [column.type, column.valueKey].join(" ");
-        datum2.tooltip = column.tooltip;
-        datum2.tooltipContent = column.defineTooltip(column, datum2);
-        return datum2;
-      });
-      rowDatum.key = key;
-      return rowDatum;
-    });
-    const sortedData = sortByFlags(rowData);
-    return sortedData;
-  }
-
-  // src/siteOverview/makeTable/addHeaderRow.js
-  function addHeaderRow(thead, columns) {
-    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("tooltip", (d2) => d2.headerTooltip !== null).text((d2) => d2.label).attr("title", (d2) => d2.headerTooltip);
-    return headerRow;
-  }
-
-  // src/siteOverview/makeTable/addBodyRows.js
-  function addBodyRows(tbody, rows) {
-    const bodyRows = tbody.selectAll("tr").data(
-      rows,
-      // Define a unique key for each row.
-      (d2) => d2.key
-    ).join("tr");
-    return bodyRows;
-  }
-
-  // src/siteOverview/makeTable/addCells.js
-  function addCells(bodyRows) {
-    const cells = bodyRows.selectAll("td").data(
-      (d2) => d2,
-      // Define a unique key for each cell.
-      (d2) => {
-        const id2 = d2.column.type === "metric" ? `${d2.SiteID}-${d2.column.meta.MetricID}` : `${d2.SiteID}-${d2.column.valueKey}`;
-        return id2;
-      }
-    ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
-    return cells;
-  }
-
-  // src/siteOverview/makeTable/addSorting.js
-  function addSorting(headerRow, body) {
-    headerRow.on("click", function(event, column) {
-      headerRow.data().forEach((d2) => {
-        d2.activeSort = false;
-      });
-      column.sort(body.selectAll("tr"), column);
-      column.activeSort = true;
-    });
-  }
-
-  // src/siteOverview/makeTable/identifyInactiveSites.js
-  function identifyInactiveSites(rows) {
-    rows.selectAll("td.siteid").style(
-      "text-decoration",
-      (d2) => d2.status === "Active" ? null : "line-through"
-    );
-  }
-
-  // src/siteOverview/makeTable/addTrafficLighting.js
-  function addTrafficLighting(rows) {
-    const metricCells = rows.selectAll("td.metric");
-    metricCells.style("background-color", function(d2, i) {
-      switch (Math.abs(parseInt(d2.Flag))) {
-        case 0:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(0)
-          ).color;
-        case 1:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(1)
-          ).color;
-        case 2:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(2)
-          ).color;
-        default:
-          return "#eee";
-      }
-    });
-  }
-
-  // src/siteOverview/makeTable/icons/singleArrow.js
-  function singleArrow(flag, color3 = "white") {
-    const direction = Math.sign(flag) === 1 ? "up" : "down";
-    return [
-      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5857 11.4447C12.9763 11.8353 13.5303 11.9144 13.8232 11.6215C14.1161 11.3286 14.0369 10.7746 13.6464 10.3841L10.818 7.55565C10.5746 7.31232 10.2678 7.18988 10.0003 7.20299C9.73263 7.18973 9.42564 7.31217 9.18218 7.55563L6.35376 10.3841C5.96323 10.7746 5.88409 11.3286 6.17698 11.6215C6.46987 11.9144 7.02389 11.8352 7.41442 11.4447L10.0001 8.85907L12.5857 11.4447Z" fill="${color3}"/>`,
-      `<rect x="10" y="19.2929" width="13.1421" height="13.1421" rx="1.5" transform="rotate(-135 10 19.2929)" stroke="${color3}"/>`,
-      `</svg>`
-    ].join("");
-  }
-
-  // src/siteOverview/makeTable/icons/doubleArrow.js
-  function doubleArrow(flag, color3 = "white") {
-    const direction = Math.sign(flag) === 1 ? "up" : "down";
-    return [
-      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color3}"/>`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color3}"/>`,
-      `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color3}"/>`,
-      `</svg>`
-    ].join(``);
-  }
-
-  // src/siteOverview/makeTable/addFlagIcons.js
-  function addFlagIcons(rows) {
-    const metricCells = rows.selectAll("td.metric").text("");
-    metricCells.each(function(d2) {
-      const flag = parseInt(d2.Flag);
-      const absFlag = Math.abs(flag);
-      switch (absFlag) {
-        case 0:
-          break;
-        case 1:
-          this.insertAdjacentHTML("beforeend", singleArrow(flag));
-          break;
-        case 2:
-          this.insertAdjacentHTML("beforeend", doubleArrow(flag));
-          break;
-        default:
-          this.textContent = "-";
-          break;
-      }
-    });
-  }
-
-  // src/siteOverview/makeTable/addRowHighlighting.js
-  function addRowHighlighting(rows) {
-    rows.on("mouseover", function() {
-      select_default2(this).style("background-color", "lightgray");
-    }).on("mouseout", function() {
-      select_default2(this).style("background-color", null);
-    });
-  }
-
-  // src/siteOverview/makeTable/addClickEvents.js
-  function addClickEvents(bodyRows, cells, config) {
-    cells.filter(".metric").on("click", function(event, d2) {
-      config.metricClickCallback({
-        GroupLevel: config.groupLevel,
-        GroupID: d2.GroupID,
-        MetricID: d2.MetricID
-      });
-    });
-    cells.filter(".site").on("click", function(event, d2) {
-      config.groupClickCallback({
-        GroupLevel: config.groupLevel,
-        GroupID: d2.SiteID
-      });
-    });
-  }
-
-  // src/siteOverview/makeTable.js
-  function makeTable(_element_, rows, columns, config) {
-    const table = select_default2(_element_).append("table");
-    const thead = table.append("thead");
-    const tbody = table.append("tbody");
-    const headerRow = addHeaderRow(thead, columns);
-    const bodyRows = addBodyRows(tbody, rows);
-    const cells = addCells(bodyRows);
-    addSorting(headerRow, tbody, columns);
-    identifyInactiveSites(bodyRows);
-    addTrafficLighting(bodyRows);
-    addFlagIcons(bodyRows);
-    addRowHighlighting(bodyRows);
-    addClickEvents(bodyRows, cells, config);
-    return table;
-  }
-
-  // src/siteOverview/updateTable.js
-  function updateTable(_results_) {
-    const sites = deriveSiteMetrics(this._sites_, _results_);
-    const columns = defineColumns(sites, this._metrics_, _results_);
-    const rows = structureData5(_results_, columns, sites);
-    const tbody = this.table.select("tbody");
-    const bodyRows = addBodyRows(tbody, rows);
-    const cells = addCells(bodyRows);
-    identifyInactiveSites(bodyRows);
-    addTrafficLighting(bodyRows);
-    addFlagIcons(bodyRows);
-    addRowHighlighting(bodyRows);
-    addClickEvents(bodyRows, cells, this.config);
-    const sortedColumn = this.columns.find((d2) => d2.activeSort);
-    if (sortedColumn !== void 0) {
-      sortedColumn.sortState = -sortedColumn.sortState;
-      sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
-    } else {
-      tbody.selectAll("tr").sort((a, b) => {
-        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
-        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
-        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
-        const siteComparison = a.key.localeCompare(b.key);
-        return redComparison || amberComparison || greenComparison || siteComparison;
-      });
-    }
-  }
-
-  // src/siteOverview.js
-  function siteOverview(_element_ = "body", _results_ = [], _config_ = {}, _sites_ = null, _metrics_ = null) {
-    checkInputs5(_results_, _config_, _sites_, _metrics_);
-    const config = configure7(_config_);
-    const sites = deriveSiteMetrics(_sites_, _results_);
-    const columns = defineColumns(sites, _metrics_, _results_);
-    const rows = structureData5(_results_, columns, sites);
-    const table = makeTable(_element_, rows, columns, config);
-    table.updateTable = updateTable.bind({
-      _results_,
-      _config_,
-      _sites_,
-      _metrics_,
-      config,
-      sites,
-      columns,
-      rows,
-      table
-    });
-    return table;
-  }
-
-  // src/groupOverview/checkInputs.js
-  function checkInputs6(_results_, _config_, _countries_, _metrics_) {
-    checkInput({
-      parameter: "_results_",
-      argument: _results_,
-      schemaName: "results",
-      module: "countryOverview"
-    });
-    checkInput({
-      parameter: "_countries_",
-      argument: _countries_,
-      schemaName: "groupMetadata",
-      module: "countryOverview"
-    });
-  }
-
-  // src/groupOverview/configure.js
-  function configure8(_config_, _data_) {
-    const defaults3 = {};
-    defaults3.GroupLevel = "country";
-    defaults3.groupClickCallback = (datum2) => {
-      console.log(datum2);
-    };
-    defaults3.metricClickCallback = (datum2) => {
-      console.log(datum2);
-    };
-    const config = configure2(defaults3, _config_);
-    return config;
-  }
-
-  // src/groupOverview/deriveGroupMetrics.js
-  function deriveGroupMetrics(groups2, results) {
-    const missingGroups = results.map((result) => result.GroupID).filter((GroupID) => !groups2.find((group2) => group2.GroupID === GroupID)).map((GroupID) => ({ GroupID }));
-    const allGroups = groups2.concat(missingGroups);
-    allGroups.forEach((group2) => {
-      const groupResults = results.filter(
-        (result) => result.GroupID === group2.GroupID
-      );
-      group2.nRedFlags = groupResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 2
-      ).length;
-      group2.nAmberFlags = groupResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 1
-      ).length;
-      group2.nGreenFlags = groupResults.filter(
-        (result) => Math.abs(parseInt(result.Flag)) === 0
-      ).length;
-    });
-    return allGroups;
-  }
-
-  // src/groupOverview/defineColumns/sortString.js
-  function sortString2(bodyRows, column) {
-    const sortAscending = column.sortState < 1;
-    bodyRows.sort((a, b) => {
-      const aVal = a[column.index].value;
-      const bVal = b[column.index].value;
-      if (aVal === void 0 || aVal === null) {
-        return 1;
-      }
-      if (bVal === void 0 || bVal === null) {
-        return -1;
-      }
-      const defaultSort = sortAscending ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
-      return defaultSort;
-    });
-    column.sortState = sortAscending ? 1 : -1;
-  }
-
-  // src/groupOverview/defineColumns/sortNumber.js
-  function sortNumber2(bodyRows, column) {
-    const sortAscending = column.sortState < 1;
-    bodyRows.sort((a, b) => {
-      const aVal = a[column.index].sortValue;
-      const bVal = b[column.index].sortValue;
-      if (aVal === void 0 || aVal === null) {
-        return 1;
-      }
-      if (bVal === void 0 || bVal === null) {
-        return -1;
-      }
-      const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
-      return defaultSort;
-    });
-    column.sortState = sortAscending ? 1 : -1;
-  }
-
-  // src/groupOverview/defineColumns/defineGroupColumns.js
-  function defineGroupColumns(groups2) {
-    const columns = [
-      {
-        label: "Group",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "GroupLabel",
-        headerTooltip: null,
-        sort: sortString2,
-        tooltip: true,
-        type: "group",
-        dataType: "string"
-      },
-      {
-        label: "ID",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "GroupID",
-        headerTooltip: null,
-        sort: sortString2,
-        tooltip: true,
-        type: "group",
-        dataType: "string"
-      },
-      {
-        label: "Enrolled",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "EnrolledParticipants",
-        headerTooltip: null,
-        sort: sortNumber2,
-        tooltip: false,
-        type: "group",
-        dataType: "number"
-      },
-      {
-        label: "Red Flags",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "nRedFlags",
-        headerTooltip: null,
-        sort: sortNumber2,
-        tooltip: false,
-        type: "group",
-        dataType: "number"
-      },
-      {
-        label: "Amber Flags",
-        data: groups2,
-        filterKey: "GroupID",
-        valueKey: "nAmberFlags",
-        headerTooltip: null,
-        sort: sortNumber2,
-        tooltip: false,
-        type: "group",
-        dataType: "number"
-      }
-    ];
-    return columns;
-  }
-
-  // src/groupOverview/defineColumns/defineMetricColumns.js
-  function defineMetricColumns2(metrics, results) {
-    const metricColumns = metrics.map((metric) => {
-      const column = {
-        label: metric.Abbreviation,
-        data: results.filter((d2) => d2.MetricID === metric.MetricID),
-        filterKey: "GroupID",
-        valueKey: "Score",
-        headerTooltip: metric.Metric,
-        sort: sortNumber2,
-        tooltip: true,
-        type: "metric",
-        dataType: "number",
-        meta: metric
-      };
-      return column;
-    });
-    return metricColumns;
-  }
-
-  // src/groupOverview/defineColumns/defineTooltip.js
-  function defineTooltip2(column, content, metrics = null) {
-    let tooltipKeys = {};
-    switch (column.type) {
-      case "group":
-        tooltipKeys = {
-          Status: "Status"
-        };
-        break;
-      case "metric":
-        tooltipKeys = {
-          Score: column.meta.Score,
-          Metric: column.meta.Metric,
-          Numerator: column.meta.Numerator,
-          Denominator: column.meta.Denominator
-        };
-        break;
-      default:
-        tooltipKeys = Object.entries(content);
-        break;
-    }
-    const tooltipContent = [];
-    for (const [key, label] of Object.entries(tooltipKeys)) {
-      if (content[key] !== void 0) {
-        let value = content[key];
-        if (column.type === "metric") {
-          value = parseFloat(value);
-          if (Number.isInteger(value)) {
-            value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-          } else {
-            value = value.toFixed(2).toString();
-          }
-        }
-        tooltipContent.push(`${label}: ${value}`);
-      }
-    }
-    return tooltipContent.join("\n");
-  }
-
-  // src/groupOverview/defineColumns.js
-  function defineColumns2(groups2, metrics, results) {
-    const groupColumns = defineGroupColumns(groups2);
-    const metricColumns = defineMetricColumns2(metrics, results);
-    const columns = [...groupColumns, ...metricColumns];
-    columns.forEach((column, i) => {
-      column.getDatum = (key) => column.data.find((d2) => d2[column.filterKey] === key);
-      column.index = i;
-      column.defineTooltip = defineTooltip2;
-      column.sortState = column.dataType === "string" ? 0 : 1;
-      column.activeSort = false;
-    });
-    return columns;
-  }
-
-  // src/groupOverview/structureData/sortByFlags.js
-  function sortByFlags2(rowData) {
-    const sortedRowData = rowData.sort((a, b) => {
-      const redComparison = b[1].nRedFlags - a[1].nRedFlags;
-      const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
-      const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
-      const groupComparison = a.key.localeCompare(b.key);
-      return redComparison || amberComparison || greenComparison || groupComparison;
-    });
-    return sortedRowData;
-  }
-
-  // src/groupOverview/structureData.js
-  function structureData6(results, columns, groups2) {
-    const lookup = group(
-      results,
-      (d2) => d2.GroupID,
-      (d2) => d2.MetricID
-    );
-    const rowData = Array.from(lookup, ([key, value]) => {
-      const group2 = groups2.find((group3) => group3.GroupID === key);
-      const rowDatum = columns.map((column) => {
-        const datum2 = {
-          ...column.getDatum(key) || {},
-          column,
-          group: group2,
-          GroupID: key
-        };
-        datum2.value = datum2[column.valueKey];
-        datum2.text = datum2.value;
-        datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
-        datum2.class = [column.type, column.valueKey].join(" ");
-        datum2.tooltip = column.tooltip;
-        datum2.tooltipContent = column.defineTooltip(column, datum2);
-        return datum2;
-      });
-      rowDatum.key = key;
-      return rowDatum;
-    });
-    const sortedData = sortByFlags2(rowData);
-    return sortedData;
-  }
-
-  // src/groupOverview/makeTable/addHeaderRow.js
-  function addHeaderRow2(thead, columns) {
-    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("tooltip", (d2) => d2.headerTooltip !== null).text((d2) => d2.label).attr("title", (d2) => d2.headerTooltip);
-    return headerRow;
-  }
-
-  // src/groupOverview/makeTable/addBodyRows.js
-  function addBodyRows2(tbody, rows) {
-    const bodyRows = tbody.selectAll("tr").data(
-      rows,
-      // Define a unique key for each row.
-      (d2) => d2.key
-    ).join("tr");
-    return bodyRows;
-  }
-
-  // src/groupOverview/makeTable/addCells.js
-  function addCells2(bodyRows) {
-    const cells = bodyRows.selectAll("td").data(
-      (d2) => d2,
-      // Define a unique key for each cell.
-      (d2) => {
-        const id2 = d2.column.type === "metric" ? `${d2.GroupID}-${d2.column.meta.MetricID}` : `${d2.GroupID}-${d2.column.valueKey}`;
-        return id2;
-      }
-    ).join("td").text((d2) => d2.text === "NA" ? "-" : d2.text).attr("class", (d2) => d2.class).classed("tooltip", (d2) => d2.tooltip).attr("title", (d2) => d2.tooltip ? d2.tooltipContent : null);
-    return cells;
-  }
-
-  // src/groupOverview/makeTable/addSorting.js
-  function addSorting2(headerRow, body) {
-    headerRow.on("click", function(event, column) {
-      headerRow.data().forEach((d2) => {
-        d2.activeSort = false;
-      });
-      column.sort(body.selectAll("tr"), column);
-      column.activeSort = true;
-    });
-  }
-
-  // src/groupOverview/makeTable/addTrafficLighting.js
-  function addTrafficLighting2(rows) {
-    const metricCells = rows.selectAll("td.metric");
-    metricCells.style("background-color", function(d2, i) {
-      switch (Math.abs(parseInt(d2.Flag))) {
-        case 0:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(0)
-          ).color;
-        case 1:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(1)
-          ).color;
-        case 2:
-          return colorScheme_default.find(
-            (color3) => color3.Flag.includes(2)
-          ).color;
-        default:
-          return "#eee";
-      }
-    });
-  }
-
-  // src/groupOverview/makeTable/icons/singleArrow.js
-  function singleArrow2(flag, color3 = "white") {
-    const direction = Math.sign(flag) === 1 ? "up" : "down";
-    return [
-      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5857 11.4447C12.9763 11.8353 13.5303 11.9144 13.8232 11.6215C14.1161 11.3286 14.0369 10.7746 13.6464 10.3841L10.818 7.55565C10.5746 7.31232 10.2678 7.18988 10.0003 7.20299C9.73263 7.18973 9.42564 7.31217 9.18218 7.55563L6.35376 10.3841C5.96323 10.7746 5.88409 11.3286 6.17698 11.6215C6.46987 11.9144 7.02389 11.8352 7.41442 11.4447L10.0001 8.85907L12.5857 11.4447Z" fill="${color3}"/>`,
-      `<rect x="10" y="19.2929" width="13.1421" height="13.1421" rx="1.5" transform="rotate(-135 10 19.2929)" stroke="${color3}"/>`,
-      `</svg>`
-    ].join("");
-  }
-
-  // src/groupOverview/makeTable/icons/doubleArrow.js
-  function doubleArrow2(flag, color3 = "white") {
-    const direction = Math.sign(flag) === 1 ? "up" : "down";
-    return [
-      `<svg ${direction === "down" ? 'style="transform:rotate(180deg)"' : ""} width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color3}"/>`,
-      `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color3}"/>`,
-      `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color3}"/>`,
-      `</svg>`
-    ].join(``);
-  }
-
-  // src/groupOverview/makeTable/addFlagIcons.js
-  function addFlagIcons2(rows) {
-    const metricCells = rows.selectAll("td.metric").text("");
-    metricCells.each(function(d2) {
-      const flag = parseInt(d2.Flag);
-      const absFlag = Math.abs(flag);
-      switch (absFlag) {
-        case 0:
-          break;
-        case 1:
-          this.insertAdjacentHTML("beforeend", singleArrow2(flag));
-          break;
-        case 2:
-          this.insertAdjacentHTML("beforeend", doubleArrow2(flag));
-          break;
-        default:
-          this.textContent = "-";
-          break;
-      }
-    });
-  }
-
-  // src/groupOverview/makeTable/addRowHighlighting.js
-  function addRowHighlighting2(rows) {
-    rows.on("mouseover", function() {
-      select_default2(this).style("background-color", "lightgray");
-    }).on("mouseout", function() {
-      select_default2(this).style("background-color", null);
-    });
-  }
-
-  // src/groupOverview/makeTable/addClickEvents.js
-  function addClickEvents2(bodyRows, cells, config) {
-    cells.filter(".metric").on("click", function(event, d2) {
-      config.metricClickCallback({
-        GroupLevel: config.GroupLevel,
-        GroupID: d2.GroupID,
-        MetricID: d2.MetricID
-      });
-    });
-    cells.filter(".group").on("click", function(event, d2) {
-      config.groupClickCallback({
-        GroupLevel: config.GroupLevel,
-        GroupID: d2.GroupID
-      });
-    });
-  }
-
-  // src/groupOverview/makeTable.js
-  function makeTable2(_element_, rows, columns, config) {
-    const table = select_default2(_element_).append("table");
-    const thead = table.append("thead");
-    const tbody = table.append("tbody");
-    const headerRow = addHeaderRow2(thead, columns);
-    const bodyRows = addBodyRows2(tbody, rows);
-    const cells = addCells2(bodyRows);
-    addSorting2(headerRow, tbody, columns);
-    addTrafficLighting2(bodyRows);
-    addFlagIcons2(bodyRows);
-    addRowHighlighting2(bodyRows);
-    addClickEvents2(bodyRows, cells, config);
-    return table;
-  }
-
-  // src/groupOverview/updateTable.js
-  function updateTable2(_results_) {
-    const groups2 = deriveGroupMetrics(this._groups_, _results_);
-    const columns = defineColumns2(groups2, this._metrics_, _results_);
-    const rows = structureData6(_results_, columns, groups2);
-    const tbody = this.table.select("tbody");
-    const bodyRows = addBodyRows2(tbody, rows);
-    const cells = addCells2(bodyRows);
-    addTrafficLighting2(bodyRows);
-    addFlagIcons2(bodyRows);
-    addRowHighlighting2(bodyRows);
-    addClickEvents2(bodyRows, cells, this.config);
-    const sortedColumn = this.columns.find((d2) => d2.activeSort);
-    if (sortedColumn !== void 0) {
-      sortedColumn.sortState = -sortedColumn.sortState;
-      sortedColumn.sort(tbody.selectAll("tr"), sortedColumn);
-    } else {
-      tbody.selectAll("tr").sort((a, b) => {
-        const redComparison = b[1].nRedFlags - a[1].nRedFlags;
-        const amberComparison = b[1].nAmberFlags - a[1].nAmberFlags;
-        const greenComparison = b[1].nGreenFlags - a[1].nGreenFlags;
-        const groupComparison = a.key.localeCompare(b.key);
-        return redComparison || amberComparison || greenComparison || groupComparison;
-      });
-    }
-  }
-
-  // src/groupOverview.js
-  function groupOverview(_element_ = "body", _results_ = [], _config_ = {}, _groups_ = null, _metrics_ = null) {
-    checkInputs6(_results_, _config_, _groups_, _metrics_);
-    const config = configure8(_config_);
-    const groups2 = deriveGroupMetrics(_groups_, _results_);
-    const columns = defineColumns2(groups2, _metrics_, _results_);
-    const rows = structureData6(_results_, columns, groups2, _metrics_);
-    const table = makeTable2(_element_, rows, columns, config);
-    table.updateTable = updateTable2.bind({
-      _results_,
-      _config_,
-      _groups_,
-      _metrics_,
-      config,
-      groups: groups2,
-      columns,
-      rows,
-      table
-    });
-    return table;
   }
 
   // src/main.js
@@ -24064,86 +23612,11 @@ var rbmViz = (() => {
     ViolinController
   );
   var rbmViz = {
-    // bar chart
-    barChart: barChart.bind({
-      x: "GroupID",
-      y: "Score",
-      chartType: "bar",
-      dataType: "continuous"
-    }),
-    barChartMetric: barChart.bind({
-      x: "GroupID",
-      y: "Metric",
-      chartType: "bar",
-      dataType: "continuous"
-    }),
-    barChartScore: barChart.bind({
-      x: "GroupID",
-      y: "Score",
-      chartType: "bar",
-      dataType: "continuous"
-    }),
-    // scatter plot
-    scatterPlot: scatterPlot.bind({
-      x: "Denominator",
-      y: "Numerator",
-      chartType: "scatter",
-      dataType: "discrete"
-    }),
-    // sparkline
-    sparkline: sparkline.bind({
-      x: "SnapshotDate",
-      y: "Score",
-      chartType: "line",
-      dataType: "continuous"
-    }),
-    sparklineMetric: sparkline.bind({
-      x: "SnapshotDate",
-      y: "Metric",
-      chartType: "line",
-      dataType: "continuous"
-    }),
-    sparklineScore: sparkline.bind({
-      x: "SnapshotDate",
-      y: "Score",
-      chartType: "line",
-      dataType: "continuous"
-    }),
-    sparklineDiscrete: sparkline.bind({
-      x: "SnapshotDate",
-      y: "n_at_risk_or_flagged",
-      chartType: "line",
-      dataType: "discrete"
-    }),
-    // time series
-    timeSeries: timeSeries.bind({
-      x: "SnapshotDate",
-      y: "Score",
-      chartType: "boxplot",
-      dataType: "continuous"
-    }),
-    timeSeriesScore: timeSeries.bind({
-      x: "SnapshotDate",
-      y: "Score",
-      chartType: "boxplot",
-      dataType: "continuous"
-    }),
-    timeSeriesDiscrete: timeSeries.bind({
-      x: "SnapshotDate",
-      y: "n_at_risk_or_flagged",
-      chartType: "line",
-      dataType: "discrete"
-    }),
-    timeSeriesQTL: timeSeries.bind({
-      x: "SnapshotDate",
-      y: "Metric",
-      chartType: "identity",
-      dataType: "continuous"
-    }),
-    // site overview
-    siteOverview,
-    // group overview
-    groupOverview
+    barChart,
+    groupOverview,
+    scatterPlot,
+    sparkline,
+    timeSeries
   };
   var main_default = rbmViz;
   return __toCommonJS(main_exports);
