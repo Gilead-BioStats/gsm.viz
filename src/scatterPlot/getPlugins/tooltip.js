@@ -1,5 +1,5 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
-import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatMetricTooltip from '../../util/formatMetricTooltip.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
 export default function tooltip(config) {
@@ -8,7 +8,7 @@ export default function tooltip(config) {
     return {
         callbacks: {
             label: (d) => {
-                const content = formatResultTooltipContent(config, d);
+                const content = formatMetricTooltip(d.raw, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;

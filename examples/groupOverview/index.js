@@ -43,7 +43,7 @@ Promise.all(dataPromises)
             Site: {
                 GroupID: 'Investigator ID',
                 ParticipantCount: 'Participant Count',
-                asdf: 'Site Count',
+                //SiteCount: 'Site Count',
 
                 InvestigatorLastName: 'Last Name',
                 InvestigatorFirstName: 'First Name',
@@ -65,6 +65,7 @@ Promise.all(dataPromises)
             },
             Study: {
                 GroupID: 'Protocol ID',
+                nickname: 'Nickname',
                 ParticipantCount: 'Participant Count',
                 SiteCount: 'Site Count',
             },
@@ -76,7 +77,7 @@ Promise.all(dataPromises)
             {
                 GroupLevel,
                 groupLabelKey: groupLabelKey[ GroupLevel ],
-                groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
+                //groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
                 groupClickCallback: function (datum) {
                     console.log(datum.data.tooltipContent);
                 },

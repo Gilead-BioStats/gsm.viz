@@ -21242,47 +21242,30 @@ var rbmViz = (() => {
     };
   }
 
-  // src/util/formatResultTooltipContent.js
-  function formatResultTooltipContent(config, data) {
-    const datum2 = data.dataset.data[data.dataIndex];
-    let content;
-    if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
-      content = config.GroupLevel === "Study" ? [
-        `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
-        `Confidence Interval: (${format(".3f")(
-          datum2.lowerCI
-        )}, ${format(".3f")(datum2.upperCI)})`,
-        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
-        `${config.Denominator}: ${format(",")(
-          datum2.Denominator
-        )}`
-      ] : [
-        `Metric Score: ${falsy_default.includes(datum2.Score) ? "\u2014" : format(".1f")(datum2.Score)} (${config.Score})`,
-        `Metric Value: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)} (${config.Metric})`,
-        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
-        `${config.Denominator}: ${format(",")(
-          datum2.Denominator
-        )}`
-      ];
-    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
-      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
-        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
-          ".1f"
-        )(data.parsed[stat])}`
-      );
-      content = [...stats];
-    } else if (config.dataType === "discrete") {
-      content = data.dataset.purpose === "highlight" ? [
-        `${datum2.n_flagged} Red ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
-        `${datum2.n_at_risk} Amber ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
-        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
-        ...datum2.counts.map(
-          (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.GroupLevel}s`
-        )
-      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
+  // src/util/formatMetricTooltip.js
+  function formatMetricTooltip(result, metricMetadata) {
+    const tooltipKeys = {
+      Score: metricMetadata.Score,
+      Metric: metricMetadata.Metric,
+      Numerator: metricMetadata.Numerator,
+      Denominator: metricMetadata.Denominator
+    };
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (result[key] !== void 0) {
+        let value = result[key];
+        value = parseFloat(value);
+        if (Number.isInteger(value)) {
+          value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else {
+          value = value.toFixed(2).toString();
+        }
+        if (falsy_default.includes(value))
+          value = "\u2014";
+        tooltipContent.push(`${label}: ${value}`);
+      }
     }
-    return content;
+    return tooltipContent;
   }
 
   // src/util/getTooltipAesthetics.js
@@ -21321,7 +21304,7 @@ var rbmViz = (() => {
     tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
-        label: formatResultTooltipContent.bind(null, config),
+        label: (d2) => formatMetricTooltip(d2.raw, config),
         labelPointStyle: () => ({ pointStyle: "rect" }),
         title: (data) => {
           if (data.length) {
@@ -21839,7 +21822,7 @@ var rbmViz = (() => {
     return {
       callbacks: {
         label: (d2) => {
-          const content = formatResultTooltipContent(config, d2);
+          const content = formatMetricTooltip(d2.raw, config);
           return d2.raw.duplicate ? "" : content;
         },
         title: (data) => {
@@ -22953,6 +22936,42 @@ var rbmViz = (() => {
     };
   }
 
+  // src/util/formatResultTooltipContent.js
+  function formatResultTooltipContent(data, config) {
+    const datum2 = data.dataset.data[data.dataIndex];
+    let content;
+    if (["bar", "line", "scatter"].includes(data.dataset.type) && config.dataType !== "discrete") {
+      content = config.GroupLevel === "Study" ? [
+        `${config.yLabel}: ${falsy_default.includes(datum2.Metric) ? "\u2014" : format(".3f")(datum2.Metric)}`,
+        `Confidence Interval: (${format(".3f")(
+          datum2.lowerCI
+        )}, ${format(".3f")(datum2.upperCI)})`,
+        `${config.Numerator}: ${format(",")(datum2.Numerator)}`,
+        `${config.Denominator}: ${format(",")(
+          datum2.Denominator
+        )}`
+      ] : formatMetricTooltip(datum2, config);
+    } else if (["boxplot", "violin"].includes(data.dataset.type)) {
+      const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
+        (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
+          ".1f"
+        )(data.parsed[stat])}`
+      );
+      content = [...stats];
+    } else if (config.dataType === "discrete") {
+      content = data.dataset.purpose === "highlight" ? [
+        `${datum2.n_flagged} Red ${config.discreteUnit}${+datum2.n_flagged === 1 ? "" : "s"}`,
+        `${datum2.n_at_risk} Amber ${config.discreteUnit}${+datum2.n_at_risk === 1 ? "" : "s"}`
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Metric" ? [
+        `${format(".1f")(datum2.y)} Average ${config.yLabel}`,
+        ...datum2.counts.map(
+          (d2) => `${d2[config.y]} ${config.yLabel}: ${d2.n}/${d2.N} (${d2.pct}%) ${config.GroupLevel}s`
+        )
+      ] : data.dataset.purpose === "aggregate" && config.discreteUnit === "Site" ? `${format(".1f")(datum2.y)} ${config.yLabel}` : null;
+    }
+    return content;
+  }
+
   // src/timeSeries/getPlugins/tooltip.js
   function tooltip4(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -22960,7 +22979,7 @@ var rbmViz = (() => {
       callbacks: {
         //label: formatResultTooltipContent.bind(null, config),
         label: (d2) => {
-          const content = formatResultTooltipContent(config, d2);
+          const content = formatResultTooltipContent(d2, config);
           return d2.raw.duplicate ? "" : content;
         },
         labelPointStyle: (data) => {
@@ -23775,26 +23794,8 @@ var rbmViz = (() => {
   }
 
   // src/groupOverview/defineColumns/defineMetricTooltip.js
-  function defineTooltip3(column, content, config) {
-    const tooltipKeys = {
-      Score: column.meta.Score,
-      Metric: column.meta.Metric,
-      Numerator: column.meta.Numerator,
-      Denominator: column.meta.Denominator
-    };
-    const tooltipContent = [];
-    for (const [key, label] of Object.entries(tooltipKeys)) {
-      if (content[key] !== void 0) {
-        let value = content[key];
-        value = parseFloat(value);
-        if (Number.isInteger(value)) {
-          value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-        } else {
-          value = value.toFixed(2).toString();
-        }
-        tooltipContent.push(`${label}: ${value}`);
-      }
-    }
+  function defineTooltip3(column, result) {
+    const tooltipContent = formatMetricTooltip(result, column.meta);
     return tooltipContent.join("\n");
   }
 

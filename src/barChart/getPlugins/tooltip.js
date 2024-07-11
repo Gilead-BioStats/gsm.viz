@@ -1,4 +1,4 @@
-import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatMetricTooltip from '../../util/formatMetricTooltip.js';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 export default function tooltip(config) {
@@ -7,7 +7,7 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            label: formatResultTooltipContent.bind(null, config),
+            label: d => formatMetricTooltip(d.raw, config),
             labelPointStyle: () => ({ pointStyle: 'rect' }),
             title: (data) => {
                 if (data.length) {

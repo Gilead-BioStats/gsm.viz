@@ -10,7 +10,7 @@ export default function tooltip(config) {
         callbacks: {
             //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
-                const content = formatResultTooltipContent(config, d);
+                const content = formatResultTooltipContent(d, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;
