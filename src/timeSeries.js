@@ -24,38 +24,44 @@ import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs.js';
  * Generate a time series.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID per snapshot date
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
- * @param {Array} _intervals_ - optional auxiliary data of confidence intervals
- * @param {Array} _sites_ - optional site metadata
+ * @param {Array} _thresholds_ - optional threshold annotation values
+ * @param {Array} _intervals_ - optional auxiliary data with confidence intervals
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  * @returns {Object} Chart.js chart object
  */
 export default function timeSeries(
     _element_,
-    _data_,
+    _results_,
     _config_ = {},
     _thresholds_ = [],
     _intervals_ = null,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_data_, _config_, _thresholds_, _intervals_, _sites_);
+    checkInputs(
+        _results_,
+        _config_,
+        _thresholds_,
+        _intervals_,
+        _groupMetadata_
+    );
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _data_, _thresholds_, _intervals_);
+    const config = configure(_config_, _results_, _thresholds_, _intervals_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
     const datasets = structureData(
-        _data_,
+        _results_,
         config,
         _thresholds_,
         _intervals_,
-        _sites_
+        _groupMetadata_
     );
 
     // Configure Chart.js options.
@@ -66,7 +72,7 @@ export default function timeSeries(
         onHover,
         plugins: getPlugins(config),
         responsive: true,
-        scales: getScales(config, _data_),
+        scales: getScales(config, _results_),
     };
 
     // Instantiate Chart.js chart object.
@@ -77,11 +83,11 @@ export default function timeSeries(
             config,
 
             // inputs
-            _data_,
+            _results_,
             _config_,
             _thresholds_,
             _intervals_,
-            _sites_,
+            _groupMetadata_,
         },
         options,
         plugins: [displayWhiteBackground()],

@@ -1,7 +1,8 @@
 import { format } from 'd3';
 import falsy from './falsy.js';
+import formatMetricTooltipLabel from './formatMetricTooltipLabel.js';
 
-export default function formatResultTooltipContent(config, data) {
+export default function formatResultTooltipContent(data, config) {
     const datum = data.dataset.data[data.dataIndex];
 
     let content;
@@ -11,7 +12,7 @@ export default function formatResultTooltipContent(config, data) {
         config.dataType !== 'discrete'
     ) {
         content =
-            config.Group === 'Study'
+            config.GroupLevel === 'Study'
                 ? [
                       `${config.yLabel}: ${
                           falsy.includes(datum.Metric)
@@ -26,22 +27,7 @@ export default function formatResultTooltipContent(config, data) {
                           datum.Denominator
                       )}`,
                   ]
-                : [
-                      `Metric Score: ${
-                          falsy.includes(datum.Score)
-                              ? '—'
-                              : format('.1f')(datum.Score)
-                      } (${config.Score})`,
-                      `Metric Value: ${
-                          falsy.includes(datum.Metric)
-                              ? '—'
-                              : format('.3f')(datum.Metric)
-                      } (${config.Metric})`,
-                      `${config.Numerator}: ${format(',')(datum.Numerator)}`,
-                      `${config.Denominator}: ${format(',')(
-                          datum.Denominator
-                      )}`,
-                  ];
+                : formatMetricTooltipLabel(datum, config);
     }
     // Handle distribution data.
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {
@@ -73,7 +59,7 @@ export default function formatResultTooltipContent(config, data) {
                           (d) =>
                               `${d[config.y]} ${config.yLabel}: ${d.n}/${
                                   d.N
-                              } (${d.pct}%) ${config.Group}s`
+                              } (${d.pct}%) ${config.GroupLevel}s`
                       ),
                   ]
                 : data.dataset.purpose === 'aggregate' &&

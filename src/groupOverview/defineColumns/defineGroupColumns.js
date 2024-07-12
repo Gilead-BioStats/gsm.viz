@@ -1,5 +1,6 @@
 import sortString from './sortString';
 import sortNumber from './sortNumber';
+import defineGroupTooltip from './defineGroupTooltip';
 
 export default function defineGroupColumns(groups) {
     const columns = [
@@ -16,22 +17,10 @@ export default function defineGroupColumns(groups) {
             dataType: 'string',
         },
         {
-            label: 'ID',
-            data: groups,
-            filterKey: 'GroupID',
-            valueKey: 'GroupID',
-
-            headerTooltip: null,
-            sort: sortString,
-            tooltip: true,
-            type: 'group',
-            dataType: 'string',
-        },
-        {
             label: 'Enrolled',
             data: groups,
             filterKey: 'GroupID',
-            valueKey: 'EnrolledParticipants',
+            valueKey: 'ParticipantCount',
 
             headerTooltip: null,
             sort: sortNumber,
@@ -64,6 +53,10 @@ export default function defineGroupColumns(groups) {
             dataType: 'number',
         },
     ];
+
+    columns.forEach((column) => {
+        column.defineTooltip = defineGroupTooltip;
+    });
 
     return columns;
 }

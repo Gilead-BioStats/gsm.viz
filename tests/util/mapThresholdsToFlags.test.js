@@ -1,4 +1,4 @@
-import mapThresholdsToFlags from '../../src/util/mapThresholdsToFlags';
+import mapThresholdsToFlags from '../../src/util/mapThresholdsToFlags.js';
 
 describe('map thresholds to flags', () => {
     test('same number of flags returned as number of thresholds', () => {

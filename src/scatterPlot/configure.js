@@ -3,15 +3,21 @@ import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
 import coalesce from '../util/coalesce.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_) {
+export default function configure(_config_, _results_) {
     const defaults = {};
+
+    defaults.GroupLevel = 'Site';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
 
     // horizontal
     defaults.x = 'Denominator';
+    defaults[defaults.x] = defaults.x;
     defaults.xType = 'logarithmic';
 
     // vertical
     defaults.y = 'Numerator';
+    defaults[defaults.y] = defaults.y;
     defaults.yType = 'linear';
 
     // color
@@ -33,7 +39,7 @@ export default function configure(_config_, _data_) {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
             _config_.selectedGroupIDs,
-            _data_
+            _results_
         ),
     });
 

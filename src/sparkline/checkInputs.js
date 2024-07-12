@@ -13,7 +13,7 @@ export default function checkInputs(_data_, _config_, _thresholds_) {
     checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
-        schemaName: 'analysisMetadata',
+        schemaName: 'metricMetadata',
         module: 'sparkline',
     });
 

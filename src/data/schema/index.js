@@ -1,4 +1,4 @@
-import analysisMetadata from './analysisMetadata.json';
+import metricMetadata from './metricMetadata.json';
 import groupMetadata from './groupMetadata.json';
 import flagCounts from './flagCounts.json';
 import results from './results.json';
@@ -9,7 +9,7 @@ import snapshotDate from './snapshotDate.json';
 import thresholds from './thresholds.json';
 
 const schema = {
-    analysisMetadata,
+    metricMetadata,
     groupMetadata,
     flagCounts,
     results,

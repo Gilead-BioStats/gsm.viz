@@ -1,8 +1,9 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatResultTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
-// TODO: figure out better approach to coincidental highlight and site aggregate distribution
+// TODO: figure out better approach to coincidental highlight and group aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -10,7 +11,7 @@ export default function tooltip(config) {
         callbacks: {
             //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
-                const content = formatResultTooltipContent(config, d);
+                const content = formatResultTooltipContent(d, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;
@@ -26,11 +27,11 @@ export default function tooltip(config) {
                 if (data.length) {
                     // distribution (boxplot, violin plot)
                     if (data[0].dataset.purpose === 'distribution') {
-                        return `${config.Group} Distribution on ${data[0].label}`;
+                        return `${config.GroupLevel} Distribution on ${data[0].label}`;
                     }
                     // aggregate (discrete Metric distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
-                        return `${config.Group} Summary on ${data[0].label}`;
+                        return `${config.GroupLevel} Summary on ${data[0].label}`;
                     }
                     // data point
                     else {
@@ -46,17 +47,11 @@ export default function tooltip(config) {
                             let title;
 
                             if (data.length === 1) {
-                                title = `${config.Group} ${
-                                    d.dataset.data[d.dataIndex].GroupID
-                                }`;
-
-                                if (d.raw.site !== undefined) {
-                                    title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
-                                }
+                                title = formatResultTooltipTitle(d.raw, config);
                             } else {
                                 title =
                                     i === 0
-                                        ? `${config.Group}s ${
+                                        ? `${config.GroupLevel}s ${
                                               d.dataset.data[d.dataIndex]
                                                   .GroupID
                                           }`

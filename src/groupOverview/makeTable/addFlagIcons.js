@@ -9,7 +9,7 @@ import doubleArrow from './icons/doubleArrow';
  * @returns {void}
  */
 export default function addFlagIcons(rows) {
-    const metricCells = rows.selectAll('td.metric').text('');
+    const metricCells = rows.selectAll('td.group-overview--metric').text('');
 
     metricCells.each(function (d) {
         const flag = parseInt(d.Flag);

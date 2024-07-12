@@ -11,7 +11,7 @@ export default function violin(data, config) {
         data: grouped.map((d) => d[1]),
         label: /Flag|at.risk/.test(config.y)
             ? `Distribution`
-            : `${config.Group} Distribution`,
+            : `${config.GroupLevel} Distribution`,
         purpose: 'distribution',
         type: 'violin',
     };

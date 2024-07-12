@@ -1,5 +1,6 @@
 import sortString from './sortString';
 import sortNumber from './sortNumber';
+import defineMetricTooltip from './defineMetricTooltip';
 
 export default function defineMetricColumns(metrics, results) {
     const metricColumns = metrics.map((metric) => {
@@ -12,6 +13,7 @@ export default function defineMetricColumns(metrics, results) {
             headerTooltip: metric.Metric,
             sort: sortNumber,
             tooltip: true,
+            defineTooltip: defineMetricTooltip,
             type: 'metric',
             dataType: 'number',
 

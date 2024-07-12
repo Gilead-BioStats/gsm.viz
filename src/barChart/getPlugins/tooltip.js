@@ -1,4 +1,5 @@
-import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel.js';
+import formatMetricTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 export default function tooltip(config) {
@@ -7,15 +8,13 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            label: formatResultTooltipContent.bind(null, config),
+            label: (d) => formatMetricTooltipLabel(d.raw, config),
             labelPointStyle: () => ({ pointStyle: 'rect' }),
             title: (data) => {
                 if (data.length) {
                     const datum = data[0].dataset.data[data[0].dataIndex];
 
-                    return datum.site !== undefined
-                        ? `${config.Group} ${datum.GroupID} (${datum.site.pi_last_name} / ${datum.site.enrolled_participants} enrolled)`
-                        : `${config.Group} ${datum.GroupID}`;
+                    return formatMetricTooltipTitle(datum, config);
                 }
             },
         },

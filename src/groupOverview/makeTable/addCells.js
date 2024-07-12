@@ -23,7 +23,7 @@ export default function addCells(bodyRows) {
         .join('td')
         .text((d) => (d.text === 'NA' ? '-' : d.text))
         .attr('class', (d) => d.class)
-        .classed('tooltip', (d) => d.tooltip)
+        .classed('group-overview--tooltip', (d) => d.tooltip)
         .attr('title', (d) => (d.tooltip ? d.tooltipContent : null));
 
     return cells;

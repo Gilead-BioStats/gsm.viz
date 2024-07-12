@@ -8,7 +8,7 @@ import colorScheme from '../../util/colorScheme.js';
  * @returns {void}
  */
 export default function addTrafficLighting(rows) {
-    const metricCells = rows.selectAll('td.metric');
+    const metricCells = rows.selectAll('td.group-overview--metric');
 
     metricCells.style('background-color', function (d, i) {
         switch (Math.abs(parseInt(d.Flag))) {

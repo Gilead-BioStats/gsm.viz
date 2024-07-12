@@ -1,5 +1,5 @@
 // Add event listener to chart lifecycle button.
-const lifecycle = function (datasets, chartFunction, setup = false) {
+const lifecycle = function (datasets, setup = false) {
     let instance = getChart();
     const lifecycleButton = document.getElementById('lifecycle');
 
@@ -28,6 +28,7 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
         const bounds = datasets[2].filter(
             (d) => d.MetricID === config.MetricID
         );
+        config.displayTitle = instance.data.config.displayTitle;
         config.xType = xAxisType();
         config.selectedGroupIDs = [group()];
 
@@ -35,7 +36,8 @@ const lifecycle = function (datasets, chartFunction, setup = false) {
             document.getElementById('container'),
             results,
             config,
-            bounds
+            bounds,
+            datasets[3]
         );
 
         lifecycleButton.innerHTML = '<strong>KILL</strong>';

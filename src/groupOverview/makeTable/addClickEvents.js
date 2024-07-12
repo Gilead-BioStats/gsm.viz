@@ -9,19 +9,21 @@
  */
 export default function addClickEvents(bodyRows, cells, config) {
     // add click event to Metric cells
-    cells.filter('.metric').on('click', function (event, d) {
+    cells.filter('.group-overview--metric').on('click', function (event, d) {
         config.metricClickCallback({
             GroupLevel: config.GroupLevel,
             GroupID: d.GroupID,
             MetricID: d.MetricID,
+            data: d,
         });
     });
 
     // add click event to group cells
-    cells.filter('.group').on('click', function (event, d) {
+    cells.filter('.group-overview--group').on('click', function (event, d) {
         config.groupClickCallback({
             GroupLevel: config.GroupLevel,
             GroupID: d.GroupID,
+            data: d,
         });
     });
 }

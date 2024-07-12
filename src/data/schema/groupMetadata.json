@@ -6,11 +6,11 @@
     "items": {
         "type": "object",
         "properties": {
-            "StudyID": {
-                "title": "Study ID",
-                "description": "Unique study identifier",
+            "GroupLevel": {
+                "title": "Grouping Variable",
+                "description": "Grouping variable of analysis, one of Site, Country, or Study",
                 "type": "string",
-                "required": false,
+                "required": true,
                 "key": true
             },
             "GroupID": {
@@ -20,32 +20,18 @@
                 "required": true,
                 "key": true
             },
-            "GroupLabel": {
-                "title": "Group Label",
-                "description": "Label of group",
+            "Param": {
+                "title": "Group Attribute Name",
+                "description": "Name of group attribute",
                 "type": "string",
                 "required": true,
-                "key": false
+                "key": true
             },
-            "EnrolledParticipants": {
-                "title": "Enrolled Participants",
-                "description": "Number of participants enrolled at group",
-                "type": "number",
-                "required": true,
-                "key": false
-            },
-            "Status": {
-                "title": "Group Status",
-                "description": "Status of group",
+            "Value": {
+                "title": "Group Attribute Value",
+                "description": "Value of group attribute",
                 "type": "string",
                 "required": true,
-                "key": false
-            },
-            "SnapshotDate": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
-                "type": "string",
-                "required": false,
                 "key": false
             }
         }

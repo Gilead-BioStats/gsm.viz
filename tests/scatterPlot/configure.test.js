@@ -1,16 +1,20 @@
-import results from '../../examples/data/results_summary.json';
-import metrics from '../../examples/data/meta_workflow.json';
-import bounds from '../../examples/data/results_bounds.json';
+import results from '../../examples/data/results.json';
+import metricMetadata from '../../examples/data/metricMetadata.json';
+import resultsPredicted from '../../examples/data/resultsPredicted.json';
 
-import configure from '../../src/scatterPlot/configure';
+import configure from '../../src/scatterPlot/configure.js';
 
 const MetricID = 'kri0001';
 const resultsSubset = results.filter((d) => d.MetricID === MetricID);
-const metricMetadata = metrics.find((metric) => metric.MetricID === MetricID);
-const boundsSubset = bounds.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
+);
+const resultsPredictedSubset = resultsPredicted.filter(
+    (d) => d.MetricID === MetricID
+);
 
 describe('configuration', () => {
-    const config = configure(metricMetadata, resultsSubset);
+    const config = configure(metricMetadatum, resultsSubset);
 
     test('configure() accepts metric metadata object and returns config object', () => {
         const settings = Object.keys(config).sort();
@@ -19,8 +23,7 @@ describe('configuration', () => {
             [
                 // metric metadata
                 'MetricID',
-                'gsm_version',
-                'Group',
+                'GroupLevel',
                 'Abbreviation',
                 'Metric',
                 'Numerator',
@@ -29,11 +32,12 @@ describe('configuration', () => {
                 'Model',
                 'Score',
                 'Thresholds',
-                'data_inputs',
-                'data_filters',
                 'SnapshotDate',
 
                 // scatter plot settings
+                'groupLabelKey',
+                'groupParticipantCountKey',
+
                 'x',
                 'xType',
                 'xLabel',

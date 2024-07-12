@@ -5,6 +5,7 @@ import Chart from 'chart.js/auto';
 import checkInputs from './scatterPlot/checkInputs.js';
 import configure from './scatterPlot/configure.js';
 import addCanvas from './util/addCanvas.js';
+import structureGroupMetadata from './util/structureGroupMetadata.js';
 import structureData from './scatterPlot/structureData.js';
 
 // Chart.js options
@@ -26,31 +27,36 @@ import triggerTooltip from './util/triggerTooltip.js';
  * Generate a scatter plot.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _bounds_ - optional auxiliary data of predicted analysis output
- * @param {Array} _sites_ - optional site metadata
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  * @returns {Object} Chart.js chart object
  */
 export default function scatterPlot(
     _element_ = 'body',
-    _data_ = [],
+    _results_ = [],
     _config_ = {},
     _bounds_ = null,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_data_, _config_, _bounds_, _sites_);
+    checkInputs(_results_, _config_, _bounds_, _groupMetadata_);
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _data_);
+    const config = configure(_config_, _results_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config, _bounds_, _sites_);
+    const datasets = structureData(
+        _results_,
+        config,
+        _bounds_,
+        _groupMetadata_
+    );
 
     // Configure Chart.js options.
     const options = {
@@ -69,7 +75,7 @@ export default function scatterPlot(
             config,
 
             // inputs
-            _data_,
+            _results_,
             _config_,
             _bounds_,
         },

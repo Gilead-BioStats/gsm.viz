@@ -1,7 +1,7 @@
 import sites from '../../examples/data/status_site.json';
 import schema from '../../src/data/schema/siteMetadata.json';
-import checkInput from '../../src/data/checkInput';
-import getType from '../../src/data/checkInput/getType';
+import checkInput from '../../src/data/checkInput.js';
+import getType from '../../src/data/checkInput/getType.js';
 
 describe('sites schema', () => {
     test('sites schema type matches data type of sites', () => {

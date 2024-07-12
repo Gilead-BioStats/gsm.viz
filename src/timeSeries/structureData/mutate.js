@@ -3,29 +3,28 @@ import getLabels from './getLabels.js';
 import identifyDuplicatePoints from '../../util/identifyDuplicatePoints.js';
 
 export default function mutate(
-    _data_,
+    _results_,
     config,
     _thresholds_,
     _intervals_,
-    _sites_ = null
+    groupMetadata = null
 ) {
-    const data = _data_
+    const results = _results_
         .map((d) => {
             const datum = { ...d };
 
-            if (_sites_ !== null) {
-                let site = _sites_.filter((site) => site.SiteID === d.GroupID);
+            // attach group metadata to results
+            if (groupMetadata !== null) {
+                const group = groupMetadata.get(d.GroupID);
 
-                if (site.length > 1) {
-                    site = site.find(
-                        (site) => site.SnapshotDate === datum.SnapshotDate
-                    );
-                } else {
-                    site = site[0];
-                }
-
-                if (site !== undefined) {
-                    datum.site = site;
+                // TODO: support longitudinal group metadata
+                if (group !== undefined) {
+                    datum.group = group;
+                    datum.group.groupLabel = datum.group.hasOwnProperty(
+                        config.groupLabelKey
+                    )
+                        ? datum.group[config.groupLabelKey]
+                        : datum.GroupID;
                 }
             }
 
@@ -46,7 +45,7 @@ export default function mutate(
         })
         .sort((a, b) => ascending(a[config.x], b[config.x]));
 
-    const labels = getLabels(data, config);
+    const labels = getLabels(results, config);
 
     let thresholds = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
@@ -64,10 +63,10 @@ export default function mutate(
             .sort((a, b) => ascending(a[config.x], b[config.x]));
     }
 
-    identifyDuplicatePoints(data, config);
+    identifyDuplicatePoints(results, config);
 
     return {
-        data,
+        results,
         labels,
         thresholds,
         intervals,

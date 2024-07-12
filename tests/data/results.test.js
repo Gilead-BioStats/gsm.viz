@@ -1,7 +1,7 @@
-import results from '../../examples/data/results_summary.json';
+import results from '../../examples/data/results.json';
 import schema from '../../src/data/schema/results.json';
-import checkInput from '../../src/data/checkInput';
-import getType from '../../src/data/checkInput/getType';
+import checkInput from '../../src/data/checkInput.js';
+import getType from '../../src/data/checkInput/getType.js';
 
 describe('analysis results schema', () => {
     test('analysis results schema type matches data type of analysis results', () => {

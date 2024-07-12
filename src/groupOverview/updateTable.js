@@ -13,16 +13,24 @@ import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
 export default function updateTable(_results_) {
-    const groups = deriveGroupMetrics(this._groups_, _results_);
-    const columns = defineColumns(groups, this._metrics_, _results_);
-    const rows = structureData(_results_, columns, groups);
+    const groupMetadata = deriveGroupMetrics(
+        this._groupMetadata_,
+        _results_,
+        this.config
+    );
+    const columns = defineColumns(
+        groupMetadata,
+        this._metricMetadata_,
+        _results_
+    );
+    const rows = structureData(_results_, columns, groupMetadata, this.config);
 
     // create table
     const tbody = this.table.select('tbody');
     const bodyRows = addBodyRows(tbody, rows);
     const cells = addCells(bodyRows);
 
-    // identify inactive groups
+    // identify inactive groupMetadata
     //identifyInactivegroups(bodyRows);
 
     // add traffic light coloring to cells

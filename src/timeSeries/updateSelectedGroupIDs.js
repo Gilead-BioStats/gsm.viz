@@ -10,11 +10,11 @@ import structureData from './structureData.js';
 export default function updateSelectedGroupIDs(selectedGroupIDs) {
     this.data.config.selectedGroupIDs = [selectedGroupIDs];
     this.data.datasets = structureData(
-        this.data._data_,
+        this.data._results_,
         this.data.config,
         this.data._thresholds_,
         null,
-        this.data._sites_
+        this.data._groupMetadata_
     );
     this.update();
 }

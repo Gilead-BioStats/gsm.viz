@@ -1,0 +1,84 @@
+{
+    "title": "Metric Metadata",
+    "description": "JSON schema of metric metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    "version": "0.14.0",
+    "type": "object",
+    "properties": {
+        "MetricID": {
+            "title": "Metric ID",
+            "description": "Unique metric identifier",
+            "type": "string",
+            "required": false
+        },
+        "GroupLevel": {
+            "title": "Grouping Variable",
+            "description": "Grouping variable of metric, one of 'Site', 'Country', or 'Study'",
+            "type": "string",
+            "required": false
+        },
+        "Numerator": {
+            "title": "Metric Numerator",
+            "description": "Unit of metric numerator",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Denominator": {
+            "title": "Metric Denominator",
+            "description": "Unit of metric denominator",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Metric": {
+            "title": "Metric Description",
+            "description": "Description of metric",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Outcome": {
+            "title": "Metric Type",
+            "description": "Type of metric",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Score": {
+            "title": "Metric Score",
+            "description": "Analysis method of metric",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Thresholds": {
+            "title": "Thresholds",
+            "description": "Thresholds with which to flag scores",
+
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Model": {
+            "title": "Metric Score Method",
+            "description": "Statistical model used to evaluate Metric",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "Abbreviation": {
+            "title": "Abbreviation",
+            "description": "Metric Abbreviation",
+            "type": "string",
+            "required": false,
+            "key": false
+        },
+        "SnapshotDate": {
+            "title": "Snapshot Date",
+            "description": "Date of data refresh",
+            "type": "string",
+            "required": false,
+            "key": false
+        }
+    }
+}

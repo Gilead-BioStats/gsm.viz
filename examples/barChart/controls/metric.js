@@ -5,7 +5,28 @@ const metric = function (datasets, setup = false, initialValue = null) {
     if (setup === true) {
         const metrics = [
             ...new Set(datasets[1].map((d) => d.MetricID)).values(),
-        ];
+        ].sort((a, b) => {
+            // sort kri then cou then qtl
+            if (a.startsWith('kri') && b.startsWith('cou')) {
+                return -1;
+            }
+            if (a.startsWith('cou') && b.startsWith('kri')) {
+                return 1;
+            }
+            if (a.startsWith('kri') && b.startsWith('qtl')) {
+                return -1;
+            }
+            if (a.startsWith('qtl') && b.startsWith('kri')) {
+                return 1;
+            }
+            if (a.startsWith('cou') && b.startsWith('qtl')) {
+                return -1;
+            }
+            if (a.startsWith('qtl') && b.startsWith('cou')) {
+                return 1;
+            }
+            return a.localeCompare(b);
+        });
 
         for (const i in metrics) {
             const option = document.createElement('option');
@@ -21,6 +42,7 @@ const metric = function (datasets, setup = false, initialValue = null) {
 
             // chart configuration
             const config = selectMetricID(datasets[1], event.target.value);
+            config.displayTitle = true;
             config.y = yAxis();
             config.selectedGroupIDs = group();
 

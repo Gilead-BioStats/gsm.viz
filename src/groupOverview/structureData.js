@@ -2,7 +2,7 @@ import { group } from 'd3';
 
 import sortByFlags from './structureData/sortByFlags';
 
-export default function structureData(results, columns, groups) {
+export default function structureData(results, columns, groups, config) {
     const lookup = group(
         results,
         (d) => d.GroupID,
@@ -28,9 +28,13 @@ export default function structureData(results, columns, groups) {
                 column.type === 'metric'
                     ? Math.abs(parseFloat(datum.value))
                     : datum.value;
-            datum.class = [column.type, column.valueKey].join(' ');
+            datum.class = [
+                `group-overview--${column.type}`,
+                `group-overview--${column.dataType}`,
+                `group-overview--${column.valueKey}`,
+            ].join(' ');
             datum.tooltip = column.tooltip;
-            datum.tooltipContent = column.defineTooltip(column, datum);
+            datum.tooltipContent = column.defineTooltip(column, datum, config);
 
             return datum;
         });

@@ -4,8 +4,12 @@ import checkThresholds from '../util/checkThresholds.js';
 import coalesce from '../util/coalesce.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _results_, _thresholds_) {
     const defaults = {};
+
+    defaults.GroupLevel = 'Site';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
 
     // horizontal
     defaults.x = 'GroupID';
@@ -32,7 +36,7 @@ export default function configure(_config_, _data_, _thresholds_) {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
             _config_.selectedGroupIDs,
-            _data_
+            _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });

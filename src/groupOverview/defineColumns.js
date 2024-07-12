@@ -1,6 +1,7 @@
 import defineGroupColumns from './defineColumns/defineGroupColumns.js';
 import defineMetricColumns from './defineColumns/defineMetricColumns.js';
-import defineTooltip from './defineColumns/defineTooltip.js';
+import defineGroupTooltip from './defineColumns/defineGroupTooltip.js';
+import defineMetricTooltip from './defineColumns/defineMetricTooltip.js';
 
 /**
  * Define column metadata for group overview table. Column metadata includes the following properties:
@@ -25,7 +26,6 @@ export default function defineColumns(groups, metrics, results) {
         column.getDatum = (key) =>
             column.data.find((d) => d[column.filterKey] === key);
         column.index = i;
-        column.defineTooltip = defineTooltip;
         column.sortState = column.dataType === 'string' ? 0 : 1;
         column.activeSort = false;
     });
