@@ -34,7 +34,11 @@ export default function groupOverview(
     // Merge custom settings with default settings.
     const config = configure(_config_);
 
-    const groupMetadata = deriveGroupMetrics(_groupMetadata_, _results_, config);
+    const groupMetadata = deriveGroupMetrics(
+        _groupMetadata_,
+        _results_,
+        config
+    );
     const columns = defineColumns(groupMetadata, _metricMetadata_, _results_);
     const rows = structureData(_results_, columns, groupMetadata, config);
     const table = makeTable(_element_, rows, columns, config);

@@ -20,7 +20,10 @@ export default function annotations(config) {
                 borderDash: [2],
             };
 
-            if (config.annotateThreshold === true && config.GroupLevel === 'Study') {
+            if (
+                config.annotateThreshold === true &&
+                config.GroupLevel === 'Study'
+            ) {
                 annotation.label = {
                     rotation: 'auto',
                     position: Math.sign(+x.Flag) >= 0 ? 'end' : 'start',

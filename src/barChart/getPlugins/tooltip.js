@@ -8,7 +8,7 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            label: d => formatMetricTooltipLabel(d.raw, config),
+            label: (d) => formatMetricTooltipLabel(d.raw, config),
             labelPointStyle: () => ({ pointStyle: 'rect' }),
             title: (data) => {
                 if (data.length) {

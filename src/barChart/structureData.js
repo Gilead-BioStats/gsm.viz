@@ -13,7 +13,11 @@ import colorScheme from '../util/colorScheme.js';
  *
  * @returns {Array} data formatted for consumption by Chart.js
  */
-export default function structureData(_results_, config, _groupMetadata_ = null) {
+export default function structureData(
+    _results_,
+    config,
+    _groupMetadata_ = null
+) {
     const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
 
     // Modify properties and sort order of data.

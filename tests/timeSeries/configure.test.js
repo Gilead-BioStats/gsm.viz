@@ -5,8 +5,10 @@ import configure from '../../src/timeSeries/configure.js';
 
 const MetricID = 'kri0001';
 const resultsSubset = results.filter((d) => d.MetricID === MetricID);
-const metricMetadatum = metricMetadata.find((metric) => metric.MetricID === MetricID);
-const thresholds = metricMetadatum.Thresholds.split(',').map(d => +d);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
+);
+const thresholds = metricMetadatum.Thresholds.split(',').map((d) => +d);
 
 describe('configuration', () => {
     const config = configure(metricMetadatum, resultsSubset, thresholds);

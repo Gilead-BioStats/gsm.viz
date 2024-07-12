@@ -9,9 +9,11 @@ export default function mutate(_results_, config, groupMetadata = null) {
 
                 if (group !== undefined) {
                     d.group = group;
-                    d.group.groupLabel = d.group.hasOwnProperty(config.groupLabelKey)
+                    d.group.groupLabel = d.group.hasOwnProperty(
+                        config.groupLabelKey
+                    )
                         ? d.group[config.groupLabelKey]
-                        : d.GroupID
+                        : d.GroupID;
                 }
             }
 

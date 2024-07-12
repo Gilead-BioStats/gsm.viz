@@ -24,12 +24,14 @@ Promise.all(dataPromises)
 
         const regex = new RegExp(`^${metricPrefix}`);
 
-        const SnapshotDate = d3.max(datasets[0], d => d.SnapshotDate);
+        const SnapshotDate = d3.max(datasets[0], (d) => d.SnapshotDate);
         datasets[0] = datasets[0].filter(
-            d => d.SnapshotDate === SnapshotDate
+            (d) => d.SnapshotDate === SnapshotDate
         );
         const results = datasets[0].filter((d) => regex.test(d.MetricID));
-        const metricMetadata = datasets[1].filter((d) => regex.test(d.MetricID));
+        const metricMetadata = datasets[1].filter((d) =>
+            regex.test(d.MetricID)
+        );
         const groupMetadata = datasets[2];
         const groupSubset = getGroups(results);
 
@@ -76,7 +78,7 @@ Promise.all(dataPromises)
             results.filter((d) => groupSubset.includes(d.GroupID)),
             {
                 GroupLevel,
-                groupLabelKey: groupLabelKey[ GroupLevel ],
+                groupLabelKey: groupLabelKey[GroupLevel],
                 //groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
                 groupClickCallback: function (datum) {
                     console.log(datum.data.tooltipContent);

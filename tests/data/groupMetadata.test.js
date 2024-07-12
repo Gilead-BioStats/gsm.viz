@@ -14,13 +14,15 @@ describe('group metadata schema', () => {
     });
 
     test('type of group metadata schema items matches data type of group metadata items', () => {
-        const group = groupMetadata[Math.floor(groupMetadata.length * Math.random())];
+        const group =
+            groupMetadata[Math.floor(groupMetadata.length * Math.random())];
 
         expect(typeof group).toBe(schema.items.type);
     });
 
     test('properties of group metadata schema items match properties of group metadata items', () => {
-        const group = groupMetadata[Math.floor(groupMetadata.length * Math.random())];
+        const group =
+            groupMetadata[Math.floor(groupMetadata.length * Math.random())];
         const propsSchema = Object.keys(schema.items.properties).sort();
         const propsResult = Object.keys(group)
             .sort()

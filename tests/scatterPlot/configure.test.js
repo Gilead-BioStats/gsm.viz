@@ -6,8 +6,12 @@ import configure from '../../src/scatterPlot/configure.js';
 
 const MetricID = 'kri0001';
 const resultsSubset = results.filter((d) => d.MetricID === MetricID);
-const metricMetadatum = metricMetadata.find((metric) => metric.MetricID === MetricID);
-const resultsPredictedSubset = resultsPredicted.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
+);
+const resultsPredictedSubset = resultsPredicted.filter(
+    (d) => d.MetricID === MetricID
+);
 
 describe('configuration', () => {
     const config = configure(metricMetadatum, resultsSubset);

@@ -11,12 +11,23 @@ import triggerTooltip from '../util/triggerTooltip.js';
  * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
  *
  */
-export default function updateData(chart, _results_, _config_, _bounds_, _groupMetadata_) {
+export default function updateData(
+    chart,
+    _results_,
+    _config_,
+    _bounds_,
+    _groupMetadata_
+) {
     // Update chart configuration.
     const config = updateConfig(chart, _config_, false, false);
 
     // Update chart data.
-    const datasets = structureData(_results_, config, _bounds_, _groupMetadata_);
+    const datasets = structureData(
+        _results_,
+        config,
+        _bounds_,
+        _groupMetadata_
+    );
 
     // Update chart.
     chart.data.config = config;

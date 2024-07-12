@@ -22,15 +22,12 @@
 /* Group Overview */
 /* ---------------------------------------------------------------------------------------------- */
 
-
 .group-overview {
     border-collapse: separate;
     border-spacing: 0.1em;
 }
 
-
-.group-overview th
-.group-overview td {
+.group-overview th .group-overview td {
     text-align: center;
 }
 
@@ -44,7 +41,7 @@
 }
 
 .group-overview th.group-overview--metric {
-    font-size: .8em;
+    font-size: 0.8em;
 }
 
 .group-overview th.group-overview--tooltip,
@@ -68,4 +65,3 @@
 .group-overview td.group-overview--nAmberFlags {
     background-color: #ffcc99;
 }
-

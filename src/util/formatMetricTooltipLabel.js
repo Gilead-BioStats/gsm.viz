@@ -17,16 +17,13 @@ export default function formatMetricTooltipLabel(result, metricMetadata) {
 
             if (Number.isInteger(value)) {
                 // format integer with commas
-                value = value
-                    .toString()
-                    .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+                value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             } else {
                 // round float to two decimal places
                 value = value.toFixed(2).toString();
             }
 
-            if (falsy.includes(value))
-                value = '—';
+            if (falsy.includes(value)) value = '—';
 
             tooltipLabel.push(`${label}: ${value}`);
         }

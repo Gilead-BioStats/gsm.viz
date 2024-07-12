@@ -13,8 +13,16 @@ import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
 
 export default function updateTable(_results_) {
-    const groupMetadata = deriveGroupMetrics(this._groupMetadata_, _results_, this.config);
-    const columns = defineColumns(groupMetadata, this._metricMetadata_, _results_);
+    const groupMetadata = deriveGroupMetrics(
+        this._groupMetadata_,
+        _results_,
+        this.config
+    );
+    const columns = defineColumns(
+        groupMetadata,
+        this._metricMetadata_,
+        _results_
+    );
     const rows = structureData(_results_, columns, groupMetadata, this.config);
 
     // create table

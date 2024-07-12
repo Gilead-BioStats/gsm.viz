@@ -41,7 +41,13 @@ export default function timeSeries(
     _groupMetadata_ = null
 ) {
     // Check input data against data schema.
-    checkInputs(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_);
+    checkInputs(
+        _results_,
+        _config_,
+        _thresholds_,
+        _intervals_,
+        _groupMetadata_
+    );
 
     // Merge custom settings with default settings.
     const config = configure(_config_, _results_, _thresholds_, _intervals_);

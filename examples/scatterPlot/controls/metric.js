@@ -6,7 +6,7 @@ const metric = function (datasets, setup = false, initialValue = null) {
     if (setup === true) {
         const metrics = [
             ...new Set(datasets[0].map((d) => d.MetricID)).values(),
-        ].sort((a,b) => {
+        ].sort((a, b) => {
             // sort kri then cou then qtl
             if (a.startsWith('kri') && b.startsWith('cou')) {
                 return -1;
@@ -42,22 +42,14 @@ const metric = function (datasets, setup = false, initialValue = null) {
 
             const results = filterOnMetricID(datasets[0], event.target.value);
 
-            const groupIDs = [
-                ...new Set(
-                    results
-                        .map((d) => d.GroupID)
-                )
-            ].sort(
+            const groupIDs = [...new Set(results.map((d) => d.GroupID))].sort(
                 d3.ascending
             );
 
             // Update options in dropdown.
             d3.select(groupDropdown)
                 .selectAll('option')
-                .data(
-                    ['None', ...groupIDs],
-                    d => d
-                )
+                .data(['None', ...groupIDs], (d) => d)
                 .join('option')
                 .attr('value', (d) => d)
                 .text((d) => d);

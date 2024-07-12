@@ -13,22 +13,30 @@ import { ascending } from 'd3';
 export default function deriveGroupMetrics(_groupMetadata_, _results_, config) {
     const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
 
-    const missingGroups = [...new Set(
-        _results_
-            .map((result) => result.GroupID)
-            .filter((GroupID) =>
-                ![...groupMetadata.keys()].find((group) => group === GroupID)
-            )
-            .sort(ascending)
-    )];
+    const missingGroups = [
+        ...new Set(
+            _results_
+                .map((result) => result.GroupID)
+                .filter(
+                    (GroupID) =>
+                        ![...groupMetadata.keys()].find(
+                            (group) => group === GroupID
+                        )
+                )
+                .sort(ascending)
+        ),
+    ];
 
-    missingGroups.forEach(group => {
+    missingGroups.forEach((group) => {
         // add missing groups to groupMetadata
         groupMetadata.set(group, { GroupID: group });
     });
 
-    const groups = Array.from(groupMetadata)
-        .map(([key, value]) => ({GroupLevel: config.GroupLevel, GroupID: key, ...value}));
+    const groups = Array.from(groupMetadata).map(([key, value]) => ({
+        GroupLevel: config.GroupLevel,
+        GroupID: key,
+        ...value,
+    }));
 
     groups.forEach((group) => {
         group.GroupLabel = group.hasOwnProperty(config.groupLabelKey)

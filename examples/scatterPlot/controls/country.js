@@ -13,9 +13,11 @@ const country = function (datasets, setup = false) {
         const countries = [
             ...new Set(
                 datasets[3]
-                    .filter((d) => d.GroupLevel === 'Site' && d.Param === 'Country')
+                    .filter(
+                        (d) => d.GroupLevel === 'Site' && d.Param === 'Country'
+                    )
                     .map((d) => d.Value)
-            )
+            ),
         ].sort((a, b) => a - b);
 
         for (const i in countries) {
@@ -31,7 +33,12 @@ const country = function (datasets, setup = false) {
             groupDropdown.value = 'None'; // reset group dropdown
             instance = getChart();
             instance.data.config.selectedGroupIDs = datasets[3]
-                .filter((d) => d.GroupLevel === 'Site' && d.Param === 'Country' && d.Value === event.target.value)
+                .filter(
+                    (d) =>
+                        d.GroupLevel === 'Site' &&
+                        d.Param === 'Country' &&
+                        d.Value === event.target.value
+                )
                 .map((d) => d.GroupID);
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);

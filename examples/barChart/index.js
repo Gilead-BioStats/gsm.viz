@@ -1,7 +1,7 @@
 const dataFiles = [
     '../data/results.csv',
     '../data/metricMetadata.csv',
-    '../data/groupMetadata.csv'
+    '../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -15,9 +15,9 @@ Promise.all(dataPromises)
         const MetricID = 'kri0001';
 
         // analysis results
-        const SnapshotDate = d3.max(datasets[0], d => d.SnapshotDate);
+        const SnapshotDate = d3.max(datasets[0], (d) => d.SnapshotDate);
         datasets[0] = datasets[0].filter(
-            d => d.SnapshotDate === SnapshotDate
+            (d) => d.SnapshotDate === SnapshotDate
         );
         const results = filterOnMetricID(datasets[0], MetricID);
 

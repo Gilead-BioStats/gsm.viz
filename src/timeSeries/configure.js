@@ -4,14 +4,19 @@ import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
 import checkThresholds from '../util/checkThresholds.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _results_, _thresholds_, _intervals_) {
+export default function configure(
+    _config_,
+    _results_,
+    _thresholds_,
+    _intervals_
+) {
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = 'InvestigatorLastName';
     defaults.groupParticipantCountKey = 'ParticipantCount';
 
-    defaults.dataType = 'continuous'
+    defaults.dataType = 'continuous';
     defaults.discreteUnit = null;
 
     defaults.distributionDisplay = 'boxplot';
@@ -61,9 +66,7 @@ export default function configure(_config_, _results_, _thresholds_, _intervals_
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
-    config.dataType = /flag|risk/.test(config.y)
-        ? 'discrete'
-        : 'continuous';
+    config.dataType = /flag|risk/.test(config.y) ? 'discrete' : 'continuous';
 
     if (defaults.dataType === 'discrete')
         config.discreteUnit = Object.keys(_results_[0]).includes('GroupID')

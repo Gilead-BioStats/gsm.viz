@@ -13,12 +13,13 @@ export default function structureGroupMetadata(groupMetadata, config) {
 
     const structuredGroupMetadata = rollup(
         groupMetadata,
-        group => group.reduce((acc, cur) => {
-            acc[cur.Param] = cur.Value;
-            return acc;
-        }, {}),
-        d => d.GroupLevel,
-        d => d.GroupID
+        (group) =>
+            group.reduce((acc, cur) => {
+                acc[cur.Param] = cur.Value;
+                return acc;
+            }, {}),
+        (d) => d.GroupLevel,
+        (d) => d.GroupID
     );
 
     const keys = Array.from(structuredGroupMetadata.keys());
@@ -32,4 +33,4 @@ export default function structureGroupMetadata(groupMetadata, config) {
 
         return null;
     }
-};
+}
