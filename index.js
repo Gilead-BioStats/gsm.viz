@@ -20092,8 +20092,8 @@ var rbmViz = (() => {
 
   // src/data/schema/metricMetadata.json
   var metricMetadata_default = {
-    title: "Metric Analysis Metadata",
-    description: "JSON schema of Metric analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    title: "Metric Metadata",
+    description: "JSON schema of metric metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
     version: "0.14.0",
     type: "object",
     properties: {
@@ -20105,7 +20105,7 @@ var rbmViz = (() => {
       },
       GroupLevel: {
         title: "Grouping Variable",
-        description: "Grouping variable of analysis, one of Site, Country, or Study",
+        description: "Grouping variable of metric, one of 'Site', 'Country', or 'Study'",
         type: "string",
         required: false
       },
