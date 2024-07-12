@@ -1,7 +1,6 @@
 [
 	{
 		"MetricID": "kri0001",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "AE",
 		"Metric": "Non-serious AE Reporting Rate",
@@ -11,13 +10,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-2,-1,2,3",
-		"data_inputs": "rawplus.ae, rawplus.dm",
-		"data_filters": "Non-Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0002",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "SAE",
 		"Metric": "SAE Reporting Rate",
@@ -27,13 +23,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-2,-1,2,3",
-		"data_inputs": "rawplus.ae, rawplus.dm",
-		"data_filters": "Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0003",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "PD",
 		"Metric": "Non-important PD Rate",
@@ -43,13 +36,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.pd, rawplus.dm",
-		"data_filters": "Non-Important",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0004",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "IPD",
 		"Metric": "Important PD Rate",
@@ -59,13 +49,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.pd, rawplus.dm",
-		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0005",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "LB",
 		"Metric": "G3+ Lab Abnormality Rate",
@@ -75,13 +62,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.lb, rawplus.dm",
-		"data_filters": "Treatment emergent, Grade >= 3",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0006",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "SDSC",
 		"Metric": "Study Discontinuation Rate",
@@ -91,13 +75,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.studcomp, rawplus.dm",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0007",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "TDSC",
 		"Metric": "Treatment Discontinuation Rate",
@@ -107,13 +88,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0008",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "QRY",
 		"Metric": "Query Rate",
@@ -123,13 +101,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0009",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "OQRY",
 		"Metric": "Outstanding Query Rate",
@@ -139,13 +114,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.queries",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0010",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "ODAT",
 		"Metric": "Outstanding Data Entry Rate",
@@ -155,13 +127,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.data_entry_lag",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0011",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "CDAT",
 		"Metric": "Data Change Rate",
@@ -171,13 +140,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.data_change_rate",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "kri0012",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Site",
 		"Abbreviation": "SF",
 		"Metric": "Screen Failure Rate",
@@ -187,13 +153,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.enroll",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0001",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "AE",
 		"Metric": "Non-serious AE Reporting Rate",
@@ -203,13 +166,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-2,-1,2,3",
-		"data_inputs": "rawplus.ae, rawplus.dm",
-		"data_filters": "Non-Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0002",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "SAE",
 		"Metric": "SAE Reporting Rate",
@@ -219,13 +179,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-2,-1,2,3",
-		"data_inputs": "rawplus.ae, rawplus.dm",
-		"data_filters": "Serious, TreatmentEmergent",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0003",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "PD",
 		"Metric": "Non-important PD Rate",
@@ -235,13 +192,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.pd, rawplus.dm",
-		"data_filters": "Non-Important",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0004",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "IPD",
 		"Metric": "Important PD Rate",
@@ -251,13 +205,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.pd, rawplus.dm",
-		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0005",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "LB",
 		"Metric": "G3 or Higher Lab Abnormality Rate",
@@ -267,13 +218,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.lb, rawplus.dm",
-		"data_filters": "Treatment emergent, Grade >= 3",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0006",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "SDSC",
 		"Metric": "Study Discontinuation Rate",
@@ -283,13 +231,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.studcomp, rawplus.dm",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0007",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "TDSC",
 		"Metric": "Treatment Discontinuation Rate",
@@ -299,13 +244,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.sdrgcomp, rawplus.dm",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0008",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "QRY",
 		"Metric": "Query Rate",
@@ -315,13 +257,10 @@
 		"Model": "Normal Approximation (Rate)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.queries, edc.data_change_rate",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0009",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "OQRY",
 		"Metric": "Outstanding Query Rate",
@@ -331,13 +270,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.queries",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0010",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "ODAT",
 		"Metric": "Outstanding Data Entry Rate",
@@ -347,13 +283,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.data_entry_lag",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0011",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "CDAT",
 		"Metric": "Data Change Rate",
@@ -363,13 +296,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.dm, edc.data_change_rate",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "cou0012",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Country",
 		"Abbreviation": "SF",
 		"Metric": "Screen Failure Rate",
@@ -379,13 +309,10 @@
 		"Model": "Normal Approximation (Percent)",
 		"Score": "Adjusted Z-Score",
 		"Thresholds": "-3,-2,2,3",
-		"data_inputs": "rawplus.enroll",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "qtl0004",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Study",
 		"Abbreviation": "IPD",
 		"Metric": "Important PD Rate",
@@ -395,13 +322,10 @@
 		"Model": "Poisson Test",
 		"Score": "Poisson Confidence Interval - Lower Bound",
 		"Thresholds": "0.01",
-		"data_inputs": "rawplus.pd, rawplus.dm",
-		"data_filters": "Important",
 		"SnapshotDate": "2023-01-05"
 	},
 	{
 		"MetricID": "qtl0006",
-		"gsm_version": "1.4.1",
 		"GroupLevel": "Study",
 		"Abbreviation": "SDSC",
 		"Metric": "Study Discontinuation Rate",
@@ -411,8 +335,6 @@
 		"Model": "Binomial Test",
 		"Score": "Binomial Confidence Interval - Lower Bound",
 		"Thresholds": "0.2",
-		"data_inputs": "rawplus.studcomp, rawplus.dm",
-		"data_filters": "",
 		"SnapshotDate": "2023-01-05"
 	}
 ]

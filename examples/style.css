@@ -22,11 +22,12 @@
 /* Group Overview */
 /* ---------------------------------------------------------------------------------------------- */
 
-/*
+
 .group-overview {
-    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0.1em;
 }
-*/
+
 
 .group-overview th
 .group-overview td {
@@ -37,6 +38,13 @@
     background-color: #f2f2f2;
     cursor: pointer;
     padding: 0.25em 0.5em;
+}
+
+.group-overview th.group-overview--group {
+}
+
+.group-overview th.group-overview--metric {
+    font-size: .8em;
 }
 
 .group-overview th.group-overview--tooltip,
@@ -50,7 +58,6 @@
 
 .group-overview td.group-overview--metric {
     width: 3em;
-    height: 1.5em;
     text-align: center;
 }
 

@@ -1,4 +1,4 @@
-import resultsPredicted from '../../examples/data/results_bounds.json';
+import resultsPredicted from '../../examples/data/resultsPredicted.json';
 import schema from '../../src/data/schema/resultsPredicted.json';
 import checkInput from '../../src/data/checkInput.js';
 import getType from '../../src/data/checkInput/getType.js';

@@ -1,15 +1,15 @@
-import data from '../../examples/data/results_summary.json';
-import metadata from '../../examples/data/meta_workflow.json';
+import results from '../../examples/data/results.json';
+import metricMetadata from '../../examples/data/metricMetadata.json';
 
 import configure from '../../src/barChart/configure.js';
 
 const MetricID = 'kri0001';
-const results = data.filter((d) => d.MetricID === MetricID);
-const metricMetadata = metadata.find((metric) => metric.MetricID === MetricID);
-const thresholds = metricMetadata.Thresholds.split(',').map(d => +d);
+const resultsSubset = results.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find((metric) => metric.MetricID === MetricID);
+const thresholds = metricMetadatum.Thresholds.split(',').map(d => +d);
 
 describe('configuration', () => {
-    const config = configure(metricMetadata, results, thresholds);
+    const config = configure(metricMetadatum, resultsSubset, thresholds);
 
     test('configure() accepts metric metadata object and returns config object', () => {
         const settings = Object.keys(config).sort();
@@ -18,7 +18,6 @@ describe('configuration', () => {
             [
                 // metric metadata
                 'MetricID',
-                'gsm_version',
                 'GroupLevel',
                 'Abbreviation',
                 'Metric',
@@ -28,11 +27,12 @@ describe('configuration', () => {
                 'Model',
                 'Score',
                 'Thresholds',
-                'data_inputs',
-                'data_filters',
                 'SnapshotDate',
 
                 // bar chart settings
+                'groupLabelKey',
+                'groupParticipantCountKey',
+
                 'x',
                 'xType',
                 'xLabel',
@@ -59,7 +59,7 @@ describe('configuration', () => {
 });
 
 //describe('data manipulation', () => {
-//    const config = configure(metricMetadata, results, parametersSubset);
+//    const config = configure(metricMetadatum, results, parametersSubset);
 //    const datasets = structureData(results, config);
 //
 //    test('structureData returns a dataset with bar data', () => {
@@ -87,30 +87,30 @@ describe('configuration', () => {
 
 //describe('plugin test suite', () => {
 //    test('custom tooltip function', () => {
-//        expect(tooltip(configure(metricMetadata, results, parametersSubset)).callbacks.label).toEqual(
+//        expect(tooltip(configure(metricMetadatum, results, parametersSubset)).callbacks.label).toEqual(
 //            expect.any(Function)
 //        );
 //    });
 //
 //    test('annotation lines drawn at correct threshholds', () => {
-//        expect(annotations(configure(metricMetadata, results, parametersSubset)).map((x) => x.yMin)).toEqual([
+//        expect(annotations(configure(metricMetadatum, results, parametersSubset)).map((x) => x.yMin)).toEqual([
 //            7, -7, 5, -5,
 //        ]);
 //    });
 //
 //    test('annotation labels left for negative and right for positive', () => {
 //        expect(
-//            annotations(configure(metricMetadata, results, parametersSubset)).map((x) => x.label.position)
+//            annotations(configure(metricMetadatum, results, parametersSubset)).map((x) => x.label.position)
 //        ).toEqual(['end', 'start', 'end', 'start']);
 //    });
 //
 //    test('legend display returns false', () => {
-//        expect(legend(configure(metricMetadata, results, parametersSubset)).display).toBeFalsy();
+//        expect(legend(configure(metricMetadatum, results, parametersSubset)).display).toBeFalsy();
 //    });
 //});
 //
 //describe('getScales test suite', () => {
 //    test('x labels not visible for bar graph', () => {
-//        expect(getScales(configure(metricMetadata, results, parametersSubset)).x.ticks.display).toBeFalsy();
+//        expect(getScales(configure(metricMetadatum, results, parametersSubset)).x.ticks.display).toBeFalsy();
 //    });
 //});

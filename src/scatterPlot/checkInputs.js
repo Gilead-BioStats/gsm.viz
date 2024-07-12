@@ -16,7 +16,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_config_',
         argument: _config_,
-        schemaName: 'analysisMetadata',
+        schemaName: 'metricMetadata',
         module: 'scatterPlot',
     });
 

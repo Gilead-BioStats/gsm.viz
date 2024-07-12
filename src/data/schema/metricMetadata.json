@@ -73,20 +73,6 @@
             "required": false,
             "key": false
         },
-        "data_inputs": {
-            "title": "Input Data Domains",
-            "description": "Data domains used to evaluate Metric",
-            "type": "string",
-            "required": false,
-            "key": false
-        },
-        "data_filters": {
-            "title": "Subsets",
-            "description": "Subsets applied to input data domains",
-            "type": "string",
-            "required": false,
-            "key": false
-        },
         "SnapshotDate": {
             "title": "Snapshot Date",
             "description": "Date of data refresh",

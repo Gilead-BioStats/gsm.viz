@@ -20090,8 +20090,8 @@ var rbmViz = (() => {
     }
   };
 
-  // src/data/schema/analysisMetadata.json
-  var analysisMetadata_default = {
+  // src/data/schema/metricMetadata.json
+  var metricMetadata_default = {
     title: "Metric Analysis Metadata",
     description: "JSON schema of Metric analysis metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
     version: "0.14.0",
@@ -20161,20 +20161,6 @@ var rbmViz = (() => {
       Abbreviation: {
         title: "Abbreviation",
         description: "Metric Abbreviation",
-        type: "string",
-        required: false,
-        key: false
-      },
-      data_inputs: {
-        title: "Input Data Domains",
-        description: "Data domains used to evaluate Metric",
-        type: "string",
-        required: false,
-        key: false
-      },
-      data_filters: {
-        title: "Subsets",
-        description: "Subsets applied to input data domains",
         type: "string",
         required: false,
         key: false
@@ -20619,7 +20605,7 @@ var rbmViz = (() => {
 
   // src/data/schema/index.js
   var schema = {
-    analysisMetadata: analysisMetadata_default,
+    metricMetadata: metricMetadata_default,
     groupMetadata: groupMetadata_default,
     flagCounts: flagCounts_default,
     results: results_default,
@@ -20761,7 +20747,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_config_",
       argument: _config_,
-      schemaName: "analysisMetadata",
+      schemaName: "metricMetadata",
       module: "barChart"
     });
     checkInput({
@@ -21777,7 +21763,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addHeaderRow.js
   function addHeaderRow(thead, columns) {
-    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("group-overview--tooltip", (d) => d.headerTooltip !== null).text((d) => d.label).attr("title", (d) => d.headerTooltip);
+    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").attr("class", (d) => `group-overview--${d.type}`).classed("group-overview--tooltip", (d) => d.headerTooltip !== null).text((d) => d.label).attr("title", (d) => d.headerTooltip);
     return headerRow;
   }
 
@@ -21987,7 +21973,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_config_",
       argument: _config_,
-      schemaName: "analysisMetadata",
+      schemaName: "metricMetadata",
       module: "scatterPlot"
     });
     checkInput({
@@ -22436,7 +22422,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_config_",
       argument: discrete ? null : _config_,
-      schemaName: "analysisMetadata",
+      schemaName: "metricMetadata",
       module: "sparkline"
     });
     checkInput({
@@ -22745,7 +22731,7 @@ var rbmViz = (() => {
     checkInput({
       parameter: "_config_",
       argument: discrete ? null : _config_,
-      schemaName: "analysisMetadata",
+      schemaName: "metricMetadata",
       module: "timeSeries"
     });
     checkInput({

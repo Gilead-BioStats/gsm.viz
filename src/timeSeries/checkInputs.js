@@ -19,7 +19,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
-        schemaName: 'analysisMetadata',
+        schemaName: 'metricMetadata',
         module: 'timeSeries',
     });
 
