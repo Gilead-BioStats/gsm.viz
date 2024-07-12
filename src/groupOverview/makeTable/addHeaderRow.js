@@ -12,7 +12,7 @@ export default function addHeaderRow(thead, columns) {
         .selectAll('th')
         .data(columns)
         .join('th')
-        .classed('tooltip', (d) => d.headerTooltip !== null)
+        .classed('group-overview--tooltip', (d) => d.headerTooltip !== null)
         .text((d) => d.label)
         .attr('title', (d) => d.headerTooltip);
 

@@ -8,17 +8,11 @@ export default function configure(_config_, _results_, _thresholds_, _intervals_
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
-    defaults.GroupLabelKey = 'InvestigatorLastName';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
 
-    defaults.dataType = /flag|risk/.test(_config_.y)
-        ? 'discrete'
-        : 'continuous';
-
-    if (defaults.dataType === 'discrete')
-        defaults.discreteUnit = Object.keys(_results_[0]).includes('GroupID')
-            ? 'Metric'
-            : 'Site';
-    else defaults.discreteUnit = null;
+    defaults.dataType = 'continuous'
+    defaults.discreteUnit = null;
 
     defaults.distributionDisplay = 'boxplot';
 
@@ -66,6 +60,15 @@ export default function configure(_config_, _results_, _thresholds_, _intervals_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
+
+    config.dataType = /flag|risk/.test(config.y)
+        ? 'discrete'
+        : 'continuous';
+
+    if (defaults.dataType === 'discrete')
+        config.discreteUnit = Object.keys(_results_[0]).includes('GroupID')
+            ? 'Metric'
+            : 'Site';
 
     config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
     const discreteUnits =

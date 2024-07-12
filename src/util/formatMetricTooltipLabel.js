@@ -1,6 +1,6 @@
 import falsy from './falsy.js';
 
-export default function formatMetricTooltip(result, metricMetadata) {
+export default function formatMetricTooltipLabel(result, metricMetadata) {
     const tooltipKeys = {
         Score: metricMetadata.Score || 'Score',
         Metric: metricMetadata.Metric || 'Metric',
@@ -8,7 +8,7 @@ export default function formatMetricTooltip(result, metricMetadata) {
         Denominator: metricMetadata.Denominator || 'Denominator',
     };
 
-    const tooltipContent = [];
+    const tooltipLabel = [];
     for (const [key, label] of Object.entries(tooltipKeys)) {
         if (result[key] !== undefined) {
             let value = result[key];
@@ -28,9 +28,9 @@ export default function formatMetricTooltip(result, metricMetadata) {
             if (falsy.includes(value))
                 value = '—';
 
-            tooltipContent.push(`${label}: ${value}`);
+            tooltipLabel.push(`${label}: ${value}`);
         }
     }
 
-    return tooltipContent;
+    return tooltipLabel;
 }

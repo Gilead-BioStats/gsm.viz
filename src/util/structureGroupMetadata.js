@@ -14,9 +14,9 @@ export default function structureGroupMetadata(groupMetadata, config) {
     const structuredGroupMetadata = rollup(
         groupMetadata,
         group => group.reduce((acc, cur) => {
-                acc[cur.Param] = cur.Value;
-                return acc;
-            }, {}),
+            acc[cur.Param] = cur.Value;
+            return acc;
+        }, {}),
         d => d.GroupLevel,
         d => d.GroupID
     );

@@ -1,4 +1,4 @@
-import formatMetricTooltip from '../../util/formatMetricTooltip';
+import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel';
 /**
  * Define the content of the tooltip for a given column.
  *
@@ -8,7 +8,7 @@ import formatMetricTooltip from '../../util/formatMetricTooltip';
  * @returns {String} The tooltip content.
  */
 export default function defineTooltip(column, result) {
-    const tooltipContent = formatMetricTooltip(result, column.meta);
+    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
 
     return tooltipContent.join('\n');
 }

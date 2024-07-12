@@ -20884,7 +20884,8 @@ var rbmViz = (() => {
   function configure3(_config_, _results_, _thresholds_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
-    defaults3.GroupLabelKey = "InvestigatorLastName";
+    defaults3.groupLabelKey = "InvestigatorLastName";
+    defaults3.groupParticipantCountKey = "ParticipantCount";
     defaults3.x = "GroupID";
     defaults3.xType = "category";
     defaults3.y = "Score";
@@ -20994,7 +20995,7 @@ var rbmViz = (() => {
         const group2 = groupMetadata.get(d.GroupID);
         if (group2 !== void 0) {
           d.group = group2;
-          d.group.GroupLabel = d.group.hasOwnProperty(config.GroupLabelKey) ? d.group[config.GroupLabelKey] : d.GroupID;
+          d.group.groupLabel = d.group.hasOwnProperty(config.groupLabelKey) ? d.group[config.groupLabelKey] : d.GroupID;
         }
       }
       const datum2 = {
@@ -21242,15 +21243,15 @@ var rbmViz = (() => {
     };
   }
 
-  // src/util/formatMetricTooltip.js
-  function formatMetricTooltip(result, metricMetadata) {
+  // src/util/formatMetricTooltipLabel.js
+  function formatMetricTooltipLabel(result, metricMetadata) {
     const tooltipKeys = {
       Score: metricMetadata.Score || "Score",
       Metric: metricMetadata.Metric || "Metric",
       Numerator: metricMetadata.Numerator || "Numerator",
       Denominator: metricMetadata.Denominator || "Denominator"
     };
-    const tooltipContent = [];
+    const tooltipLabel = [];
     for (const [key, label] of Object.entries(tooltipKeys)) {
       if (result[key] !== void 0) {
         let value = result[key];
@@ -21262,10 +21263,15 @@ var rbmViz = (() => {
         }
         if (falsy_default.includes(value))
           value = "\u2014";
-        tooltipContent.push(`${label}: ${value}`);
+        tooltipLabel.push(`${label}: ${value}`);
       }
     }
-    return tooltipContent;
+    return tooltipLabel;
+  }
+
+  // src/util/formatMetricTooltipTitle.js
+  function formatMetricTooltipTitle(result, config) {
+    return result.group !== void 0 ? `${config.GroupLevel}: ${result.GroupID} (${result.group.groupLabel} / ${result.group[config.groupParticipantCountKey]} enrolled)` : `${config.GroupLevel} ${result.GroupID}`;
   }
 
   // src/util/getTooltipAesthetics.js
@@ -21304,12 +21310,12 @@ var rbmViz = (() => {
     tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
-        label: (d) => formatMetricTooltip(d.raw, config),
+        label: (d) => formatMetricTooltipLabel(d.raw, config),
         labelPointStyle: () => ({ pointStyle: "rect" }),
         title: (data) => {
           if (data.length) {
             const datum2 = data[0].dataset.data[data[0].dataIndex];
-            return datum2.group !== void 0 ? `${config.GroupLevel} ${datum2.GroupID} (${datum2.group.GroupLabel} / ${datum2.group.ParticipantCount} enrolled)` : `${config.GroupLevel} ${datum2.GroupID}`;
+            return formatMetricTooltipTitle(datum2, config);
           }
         }
       },
@@ -21683,7 +21689,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/defineColumns/defineMetricTooltip.js
   function defineTooltip2(column, result) {
-    const tooltipContent = formatMetricTooltip(result, column.meta);
+    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
     return tooltipContent.join("\n");
   }
 
@@ -21753,7 +21759,11 @@ var rbmViz = (() => {
         datum2.value = datum2[column.valueKey];
         datum2.text = datum2.value;
         datum2.sortValue = column.type === "metric" ? Math.abs(parseFloat(datum2.value)) : datum2.value;
-        datum2.class = [column.type, column.valueKey].join(" ");
+        datum2.class = [
+          `group-overview--${column.type}`,
+          `group-overview--${column.dataType}`,
+          `group-overview--${column.valueKey}`
+        ].join(" ");
         datum2.tooltip = column.tooltip;
         datum2.tooltipContent = column.defineTooltip(column, datum2, config);
         return datum2;
@@ -21767,7 +21777,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addHeaderRow.js
   function addHeaderRow(thead, columns) {
-    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("tooltip", (d) => d.headerTooltip !== null).text((d) => d.label).attr("title", (d) => d.headerTooltip);
+    const headerRow = thead.append("tr").selectAll("th").data(columns).join("th").classed("group-overview--tooltip", (d) => d.headerTooltip !== null).text((d) => d.label).attr("title", (d) => d.headerTooltip);
     return headerRow;
   }
 
@@ -21790,7 +21800,7 @@ var rbmViz = (() => {
         const id2 = d.column.type === "metric" ? `${d.GroupID}-${d.column.meta.MetricID}` : `${d.GroupID}-${d.column.valueKey}`;
         return id2;
       }
-    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.class).classed("tooltip", (d) => d.tooltip).attr("title", (d) => d.tooltip ? d.tooltipContent : null);
+    ).join("td").text((d) => d.text === "NA" ? "-" : d.text).attr("class", (d) => d.class).classed("group-overview--tooltip", (d) => d.tooltip).attr("title", (d) => d.tooltip ? d.tooltipContent : null);
     return cells;
   }
 
@@ -21807,7 +21817,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addTrafficLighting.js
   function addTrafficLighting(rows) {
-    const metricCells = rows.selectAll("td.metric");
+    const metricCells = rows.selectAll("td.group-overview--metric");
     metricCells.style("background-color", function(d, i) {
       switch (Math.abs(parseInt(d.Flag))) {
         case 0:
@@ -21853,7 +21863,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addFlagIcons.js
   function addFlagIcons(rows) {
-    const metricCells = rows.selectAll("td.metric").text("");
+    const metricCells = rows.selectAll("td.group-overview--metric").text("");
     metricCells.each(function(d) {
       const flag = parseInt(d.Flag);
       const absFlag = Math.abs(flag);
@@ -21884,7 +21894,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable/addClickEvents.js
   function addClickEvents(bodyRows, cells, config) {
-    cells.filter(".metric").on("click", function(event, d) {
+    cells.filter(".group-overview--metric").on("click", function(event, d) {
       config.metricClickCallback({
         GroupLevel: config.GroupLevel,
         GroupID: d.GroupID,
@@ -21892,7 +21902,7 @@ var rbmViz = (() => {
         data: d
       });
     });
-    cells.filter(".group").on("click", function(event, d) {
+    cells.filter(".group-overview--group").on("click", function(event, d) {
       config.groupClickCallback({
         GroupLevel: config.GroupLevel,
         GroupID: d.GroupID,
@@ -21903,7 +21913,7 @@ var rbmViz = (() => {
 
   // src/groupOverview/makeTable.js
   function makeTable(_element_, rows, columns, config) {
-    const table = select_default2(_element_).append("table");
+    const table = select_default2(_element_).append("table").classed("group-overview", true);
     const thead = table.append("thead");
     const tbody = table.append("tbody");
     const headerRow = addHeaderRow(thead, columns);
@@ -22000,7 +22010,8 @@ var rbmViz = (() => {
   function configure5(_config_, _results_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
-    defaults3.GroupLabelKey = "InvestigatorLastName";
+    defaults3.groupLabelKey = "InvestigatorLastName";
+    defaults3.groupParticipantCountKey = "ParticipantCount";
     defaults3.x = "Denominator";
     defaults3[defaults3.x] = defaults3.x;
     defaults3.xType = "logarithmic";
@@ -22041,7 +22052,7 @@ var rbmViz = (() => {
         const group2 = groupMetadata.get(d.GroupID);
         if (group2 !== void 0) {
           d.group = group2;
-          d.group.GroupLabel = d.group.hasOwnProperty(config.GroupLabelKey) ? d.group[config.GroupLabelKey] : d.GroupID;
+          d.group.groupLabel = d.group.hasOwnProperty(config.groupLabelKey) ? d.group[config.groupLabelKey] : d.GroupID;
         }
       }
       const datum2 = {
@@ -22284,7 +22295,7 @@ var rbmViz = (() => {
     return {
       callbacks: {
         label: (d) => {
-          const content = formatMetricTooltip(d.raw, config);
+          const content = formatMetricTooltipLabel(d.raw, config);
           return d.raw.duplicate ? "" : content;
         },
         title: (data) => {
@@ -22293,10 +22304,7 @@ var rbmViz = (() => {
             const titles = dataSorted.map((d, i) => {
               let title5;
               if (data.length === 1) {
-                title5 = `${config.GroupLevel}: ${d.dataset.data[d.dataIndex].GroupID}`;
-                if (d.raw.group !== void 0) {
-                  title5 = `${title5} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
-                }
+                title5 = formatMetricTooltipTitle(d.raw, config);
               } else {
                 title5 = i === 0 ? `${config.GroupLevel}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
               }
@@ -22727,7 +22735,7 @@ var rbmViz = (() => {
 
   // src/timeSeries/checkInputs.js
   function checkInputs5(_results_, _config_, _thresholds_, _intervals_, _groupMetadata_ = null) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
     checkInput({
       parameter: "_results_",
       argument: _results_,
@@ -22766,12 +22774,10 @@ var rbmViz = (() => {
   function configure7(_config_, _results_, _thresholds_, _intervals_) {
     const defaults3 = {};
     defaults3.GroupLevel = "Site";
-    defaults3.GroupLabelKey = "InvestigatorLastName";
-    defaults3.dataType = /flag|risk/.test(_config_.y) ? "discrete" : "continuous";
-    if (defaults3.dataType === "discrete")
-      defaults3.discreteUnit = Object.keys(_results_[0]).includes("GroupID") ? "Metric" : "Site";
-    else
-      defaults3.discreteUnit = null;
+    defaults3.groupLabelKey = "InvestigatorLastName";
+    defaults3.groupParticipantCountKey = "ParticipantCount";
+    defaults3.dataType = "continuous";
+    defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
     defaults3.x = "SnapshotDate";
     defaults3.xType = "category";
@@ -22798,6 +22804,9 @@ var rbmViz = (() => {
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
+    config.dataType = /flag|risk/.test(config.y) ? "discrete" : "continuous";
+    if (defaults3.dataType === "discrete")
+      config.discreteUnit = Object.keys(_results_[0]).includes("GroupID") ? "Metric" : "Site";
     config.xLabel = coalesce(_config_.xLabel, "Snapshot Date");
     const discreteUnits = config.dataType === "discrete" ? `${config.discreteUnit.replace(/y$/, "ie")}s` : "";
     config.yLabel = coalesce(
@@ -22826,7 +22835,7 @@ var rbmViz = (() => {
         const group2 = groupMetadata.get(d.GroupID);
         if (group2 !== void 0) {
           datum2.group = group2;
-          datum2.group.GroupLabel = datum2.group.hasOwnProperty(config.GroupLabelKey) ? datum2.group[config.GroupLabelKey] : datum2.GroupID;
+          datum2.group.groupLabel = datum2.group.hasOwnProperty(config.groupLabelKey) ? datum2.group[config.groupLabelKey] : datum2.GroupID;
         }
       }
       if ([void 0, null].includes(_intervals_) === false) {
@@ -23412,7 +23421,7 @@ var rbmViz = (() => {
         `${config.Denominator}: ${format(",")(
           datum2.Denominator
         )}`
-      ] : formatMetricTooltip(datum2, config);
+      ] : formatMetricTooltipLabel(datum2, config);
     } else if (["boxplot", "violin"].includes(data.dataset.type)) {
       const stats = ["mean", "min", "q1", "median", "q3", "max"].map(
         (stat) => `${stat.charAt(0).toUpperCase()}${stat.slice(1)}: ${format(
@@ -23466,10 +23475,7 @@ var rbmViz = (() => {
               const titles = dataSorted.map(function(d, i) {
                 let title5;
                 if (data.length === 1) {
-                  title5 = `${config.GroupLevel} ${d.dataset.data[d.dataIndex].GroupID}`;
-                  if (d.raw.group !== void 0) {
-                    title5 = `${title5} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
-                  }
+                  title5 = formatMetricTooltipTitle(d.raw, config);
                 } else {
                   title5 = i === 0 ? `${config.GroupLevel}s ${d.dataset.data[d.dataIndex].GroupID}` : d.dataset.data[d.dataIndex].GroupID;
                 }

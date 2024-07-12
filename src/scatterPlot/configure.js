@@ -7,7 +7,8 @@ export default function configure(_config_, _results_) {
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
-    defaults.GroupLabelKey = 'InvestigatorLastName';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
 
     // horizontal
     defaults.x = 'Denominator';

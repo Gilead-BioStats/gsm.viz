@@ -28,7 +28,11 @@ export default function structureData(results, columns, groups, config) {
                 column.type === 'metric'
                     ? Math.abs(parseFloat(datum.value))
                     : datum.value;
-            datum.class = [column.type, column.valueKey].join(' ');
+            datum.class = [
+                `group-overview--${column.type}`,
+                `group-overview--${column.dataType}`,
+                `group-overview--${column.valueKey}`
+            ].join(' ');
             datum.tooltip = column.tooltip;
             datum.tooltipContent = column.defineTooltip(column, datum, config);
 

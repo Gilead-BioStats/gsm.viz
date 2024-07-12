@@ -1,6 +1,6 @@
 import { format } from 'd3';
 import falsy from './falsy.js';
-import formatMetricTooltip from './formatMetricTooltip.js';
+import formatMetricTooltipLabel from './formatMetricTooltipLabel.js';
 
 export default function formatResultTooltipContent(data, config) {
     const datum = data.dataset.data[data.dataIndex];
@@ -27,7 +27,7 @@ export default function formatResultTooltipContent(data, config) {
                           datum.Denominator
                       )}`,
                   ]
-                : formatMetricTooltip(datum, config);
+                : formatMetricTooltipLabel(datum, config);
     }
     // Handle distribution data.
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {

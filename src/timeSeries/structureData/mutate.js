@@ -20,8 +20,8 @@ export default function mutate(
                 // TODO: support longitudinal group metadata
                 if (group !== undefined) {
                     datum.group = group;
-                    datum.group.GroupLabel = datum.group.hasOwnProperty(config.GroupLabelKey)
-                        ? datum.group[config.GroupLabelKey]
+                    datum.group.groupLabel = datum.group.hasOwnProperty(config.groupLabelKey)
+                        ? datum.group[config.groupLabelKey]
                         : datum.GroupID
                 }
             }

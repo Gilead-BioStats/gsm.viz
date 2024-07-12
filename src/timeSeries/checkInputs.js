@@ -7,7 +7,7 @@ export default function checkInputs(
     _intervals_,
     _groupMetadata_ = null
 ) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
 
     checkInput({
         parameter: '_results_',

@@ -12,7 +12,7 @@ import addClickEvents from './makeTable/addClickEvents.js';
 
 export default function makeTable(_element_, rows, columns, config) {
     // create table
-    const table = select(_element_).append('table');
+    const table = select(_element_).append('table').classed('group-overview', true);
     const thead = table.append('thead');
     const tbody = table.append('tbody');
     const headerRow = addHeaderRow(thead, columns);

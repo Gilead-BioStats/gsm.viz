@@ -1,5 +1,6 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatResultTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
 // TODO: figure out better approach to coincidental highlight and group aggregate distribution
@@ -46,13 +47,7 @@ export default function tooltip(config) {
                             let title;
 
                             if (data.length === 1) {
-                                title = `${config.GroupLevel} ${
-                                    d.dataset.data[d.dataIndex].GroupID
-                                }`;
-
-                                if (d.raw.group !== undefined) {
-                                    title = `${title} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
-                                }
+                                title = formatResultTooltipTitle(d.raw, config);
                             } else {
                                 title =
                                     i === 0

@@ -1,5 +1,6 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
-import formatMetricTooltip from '../../util/formatMetricTooltip.js';
+import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel.js';
+import formatMetricTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
 export default function tooltip(config) {
@@ -8,7 +9,7 @@ export default function tooltip(config) {
     return {
         callbacks: {
             label: (d) => {
-                const content = formatMetricTooltip(d.raw, config);
+                const content = formatMetricTooltipLabel(d.raw, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;
@@ -21,13 +22,7 @@ export default function tooltip(config) {
                         let title;
 
                         if (data.length === 1) {
-                            title = `${config.GroupLevel}: ${
-                                d.dataset.data[d.dataIndex].GroupID
-                            }`;
-
-                            if (d.raw.group !== undefined) {
-                                title = `${title} (${d.raw.group.GroupLabel} / ${d.raw.group.ParticipantCount} enrolled)`;
-                            }
+                            title = formatMetricTooltipTitle(d.raw, config);
                         } else {
                             title =
                                 i === 0
