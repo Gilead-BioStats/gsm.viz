@@ -12,7 +12,7 @@ import updateTable from './groupOverview/updateTable';
  * Generate group overview table.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _results_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID per metric ID
  * @param {Object} _config_ - table configuration and metadata
  * @param {Array} _groupMetadata_ - optional group metadata
  * @param {Array} _metricMetadata_ - optional metric metadata
@@ -39,7 +39,7 @@ export default function groupOverview(
         _results_,
         config
     );
-    const columns = defineColumns(groupMetadata, _metricMetadata_, _results_);
+    const columns = defineColumns(groupMetadata, _metricMetadata_, _results_, config);
     const rows = structureData(_results_, columns, groupMetadata, config);
     const table = makeTable(_element_, rows, columns, config);
 

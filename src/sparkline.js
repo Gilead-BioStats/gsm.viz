@@ -23,7 +23,7 @@ import updateOption from './util/updateOption.js';
  * Generate a sparkline.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID per snapshot date
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
  *

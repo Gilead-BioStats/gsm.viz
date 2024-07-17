@@ -11,15 +11,15 @@ import defineMetricTooltip from './defineColumns/defineMetricTooltip.js';
  * - column sort (sort)
  * - column sort state (sortState)
  *
- * @param {Array} groups - group metadata
- * @param {Array} metrics - metric metadata
+ * @param {Array} groupMetadata - group metadata
+ * @param {Array} metricMetadata - metric metadata
  * @param {Array} results - metric results
  *
  * @returns {Array} columns
  */
-export default function defineColumns(groups, metrics, results) {
-    const groupColumns = defineGroupColumns(groups);
-    const metricColumns = defineMetricColumns(metrics, results);
+export default function defineColumns(groupMetadata, metricMetadata, results, config) {
+    const groupColumns = defineGroupColumns(groupMetadata, config);
+    const metricColumns = defineMetricColumns(metricMetadata, results);
     const columns = [...groupColumns, ...metricColumns];
 
     columns.forEach((column, i) => {

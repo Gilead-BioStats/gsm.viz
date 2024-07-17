@@ -11,7 +11,7 @@ export default function radius(context, options) {
         if (datum.group !== undefined) {
             // a = pi*r^2 => a/pi = r^2 => sqrt(a/pi) = r
             const enrollmentFactor = Math.sqrt(
-                datum.group.ParticipantCount / Math.PI
+                datum.group[ config.groupParticipantCountKey ] / Math.PI
             );
 
             return enrollmentFactor * defaultRadius;

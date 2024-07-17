@@ -6,6 +6,7 @@ export default function configure(_config_, _data_) {
 
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = null;
+    defaults.groupParticipantCountKey = 'ParticipantCount';
     defaults.groupTooltipKeys = null;
 
     // callbacks
