@@ -67,7 +67,9 @@ export default function defineGroupColumns(groupMetadata, config) {
         column.defineTooltip = defineGroupTooltip;
     });
 
-    columns = columns.filter((column) => groupMetadata[0].hasOwnProperty(column.valueKey));
+    columns = columns.filter((column) =>
+        groupMetadata[0].hasOwnProperty(column.valueKey)
+    );
 
     return columns;
 }

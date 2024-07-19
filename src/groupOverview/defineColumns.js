@@ -14,10 +14,16 @@ import defineMetricTooltip from './defineColumns/defineMetricTooltip.js';
  * @param {Array} groupMetadata - group metadata
  * @param {Array} metricMetadata - metric metadata
  * @param {Array} results - metric results
+ * @param {Object} config - table configuration and metadata
  *
  * @returns {Array} columns
  */
-export default function defineColumns(groupMetadata, metricMetadata, results, config) {
+export default function defineColumns(
+    groupMetadata,
+    metricMetadata,
+    results,
+    config
+) {
     const groupColumns = defineGroupColumns(groupMetadata, config);
     const metricColumns = defineMetricColumns(metricMetadata, results);
     const columns = [...groupColumns, ...metricColumns];

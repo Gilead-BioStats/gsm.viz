@@ -45,7 +45,7 @@ export default function configure(_config_, _results_, _thresholds_) {
     config.xLabel = coalesce(_config_.xLabel, config['Group']);
     config.yLabel = coalesce(_config_.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y === 'Metric') delete config.thresholds;
+    if (config.y !== 'Score') delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

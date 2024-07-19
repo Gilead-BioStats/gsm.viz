@@ -39,7 +39,12 @@ export default function groupOverview(
         _results_,
         config
     );
-    const columns = defineColumns(groupMetadata, _metricMetadata_, _results_, config);
+    const columns = defineColumns(
+        groupMetadata,
+        _metricMetadata_,
+        _results_,
+        config
+    );
     const rows = structureData(_results_, columns, groupMetadata, config);
     const table = makeTable(_element_, rows, columns, config);
 
