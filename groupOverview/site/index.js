@@ -1,7 +1,7 @@
 const dataFiles = [
-    '../data/results.csv',
-    '../data/metricMetadata.csv',
-    '../data/groupMetadata.csv',
+    '../../data/results.csv',
+    '../../data/metricMetadata.csv',
+    '../../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>

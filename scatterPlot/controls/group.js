@@ -8,20 +8,19 @@ const group = function (datasets, setup = false) {
         const groupIDs = [
             ...new Set(
                 datasets[0]
-                    .filter(d => d.MetricID === document.querySelector('#metric').value)
+                    .filter(
+                        (d) =>
+                            d.MetricID ===
+                            document.querySelector('#metric').value
+                    )
                     .map((d) => d.GroupID)
-            )
-        ].sort(
-            d3.ascending
-        );
+            ),
+        ].sort(d3.ascending);
 
         // Add options to dropdown.
         d3.select(groupDropdown)
             .selectAll('option')
-            .data(
-                ['None', ...groupIDs],
-                d => d
-            )
+            .data(['None', ...groupIDs], (d) => d)
             .join('option')
             .attr('value', (d) => d)
             .text((d) => d);

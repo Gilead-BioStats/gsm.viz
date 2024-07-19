@@ -3,6 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <title>Sparkline: Score</title>
+        <link rel="stylesheet" href="../../style.css" />
         <link rel="stylesheet" href="../style.css" />
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../../index.js"></script>
@@ -13,14 +14,18 @@
     </head>
 
     <body>
-        <h3>Sparkline: Score</h3>
+        <div class="rbm-viz--example">
+            <h3>Sparkline: Score</h3>
 
-        <fieldset>
-            <legend>Metric</legend>
-            <select id="metric"></select>
-        </fieldset>
+            <div id="controls">
+                <fieldset>
+                    <legend>Metric</legend>
+                    <select id="metric"></select>
+                </fieldset>
+            </div>
 
-        <div id="container"></div>
+            <div id="container"></div>
+        </div>
     </body>
 
     <script src="index.js"></script>

@@ -5,7 +5,7 @@ const metric = function (datasets, setup = false, initialValue = null) {
     if (setup === true) {
         const metrics = [
             ...new Set(datasets[1].map((d) => d.MetricID)).values(),
-        ].sort((a,b) => {
+        ].sort((a, b) => {
             // sort kri then cou then qtl
             if (a.startsWith('kri') && b.startsWith('cou')) {
                 return -1;

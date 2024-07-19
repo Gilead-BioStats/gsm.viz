@@ -5,7 +5,6 @@
         <meta charset="utf-8" />
 
         <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../index.js"></script>
@@ -21,29 +20,31 @@
     </head>
 
     <body>
-        <div id="controls">
-            <fieldset>
-                <legend>Metric</legend>
-                <select id="metric"></select>
-            </fieldset>
+        <div class="rbm-viz--example">
+            <div id="controls">
+                <fieldset>
+                    <legend>Metric</legend>
+                    <select id="metric"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>Highlighted Group</legend>
-                <select id="group"></select>
-            </fieldset>
+                <fieldset>
+                    <legend>Highlighted Group</legend>
+                    <select id="group"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>Y-axis</legend>
-                <select id="yAxis">
-                    <option value="Numerator">Numerator</option>
-                    <option value="Metric">Metric</option>
-                    <option value="Score">Score</option>
-                </select>
-            </fieldset>
-        </div>
+                <fieldset>
+                    <legend>Y-axis</legend>
+                    <select id="yAxis">
+                        <option value="Numerator">Numerator</option>
+                        <option value="Metric">Metric</option>
+                        <option value="Score">Score</option>
+                    </select>
+                </fieldset>
+            </div>
 
-        <div id="container">
-            <canvas id="canvas"></canvas>
+            <div id="container">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
     </body>
 

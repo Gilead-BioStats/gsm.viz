@@ -1,7 +1,7 @@
 const dataFiles = [
-    '../data/results.csv',
-    '../data/metricMetadata.csv',
-    '../data/groupMetadata.csv',
+    '../../data/results.csv',
+    '../../data/metricMetadata.csv',
+    '../../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -11,7 +11,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const GroupLevel = 'Site';
+        const GroupLevel = 'Country';
 
         let metricPrefix;
         if (GroupLevel === 'Site') {

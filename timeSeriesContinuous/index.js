@@ -1,9 +1,8 @@
 const dataFiles = [
     '../data/results.csv',
     '../data/metricMetadata.csv',
-    '../data/groupMetadata.csv'
+    '../data/groupMetadata.csv',
 ];
-
 
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())

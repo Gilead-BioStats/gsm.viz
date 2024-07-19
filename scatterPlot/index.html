@@ -5,7 +5,6 @@
         <title>Scatter Plot</title>
 
         <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
         <script src="../index.js"></script>
@@ -23,56 +22,60 @@
     </head>
 
     <body>
-        <div id="controls">
-            <fieldset>
-                <legend>Metric</legend>
-                <select id="metric"></select>
-            </fieldset>
+        <div class="rbm-viz--example">
+            <div id="controls">
+                <fieldset>
+                    <legend>Metric</legend>
+                    <select id="metric"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>Highlighted Group</legend>
-                <select id="group"></select>
-            </fieldset>
+                <fieldset>
+                    <legend>Highlighted Group</legend>
+                    <select id="group"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>Highlighted Country</legend>
-                <select id="country"></select>
-            </fieldset>
+                <fieldset>
+                    <legend>Highlighted Country</legend>
+                    <select id="country"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>X-axis Type</legend>
+                <fieldset>
+                    <legend>X-axis Type</legend>
 
-                <form id="x-axis-type">
-                    <div style="display: inline-block">
-                        <input
-                            type="radio"
-                            id="log-x-axis"
-                            name="x-axis-type"
-                            value="logarithmic"
-                            checked
-                        />
-                        <label for="log">log</label>
-                    </div>
+                    <form id="x-axis-type">
+                        <div style="display: inline-block">
+                            <input
+                                type="radio"
+                                id="log-x-axis"
+                                name="x-axis-type"
+                                value="logarithmic"
+                                checked
+                            />
+                            <label for="log">log</label>
+                        </div>
 
-                    <div style="display: inline-block">
-                        <input
-                            type="radio"
-                            id="linear-x-axis"
-                            name="x-axis-type"
-                            value="linear"
-                        />
-                        <label for="linear">linear</label>
-                    </div>
-                </form>
-            </fieldset>
+                        <div style="display: inline-block">
+                            <input
+                                type="radio"
+                                id="linear-x-axis"
+                                name="x-axis-type"
+                                value="linear"
+                            />
+                            <label for="linear">linear</label>
+                        </div>
+                    </form>
+                </fieldset>
 
-            <fieldset>
-                <legend>Chart Lifecycle</legend>
-                <button id="lifecycle"><strong>KILL</strong></button>
-            </fieldset>
+                <fieldset>
+                    <legend>Chart Lifecycle</legend>
+                    <button id="lifecycle"><strong>KILL</strong></button>
+                </fieldset>
+            </div>
+
+            <div id="container">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
-
-        <div id="container"></div>
     </body>
 
     <script src="index.js"></script>
