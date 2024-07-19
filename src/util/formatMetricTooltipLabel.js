@@ -15,15 +15,15 @@ export default function formatMetricTooltipLabel(result, metricMetadata) {
 
             value = parseFloat(value);
 
-            if (Number.isInteger(value)) {
+            if (falsy.includes(value)) {
+                value = '—';
+            } else if (Number.isInteger(value)) {
                 // format integer with commas
                 value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
             } else {
                 // round float to two decimal places
                 value = value.toFixed(2).toString();
             }
-
-            if (falsy.includes(value)) value = '—';
 
             tooltipLabel.push(`${label}: ${value}`);
         }

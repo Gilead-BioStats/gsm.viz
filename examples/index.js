@@ -21244,13 +21244,13 @@ var rbmViz = (() => {
       if (result[key] !== void 0) {
         let value = result[key];
         value = parseFloat(value);
-        if (Number.isInteger(value)) {
+        if (falsy_default.includes(value)) {
+          value = "\u2014";
+        } else if (Number.isInteger(value)) {
           value = value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else {
           value = value.toFixed(2).toString();
         }
-        if (falsy_default.includes(value))
-          value = "\u2014";
         tooltipLabel.push(`${label}: ${value}`);
       }
     }
