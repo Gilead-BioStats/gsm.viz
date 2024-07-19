@@ -1,10 +1,11 @@
 // Add event listener to metric dropdown.
 const metric = function (datasets, setup = false, initialValue = null) {
     const metricDropdown = document.querySelector('#metric');
+    const groupDropdown = document.querySelector('#group');
 
     if (setup === true) {
         const metrics = [
-            ...new Set(datasets[1].map((d) => d.MetricID)).values(),
+            ...new Set(datasets[0].map((d) => d.MetricID)).values(),
         ].sort((a, b) => {
             // sort kri then cou then qtl
             if (a.startsWith('kri') && b.startsWith('cou')) {
@@ -40,11 +41,33 @@ const metric = function (datasets, setup = false, initialValue = null) {
             // analysis results
             const results = filterOnMetricID(datasets[0], event.target.value);
 
+            const groupIDs = [...new Set(results.map((d) => d.GroupID))].sort(
+                d3.ascending
+            );
+
+            // Update options in dropdown.
+            d3.select(groupDropdown)
+                .selectAll('option')
+                .data(['None', ...groupIDs], (d) => d)
+                .join('option')
+                .attr('value', (d) => d)
+                .text((d) => d);
+
             // chart configuration
             const config = selectMetricID(datasets[1], event.target.value);
             config.displayTitle = true;
             config.y = yAxis();
-            config.selectedGroupIDs = group();
+            config.selectedGroupIDs = [
+                group(),
+                ...datasets[2]
+                    .filter(
+                        (d) =>
+                            d.GroupLevel === 'Site' &&
+                            d.Param === 'Country' &&
+                            d.Value === country()
+                    )
+                    .map((d) => d.GroupID),
+            ];
 
             // Threshold annotations
             const thresholds =

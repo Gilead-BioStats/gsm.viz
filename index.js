@@ -26101,14 +26101,15 @@ var rbmViz = (() => {
             if (result[key] !== void 0) {
                 let value = result[key];
                 value = parseFloat(value);
-                if (Number.isInteger(value)) {
+                if (falsy_default.includes(value)) {
+                    value = '\u2014';
+                } else if (Number.isInteger(value)) {
                     value = value
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 } else {
                     value = value.toFixed(2).toString();
                 }
-                if (falsy_default.includes(value)) value = '\u2014';
                 tooltipLabel.push(`${label}: ${value}`);
             }
         }
@@ -27955,7 +27956,11 @@ var rbmViz = (() => {
                 : ''
         );
         config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
-        if (config.y !== 'Score') delete config.thresholds;
+        if (
+            config.y !== 'Score' &&
+            !(config.y === 'Metric' && _intervals_ !== null)
+        )
+            delete config.thresholds;
         if (config.hoverCallbackWrapper === void 0)
             config.hoverCallbackWrapper = getCallbackWrapper(
                 config.hoverCallback
@@ -28105,7 +28110,7 @@ var rbmViz = (() => {
 
     // src/timeSeries/structureData/selectedGroupLine.js
     function selectedGroupLine(data, config, labels) {
-        if (config.selectedGroupIDs.length === 0) return null;
+        if (config.selectedGroupIDs.length === 0) return [null];
         const lineData = data
             .filter((d) => config.selectedGroupIDs.includes(d.GroupID))
             .map((d, i) => {
@@ -28119,31 +28124,33 @@ var rbmViz = (() => {
         backgroundColor4.opacity = 0.5;
         const borderColor4 = color2(color3);
         borderColor4.opacity = 0.5;
-        const dataset = {
-            data: lineData,
-            backgroundColor: function (d) {
-                if (d.element === void 0) {
-                    return backgroundColor4;
-                }
-                const color4 = colorScheme_default.find((color5) =>
-                    falsy_default.includes(d.raw.Flag)
-                        ? color5.Flag.includes(d.raw?.Flag)
-                        : color5.Flag.includes(+d.raw?.Flag)
-                );
-                color4.rgba.opacity = 0.75;
-                return color4.rgba + '';
-            },
-            borderColor: function (d) {
-                return d.type === 'data' ? 'black' : borderColor4;
-            },
-            label: '',
-            pointStyle: 'circle',
-            purpose: 'highlight',
-            radius: 3,
-            spanGaps: true,
-            type: 'line',
-        };
-        return dataset;
+        const datasets = config.selectedGroupIDs.map((GroupID) => {
+            return {
+                data: lineData.filter((d) => d.GroupID === GroupID),
+                backgroundColor: function (d) {
+                    if (d.element === void 0) {
+                        return backgroundColor4;
+                    }
+                    const color4 = colorScheme_default.find((color5) =>
+                        falsy_default.includes(d.raw.Flag)
+                            ? color5.Flag.includes(d.raw?.Flag)
+                            : color5.Flag.includes(+d.raw?.Flag)
+                    );
+                    color4.rgba.opacity = 0.75;
+                    return color4.rgba + '';
+                },
+                borderColor: function (d) {
+                    return d.type === 'data' ? 'black' : borderColor4;
+                },
+                label: '',
+                pointStyle: 'circle',
+                purpose: 'highlight',
+                radius: 3,
+                spanGaps: true,
+                type: 'line',
+            };
+        });
+        return datasets;
     }
 
     // src/timeSeries/structureData/flagAmber.js
@@ -28453,11 +28460,11 @@ var rbmViz = (() => {
                 ];
             } else {
                 datasets = [
-                    selectedGroupLine(results, config, labels),
+                    ...selectedGroupLine(results, config, labels),
                     {
                         type: 'scatter',
                         label:
-                            config.selectedGroupIDs.length > 0
+                            config.selectedGroupIDs.length === 1
                                 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                                 : '',
                         pointStyle: 'line',
@@ -28877,9 +28884,10 @@ var rbmViz = (() => {
 
     // src/timeSeries/updateSelectedGroupIDs.js
     function updateSelectedGroupIDs(selectedGroupIDs) {
-        this.data.config.selectedGroupIDs = [selectedGroupIDs].filter(
-            (GroupID) =>
-                this.data._results_.map((d) => d.GroupID).includes(GroupID)
+        if (!Array.isArray(selectedGroupIDs))
+            selectedGroupIDs = [selectedGroupIDs];
+        this.data.config.selectedGroupIDs = selectedGroupIDs.filter((GroupID) =>
+            this.data._results_.map((d) => d.GroupID).includes(GroupID)
         );
         this.data.datasets = structureData5(
             this.data._results_,
