@@ -23,7 +23,7 @@ const yAxis = function (datasets, setup = false, initialValue = null) {
                             d.Param === 'Country' &&
                             d.Value === country()
                     )
-                    .map((d) => d.GroupID)
+                    .map((d) => d.GroupID),
             ];
 
             // Threshold annotations

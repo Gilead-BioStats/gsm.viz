@@ -22,7 +22,7 @@ export default function selectedGroupLine(data, config, labels) {
 
     const datasets = config.selectedGroupIDs.map((GroupID) => {
         return {
-            data: lineData.filter(d => d.GroupID === GroupID),
+            data: lineData.filter((d) => d.GroupID === GroupID),
             backgroundColor: function (d) {
                 // line element
                 if (d.element === undefined) {

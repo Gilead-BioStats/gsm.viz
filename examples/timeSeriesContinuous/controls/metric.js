@@ -70,7 +70,7 @@ const metric = function (config, datasets, setup = false) {
                             d.Param === 'Country' &&
                             d.Value === country()
                     )
-                    .map((d) => d.GroupID)
+                    .map((d) => d.GroupID),
             ];
 
             // Threshold annotations
