@@ -57,7 +57,17 @@ const metric = function (datasets, setup = false, initialValue = null) {
             const config = selectMetricID(datasets[1], event.target.value);
             config.displayTitle = instance.data.config.displayTitle;
             config.xType = xAxisType();
-            config.selectedGroupIDs = group();
+            config.selectedGroupIDs = [
+                group(),
+                ...datasets[3]
+                    .filter(
+                        (d) =>
+                            d.GroupLevel === 'Site' &&
+                            d.Param === 'Country' &&
+                            d.Value === country()
+                    )
+                    .map((d) => d.GroupID)
+            ];
 
             const bounds = filterOnMetricID(datasets[2], event.target.value);
 

@@ -27,6 +27,7 @@ Promise.all(dataPromises)
             instance.helpers.updateSelectedGroupIDs(datum.GroupID);
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.selectedGroupIDs = ['43', '83', '75'];
 
         // Threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);
@@ -46,6 +47,7 @@ Promise.all(dataPromises)
 
         metric(config, datasets, true);
         group(datasets, true);
+        country(datasets, true);
         yAxis(config, datasets, true);
         download(true);
     });

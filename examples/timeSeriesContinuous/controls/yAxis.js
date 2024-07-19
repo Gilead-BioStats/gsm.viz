@@ -8,12 +8,6 @@ const yAxis = function (config, datasets, setup = false) {
             const instance = getChart();
             const MetricID = metric();
 
-            datasets = datasets.map((dataset) =>
-                Object.keys(dataset[0]).includes('MetricID')
-                    ? dataset.filter((d) => /^kri/.test(d.MetricID))
-                    : dataset
-            );
-
             // analysis results
             const results = filterOnMetricID(datasets[0], MetricID);
 

@@ -91,7 +91,7 @@ export default function configure(
             : ''
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y !== 'Score') delete config.thresholds;
+    if (config.y !== 'Score' && !(config.y === 'Metric' && _intervals_ !== null)) delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

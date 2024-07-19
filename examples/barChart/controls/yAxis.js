@@ -8,17 +8,23 @@ const yAxis = function (datasets, setup = false, initialValue = null) {
             const instance = getChart();
             const MetricID = metric();
 
-            datasets = datasets.map((dataset) =>
-                dataset.filter((d) => /^kri/.test(d.MetricID))
-            );
-
             // analysis results
             const results = filterOnMetricID(datasets[0], MetricID);
 
             // chart configuration
             const config = selectMetricID(datasets[1], MetricID);
             config.y = event.target.value;
-            config.selectedGroupIDs = group();
+            config.selectedGroupIDs = [
+                group(),
+                ...datasets[2]
+                    .filter(
+                        (d) =>
+                            d.GroupLevel === 'Site' &&
+                            d.Param === 'Country' &&
+                            d.Value === country()
+                    )
+                    .map((d) => d.GroupID)
+            ];
 
             // Threshold annotations
             const thresholds =

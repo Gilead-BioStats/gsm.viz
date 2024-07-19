@@ -3,7 +3,7 @@ import colorScheme from '../../util/colorScheme.js';
 import falsy from '../../util/falsy.js';
 
 export default function selectedGroupLine(data, config, labels) {
-    if (config.selectedGroupIDs.length === 0) return null;
+    if (config.selectedGroupIDs.length === 0) return [null];
 
     const lineData = data
         .filter((d) => config.selectedGroupIDs.includes(d.GroupID))
@@ -20,34 +20,36 @@ export default function selectedGroupLine(data, config, labels) {
     const borderColor = d3color(color);
     borderColor.opacity = 0.5;
 
-    const dataset = {
-        data: lineData,
-        backgroundColor: function (d) {
-            // line element
-            if (d.element === undefined) {
-                return backgroundColor;
-            }
+    const datasets = config.selectedGroupIDs.map((GroupID) => {
+        return {
+            data: lineData.filter(d => d.GroupID === GroupID),
+            backgroundColor: function (d) {
+                // line element
+                if (d.element === undefined) {
+                    return backgroundColor;
+                }
 
-            // point elements
-            const color = colorScheme.find((color) =>
-                falsy.includes(d.raw.Flag)
-                    ? color.Flag.includes(d.raw?.Flag)
-                    : color.Flag.includes(+d.raw?.Flag)
-            );
-            color.rgba.opacity = 0.75;
+                // point elements
+                const color = colorScheme.find((color) =>
+                    falsy.includes(d.raw.Flag)
+                        ? color.Flag.includes(d.raw?.Flag)
+                        : color.Flag.includes(+d.raw?.Flag)
+                );
+                color.rgba.opacity = 0.75;
 
-            return color.rgba + '';
-        },
-        borderColor: function (d) {
-            return d.type === 'data' ? 'black' : borderColor;
-        },
-        label: '',
-        pointStyle: 'circle',
-        purpose: 'highlight',
-        radius: 3,
-        spanGaps: true,
-        type: 'line',
-    };
+                return color.rgba + '';
+            },
+            borderColor: function (d) {
+                return d.type === 'data' ? 'black' : borderColor;
+            },
+            label: '',
+            pointStyle: 'circle',
+            purpose: 'highlight',
+            radius: 3,
+            spanGaps: true,
+            type: 'line',
+        };
+    });
 
-    return dataset;
+    return datasets;
 }
