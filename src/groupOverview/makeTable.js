@@ -14,6 +14,11 @@ export default function makeTable(_element_, rows, columns, config) {
     // create table
     const table = select(_element_)
         .append('table')
+        .datum({
+            config,
+            rows,
+            columns,
+        })
         .classed('group-overview', true);
     const thead = table.append('thead');
     const tbody = table.append('tbody');

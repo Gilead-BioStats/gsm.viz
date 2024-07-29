@@ -12,7 +12,7 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const MetricID = 'kri0001';
+        const MetricID = 'cou0001';
 
         // analysis results
         const SnapshotDate = d3.max(datasets[0], (d) => d.SnapshotDate);

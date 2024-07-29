@@ -17,7 +17,7 @@ export default function defineMetricColumns(metricMetadata, results) {
             label: metric.Abbreviation,
             data: results.filter((d) => d.MetricID === metric.MetricID),
             filterKey: 'GroupID',
-            valueKey: 'Score',
+            valueKey: 'Flag',
 
             headerTooltip: metric.Metric,
             sort: sortNumber,

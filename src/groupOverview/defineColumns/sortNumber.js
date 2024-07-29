@@ -5,11 +5,11 @@ export default function sortNumber(bodyRows, column) {
         const aVal = a[column.index].sortValue;
         const bVal = b[column.index].sortValue;
 
-        if (aVal === undefined || aVal === null) {
+        if (aVal === undefined || aVal === null || isNaN(aVal)) {
             return 1;
         }
 
-        if (bVal === undefined || bVal === null) {
+        if (bVal === undefined || bVal === null || isNaN(bVal)) {
             return -1;
         }
 
