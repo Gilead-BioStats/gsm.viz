@@ -1,5 +1,5 @@
 import { format as d3format, max, min } from 'd3';
-import falsy from '../../../util/falsy';
+import falsy from '../../../util/falsy.js';
 
 export default function annotations(config, data) {
     // horizontal position
@@ -16,7 +16,7 @@ export default function annotations(config, data) {
     // Identify appropriate number format.
     const format = data.every((d) => +d[config.y] % 1 === 0)
         ? `d`
-        : config.y === 'metric'
+        : config.y === 'Metric'
         ? `.3f`
         : `.1f`;
 

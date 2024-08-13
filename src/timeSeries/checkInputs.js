@@ -1,17 +1,17 @@
-import checkInput from '../data/checkInput';
+import checkInput from '../data/checkInput.js';
 
 export default function checkInputs(
-    _data_,
+    _results_,
     _config_,
     _thresholds_,
     _intervals_,
-    _sites_ = null
+    _groupMetadata_
 ) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
 
     checkInput({
-        parameter: '_data_',
-        argument: _data_,
+        parameter: '_results_',
+        argument: _results_,
         schemaName: discrete ? 'flagCounts' : 'results',
         module: 'timeSeries',
     });
@@ -19,14 +19,14 @@ export default function checkInputs(
     checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
-        schemaName: 'analysisMetadata',
+        schemaName: 'metricMetadatum',
         module: 'timeSeries',
     });
 
     checkInput({
         parameter: '_thresholds_',
         argument: _thresholds_,
-        schemaName: 'analysisParameters',
+        schemaName: 'thresholds',
         module: 'timeSeries',
     });
 
@@ -37,11 +37,11 @@ export default function checkInputs(
         module: 'timeSeries',
     });
 
-    if (_sites_ !== null) {
+    if (_groupMetadata_ !== null) {
         checkInput({
-            parameter: '_sites_',
-            argument: _sites_,
-            schemaName: 'sites',
+            parameter: '_groupMetadata_',
+            argument: _groupMetadata_,
+            schemaName: 'groupMetadata',
             module: 'timeSeries',
         });
     }

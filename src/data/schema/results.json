@@ -1,70 +1,98 @@
 {
-    "title": "Standard KRI Analysis Output",
+    "title": "Standard Metric Analysis Output",
     "description": "JSON schema of input data to barChart and scatterPlot modules",
     "version": "0.14.0",
     "type": "array",
+    "modules": {
+        "barChart": {
+            "required": true
+        },
+        "groupOverview": {
+            "required": true
+        },
+        "scatterPlot": {
+            "required": true
+        },
+        "sparkline": {
+            "required": true
+        },
+        "timeSeries": {
+            "required": true
+        }
+    },
     "items": {
         "type": "object",
+        "required": [
+            "StudyID",
+            "MetricID",
+            "GroupID",
+            "Numerator",
+            "Denominator",
+            "Metric",
+            "Score",
+            "Flag",
+            "SnapshotDate"
+        ],
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "groupid": {
+            "GroupID": {
                 "title": "Group ID",
                 "description": "Unique group identifier",
                 "type": "string",
                 "required": true,
                 "key": true
             },
-            "numerator": {
+            "Numerator": {
                 "title": "Numerator",
-                "description": "Numerator of KRI metric",
+                "description": "Numerator of Metric Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "denominator": {
+            "Denominator": {
                 "title": "Denominator",
-                "description": "Denominator of KRI metric",
+                "description": "Denominator of Metric Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "metric": {
-                "title": "KRI Metric",
-                "description": "KRI metric",
+            "Metric": {
+                "title": "Metric Metric",
+                "description": "Metric Metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "score": {
-                "title": "KRI Score",
-                "description": "KRI score",
+            "Score": {
+                "title": "Metric Score",
+                "description": "Metric score",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "flag": {
+            "Flag": {
                 "title": "Flag Status",
-                "description": "Flag assigned given KRI score and specified thresholds",
+                "description": "Flag assigned given Metric score and specified thresholds",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "gsm_analysis_date": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
                 "type": "string",
                 "required": false,
                 "key": false

@@ -1,8 +1,6 @@
 const dataFiles = [
     '../../data/results_summary_over_time.csv',
     '../../data/meta_workflow.csv',
-    '../../data/meta_param.csv',
-    '../../data/status_param.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -13,29 +11,28 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            dataset.filter((d) => /^kri/.test(d.MetricID))
         );
 
-        const workflowID = kri(datasets, true);
+        const MetricID = metric(datasets, true);
 
         // data
-        const results = datasets[0].filter((d) => d.workflowid === workflowID);
+        const results = datasets[0].filter((d) => d.MetricID === MetricID);
 
         // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowID);
-        workflow.y = 'score';
-        workflow.nSnapshots = 10;
+        const config = datasets[1].find((d) => d.MetricID === MetricID);
+        config.y = 'Score';
+        config.nSnapshots = 25;
 
-        // threshold annotations
-        const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
+        // Threshold annotations
+        const thresholds = config.Thresholds.split(',').map(
+            (threshold) => +threshold
         );
 
-        // loop over group IDs
-        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
-        for (const i in groupids) {
-            const groupid = groupids[i];
+        // loop over Group IDs
+        const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];
+        for (const i in GroupIDs) {
+            const GroupID = GroupIDs[i];
 
             // container
             const container = document.getElementById('container');
@@ -47,9 +44,9 @@ Promise.all(dataPromises)
             // display
             const instance = rbmViz.default.sparkline(
                 subcontainer,
-                results.filter((d) => d.groupid === groupid),
-                workflow,
-                parameters
+                results.filter((d) => d.GroupID === GroupID),
+                config,
+                thresholds
             );
         }
     });

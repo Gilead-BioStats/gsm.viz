@@ -1,8 +1,8 @@
-import annotations from './getPlugins/annotations';
-import dataLabels from './getPlugins/dataLabels';
-import legend from './getPlugins/legend';
-import title from './getPlugins/title';
-import tooltip from './getPlugins/tooltip';
+import annotations from './getPlugins/annotations.js';
+import dataLabels from './getPlugins/dataLabels.js';
+import legend from './getPlugins/legend.js';
+import title from './getPlugins/title.js';
+import tooltip from './getPlugins/tooltip.js';
 
 export default function getPlugins(config) {
     const getPlugins = {

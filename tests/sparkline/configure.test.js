@@ -1,38 +1,34 @@
-import data from '../../examples/data/results_summary_over_time.json';
-import metadata from '../../examples/data/meta_workflow.json';
-import parameters from '../../examples/data/meta_param.json';
+import results from '../../examples/data/results.json';
+import metricMetadata from '../../examples/data/metricMetadata.json';
 
-import configure from '../../src/sparkline/configure';
+import configure from '../../src/sparkline/configure.js';
 
-const workflowID = 'kri0001';
-const dataSubset = data.filter((d) => d.workflowid === workflowID);
-const workflow = metadata.find(
-    (workflow) => workflow.workflowid === workflowID
+const MetricID = 'kri0001';
+const resultsSubset = results.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
 );
-const parametersSubset = parameters.filter((d) => d.workflowid === workflowID);
+const thresholds = metricMetadatum.Thresholds.split(',').map((d) => +d);
 
 describe('configuration', () => {
-    const config = configure(workflow, dataSubset, parametersSubset);
+    const config = configure(metricMetadatum, resultsSubset, thresholds);
 
-    test('configure() accepts workflow object and returns config object', () => {
+    test('configure() accepts metric metadata object and returns config object', () => {
         const settings = Object.keys(config).sort();
 
         expect(settings).toEqual(
             [
-                // workflow metadata
-                'workflowid',
-                'gsm_version',
-                'group',
-                'abbreviation',
-                'metric',
-                'numerator',
-                'denominator',
-                'outcome',
-                'model',
-                'score',
-                'data_inputs',
-                'data_filters',
-                'gsm_analysis_date',
+                // metric metadata
+                'MetricID',
+                'GroupLevel',
+                'Abbreviation',
+                'Metric',
+                'Numerator',
+                'Denominator',
+                'Outcome',
+                'Model',
+                'Score',
+                'Thresholds',
 
                 // sparkline settings
                 'x',

@@ -1,4 +1,4 @@
-import colorScheme from '../../util/colorScheme';
+import colorScheme from '../../util/colorScheme.js';
 
 // TODO: refactor
 export default function legend(config) {
@@ -7,9 +7,9 @@ export default function legend(config) {
         .map((color) => color.description);
     legendOrder.unshift('Confidence Interval');
     legendOrder.unshift(`${config.aggregateLabel} Average`);
-    legendOrder.unshift(`${config.group} Distribution`);
+    legendOrder.unshift(`${config.GroupLevel} Distribution`);
 
-    if (config.group === 'Study')
+    if (config.GroupLevel === 'Study')
         return {
             display: true,
             labels: {

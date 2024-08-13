@@ -1,6 +1,7 @@
-import formatResultTooltipContent from '../../util/formatResultTooltipContent';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
-import sortByGroupID from '../../util/sortByGroupID';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
+import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel.js';
+import formatMetricTooltipTitle from '../../util/formatMetricTooltipTitle.js';
+import sortByGroupID from '../../util/sortByGroupID.js';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -8,7 +9,7 @@ export default function tooltip(config) {
     return {
         callbacks: {
             label: (d) => {
-                const content = formatResultTooltipContent(config, d);
+                const content = formatMetricTooltipLabel(d.raw, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;
@@ -21,20 +22,14 @@ export default function tooltip(config) {
                         let title;
 
                         if (data.length === 1) {
-                            title = `${config.group} ${
-                                d.dataset.data[d.dataIndex].groupid
-                            }`;
-
-                            if (d.raw.site !== undefined) {
-                                title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
-                            }
+                            title = formatMetricTooltipTitle(d.raw, config);
                         } else {
                             title =
                                 i === 0
-                                    ? `${config.group}s ${
-                                          d.dataset.data[d.dataIndex].groupid
+                                    ? `${config.GroupLevel}s ${
+                                          d.dataset.data[d.dataIndex].GroupID
                                       }`
-                                    : d.dataset.data[d.dataIndex].groupid;
+                                    : d.dataset.data[d.dataIndex].GroupID;
                         }
 
                         return title;

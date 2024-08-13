@@ -1,4 +1,4 @@
-import falsy from '../../util/falsy';
+import falsy from '../../util/falsy.js';
 import { ascending } from 'd3';
 
 export default function mutate(_data_, config) {
@@ -15,7 +15,7 @@ export default function mutate(_data_, config) {
 
             return datum;
         })
-        .sort((a, b) => ascending(a.snapshot_date, b.snapshot_date));
+        .sort((a, b) => ascending(a.SnapshotDate, b.SnapshotDate));
 
     return data.slice(-config.nSnapshots);
 }

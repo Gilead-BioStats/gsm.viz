@@ -1,5 +1,5 @@
-import annotateThresholds from './annotation/thresholds';
-import annotateValue from './annotation/value';
+import annotateThresholds from './annotation/thresholds.js';
+import annotateValue from './annotation/value.js';
 
 export default function annotations(config, data) {
     const value = annotateValue(config, data);
@@ -10,8 +10,8 @@ export default function annotations(config, data) {
     };
 
     if (thresholds !== null)
-        thresholds.forEach((threshold) => {
-            annotations.annotations.push(threshold);
+        thresholds.forEach((Threshold) => {
+            annotations.annotations.push(Threshold);
         });
 
     return annotations;

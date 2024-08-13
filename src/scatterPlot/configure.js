@@ -1,21 +1,27 @@
-import configureAll from '../util/configure';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import coalesce from '../util/coalesce';
-import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
+import configureAll from '../util/configure.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import coalesce from '../util/coalesce.js';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_) {
+export default function configure(_config_, _results_) {
     const defaults = {};
 
+    defaults.GroupLevel = 'Site';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
+
     // horizontal
-    defaults.x = 'denominator';
+    defaults.x = 'Denominator';
+    defaults[defaults.x] = defaults.x;
     defaults.xType = 'logarithmic';
 
     // vertical
-    defaults.y = 'numerator';
+    defaults.y = 'Numerator';
+    defaults[defaults.y] = defaults.y;
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -32,14 +38,14 @@ export default function configure(_config_, _data_) {
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
-            _data_
+            _config_?.selectedGroupIDs,
+            _results_
         ),
     });
 
     // configuration-driven settings
-    config.xLabel = coalesce(_config_.xLabel, config[config.x]);
-    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.xLabel = coalesce(_config_?.xLabel, config[config.x]);
+    config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
 
     // If callbacks already exist maintain them.

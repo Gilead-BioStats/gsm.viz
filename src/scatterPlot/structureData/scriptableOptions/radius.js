@@ -8,15 +8,15 @@ export default function radius(context, options) {
         const defaultRadius = 3;
         const hoverRadius = 4;
 
-        if (datum.site !== undefined) {
+        if (datum.group !== undefined) {
             // a = pi*r^2 => a/pi = r^2 => sqrt(a/pi) = r
             const enrollmentFactor = Math.sqrt(
-                datum.site.enrolled_participants / Math.PI
+                datum.group[config.groupParticipantCountKey] / Math.PI
             );
 
             return enrollmentFactor * defaultRadius;
         } else {
-            return config.selectedGroupIDs.includes(datum.groupid)
+            return config.selectedGroupIDs.includes(datum.GroupID)
                 ? hoverRadius
                 : defaultRadius;
         }

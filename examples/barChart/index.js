@@ -1,68 +1,61 @@
 const dataFiles = [
-    '../data/results_summary.csv',
-    '../data/meta_workflow.csv',
-    '../data/meta_param.csv',
-    '../data/status_param.csv',
-    '../data/status_site.csv',
+    '../data/results.csv',
+    '../data/metricMetadata.csv',
+    '../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
 );
 
+// TODO: update controls as in scatterPlot
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
-
-        datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
-                : dataset
-        );
+        const MetricID = 'kri0001';
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const SnapshotDate = d3.max(datasets[0], (d) => d.SnapshotDate);
+        datasets[0] = datasets[0].filter(
+            (d) => d.SnapshotDate === SnapshotDate
+        );
+        const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.y = 'score';
-        workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
-        };
-        workflow.clickCallback = function (datum) {
-            instance.data.config.selectedGroupIDs = datum.groupid;
+        const config = selectMetricID(datasets[1], MetricID);
+        config.displayTitle = true;
+        config.y = 'Score';
+        config.clickCallback = function (datum) {
+            instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.helpers.updateConfig(
                 instance,
                 instance.data.config,
                 instance.data._thresholds_
             );
-            document.querySelector('#groupid').value = datum.groupid;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
         // threshold annotations
-        const parameters = mergeParameters(
-            filterOnWorkflowID(datasets[2], workflowID),
-            filterOnWorkflowID(datasets[3], workflowID)
-        );
+        const thresholds = config.Thresholds.split(',').map((d) => +d);
 
-        // site metadata
-        const sites = datasets[4];
+        // group metadata
+        const groupMetadata = datasets[2];
 
         // visualization
         const instance = rbmViz.default.barChart(
             document.getElementById('container'),
             results,
-            workflow,
-            parameters,
-            sites
+            config,
+            thresholds,
+            groupMetadata
         );
 
         // controls
-        kri(workflow, datasets, true);
-        site(datasets, true);
-        yaxis(workflow, datasets, true);
-        threshold(workflow, datasets, true);
-        lifecycle(datasets, 'barChart', true);
+        metric(datasets, true, MetricID);
+        group(datasets, true);
+        country(datasets, true);
+        yAxis(datasets, true, config.y);
+        threshold(datasets, true);
+        lifecycle(datasets, true);
         download(true);
     });

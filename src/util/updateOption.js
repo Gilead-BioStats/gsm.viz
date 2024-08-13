@@ -1,4 +1,4 @@
-import triggerTooltip from '../util/triggerTooltip';
+import triggerTooltip from '../util/triggerTooltip.js';
 
 /**
  * Update a single chart option and redraw chart.

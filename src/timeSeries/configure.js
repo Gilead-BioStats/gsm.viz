@@ -1,34 +1,36 @@
-import configureAll from '../util/configure';
-import coalesce from '../util/coalesce';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from '../util/checkThresholds';
-import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
+import configureAll from '../util/configure.js';
+import coalesce from '../util/coalesce.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import checkThresholds from '../util/checkThresholds.js';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_, _thresholds_, _intervals_) {
+export default function configure(
+    _config_,
+    _results_,
+    _thresholds_,
+    _intervals_
+) {
     const defaults = {};
 
-    defaults.dataType = /flag|risk/.test(_config_.y)
-        ? 'discrete'
-        : 'continuous';
+    defaults.GroupLevel = 'Site';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
 
-    if (defaults.dataType === 'discrete')
-        defaults.discreteUnit = Object.keys(_data_[0]).includes('groupid')
-            ? 'KRI'
-            : 'Site';
-    else defaults.discreteUnit = null;
+    defaults.dataType = 'continuous';
+    defaults.discreteUnit = null;
 
     defaults.distributionDisplay = 'boxplot';
 
     // horizontal
-    defaults.x = 'snapshot_date';
+    defaults.x = 'SnapshotDate';
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -37,10 +39,9 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     };
 
     // miscellaneous
-    defaults.group = 'Site';
     defaults.aggregateLabel = 'Study';
     defaults.annotateThreshold = _thresholds_ !== null;
-    //defaults.displayTitle = false;
+    defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
     //defaults.displayBoxplots = true;
     //defaults.displayViolins = false;
@@ -49,29 +50,37 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
     //defaults.displayThresholds = true;
     //defaults.displayTrendLine = true;
 
-    _config_.variableThresholds = Array.isArray(_thresholds_)
-        ? _thresholds_.some(
-              (threshold) =>
-                  threshold.snapshot_date !== _thresholds_[0].snapshot_date
-          )
-        : false;
+    if (_config_ !== null)
+        _config_.variableThresholds = Array.isArray(_thresholds_)
+            ? _thresholds_.some(
+                  (Threshold) =>
+                      Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
+              )
+            : false;
 
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
-            _data_
+            _config_?.selectedGroupIDs,
+            _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
-    config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+    config.dataType = /flag|risk/.test(config.y) ? 'discrete' : 'continuous';
+
+    if (defaults.dataType === 'discrete')
+        config.discreteUnit = Object.keys(_results_[0]).includes('GroupID')
+            ? 'Metric'
+            : 'Site';
+
+    config.xLabel = coalesce(_config_?.xLabel, 'Snapshot Date');
     const discreteUnits =
         config.dataType === 'discrete'
             ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
             : '';
     config.yLabel = coalesce(
-        _config_.yLabel,
+        _config_?.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
@@ -83,6 +92,11 @@ export default function configure(_config_, _data_, _thresholds_, _intervals_) {
             : ''
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+    if (
+        config.y !== 'Score' &&
+        !(config.y === 'Metric' && _intervals_ !== null)
+    )
+        delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

@@ -11,25 +11,25 @@ Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
         datasets = datasets.map((dataset) =>
-            dataset.filter((d) => /^kri/.test(d.workflowid))
+            dataset.filter((d) => /^kri/.test(d.MetricID))
         );
 
-        const workflowid = kri(datasets, true);
+        const MetricID = metric(datasets, true);
 
         // data
-        const groupids = [...new Set(datasets[0].map((d) => d.groupid))];
+        const GroupIDs = [...new Set(datasets[0].map((d) => d.GroupID))];
         const results = datasets[0].filter(
-            (d) => d.workflowid === workflowid && groupids.includes(d.groupid)
+            (d) => d.MetricID === MetricID && GroupIDs.includes(d.GroupID)
         );
 
         // configuration
-        const workflow = datasets[1].find((d) => d.workflowid === workflowid);
-        workflow.y = 'metric';
-        workflow.nSnapshots = 25;
+        const config = datasets[1].find((d) => d.MetricID === MetricID);
+        config.y = 'Metric';
+        config.nSnapshots = 25;
 
-        // loop over group IDs
-        for (const i in groupids) {
-            const groupid = groupids[i];
+        // loop over Group IDs
+        for (const i in GroupIDs) {
+            const GroupID = GroupIDs[i];
 
             // container
             const container = document.getElementById('container');
@@ -41,8 +41,8 @@ Promise.all(dataPromises)
             // display
             const instance = rbmViz.default.sparkline(
                 subcontainer,
-                results.filter((d) => d.groupid === groupid),
-                workflow
+                results.filter((d) => d.GroupID === GroupID),
+                config
             );
         }
     });

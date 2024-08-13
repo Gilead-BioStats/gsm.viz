@@ -1,8 +1,8 @@
 const dataFiles = [
-    '../data/results_summary.csv',
-    '../data/meta_workflow.csv',
-    '../data/results_bounds.csv',
-    '../data/status_site.csv',
+    '../data/results.csv',
+    '../data/metricMetadata.csv',
+    '../data/resultsPredicted.csv',
+    '../data/groupMetadata.csv',
 ];
 
 const dataPromises = dataFiles.map((dataFile) =>
@@ -12,48 +12,45 @@ const dataPromises = dataFiles.map((dataFile) =>
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
-        const workflowID = 'kri0001';
-
-        datasets = datasets.map((dataset) =>
-            Object.keys(dataset[0]).includes('workflowid')
-                ? dataset.filter((d) => /^kri/.test(d.workflowid))
-                : dataset
-        );
+        const MetricID = 'kri0001';
 
         // analysis results
-        const results = filterOnWorkflowID(datasets[0], workflowID);
+        const SnapshotDate = d3.max(datasets[0], (d) => d.SnapshotDate);
+        datasets[0] = datasets[0].filter(
+            (d) => d.SnapshotDate === SnapshotDate
+        );
+        const results = filterOnMetricID(datasets[0], MetricID);
 
         // chart configuration
-        const workflow = selectWorkflowID(datasets[1], workflowID);
-        workflow.hoverCallback = function (datum) {
-            //console.log(datum.groupid);
-        };
-        workflow.clickCallback = function (datum) {
-            instance.data.config.selectedGroupIDs = datum.groupid;
+        const config = selectMetricID(datasets[1], MetricID);
+        config.displayTitle = true;
+        config.clickCallback = function (datum) {
+            instance.data.config.selectedGroupIDs = datum.GroupID;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
-            document.querySelector('#groupid').value = datum.groupid;
+            document.querySelector('#group').value = datum.GroupID;
         };
 
-        // threshold annotations
-        const bounds = filterOnWorkflowID(datasets[2], workflowID);
+        // predicted bounds
+        const bounds = filterOnMetricID(datasets[2], MetricID);
 
-        // site metadata
-        const sites = datasets[3];
+        // group metadata
+        const groupMetadata = datasets[3];
 
         // visualization
         const instance = rbmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
-            workflow,
+            config,
             bounds,
-            sites
+            groupMetadata
         );
 
         // controls
-        kri(workflowID, datasets, true);
-        site(datasets, true);
+        metric(datasets, true, MetricID);
+        group(datasets, true);
+        country(datasets, true);
         xAxisType(true);
-        lifecycle(datasets, 'scatterPlot', true);
+        lifecycle(datasets, true);
         download(true);
     });

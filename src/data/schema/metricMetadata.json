@@ -1,0 +1,23 @@
+{
+    "title": "Metric Metadata",
+    "description": "JSON schema of metric metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules",
+    "version": "0.14.0",
+    "type": "array",
+    "modules": {
+        "groupOverview": {
+            "required": true
+        }
+    },
+    "items": {
+        "type": "object",
+        "required": [
+            "MetricID",
+            "GroupLevel",
+            "Numerator",
+            "Denominator",
+            "Metric",
+            "Score",
+            "Abbreviation"
+        ]
+    }
+}

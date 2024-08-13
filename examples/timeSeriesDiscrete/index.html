@@ -5,10 +5,9 @@
         <meta charset="utf-8" />
 
         <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="../../index.js"></script>
+        <script src="../index.js"></script>
 
         <script src="../controls/getChart.js"></script>
         <script src="./controls/kri.js"></script>
@@ -16,20 +15,22 @@
     </head>
 
     <body>
-        <div id="controls">
-            <fieldset>
-                <legend>KRI</legend>
-                <select id="kri"></select>
-            </fieldset>
+        <div class="rbm-viz--example">
+            <div id="controls">
+                <fieldset>
+                    <legend>KRI</legend>
+                    <select id="kri"></select>
+                </fieldset>
 
-            <fieldset>
-                <legend>Highlighted Site</legend>
-                <select id="groupid"></select>
-            </fieldset>
-        </div>
+                <fieldset>
+                    <legend>Highlighted Site</legend>
+                    <select id="GroupID"></select>
+                </fieldset>
+            </div>
 
-        <div id="container">
-            <canvas id="canvas"></canvas>
+            <div id="container">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
     </body>
 

@@ -1,56 +1,62 @@
 {
-    "title": "Predicted KRI Analysis Output",
+    "title": "Predicted Metric Analysis Output",
     "description": "JSON schema of predicted input data to scatterPlot module",
     "version": "0.14.0",
     "type": "array",
+    "modules": {
+        "scatterPlot": {
+            "required": false
+        }
+    },
     "items": {
         "type": "object",
+        "required": ["Numerator", "Denominator", "Threshold"],
         "properties": {
-            "studyid": {
+            "StudyID": {
                 "title": "Study ID",
                 "description": "Unique study identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "workflowid": {
-                "title": "Workflow ID",
+            "MetricID": {
+                "title": "Metric ID",
                 "description": "Unique workflow identifier",
                 "type": "string",
                 "required": false,
                 "key": true
             },
-            "threshold": {
+            "Threshold": {
                 "title": "Threshold",
                 "description": "Directional factor of predicted results",
                 "type": "number",
                 "required": true,
                 "key": true
             },
-            "numerator": {
+            "Numerator": {
                 "title": "Predicted Numerator",
-                "description": "Predicted numerator of KRI metric",
+                "description": "Predicted numerator of Metric metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "denominator": {
+            "Denominator": {
                 "title": "Predicted Denominator",
-                "description": "Predicted denominator of KRI metric",
+                "description": "Predicted denominator of Metric metric",
                 "type": "number",
                 "required": true,
                 "key": false
             },
-            "log_denominator": {
+            "LogDenominator": {
                 "title": "Predicted Denominator (log)",
-                "description": "Predicted Denominator of KRI metric (log)",
+                "description": "Predicted Denominator of Metric metric (log)",
                 "type": "number",
                 "required": false,
                 "key": false
             },
-            "gsm_analysis_date": {
-                "title": "Analysis Date",
-                "description": "Date of analysis",
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
                 "type": "string",
                 "required": false,
                 "key": false

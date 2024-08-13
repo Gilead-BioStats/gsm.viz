@@ -1,4 +1,4 @@
-import colorScheme from '../../util/colorScheme';
+import colorScheme from '../../util/colorScheme.js';
 
 export default function annotations(config) {
     let annotations = null;
@@ -6,36 +6,39 @@ export default function annotations(config) {
     if (config.thresholds) {
         annotations = config.thresholds.map((x, i) => {
             const annotation = {
-                adjustScaleRange: config.group === 'Study',
+                adjustScaleRange: config.GroupLevel === 'Study',
                 drawTime: 'beforeDatasetsDraw',
                 type: 'line',
-                yMin: x.threshold,
-                yMax: x.threshold,
+                yMin: x.Threshold,
+                yMax: x.Threshold,
                 borderColor:
-                    config.group === 'Study'
+                    config.GroupLevel === 'Study'
                         ? colorScheme.amberRed.color
-                        : colorScheme.find((y) => y.flag.includes(+x.flag))
+                        : colorScheme.find((y) => y.Flag.includes(+x.Flag))
                               .color,
                 borderWidth: 1,
                 borderDash: [2],
             };
 
-            if (config.annotateThreshold === true && config.group === 'Study') {
+            if (
+                config.annotateThreshold === true &&
+                config.GroupLevel === 'Study'
+            ) {
                 annotation.label = {
                     rotation: 'auto',
-                    position: Math.sign(+x.flag) >= 0 ? 'end' : 'start',
+                    position: Math.sign(+x.Flag) >= 0 ? 'end' : 'start',
                     color:
-                        config.group === 'Study'
+                        config.GroupLevel === 'Study'
                             ? colorScheme.amberRed.color
-                            : colorScheme.find((y) => y.flag.includes(+x.flag))
+                            : colorScheme.find((y) => y.Flag.includes(+x.Flag))
                                   .color,
                     backgroundColor: 'white',
                     content: `QTL: ${
-                        Math.round(+config.thresholds[0].threshold * 1000) /
+                        Math.round(+config.thresholds[0].Threshold * 1000) /
                         (1000).toString()
                     }`,
-                    //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.flag.includes(+x.flag))[0].description,
-                    display: true, //Math.sign(+x.flag) === 1,
+                    //    .replace(/^(.*\.\d{3})(\d+)$/, '$1')}`, //colorScheme.filter((y) => y.Flag.includes(+x.Flag))[0].description,
+                    display: true, //Math.sign(+x.Flag) === 1,
                     font: {
                         size: 12,
                     },

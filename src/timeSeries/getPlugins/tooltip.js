@@ -1,10 +1,9 @@
-import { ascending } from 'd3';
-import formatResultTooltipContent from '../../util/formatResultTooltipContent';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
-import sortByGroupID from '../../util/sortByGroupID';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
+import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatResultTooltipTitle from '../../util/formatMetricTooltipTitle.js';
+import sortByGroupID from '../../util/sortByGroupID.js';
 
-// TODO: figure out better approach to coincidental highlight and site aggregate distribution
-// TODO: figure out why tooltips stop working on site 43 after de-selection
+// TODO: figure out better approach to coincidental highlight and group aggregate distribution
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
 
@@ -12,7 +11,7 @@ export default function tooltip(config) {
         callbacks: {
             //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
-                const content = formatResultTooltipContent(config, d);
+                const content = formatResultTooltipContent(d, config);
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;
@@ -28,11 +27,11 @@ export default function tooltip(config) {
                 if (data.length) {
                     // distribution (boxplot, violin plot)
                     if (data[0].dataset.purpose === 'distribution') {
-                        return `${config.group} Distribution on ${data[0].label}`;
+                        return `${config.GroupLevel} Distribution on ${data[0].label}`;
                     }
-                    // aggregate (discrete KRI distribution, QTL)
+                    // aggregate (discrete Metric distribution, QTL)
                     else if (data[0].dataset.purpose === 'aggregate') {
-                        return `${config.group} Summary on ${data[0].label}`;
+                        return `${config.GroupLevel} Summary on ${data[0].label}`;
                     }
                     // data point
                     else {
@@ -48,21 +47,15 @@ export default function tooltip(config) {
                             let title;
 
                             if (data.length === 1) {
-                                title = `${config.group} ${
-                                    d.dataset.data[d.dataIndex].groupid
-                                }`;
-
-                                if (d.raw.site !== undefined) {
-                                    title = `${title} (${d.raw.site.pi_last_name} / ${d.raw.site.enrolled_participants} enrolled)`;
-                                }
+                                title = formatResultTooltipTitle(d.raw, config);
                             } else {
                                 title =
                                     i === 0
-                                        ? `${config.group}s ${
+                                        ? `${config.GroupLevel}s ${
                                               d.dataset.data[d.dataIndex]
-                                                  .groupid
+                                                  .GroupID
                                           }`
-                                        : d.dataset.data[d.dataIndex].groupid;
+                                        : d.dataset.data[d.dataIndex].GroupID;
                             }
 
                             return title;
@@ -85,7 +78,7 @@ export default function tooltip(config) {
             const datum = data.dataset.data[data.dataIndex];
             const isAnnotation = data.dataset.purpose === 'annotation';
             const isObject = typeof datum === 'object';
-            const isSelected = config.selectedGroupIDs.includes(datum.groupid);
+            const isSelected = config.selectedGroupIDs.includes(datum.GroupID);
             const isScatter = data.dataset.type === 'scatter';
 
             // Avoid duplicate display of tooltip.

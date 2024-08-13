@@ -1,7 +1,7 @@
 import resultsVertical from '../../examples/data/results_analysis.json';
 import schema from '../../src/data/schema/resultsVertical.json';
-import checkInput from '../../src/data/checkInput';
-import getType from '../../src/data/checkInput/getType';
+import checkInput from '../../src/data/checkInput.js';
+import getType from '../../src/data/checkInput/getType.js';
 
 describe('additional analysis results schema', () => {
     test('additional analysis results schema type matches data type of additional analysis results', () => {

@@ -1,0 +1,41 @@
+/**
+ * @jest-environment jsdom
+ */
+
+import results from '../../examples/data/results.json';
+import metricMetadata from '../../examples/data/metricMetadata.json';
+import resultsPredicted from '../../examples/data/resultsPredicted.json';
+import groupMetadata from '../../examples/data/groupMetadata.json';
+
+import scatterPlot from '../../src/scatterPlot.js';
+
+const MetricID = 'kri0001';
+const resultsSubset = results.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
+);
+const resultsPredictedSubset = resultsPredicted.filter(
+    (d) => d.MetricID === MetricID
+);
+
+describe('scatter plot is generated', () => {
+    const container = document.createElement('div');
+
+    test('scatter plot is generated with all arguments', () => {
+        const instance = scatterPlot(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            resultsPredictedSubset,
+            groupMetadata
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`scatter plot is generated with missing optional arguments`, () => {
+        const instance = scatterPlot(container, resultsSubset);
+
+        expect(instance).not.toBeNull();
+    });
+});

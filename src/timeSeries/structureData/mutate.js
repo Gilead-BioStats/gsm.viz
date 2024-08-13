@@ -1,52 +1,51 @@
 import { ascending } from 'd3';
-import getLabels from './getLabels';
-import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
+import getLabels from './getLabels.js';
+import identifyDuplicatePoints from '../../util/identifyDuplicatePoints.js';
 
 export default function mutate(
-    _data_,
+    _results_,
     config,
     _thresholds_,
     _intervals_,
-    _sites_ = null
+    groupMetadata = null
 ) {
-    const data = _data_
+    const results = _results_
         .map((d) => {
             const datum = { ...d };
 
-            if (_sites_ !== null) {
-                let site = _sites_.filter((site) => site.siteid === d.groupid);
+            // attach group metadata to results
+            if (groupMetadata !== null) {
+                const group = groupMetadata.get(d.GroupID);
 
-                if (site.length > 1) {
-                    site = site.find(
-                        (site) => site.snapshot_date === datum.snapshot_date
-                    );
-                } else {
-                    site = site[0];
-                }
-
-                if (site !== undefined) {
-                    datum.site = site;
+                // TODO: support longitudinal group metadata
+                if (group !== undefined) {
+                    datum.group = group;
+                    datum.group.groupLabel = datum.group.hasOwnProperty(
+                        config.groupLabelKey
+                    )
+                        ? datum.group[config.groupLabelKey]
+                        : datum.GroupID;
                 }
             }
 
             // Merge confidence intervals onto standard analysis output.
             if ([undefined, null].includes(_intervals_) === false) {
                 const intervals = _intervals_.filter(
-                    (interval) => interval.snapshot_date === datum.snapshot_date
+                    (interval) => interval.SnapshotDate === datum.SnapshotDate
                 );
                 datum.lowerCI = intervals.find(
-                    (interval) => interval.param === 'LowCI'
-                )?.value;
+                    (interval) => interval.Param === 'LowCI'
+                )?.Value;
                 datum.upperCI = intervals.find(
-                    (interval) => interval.param === 'UpCI'
-                )?.value;
+                    (interval) => interval.Param === 'UpCI'
+                )?.Value;
             }
 
             return datum;
         })
         .sort((a, b) => ascending(a[config.x], b[config.x]));
 
-    const labels = getLabels(data, config);
+    const labels = getLabels(results, config);
 
     let thresholds = null;
     if (Array.isArray(_thresholds_) && config.variableThresholds) {
@@ -64,10 +63,10 @@ export default function mutate(
             .sort((a, b) => ascending(a[config.x], b[config.x]));
     }
 
-    identifyDuplicatePoints(data, config);
+    identifyDuplicatePoints(results, config);
 
     return {
-        data,
+        results,
         labels,
         thresholds,
         intervals,

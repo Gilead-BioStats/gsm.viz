@@ -1,4 +1,4 @@
-import falsy from './falsy';
+import falsy from './falsy.js';
 import { ascending, color as d3color } from 'd3';
 
 const colorScheme = [
@@ -6,25 +6,25 @@ const colorScheme = [
         color: '#52C41A',
         order: 0,
         description: 'Green Flag',
-        flag: [0],
+        Flag: [0],
     },
     {
         color: '#FFBF00',
         order: 1,
         description: 'Amber Flag',
-        flag: [-1, 1],
+        Flag: [-1, 1],
     },
     {
         color: '#ff0040',
         order: 2,
         description: 'Red Flag',
-        flag: [-2, 2],
+        Flag: [-2, 2],
     },
     {
         color: '#aaaaaa',
         order: 3,
         description: 'No Flag',
-        flag: falsy,
+        Flag: falsy,
     },
 ];
 
@@ -33,8 +33,8 @@ colorScheme.forEach((color) => {
 });
 
 // Calculate average of amber and red colors.
-const amber = colorScheme.find((color) => color.flag.includes(1));
-const red = colorScheme.find((color) => color.flag.includes(2));
+const amber = colorScheme.find((color) => color.Flag.includes(1));
+const red = colorScheme.find((color) => color.Flag.includes(2));
 
 colorScheme.amberRed = {
     color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
@@ -42,7 +42,7 @@ colorScheme.amberRed = {
     )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: 'Amber or Red Flag',
-    flag: [...amber.flag, ...red.flag].sort(ascending),
+    Flag: [...amber.Flag, ...red.Flag].sort(ascending),
 };
 colorScheme.amberRed.rgba = d3color(colorScheme.amberRed.color);
 

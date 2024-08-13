@@ -4,29 +4,29 @@
         <title>Time Series: QTL</title>
         <meta charset="utf-8" />
         <link rel="stylesheet" href="../style.css" />
-        <link rel="stylesheet" href="style.css" />
 
         <script src="https://d3js.org/d3.v7.min.js"></script>
-        <script src="../../index.js"></script>
+        <script src="../index.js"></script>
 
-        <script src="../data/helpers/filterOnWorkflowID.js"></script>
-        <script src="../data/helpers/selectWorkflowID.js"></script>
-        <script src="../data/helpers/mergeParameters.js"></script>
+        <script src="../data/helpers/filterOnMetricID.js"></script>
+        <script src="../data/helpers/selectMetricID.js"></script>
 
         <script src="../controls/getChart.js"></script>
-        <script src="./controls/qtl.js"></script>
+        <script src="./controls/metric.js"></script>
     </head>
 
     <body>
-        <div id="controls">
-            <fieldset>
-                <legend>QTL</legend>
-                <select id="qtl"></select>
-            </fieldset>
-        </div>
+        <div class="rbm-viz--example">
+            <div id="controls">
+                <fieldset>
+                    <legend>Metric</legend>
+                    <select id="metric"></select>
+                </fieldset>
+            </div>
 
-        <div id="container">
-            <canvas id="canvas"></canvas>
+            <div id="container">
+                <canvas id="canvas"></canvas>
+            </div>
         </div>
     </body>
 

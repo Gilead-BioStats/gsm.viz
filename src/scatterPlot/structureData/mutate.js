@@ -1,14 +1,19 @@
-import identifyDuplicatePoints from '../../util/identifyDuplicatePoints';
+import identifyDuplicatePoints from '../../util/identifyDuplicatePoints.js';
 
-export default function mutate(_data_, config, _sites_ = null) {
-    const data = _data_
+export default function mutate(_results_, config, groupMetadata = null) {
+    const results = _results_
         .map((d) => {
-            // attach site metadata to results
-            if (_sites_ !== null) {
-                const site = _sites_.find((site) => site.siteid === d.groupid);
+            // attach group metadata to results
+            if (groupMetadata !== null) {
+                const group = groupMetadata.get(d.GroupID);
 
-                if (site !== undefined) {
-                    d.site = site;
+                if (group !== undefined) {
+                    d.group = group;
+                    d.group.groupLabel = d.group.hasOwnProperty(
+                        config.groupLabelKey
+                    )
+                        ? d.group[config.groupLabelKey]
+                        : d.GroupID;
                 }
             }
 
@@ -24,14 +29,14 @@ export default function mutate(_data_, config, _sites_ = null) {
             return datum;
         })
         .sort((a, b) => {
-            const aSelected = config.selectedGroupIDs.indexOf(a.groupid) > -1;
-            const bSelected = config.selectedGroupIDs.indexOf(b.groupid) > -1;
+            const aSelected = config.selectedGroupIDs.indexOf(a.GroupID) > -1;
+            const bSelected = config.selectedGroupIDs.indexOf(b.GroupID) > -1;
             const stratum = b.stratum - a.stratum;
 
             return aSelected ? 1 : bSelected ? -1 : stratum;
         });
 
-    identifyDuplicatePoints(data, config);
+    identifyDuplicatePoints(results, config);
 
-    return data;
+    return results;
 }

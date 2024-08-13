@@ -1,43 +1,47 @@
-import mutate from './structureData/mutate';
-import getLabels from './structureData/getLabels';
+import structureGroupMetadata from '../util/structureGroupMetadata.js';
+import mutate from './structureData/mutate.js';
+import getLabels from './structureData/getLabels.js';
 
 // datasets
-import getIdentityLine from './structureData/identityLine';
-import getIntervalLines from './structureData/intervalLines';
+import getIdentityLine from './structureData/identityLine.js';
+import getIntervalLines from './structureData/intervalLines.js';
 
-import getSelectedGroupLine from './structureData/selectedGroupLine';
-import getFlagAmber from './structureData/flagAmber';
-import getFlagRed from './structureData/flagRed';
-import getDistribution from './structureData/distribution';
+import getSelectedGroupLine from './structureData/selectedGroupLine.js';
+import getFlagAmber from './structureData/flagAmber.js';
+import getFlagRed from './structureData/flagRed.js';
+import getDistribution from './structureData/distribution.js';
 
-import getThresholdLines from './structureData/getThresholdLines';
+import getThresholdLines from './structureData/getThresholdLines.js';
 
-import getAggregateLine from './structureData/aggregateLine';
+import getAggregateLine from './structureData/aggregateLine.js';
 
-import colorScheme from '../util/colorScheme';
+import colorScheme from '../util/colorScheme.js';
 
 export default function structureData(
-    _data_,
+    _results_,
     config,
     _thresholds_ = null,
     _intervals_ = null,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
-    const { data, labels, thresholds, intervals } = mutate(
-        _data_,
+    const groupMetadata = structureGroupMetadata(_groupMetadata_, config);
+
+    const { results, labels, thresholds, intervals } = mutate(
+        _results_,
         config,
         _thresholds_,
         _intervals_,
-        _sites_
+        groupMetadata
     );
 
     // datasets
     let datasets = [];
     if (config.dataType !== 'discrete') {
         // TODO: find a better way to differentiate distribution and CI instances
+        // time series with CI
         if (intervals !== null) {
             datasets = [
-                getIdentityLine(data, config, labels),
+                getIdentityLine(results, config, labels),
                 ...getIntervalLines(intervals, config, labels),
                 {
                     type: 'scatter',
@@ -59,14 +63,16 @@ export default function structureData(
                     })),
                 ...getThresholdLines(thresholds, config, labels),
             ];
-        } else {
+        }
+        // time series (continuous)
+        else {
             datasets = [
-                getSelectedGroupLine(data, config, labels),
+                ...getSelectedGroupLine(results, config, labels),
                 {
                     type: 'scatter',
                     label:
-                        config.selectedGroupIDs.length > 0
-                            ? `${config.group} ${config.selectedGroupIDs[0]}`
+                        config.selectedGroupIDs.length === 1
+                            ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                             : '',
                     pointStyle: 'line',
                     pointStyleWidth: 24,
@@ -85,20 +91,20 @@ export default function structureData(
                         : '',
                     backgroundColor: color.color,
                 })),
-                getFlagRed(data, config, labels),
-                getFlagAmber(data, config, labels),
-                getDistribution(data, config, labels),
+                getFlagRed(results, config, labels),
+                getFlagAmber(results, config, labels),
+                getDistribution(results, config, labels),
                 ...getThresholdLines(thresholds, config, labels),
             ];
         }
     } else if (config.dataType === 'discrete') {
         const color =
-            config.yLabel === 'Red or Amber KRIs'
+            config.yLabel === 'Red or Amber Metrics'
                 ? colorScheme.amberRed.color
-                : config.yLabel === 'Red KRIs'
+                : config.yLabel === 'Red Metrics'
                 ? colorScheme.find((color) => /red/i.test(color.description))
                       .color
-                : config.yLabel === 'Amber KRIs'
+                : config.yLabel === 'Amber Metrics'
                 ? colorScheme.find((color) => /amber/i.test(color.description))
                       .color
                 : '#1890FF';
@@ -106,7 +112,7 @@ export default function structureData(
         datasets = [
             config.selectedGroupIDs.length > 0
                 ? {
-                      ...getSelectedGroupLine(data, config, labels),
+                      ...getSelectedGroupLine(results, config, labels),
                       backgroundColor: color,
                       borderColor: (d) => {
                           return d.raw !== undefined ? 'black' : '#aaa';
@@ -117,7 +123,7 @@ export default function structureData(
                 type: 'scatter',
                 label:
                     config.selectedGroupIDs.length > 0
-                        ? `${config.group} ${config.selectedGroupIDs[0]}`
+                        ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                         : '',
                 pointStyle: 'line',
                 pointStyleWidth: 24,
@@ -125,12 +131,12 @@ export default function structureData(
                 backgroundColor: 'rgba(0,0,0,.5)',
                 borderColor: 'rgba(0,0,0,.5)',
                 borderWidth: 3,
-            }, // legend item for selected group ID line
-            getAggregateLine(data, config, labels),
+            }, // legend item for selected Group ID line
+            getAggregateLine(results, config, labels),
             {
                 type: 'scatter',
                 label:
-                    config.discreteUnit === 'KRI'
+                    config.discreteUnit === 'Metric'
                         ? `${config.aggregateLabel} Average`
                         : '',
                 pointStyle: 'line',

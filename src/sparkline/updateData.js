@@ -1,8 +1,8 @@
-import updateConfig from './updateConfig';
-import structureData from './structureData';
-import addCustomEvent from '../util/addCanvas/addCustomEvent';
-import getPlugins from './getPlugins';
-import getScales from './getScales';
+import updateConfig from './updateConfig.js';
+import structureData from './structureData.js';
+import addCustomEvent from '../util/addCanvas/addCustomEvent.js';
+import getPlugins from './getPlugins.js';
+import getScales from './getScales.js';
 import { min, max } from 'd3';
 
 /**

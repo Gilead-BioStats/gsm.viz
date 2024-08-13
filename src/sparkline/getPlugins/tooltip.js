@@ -1,5 +1,5 @@
 import { format, timeFormat, timeParse } from 'd3';
-import getTooltipAesthetics from '../../util/getTooltipAesthetics';
+import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
 export default function tooltip(config) {
     const tooltipAesthetics = getTooltipAesthetics();
@@ -10,9 +10,9 @@ export default function tooltip(config) {
         callbacks: {
             label: function (data) {
                 const fmt =
-                    config.y === 'score'
+                    config.y === 'Score'
                         ? '.1f'
-                        : config.y === 'metric'
+                        : config.y === 'Metric'
                         ? '.3f'
                         : ',d';
 

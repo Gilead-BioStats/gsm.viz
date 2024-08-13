@@ -1,22 +1,26 @@
-import configureAll from '../util/configure';
-import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs';
-import checkThresholds from '../util/checkThresholds';
-import coalesce from '../util/coalesce';
-import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper';
+import configureAll from '../util/configure.js';
+import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
+import checkThresholds from '../util/checkThresholds.js';
+import coalesce from '../util/coalesce.js';
+import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _data_, _thresholds_) {
+export default function configure(_config_, _results_, _thresholds_) {
     const defaults = {};
 
+    defaults.GroupLevel = 'Site';
+    defaults.groupLabelKey = 'InvestigatorLastName';
+    defaults.groupParticipantCountKey = 'ParticipantCount';
+
     // horizontal
-    defaults.x = 'groupid';
+    defaults.x = 'GroupID';
     defaults.xType = 'category';
 
     // vertical
-    defaults.y = 'score';
+    defaults.y = 'Score';
     defaults.yType = 'linear';
 
     // color
-    defaults.color = 'flag';
+    defaults.color = 'Flag';
 
     // callbacks
     defaults.hoverCallback = (datum) => {};
@@ -28,20 +32,20 @@ export default function configure(_config_, _data_, _thresholds_) {
     defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
 
-    const config = configureAll(defaults, _config_, {
+    const config = configureAll(defaults, _config_ || {}, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
-            _data_
+            _config_?.selectedGroupIDs,
+            _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
     // configuration-driven settings
-    config.xLabel = coalesce(_config_.xLabel, config['group']);
-    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.xLabel = coalesce(_config_?.xLabel, config['Group']);
+    config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y === 'metric') delete config.thresholds;
+    if (config.y !== 'Score') delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

@@ -1,28 +1,29 @@
-import updateConfig from './updateConfig';
-import structureData from './structureData';
-import triggerTooltip from '../util/triggerTooltip';
+import updateConfig from './updateConfig.js';
+import structureData from './structureData.js';
+import triggerTooltip from '../util/triggerTooltip.js';
 
 /**
  * Update chart data and redraw chart.
  *
  * @param {Object} chart - Chart.js chart object
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - input data where each array item is an object of key-value pairs
  * @param {Object} _config_ - chart configuration and metadata
- * @param {Array} _bounds_ - optional auxiliary data plotted as a line representing bounds
+ * @param {Array} _thresholds_ - optional threshold values
+ * @param {Array} _groupMetadata_ - optional group metadata
  *
  */
 export default function updateData(
     chart,
-    _data_,
+    _results_,
     _config_,
     _thresholds_,
-    _sites_ = null
+    _groupMetadata_ = null
 ) {
     // Update chart configuration.
     const config = updateConfig(chart, _config_, _thresholds_, false, false);
 
     // Update chart data.
-    const datasets = structureData(_data_, config, _sites_);
+    const datasets = structureData(_results_, config, _groupMetadata_);
 
     // Update chart.
     chart.data.config = config;

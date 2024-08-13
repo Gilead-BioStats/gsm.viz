@@ -1,5 +1,5 @@
 import { color as d3color } from 'd3';
-import colorScheme from '../../../util/colorScheme';
+import colorScheme from '../../../util/colorScheme.js';
 
 export default function backgroundColor(context, options) {
     const chart = context.chart;
@@ -10,7 +10,7 @@ export default function backgroundColor(context, options) {
     if (dataset.type === 'bar') {
         const color = colorScheme[datum.stratum];
         color.rgba.opacity =
-            config.selectedGroupIDs.includes(datum.groupid) |
+            config.selectedGroupIDs.includes(datum.GroupID) |
             (config.selectedGroupIDs.length === 0)
                 ? 1
                 : 0.25;

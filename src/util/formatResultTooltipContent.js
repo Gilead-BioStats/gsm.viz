@@ -1,7 +1,8 @@
 import { format } from 'd3';
-import falsy from './falsy';
+import falsy from './falsy.js';
+import formatMetricTooltipLabel from './formatMetricTooltipLabel.js';
 
-export default function formatResultTooltipContent(config, data) {
+export default function formatResultTooltipContent(data, config) {
     const datum = data.dataset.data[data.dataIndex];
 
     let content;
@@ -11,37 +12,22 @@ export default function formatResultTooltipContent(config, data) {
         config.dataType !== 'discrete'
     ) {
         content =
-            config.group === 'Study'
+            config.GroupLevel === 'Study'
                 ? [
                       `${config.yLabel}: ${
-                          falsy.includes(datum.metric)
+                          falsy.includes(datum.Metric)
                               ? '—'
-                              : format('.3f')(datum.metric)
+                              : format('.3f')(datum.Metric)
                       }`,
                       `Confidence Interval: (${format('.3f')(
                           datum.lowerCI
                       )}, ${format('.3f')(datum.upperCI)})`,
-                      `${config.numerator}: ${format(',')(datum.numerator)}`,
-                      `${config.denominator}: ${format(',')(
-                          datum.denominator
+                      `${config.Numerator}: ${format(',')(datum.Numerator)}`,
+                      `${config.Denominator}: ${format(',')(
+                          datum.Denominator
                       )}`,
                   ]
-                : [
-                      `KRI Score: ${
-                          falsy.includes(datum.score)
-                              ? '—'
-                              : format('.1f')(datum.score)
-                      } (${config.score})`,
-                      `KRI Value: ${
-                          falsy.includes(datum.metric)
-                              ? '—'
-                              : format('.3f')(datum.metric)
-                      } (${config.metric})`,
-                      `${config.numerator}: ${format(',')(datum.numerator)}`,
-                      `${config.denominator}: ${format(',')(
-                          datum.denominator
-                      )}`,
-                  ];
+                : formatMetricTooltipLabel(datum, config);
     }
     // Handle distribution data.
     else if (['boxplot', 'violin'].includes(data.dataset.type)) {
@@ -66,14 +52,14 @@ export default function formatResultTooltipContent(config, data) {
                       }`,
                   ]
                 : data.dataset.purpose === 'aggregate' &&
-                  config.discreteUnit === 'KRI'
+                  config.discreteUnit === 'Metric'
                 ? [
                       `${format('.1f')(datum.y)} Average ${config.yLabel}`,
                       ...datum.counts.map(
                           (d) =>
                               `${d[config.y]} ${config.yLabel}: ${d.n}/${
                                   d.N
-                              } (${d.pct}%) ${config.group}s`
+                              } (${d.pct}%) ${config.GroupLevel}s`
                       ),
                   ]
                 : data.dataset.purpose === 'aggregate' &&

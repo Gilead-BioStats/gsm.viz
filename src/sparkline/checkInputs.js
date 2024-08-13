@@ -1,11 +1,11 @@
-import checkInput from '../data/checkInput';
+import checkInput from '../data/checkInput.js';
 
-export default function checkInputs(_data_, _config_, _thresholds_) {
-    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+export default function checkInputs(_results_, _config_, _thresholds_) {
+    const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
 
     checkInput({
-        parameter: '_data_',
-        argument: _data_,
+        parameter: '_results_',
+        argument: _results_,
         schemaName: discrete ? 'flagCounts' : 'results',
         module: 'sparkline',
     });
@@ -13,14 +13,14 @@ export default function checkInputs(_data_, _config_, _thresholds_) {
     checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
-        schemaName: 'analysisMetadata',
+        schemaName: 'metricMetadatum',
         module: 'sparkline',
     });
 
     checkInput({
         parameter: '_thresholds_',
         argument: _thresholds_,
-        schemaName: 'analysisParameters',
+        schemaName: 'thresholds',
         module: 'sparkline',
     });
 }

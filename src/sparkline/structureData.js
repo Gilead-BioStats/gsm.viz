@@ -1,7 +1,7 @@
 import { group } from 'd3';
-import mutate from './structureData/mutate';
-import colorScheme from '../util/colorScheme';
-import scriptableOptions from './structureData/scriptableOptions';
+import mutate from './structureData/mutate.js';
+import colorScheme from '../util/colorScheme.js';
+import scriptableOptions from './structureData/scriptableOptions.js';
 
 /**
  * Given input data, returns an array of arrays, each of which map to one or more graphical elements
@@ -15,7 +15,7 @@ import scriptableOptions from './structureData/scriptableOptions';
 export default function structureData(_data_, config) {
     // Update data.
     const data = mutate(_data_, config);
-    const labels = data.map((d) => d.snapshot_date);
+    const labels = data.map((d) => d.SnapshotDate);
     const pointBackgroundColor = data.map((d, i) => {
         return config.dataType === 'continuous'
             ? colorScheme[d.stratum].color

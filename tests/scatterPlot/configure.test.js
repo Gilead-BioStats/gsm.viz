@@ -1,40 +1,42 @@
-import data from '../../examples/data/results_summary.json';
-import metadata from '../../examples/data/meta_workflow.json';
-import bounds from '../../examples/data/results_summary.json';
+import results from '../../examples/data/results.json';
+import metricMetadata from '../../examples/data/metricMetadata.json';
+import resultsPredicted from '../../examples/data/resultsPredicted.json';
 
-import configure from '../../src/scatterPlot/configure';
+import configure from '../../src/scatterPlot/configure.js';
 
-const workflowID = 'kri0001';
-const dataSubset = data.filter((d) => d.workflowid === workflowID);
-const workflow = metadata.find(
-    (workflow) => workflow.workflowid === workflowID
+const MetricID = 'kri0001';
+const resultsSubset = results.filter((d) => d.MetricID === MetricID);
+const metricMetadatum = metricMetadata.find(
+    (metric) => metric.MetricID === MetricID
 );
-const boundsSubset = bounds.filter((d) => d.workflowid === workflowID);
+const resultsPredictedSubset = resultsPredicted.filter(
+    (d) => d.MetricID === MetricID
+);
 
 describe('configuration', () => {
-    const config = configure(workflow);
+    const config = configure(metricMetadatum, resultsSubset);
 
-    test('configure() accepts workflow object and returns config object', () => {
+    test('configure() accepts metric metadata object and returns config object', () => {
         const settings = Object.keys(config).sort();
 
         expect(settings).toEqual(
             [
-                // workflow metadata
-                'workflowid',
-                'gsm_version',
-                'group',
-                'abbreviation',
-                'metric',
-                'numerator',
-                'denominator',
-                'outcome',
-                'model',
-                'score',
-                'data_inputs',
-                'data_filters',
-                'gsm_analysis_date',
+                // metric metadata
+                'MetricID',
+                'GroupLevel',
+                'Abbreviation',
+                'Metric',
+                'Numerator',
+                'Denominator',
+                'Outcome',
+                'Model',
+                'Score',
+                'Thresholds',
 
                 // scatter plot settings
+                'groupLabelKey',
+                'groupParticipantCountKey',
+
                 'x',
                 'xType',
                 'xLabel',
