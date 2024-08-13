@@ -39,8 +39,8 @@ import triggerTooltip from './util/triggerTooltip.js';
 export default function barChart(
     _element_ = 'body',
     _results_ = [],
-    _config_ = {},
-    _thresholds_ = [],
+    _config_ = null,
+    _thresholds_ = null,
     _groupMetadata_ = null
 ) {
     // Check input data against data schema.

@@ -32,20 +32,20 @@ export default function configure(_config_, _results_, _thresholds_) {
     defaults.displayTitle = false;
     defaults.maintainAspectRatio = false;
 
-    const config = configureAll(defaults, _config_, {
+    const config = configureAll(defaults, _config_ || {}, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
+            _config_?.selectedGroupIDs,
             _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
 
     // configuration-driven settings
-    config.xLabel = coalesce(_config_.xLabel, config['Group']);
-    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.xLabel = coalesce(_config_?.xLabel, config['Group']);
+    config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-    if (config.y === 'Metric') delete config.thresholds;
+    if (config.y !== 'Score') delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

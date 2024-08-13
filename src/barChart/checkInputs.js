@@ -4,7 +4,7 @@ export default function checkInputs(
     _results_,
     _config_,
     _thresholds_,
-    _groupMetadata_ = null
+    _groupMetadata_
 ) {
     checkInput({
         parameter: '_results_',
@@ -16,7 +16,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_config_',
         argument: _config_,
-        schemaName: 'metricMetadata',
+        schemaName: 'metricMetadatum',
         module: 'barChart',
     });
 

@@ -1,11 +1,11 @@
 import configureAll from '../util/configure.js';
-import coalesce from '../util/coalesce.js';
 
-export default function configure(_config_, _data_) {
+export default function configure(_config_) {
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = null;
+    defaults.groupParticipantCountKey = 'ParticipantCount';
     defaults.groupTooltipKeys = null;
 
     // callbacks

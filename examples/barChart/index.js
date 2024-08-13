@@ -53,6 +53,7 @@ Promise.all(dataPromises)
         // controls
         metric(datasets, true, MetricID);
         group(datasets, true);
+        country(datasets, true);
         yAxis(datasets, true, config.y);
         threshold(datasets, true);
         lifecycle(datasets, true);

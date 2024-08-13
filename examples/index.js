@@ -24861,13 +24861,203 @@ var rbmViz = (() => {
         },
     };
 
+    // src/data/schema/flagCounts.json
+    var flagCounts_default = {
+        title: 'Flag Counts',
+        description: 'JSON schema of discrete input data to timeSeries modules',
+        version: '0.14.0',
+        type: 'array',
+        modules: {
+            sparkline: {
+                required: true,
+            },
+            timeSeries: {
+                required: true,
+            },
+        },
+        items: {
+            type: 'object',
+            required: [
+                'GroupID',
+                'MetricID',
+                'n',
+                'n_at_risk',
+                'n_flagged',
+                'n_at_risk_or_flagged',
+            ],
+            properties: {
+                StudyID: {
+                    title: 'Study ID',
+                    description: 'Unique study identifier',
+                    type: 'string',
+                    required: false,
+                    key: true,
+                },
+                GroupID: {
+                    title: 'Group ID',
+                    description: 'Unique group identifier',
+                    type: 'string',
+                    required: true,
+                    key: true,
+                    alternate: 'MetricID',
+                },
+                MetricID: {
+                    title: 'Metric ID',
+                    description: 'Unique workflow identifier',
+                    type: 'string',
+                    required: true,
+                    key: true,
+                    alternate: 'GroupID',
+                },
+                n: {
+                    title: '# of Groups/Metrics',
+                    description: 'Total number of assessed groups/Metrics',
+                    type: 'number',
+                    required: true,
+                    key: false,
+                },
+                n_at_risk: {
+                    title: '# of Amber Groups/Metrics',
+                    description: 'Number of amber groups/Metrics',
+                    type: 'number',
+                    required: true,
+                    key: false,
+                },
+                n_flagged: {
+                    title: '# of Red Groups/Metrics',
+                    description: 'Number of red groups/Metrics',
+                    type: 'number',
+                    required: true,
+                    key: false,
+                },
+                n_at_risk_or_flagged: {
+                    title: '# of Amber of Red Groups/Metrics',
+                    description: 'Number of amber or red groups/Metrics',
+                    type: 'number',
+                    required: true,
+                    key: false,
+                },
+            },
+        },
+    };
+
+    // src/data/schema/groupMetadata.json
+    var groupMetadata_default = {
+        title: 'Group Metadata',
+        description: 'JSON schema of group metadata',
+        version: '0.14.0',
+        type: 'array',
+        modules: {
+            barChart: {
+                required: false,
+            },
+            groupOverview: {
+                required: true,
+            },
+            scatterPlot: {
+                required: false,
+            },
+            timeSeries: {
+                required: false,
+            },
+        },
+        items: {
+            type: 'object',
+            required: ['GroupLevel', 'GroupID', 'Param', 'Value'],
+            properties: {
+                GroupLevel: {
+                    title: 'Grouping Variable',
+                    description:
+                        'Grouping variable of analysis, one of Site, Country, or Study',
+                    type: 'string',
+                    required: true,
+                    key: true,
+                },
+                GroupID: {
+                    title: 'Group ID',
+                    description: 'Unique group identifier',
+                    type: 'string',
+                    required: true,
+                    key: true,
+                },
+                Param: {
+                    title: 'Group Attribute Name',
+                    description: 'Name of group attribute',
+                    type: 'string',
+                    required: true,
+                    key: true,
+                },
+                Value: {
+                    title: 'Group Attribute Value',
+                    description: 'Value of group attribute',
+                    type: 'string',
+                    required: true,
+                    key: false,
+                },
+            },
+        },
+    };
+
     // src/data/schema/metricMetadata.json
     var metricMetadata_default = {
         title: 'Metric Metadata',
         description:
             'JSON schema of metric metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules',
         version: '0.14.0',
+        type: 'array',
+        modules: {
+            groupOverview: {
+                required: true,
+            },
+        },
+        items: {
+            type: 'object',
+            required: [
+                'MetricID',
+                'GroupLevel',
+                'Numerator',
+                'Denominator',
+                'Metric',
+                'Score',
+                'Abbreviation',
+            ],
+        },
+    };
+
+    // src/data/schema/metricMetadatum.json
+    var metricMetadatum_default = {
+        title: 'Metric Metadata',
+        description:
+            'JSON schema of metric metadata, the default configuration of the barChart, scatterPlot, timeSeries, and sparkline modules',
+        version: '0.14.0',
         type: 'object',
+        modules: {
+            barChart: {
+                required: false,
+            },
+            groupOverview: {
+                required: true,
+            },
+            scatterPlot: {
+                required: false,
+            },
+            sparkline: {
+                required: false,
+            },
+            timeSeries: {
+                required: false,
+            },
+        },
+        required: [
+            'MetricID',
+            'GroupLevel',
+            'Numerator',
+            'Denominator',
+            'Metric',
+            'Outcome',
+            'Score',
+            'Abbreviation',
+        ],
         properties: {
             MetricID: {
                 title: 'Metric ID',
@@ -24938,119 +25128,6 @@ var rbmViz = (() => {
                 required: false,
                 key: false,
             },
-            SnapshotDate: {
-                title: 'Snapshot Date',
-                description: 'Date of data refresh',
-                type: 'string',
-                required: false,
-                key: false,
-            },
-        },
-    };
-
-    // src/data/schema/groupMetadata.json
-    var groupMetadata_default = {
-        title: 'Group Metadata',
-        description: 'JSON schema of group metadata',
-        version: '0.14.0',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                GroupLevel: {
-                    title: 'Grouping Variable',
-                    description:
-                        'Grouping variable of analysis, one of Site, Country, or Study',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                GroupID: {
-                    title: 'Group ID',
-                    description: 'Unique group identifier',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                Param: {
-                    title: 'Group Attribute Name',
-                    description: 'Name of group attribute',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                Value: {
-                    title: 'Group Attribute Value',
-                    description: 'Value of group attribute',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-            },
-        },
-    };
-
-    // src/data/schema/flagCounts.json
-    var flagCounts_default = {
-        title: 'Flag Counts',
-        description: 'JSON schema of discrete input data to timeSeries modules',
-        version: '0.14.0',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                StudyID: {
-                    title: 'Study ID',
-                    description: 'Unique study identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                GroupID: {
-                    title: 'Group ID',
-                    description: 'Unique group identifier',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                    alternate: 'MetricID',
-                },
-                MetricID: {
-                    title: 'Metric ID',
-                    description: 'Unique workflow identifier',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                    alternate: 'GroupID',
-                },
-                n: {
-                    title: '# of Groups/Metrics',
-                    description: 'Total number of assessed groups/Metrics',
-                    type: 'number',
-                    required: true,
-                    key: false,
-                },
-                n_at_risk: {
-                    title: '# of Amber Groups/Metrics',
-                    description: 'Number of amber groups/Metrics',
-                    type: 'number',
-                    required: true,
-                    key: false,
-                },
-                n_flagged: {
-                    title: '# of Red Groups/Metrics',
-                    description: 'Number of red groups/Metrics',
-                    type: 'number',
-                    required: true,
-                    key: false,
-                },
-                n_at_risk_or_flagged: {
-                    title: '# of Amber of Red Groups/Metrics',
-                    description: 'Number of amber or red groups/Metrics',
-                    type: 'number',
-                    required: true,
-                    key: false,
-                },
-            },
         },
     };
 
@@ -25061,8 +25138,36 @@ var rbmViz = (() => {
             'JSON schema of input data to barChart and scatterPlot modules',
         version: '0.14.0',
         type: 'array',
+        modules: {
+            barChart: {
+                required: true,
+            },
+            groupOverview: {
+                required: true,
+            },
+            scatterPlot: {
+                required: true,
+            },
+            sparkline: {
+                required: true,
+            },
+            timeSeries: {
+                required: true,
+            },
+        },
         items: {
             type: 'object',
+            required: [
+                'StudyID',
+                'MetricID',
+                'GroupID',
+                'Numerator',
+                'Denominator',
+                'Metric',
+                'Score',
+                'Flag',
+                'SnapshotDate',
+            ],
             properties: {
                 StudyID: {
                     title: 'Study ID',
@@ -25139,8 +25244,14 @@ var rbmViz = (() => {
             'JSON schema of predicted input data to scatterPlot module',
         version: '0.14.0',
         type: 'array',
+        modules: {
+            scatterPlot: {
+                required: false,
+            },
+        },
         items: {
             type: 'object',
+            required: ['Numerator', 'Denominator', 'Threshold'],
             properties: {
                 StudyID: {
                     title: 'Study ID',
@@ -25201,8 +25312,14 @@ var rbmViz = (() => {
         description: 'JSON schema of ancillary input data to timeSeries module',
         version: '0.14.0',
         type: 'array',
+        modules: {
+            timeSeries: {
+                required: false,
+            },
+        },
         items: {
             type: 'object',
+            required: ['Param', 'Value'],
             properties: {
                 StudyID: {
                     title: 'Study ID',
@@ -25243,124 +25360,6 @@ var rbmViz = (() => {
         },
     };
 
-    // src/data/schema/siteMetadata.json
-    var siteMetadata_default = {
-        title: 'Site Metadata',
-        description: 'JSON schema of site metadata',
-        version: '0.14.0',
-        type: 'array',
-        items: {
-            type: 'object',
-            properties: {
-                StudyID: {
-                    title: 'Study ID',
-                    description: 'Unique study identifier',
-                    type: 'string',
-                    required: false,
-                    key: true,
-                },
-                SiteID: {
-                    title: 'Site ID',
-                    description: 'Unique site identifier',
-                    type: 'string',
-                    required: true,
-                    key: true,
-                },
-                site_num: {
-                    title: 'Site Number',
-                    description: 'Site ID',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                pi_number: {
-                    title: 'Investigator Number',
-                    description: 'Investigator ID',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                pi_first_name: {
-                    title: 'Investigator First Name',
-                    description: 'First name of investigator',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                pi_last_name: {
-                    title: 'Investigator Last Name',
-                    description: 'Last name of investigator',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                is_satellite: {
-                    title: 'Satellite Site?',
-                    description: 'Is site a satellite site?',
-                    type: 'boolean',
-                    required: false,
-                    key: false,
-                },
-                status: {
-                    title: 'Site Status',
-                    description: 'Status of site',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                enrolled_participants: {
-                    title: 'Enrolled Participants',
-                    description: 'Number of participants enrolled at site',
-                    type: 'number',
-                    required: true,
-                    key: false,
-                },
-                institution: {
-                    title: 'Site Name',
-                    description: 'Name of site',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                start_date: {
-                    title: 'Site Activation Date',
-                    description: 'Date site was activated',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                city: {
-                    title: 'City',
-                    description: 'City in which site is located',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                state: {
-                    title: 'State',
-                    description: 'State in which site is located',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-                country: {
-                    title: 'Country',
-                    description: 'Country in which site is located',
-                    type: 'string',
-                    required: true,
-                    key: false,
-                },
-                SnapshotDate: {
-                    title: 'Analysis Date',
-                    description: 'Date of analysis',
-                    type: 'string',
-                    required: false,
-                    key: false,
-                },
-            },
-        },
-    };
-
     // src/data/schema/snapshotDate.json
     var snapshotDate_default = {
         title: 'Snapshot Date',
@@ -25375,24 +25374,37 @@ var rbmViz = (() => {
         title: 'Thresholds',
         description: 'Threshold values',
         type: 'array',
+        modules: {
+            barChart: {
+                required: false,
+            },
+            sparkline: {
+                required: false,
+            },
+            timeSeries: {
+                required: false,
+            },
+        },
         items: {
             type: 'number',
         },
     };
 
     // src/data/schema/index.js
-    var schema = {
-        metricMetadata: metricMetadata_default,
-        groupMetadata: groupMetadata_default,
+    metricMetadata_default.items.properties =
+        metricMetadatum_default.properties;
+    var schemata = {
         flagCounts: flagCounts_default,
+        groupMetadata: groupMetadata_default,
+        metricMetadata: metricMetadata_default,
+        metricMetadatum: metricMetadatum_default,
         results: results_default,
         resultsPredicted: resultsPredicted_default,
         resultsVertical: resultsVertical_default,
-        siteMetadata: siteMetadata_default,
         thresholds: thresholds_default,
         snapshotDate: snapshotDate_default,
     };
-    var schema_default = schema;
+    var schema_default = schemata;
 
     // src/data/checkInput/getType.js
     function getType(variable) {
@@ -25449,13 +25461,6 @@ var rbmViz = (() => {
         module = null,
         verbose = false,
     }) {
-        if (argument === null) {
-            if (verbose)
-                console.log(
-                    `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
-                );
-            return;
-        }
         if (schemaName === null) {
             if (verbose)
                 console.log(
@@ -25463,36 +25468,58 @@ var rbmViz = (() => {
                 );
             return;
         }
-        const schema2 = JSON.parse(JSON.stringify(schema_default[schemaName]));
+        if (!Object.keys(schema_default).includes(schemaName)) {
+            throw new Error(`Schema [ ${schemaName} ] not found.`);
+        }
+        const schema = JSON.parse(JSON.stringify(schema_default[schemaName]));
+        if (Object.keys(schema.modules).includes(module)) {
+            const required = schema.modules[module].required;
+            if ([void 0, null].includes(argument)) {
+                if (required) {
+                    throw new Error(
+                        `Missing value: [ ${parameter} ] argument to [ ${module}() ] is required.`
+                    );
+                } else {
+                    if (verbose)
+                        console.log(
+                            `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
+                        );
+                    return;
+                }
+            }
+        } else {
+            if (verbose)
+                console.log(
+                    `Module [ ${module} ] not referenced in schema [ ${schemaName} ].`
+                );
+        }
         if (
             module === 'timeSeries' &&
             ['flagCounts', 'results', 'resultsVertical'].includes(schemaName)
         ) {
-            schema2.items.properties.SnapshotDate = schema_default.snapshotDate;
-        }
-        if (argument === null) {
-            if (verbose)
-                console.log(
-                    `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
-                );
-            return;
+            schema.items.properties.SnapshotDate = schema_default.snapshotDate;
         }
         const argumentType = getType(argument);
-        if (argumentType !== schema2.type) {
+        if (argumentType !== schema.type) {
             throw new Error(
-                `Incorrect data type: [ ${schema2.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
+                `Incorrect data type: [ ${schema.type} ] expected but [ ${argumentType} ] detected for [ ${parameter} ] argument to [ ${module}() ].`
             );
         }
-        if (schema2.type === 'array') {
+        if (schema.type === 'array') {
+            if (argument.length === 0) {
+                throw new Error(
+                    `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+                );
+            }
             argument.forEach((item, i) => {
                 const itemType = getType(item);
-                if (itemType !== schema2.items.type) {
+                if (itemType !== schema.items.type) {
                     throw new Error(
-                        `Incorrect data type: [ ${schema2.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
+                        `Incorrect data type: [ ${schema.items.type} ] expected but [ ${itemType} ] detected for item ${i} of [ ${parameter} ] argument to [ ${module}() ].`
                     );
                 }
-                if (schema2.items.type === 'object') {
-                    const properties = schema2.items.properties;
+                if (schema.items.type === 'object') {
+                    const properties = schema.items.properties;
                     checkProps({
                         obj: item,
                         properties,
@@ -25503,8 +25530,8 @@ var rbmViz = (() => {
                 }
             });
         }
-        if (schema2.type === 'object') {
-            const properties = schema2.properties;
+        if (schema.type === 'object') {
+            const properties = schema.properties;
             checkProps({
                 obj: argument,
                 properties,
@@ -25516,12 +25543,7 @@ var rbmViz = (() => {
     }
 
     // src/barChart/checkInputs.js
-    function checkInputs(
-        _results_,
-        _config_,
-        _thresholds_,
-        _groupMetadata_ = null
-    ) {
+    function checkInputs(_results_, _config_, _thresholds_, _groupMetadata_) {
         checkInput({
             parameter: '_results_',
             argument: _results_,
@@ -25531,7 +25553,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_config_',
             argument: _config_,
-            schemaName: 'metricMetadata',
+            schemaName: 'metricMetadatum',
             module: 'barChart',
         });
         checkInput({
@@ -25645,8 +25667,8 @@ var rbmViz = (() => {
 
     // src/util/checkThresholds.js
     function checkThresholds(_config_, _thresholds_) {
-        let thresholds2 = _config_.thresholds || _thresholds_ || [];
-        if (_config_.variableThresholds) return null;
+        let thresholds2 = _config_?.thresholds || _thresholds_ || [];
+        if (_config_?.variableThresholds) return null;
         if (
             Array.isArray(thresholds2) &&
             thresholds2.length > 0 &&
@@ -25688,18 +25710,18 @@ var rbmViz = (() => {
         };
         defaults3.displayTitle = false;
         defaults3.maintainAspectRatio = false;
-        const config = configure2(defaults3, _config_, {
+        const config = configure2(defaults3, _config_ || {}, {
             selectedGroupIDs: checkSelectedGroupIDs.bind(
                 null,
-                _config_.selectedGroupIDs,
+                _config_?.selectedGroupIDs,
                 _results_
             ),
             thresholds: checkThresholds.bind(null, _config_, _thresholds_),
         });
-        config.xLabel = coalesce(_config_.xLabel, config['Group']);
-        config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+        config.xLabel = coalesce(_config_?.xLabel, config['Group']);
+        config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
         config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
-        if (config.y === 'Metric') delete config.thresholds;
+        if (config.y !== 'Score') delete config.thresholds;
         if (config.hoverCallbackWrapper === void 0)
             config.hoverCallbackWrapper = getCallbackWrapper(
                 config.hoverCallback
@@ -26101,14 +26123,15 @@ var rbmViz = (() => {
             if (result[key] !== void 0) {
                 let value = result[key];
                 value = parseFloat(value);
-                if (Number.isInteger(value)) {
+                if (falsy_default.includes(value)) {
+                    value = '\u2014';
+                } else if (Number.isInteger(value)) {
                     value = value
                         .toString()
                         .replace(/\B(?=(\d{3})+(?!\d))/g, ',');
                 } else {
                     value = value.toFixed(2).toString();
                 }
-                if (falsy_default.includes(value)) value = '\u2014';
                 tooltipLabel.push(`${label}: ${value}`);
             }
         }
@@ -26340,8 +26363,8 @@ var rbmViz = (() => {
     function barChart(
         _element_ = 'body',
         _results_ = [],
-        _config_ = {},
-        _thresholds_ = [],
+        _config_ = null,
+        _thresholds_ = null,
         _groupMetadata_ = null
     ) {
         checkInputs(_results_, _config_, _thresholds_, _groupMetadata_);
@@ -26412,13 +26435,20 @@ var rbmViz = (() => {
             schemaName: 'groupMetadata',
             module: 'groupOverview',
         });
+        checkInput({
+            parameter: '_metricMetadata_',
+            argument: _metricMetadata_,
+            schemaName: 'metricMetadata',
+            module: 'groupOverview',
+        });
     }
 
     // src/groupOverview/configure.js
-    function configure4(_config_, _data_) {
+    function configure4(_config_) {
         const defaults3 = {};
         defaults3.GroupLevel = 'Site';
         defaults3.groupLabelKey = null;
+        defaults3.groupParticipantCountKey = 'ParticipantCount';
         defaults3.groupTooltipKeys = null;
         defaults3.groupClickCallback = (datum2) => {
             console.log(datum2);
@@ -26500,10 +26530,10 @@ var rbmViz = (() => {
         bodyRows.sort((a, b) => {
             const aVal = a[column.index].sortValue;
             const bVal = b[column.index].sortValue;
-            if (aVal === void 0 || aVal === null) {
+            if (aVal === void 0 || aVal === null || isNaN(aVal)) {
                 return 1;
             }
-            if (bVal === void 0 || bVal === null) {
+            if (bVal === void 0 || bVal === null || isNaN(bVal)) {
                 return -1;
             }
             const defaultSort = sortAscending ? aVal - bVal : bVal - aVal;
@@ -26536,11 +26566,11 @@ var rbmViz = (() => {
     }
 
     // src/groupOverview/defineColumns/defineGroupColumns.js
-    function defineGroupColumns(groups2) {
-        const columns = [
+    function defineGroupColumns(groupMetadata, config) {
+        let columns = [
             {
                 label: 'Group',
-                data: groups2,
+                data: groupMetadata,
                 filterKey: 'GroupID',
                 valueKey: 'GroupLabel',
                 headerTooltip: null,
@@ -26551,9 +26581,9 @@ var rbmViz = (() => {
             },
             {
                 label: 'Enrolled',
-                data: groups2,
+                data: groupMetadata,
                 filterKey: 'GroupID',
-                valueKey: 'ParticipantCount',
+                valueKey: config.groupParticipantCountKey,
                 headerTooltip: null,
                 sort: sortNumber,
                 tooltip: false,
@@ -26562,7 +26592,7 @@ var rbmViz = (() => {
             },
             {
                 label: 'Red Flags',
-                data: groups2,
+                data: groupMetadata,
                 filterKey: 'GroupID',
                 valueKey: 'nRedFlags',
                 headerTooltip: null,
@@ -26573,7 +26603,7 @@ var rbmViz = (() => {
             },
             {
                 label: 'Amber Flags',
-                data: groups2,
+                data: groupMetadata,
                 filterKey: 'GroupID',
                 valueKey: 'nAmberFlags',
                 headerTooltip: null,
@@ -26586,6 +26616,9 @@ var rbmViz = (() => {
         columns.forEach((column) => {
             column.defineTooltip = defineTooltip;
         });
+        columns = columns.filter((column) =>
+            groupMetadata[0].hasOwnProperty(column.valueKey)
+        );
         return columns;
     }
 
@@ -26596,13 +26629,13 @@ var rbmViz = (() => {
     }
 
     // src/groupOverview/defineColumns/defineMetricColumns.js
-    function defineMetricColumns(metrics, results) {
-        const metricColumns = metrics.map((metric) => {
+    function defineMetricColumns(metricMetadata, results) {
+        const metricColumns = metricMetadata.map((metric) => {
             const column = {
                 label: metric.Abbreviation,
                 data: results.filter((d) => d.MetricID === metric.MetricID),
                 filterKey: 'GroupID',
-                valueKey: 'Score',
+                valueKey: 'Flag',
                 headerTooltip: metric.Metric,
                 sort: sortNumber,
                 tooltip: true,
@@ -26617,9 +26650,9 @@ var rbmViz = (() => {
     }
 
     // src/groupOverview/defineColumns.js
-    function defineColumns(groups2, metrics, results) {
-        const groupColumns = defineGroupColumns(groups2);
-        const metricColumns = defineMetricColumns(metrics, results);
+    function defineColumns(groupMetadata, metricMetadata, results, config) {
+        const groupColumns = defineGroupColumns(groupMetadata, config);
+        const metricColumns = defineMetricColumns(metricMetadata, results);
         const columns = [...groupColumns, ...metricColumns];
         columns.forEach((column, i) => {
             column.getDatum = (key) =>
@@ -26649,14 +26682,16 @@ var rbmViz = (() => {
     }
 
     // src/groupOverview/structureData.js
-    function structureData2(results, columns, groups2, config) {
+    function structureData2(results, columns, groupMetadata, config) {
         const lookup = group(
             results,
             (d) => d.GroupID,
             (d) => d.MetricID
         );
         const rowData = Array.from(lookup, ([key, value]) => {
-            const group2 = groups2.find((group3) => group3.GroupID === key);
+            const group2 = groupMetadata.find(
+                (group3) => group3.GroupID === key
+            );
             const rowDatum = columns.map((column) => {
                 const datum2 = {
                     ...(column.getDatum(key) || {}),
@@ -26859,6 +26894,11 @@ var rbmViz = (() => {
     function makeTable(_element_, rows, columns, config) {
         const table = select_default2(_element_)
             .append('table')
+            .datum({
+                config,
+                rows,
+                columns,
+            })
             .classed('group-overview', true);
         const thead = table.append('thead');
         const tbody = table.append('tbody');
@@ -26883,7 +26923,8 @@ var rbmViz = (() => {
         const columns = defineColumns(
             groupMetadata,
             this._metricMetadata_,
-            _results_
+            _results_,
+            this.config
         );
         const rows = structureData2(
             _results_,
@@ -26922,7 +26963,7 @@ var rbmViz = (() => {
     function groupOverview(
         _element_ = 'body',
         _results_ = [],
-        _config_ = {},
+        _config_ = null,
         _groupMetadata_ = null,
         _metricMetadata_ = null
     ) {
@@ -26936,7 +26977,8 @@ var rbmViz = (() => {
         const columns = defineColumns(
             groupMetadata,
             _metricMetadata_,
-            _results_
+            _results_,
+            config
         );
         const rows = structureData2(_results_, columns, groupMetadata, config);
         const table = makeTable(_element_, rows, columns, config);
@@ -26955,12 +26997,7 @@ var rbmViz = (() => {
     }
 
     // src/scatterPlot/checkInputs.js
-    function checkInputs3(
-        _results_,
-        _config_,
-        _bounds_,
-        _groupMetadata_ = null
-    ) {
+    function checkInputs3(_results_, _config_, _bounds_, _groupMetadata_) {
         checkInput({
             parameter: '_results_',
             argument: _results_,
@@ -26970,7 +27007,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_config_',
             argument: _config_,
-            schemaName: 'metricMetadata',
+            schemaName: 'metricMetadatum',
             module: 'scatterPlot',
         });
         checkInput({
@@ -27013,12 +27050,12 @@ var rbmViz = (() => {
         const config = configure2(defaults3, _config_, {
             selectedGroupIDs: checkSelectedGroupIDs.bind(
                 null,
-                _config_.selectedGroupIDs,
+                _config_?.selectedGroupIDs,
                 _results_
             ),
         });
-        config.xLabel = coalesce(_config_.xLabel, config[config.x]);
-        config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+        config.xLabel = coalesce(_config_?.xLabel, config[config.x]);
+        config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
         config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
         if (config.hoverCallbackWrapper === void 0)
             config.hoverCallbackWrapper = getCallbackWrapper(
@@ -27122,7 +27159,7 @@ var rbmViz = (() => {
             const hoverRadius = 4;
             if (datum2.group !== void 0) {
                 const enrollmentFactor = Math.sqrt(
-                    datum2.group.ParticipantCount / Math.PI
+                    datum2.group[config.groupParticipantCountKey] / Math.PI
                 );
                 return enrollmentFactor * hoverRadius;
             } else {
@@ -27144,7 +27181,7 @@ var rbmViz = (() => {
             const hoverRadius = 4;
             if (datum2.group !== void 0) {
                 const enrollmentFactor = Math.sqrt(
-                    datum2.group.ParticipantCount / Math.PI
+                    datum2.group[config.groupParticipantCountKey] / Math.PI
                 );
                 return enrollmentFactor * defaultRadius;
             } else {
@@ -27446,7 +27483,7 @@ var rbmViz = (() => {
     function scatterPlot(
         _element_ = 'body',
         _results_ = [],
-        _config_ = {},
+        _config_ = null,
         _bounds_ = null,
         _groupMetadata_ = null
     ) {
@@ -27492,18 +27529,18 @@ var rbmViz = (() => {
     }
 
     // src/sparkline/checkInputs.js
-    function checkInputs4(_data_, _config_, _thresholds_) {
-        const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_.y);
+    function checkInputs4(_results_, _config_, _thresholds_) {
+        const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
         checkInput({
-            parameter: '_data_',
-            argument: _data_,
+            parameter: '_results_',
+            argument: _results_,
             schemaName: discrete ? 'flagCounts' : 'results',
             module: 'sparkline',
         });
         checkInput({
             parameter: '_config_',
             argument: discrete ? null : _config_,
-            schemaName: 'metricMetadata',
+            schemaName: 'metricMetadatum',
             module: 'sparkline',
         });
         checkInput({
@@ -27538,8 +27575,8 @@ var rbmViz = (() => {
         config.dataType = ['Metric', 'Score'].includes(config.y)
             ? 'continuous'
             : 'discrete';
-        config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
-        config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+        config.xLabel = coalesce(_config_?.xLabel, 'Snapshot Date');
+        config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
         config.chartName = `Sparkline of ${config.yLabel} by ${config.xLabel}`;
         return config;
     }
@@ -27801,14 +27838,14 @@ var rbmViz = (() => {
     // src/sparkline.js
     function sparkline(
         _element_ = 'body',
-        _data_ = [],
-        _config_ = {},
-        _thresholds_ = []
+        _results_ = [],
+        _config_ = null,
+        _thresholds_ = null
     ) {
-        checkInputs4(_data_, _config_, _thresholds_);
-        const config = configure6(_config_, _data_, _thresholds_);
+        checkInputs4(_results_, _config_, _thresholds_);
+        const config = configure6(_config_, _results_, _thresholds_);
         const canvas = addCanvas(_element_, config);
-        const datasets = structureData4(_data_, config);
+        const datasets = structureData4(_results_, config);
         const options = {
             animation: false,
             layout: {
@@ -27828,7 +27865,7 @@ var rbmViz = (() => {
                 // required by Chart.js
                 config,
                 // inputs
-                _data_,
+                _results_,
                 _config_,
                 _thresholds_,
             },
@@ -27849,7 +27886,7 @@ var rbmViz = (() => {
         _config_,
         _thresholds_,
         _intervals_,
-        _groupMetadata_ = null
+        _groupMetadata_
     ) {
         const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
         checkInput({
@@ -27861,7 +27898,7 @@ var rbmViz = (() => {
         checkInput({
             parameter: '_config_',
             argument: discrete ? null : _config_,
-            schemaName: 'metricMetadata',
+            schemaName: 'metricMetadatum',
             module: 'timeSeries',
         });
         checkInput({
@@ -27908,16 +27945,18 @@ var rbmViz = (() => {
         defaults3.annotateThreshold = _thresholds_ !== null;
         defaults3.displayTitle = false;
         defaults3.maintainAspectRatio = false;
-        _config_.variableThresholds = Array.isArray(_thresholds_)
-            ? _thresholds_.some(
-                  (Threshold) =>
-                      Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
-              )
-            : false;
+        if (_config_ !== null)
+            _config_.variableThresholds = Array.isArray(_thresholds_)
+                ? _thresholds_.some(
+                      (Threshold) =>
+                          Threshold.SnapshotDate !==
+                          _thresholds_[0].SnapshotDate
+                  )
+                : false;
         const config = configure2(defaults3, _config_, {
             selectedGroupIDs: checkSelectedGroupIDs.bind(
                 null,
-                _config_.selectedGroupIDs,
+                _config_?.selectedGroupIDs,
                 _results_
             ),
             thresholds: checkThresholds.bind(null, _config_, _thresholds_),
@@ -27929,13 +27968,13 @@ var rbmViz = (() => {
             config.discreteUnit = Object.keys(_results_[0]).includes('GroupID')
                 ? 'Metric'
                 : 'Site';
-        config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+        config.xLabel = coalesce(_config_?.xLabel, 'Snapshot Date');
         const discreteUnits =
             config.dataType === 'discrete'
                 ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
                 : '';
         config.yLabel = coalesce(
-            _config_.yLabel,
+            _config_?.yLabel,
             config.dataType === 'continuous'
                 ? config[config.y]
                 : /flag/.test(config.y) && /risk/.test(config.y)
@@ -27947,6 +27986,11 @@ var rbmViz = (() => {
                 : ''
         );
         config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+        if (
+            config.y !== 'Score' &&
+            !(config.y === 'Metric' && _intervals_ !== null)
+        )
+            delete config.thresholds;
         if (config.hoverCallbackWrapper === void 0)
             config.hoverCallbackWrapper = getCallbackWrapper(
                 config.hoverCallback
@@ -28096,7 +28140,7 @@ var rbmViz = (() => {
 
     // src/timeSeries/structureData/selectedGroupLine.js
     function selectedGroupLine(data, config, labels) {
-        if (config.selectedGroupIDs.length === 0) return null;
+        if (config.selectedGroupIDs.length === 0) return [null];
         const lineData = data
             .filter((d) => config.selectedGroupIDs.includes(d.GroupID))
             .map((d, i) => {
@@ -28110,31 +28154,33 @@ var rbmViz = (() => {
         backgroundColor4.opacity = 0.5;
         const borderColor4 = color2(color3);
         borderColor4.opacity = 0.5;
-        const dataset = {
-            data: lineData,
-            backgroundColor: function (d) {
-                if (d.element === void 0) {
-                    return backgroundColor4;
-                }
-                const color4 = colorScheme_default.find((color5) =>
-                    falsy_default.includes(d.raw.Flag)
-                        ? color5.Flag.includes(d.raw?.Flag)
-                        : color5.Flag.includes(+d.raw?.Flag)
-                );
-                color4.rgba.opacity = 0.75;
-                return color4.rgba + '';
-            },
-            borderColor: function (d) {
-                return d.type === 'data' ? 'black' : borderColor4;
-            },
-            label: '',
-            pointStyle: 'circle',
-            purpose: 'highlight',
-            radius: 3,
-            spanGaps: true,
-            type: 'line',
-        };
-        return dataset;
+        const datasets = config.selectedGroupIDs.map((GroupID) => {
+            return {
+                data: lineData.filter((d) => d.GroupID === GroupID),
+                backgroundColor: function (d) {
+                    if (d.element === void 0) {
+                        return backgroundColor4;
+                    }
+                    const color4 = colorScheme_default.find((color5) =>
+                        falsy_default.includes(d.raw.Flag)
+                            ? color5.Flag.includes(d.raw?.Flag)
+                            : color5.Flag.includes(+d.raw?.Flag)
+                    );
+                    color4.rgba.opacity = 0.75;
+                    return color4.rgba + '';
+                },
+                borderColor: function (d) {
+                    return d.type === 'data' ? 'black' : borderColor4;
+                },
+                label: '',
+                pointStyle: 'circle',
+                purpose: 'highlight',
+                radius: 3,
+                spanGaps: true,
+                type: 'line',
+            };
+        });
+        return datasets;
     }
 
     // src/timeSeries/structureData/flagAmber.js
@@ -28444,11 +28490,11 @@ var rbmViz = (() => {
                 ];
             } else {
                 datasets = [
-                    selectedGroupLine(results, config, labels),
+                    ...selectedGroupLine(results, config, labels),
                     {
                         type: 'scatter',
                         label:
-                            config.selectedGroupIDs.length > 0
+                            config.selectedGroupIDs.length === 1
                                 ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                                 : '',
                         pointStyle: 'line',
@@ -28868,7 +28914,11 @@ var rbmViz = (() => {
 
     // src/timeSeries/updateSelectedGroupIDs.js
     function updateSelectedGroupIDs(selectedGroupIDs) {
-        this.data.config.selectedGroupIDs = [selectedGroupIDs];
+        if (!Array.isArray(selectedGroupIDs))
+            selectedGroupIDs = [selectedGroupIDs];
+        this.data.config.selectedGroupIDs = selectedGroupIDs.filter((GroupID) =>
+            this.data._results_.map((d) => d.GroupID).includes(GroupID)
+        );
         this.data.datasets = structureData5(
             this.data._results_,
             this.data.config,
@@ -28883,8 +28933,8 @@ var rbmViz = (() => {
     function timeSeries(
         _element_,
         _results_,
-        _config_ = {},
-        _thresholds_ = [],
+        _config_ = null,
+        _thresholds_ = null,
         _intervals_ = null,
         _groupMetadata_ = null
     ) {

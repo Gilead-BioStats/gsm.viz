@@ -2,11 +2,20 @@ import sortString from './sortString';
 import sortNumber from './sortNumber';
 import defineGroupTooltip from './defineGroupTooltip';
 
-export default function defineGroupColumns(groups) {
-    const columns = [
+/**
+ * Define group-related table columns.
+ *
+ * @param {Array} groupMetadata - group metadata
+ * @param {Object} config - table configuration
+ *
+ * @returns {Array} Array of column metadata objects
+ */
+
+export default function defineGroupColumns(groupMetadata, config) {
+    let columns = [
         {
             label: 'Group',
-            data: groups,
+            data: groupMetadata,
             filterKey: 'GroupID',
             valueKey: 'GroupLabel',
 
@@ -18,9 +27,9 @@ export default function defineGroupColumns(groups) {
         },
         {
             label: 'Enrolled',
-            data: groups,
+            data: groupMetadata,
             filterKey: 'GroupID',
-            valueKey: 'ParticipantCount',
+            valueKey: config.groupParticipantCountKey,
 
             headerTooltip: null,
             sort: sortNumber,
@@ -30,7 +39,7 @@ export default function defineGroupColumns(groups) {
         },
         {
             label: 'Red Flags',
-            data: groups,
+            data: groupMetadata,
             filterKey: 'GroupID',
             valueKey: 'nRedFlags',
 
@@ -42,7 +51,7 @@ export default function defineGroupColumns(groups) {
         },
         {
             label: 'Amber Flags',
-            data: groups,
+            data: groupMetadata,
             filterKey: 'GroupID',
             valueKey: 'nAmberFlags',
 
@@ -57,6 +66,10 @@ export default function defineGroupColumns(groups) {
     columns.forEach((column) => {
         column.defineTooltip = defineGroupTooltip;
     });
+
+    columns = columns.filter((column) =>
+        groupMetadata[0].hasOwnProperty(column.valueKey)
+    );
 
     return columns;
 }

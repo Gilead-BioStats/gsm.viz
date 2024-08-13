@@ -3,8 +3,14 @@
     "description": "JSON schema of predicted input data to scatterPlot module",
     "version": "0.14.0",
     "type": "array",
+    "modules": {
+        "scatterPlot": {
+            "required": false
+        }
+    },
     "items": {
         "type": "object",
+        "required": ["Numerator", "Denominator", "Threshold"],
         "properties": {
             "StudyID": {
                 "title": "Study ID",

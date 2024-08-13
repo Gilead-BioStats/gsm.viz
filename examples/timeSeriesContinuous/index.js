@@ -46,6 +46,7 @@ Promise.all(dataPromises)
 
         metric(config, datasets, true);
         group(datasets, true);
+        country(datasets, true);
         yAxis(config, datasets, true);
         download(true);
     });

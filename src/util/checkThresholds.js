@@ -1,9 +1,9 @@
 import mapThresholdsToFlags from './mapThresholdsToFlags.js';
 
 export default function checkThresholds(_config_, _thresholds_) {
-    let thresholds = _config_.thresholds || _thresholds_ || [];
+    let thresholds = _config_?.thresholds || _thresholds_ || [];
 
-    if (_config_.variableThresholds) return null;
+    if (_config_?.variableThresholds) return null;
 
     // pre-existing thresholds
     if (

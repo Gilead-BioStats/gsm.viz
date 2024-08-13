@@ -2,7 +2,17 @@ import { group } from 'd3';
 
 import sortByFlags from './structureData/sortByFlags';
 
-export default function structureData(results, columns, groups, config) {
+/**
+ * Structure the data for the table.
+ *
+ * @param {Array} results - analysis results data with one object per group ID per metric ID
+ * @param {Array} columns - column metadata
+ * @param {Array} groupMetadata - group metadata
+ * @param {Object} config - table configuration
+ *
+ * @returns {Array} Array of objects, one per group, with one object per column
+ */
+export default function structureData(results, columns, groupMetadata, config) {
     const lookup = group(
         results,
         (d) => d.GroupID,
@@ -10,7 +20,7 @@ export default function structureData(results, columns, groups, config) {
     );
 
     const rowData = Array.from(lookup, ([key, value]) => {
-        const group = groups.find((group) => group.GroupID === key);
+        const group = groupMetadata.find((group) => group.GroupID === key);
 
         const rowDatum = columns.map((column) => {
             const datum = {
@@ -23,7 +33,7 @@ export default function structureData(results, columns, groups, config) {
             // TODO: get rid of value or text
             datum.value = datum[column.valueKey];
             datum.text = datum.value;
-            // TODO: This is a hack to get the correct sort value for Metric columns.
+
             datum.sortValue =
                 column.type === 'metric'
                     ? Math.abs(parseFloat(datum.value))

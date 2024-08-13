@@ -2,6 +2,17 @@
     "title": "Thresholds",
     "description": "Threshold values",
     "type": "array",
+    "modules": {
+        "barChart": {
+            "required": false
+        },
+        "sparkline": {
+            "required": false
+        },
+        "timeSeries": {
+            "required": false
+        }
+    },
     "items": {
         "type": "number"
     }

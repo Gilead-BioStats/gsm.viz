@@ -38,6 +38,7 @@ export default function structureData(
     let datasets = [];
     if (config.dataType !== 'discrete') {
         // TODO: find a better way to differentiate distribution and CI instances
+        // time series with CI
         if (intervals !== null) {
             datasets = [
                 getIdentityLine(results, config, labels),
@@ -62,13 +63,15 @@ export default function structureData(
                     })),
                 ...getThresholdLines(thresholds, config, labels),
             ];
-        } else {
+        }
+        // time series (continuous)
+        else {
             datasets = [
-                getSelectedGroupLine(results, config, labels),
+                ...getSelectedGroupLine(results, config, labels),
                 {
                     type: 'scatter',
                     label:
-                        config.selectedGroupIDs.length > 0
+                        config.selectedGroupIDs.length === 1
                             ? `${config.GroupLevel} ${config.selectedGroupIDs[0]}`
                             : '',
                     pointStyle: 'line',

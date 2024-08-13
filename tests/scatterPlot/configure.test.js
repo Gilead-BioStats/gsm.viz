@@ -32,7 +32,6 @@ describe('configuration', () => {
                 'Model',
                 'Score',
                 'Thresholds',
-                'SnapshotDate',
 
                 // scatter plot settings
                 'groupLabelKey',

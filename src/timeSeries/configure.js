@@ -50,17 +50,18 @@ export default function configure(
     //defaults.displayThresholds = true;
     //defaults.displayTrendLine = true;
 
-    _config_.variableThresholds = Array.isArray(_thresholds_)
-        ? _thresholds_.some(
-              (Threshold) =>
-                  Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
-          )
-        : false;
+    if (_config_ !== null)
+        _config_.variableThresholds = Array.isArray(_thresholds_)
+            ? _thresholds_.some(
+                  (Threshold) =>
+                      Threshold.SnapshotDate !== _thresholds_[0].SnapshotDate
+              )
+            : false;
 
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
+            _config_?.selectedGroupIDs,
             _results_
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
@@ -73,13 +74,13 @@ export default function configure(
             ? 'Metric'
             : 'Site';
 
-    config.xLabel = coalesce(_config_.xLabel, 'Snapshot Date');
+    config.xLabel = coalesce(_config_?.xLabel, 'Snapshot Date');
     const discreteUnits =
         config.dataType === 'discrete'
             ? `${config.discreteUnit.replace(/y$/, 'ie')}s`
             : '';
     config.yLabel = coalesce(
-        _config_.yLabel,
+        _config_?.yLabel,
         config.dataType === 'continuous'
             ? config[config.y]
             : /flag/.test(config.y) && /risk/.test(config.y)
@@ -91,6 +92,11 @@ export default function configure(
             : ''
     );
     config.chartName = `Time Series of ${config.yLabel} by ${config.xLabel}`;
+    if (
+        config.y !== 'Score' &&
+        !(config.y === 'Metric' && _intervals_ !== null)
+    )
+        delete config.thresholds;
 
     // If callbacks already exist maintain them.
     if (config.hoverCallbackWrapper === undefined)

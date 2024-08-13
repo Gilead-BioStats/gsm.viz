@@ -29,7 +29,6 @@ describe('configuration', () => {
                 'Model',
                 'Score',
                 'Thresholds',
-                'SnapshotDate',
 
                 // sparkline settings
                 'x',

@@ -23,7 +23,7 @@ import updateOption from './util/updateOption.js';
  * Generate a sparkline.
  *
  * @param {(Node|string)} _element_ - DOM element or ID in which to render chart
- * @param {Array} _data_ - input data where each array item is an object of key-value pairs
+ * @param {Array} _results_ - analysis results data with one object per group ID per snapshot date
  * @param {Object} _config_ - chart configuration and metadata
  * @param {Array} _thresholds_ - optional auxiliary data of Threshold parameters
  *
@@ -31,21 +31,21 @@ import updateOption from './util/updateOption.js';
  */
 export default function sparkline(
     _element_ = 'body',
-    _data_ = [],
-    _config_ = {},
-    _thresholds_ = []
+    _results_ = [],
+    _config_ = null,
+    _thresholds_ = null
 ) {
     // Check data inputs against data schema.
-    checkInputs(_data_, _config_, _thresholds_);
+    checkInputs(_results_, _config_, _thresholds_);
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _results_, _thresholds_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_results_, config);
 
     // Configure Chart.js options.
     const options = {
@@ -68,7 +68,7 @@ export default function sparkline(
             config,
 
             // inputs
-            _data_,
+            _results_,
             _config_,
             _thresholds_,
         },

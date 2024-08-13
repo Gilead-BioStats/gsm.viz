@@ -8,7 +8,12 @@ import structureData from './structureData.js';
  *
  */
 export default function updateSelectedGroupIDs(selectedGroupIDs) {
-    this.data.config.selectedGroupIDs = [selectedGroupIDs];
+    if (!Array.isArray(selectedGroupIDs)) selectedGroupIDs = [selectedGroupIDs];
+
+    this.data.config.selectedGroupIDs = selectedGroupIDs.filter((GroupID) =>
+        this.data._results_.map((d) => d.GroupID).includes(GroupID)
+    );
+
     this.data.datasets = structureData(
         this.data._results_,
         this.data.config,
