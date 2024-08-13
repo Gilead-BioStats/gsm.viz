@@ -38,14 +38,14 @@ export default function configure(_config_, _results_) {
     const config = configureAll(defaults, _config_, {
         selectedGroupIDs: checkSelectedGroupIDs.bind(
             null,
-            _config_.selectedGroupIDs,
+            _config_?.selectedGroupIDs,
             _results_
         ),
     });
 
     // configuration-driven settings
-    config.xLabel = coalesce(_config_.xLabel, config[config.x]);
-    config.yLabel = coalesce(_config_.yLabel, config[config.y]);
+    config.xLabel = coalesce(_config_?.xLabel, config[config.x]);
+    config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
 
     // If callbacks already exist maintain them.

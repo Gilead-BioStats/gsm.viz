@@ -37,10 +37,10 @@ export default function checkInputs(
         module: 'groupOverview',
     });
 
-    //checkInput({
-    //    parameter: '_metricMetadata_',
-    //    argument: _metricMetadata_,
-    //    schemaName: 'metrics',
-    //    module: 'groupOverview',
-    //});
+    checkInput({
+        parameter: '_metricMetadata_',
+        argument: _metricMetadata_,
+        schemaName: 'metricMetadata',
+        module: 'groupOverview',
+    });
 }

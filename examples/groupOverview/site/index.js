@@ -79,12 +79,10 @@ Promise.all(dataPromises)
             {
                 GroupLevel,
                 groupLabelKey: groupLabelKey[GroupLevel],
-                //groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
-                groupClickCallback: function (datum) {
-                    console.log(datum.data.tooltipContent);
-                },
+                groupTooltipKeys: groupTooltipKeys[GroupLevel],
+                //groupClickCallback: function (datum) {
+                //},
                 //metricClickCallback: function (datum) {
-                //    console.log(datum);
                 //},
             },
             groupMetadata,

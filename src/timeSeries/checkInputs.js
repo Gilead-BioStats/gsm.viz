@@ -5,7 +5,7 @@ export default function checkInputs(
     _config_,
     _thresholds_,
     _intervals_,
-    _groupMetadata_ = null
+    _groupMetadata_
 ) {
     const discrete = /^n_((at_risk)?(_or_)?(flagged)?)$/i.test(_config_?.y);
 
@@ -19,7 +19,7 @@ export default function checkInputs(
     checkInput({
         parameter: '_config_',
         argument: discrete ? null : _config_,
-        schemaName: 'metricMetadata',
+        schemaName: 'metricMetadatum',
         module: 'timeSeries',
     });
 

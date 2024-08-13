@@ -19,15 +19,7 @@ export default function checkInput({
     module = null,
     verbose = false,
 }) {
-    if (argument === null) {
-        if (verbose)
-            console.log(
-                `[ @param argument ] unspecified. Terminating execution of [ checkInputs() ].`
-            );
-
-        return;
-    }
-
+    // check if schemaName is null
     if (schemaName === null) {
         if (verbose)
             console.log(
@@ -37,7 +29,38 @@ export default function checkInput({
         return;
     }
 
+    // check if schema exists
+    if (!Object.keys(schemata).includes(schemaName)) {
+        throw new Error(`Schema [ ${schemaName} ] not found.`);
+    }
+
     const schema = JSON.parse(JSON.stringify(schemata[schemaName]));
+
+    // Check whether parameter is required for module.
+    if (Object.keys(schema.modules).includes(module)) {
+        const required = schema.modules[module].required;
+
+        // check if [ argument ] is "missing"
+        if ([undefined, null].includes(argument)) {
+            if (required) {
+                throw new Error(
+                    `Missing value: [ ${parameter} ] argument to [ ${module}() ] is required.`
+                );
+            } else {
+                if (verbose)
+                    console.log(
+                        `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
+                    );
+
+                return;
+            }
+        }
+    } else {
+        if (verbose)
+            console.log(
+                `Module [ ${module} ] not referenced in schema [ ${schemaName} ].`
+            );
+    }
 
     // Add snapshot date to cross-section schema for time series module.
     if (
@@ -45,15 +68,6 @@ export default function checkInput({
         ['flagCounts', 'results', 'resultsVertical'].includes(schemaName)
     ) {
         schema.items.properties.SnapshotDate = schemata.snapshotDate;
-    }
-
-    if (argument === null) {
-        if (verbose)
-            console.log(
-                `[ ${parameter} ] unspecified. Terminating execution of [ checkInputs() ].`
-            );
-
-        return;
     }
 
     // check data type of argument
@@ -66,6 +80,13 @@ export default function checkInput({
 
     // check items in array
     if (schema.type === 'array') {
+        // check for empty array
+        if (argument.length === 0) {
+            throw new Error(
+                `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+            );
+        }
+
         argument.forEach((item, i) => {
             // check data type of item
             const itemType = getType(item);

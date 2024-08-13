@@ -37,7 +37,7 @@ import triggerTooltip from './util/triggerTooltip.js';
 export default function scatterPlot(
     _element_ = 'body',
     _results_ = [],
-    _config_ = {},
+    _config_ = null,
     _bounds_ = null,
     _groupMetadata_ = null
 ) {

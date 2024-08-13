@@ -1,5 +1,5 @@
 import metricMetadata from '../../examples/data/metricMetadata.json';
-import schema from '../../src/data/schema/metricMetadata.json';
+import schema from '../../src/data/schema/metricMetadatum.json';
 import checkInput from '../../src/data/checkInput.js';
 
 describe('analysis metadata schema', () => {

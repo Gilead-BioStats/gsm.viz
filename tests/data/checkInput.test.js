@@ -1,5 +1,5 @@
 import metricMetadata from '../../examples/data/metricMetadata.json';
-import schema from '../../src/data/schema/metricMetadata.json';
+import schema from '../../src/data/schema/metricMetadatum.json';
 import checkInput from '../../src/data/checkInput.js';
 
 describe('checkInput identifies required and optional properties', () => {
@@ -35,7 +35,7 @@ describe('checkInput identifies required and optional properties', () => {
             expect(
                 checkInput({
                     argument: incompleteAnalysisMetadata,
-                    schemaName: 'metricMetadata',
+                    schemaName: 'metricMetadatum',
                 })
             ).toStrictEqual(incompleteAnalysisMetadata);
         }

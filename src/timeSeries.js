@@ -35,8 +35,8 @@ import updateSelectedGroupIDs from './timeSeries/updateSelectedGroupIDs.js';
 export default function timeSeries(
     _element_,
     _results_,
-    _config_ = {},
-    _thresholds_ = [],
+    _config_ = null,
+    _thresholds_ = null,
     _intervals_ = null,
     _groupMetadata_ = null
 ) {

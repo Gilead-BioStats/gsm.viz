@@ -31,21 +31,21 @@ import updateOption from './util/updateOption.js';
  */
 export default function sparkline(
     _element_ = 'body',
-    _data_ = [],
-    _config_ = {},
-    _thresholds_ = []
+    _results_ = [],
+    _config_ = null,
+    _thresholds_ = null
 ) {
     // Check data inputs against data schema.
-    checkInputs(_data_, _config_, _thresholds_);
+    checkInputs(_results_, _config_, _thresholds_);
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _data_, _thresholds_);
+    const config = configure(_config_, _results_, _thresholds_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);
 
     // Define array of Chart.js dataset objects.
-    const datasets = structureData(_data_, config);
+    const datasets = structureData(_results_, config);
 
     // Configure Chart.js options.
     const options = {
@@ -68,7 +68,7 @@ export default function sparkline(
             config,
 
             // inputs
-            _data_,
+            _results_,
             _config_,
             _thresholds_,
         },

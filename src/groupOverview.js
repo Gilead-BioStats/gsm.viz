@@ -23,7 +23,7 @@ import updateTable from './groupOverview/updateTable';
 export default function groupOverview(
     _element_ = 'body',
     _results_ = [],
-    _config_ = {},
+    _config_ = null,
     _groupMetadata_ = null,
     _metricMetadata_ = null
 ) {

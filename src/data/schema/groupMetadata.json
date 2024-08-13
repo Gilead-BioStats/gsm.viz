@@ -3,8 +3,23 @@
     "description": "JSON schema of group metadata",
     "version": "0.14.0",
     "type": "array",
+    "modules": {
+        "barChart": {
+            "required": false
+        },
+        "groupOverview": {
+            "required": true
+        },
+        "scatterPlot": {
+            "required": false
+        },
+        "timeSeries": {
+            "required": false
+        }
+    },
     "items": {
         "type": "object",
+        "required": ["GroupLevel", "GroupID", "Param", "Value"],
         "properties": {
             "GroupLevel": {
                 "title": "Grouping Variable",
