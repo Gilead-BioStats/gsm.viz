@@ -50,6 +50,8 @@ Promise.all(dataPromises)
             groupMetadata
         );
 
+        addEventListener('riskSignalSelected');
+
         // controls
         metric(datasets, true, MetricID);
         group(datasets, true);

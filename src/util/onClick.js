@@ -12,5 +12,13 @@ export default function onClick(event, activeElements, chart) {
         const datum = getElementDatum(activeElements, chart);
         canvas.clickEvent.data = datum;
         canvas.dispatchEvent(canvas.clickEvent);
+        canvas.riskSignalSelected.data = {
+            StudyID: datum.StudyID,
+            SnapshotDate: datum.SnapshotDate,
+            MetricID: datum.MetricID,
+            GroupLevel: datum.GroupLevel,
+            GroupID: datum.GroupID,
+        };
+        canvas.dispatchEvent(canvas.riskSignalSelected);
     }
 }

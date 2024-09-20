@@ -8,6 +8,15 @@
  * @returns {void}
  */
 export default function addClickEvents(bodyRows, cells, config) {
+    // Add custom event listener that bubbles and returns only the key data associated with a risk
+    // signal.
+    const riskSignalSelected = new CustomEvent(
+        'riskSignalSelected',
+        {
+            bubbles: true
+        }
+    );
+
     // add click event to Metric cells
     cells.filter('.group-overview--metric').on('click', function (event, d) {
         config.metricClickCallback({
@@ -16,7 +25,23 @@ export default function addClickEvents(bodyRows, cells, config) {
             MetricID: d.MetricID,
             data: d,
         });
+
+        riskSignalSelected.data = {
+            StudyID: d.StudyID,
+            SnapshotDate: d.SnapshotDate,
+            MetricID: d.MetricID,
+            GroupLevel: d.GroupLevel,
+            GroupID: d.GroupID,
+        };
+        this.dispatchEvent(riskSignalSelected);
     });
+
+    const groupSelected = new CustomEvent(
+        'groupSelected',
+        {
+            bubbles: true
+        }
+    );
 
     // add click event to group cells
     cells.filter('.group-overview--group').on('click', function (event, d) {
@@ -25,5 +50,13 @@ export default function addClickEvents(bodyRows, cells, config) {
             GroupID: d.GroupID,
             data: d,
         });
+
+        groupSelected.data = {
+            //StudyID: d.StudyID,
+            //SnapshotDate: d.SnapshotDate,
+            GroupLevel: d.GroupLevel,
+            GroupID: d.GroupID,
+        };
+        this.dispatchEvent(groupSelected);
     });
 }
