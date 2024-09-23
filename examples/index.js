@@ -21960,13 +21960,13 @@ var rbmViz = (() => {
         MetricID: d.MetricID,
         data: d
       });
-      riskSignalSelected.data = {
-        StudyID: d.StudyID,
-        SnapshotDate: d.SnapshotDate,
-        MetricID: d.MetricID,
-        GroupLevel: d.GroupLevel,
-        GroupID: d.GroupID
-      };
+      riskSignalSelected.data = results_default.items.required.reduce(
+        (acc, item) => {
+          acc[item] = d[item];
+          return acc;
+        },
+        {}
+      );
       this.dispatchEvent(riskSignalSelected);
     });
     const groupSelected = new CustomEvent(

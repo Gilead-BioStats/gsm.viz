@@ -1,3 +1,4 @@
+import resultsSchema from '../../data/schema/results.json';
 /**
  * Add click events to the cells of the table.
  *
@@ -26,13 +27,16 @@ export default function addClickEvents(bodyRows, cells, config) {
             data: d,
         });
 
-        riskSignalSelected.data = {
-            StudyID: d.StudyID,
-            SnapshotDate: d.SnapshotDate,
-            MetricID: d.MetricID,
-            GroupLevel: d.GroupLevel,
-            GroupID: d.GroupID,
-        };
+        // Trigger custom [ riskSignalSelected ] event.
+        riskSignalSelected.data = resultsSchema.items.required
+            .reduce(
+                (acc, item) => {
+                    acc[item] = d[item];
+
+                    return acc;
+                },
+                {}
+            );
         this.dispatchEvent(riskSignalSelected);
     });
 
