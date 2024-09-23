@@ -20384,6 +20384,7 @@ var rbmViz = (() => {
       required: [
         "StudyID",
         "MetricID",
+        "GroupLevel",
         "GroupID",
         "Numerator",
         "Denominator",
@@ -20407,6 +20408,13 @@ var rbmViz = (() => {
           required: false,
           key: true
         },
+        GroupLevel: {
+          title: "Group Level",
+          description: "Group level",
+          type: "number",
+          required: true,
+          key: true
+        },
         GroupID: {
           title: "Group ID",
           description: "Unique group identifier",
@@ -20416,21 +20424,21 @@ var rbmViz = (() => {
         },
         Numerator: {
           title: "Numerator",
-          description: "Numerator of Metric Metric",
+          description: "Metric numerator",
           type: "number",
           required: true,
           key: false
         },
         Denominator: {
           title: "Denominator",
-          description: "Denominator of Metric Metric",
+          description: "Metric denominator",
           type: "number",
           required: true,
           key: false
         },
         Metric: {
-          title: "Metric Metric",
-          description: "Metric Metric",
+          title: "Metric Value",
+          description: "Metric value",
           type: "number",
           required: true,
           key: false
@@ -20444,7 +20452,7 @@ var rbmViz = (() => {
         },
         Flag: {
           title: "Flag Status",
-          description: "Flag assigned given Metric score and specified thresholds",
+          description: "Flag assigned given metric score and specified thresholds",
           type: "number",
           required: true,
           key: false
@@ -21161,13 +21169,13 @@ var rbmViz = (() => {
       const datum2 = getElementDatum(activeElements, chart);
       canvas.clickEvent.data = datum2;
       canvas.dispatchEvent(canvas.clickEvent);
-      canvas.riskSignalSelected.data = {
-        StudyID: datum2.StudyID,
-        SnapshotDate: datum2.SnapshotDate,
-        MetricID: datum2.MetricID,
-        GroupLevel: datum2.GroupLevel,
-        GroupID: datum2.GroupID
-      };
+      canvas.riskSignalSelected.data = results_default.items.required.reduce(
+        (acc, item) => {
+          acc[item] = datum2[item];
+          return acc;
+        },
+        {}
+      );
       canvas.dispatchEvent(canvas.riskSignalSelected);
     }
   }
