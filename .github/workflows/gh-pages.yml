@@ -24,12 +24,11 @@ jobs:
     - name: Build and Deploy
       env:
         NODE_VERSION: 16.x
+        CI: true
+        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        GH_TOKEN: ${{secrets.GH_TOKEN}}
       run: |
         npm install
         npm run build
         npm run deploy
-      env:
-        CI: true
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        GH_TOKEN: ${{secrets.GH_TOKEN}}
 
