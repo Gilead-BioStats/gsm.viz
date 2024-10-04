@@ -89,6 +89,9 @@ Promise.all(dataPromises)
             metricMetadata
         );
 
+        addEventListener('riskSignalSelected');
+        addEventListener('groupSelected');
+
         document.querySelector('#group-subset').onchange = function () {
             const groupSubset = getGroups(results);
             const updatedResults = results.filter((d) =>

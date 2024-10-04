@@ -8,7 +8,6 @@ const dataPromises = dataFiles.map((dataFile) =>
     fetch(dataFile).then((response) => response.text())
 );
 
-// TODO: update controls as in scatterPlot
 Promise.all(dataPromises)
     .then((texts) => texts.map((text) => d3.csvParse(text)))
     .then((datasets) => {
@@ -49,6 +48,8 @@ Promise.all(dataPromises)
             thresholds,
             groupMetadata
         );
+
+        addEventListener('riskSignalSelected');
 
         // controls
         metric(datasets, true, MetricID);

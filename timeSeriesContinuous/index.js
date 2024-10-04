@@ -44,6 +44,8 @@ Promise.all(dataPromises)
             groupMetadata
         );
 
+        addEventListener('riskSignalSelected');
+
         metric(config, datasets, true);
         group(datasets, true);
         country(datasets, true);
