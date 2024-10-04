@@ -38,6 +38,11 @@ const group = function (datasets, setup = false) {
                 instance.data.config,
                 instance.data._thresholds_
             );
+
+            // Dispatch [ riskSignalSelected ] event.
+            instance.canvas.dispatchEvent(
+                instance.canvas.riskSignalSelected
+            );
         });
     }
 

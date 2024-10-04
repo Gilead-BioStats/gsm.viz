@@ -1,4 +1,5 @@
 import getElementDatum from '../util/getElementDatum.js';
+import updateSelectedGroupDatum from '../util/updateSelectedGroupDatum.js';
 
 export default function onHover(event, activeElements, chart) {
     const canvas = chart.canvas;
@@ -9,10 +10,16 @@ export default function onHover(event, activeElements, chart) {
         activeElements.length &&
         chart.data.datasets[activeElements[0].datasetIndex].listenHover === true
     ) {
-        const datum = getElementDatum(activeElements, chart);
-        canvas.hoverEvent.data = datum;
-        canvas.dispatchEvent(canvas.hoverEvent);
         event.native.target.style.cursor = 'pointer';
+
+        const datum = getElementDatum(activeElements, chart);
+
+        // Trigger click event tied to click callback defined in configuration.
+        canvas.hoverEvent.data = updateSelectedGroupDatum(
+            [datum],
+            [datum.GroupID]
+        );
+        canvas.dispatchEvent(canvas.hoverEvent);
     } else {
         event.native.target.style.cursor = 'default';
     }

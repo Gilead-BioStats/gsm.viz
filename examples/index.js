@@ -20889,6 +20889,23 @@ var rbmViz = (() => {
     return mapThresholdsToFlags(thresholds2);
   }
 
+  // src/util/updateSelectedGroupDatum.js
+  function updateSelectedGroupDatum(results, selectedGroupIDs) {
+    if (selectedGroupIDs.length !== 1)
+      return {};
+    const result = results.find(
+      (d) => selectedGroupIDs.includes(d.GroupID)
+    );
+    const selectedGroupDatum = results_default.items.required.reduce(
+      (acc, item) => {
+        acc[item] = result[item];
+        return acc;
+      },
+      {}
+    );
+    return selectedGroupDatum;
+  }
+
   // src/util/addCanvas/getCallbackWrapper.js
   function getCallbackWrapper(callback2) {
     const callbackWrapper = function(event) {
@@ -20925,6 +20942,10 @@ var rbmViz = (() => {
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
+    config.selectedGroupDatum = updateSelectedGroupDatum(
+      _results_,
+      config.selectedGroupIDs
+    );
     config.xLabel = coalesce(_config_?.xLabel, config["Group"]);
     config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Bar Chart of ${config.yLabel} by ${config.xLabel}`;
@@ -21167,14 +21188,14 @@ var rbmViz = (() => {
     const canvas = chart.canvas;
     if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenClick === true) {
       const datum2 = getElementDatum(activeElements, chart);
-      canvas.clickEvent.data = datum2;
+      canvas.clickEvent.data = updateSelectedGroupDatum(
+        [datum2],
+        [datum2.GroupID]
+      );
       canvas.dispatchEvent(canvas.clickEvent);
-      canvas.riskSignalSelected.data = results_default.items.required.reduce(
-        (acc, item) => {
-          acc[item] = datum2[item];
-          return acc;
-        },
-        {}
+      canvas.riskSignalSelected.data = updateSelectedGroupDatum(
+        [datum2],
+        [datum2.GroupID]
       );
       canvas.dispatchEvent(canvas.riskSignalSelected);
     }
@@ -21184,10 +21205,13 @@ var rbmViz = (() => {
   function onHover(event, activeElements, chart) {
     const canvas = chart.canvas;
     if (activeElements.length && chart.data.datasets[activeElements[0].datasetIndex].listenHover === true) {
-      const datum2 = getElementDatum(activeElements, chart);
-      canvas.hoverEvent.data = datum2;
-      canvas.dispatchEvent(canvas.hoverEvent);
       event.native.target.style.cursor = "pointer";
+      const datum2 = getElementDatum(activeElements, chart);
+      canvas.hoverEvent.data = updateSelectedGroupDatum(
+        [datum2],
+        [datum2.GroupID]
+      );
+      canvas.dispatchEvent(canvas.hoverEvent);
     } else {
       event.native.target.style.cursor = "default";
     }
@@ -21469,6 +21493,7 @@ var rbmViz = (() => {
       chart.data.datasets.find((dataset) => dataset.type === "bar").data,
       _thresholds_
     );
+    chart.canvas.riskSignalSelected.data = config.selectedGroupDatum;
     const plugins2 = getPlugins(config);
     const scales2 = getScales(config);
     chart.data.config = config;
@@ -21537,7 +21562,8 @@ var rbmViz = (() => {
         // inputs
         _results_,
         _config_,
-        _thresholds_
+        _thresholds_,
+        _groupMetadata_
       },
       options,
       plugins: [plugin, displayWhiteBackground()]
@@ -22137,6 +22163,10 @@ var rbmViz = (() => {
         _results_
       )
     });
+    config.selectedGroupDatum = updateSelectedGroupDatum(
+      _results_,
+      config.selectedGroupIDs
+    );
     config.xLabel = coalesce(_config_?.xLabel, config[config.x]);
     config.yLabel = coalesce(_config_?.yLabel, config[config.y]);
     config.chartName = `Scatter Plot of ${config.yLabel} by ${config.xLabel}`;
@@ -22468,6 +22498,7 @@ var rbmViz = (() => {
       _config_,
       chart.data.datasets.find((dataset) => dataset.type === "scatter").data
     );
+    chart.canvas.riskSignalSelected.data = config.selectedGroupDatum;
     const plugins2 = getPlugins2(config);
     const scales2 = getScales2(config);
     chart.data.config = config;
@@ -22919,6 +22950,10 @@ var rbmViz = (() => {
       ),
       thresholds: checkThresholds.bind(null, _config_, _thresholds_)
     });
+    config.selectedGroupDatum = updateSelectedGroupDatum(
+      _results_,
+      config.selectedGroupIDs
+    );
     config.dataType = /flag|risk/.test(config.y) ? "discrete" : "continuous";
     if (defaults3.dataType === "discrete")
       config.discreteUnit = Object.keys(_results_[0]).includes("GroupID") ? "Metric" : "Site";
@@ -23676,6 +23711,11 @@ var rbmViz = (() => {
     this.data.config.selectedGroupIDs = selectedGroupIDs.filter(
       (GroupID) => this.data._results_.map((d) => d.GroupID).includes(GroupID)
     );
+    this.data.config.selectedGroupDatum = updateSelectedGroupDatum(
+      this.data._results_,
+      this.data.config.selectedGroupIDs
+    );
+    this.canvas.riskSignalSelected.data = this.data.config.selectedGroupDatum;
     this.data.datasets = structureData5(
       this.data._results_,
       this.data.config,

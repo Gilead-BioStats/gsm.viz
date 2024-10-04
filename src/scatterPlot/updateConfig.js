@@ -25,6 +25,9 @@ export default function updateConfig(
         chart.data.datasets.find((dataset) => dataset.type === 'scatter').data
     );
 
+    // Update data for [ riskSignalSelected ] event.
+    chart.canvas.riskSignalSelected.data = config.selectedGroupDatum;
+
     // Update chart plugins.
     const plugins = getPlugins(config);
 

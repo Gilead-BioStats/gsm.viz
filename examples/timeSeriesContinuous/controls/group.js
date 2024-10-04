@@ -32,6 +32,11 @@ const group = function (datasets, setup = false) {
         groupDropdown.addEventListener('change', (event) => {
             countryDropdown.value = 'None'; // reset country dropdown
             instance.helpers.updateSelectedGroupIDs(event.target.value);
+
+            // Dispatch [ riskSignalSelected ] event.
+            instance.canvas.dispatchEvent(
+                instance.canvas.riskSignalSelected
+            );
         });
     }
 

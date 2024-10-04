@@ -6,7 +6,6 @@ const addEventListener = function(
         eventType,
         (event) => {
             console.log(event.data);
-            console.table(event.data);
         }
     );
 }
