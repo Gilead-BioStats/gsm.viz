@@ -40,9 +40,7 @@ const group = function (datasets, setup = false) {
             );
 
             // Dispatch [ riskSignalSelected ] event.
-            instance.canvas.dispatchEvent(
-                instance.canvas.riskSignalSelected
-            );
+            instance.canvas.dispatchEvent(instance.canvas.riskSignalSelected);
         });
     }
 

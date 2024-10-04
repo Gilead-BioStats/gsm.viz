@@ -38,9 +38,7 @@ const group = function (datasets, setup = false) {
             instance.helpers.updateConfig(instance, instance.data.config);
 
             // Dispatch [ riskSignalSelected ] event.
-            instance.canvas.dispatchEvent(
-                instance.canvas.riskSignalSelected
-            );
+            instance.canvas.dispatchEvent(instance.canvas.riskSignalSelected);
         });
     }
 

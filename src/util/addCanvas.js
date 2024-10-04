@@ -48,12 +48,9 @@ export default function addCanvas(_element_, config) {
 
     // Add custom event listener that bubbles and returns only the key data associated with a risk
     // signal.
-    canvas.riskSignalSelected = new CustomEvent(
-        'riskSignalSelected',
-        {
-            bubbles: true
-        }
-    );
+    canvas.riskSignalSelected = new CustomEvent('riskSignalSelected', {
+        bubbles: true,
+    });
 
     return canvas;
 }
