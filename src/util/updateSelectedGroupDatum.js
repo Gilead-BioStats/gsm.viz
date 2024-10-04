@@ -1,3 +1,4 @@
+import { descending } from 'd3-array';
 import resultsSchema from '../data/schema/results.json';
 
 /**
@@ -11,8 +12,12 @@ import resultsSchema from '../data/schema/results.json';
 export default function updateSelectedGroupDatum(results, selectedGroupIDs) {
     if (selectedGroupIDs.length !== 1) return {};
 
-    const result = results.find((d) => selectedGroupIDs.includes(d.GroupID));
+    // Capture the result for the selected group, prioritizing the result of the most recent snapshot.
+    const result = results
+        .sort((a, b) => descending(a.SnapshotDate, b.SnapshotDate))
+        .find((d) => selectedGroupIDs.includes(d.GroupID));
 
+    // Limit the result to required fields.
     const selectedGroupDatum = resultsSchema.items.required.reduce(
         (acc, item) => {
             acc[item] = result[item];

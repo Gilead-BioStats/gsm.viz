@@ -25694,9 +25694,9 @@ var rbmViz = (() => {
     // src/util/updateSelectedGroupDatum.js
     function updateSelectedGroupDatum(results, selectedGroupIDs) {
         if (selectedGroupIDs.length !== 1) return {};
-        const result = results.find((d) =>
-            selectedGroupIDs.includes(d.GroupID)
-        );
+        const result = results
+            .sort((a, b) => descending(a.SnapshotDate, b.SnapshotDate))
+            .find((d) => selectedGroupIDs.includes(d.GroupID));
         const selectedGroupDatum = results_default.items.required.reduce(
             (acc, item) => {
                 acc[item] = result[item];
