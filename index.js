@@ -21896,30 +21896,29 @@ var rbmViz = (() => {
     metricCells.each(function(d) {
       const flag = parseInt(d.Flag);
       const absFlag = Math.abs(flag);
-      let color3;
       switch (absFlag) {
         case 0:
           this.insertAdjacentHTML(
             "beforeend",
-            checkMark(colorScheme_default.green)
+            checkMark(colorScheme_default.green.color)
           );
           break;
         case 1:
           this.insertAdjacentHTML(
             "beforeend",
-            singleArrow(flag, colorScheme_default.amber)
+            singleArrow(flag, colorScheme_default.amber.color)
           );
           break;
         case 2:
           this.insertAdjacentHTML(
             "beforeend",
-            doubleArrow(flag, colorScheme_default.red)
+            doubleArrow(flag, colorScheme_default.red.color)
           );
           break;
         default:
           this.insertAdjacentHTML(
             "beforeend",
-            checkMark2(colorScheme_default.gray)
+            checkMark2(colorScheme_default.gray.color)
           );
           break;
       }
