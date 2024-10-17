@@ -21052,17 +21052,23 @@ var rbmViz = (() => {
   colorScheme.forEach((color3) => {
     color3.rgba = color2(color3.color);
   });
-  var amber = colorScheme.find((color3) => color3.Flag.includes(1));
-  var red = colorScheme.find((color3) => color3.Flag.includes(2));
+  colorScheme.green = colorScheme.find((c) => c.order === 0);
+  colorScheme.amber = colorScheme.find((c) => c.order === 1);
+  colorScheme.red = colorScheme.find((c) => c.order === 2);
+  colorScheme.gray = colorScheme.find((c) => c.Flag === falsy_default);
+  var amber = colorScheme.amber;
+  var red = colorScheme.red;
   colorScheme.amberRed = {
     color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
       (amber.rgba.g + red.rgba.g) / 2
     )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`,
     order: -1,
     description: "Amber or Red Flag",
-    Flag: [...amber.Flag, ...red.Flag].sort(ascending)
+    Flag: [...amber.Flag, ...red.Flag].sort(ascending),
+    rgba: color2(`rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+      (amber.rgba.g + red.rgba.g) / 2
+    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`)
   };
-  colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
   var colorScheme_default = colorScheme;
 
   // src/barChart/structureData/scriptableOptions/backgroundColor.js
@@ -21893,20 +21899,28 @@ var rbmViz = (() => {
       let color3;
       switch (absFlag) {
         case 0:
-          color3 = colorScheme_default.find((c) => c.Flag.includes(0)).color;
-          this.insertAdjacentHTML("beforeend", checkMark(color3));
+          this.insertAdjacentHTML(
+            "beforeend",
+            checkMark(colorScheme_default.green)
+          );
           break;
         case 1:
-          color3 = colorScheme_default.find((c) => c.Flag.includes(1)).color;
-          this.insertAdjacentHTML("beforeend", singleArrow(flag, color3));
+          this.insertAdjacentHTML(
+            "beforeend",
+            singleArrow(flag, colorScheme_default.amber)
+          );
           break;
         case 2:
-          color3 = colorScheme_default.find((c) => c.Flag.includes(2)).color;
-          this.insertAdjacentHTML("beforeend", doubleArrow(flag, color3));
+          this.insertAdjacentHTML(
+            "beforeend",
+            doubleArrow(flag, colorScheme_default.red)
+          );
           break;
         default:
-          color3 = colorScheme_default.find((c) => c.Flag === falsy_default).color;
-          this.insertAdjacentHTML("beforeend", checkMark2(color3));
+          this.insertAdjacentHTML(
+            "beforeend",
+            checkMark2(colorScheme_default.gray)
+          );
           break;
       }
     });

@@ -22,20 +22,28 @@ export default function addFlagIcons(rows) {
 
         switch (absFlag) {
             case 0:
-                color = colorScheme.find((c) => c.Flag.includes(0)).color;
-                this.insertAdjacentHTML('beforeend', checkMark(color));
+                this.insertAdjacentHTML(
+                    'beforeend', 
+                    checkMark(colorScheme.green)
+                );
                 break;
             case 1:
-                color = colorScheme.find((c) => c.Flag.includes(1)).color;
-                this.insertAdjacentHTML('beforeend', singleArrow(flag, color));
+                this.insertAdjacentHTML(
+                    'beforeend', 
+                    singleArrow(flag, colorScheme.amber)
+                );
                 break;
             case 2:
-                color = colorScheme.find((c) => c.Flag.includes(2)).color;
-                this.insertAdjacentHTML('beforeend', doubleArrow(flag, color));
+                this.insertAdjacentHTML(
+                    'beforeend', 
+                    doubleArrow(flag, colorScheme.red)
+                );
                 break;
             default:
-                color = colorScheme.find((c) => c.Flag === falsy).color;
-                this.insertAdjacentHTML('beforeend', minus(color));
+                this.insertAdjacentHTML(
+                    'beforeend', 
+                    minus(colorScheme.gray)
+                );
                 break;
         }
     });
