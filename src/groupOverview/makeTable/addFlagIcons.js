@@ -30,7 +30,7 @@ export default function addFlagIcons(rows) {
             case 1:
                 this.insertAdjacentHTML(
                     'beforeend', 
-                    singleArrow(flag, colorScheme.amber)
+                    singleArrow(flag, colorScheme.amber.color)
                 );
                 break;
             case 2:
