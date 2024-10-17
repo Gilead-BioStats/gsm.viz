@@ -3,25 +3,25 @@ import { ascending, color as d3color } from 'd3';
 
 const colorScheme = [
     {
-        color: '#52C41A',
+        color: '#3DAF06',
         order: 0,
         description: 'Green Flag',
         Flag: [0],
     },
     {
-        color: '#FFBF00',
+        color: '#FEAA02',
         order: 1,
         description: 'Amber Flag',
         Flag: [-1, 1],
     },
     {
-        color: '#ff0040',
+        color: '#FF5859',
         order: 2,
         description: 'Red Flag',
         Flag: [-2, 2],
     },
     {
-        color: '#aaaaaa',
+        color: '#828282',
         order: 3,
         description: 'No Flag',
         Flag: falsy,

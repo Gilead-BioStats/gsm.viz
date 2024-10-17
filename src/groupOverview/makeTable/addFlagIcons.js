@@ -1,5 +1,7 @@
 import singleArrow from './icons/singleArrow';
 import doubleArrow from './icons/doubleArrow';
+import colorScheme from '../../util/colorScheme.js';
+
 
 /**
  * Adds flag icons to the Metric cells.
@@ -14,15 +16,18 @@ export default function addFlagIcons(rows) {
     metricCells.each(function (d) {
         const flag = parseInt(d.Flag);
         const absFlag = Math.abs(flag);
+        let color;
 
         switch (absFlag) {
             case 0:
                 break;
             case 1:
-                this.insertAdjacentHTML('beforeend', singleArrow(flag));
+                color = colorScheme.find(c => c.Flag.includes(1)).color;
+                this.insertAdjacentHTML('beforeend', singleArrow(flag, color));
                 break;
             case 2:
-                this.insertAdjacentHTML('beforeend', doubleArrow(flag));
+                color = colorScheme.find(c => c.Flag.includes(2)).color;
+                this.insertAdjacentHTML('beforeend', doubleArrow(flag, color));
                 break;
             default:
                 this.textContent = '-';
