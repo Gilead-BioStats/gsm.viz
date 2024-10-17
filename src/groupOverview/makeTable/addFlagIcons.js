@@ -1,5 +1,7 @@
 import singleArrow from './icons/singleArrow';
 import doubleArrow from './icons/doubleArrow';
+import checkMark from './icons/checkMark';
+import minus from './icons/minus';
 import colorScheme from '../../util/colorScheme.js';
 
 
@@ -20,6 +22,8 @@ export default function addFlagIcons(rows) {
 
         switch (absFlag) {
             case 0:
+                color = colorScheme.find(c => c.Flag.includes(0)).color;
+                this.insertAdjacentHTML('beforeend', checkMark(color));
                 break;
             case 1:
                 color = colorScheme.find(c => c.Flag.includes(1)).color;
@@ -30,7 +34,8 @@ export default function addFlagIcons(rows) {
                 this.insertAdjacentHTML('beforeend', doubleArrow(flag, color));
                 break;
             default:
-                this.textContent = '-';
+                color = colorScheme.find(c => !c.Flag).color;
+                this.insertAdjacentHTML('beforeend', minus(color));
                 break;
         }
     });
