@@ -3,7 +3,7 @@ import doubleArrow from './icons/doubleArrow';
 import checkMark from './icons/checkMark';
 import minus from './icons/minus';
 import colorScheme from '../../util/colorScheme.js';
-
+import falsy from '../../util/falsy.js';
 
 /**
  * Adds flag icons to the Metric cells.
@@ -22,19 +22,19 @@ export default function addFlagIcons(rows) {
 
         switch (absFlag) {
             case 0:
-                color = colorScheme.find(c => c.Flag.includes(0)).color;
+                color = colorScheme.find((c) => c.Flag.includes(0)).color;
                 this.insertAdjacentHTML('beforeend', checkMark(color));
                 break;
             case 1:
-                color = colorScheme.find(c => c.Flag.includes(1)).color;
+                color = colorScheme.find((c) => c.Flag.includes(1)).color;
                 this.insertAdjacentHTML('beforeend', singleArrow(flag, color));
                 break;
             case 2:
-                color = colorScheme.find(c => c.Flag.includes(2)).color;
+                color = colorScheme.find((c) => c.Flag.includes(2)).color;
                 this.insertAdjacentHTML('beforeend', doubleArrow(flag, color));
                 break;
             default:
-                color = colorScheme.find(c => !c.Flag).color;
+                color = colorScheme.find((c) => c.Flag === falsy).color;
                 this.insertAdjacentHTML('beforeend', minus(color));
                 break;
         }
