@@ -42,7 +42,7 @@ export default function addFlagIcons(rows) {
             default:
                 this.insertAdjacentHTML(
                     'beforeend', 
-                    minus(colorScheme.gray)
+                    minus(colorScheme.gray.color)
                 );
                 break;
         }
