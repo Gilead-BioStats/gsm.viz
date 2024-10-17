@@ -18,7 +18,6 @@ export default function addFlagIcons(rows) {
     metricCells.each(function (d) {
         const flag = parseInt(d.Flag);
         const absFlag = Math.abs(flag);
-        let color;
 
         switch (absFlag) {
             case 0:
