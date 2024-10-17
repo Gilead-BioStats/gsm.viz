@@ -24,7 +24,7 @@ export default function addFlagIcons(rows) {
             case 0:
                 this.insertAdjacentHTML(
                     'beforeend', 
-                    checkMark(colorScheme.green)
+                    checkMark(colorScheme.green.color)
                 );
                 break;
             case 1:
