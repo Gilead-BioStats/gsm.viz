@@ -1,13 +1,12 @@
 export default function doubleArrow(flag, color = 'white') {
     const direction = Math.sign(flag) === 1 ? 'up' : 'down';
 
-    return [
-        `<svg ${
-            direction === 'down' ? 'style="transform:rotate(180deg)"' : ''
-        } width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-        `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color}"/>`,
-        `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color}"/>`,
-        `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color}"/>`,
-        `</svg>`,
-    ].join(``);
+    const svgIcon = `
+        <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:${color};overflow:visible;position:relative;${
+        direction === 'down' ? 'transform:rotate(180deg);' : ''
+    }">
+            <path d="M246.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 109.3 361.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160zm160 352l-160-160c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 301.3 361.4 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3z"/>
+        </svg>`;
+
+    return svgIcon;
 }
