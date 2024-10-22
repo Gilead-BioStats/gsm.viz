@@ -115,7 +115,7 @@ export default function structureData(
                       ...getSelectedGroupLine(results, config, labels),
                       backgroundColor: color,
                       borderColor: (d) => {
-                          return d.raw !== undefined ? 'black' : '#aaa';
+                          return d.raw !== undefined ? 'black' : '#828282';
                       },
                   }
                 : null,
