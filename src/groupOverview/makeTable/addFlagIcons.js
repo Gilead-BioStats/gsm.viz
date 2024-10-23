@@ -22,25 +22,25 @@ export default function addFlagIcons(rows) {
         switch (absFlag) {
             case 0:
                 this.insertAdjacentHTML(
-                    'beforeend', 
+                    'beforeend',
                     checkMark(colorScheme.green.color)
                 );
                 break;
             case 1:
                 this.insertAdjacentHTML(
-                    'beforeend', 
+                    'beforeend',
                     singleArrow(flag, colorScheme.amber.color)
                 );
                 break;
             case 2:
                 this.insertAdjacentHTML(
-                    'beforeend', 
+                    'beforeend',
                     doubleArrow(flag, colorScheme.red.color)
                 );
                 break;
             default:
                 this.insertAdjacentHTML(
-                    'beforeend', 
+                    'beforeend',
                     minus(colorScheme.gray.color)
                 );
                 break;

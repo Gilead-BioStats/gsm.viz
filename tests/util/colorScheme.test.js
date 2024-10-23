@@ -3,7 +3,6 @@ import colorScheme from '../../src/util/colorScheme';
 import falsy from '../../src/util/falsy';
 
 describe('colorScheme', () => {
-
     test('should contain 4 base colors', () => {
         expect(colorScheme.length).toBe(4);
     });
@@ -48,5 +47,4 @@ describe('colorScheme', () => {
         expect(amberRed.Flag).toEqual([-2, -1, 1, 2]);
         expect(amberRed.rgba).toBeDefined();
     });
-
 });
