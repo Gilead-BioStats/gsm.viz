@@ -25868,25 +25868,25 @@ var rbmViz = (() => {
     // src/util/colorScheme.js
     var colorScheme = [
         {
-            color: '#52C41A',
+            color: '#3DAF06',
             order: 0,
             description: 'Green Flag',
             Flag: [0],
         },
         {
-            color: '#FFBF00',
+            color: '#FEAA02',
             order: 1,
             description: 'Amber Flag',
             Flag: [-1, 1],
         },
         {
-            color: '#ff0040',
+            color: '#FF5859',
             order: 2,
             description: 'Red Flag',
             Flag: [-2, 2],
         },
         {
-            color: '#aaaaaa',
+            color: '#828282',
             order: 3,
             description: 'No Flag',
             Flag: falsy_default,
@@ -25895,8 +25895,12 @@ var rbmViz = (() => {
     colorScheme.forEach((color3) => {
         color3.rgba = color2(color3.color);
     });
-    var amber = colorScheme.find((color3) => color3.Flag.includes(1));
-    var red = colorScheme.find((color3) => color3.Flag.includes(2));
+    colorScheme.green = colorScheme.find((c) => c.order === 0);
+    colorScheme.amber = colorScheme.find((c) => c.order === 1);
+    colorScheme.red = colorScheme.find((c) => c.order === 2);
+    colorScheme.gray = colorScheme.find((c) => c.Flag === falsy_default);
+    var amber = colorScheme.amber;
+    var red = colorScheme.red;
     colorScheme.amberRed = {
         color: `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
             (amber.rgba.g + red.rgba.g) / 2
@@ -25904,8 +25908,12 @@ var rbmViz = (() => {
         order: -1,
         description: 'Amber or Red Flag',
         Flag: [...amber.Flag, ...red.Flag].sort(ascending),
+        rgba: color2(
+            `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+                (amber.rgba.g + red.rgba.g) / 2
+            )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`
+        ),
     };
-    colorScheme.amberRed.rgba = color2(colorScheme.amberRed.color);
     var colorScheme_default = colorScheme;
 
     // src/barChart/structureData/scriptableOptions/backgroundColor.js
@@ -26830,54 +26838,46 @@ var rbmViz = (() => {
         });
     }
 
-    // src/groupOverview/makeTable/addTrafficLighting.js
-    function addTrafficLighting(rows) {
-        const metricCells = rows.selectAll('td.group-overview--metric');
-        metricCells.style('background-color', function (d, i) {
-            switch (Math.abs(parseInt(d.Flag))) {
-                case 0:
-                    return colorScheme_default.find((color3) =>
-                        color3.Flag.includes(0)
-                    ).color;
-                case 1:
-                    return colorScheme_default.find((color3) =>
-                        color3.Flag.includes(1)
-                    ).color;
-                case 2:
-                    return colorScheme_default.find((color3) =>
-                        color3.Flag.includes(2)
-                    ).color;
-                default:
-                    return '#eee';
-            }
-        });
-    }
-
     // src/groupOverview/makeTable/icons/singleArrow.js
     function singleArrow(flag, color3 = 'white') {
         const direction = Math.sign(flag) === 1 ? 'up' : 'down';
-        return [
-            `<svg ${
-                direction === 'down' ? 'style="transform:rotate(180deg)"' : ''
-            } width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-            `<path fill-rule="evenodd" clip-rule="evenodd" d="M12.5857 11.4447C12.9763 11.8353 13.5303 11.9144 13.8232 11.6215C14.1161 11.3286 14.0369 10.7746 13.6464 10.3841L10.818 7.55565C10.5746 7.31232 10.2678 7.18988 10.0003 7.20299C9.73263 7.18973 9.42564 7.31217 9.18218 7.55563L6.35376 10.3841C5.96323 10.7746 5.88409 11.3286 6.17698 11.6215C6.46987 11.9144 7.02389 11.8352 7.41442 11.4447L10.0001 8.85907L12.5857 11.4447Z" fill="${color3}"/>`,
-            `<rect x="10" y="19.2929" width="13.1421" height="13.1421" rx="1.5" transform="rotate(-135 10 19.2929)" stroke="${color3}"/>`,
-            `</svg>`,
-        ].join('');
+        const svgIcon = `
+        <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:${color3};overflow:visible;position:relative;${
+            direction === 'down' ? 'transform:rotate(180deg);' : ''
+        }">
+            <path d="M201.4 137.4c12.5-12.5 32.8-12.5 45.3 0l160 160c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L224 205.3 86.6 342.6c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3l160-160z"/>
+        </svg>`;
+        return svgIcon;
     }
 
     // src/groupOverview/makeTable/icons/doubleArrow.js
     function doubleArrow(flag, color3 = 'white') {
         const direction = Math.sign(flag) === 1 ? 'up' : 'down';
-        return [
-            `<svg ${
-                direction === 'down' ? 'style="transform:rotate(180deg)"' : ''
-            } width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">`,
-            `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 8.44473C11.9763 8.83526 12.5303 8.9144 12.8232 8.62151C13.1161 8.32862 13.0369 7.7746 12.6464 7.38407L9.81797 4.55565C9.57464 4.31232 9.26784 4.18988 9.00029 4.20299C8.73263 4.18973 8.42564 4.31217 8.18218 4.55563L5.35376 7.38405C4.96323 7.77458 4.88409 8.3286 5.17698 8.62149C5.46987 8.91438 6.02389 8.83524 6.41442 8.44471L9.00007 5.85907L11.5857 8.44473Z" fill="${color3}"/>`,
-            `<path fill-rule="evenodd" clip-rule="evenodd" d="M11.5857 13.4447C11.9763 13.8353 12.5303 13.9144 12.8232 13.6215C13.1161 13.3286 13.0369 12.7746 12.6464 12.3841L9.81797 9.55565C9.57464 9.31232 9.26784 9.18988 9.00029 9.20299C8.73263 9.18973 8.42564 9.31217 8.18218 9.55563L5.35376 12.3841C4.96323 12.7746 4.88409 13.3286 5.17698 13.6215C5.46987 13.9144 6.02389 13.8352 6.41442 13.4447L9.00007 10.8591L11.5857 13.4447Z" fill="${color3}"/>`,
-            `<circle cx="9" cy="9" r="8.5" transform="rotate(-180 9 9)" stroke="${color3}"/>`,
-            `</svg>`,
-        ].join(``);
+        const svgIcon = `
+        <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:${color3};overflow:visible;position:relative;${
+            direction === 'down' ? 'transform:rotate(180deg);' : ''
+        }">
+            <path d="M246.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 109.3 361.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160zm160 352l-160-160c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L224 301.3 361.4 438.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3z"/>
+        </svg>`;
+        return svgIcon;
+    }
+
+    // src/groupOverview/makeTable/icons/checkMark.js
+    function checkMark(color3 = 'white') {
+        const svgIcon = `
+        <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:${color3};overflow:visible;position:relative;">
+            <path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/>
+        </svg>`;
+        return svgIcon;
+    }
+
+    // src/groupOverview/makeTable/icons/minus.js
+    function checkMark2(color3 = 'white') {
+        const svgIcon = `
+        <svg aria-hidden="true" role="img" viewBox="0 0 448 512" style="height:1em;width:0.88em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:${color3};overflow:visible;position:relative;">
+            <path d="M432 256c0 17.7-14.3 32-32 32L48 288c-17.7 0-32-14.3-32-32s14.3-32 32-32l352 0c17.7 0 32 14.3 32 32z"/>
+        </svg>`;
+        return svgIcon;
     }
 
     // src/groupOverview/makeTable/addFlagIcons.js
@@ -26890,15 +26890,28 @@ var rbmViz = (() => {
             const absFlag = Math.abs(flag);
             switch (absFlag) {
                 case 0:
+                    this.insertAdjacentHTML(
+                        'beforeend',
+                        checkMark(colorScheme_default.green.color)
+                    );
                     break;
                 case 1:
-                    this.insertAdjacentHTML('beforeend', singleArrow(flag));
+                    this.insertAdjacentHTML(
+                        'beforeend',
+                        singleArrow(flag, colorScheme_default.amber.color)
+                    );
                     break;
                 case 2:
-                    this.insertAdjacentHTML('beforeend', doubleArrow(flag));
+                    this.insertAdjacentHTML(
+                        'beforeend',
+                        doubleArrow(flag, colorScheme_default.red.color)
+                    );
                     break;
                 default:
-                    this.textContent = '-';
+                    this.insertAdjacentHTML(
+                        'beforeend',
+                        checkMark2(colorScheme_default.gray.color)
+                    );
                     break;
             }
         });
@@ -26971,7 +26984,6 @@ var rbmViz = (() => {
         const bodyRows = addBodyRows(tbody, rows);
         const cells = addCells(bodyRows);
         addSorting(headerRow, tbody, columns);
-        addTrafficLighting(bodyRows);
         addFlagIcons(bodyRows);
         addRowHighlighting(bodyRows);
         addClickEvents(bodyRows, cells, config);
@@ -27000,7 +27012,6 @@ var rbmViz = (() => {
         const tbody = this.table.select('tbody');
         const bodyRows = addBodyRows(tbody, rows);
         const cells = addCells(bodyRows);
-        addTrafficLighting(bodyRows);
         addFlagIcons(bodyRows);
         addRowHighlighting(bodyRows);
         addClickEvents(bodyRows, cells, this.config);
@@ -28479,10 +28490,10 @@ var rbmViz = (() => {
                 : /flagged/.test(config.y)
                 ? colorScheme_default.find((color4) => color4.Flag.includes(2))
                       .color
-                : '#aaaaaa';
+                : '#828282';
         const backgroundColor4 = color2(color3);
         backgroundColor4.opacity = 1;
-        const borderColor4 = color2('#aaaaaa');
+        const borderColor4 = color2('#828282');
         borderColor4.opacity = 0.25;
         const dataset = {
             backgroundColor: backgroundColor4,
@@ -28613,7 +28624,7 @@ var rbmViz = (() => {
                           ...selectedGroupLine(results, config, labels),
                           backgroundColor: color3,
                           borderColor: (d) => {
-                              return d.raw !== void 0 ? 'black' : '#aaa';
+                              return d.raw !== void 0 ? 'black' : '#828282';
                           },
                       }
                     : null,
