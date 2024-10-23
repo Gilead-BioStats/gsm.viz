@@ -5,7 +5,6 @@ import addBodyRows from './makeTable/addBodyRows.js';
 import addCells from './makeTable/addCells.js';
 import addSorting from './makeTable/addSorting.js';
 
-import addTrafficLighting from './makeTable/addTrafficLighting.js';
 import addFlagIcons from './makeTable/addFlagIcons.js';
 import addRowHighlighting from './makeTable/addRowHighlighting.js';
 import addClickEvents from './makeTable/addClickEvents.js';
@@ -20,6 +19,7 @@ export default function makeTable(_element_, rows, columns, config) {
             columns,
         })
         .classed('group-overview', true);
+
     const thead = table.append('thead');
     const tbody = table.append('tbody');
     const headerRow = addHeaderRow(thead, columns);
@@ -28,9 +28,6 @@ export default function makeTable(_element_, rows, columns, config) {
 
     // add column sorting
     addSorting(headerRow, tbody, columns);
-
-    // add traffic light coloring to cells
-    addTrafficLighting(bodyRows);
 
     // add directional arrows to Metric cells
     addFlagIcons(bodyRows);

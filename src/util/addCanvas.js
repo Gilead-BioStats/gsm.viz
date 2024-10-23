@@ -34,7 +34,7 @@ export default function addCanvas(_element_, config) {
         canvas = newCanvas;
     }
 
-    // TODO: figure out how to add this functionality in config rather than canvas
+    // Attach custom hover and click events to canvas element.
     canvas.hoverEvent = addCustomEvent(
         canvas,
         config.hoverCallbackWrapper,
@@ -45,6 +45,12 @@ export default function addCanvas(_element_, config) {
         config.clickCallbackWrapper,
         'click'
     );
+
+    // Add custom event listener that bubbles and returns only the key data associated with a risk
+    // signal.
+    canvas.riskSignalSelected = new CustomEvent('riskSignalSelected', {
+        bubbles: true,
+    });
 
     return canvas;
 }

@@ -58,6 +58,7 @@ describe('configuration', () => {
                 'displayTrendLine',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
+                'selectedGroupDatum',
             ].sort()
         );
     });

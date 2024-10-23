@@ -102,3 +102,7 @@ dist
 
 # TernJS port file
 .tern-port
+
+# User Project files
+.Rproj.user
+rbm-viz.Rproj

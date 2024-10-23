@@ -28,6 +28,9 @@ export default function updateConfig(
         _thresholds_
     );
 
+    // Update data for [ riskSignalSelected ] event.
+    chart.canvas.riskSignalSelected.data = config.selectedGroupDatum;
+
     // Update chart plugins.
     const plugins = getPlugins(config);
 

@@ -33,10 +33,10 @@ export default function aggregateLine(data, config, labels) {
             ? colorScheme.find((color) => color.Flag.includes(1)).color
             : /flagged/.test(config.y)
             ? colorScheme.find((color) => color.Flag.includes(2)).color
-            : '#aaaaaa';
+            : '#828282';
     const backgroundColor = d3color(color);
     backgroundColor.opacity = 1;
-    const borderColor = d3color('#aaaaaa');
+    const borderColor = d3color('#828282');
     borderColor.opacity = 0.25;
 
     const dataset = {

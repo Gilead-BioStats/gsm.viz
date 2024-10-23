@@ -88,6 +88,7 @@ export default function barChart(
             _results_,
             _config_,
             _thresholds_,
+            _groupMetadata_,
         },
         options,
         plugins: [ChartDataLabels, displayWhiteBackground()],

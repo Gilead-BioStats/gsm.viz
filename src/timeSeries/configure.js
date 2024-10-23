@@ -2,6 +2,7 @@ import configureAll from '../util/configure.js';
 import coalesce from '../util/coalesce.js';
 import checkSelectedGroupIDs from '../util/checkSelectedGroupIDs.js';
 import checkThresholds from '../util/checkThresholds.js';
+import updateSelectedGroupDatum from '../util/updateSelectedGroupDatum.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
 export default function configure(
@@ -66,6 +67,12 @@ export default function configure(
         ),
         thresholds: checkThresholds.bind(null, _config_, _thresholds_),
     });
+
+    // Update selected group datum.
+    config.selectedGroupDatum = updateSelectedGroupDatum(
+        _results_,
+        config.selectedGroupIDs
+    );
 
     config.dataType = /flag|risk/.test(config.y) ? 'discrete' : 'continuous';
 

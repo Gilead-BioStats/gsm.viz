@@ -25,6 +25,7 @@
         "required": [
             "StudyID",
             "MetricID",
+            "GroupLevel",
             "GroupID",
             "Numerator",
             "Denominator",
@@ -48,6 +49,13 @@
                 "required": false,
                 "key": true
             },
+            "GroupLevel": {
+                "title": "Group Level",
+                "description": "Group level",
+                "type": "number",
+                "required": true,
+                "key": true
+            },
             "GroupID": {
                 "title": "Group ID",
                 "description": "Unique group identifier",
@@ -57,21 +65,21 @@
             },
             "Numerator": {
                 "title": "Numerator",
-                "description": "Numerator of Metric Metric",
+                "description": "Metric numerator",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "Denominator": {
                 "title": "Denominator",
-                "description": "Denominator of Metric Metric",
+                "description": "Metric denominator",
                 "type": "number",
                 "required": true,
                 "key": false
             },
             "Metric": {
-                "title": "Metric Metric",
-                "description": "Metric Metric",
+                "title": "Metric Value",
+                "description": "Metric value",
                 "type": "number",
                 "required": true,
                 "key": false
@@ -85,7 +93,7 @@
             },
             "Flag": {
                 "title": "Flag Status",
-                "description": "Flag assigned given Metric score and specified thresholds",
+                "description": "Flag assigned given metric score and specified thresholds",
                 "type": "number",
                 "required": true,
                 "key": false
