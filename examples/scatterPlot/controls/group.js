@@ -36,6 +36,9 @@ const group = function (datasets, setup = false) {
             instance.data.config.selectedGroupIDs = event.target.value;
             instance.data.config.xType = xAxisType();
             instance.helpers.updateConfig(instance, instance.data.config);
+
+            // Dispatch [ riskSignalSelected ] event.
+            instance.canvas.dispatchEvent(instance.canvas.riskSignalSelected);
         });
     }
 

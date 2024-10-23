@@ -69,10 +69,10 @@ colorScheme.forEach((color) => {
 });
 
 // Add aliases for easy access
-colorScheme.green = colorScheme.find(c => c.order === 0);
-colorScheme.amber = colorScheme.find(c => c.order === 1);
-colorScheme.red = colorScheme.find(c => c.order === 2);
-colorScheme.gray = colorScheme.find(c => c.Flag === falsy);
+colorScheme.green = colorScheme.find((c) => c.order === 0);
+colorScheme.amber = colorScheme.find((c) => c.order === 1);
+colorScheme.red = colorScheme.find((c) => c.order === 2);
+colorScheme.gray = colorScheme.find((c) => c.Flag === falsy);
 
 // Calculate and assign amberRed color
 const amber = colorScheme.amber;
@@ -85,9 +85,11 @@ colorScheme.amberRed = {
     order: -1,
     description: 'Amber or Red Flag',
     Flag: [...amber.Flag, ...red.Flag].sort(ascending),
-    rgba: d3color(`rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
-        (amber.rgba.g + red.rgba.g) / 2
-    )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`)
+    rgba: d3color(
+        `rgb(${Math.round((amber.rgba.r + red.rgba.r) / 2)},${Math.round(
+            (amber.rgba.g + red.rgba.g) / 2
+        )},${Math.round((amber.rgba.b + red.rgba.b) / 2)})`
+    ),
 };
 
 export default colorScheme;

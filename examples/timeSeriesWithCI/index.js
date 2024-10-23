@@ -39,5 +39,7 @@ Promise.all(dataPromises)
             resultsVertical
         );
 
+        addEventListener('riskSignalSelected');
+
         metric(datasets, true, config.MetricID);
     });

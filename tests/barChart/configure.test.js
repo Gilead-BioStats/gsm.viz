@@ -53,6 +53,7 @@ describe('configuration', () => {
                 'displayTitle',
                 'maintainAspectRatio',
                 'selectedGroupIDs',
+                'selectedGroupDatum',
                 'thresholds',
             ].sort()
         );

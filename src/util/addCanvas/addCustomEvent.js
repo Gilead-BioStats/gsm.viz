@@ -6,7 +6,7 @@ export default function addCustomEvent(canvas, callback, eventType) {
 
     canvas.removeEventListener(eventID, callback, false);
 
-    const customEvent = new Event(eventID);
+    const customEvent = new Event(eventID, { bubbles: true });
 
     canvas.addEventListener(eventID, callback, false);
 

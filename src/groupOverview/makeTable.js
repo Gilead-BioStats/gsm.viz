@@ -19,6 +19,7 @@ export default function makeTable(_element_, rows, columns, config) {
             columns,
         })
         .classed('group-overview', true);
+
     const thead = table.append('thead');
     const tbody = table.append('tbody');
     const headerRow = addHeaderRow(thead, columns);
