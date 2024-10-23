@@ -16,19 +16,24 @@ on:
 
 jobs:
   build:
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v4
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16.x'
 
     - name: Build and Deploy
       env:
-        NODE_VERSION: 16.x
         CI: true
         NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        GH_TOKEN: ${{secrets.GH_TOKEN}}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         npm install
         npm run build
         npm run deploy
-

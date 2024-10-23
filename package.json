@@ -7,7 +7,7 @@
   "scripts": {
     "build": "npm run bundle && npm run format && npm run transpile && npm run test && npm run link-bundles",
     "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
-    "deploy": "gh-pages -d examples",
+    "deploy": "gh-pages -d examples -r https://$GH_TOKEN@github.com/Gilead-BioStats/rbm-viz.git",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
     "format-src": "npx prettier --single-quote --tab-width=4 --write src",
