@@ -17,7 +17,7 @@ const yAxis = function (config, datasets, setup = false) {
             config.selectedGroupIDs = group();
 
             // Threshold annotations
-            let thresholds = config.Thresholds.split(',').map((d) => +d);
+            let thresholds = config.Threshold.split(',').map((d) => +d);
             if (config.y !== 'Score') thresholds = null;
 
             // group metadata

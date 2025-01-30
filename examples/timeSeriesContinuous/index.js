@@ -29,7 +29,7 @@ Promise.all(dataPromises)
         };
 
         // Threshold annotations
-        const thresholds = config.Thresholds.split(',').map((d) => +d);
+        const thresholds = config.Threshold.split(',').map((d) => +d);
 
         // group metadata
         const groupMetadata = datasets[2];

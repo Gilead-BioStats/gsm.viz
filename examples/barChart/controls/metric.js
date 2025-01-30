@@ -73,7 +73,7 @@ const metric = function (datasets, setup = false, initialValue = null) {
             const thresholds =
                 config.y === 'Score' &&
                 document.getElementById('threshold').checked
-                    ? config.Thresholds.split(',').map((d) => +d)
+                    ? config.Threshold.split(',').map((d) => +d)
                     : null;
 
             // group metadata

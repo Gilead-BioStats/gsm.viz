@@ -33,7 +33,12 @@ const yAxis = function (datasets, setup = false, initialValue = null) {
                     ? config.Thresholds.split(',').map((d) => +d)
                     : null;
 
-            instance.helpers.updateData(instance, results, config, thresholds);
+            instance.helpers.updateData(
+                instance,
+                results,
+                config,
+                thresholds
+            );
         });
     }
 

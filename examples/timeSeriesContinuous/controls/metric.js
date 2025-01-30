@@ -74,7 +74,7 @@ const metric = function (config, datasets, setup = false) {
             ];
 
             // Threshold annotations
-            let thresholds = config.Thresholds.split(',').map((d) => +d);
+            let thresholds = config.Threshold.split(',').map((d) => +d);
             if (config.y !== 'Score') thresholds = null;
 
             const groupMetadata = datasets[4];

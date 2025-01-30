@@ -1,3 +1,4 @@
+import getObjectSize from './util/getObjectSize.js';
 // Chart.js
 import Chart from 'chart.js/auto';
 
@@ -92,6 +93,12 @@ export default function timeSeries(
         options,
         plugins: [displayWhiteBackground()],
     });
+    for (const key in chart.data) {
+        console.log(key);
+        const datum = chart.data[key];
+        const size = getObjectSize(datum);
+        console.log(size/1000);
+    }
 
     // Attach chart object to canvas element.
     canvas.chart = chart;
