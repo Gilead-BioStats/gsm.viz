@@ -38,7 +38,7 @@ Promise.all(dataPromises)
         const groupMetadata = datasets[3];
 
         // visualization
-        const instance = rbmViz.default.scatterPlot(
+        const instance = gsmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             config,

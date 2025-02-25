@@ -73,7 +73,7 @@ Promise.all(dataPromises)
             },
         };
 
-        const instance = rbmViz.default.groupOverview(
+        const instance = gsmViz.default.groupOverview(
             document.getElementById('container'),
             results.filter((d) => groupSubset.includes(d.GroupID)),
             {

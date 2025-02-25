@@ -41,7 +41,7 @@ Promise.all(dataPromises)
         const groupMetadata = datasets[2];
 
         // visualization
-        const instance = rbmViz.default.barChart(
+        const instance = gsmViz.default.barChart(
             document.getElementById('container'),
             results,
             config,

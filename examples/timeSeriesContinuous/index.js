@@ -35,7 +35,7 @@ Promise.all(dataPromises)
         const groupMetadata = datasets[2];
 
         // visualization
-        const instance = rbmViz.default.timeSeries(
+        const instance = gsmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             config,

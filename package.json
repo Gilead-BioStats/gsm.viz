@@ -1,12 +1,12 @@
 {
-  "name": "rbm-viz",
+  "name": "gsm.viz",
   "version": "2.1.0",
   "description": "web-based data visualization for risk-based monitoring",
   "module": "src/main.js",
   "main": "index.js",
   "scripts": {
     "build": "npm run bundle && npm run format && npm run transpile && npm run test && npm run link-bundles",
-    "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=rbmViz --outfile=index.js --sourcemap",
+    "bundle": "esbuild src/main.js --banner:js=\"'use strict'\" --bundle --global-name=gsmViz --outfile=index.js --sourcemap",
     "deploy": "gh-pages -d examples",
     "format": "npm run format-src && npm run format-examples && npm run format-tests",
     "format-examples": "npx prettier --single-quote --tab-width=4 --write examples",
@@ -16,17 +16,19 @@
     "local": "live-server --ignore=app,examples/app,examples/data,node_modules,react-app,src .",
     "test": "jest",
     "test:coverage": "jest --coverage",
-    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@rbmViz)/\" --env=jsdom",
+    "test-pattern": "jest --transformIgnorePatterns \"node_modules/(?!@gsmViz)/\" --env=jsdom",
     "transpile": "babel index.js > index.es5.js",
     "update-data": "node examples/data/helpers/csv-to-json.js",
-    "watch": "esbuild src/main.js --bundle --global-name=rbmViz --outfile=index.js --sourcemap --watch"
+    "watch": "esbuild src/main.js --bundle --global-name=gsmViz --outfile=index.js --sourcemap --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Gilead-BioStats/rbm-viz.git"
+    "url": "git+https://github.com/Gilead-BioStats/gsm.viz.git"
   },
   "keywords": [
+    "rbqm",
     "rbm",
+    "gsm",
     "rbqm",
     "risk-based",
     "monitoring",
@@ -36,9 +38,9 @@
   "author": "Gilead Sciences",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Gilead-BioStats/rbm-viz/issues"
+    "url": "https://github.com/Gilead-BioStats/gsm.viz/issues"
   },
-  "homepage": "https://github.com/Gilead-BioStats/rbm-viz#readme",
+  "homepage": "https://github.com/Gilead-BioStats/gsm.viz#readme",
   "dependencies": {
     "@sgratzl/chartjs-chart-boxplot": "^3.10.0",
     "chart.js": "^3.9.1",
