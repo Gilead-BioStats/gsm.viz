@@ -33,6 +33,7 @@ describe('configuration', () => {
                 // time series settings
                 'groupLabelKey',
                 'groupParticipantCountKey',
+                'groupTooltipKeys',
 
                 'x',
                 'xType',
