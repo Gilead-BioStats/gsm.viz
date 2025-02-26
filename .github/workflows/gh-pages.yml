@@ -21,6 +21,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set Git Config
+      run: |
+        git config --global user.name "Spencer Childress"
+        git config --global user.email "spencer.c.childress@gmail.com"
+
     - name: Build and Deploy
       env:
         NODE_VERSION: 16.x
