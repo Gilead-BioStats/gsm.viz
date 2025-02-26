@@ -15,25 +15,29 @@ on:
       - dev
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        #- run: npm install
+        #- run: npm run build
+      - uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: ./examples
+          access_token: ${{ secrets.GH_PAGES_DEPLOY }}  
 
-    - name: Set Git Config
-      run: |
-        git config --global user.name "Spencer Childress"
-        git config --global user.email "spencer.c.childress@gmail.com"
-
-    - name: Build and Deploy
-      env:
-        NODE_VERSION: 16.x
-        CI: true
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-        GH_TOKEN: ${{secrets.GH_TOKEN}}
-      run: |
-        npm install
-        npm run build
-        npm run deploy
+            #build:
+            #  runs-on: ubuntu-latest
+            #  steps:
+            #  - uses: actions/checkout@v2
+            #  - name: Build and Deploy
+            #    env:
+            #      NODE_VERSION: 16.x
+            #      CI: true
+            #      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+            #      GH_TOKEN: ${{secrets.GH_TOKEN}}
+            #    run: |
+            #      npm install
+            #      npm run build
+            #      npm run deploy
 
