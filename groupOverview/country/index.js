@@ -41,50 +41,16 @@ Promise.all(dataPromises)
             Study: 'nickname',
         };
 
-        const groupTooltipKeys = {
-            Site: {
-                GroupID: 'Investigator ID',
-                ParticipantCount: 'Participant Count',
-                //SiteCount: 'Site Count',
-
-                InvestigatorLastName: 'Last Name',
-                InvestigatorFirstName: 'First Name',
-                Status: 'Status',
-
-                site_num: 'Site ID',
-                account: 'Site',
-                City: 'City',
-                State: 'State',
-                Country: 'Country',
-
-                site_active_dt: 'Activation Date',
-                is_satellite: 'Satellite',
-            },
-            Country: {
-                GroupID: 'Country Code',
-                ParticipantCount: 'Participant Count',
-                SiteCount: 'Site Count',
-            },
-            Study: {
-                GroupID: 'Protocol ID',
-                nickname: 'Nickname',
-                ParticipantCount: 'Participant Count',
-                SiteCount: 'Site Count',
-            },
-        };
-
-        const instance = rbmViz.default.groupOverview(
+        const instance = gsmViz.default.groupOverview(
             document.getElementById('container'),
             results.filter((d) => groupSubset.includes(d.GroupID)),
             {
                 GroupLevel,
                 groupLabelKey: groupLabelKey[GroupLevel],
-                //groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
-                groupClickCallback: function (datum) {
-                    console.log(datum.data.tooltipContent);
-                },
+                groupTooltipKeys: groupTooltipKeys[ GroupLevel ],
+                //groupClickCallback: function (datum) {
+                //},
                 //metricClickCallback: function (datum) {
-                //    console.log(datum);
                 //},
             },
             groupMetadata,

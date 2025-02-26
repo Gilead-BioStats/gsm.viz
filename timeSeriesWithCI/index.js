@@ -31,7 +31,7 @@ Promise.all(dataPromises)
         const resultsVertical = filterOnMetricID(datasets[2], MetricID);
 
         // visualization
-        const instance = rbmViz.default.timeSeries(
+        const instance = gsmViz.default.timeSeries(
             document.getElementById('container'),
             results,
             config,

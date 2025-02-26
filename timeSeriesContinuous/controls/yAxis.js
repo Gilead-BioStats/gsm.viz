@@ -15,13 +15,14 @@ const yAxis = function (config, datasets, setup = false) {
             const config = selectMetricID(datasets[1], MetricID);
             config.y = event.target.value;
             config.selectedGroupIDs = group();
+            config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
             // Threshold annotations
             let thresholds = config.Thresholds.split(',').map((d) => +d);
             if (config.y !== 'Score') thresholds = null;
 
             // group metadata
-            const groupMetadata = datasets[4];
+            const groupMetadata = datasets[2];
 
             instance.helpers.updateData(
                 instance,

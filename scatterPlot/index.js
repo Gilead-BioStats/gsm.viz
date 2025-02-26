@@ -30,6 +30,7 @@ Promise.all(dataPromises)
             instance.helpers.updateConfig(instance, instance.data.config);
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
         // predicted bounds
         const bounds = filterOnMetricID(datasets[2], MetricID);
@@ -38,7 +39,7 @@ Promise.all(dataPromises)
         const groupMetadata = datasets[3];
 
         // visualization
-        const instance = rbmViz.default.scatterPlot(
+        const instance = gsmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             config,

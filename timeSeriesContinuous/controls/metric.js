@@ -72,12 +72,13 @@ const metric = function (config, datasets, setup = false) {
                     )
                     .map((d) => d.GroupID),
             ];
+            config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
             // Threshold annotations
             let thresholds = config.Thresholds.split(',').map((d) => +d);
             if (config.y !== 'Score') thresholds = null;
 
-            const groupMetadata = datasets[4];
+            const groupMetadata = datasets[2];
 
             instance.helpers.updateData(
                 instance,

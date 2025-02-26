@@ -33,6 +33,7 @@ Promise.all(dataPromises)
             );
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
         // threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);
@@ -41,7 +42,7 @@ Promise.all(dataPromises)
         const groupMetadata = datasets[2];
 
         // visualization
-        const instance = rbmViz.default.barChart(
+        const instance = gsmViz.default.barChart(
             document.getElementById('container'),
             results,
             config,
