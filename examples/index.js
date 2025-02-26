@@ -20920,6 +20920,7 @@ var gsmViz = (() => {
     defaults3.GroupLevel = "Site";
     defaults3.groupLabelKey = "InvestigatorLastName";
     defaults3.groupParticipantCountKey = "ParticipantCount";
+    defaults3.groupTooltipKeys = null;
     defaults3.x = "GroupID";
     defaults3.xType = "category";
     defaults3.y = "Score";
@@ -21306,12 +21307,12 @@ var gsmViz = (() => {
   }
 
   // src/util/formatMetricTooltipLabel.js
-  function formatMetricTooltipLabel(result, metricMetadata) {
+  function formatMetricTooltipLabel(result, config) {
     const tooltipKeys = {
-      Score: metricMetadata.Score || "Score",
-      Metric: metricMetadata.Metric || "Metric",
-      Numerator: metricMetadata.Numerator || "Numerator",
-      Denominator: metricMetadata.Denominator || "Denominator"
+      Score: config.Score || "Score",
+      Metric: config.Metric || "Metric",
+      Numerator: config.Numerator || "Numerator",
+      Denominator: config.Denominator || "Denominator"
     };
     const tooltipLabel = [];
     for (const [key, label] of Object.entries(tooltipKeys)) {
@@ -21329,6 +21330,26 @@ var gsmViz = (() => {
       }
     }
     return tooltipLabel;
+  }
+
+  // src/util/formatGroupTooltipLabel.js
+  function formatGroupTooltipLabel(group2, config) {
+    if (!group2) {
+      return [];
+    }
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).reduce((acc, key) => {
+      const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
+      acc[key] = label;
+      return acc;
+    }, {});
+    const tooltipContent = [];
+    for (const [key, label] of Object.entries(tooltipKeys)) {
+      if (group2[key] !== void 0) {
+        let value = group2[key];
+        tooltipContent.push(`${label}: ${value}`);
+      }
+    }
+    return tooltipContent;
   }
 
   // src/util/formatMetricTooltipTitle.js
@@ -21372,7 +21393,10 @@ var gsmViz = (() => {
     tooltipAesthetics.boxWidth = 10;
     return {
       callbacks: {
-        label: (d) => formatMetricTooltipLabel(d.raw, config),
+        label: (d) => [
+          ...formatMetricTooltipLabel(d.raw, config),
+          ...formatGroupTooltipLabel(d.raw.group, config)
+        ],
         labelPointStyle: () => ({ pointStyle: "rect" }),
         title: (data) => {
           if (data.length) {
@@ -21697,18 +21721,10 @@ var gsmViz = (() => {
 
   // src/groupOverview/defineColumns/defineGroupTooltip.js
   function defineTooltip(column, content, config) {
-    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(content.group).reduce((acc, key) => {
-      const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
-      acc[key] = label;
-      return acc;
-    }, {});
-    const tooltipContent = [];
-    for (const [key, label] of Object.entries(tooltipKeys)) {
-      if (content[key] !== void 0) {
-        let value = content[key];
-        tooltipContent.push(`${label}: ${value}`);
-      }
-    }
+    const tooltipContent = formatGroupTooltipLabel(
+      content.group,
+      config
+    );
     return tooltipContent.join("\n");
   }
 
@@ -21771,7 +21787,10 @@ var gsmViz = (() => {
 
   // src/groupOverview/defineColumns/defineMetricTooltip.js
   function defineTooltip2(column, result) {
-    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
+    const tooltipContent = formatMetricTooltipLabel(
+      result,
+      column.meta
+    );
     return tooltipContent.join("\n");
   }
 
@@ -22140,6 +22159,7 @@ var gsmViz = (() => {
     defaults3.GroupLevel = "Site";
     defaults3.groupLabelKey = "InvestigatorLastName";
     defaults3.groupParticipantCountKey = "ParticipantCount";
+    defaults3.groupTooltipKeys = null;
     defaults3.x = "Denominator";
     defaults3[defaults3.x] = defaults3.x;
     defaults3.xType = "logarithmic";
@@ -22429,7 +22449,10 @@ var gsmViz = (() => {
     return {
       callbacks: {
         label: (d) => {
-          const content = formatMetricTooltipLabel(d.raw, config);
+          const content = [
+            ...formatMetricTooltipLabel(d.raw, config),
+            ...formatGroupTooltipLabel(d.raw.group, config)
+          ];
           return d.raw.duplicate ? "" : content;
         },
         title: (data) => {
@@ -22921,6 +22944,7 @@ var gsmViz = (() => {
     defaults3.GroupLevel = "Site";
     defaults3.groupLabelKey = "InvestigatorLastName";
     defaults3.groupParticipantCountKey = "ParticipantCount";
+    defaults3.groupTooltipKeys = null;
     defaults3.dataType = "continuous";
     defaults3.discreteUnit = null;
     defaults3.distributionDisplay = "boxplot";
@@ -23604,9 +23628,11 @@ var gsmViz = (() => {
     const tooltipAesthetics = getTooltipAesthetics();
     return {
       callbacks: {
-        //label: formatResultTooltipContent.bind(null, config),
         label: (d) => {
-          const content = formatResultTooltipContent(d, config);
+          const content = [
+            ...formatResultTooltipContent(d, config),
+            ...formatGroupTooltipLabel(d.raw.group, config)
+          ];
           return d.raw.duplicate ? "" : content;
         },
         labelPointStyle: (data) => {

@@ -30,6 +30,7 @@ Promise.all(dataPromises)
             instance.helpers.updateConfig(instance, instance.data.config);
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
         // predicted bounds
         const bounds = filterOnMetricID(datasets[2], MetricID);

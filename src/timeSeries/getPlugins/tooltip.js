@@ -1,5 +1,6 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 import formatResultTooltipContent from '../../util/formatResultTooltipContent.js';
+import formatGroupTooltipLabel from '../../util/formatGroupTooltipLabel.js';
 import formatResultTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
@@ -9,9 +10,11 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            //label: formatResultTooltipContent.bind(null, config),
             label: (d) => {
-                const content = formatResultTooltipContent(d, config);
+                const content = [
+                    ...formatResultTooltipContent(d, config),
+                    ...formatGroupTooltipLabel(d.raw.group, config)
+                ];
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;

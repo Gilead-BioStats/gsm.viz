@@ -27,6 +27,7 @@ Promise.all(dataPromises)
             instance.helpers.updateSelectedGroupIDs(datum.GroupID);
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
         // Threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);

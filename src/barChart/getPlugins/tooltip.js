@@ -1,4 +1,5 @@
 import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel.js';
+import formatGroupTooltipLabel from '../../util/formatGroupTooltipLabel.js';
 import formatMetricTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 
@@ -8,7 +9,10 @@ export default function tooltip(config) {
 
     return {
         callbacks: {
-            label: (d) => formatMetricTooltipLabel(d.raw, config),
+            label: (d) => [
+                ...formatMetricTooltipLabel(d.raw, config),
+                ...formatGroupTooltipLabel(d.raw.group, config)
+            ],
             labelPointStyle: () => ({ pointStyle: 'rect' }),
             title: (data) => {
                 if (data.length) {

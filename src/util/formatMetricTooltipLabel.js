@@ -1,11 +1,19 @@
 import falsy from './falsy.js';
 
-export default function formatMetricTooltipLabel(result, metricMetadata) {
+/**
+ * Format results for tooltip.
+ *
+ * @param {Object} group - Results.
+ * @param {Object} config - Configuration object with result metadata.
+ *
+ * @returns {Array} The tooltip content.
+ */
+export default function formatMetricTooltipLabel(result, config) {
     const tooltipKeys = {
-        Score: metricMetadata.Score || 'Score',
-        Metric: metricMetadata.Metric || 'Metric',
-        Numerator: metricMetadata.Numerator || 'Numerator',
-        Denominator: metricMetadata.Denominator || 'Denominator',
+        Score: config.Score || 'Score',
+        Metric: config.Metric || 'Metric',
+        Numerator: config.Numerator || 'Numerator',
+        Denominator: config.Denominator || 'Denominator',
     };
 
     const tooltipLabel = [];

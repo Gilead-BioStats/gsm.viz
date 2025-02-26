@@ -33,6 +33,7 @@ Promise.all(dataPromises)
             );
             document.querySelector('#group').value = datum.GroupID;
         };
+        config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
 
         // threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);
