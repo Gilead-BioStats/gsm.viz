@@ -44,7 +44,7 @@ Promise.all(dataPromises)
         // visualization
         const instance = gsmViz.default.barChart(
             document.getElementById('container'),
-            results,
+            results.filter(d => false),
             config,
             thresholds,
             groupMetadata

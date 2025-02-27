@@ -20733,11 +20733,6 @@ var gsmViz = (() => {
       );
     }
     if (schema.type === "array") {
-      if (argument.length === 0) {
-        throw new Error(
-          `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
-        );
-      }
       argument.forEach((item, i) => {
         const itemType = getType(item);
         if (itemType !== schema.items.type) {
