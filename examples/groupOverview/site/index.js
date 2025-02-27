@@ -32,7 +32,10 @@ Promise.all(dataPromises)
         const metricMetadata = datasets[1].filter((d) =>
             regex.test(d.MetricID)
         );
-        const groupMetadata = datasets[2];
+        const groupMetadata = datasets[2].filter(
+            (d,i) => !(i%10 === 0 && d.Param === 'ParticipantCount')
+            //(d,i) => !(              d.Param === 'ParticipantCount')
+        );
         const groupSubset = getGroups(results);
 
         const groupLabelKey = {

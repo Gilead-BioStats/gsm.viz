@@ -68,7 +68,7 @@ export default function defineGroupColumns(groupMetadata, config) {
     });
 
     columns = columns.filter((column) =>
-        groupMetadata[0].hasOwnProperty(column.valueKey)
+        groupMetadata.some(groupMetadatum => groupMetadatum.hasOwnProperty(column.valueKey))
     );
 
     return columns;

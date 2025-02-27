@@ -1,4 +1,3 @@
-'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21781,7 +21780,7 @@ var gsmViz = (() => {
       column.defineTooltip = defineTooltip;
     });
     columns = columns.filter(
-      (column) => groupMetadata[0].hasOwnProperty(column.valueKey)
+      (column) => groupMetadata.some((groupMetadatum) => groupMetadatum.hasOwnProperty(column.valueKey))
     );
     return columns;
   }
@@ -23806,7 +23805,6 @@ var gsmViz = (() => {
   }
 
   // src/main.js
-  console.log("GitHub Pages, will you please update?");
   Chart.register(
     annotation,
     BoxAndWiskers,
