@@ -1,0 +1,66 @@
+{
+    "title": "Predicted Metric Analysis Output",
+    "description": "JSON schema of predicted input data to scatterPlot module",
+    "version": "0.14.0",
+    "type": "array",
+    "modules": {
+        "scatterPlot": {
+            "required": false
+        }
+    },
+    "items": {
+        "type": "object",
+        "required": ["Numerator", "Denominator", "Threshold"],
+        "properties": {
+            "StudyID": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "MetricID": {
+                "title": "Metric ID",
+                "description": "Unique workflow identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "Threshold": {
+                "title": "Threshold",
+                "description": "Directional factor of predicted results",
+                "type": "number",
+                "required": true,
+                "key": true
+            },
+            "Numerator": {
+                "title": "Predicted Numerator",
+                "description": "Predicted numerator of Metric metric",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Denominator": {
+                "title": "Predicted Denominator",
+                "description": "Predicted denominator of Metric metric",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "LogDenominator": {
+                "title": "Predicted Denominator (log)",
+                "description": "Predicted Denominator of Metric metric (log)",
+                "type": "number",
+                "required": false,
+                "key": false
+            },
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}

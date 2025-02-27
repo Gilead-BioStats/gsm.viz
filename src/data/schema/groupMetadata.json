@@ -1,0 +1,54 @@
+{
+    "title": "Group Metadata",
+    "description": "JSON schema of group metadata",
+    "version": "0.14.0",
+    "type": "array",
+    "modules": {
+        "barChart": {
+            "required": false
+        },
+        "groupOverview": {
+            "required": true
+        },
+        "scatterPlot": {
+            "required": false
+        },
+        "timeSeries": {
+            "required": false
+        }
+    },
+    "items": {
+        "type": "object",
+        "required": ["GroupLevel", "GroupID", "Param", "Value"],
+        "properties": {
+            "GroupLevel": {
+                "title": "Grouping Variable",
+                "description": "Grouping variable of analysis, one of Site, Country, or Study",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "GroupID": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "Param": {
+                "title": "Group Attribute Name",
+                "description": "Name of group attribute",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "Value": {
+                "title": "Group Attribute Value",
+                "description": "Value of group attribute",
+                "type": "string",
+                "required": true,
+                "key": false
+            }
+        }
+    }
+}

@@ -1,0 +1,110 @@
+{
+    "title": "Standard Metric Analysis Output",
+    "description": "JSON schema of input data to barChart and scatterPlot modules",
+    "version": "0.14.0",
+    "type": "array",
+    "modules": {
+        "barChart": {
+            "required": true
+        },
+        "groupOverview": {
+            "required": true
+        },
+        "scatterPlot": {
+            "required": true
+        },
+        "sparkline": {
+            "required": true
+        },
+        "timeSeries": {
+            "required": true
+        }
+    },
+    "items": {
+        "type": "object",
+        "required": [
+            "StudyID",
+            "MetricID",
+            "GroupLevel",
+            "GroupID",
+            "Numerator",
+            "Denominator",
+            "Metric",
+            "Score",
+            "Flag",
+            "SnapshotDate"
+        ],
+        "properties": {
+            "StudyID": {
+                "title": "Study ID",
+                "description": "Unique study identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "MetricID": {
+                "title": "Metric ID",
+                "description": "Unique workflow identifier",
+                "type": "string",
+                "required": false,
+                "key": true
+            },
+            "GroupLevel": {
+                "title": "Group Level",
+                "description": "Group level",
+                "type": "number",
+                "required": true,
+                "key": true
+            },
+            "GroupID": {
+                "title": "Group ID",
+                "description": "Unique group identifier",
+                "type": "string",
+                "required": true,
+                "key": true
+            },
+            "Numerator": {
+                "title": "Numerator",
+                "description": "Metric numerator",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Denominator": {
+                "title": "Denominator",
+                "description": "Metric denominator",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Metric": {
+                "title": "Metric Value",
+                "description": "Metric value",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Score": {
+                "title": "Metric Score",
+                "description": "Metric score",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "Flag": {
+                "title": "Flag Status",
+                "description": "Flag assigned given metric score and specified thresholds",
+                "type": "number",
+                "required": true,
+                "key": false
+            },
+            "SnapshotDate": {
+                "title": "Snapshot Date",
+                "description": "Date of data refresh",
+                "type": "string",
+                "required": false,
+                "key": false
+            }
+        }
+    }
+}
