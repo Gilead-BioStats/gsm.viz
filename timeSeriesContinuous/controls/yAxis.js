@@ -15,7 +15,7 @@ const yAxis = function (config, datasets, setup = false) {
             const config = selectMetricID(datasets[1], MetricID);
             config.y = event.target.value;
             config.selectedGroupIDs = group();
-            config.groupTooltipKeys = groupTooltipKeys[ config.GroupLevel ];
+            config.groupTooltipKeys = groupTooltipKeys[config.GroupLevel];
 
             // Threshold annotations
             let thresholds = config.Thresholds.split(',').map((d) => +d);

@@ -26,4 +26,3 @@ const groupTooltipKeys = {
         SiteCount: 'Site Count',
     },
 };
-
