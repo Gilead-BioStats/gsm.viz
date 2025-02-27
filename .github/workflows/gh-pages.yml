@@ -2,7 +2,7 @@
 # after a new version of the site is built and pushed to the master branch.
 # For more information see: https://help.github.com/actions/language-and-framework-guides/publishing-html-sites
 
-name: Build and Deploy GitHub Pages
+name: Build and Deploy
 
 on:
   push:
@@ -14,39 +14,26 @@ on:
       - main
       - dev
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
+    concurrency: ci-${{ github.ref }}
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
+      - name: Checkout 🛎️
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
+      - name: Install and Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          node-version: 18
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build package
-        run: npm run build
-
-      - name: Extract branch name
-        shell: bash
-        run: echo "branch=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}" >> $GITHUB_OUTPUT
-        id: extract_branch
-
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          BRANCH: eng:${{ steps.extract_branch.outputs.branch }}
-          FOLDER: examples
-          TOKEN: ${{ secrets.GH_PAGES_DEPLOY }}
-
-            #- uses: JamesIves/github-pages-deploy-action@v4
-            #  with:
-            #    folder: ./examples
-            #    access_token: ${{ secrets.GH_PAGES_DEPLOY }}  
+          folder: examples
+          token: ${{ secrets.GH_PAGES_DEPLOY }}
 
