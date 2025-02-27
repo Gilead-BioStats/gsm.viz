@@ -17,27 +17,31 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-        #- run: npm install
-        #- run: npm run build
-      - uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          folder: ./examples
-          access_token: ${{ secrets.GH_PAGES_DEPLOY }}  
 
-            #build:
-            #  runs-on: ubuntu-latest
-            #  steps:
-            #  - uses: actions/checkout@v2
-            #  - name: Build and Deploy
-            #    env:
-            #      NODE_VERSION: 16.x
-            #      CI: true
-            #      NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-            #      GH_TOKEN: ${{secrets.GH_TOKEN}}
-            #    run: |
-            #      npm install
-            #      npm run build
-            #      npm run deploy
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build package
+        run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          BRANCH: gh-pages
+          FOLDER: examples
+          ACCESS_TOKEN: ${{ secrets.GH_PAGES_DEPLOY }}
+
+            #- uses: JamesIves/github-pages-deploy-action@v4
+            #  with:
+            #    folder: ./examples
+            #    access_token: ${{ secrets.GH_PAGES_DEPLOY }}  
 
