@@ -38,7 +38,7 @@ jobs:
         with:
           BRANCH: gh-pages
           FOLDER: examples
-          ACCESS_TOKEN: ${{ secrets.GH_PAGES_DEPLOY }}
+          TOKEN: ${{ secrets.GH_PAGES_DEPLOY }}
 
             #- uses: JamesIves/github-pages-deploy-action@v4
             #  with:
