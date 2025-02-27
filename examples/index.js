@@ -1,3 +1,4 @@
+'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -23805,6 +23806,7 @@ var gsmViz = (() => {
   }
 
   // src/main.js
+  console.log("GitHub Pages, will you please update?");
   Chart.register(
     annotation,
     BoxAndWiskers,
