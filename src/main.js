@@ -1,4 +1,3 @@
-console.log('GitHub Pages, will you please update?');
 // dependencies
 import { CategoryScale, Chart, LinearScale } from 'chart.js';
 import annotationPlugin from 'chartjs-plugin-annotation';
