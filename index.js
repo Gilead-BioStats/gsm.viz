@@ -20735,7 +20735,7 @@ var gsmViz = (() => {
     }
     if (schema.type === "array") {
       if (argument.length === 0) {
-        throw new Error(
+        console.log(
           `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
         );
       }
@@ -21111,7 +21111,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "bar") {
+    if (datum2 !== void 0 && dataset.type === "bar") {
       const color3 = colorScheme_default[datum2.stratum];
       color3.rgba.opacity = config.selectedGroupIDs.includes(datum2.GroupID) | config.selectedGroupIDs.length === 0 ? 1 : 0.25;
       return color3.rgba + "";
@@ -21781,7 +21781,7 @@ var gsmViz = (() => {
       column.defineTooltip = defineTooltip;
     });
     columns = columns.filter(
-      (column) => groupMetadata[0].hasOwnProperty(column.valueKey)
+      (column) => groupMetadata.some((groupMetadatum) => groupMetadatum.hasOwnProperty(column.valueKey))
     );
     return columns;
   }
@@ -22233,7 +22233,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.includes(datum2.GroupID) ? 1 : config.selectedGroupIDs.length === 0 ? 0.5 : 0.25;
       return color3 + "";
@@ -22246,7 +22246,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
       return config.selectedGroupIDs.includes(datum2.GroupID) ? "black" : color3 + "";
@@ -22259,7 +22259,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       return 1;
     }
   }
@@ -22270,7 +22270,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
       if (datum2.group !== void 0) {
@@ -22290,7 +22290,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
       if (datum2.group !== void 0) {
