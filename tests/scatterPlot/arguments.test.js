@@ -38,4 +38,46 @@ describe('scatter plot is generated', () => {
 
         expect(instance).not.toBeNull();
     });
+
+    test(`scatter plot is generated with empty results`, () => {
+        const instance = scatterPlot(
+            container,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`scatter plot is generated with empty config`, () => {
+        const instance = scatterPlot(
+            container,
+            resultsSubset,
+            {}
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`scatter plot is generated with empty bounds`, () => {
+        const instance = scatterPlot(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`scatter plot is generated with empty group metadata`, () => {
+        const instance = scatterPlot(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            resultsPredictedSubset,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
 });
