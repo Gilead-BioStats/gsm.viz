@@ -38,20 +38,13 @@ describe('time series is generated', () => {
     });
 
     test(`time series is generated with empty results`, () => {
-        const instance = timeSeries(
-            container,
-            []
-        );
+        const instance = timeSeries(container, []);
 
         expect(instance).not.toBeNull();
     });
 
     test(`time series is generated with empty config`, () => {
-        const instance = timeSeries(
-            container,
-            resultsSubset,
-            {}
-        );
+        const instance = timeSeries(container, resultsSubset, {});
 
         expect(instance).not.toBeNull();
     });

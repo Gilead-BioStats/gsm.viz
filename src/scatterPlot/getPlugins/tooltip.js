@@ -12,7 +12,7 @@ export default function tooltip(config) {
             label: (d) => {
                 const content = [
                     ...formatMetricTooltipLabel(d.raw, config),
-                    ...formatGroupTooltipLabel(d.raw.group, config)
+                    ...formatGroupTooltipLabel(d.raw.group, config),
                 ];
 
                 // prevent display of duplicate tooltip content

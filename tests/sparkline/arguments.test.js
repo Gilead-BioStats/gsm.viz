@@ -36,20 +36,13 @@ describe('sparkline is generated', () => {
     });
 
     test(`sparkline is generated with empty results`, () => {
-        const instance = sparkline(
-            container,
-            []
-        );
+        const instance = sparkline(container, []);
 
         expect(instance).not.toBeNull();
     });
 
     test(`sparkline is generated with empty config`, () => {
-        const instance = sparkline(
-            container,
-            resultsSubset,
-            {}
-        );
+        const instance = sparkline(container, resultsSubset, {});
 
         expect(instance).not.toBeNull();
     });

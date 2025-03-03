@@ -37,20 +37,13 @@ describe('bar chart is generated', () => {
     });
 
     test(`bar chart is generated with empty results`, () => {
-        const instance = barChart(
-            container,
-            []
-        );
+        const instance = barChart(container, []);
 
         expect(instance).not.toBeNull();
     });
 
     test(`bar chart is generated with empty config`, () => {
-        const instance = barChart(
-            container,
-            resultsSubset,
-            {}
-        );
+        const instance = barChart(container, resultsSubset, {});
 
         expect(instance).not.toBeNull();
     });

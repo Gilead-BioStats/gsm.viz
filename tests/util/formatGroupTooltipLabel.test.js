@@ -3,10 +3,9 @@ import groupMetadata from '../../examples/data/groupMetadata.json';
 import structureGroupMetadata from '../../src/util/structureGroupMetadata.js';
 import formatGroupTooltipLabel from '../../src/util/formatGroupTooltipLabel.js';
 
-const groupMetadataStructured = structureGroupMetadata(
-    groupMetadata,
-    {GroupLevel: 'Site'}
-);
+const groupMetadataStructured = structureGroupMetadata(groupMetadata, {
+    GroupLevel: 'Site',
+});
 
 describe('group attributes are formatted correctly', () => {
     test('if `groupTooltipKeys` is `null`, all group attributes are included', () => {
@@ -24,16 +23,16 @@ describe('group attributes are formatted correctly', () => {
         const group = groupMetadataStructured.get('43');
         const config = {
             groupTooltipKeys: {
-                'ParticipantCount': 'parti time',
-                'SiteCount': 'sits bones'
-            }
+                ParticipantCount: 'parti time',
+                SiteCount: 'sits bones',
+            },
         };
 
         const tooltipLabel = formatGroupTooltipLabel(group, config);
 
         expect(tooltipLabel).toEqual([
             `parti time: ${group.ParticipantCount}`,
-            `sits bones: ${group.SiteCount}`
+            `sits bones: ${group.SiteCount}`,
         ]);
     });
 
@@ -41,24 +40,24 @@ describe('group attributes are formatted correctly', () => {
         const group = groupMetadataStructured.get('43');
         const config = {
             groupTooltipKeys: {
-                'ParticipantCount': 'parti time',
-                'SiteCount': 'sits bones',
-                'NonexistentKey': 'nonexistent'
-            }
+                ParticipantCount: 'parti time',
+                SiteCount: 'sits bones',
+                NonexistentKey: 'nonexistent',
+            },
         };
 
         const tooltipLabel = formatGroupTooltipLabel(group, config);
 
         expect(tooltipLabel).toEqual([
             `parti time: ${group.ParticipantCount}`,
-            `sits bones: ${group.SiteCount}`
+            `sits bones: ${group.SiteCount}`,
         ]);
     });
 
     test('if `groupTooltipKeys` is an empty object, no attributes are included', () => {
         const group = groupMetadataStructured.get('43');
         const config = {
-            groupTooltipKeys: {}
+            groupTooltipKeys: {},
         };
 
         const tooltipLabel = formatGroupTooltipLabel(group, config);
@@ -66,4 +65,3 @@ describe('group attributes are formatted correctly', () => {
         expect(tooltipLabel).toEqual([]);
     });
 });
-

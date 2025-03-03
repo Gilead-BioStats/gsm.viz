@@ -11,7 +11,7 @@ export default function tooltip(config) {
         callbacks: {
             label: (d) => [
                 ...formatMetricTooltipLabel(d.raw, config),
-                ...formatGroupTooltipLabel(d.raw.group, config)
+                ...formatGroupTooltipLabel(d.raw.group, config),
             ],
             labelPointStyle: () => ({ pointStyle: 'rect' }),
             title: (data) => {

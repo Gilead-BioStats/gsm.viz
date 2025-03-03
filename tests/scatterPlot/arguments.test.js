@@ -40,20 +40,13 @@ describe('scatter plot is generated', () => {
     });
 
     test(`scatter plot is generated with empty results`, () => {
-        const instance = scatterPlot(
-            container,
-            []
-        );
+        const instance = scatterPlot(container, []);
 
         expect(instance).not.toBeNull();
     });
 
     test(`scatter plot is generated with empty config`, () => {
-        const instance = scatterPlot(
-            container,
-            resultsSubset,
-            {}
-        );
+        const instance = scatterPlot(container, resultsSubset, {});
 
         expect(instance).not.toBeNull();
     });

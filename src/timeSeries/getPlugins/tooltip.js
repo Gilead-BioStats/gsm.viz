@@ -13,7 +13,7 @@ export default function tooltip(config) {
             label: (d) => {
                 const content = [
                     ...formatResultTooltipContent(d, config),
-                    ...formatGroupTooltipLabel(d.raw.group, config)
+                    ...formatGroupTooltipLabel(d.raw.group, config),
                 ];
 
                 // prevent display of duplicate tooltip content

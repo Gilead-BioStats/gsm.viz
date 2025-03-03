@@ -9,10 +9,7 @@ import formatGroupTooltipLabel from '../../util/formatGroupTooltipLabel';
  * @returns {String} The tooltip content.
  */
 export default function defineTooltip(column, content, config) {
-    const tooltipContent = formatGroupTooltipLabel(
-        content.group,
-        config
-    );
+    const tooltipContent = formatGroupTooltipLabel(content.group, config);
 
     return tooltipContent.join('\n');
 }
