@@ -81,11 +81,17 @@ export default function checkInput({
     // check items in array
     if (schema.type === 'array') {
         // check for empty array
-        //if (argument.length === 0) {
+        if (argument.length === 0) {
         //    throw new Error(
         //        `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
         //    );
+            // display a warning in teh console
+        //if (verbose) {
+            console.log(
+                `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+            );
         //}
+        }
 
         argument.forEach((item, i) => {
             // check data type of item

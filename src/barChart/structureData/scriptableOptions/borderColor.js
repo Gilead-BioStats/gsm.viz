@@ -6,7 +6,7 @@ export default function borderColor(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'bar') {
+    if (datum !== undefined && dataset.type === 'bar') {
         return config.selectedGroupIDs.includes(datum.GroupID)
             ? 'black'
             : 'rgba(0, 0, 0, 0.1)';
