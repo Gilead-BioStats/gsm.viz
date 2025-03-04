@@ -37,6 +37,7 @@ Promise.all(dataPromises)
 
         // threshold annotations
         const thresholds = config.Thresholds.split(',').map((d) => +d);
+        const flags = config.Flags.split(',').map((d) => +d);
 
         // group metadata
         const groupMetadata = datasets[2];
@@ -46,9 +47,9 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             config,
-            [3,2],//thresholds,
+            thresholds,
             groupMetadata,
-            [1,2]
+            flags
         );
 
         addEventListener('riskSignalSelected');

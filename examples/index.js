@@ -20906,43 +20906,45 @@ var gsmViz = (() => {
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_, _flags_) {
     let flags;
-    const thresholds2 = [...new Set(_thresholds_)].map((Threshold) => +Threshold).sort(ascending);
-    const negativeThresholds = thresholds2.filter((Threshold) => Threshold < 0).sort(descending);
-    const negativeFlags = negativeThresholds.map((Threshold, i) => {
-      return {
-        Threshold,
-        Flag: -(i + 1)
-      };
-    });
-    const positiveThresholds = thresholds2.filter((Threshold) => Threshold > 0).sort(ascending);
-    const positiveFlags = positiveThresholds.map((Threshold, i) => {
-      return {
-        Threshold,
-        Flag: i + 1
-      };
-    });
-    const zeroFlag = thresholds2.filter((Threshold) => Threshold === 0).map((Threshold) => {
-      return {
-        Threshold,
-        Flag: 0
-      };
-    });
-    flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].map((flag) => ({
-      ...flag,
-      direction: Math.sign(+flag.Flag),
-      position: Math.sign(+flag.Flag) === 1 ? "end" : "start"
-    }));
-    console.table(flags);
-    flags = _thresholds_.map((threshold, i) => ({
-      Threshold: threshold,
-      Flag: _flags_[i],
-      direction: -1,
-      position: "end"
-    }));
-    console.table(flags);
+    if (_flags_ === null) {
+      const thresholds2 = [...new Set(_thresholds_)].map((Threshold) => +Threshold).sort(ascending);
+      const negativeThresholds = thresholds2.filter((Threshold) => Threshold < 0).sort(descending);
+      const negativeFlags = negativeThresholds.map((Threshold, i) => {
+        return {
+          Threshold,
+          Flag: -(i + 1)
+        };
+      });
+      const positiveThresholds = thresholds2.filter((Threshold) => Threshold > 0).sort(ascending);
+      const positiveFlags = positiveThresholds.map((Threshold, i) => {
+        return {
+          Threshold,
+          Flag: i + 1
+        };
+      });
+      const zeroFlag = thresholds2.filter((Threshold) => Threshold === 0).map((Threshold) => {
+        return {
+          Threshold,
+          Flag: 0
+        };
+      });
+      flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].map((flag) => ({
+        ...flag,
+        direction: Math.sign(+flag.Flag),
+        position: Math.sign(+flag.Flag) === 1 ? "end" : "start"
+      }));
+    } else {
+      const flagsSans0 = _flags_.filter((flag) => flag !== 0);
+      const flagDirection = flagsSans0.join(",") === flagsSans0.sort(ascending).join(",") ? 1 : -1;
+      flags = _thresholds_.map((threshold, i) => ({
+        Threshold: threshold,
+        Flag: flagsSans0[i],
+        direction: flagDirection == 1 && threshold < 0 ? -1 : flagDirection == 1 && threshold > 0 ? 1 : flagDirection == -1 && threshold < 0 ? 1 : flagDirection == -1 && threshold > 0 ? -1 : 0,
+        position: flagDirection == 1 && threshold < 0 ? "start" : flagDirection == 1 && threshold > 0 ? "end" : flagDirection == -1 && threshold < 0 ? "end" : flagDirection == -1 && threshold > 0 ? "start" : "middle"
+      }));
+    }
     const annotations5 = flags.map((flag) => {
       const color3 = colorScheme_default.find((color4) => color4.Flag.includes(flag.Flag));
-      console.log(color3);
       return {
         ...flag,
         adjustScaleRange: false,
@@ -20983,7 +20985,13 @@ var gsmViz = (() => {
       (Threshold) => typeof Threshold === "object" && Threshold.hasOwnProperty("Threshold") && Threshold.hasOwnProperty("Flag")
     ))
       return thresholds2;
-    return mapThresholdsToFlags(thresholds2, _flags_);
+    let flags = [];
+    if (Array.isArray(_flags_)) {
+      flags = _flags_.filter((flag) => flag != 0);
+    }
+    if (flags.length === 0 || flags.length !== _thresholds_.length)
+      flags = null;
+    return mapThresholdsToFlags(thresholds2, flags);
   }
 
   // src/util/updateSelectedGroupDatum.js

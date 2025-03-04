@@ -7,32 +7,39 @@ import colorScheme from './colorScheme.js';
  * @param {Array} thresholds Array of thresholds.
  *
  * @example
- * // Example of an annotation object:
- * {
- *     threshold: 1,
- *     flag: 2,
- *     direction: 'down',
- *     position: 'end'
- *     borderColor: 'blue',
- *     borderDash: [2],
- *     borderWidth: 1,
- *     label: {
- *         backgroundColor: 'white',
- *         color: 'blue',
- *         content: 'Blue Flag ↓',
- *         display: true,
- *         padding: 2,
- *         position: 'end',
+ * // Example of a set of annotation specification:
+ * [
+ *     {
+ *         Threshold: -3,
+ *         Flag: -2,
+ *         direction: -1,
+ *         position: 'start'
  *     },
- *     yMin: 1,
- *     yMax: 1,
- * }
+ *     {
+ *         Threshold: -2,
+ *         Flag: -1,
+ *         direction: -1,
+ *         position: 'start'
+ *     },
+ *     {
+ *         Threshold: 2,
+ *         Flag: 1,
+ *         direction: 1,
+ *         position: 'end'
+ *     },
+ *     {
+ *         Threshold: 3,
+ *         Flag: 2,
+ *         direction: 1,
+ *         position: 'end'
+ *     },
+ * ]
  *
- * @returns {Array} Array of flags.
+ * @returns {Array} Array of annotation specifications.
  */
 export default function mapThresholdsToFlags(_thresholds_, _flags_) {
     let flags;
-    //if (_flags_ === null) {
+    if (_flags_ === null) {
         // Capture complete set of thresholds.
         const thresholds = [...new Set(_thresholds_)] // remove duplicate thresholds
             .map((Threshold) => +Threshold)
@@ -71,28 +78,52 @@ export default function mapThresholdsToFlags(_thresholds_, _flags_) {
             });
 
         // Combine negative and positive thresholds/flags.
-    flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].map((flag) => ({
-        ...flag,
-        direction: Math.sign(+flag.Flag),
-        position: Math.sign(+flag.Flag) === 1 ? 'end' : 'start',
-    }));
-    console.table(flags);
-    //} else {
-    // TODO: make this work with any set of flags
+        flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].map((flag) => ({
+            ...flag,
+            direction: Math.sign(+flag.Flag),
+            position: Math.sign(+flag.Flag) === 1 ? 'end' : 'start',
+        }));
+    } else {
+        const flagsSans0 = _flags_.filter((flag) => flag !== 0);
+
+        // Check directionality of flags.
+        const flagDirection = flagsSans0.join(',') === flagsSans0.sort(ascending).join(',')
+            ? 1
+            : -1;
+
+        // TODO: make this work with any set of flags
         flags = _thresholds_.map((threshold,i) => ({
             Threshold: threshold,
-            Flag: _flags_[i],
-            direction: -1,
-            position: 'end',
+            Flag: flagsSans0[i],
+            direction: (
+                flagDirection == 1 && threshold < 0
+                ? -1
+                : flagDirection == 1 && threshold > 0
+                ? 1
+                : flagDirection == -1 && threshold < 0
+                ? 1
+                : flagDirection == -1 && threshold > 0
+                ? -1
+                : 0
+            ),
+            position: (
+                flagDirection == 1 && threshold < 0
+                ? 'start'
+                : flagDirection == 1 && threshold > 0
+                ? 'end'
+                : flagDirection == -1 && threshold < 0
+                ? 'end'
+                : flagDirection == -1 && threshold > 0
+                ? 'start'
+                : 'middle'
+            ),
         }));
-    //}
-    console.table(flags);
+    }
 
     const annotations = flags
         .map((flag) => {
             // attach color scheme to flag and define annotation
             const color = colorScheme.find((color) => color.Flag.includes(flag.Flag));
-            console.log(color);
 
             return {
                 ...flag,

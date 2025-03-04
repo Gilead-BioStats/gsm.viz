@@ -18,5 +18,14 @@ export default function checkThresholds(_config_, _thresholds_, _flags_) {
     )
         return thresholds;
 
-    return mapThresholdsToFlags(thresholds, _flags_);
+    // Clean flags.
+    let flags = [];
+    if (Array.isArray(_flags_)) {
+        flags = _flags_.filter(flag => flag != 0);
+    }
+
+    if (flags.length === 0 || flags.length !== _thresholds_.length)
+        flags = null;
+
+    return mapThresholdsToFlags(thresholds, flags);
 }
