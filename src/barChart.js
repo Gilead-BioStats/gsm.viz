@@ -41,13 +41,15 @@ export default function barChart(
     _results_ = [],
     _config_ = null,
     _thresholds_ = null,
-    _groupMetadata_ = null
+    _groupMetadata_ = null,
+    _flags_ = null
 ) {
+    console.log(_flags_);
     // Check input data against data schema.
     checkInputs(_results_, _config_, _thresholds_, _groupMetadata_);
 
     // Merge custom settings with default settings.
-    const config = configure(_config_, _results_, _thresholds_);
+    const config = configure(_config_, _results_, _thresholds_, _flags_);
 
     // Add or select canvas element in which to render chart.
     const canvas = addCanvas(_element_, config);

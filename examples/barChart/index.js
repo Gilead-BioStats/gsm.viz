@@ -46,8 +46,9 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             config,
-            thresholds,
-            groupMetadata
+            [3,2],//thresholds,
+            groupMetadata,
+            [1,2]
         );
 
         addEventListener('riskSignalSelected');

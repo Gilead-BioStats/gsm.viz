@@ -1,5 +1,15 @@
 import addCustomEvent from './addCanvas/addCustomEvent.js';
 
+/**
+ * Adds a canvas element to the provided element.
+ *
+ * @param {HTMLElement} _element_ - The element to which to add the canvas element.
+ * @param {Object} config - Configuration object.
+ * @param {Function} config.hoverCallbackWrapper - Function that wraps the hover callback function.
+ * @param {Function} config.clickCallbackWrapper - Function that wraps the click callback function.
+ *
+ * @returns {HTMLCanvasElement} The canvas element.
+ */
 export default function addCanvas(_element_, config) {
     let canvas;
 

@@ -5,7 +5,7 @@ import coalesce from '../util/coalesce.js';
 import updateSelectedGroupDatum from '../util/updateSelectedGroupDatum.js';
 import getCallbackWrapper from '../util/addCanvas/getCallbackWrapper.js';
 
-export default function configure(_config_, _results_, _thresholds_) {
+export default function configure(_config_, _results_, _thresholds_, _flags_) {
     const defaults = {};
 
     defaults.GroupLevel = 'Site';
@@ -40,7 +40,7 @@ export default function configure(_config_, _results_, _thresholds_) {
             _config_?.selectedGroupIDs,
             _results_
         ),
-        thresholds: checkThresholds.bind(null, _config_, _thresholds_),
+        thresholds: checkThresholds.bind(null, _config_, _thresholds_, _flags_),
     });
 
     // Update selected group datum.
