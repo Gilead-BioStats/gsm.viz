@@ -46,7 +46,7 @@ Promise.all(dataPromises)
             document.getElementById('container'),
             results,
             config,
-            thresholds,
+            [2,3],//thresholds,
             groupMetadata
         );
 

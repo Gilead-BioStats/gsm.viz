@@ -4,6 +4,11 @@ export default function annotations(config) {
     let annotations = null;
 
     if (config.thresholds) {
+        const symmetricalThresholds = (
+            config.thresholds.filter((threshold) => threshold < 0).length ===
+            config.thresholds.filter((threshold) => threshold > 0).length
+        );
+
         annotations = config.thresholds
             .sort((a, b) => Math.abs(a.Threshold) - Math.abs(b.Threshold))
             .map((x, i) => {
@@ -23,10 +28,15 @@ export default function annotations(config) {
                         color: colorScheme.filter((y) =>
                             y.Flag.includes(+x.Flag)
                         )[0].color,
-                        content:
-                            Math.sign(+x.Flag) === 1
+                        content: (
+                            symmetricalThresholds
+                                ? content
+                                : Math.sign(+x.Flag) === 1
                                 ? `${content} ↑`
-                                : `↓ ${content}`,
+                                : Math.sign(+x.Flag) === 1
+                                ? `↓ ${content}`
+                                : content
+                        ),
                         display: true,
                         font: {
                             size: 12,
