@@ -24,20 +24,21 @@ describe('checkInput identifies required and optional properties', () => {
 
     test('a missing optional analysis metadata property returns argument', () => {
         const metricMetadatum = metricMetadata[0];
-        const requiredProps = Object.keys(schema.properties).filter(
+        const optionalProps = Object.keys(schema.properties).filter(
             (key) => schema.properties[key].required === false
         );
 
-        for (const prop of requiredProps) {
+        for (const prop of optionalProps) {
             const incompleteAnalysisMetadata = { ...metricMetadatum };
             delete incompleteAnalysisMetadata[prop];
 
+            // No error should be thrown.
             expect(
                 checkInput({
                     argument: incompleteAnalysisMetadata,
                     schemaName: 'metricMetadatum',
                 })
-            ).toStrictEqual(incompleteAnalysisMetadata);
+            ).toBeUndefined();
         }
     });
 });
