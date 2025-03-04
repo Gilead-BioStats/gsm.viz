@@ -18,5 +18,16 @@ export default function checkThresholds(_config_, _thresholds_) {
     )
         return thresholds;
 
+    // If more than four non-zero thresholds are provided, return null.
+    if (
+        thresholds.filter((Threshold) => Threshold !== 0).length > 4
+    ) {
+        console.warn(
+            'More than four non-zero thresholds present. Threshold annotations will not be displayed.'
+        );
+
+        return null;
+    }
+
     return mapThresholdsToFlags(thresholds);
 }
