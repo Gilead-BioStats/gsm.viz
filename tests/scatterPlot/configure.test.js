@@ -36,6 +36,7 @@ describe('configuration', () => {
                 // scatter plot settings
                 'groupLabelKey',
                 'groupParticipantCountKey',
+                'groupTooltipKeys',
 
                 'x',
                 'xType',

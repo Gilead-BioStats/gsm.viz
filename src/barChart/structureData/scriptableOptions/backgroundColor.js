@@ -7,7 +7,7 @@ export default function backgroundColor(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'bar') {
+    if (datum !== undefined && dataset.type === 'bar') {
         const color = colorScheme[datum.stratum];
         color.rgba.opacity =
             config.selectedGroupIDs.includes(datum.GroupID) |

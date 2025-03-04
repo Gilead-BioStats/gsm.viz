@@ -7,7 +7,7 @@ export default function borderColor(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
+    if (datum !== undefined && dataset.type === 'scatter') {
         const color = colorScheme[datum.stratum].rgba;
         color.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
 

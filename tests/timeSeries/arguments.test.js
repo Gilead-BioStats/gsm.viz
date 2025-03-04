@@ -36,4 +36,40 @@ describe('time series is generated', () => {
 
         expect(instance).not.toBeNull();
     });
+
+    test(`time series is generated with empty results`, () => {
+        const instance = timeSeries(container, []);
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`time series is generated with empty config`, () => {
+        const instance = timeSeries(container, resultsSubset, {});
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`time series is generated with empty thresholds`, () => {
+        const instance = timeSeries(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`time series is generated with empty groupMetadata`, () => {
+        const instance = timeSeries(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            thresholds,
+            null,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
 });

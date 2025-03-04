@@ -4,7 +4,7 @@ export default function pointHoverRadius(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
+    if (datum !== undefined && dataset.type === 'scatter') {
         const defaultRadius = 3;
         const hoverRadius = 4;
 

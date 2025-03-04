@@ -26,7 +26,7 @@ Chart.register(
 );
 
 // TODO: implement class-based modules
-const rbmViz = {
+const gsmViz = {
     barChart,
     groupOverview,
     scatterPlot,
@@ -34,4 +34,4 @@ const rbmViz = {
     timeSeries,
 };
 
-export default rbmViz;
+export default gsmViz;

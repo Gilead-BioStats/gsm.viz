@@ -59,4 +59,18 @@ describe('group overview is generated', () => {
 
         expect(instance).not.toBeNull();
     });
+
+    test(`group overview is generated with empty results`, () => {
+        const instance = groupOverview(
+            container,
+            [],
+            {
+                GroupLevel,
+            },
+            groupMetadata,
+            metricMetadataSubset
+        );
+
+        expect(instance).not.toBeNull();
+    });
 });

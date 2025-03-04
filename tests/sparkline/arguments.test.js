@@ -34,4 +34,27 @@ describe('sparkline is generated', () => {
 
         expect(instance).not.toBeNull();
     });
+
+    test(`sparkline is generated with empty results`, () => {
+        const instance = sparkline(container, []);
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`sparkline is generated with empty config`, () => {
+        const instance = sparkline(container, resultsSubset, {});
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`sparkline is generated with empty thresholds`, () => {
+        const instance = sparkline(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
 });

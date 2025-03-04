@@ -68,6 +68,7 @@ const metric = function (datasets, setup = false, initialValue = null) {
                     )
                     .map((d) => d.GroupID),
             ];
+            config.groupTooltipKeys = groupTooltipKeys[config.GroupLevel];
 
             const bounds = filterOnMetricID(datasets[2], event.target.value);
 

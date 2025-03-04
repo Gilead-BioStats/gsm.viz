@@ -1,5 +1,6 @@
 import getTooltipAesthetics from '../../util/getTooltipAesthetics.js';
 import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel.js';
+import formatGroupTooltipLabel from '../../util/formatGroupTooltipLabel.js';
 import formatMetricTooltipTitle from '../../util/formatMetricTooltipTitle.js';
 import sortByGroupID from '../../util/sortByGroupID.js';
 
@@ -9,7 +10,10 @@ export default function tooltip(config) {
     return {
         callbacks: {
             label: (d) => {
-                const content = formatMetricTooltipLabel(d.raw, config);
+                const content = [
+                    ...formatMetricTooltipLabel(d.raw, config),
+                    ...formatGroupTooltipLabel(d.raw.group, config),
+                ];
 
                 // prevent display of duplicate tooltip content
                 return d.raw.duplicate ? '' : content;

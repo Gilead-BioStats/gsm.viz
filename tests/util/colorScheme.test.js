@@ -2,7 +2,7 @@
 import colorScheme from '../../src/util/colorScheme';
 import falsy from '../../src/util/falsy';
 
-describe('colorScheme', () => {
+describe('color scheme maps flag to color correctly', () => {
     test('should contain 4 base colors', () => {
         expect(colorScheme.length).toBe(4);
     });

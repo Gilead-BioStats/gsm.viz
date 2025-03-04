@@ -15,7 +15,7 @@ const lifecycle = function (datasets, setup = false) {
     lifecycleButton.onclick = destroy.bind(instance);
 
     // Create chart:
-    // 1. calls rbmViz.default.scatterPlot
+    // 1. calls gsmViz.default.scatterPlot
     // 2. click event updates to destroy
     // 3. button text changes to KILL
     const create = () => {
@@ -32,7 +32,7 @@ const lifecycle = function (datasets, setup = false) {
         config.xType = xAxisType();
         config.selectedGroupIDs = [group()];
 
-        instance = rbmViz.default.scatterPlot(
+        instance = gsmViz.default.scatterPlot(
             document.getElementById('container'),
             results,
             config,

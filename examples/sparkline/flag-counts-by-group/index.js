@@ -35,7 +35,7 @@ Promise.all(dataPromises)
             config.color = null;
             config.nSnapshots = 25;
 
-            const instance = rbmViz.default.sparkline(
+            const instance = gsmViz.default.sparkline(
                 subcontainer,
                 data,
                 config

@@ -10,6 +10,7 @@ export default function configure(_config_, _results_) {
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = 'InvestigatorLastName';
     defaults.groupParticipantCountKey = 'ParticipantCount';
+    defaults.groupTooltipKeys = null;
 
     // horizontal
     defaults.x = 'Denominator';

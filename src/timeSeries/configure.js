@@ -16,6 +16,7 @@ export default function configure(
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = 'InvestigatorLastName';
     defaults.groupParticipantCountKey = 'ParticipantCount';
+    defaults.groupTooltipKeys = null;
 
     defaults.dataType = 'continuous';
     defaults.discreteUnit = null;
