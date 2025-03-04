@@ -1,3 +1,4 @@
+'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20734,9 +20735,11 @@ var gsmViz = (() => {
     }
     if (schema.type === "array") {
       if (argument.length === 0) {
-        console.log(
-          `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
-        );
+        if (verbose) {
+          console.log(
+            `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+          );
+        }
       }
       argument.forEach((item, i) => {
         const itemType = getType(item);
@@ -20766,7 +20769,7 @@ var gsmViz = (() => {
         module
       });
     }
-    return argument;
+    return;
   }
 
   // src/barChart/checkInputs.js
