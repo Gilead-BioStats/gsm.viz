@@ -20768,6 +20768,7 @@ var gsmViz = (() => {
         module
       });
     }
+    return argument;
   }
 
   // src/barChart/checkInputs.js

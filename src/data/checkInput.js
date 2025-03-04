@@ -13,7 +13,7 @@ import checkProps from './checkInput/checkProps.js';
  * @param {string} input.module - Name of module that receives argument
  * @param {boolean} input.verbose - Print diagnostic messages to the console
  *
- * @returns {void}
+ * @returns {Object|Array} - Argument passed to module
  */
 export default function checkInput({
     parameter = null,
@@ -126,4 +126,6 @@ export default function checkInput({
             module,
         });
     }
+
+    return argument;
 }
