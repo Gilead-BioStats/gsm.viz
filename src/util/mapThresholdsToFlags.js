@@ -59,7 +59,7 @@ export default function mapThresholdsToFlags(_thresholds_) {
     let flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
         (a, b) => a.Flag - b.Flag
     );
-    flags.descending = true;
+    flags.descending = false;
 
     // If only positive thresholds are provided and the order of the thresholds is not in ascending
     // order, assume the order matters.

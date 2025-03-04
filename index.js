@@ -1,4 +1,3 @@
-'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20889,7 +20888,7 @@ var gsmViz = (() => {
     let flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
       (a, b) => a.Flag - b.Flag
     );
-    flags.descending = true;
+    flags.descending = false;
     if (negativeThresholds.length === 0 && thresholds2.join(",") !== thresholds2.map((threshold) => threshold).sort(ascending).join(",")) {
       flags = thresholds2.map((Threshold, i) => {
         return {
