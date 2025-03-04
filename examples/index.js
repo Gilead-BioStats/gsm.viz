@@ -20935,7 +20935,9 @@ var gsmViz = (() => {
     console.table(flags);
     flags = _thresholds_.map((threshold, i) => ({
       Threshold: threshold,
-      Flag: _flags_[i]
+      Flag: _flags_[i],
+      direction: -1,
+      position: "end"
     }));
     console.table(flags);
     const annotations5 = flags.map((flag) => {
@@ -20950,7 +20952,7 @@ var gsmViz = (() => {
         label: {
           backgroundColor: "white",
           color: color3.color,
-          content: flag.direction === 1 ? `${color3.description} \u2191` : `\u2193 ${color3.description}`,
+          content: flag.direction === 1 && flag.position === "start" ? `\u2191 ${color3.description}` : flag.direction === 1 && flag.position === "end" ? `${color3.description} \u2191` : flag.direction === -1 && flag.position === "start" ? `\u2193 ${color3.description}` : flag.direction === -1 && flag.position === "end" ? `${color3.description} \u2193` : `${color3.description}`,
           display: true,
           font: {
             size: 12

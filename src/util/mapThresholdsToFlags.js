@@ -78,9 +78,12 @@ export default function mapThresholdsToFlags(_thresholds_, _flags_) {
     }));
     console.table(flags);
     //} else {
+    // TODO: make this work with any set of flags
         flags = _thresholds_.map((threshold,i) => ({
             Threshold: threshold,
-            Flag: _flags_[i]
+            Flag: _flags_[i],
+            direction: -1,
+            position: 'end',
         }));
     //}
     console.table(flags);
@@ -100,9 +103,17 @@ export default function mapThresholdsToFlags(_thresholds_, _flags_) {
                 label: {
                     backgroundColor: 'white',
                     color: color.color,
-                    content: flag.direction === 1
-                        ? `${color.description} ↑`
-                        : `↓ ${color.description}`,
+                    content: (
+                        flag.direction === 1 && flag.position === 'start'
+                            ? `↑ ${color.description}`
+                            : flag.direction === 1 && flag.position === 'end'
+                            ? `${color.description} ↑`
+                            : flag.direction === -1 && flag.position === 'start'
+                            ? `↓ ${color.description}`
+                            : flag.direction === -1 && flag.position === 'end'
+                            ? `${color.description} ↓`
+                            : `${color.description}`
+                    ),
                     display: true,
                     font: {
                         size: 12,
