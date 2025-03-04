@@ -20735,9 +20735,11 @@ var gsmViz = (() => {
     }
     if (schema.type === "array") {
       if (argument.length === 0) {
-        console.log(
-          `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
-        );
+        if (verbose) {
+          console.log(
+            `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+          );
+        }
       }
       argument.forEach((item, i) => {
         const itemType = getType(item);
@@ -20767,7 +20769,7 @@ var gsmViz = (() => {
         module
       });
     }
-    return argument;
+    return;
   }
 
   // src/barChart/checkInputs.js
@@ -21722,10 +21724,7 @@ var gsmViz = (() => {
 
   // src/groupOverview/defineColumns/defineGroupTooltip.js
   function defineTooltip(column, content, config) {
-    const tooltipContent = formatGroupTooltipLabel(
-      content.group,
-      config
-    );
+    const tooltipContent = formatGroupTooltipLabel(content.group, config);
     return tooltipContent.join("\n");
   }
 
@@ -21781,17 +21780,16 @@ var gsmViz = (() => {
       column.defineTooltip = defineTooltip;
     });
     columns = columns.filter(
-      (column) => groupMetadata.some((groupMetadatum) => groupMetadatum.hasOwnProperty(column.valueKey))
+      (column) => groupMetadata.some(
+        (groupMetadatum) => groupMetadatum.hasOwnProperty(column.valueKey)
+      )
     );
     return columns;
   }
 
   // src/groupOverview/defineColumns/defineMetricTooltip.js
   function defineTooltip2(column, result) {
-    const tooltipContent = formatMetricTooltipLabel(
-      result,
-      column.meta
-    );
+    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
     return tooltipContent.join("\n");
   }
 
