@@ -1,7 +1,7 @@
 const groupTooltipKeys = {
     Site: {
         GroupID: 'Investigator ID',
-        //ParticipantCount: 'Participant Count',
+        ParticipantCount: 'Participant Count',
         //SiteCount: 'Site Count',
 
         //InvestigatorLastName: 'Last Name',
@@ -26,4 +26,3 @@ const groupTooltipKeys = {
         SiteCount: 'Site Count',
     },
 };
-

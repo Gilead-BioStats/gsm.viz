@@ -4,6 +4,7 @@ import checkProps from './checkInput/checkProps.js';
 
 /**
  * Check argument to module against corresponding schema.
+ *
  * @constructor
  * @param {Object} input - Input to module.
  * @param {string} input.parameter - Name of module parameter
@@ -11,6 +12,8 @@ import checkProps from './checkInput/checkProps.js';
  * @param {string} input.schemaName - Name of schema against which to check argument
  * @param {string} input.module - Name of module that receives argument
  * @param {boolean} input.verbose - Print diagnostic messages to the console
+ *
+ * @returns {void}
  */
 export default function checkInput({
     parameter = null,
@@ -82,9 +85,11 @@ export default function checkInput({
     if (schema.type === 'array') {
         // check for empty array
         if (argument.length === 0) {
-            throw new Error(
-                `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
-            );
+            if (verbose) {
+                console.log(
+                    `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+                );
+            }
         }
 
         argument.forEach((item, i) => {
@@ -121,6 +126,4 @@ export default function checkInput({
             module,
         });
     }
-
-    return argument;
 }

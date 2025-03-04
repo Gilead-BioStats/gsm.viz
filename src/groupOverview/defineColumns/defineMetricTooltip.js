@@ -8,10 +8,7 @@ import formatMetricTooltipLabel from '../../util/formatMetricTooltipLabel';
  * @returns {String} The tooltip content.
  */
 export default function defineTooltip(column, result) {
-    const tooltipContent = formatMetricTooltipLabel(
-        result,
-        column.meta
-    );
+    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
 
     return tooltipContent.join('\n');
 }

@@ -1,4 +1,3 @@
-'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -20735,9 +20734,11 @@ var gsmViz = (() => {
     }
     if (schema.type === "array") {
       if (argument.length === 0) {
-        throw new Error(
-          `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
-        );
+        if (verbose) {
+          console.log(
+            `Empty array: [ ${parameter} ] argument to [ ${module}() ] contains zero elements.`
+          );
+        }
       }
       argument.forEach((item, i) => {
         const itemType = getType(item);
@@ -20767,7 +20768,6 @@ var gsmViz = (() => {
         module
       });
     }
-    return argument;
   }
 
   // src/barChart/checkInputs.js
@@ -21111,7 +21111,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "bar") {
+    if (datum2 !== void 0 && dataset.type === "bar") {
       const color3 = colorScheme_default[datum2.stratum];
       color3.rgba.opacity = config.selectedGroupIDs.includes(datum2.GroupID) | config.selectedGroupIDs.length === 0 ? 1 : 0.25;
       return color3.rgba + "";
@@ -21722,10 +21722,7 @@ var gsmViz = (() => {
 
   // src/groupOverview/defineColumns/defineGroupTooltip.js
   function defineTooltip(column, content, config) {
-    const tooltipContent = formatGroupTooltipLabel(
-      content.group,
-      config
-    );
+    const tooltipContent = formatGroupTooltipLabel(content.group, config);
     return tooltipContent.join("\n");
   }
 
@@ -21781,17 +21778,16 @@ var gsmViz = (() => {
       column.defineTooltip = defineTooltip;
     });
     columns = columns.filter(
-      (column) => groupMetadata[0].hasOwnProperty(column.valueKey)
+      (column) => groupMetadata.some(
+        (groupMetadatum) => groupMetadatum.hasOwnProperty(column.valueKey)
+      )
     );
     return columns;
   }
 
   // src/groupOverview/defineColumns/defineMetricTooltip.js
   function defineTooltip2(column, result) {
-    const tooltipContent = formatMetricTooltipLabel(
-      result,
-      column.meta
-    );
+    const tooltipContent = formatMetricTooltipLabel(result, column.meta);
     return tooltipContent.join("\n");
   }
 
@@ -22233,7 +22229,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.includes(datum2.GroupID) ? 1 : config.selectedGroupIDs.length === 0 ? 0.5 : 0.25;
       return color3 + "";
@@ -22246,7 +22242,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const color3 = colorScheme_default[datum2.stratum].rgba;
       color3.opacity = config.selectedGroupIDs.length === 0 ? 1 : 0.5;
       return config.selectedGroupIDs.includes(datum2.GroupID) ? "black" : color3 + "";
@@ -22259,7 +22255,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       return 1;
     }
   }
@@ -22270,7 +22266,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
       if (datum2.group !== void 0) {
@@ -22290,7 +22286,7 @@ var gsmViz = (() => {
     const config = chart.data.config;
     const dataset = context.dataset;
     const datum2 = dataset.data[context.dataIndex];
-    if (dataset.type === "scatter") {
+    if (datum2 !== void 0 && dataset.type === "scatter") {
       const defaultRadius = 3;
       const hoverRadius = 4;
       if (datum2.group !== void 0) {
@@ -23806,7 +23802,6 @@ var gsmViz = (() => {
   }
 
   // src/main.js
-  console.log("GitHub Pages, will you please update?");
   Chart.register(
     annotation,
     BoxAndWiskers,
