@@ -18,7 +18,7 @@ export default function formatGroupTooltipLabel(group, config) {
         ? config.groupTooltipKeys
         : Object.keys(group)
             // remove [ groupLabel ] from the tooltip, an attribute created in gsmViz
-            .filter((key) => ['GroupLabel', 'nRedFlags', 'nAmberFlags', 'nGreenFlags'].includes(key) === false)
+            .filter((key) => ['groupLabel', 'GroupLabel', 'nRedFlags', 'nAmberFlags', 'nGreenFlags'].includes(key) === false)
             .reduce((acc, key) => {
                 // title-case key:
                 // - replace underscores with spaces
