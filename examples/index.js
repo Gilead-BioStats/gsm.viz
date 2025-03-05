@@ -1,3 +1,4 @@
+'use strict'
 var gsmViz = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -21367,7 +21368,7 @@ var gsmViz = (() => {
     if (!group2) {
       return [];
     }
-    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).reduce((acc, key) => {
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).filter((key) => ["GroupLabel", "nRedFlags", "nAmberFlags", "nGreenFlags"].includes(key) === false).reduce((acc, key) => {
       const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
       acc[key] = label;
       return acc;
