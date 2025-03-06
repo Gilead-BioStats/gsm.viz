@@ -51,7 +51,7 @@ Promise.all(dataPromises)
         );
 
         // continuous outcomes
-        rbmViz.default.sparkline(
+        gsmViz.default.sparkline(
             document.getElementById('Score'),
             results,
             {
@@ -61,7 +61,7 @@ Promise.all(dataPromises)
             thresholds
         );
 
-        rbmViz.default.sparkline(document.getElementById('Metric'), results, {
+        gsmViz.default.sparkline(document.getElementById('Metric'), results, {
             ...config,
             y: 'Metric',
         });
@@ -72,7 +72,7 @@ Promise.all(dataPromises)
             'n_flagged',
             'n_at_risk_or_flagged',
         ];
-        rbmViz.default.sparkline(
+        gsmViz.default.sparkline(
             document.getElementById('flag-counts-by-metric'),
             flagCountsByMetric,
             {
@@ -83,7 +83,7 @@ Promise.all(dataPromises)
             }
         );
 
-        rbmViz.default.sparkline(
+        gsmViz.default.sparkline(
             document.getElementById('flag-counts-by-group'),
             flagCountsByGroup,
             {

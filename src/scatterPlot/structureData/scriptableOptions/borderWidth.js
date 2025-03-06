@@ -4,7 +4,7 @@ export default function borderWidth(context, options) {
     const dataset = context.dataset;
     const datum = dataset.data[context.dataIndex];
 
-    if (dataset.type === 'scatter') {
+    if (datum !== undefined && dataset.type === 'scatter') {
         return 1;
     }
 }

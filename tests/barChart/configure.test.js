@@ -33,6 +33,7 @@ describe('configuration', () => {
                 // bar chart settings
                 'groupLabelKey',
                 'groupParticipantCountKey',
+                'groupTooltipKeys',
 
                 'x',
                 'xType',

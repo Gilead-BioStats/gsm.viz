@@ -24,9 +24,13 @@ export default function annotations(config) {
                             y.Flag.includes(+x.Flag)
                         )[0].color,
                         content:
-                            Math.sign(+x.Flag) === 1
+                            config.thresholds.descending
+                                ? `${content} ↓`
+                                : Math.sign(+x.Flag) === 1
                                 ? `${content} ↑`
-                                : `↓ ${content}`,
+                                : Math.sign(+x.Flag) === -1
+                                ? `↓ ${content}`
+                                : content,
                         display: true,
                         font: {
                             size: 12,
