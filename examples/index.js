@@ -20768,6 +20768,7 @@ var gsmViz = (() => {
         module
       });
     }
+    return;
   }
 
   // src/barChart/checkInputs.js
@@ -20851,7 +20852,7 @@ var gsmViz = (() => {
 
   // src/util/mapThresholdsToFlags.js
   function mapThresholdsToFlags(_thresholds_) {
-    const thresholds2 = [...new Set(_thresholds_)].map((Threshold) => +Threshold).sort(ascending);
+    const thresholds2 = [...new Set(_thresholds_)].map((Threshold) => +Threshold);
     const negativeThresholds = thresholds2.filter((Threshold) => Threshold < 0).sort(descending);
     const negativeFlags = negativeThresholds.map((Threshold, i) => {
       return {
@@ -20859,6 +20860,12 @@ var gsmViz = (() => {
         Flag: -(i + 1)
       };
     });
+    if (negativeThresholds.length > 2) {
+      console.warn(
+        "More than two negative thresholds present. Threshold annotations will not be displayed."
+      );
+      return null;
+    }
     const positiveThresholds = thresholds2.filter((Threshold) => Threshold > 0).sort(ascending);
     const positiveFlags = positiveThresholds.map((Threshold, i) => {
       return {
@@ -20866,15 +20873,31 @@ var gsmViz = (() => {
         Flag: i + 1
       };
     });
+    if (positiveThresholds.length > 2) {
+      console.warn(
+        "More than two positive thresholds present. Threshold annotations will not be displayed."
+      );
+      return null;
+    }
     const zeroFlag = thresholds2.filter((Threshold) => Threshold === 0).map((Threshold) => {
       return {
         Threshold,
         Flag: 0
       };
     });
-    const flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
+    let flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
       (a, b) => a.Flag - b.Flag
     );
+    flags.descending = false;
+    if (negativeThresholds.length === 0 && thresholds2.join(",") !== thresholds2.map((threshold) => threshold).sort(ascending).join(",")) {
+      flags = thresholds2.map((Threshold, i) => {
+        return {
+          Threshold,
+          Flag: i + 1
+        };
+      });
+      flags.descending = true;
+    }
     return flags;
   }
 
@@ -20887,6 +20910,12 @@ var gsmViz = (() => {
       (Threshold) => typeof Threshold === "object" && Threshold.hasOwnProperty("Threshold") && Threshold.hasOwnProperty("Flag")
     ))
       return thresholds2;
+    if (thresholds2.filter((Threshold) => Threshold !== 0).length > 4) {
+      console.warn(
+        "More than four non-zero thresholds present. Threshold annotations will not be displayed."
+      );
+      return null;
+    }
     return mapThresholdsToFlags(thresholds2);
   }
 
@@ -21242,7 +21271,7 @@ var gsmViz = (() => {
             color: colorScheme_default.filter(
               (y) => y.Flag.includes(+x.Flag)
             )[0].color,
-            content: Math.sign(+x.Flag) === 1 ? `${content} \u2191` : `\u2193 ${content}`,
+            content: config.thresholds.descending ? `${content} \u2193` : Math.sign(+x.Flag) === 1 ? `${content} \u2191` : Math.sign(+x.Flag) === -1 ? `\u2193 ${content}` : content,
             display: true,
             font: {
               size: 12
@@ -21338,7 +21367,7 @@ var gsmViz = (() => {
     if (!group2) {
       return [];
     }
-    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).reduce((acc, key) => {
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).filter((key) => ["groupLabel", "GroupLabel", "nRedFlags", "nAmberFlags", "nGreenFlags"].includes(key) === false).reduce((acc, key) => {
       const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
       acc[key] = label;
       return acc;
