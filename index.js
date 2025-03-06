@@ -20889,7 +20889,7 @@ var gsmViz = (() => {
     let flags = [...negativeFlags, ...zeroFlag, ...positiveFlags].sort(
       (a, b) => a.Flag - b.Flag
     );
-    flags.descending = true;
+    flags.descending = false;
     if (negativeThresholds.length === 0 && thresholds2.join(",") !== thresholds2.map((threshold) => threshold).sort(ascending).join(",")) {
       flags = thresholds2.map((Threshold, i) => {
         return {
@@ -21368,7 +21368,7 @@ var gsmViz = (() => {
     if (!group2) {
       return [];
     }
-    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).reduce((acc, key) => {
+    const tooltipKeys = ![null, void 0].includes(config.groupTooltipKeys) ? config.groupTooltipKeys : Object.keys(group2).filter((key) => ["groupLabel", "GroupLabel", "nRedFlags", "nAmberFlags", "nGreenFlags"].includes(key) === false).reduce((acc, key) => {
       const label = key.replace(/_/g, " ").replace(/([a-z])([A-Z])/g, "$1 $2").replace(/\b\w/g, (char) => char.toUpperCase()).replace("Id", "ID");
       acc[key] = label;
       return acc;
