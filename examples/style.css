@@ -1,16 +1,16 @@
 /* ---------------------------------------------------------------------------------------------- */
-/* rbm-viz examples */
+/* gsm-viz examples */
 /* ---------------------------------------------------------------------------------------------- */
 
-.rbm-viz--example #controls {
+.gsm-viz--example #controls {
     display: flex;
     justify-content: center;
 }
-.rbm-viz--example fieldset {
+.gsm-viz--example fieldset {
     display: flex;
     justify-content: center;
 }
-.rbm-viz--example #container {
+.gsm-viz--example #container {
     margin: auto;
     width: 100%;
     height: 40vw;

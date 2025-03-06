@@ -11,6 +11,7 @@ export default function configure(_config_, _results_, _thresholds_) {
     defaults.GroupLevel = 'Site';
     defaults.groupLabelKey = 'InvestigatorLastName';
     defaults.groupParticipantCountKey = 'ParticipantCount';
+    defaults.groupTooltipKeys = null;
 
     // horizontal
     defaults.x = 'GroupID';

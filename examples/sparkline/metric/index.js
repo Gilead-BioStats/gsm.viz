@@ -39,7 +39,7 @@ Promise.all(dataPromises)
             subcontainer.style.display = 'inline-block';
 
             // display
-            const instance = rbmViz.default.sparkline(
+            const instance = gsmViz.default.sparkline(
                 subcontainer,
                 results.filter((d) => d.GroupID === GroupID),
                 config

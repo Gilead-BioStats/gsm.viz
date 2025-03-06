@@ -43,7 +43,7 @@ Promise.all(dataPromises)
         //config.aggregateLabel = 'Country';
 
         // visualization
-        const instance = rbmViz.default.timeSeries(
+        const instance = gsmViz.default.timeSeries(
             document.getElementById('container'),
             flagCounts,
             config,

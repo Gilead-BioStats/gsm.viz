@@ -35,4 +35,39 @@ describe('bar chart is generated', () => {
 
         expect(instance).not.toBeNull();
     });
+
+    test(`bar chart is generated with empty results`, () => {
+        const instance = barChart(container, []);
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`bar chart is generated with empty config`, () => {
+        const instance = barChart(container, resultsSubset, {});
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`bar chart is generated with empty thresholds`, () => {
+        const instance = barChart(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
+
+    test(`bar chart is generated with empty group metadata`, () => {
+        const instance = barChart(
+            container,
+            resultsSubset,
+            metricMetadatum,
+            thresholds,
+            []
+        );
+
+        expect(instance).not.toBeNull();
+    });
 });
