@@ -171,5 +171,6 @@ describe('points entry point', () => {
 
     test('is exported from the gsmViz public module', () => {
         expect(gsmViz.points).toBe(points);
+        expect(points.name).toBe('points');
     });
 });

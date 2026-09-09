@@ -2274,8 +2274,8 @@ var gsmViz = (() => {
     const check = rtl ? "left" : "right";
     return align === check ? right : align === "center" ? (left + right) / 2 : left;
   };
-  function _getStartAndCountOfVisiblePoints(meta, points, animationsDisabled) {
-    const pointCount = points.length;
+  function _getStartAndCountOfVisiblePoints(meta, points2, animationsDisabled) {
+    const pointCount = points2.length;
     let start2 = 0;
     let count = pointCount;
     if (meta._sorted) {
@@ -2286,7 +2286,7 @@ var gsmViz = (() => {
         start2 = _limitValue(
           Math.min(
             _lookupByKey(_parsed, iScale.axis, min3).lo,
-            animationsDisabled ? pointCount : _lookupByKey(points, axis, iScale.getPixelForValue(min3)).lo
+            animationsDisabled ? pointCount : _lookupByKey(points2, axis, iScale.getPixelForValue(min3)).lo
           ),
           0,
           pointCount - 1
@@ -2296,7 +2296,7 @@ var gsmViz = (() => {
         count = _limitValue(
           Math.max(
             _lookupByKey(_parsed, iScale.axis, max3, true).hi + 1,
-            animationsDisabled ? 0 : _lookupByKey(points, axis, iScale.getPixelForValue(max3), true).hi + 1
+            animationsDisabled ? 0 : _lookupByKey(points2, axis, iScale.getPixelForValue(max3), true).hi + 1
           ),
           start2,
           pointCount
@@ -3719,7 +3719,7 @@ var gsmViz = (() => {
     return parsed;
   }
   var EPSILON = Number.EPSILON || 1e-14;
-  var getPoint = (points, i) => i < points.length && !points[i].skip && points[i];
+  var getPoint = (points2, i) => i < points2.length && !points2[i].skip && points2[i];
   var getValueAxis = (indexAxis) => indexAxis === "x" ? "y" : "x";
   function splineCurve(firstPoint, middlePoint, afterPoint, t) {
     const previous = firstPoint.skip ? middlePoint : firstPoint;
@@ -3744,13 +3744,13 @@ var gsmViz = (() => {
       }
     };
   }
-  function monotoneAdjust(points, deltaK, mK) {
-    const pointsLen = points.length;
+  function monotoneAdjust(points2, deltaK, mK) {
+    const pointsLen = points2.length;
     let alphaK, betaK, tauK, squaredMagnitude, pointCurrent;
-    let pointAfter = getPoint(points, 0);
+    let pointAfter = getPoint(points2, 0);
     for (let i = 0; i < pointsLen - 1; ++i) {
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i + 1);
+      pointAfter = getPoint(points2, i + 1);
       if (!pointCurrent || !pointAfter) {
         continue;
       }
@@ -3769,15 +3769,15 @@ var gsmViz = (() => {
       mK[i + 1] = betaK * tauK * deltaK[i];
     }
   }
-  function monotoneCompute(points, mK, indexAxis = "x") {
+  function monotoneCompute(points2, mK, indexAxis = "x") {
     const valueAxis = getValueAxis(indexAxis);
-    const pointsLen = points.length;
+    const pointsLen = points2.length;
     let delta, pointBefore, pointCurrent;
-    let pointAfter = getPoint(points, 0);
+    let pointAfter = getPoint(points2, 0);
     for (let i = 0; i < pointsLen; ++i) {
       pointBefore = pointCurrent;
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i + 1);
+      pointAfter = getPoint(points2, i + 1);
       if (!pointCurrent) {
         continue;
       }
@@ -3795,17 +3795,17 @@ var gsmViz = (() => {
       }
     }
   }
-  function splineCurveMonotone(points, indexAxis = "x") {
+  function splineCurveMonotone(points2, indexAxis = "x") {
     const valueAxis = getValueAxis(indexAxis);
-    const pointsLen = points.length;
+    const pointsLen = points2.length;
     const deltaK = Array(pointsLen).fill(0);
     const mK = Array(pointsLen);
     let i, pointBefore, pointCurrent;
-    let pointAfter = getPoint(points, 0);
+    let pointAfter = getPoint(points2, 0);
     for (i = 0; i < pointsLen; ++i) {
       pointBefore = pointCurrent;
       pointCurrent = pointAfter;
-      pointAfter = getPoint(points, i + 1);
+      pointAfter = getPoint(points2, i + 1);
       if (!pointCurrent) {
         continue;
       }
@@ -3815,23 +3815,23 @@ var gsmViz = (() => {
       }
       mK[i] = !pointBefore ? deltaK[i] : !pointAfter ? deltaK[i - 1] : sign(deltaK[i - 1]) !== sign(deltaK[i]) ? 0 : (deltaK[i - 1] + deltaK[i]) / 2;
     }
-    monotoneAdjust(points, deltaK, mK);
-    monotoneCompute(points, mK, indexAxis);
+    monotoneAdjust(points2, deltaK, mK);
+    monotoneCompute(points2, mK, indexAxis);
   }
   function capControlPoint(pt, min3, max3) {
     return Math.max(Math.min(pt, max3), min3);
   }
-  function capBezierPoints(points, area) {
+  function capBezierPoints(points2, area) {
     let i, ilen, point, inArea, inAreaPrev;
-    let inAreaNext = _isPointInArea(points[0], area);
-    for (i = 0, ilen = points.length; i < ilen; ++i) {
+    let inAreaNext = _isPointInArea(points2[0], area);
+    for (i = 0, ilen = points2.length; i < ilen; ++i) {
       inAreaPrev = inArea;
       inArea = inAreaNext;
-      inAreaNext = i < ilen - 1 && _isPointInArea(points[i + 1], area);
+      inAreaNext = i < ilen - 1 && _isPointInArea(points2[i + 1], area);
       if (!inArea) {
         continue;
       }
-      point = points[i];
+      point = points2[i];
       if (inAreaPrev) {
         point.cp1x = capControlPoint(point.cp1x, area.left, area.right);
         point.cp1y = capControlPoint(point.cp1y, area.top, area.bottom);
@@ -3842,21 +3842,21 @@ var gsmViz = (() => {
       }
     }
   }
-  function _updateBezierControlPoints(points, options, area, loop, indexAxis) {
+  function _updateBezierControlPoints(points2, options, area, loop, indexAxis) {
     let i, ilen, point, controlPoints;
     if (options.spanGaps) {
-      points = points.filter((pt) => !pt.skip);
+      points2 = points2.filter((pt) => !pt.skip);
     }
     if (options.cubicInterpolationMode === "monotone") {
-      splineCurveMonotone(points, indexAxis);
+      splineCurveMonotone(points2, indexAxis);
     } else {
-      let prev = loop ? points[points.length - 1] : points[0];
-      for (i = 0, ilen = points.length; i < ilen; ++i) {
-        point = points[i];
+      let prev = loop ? points2[points2.length - 1] : points2[0];
+      for (i = 0, ilen = points2.length; i < ilen; ++i) {
+        point = points2[i];
         controlPoints = splineCurve(
           prev,
           point,
-          points[Math.min(i + 1, ilen - (loop ? 0 : 1)) % ilen],
+          points2[Math.min(i + 1, ilen - (loop ? 0 : 1)) % ilen],
           options.tension
         );
         point.cp1x = controlPoints.previous.x;
@@ -3867,7 +3867,7 @@ var gsmViz = (() => {
       }
     }
     if (options.capBezierPoints) {
-      capBezierPoints(points, area);
+      capBezierPoints(points2, area);
     }
   }
   function _isDomSupported() {
@@ -4158,17 +4158,17 @@ var gsmViz = (() => {
       style
     };
   }
-  function getSegment(segment, points, bounds) {
+  function getSegment(segment, points2, bounds) {
     const { property, start: startBound, end: endBound } = bounds;
     const { between, normalize } = propertyFn(property);
-    const count = points.length;
+    const count = points2.length;
     let { start: start2, end, loop } = segment;
     let i, ilen;
     if (loop) {
       start2 += count;
       end += count;
       for (i = 0, ilen = count; i < ilen; ++i) {
-        if (!between(normalize(points[start2 % count][property]), startBound, endBound)) {
+        if (!between(normalize(points2[start2 % count][property]), startBound, endBound)) {
           break;
         }
         start2--;
@@ -4182,14 +4182,14 @@ var gsmViz = (() => {
     }
     return { start: start2, end, loop, style: segment.style };
   }
-  function _boundSegment(segment, points, bounds) {
+  function _boundSegment(segment, points2, bounds) {
     if (!bounds) {
       return [segment];
     }
     const { property, start: startBound, end: endBound } = bounds;
-    const count = points.length;
+    const count = points2.length;
     const { compare, between, normalize } = propertyFn(property);
-    const { start: start2, end, loop, style } = getSegment(segment, points, bounds);
+    const { start: start2, end, loop, style } = getSegment(segment, points2, bounds);
     const result = [];
     let inside = false;
     let subStart = null;
@@ -4199,7 +4199,7 @@ var gsmViz = (() => {
     const shouldStart = () => inside || startIsBefore();
     const shouldStop = () => !inside || endIsBefore();
     for (let i = start2, prev = start2; i <= end; ++i) {
-      point = points[i % count];
+      point = points2[i % count];
       if (point.skip) {
         continue;
       }
@@ -4234,35 +4234,35 @@ var gsmViz = (() => {
     }
     return result;
   }
-  function findStartAndEnd(points, count, loop, spanGaps) {
+  function findStartAndEnd(points2, count, loop, spanGaps) {
     let start2 = 0;
     let end = count - 1;
     if (loop && !spanGaps) {
-      while (start2 < count && !points[start2].skip) {
+      while (start2 < count && !points2[start2].skip) {
         start2++;
       }
     }
-    while (start2 < count && points[start2].skip) {
+    while (start2 < count && points2[start2].skip) {
       start2++;
     }
     start2 %= count;
     if (loop) {
       end += start2;
     }
-    while (end > start2 && points[end % count].skip) {
+    while (end > start2 && points2[end % count].skip) {
       end--;
     }
     end %= count;
     return { start: start2, end };
   }
-  function solidSegments(points, start2, max3, loop) {
-    const count = points.length;
+  function solidSegments(points2, start2, max3, loop) {
+    const count = points2.length;
     const result = [];
     let last = start2;
-    let prev = points[start2];
+    let prev = points2[start2];
     let end;
     for (end = start2 + 1; end <= max3; ++end) {
-      const cur = points[end % count];
+      const cur = points2[end % count];
       if (cur.skip || cur.stop) {
         if (!prev.skip) {
           loop = false;
@@ -4283,32 +4283,32 @@ var gsmViz = (() => {
     return result;
   }
   function _computeSegments(line, segmentOptions) {
-    const points = line.points;
+    const points2 = line.points;
     const spanGaps = line.options.spanGaps;
-    const count = points.length;
+    const count = points2.length;
     if (!count) {
       return [];
     }
     const loop = !!line._loop;
-    const { start: start2, end } = findStartAndEnd(points, count, loop, spanGaps);
+    const { start: start2, end } = findStartAndEnd(points2, count, loop, spanGaps);
     if (spanGaps === true) {
-      return splitByStyles(line, [{ start: start2, end, loop }], points, segmentOptions);
+      return splitByStyles(line, [{ start: start2, end, loop }], points2, segmentOptions);
     }
     const max3 = end < start2 ? end + count : end;
     const completeLoop = !!line._fullLoop && start2 === 0 && end === count - 1;
-    return splitByStyles(line, solidSegments(points, start2, max3, completeLoop), points, segmentOptions);
+    return splitByStyles(line, solidSegments(points2, start2, max3, completeLoop), points2, segmentOptions);
   }
-  function splitByStyles(line, segments, points, segmentOptions) {
-    if (!segmentOptions || !segmentOptions.setContext || !points) {
+  function splitByStyles(line, segments, points2, segmentOptions) {
+    if (!segmentOptions || !segmentOptions.setContext || !points2) {
       return segments;
     }
-    return doSplitByStyles(line, segments, points, segmentOptions);
+    return doSplitByStyles(line, segments, points2, segmentOptions);
   }
-  function doSplitByStyles(line, segments, points, segmentOptions) {
+  function doSplitByStyles(line, segments, points2, segmentOptions) {
     const chartContext = line._chart.getContext();
     const baseStyle = readStyle(line.options);
     const { _datasetIndex: datasetIndex, options: { spanGaps } } = line;
-    const count = points.length;
+    const count = points2.length;
     const result = [];
     let prevStyle = baseStyle;
     let start2 = segments[0].start;
@@ -4319,10 +4319,10 @@ var gsmViz = (() => {
         return;
       }
       s += count;
-      while (points[s % count].skip) {
+      while (points2[s % count].skip) {
         s -= dir;
       }
-      while (points[e % count].skip) {
+      while (points2[e % count].skip) {
         e += dir;
       }
       if (s % count !== e % count) {
@@ -4333,10 +4333,10 @@ var gsmViz = (() => {
     }
     for (const segment of segments) {
       start2 = spanGaps ? start2 : segment.start;
-      let prev = points[start2 % count];
+      let prev = points2[start2 % count];
       let style;
       for (i = start2 + 1; i <= segment.end; i++) {
-        const pt = points[i % count];
+        const pt = points2[i % count];
         style = readStyle(segmentOptions.setContext(createContext(chartContext, {
           type: "segment",
           p0: prev,
@@ -6005,17 +6005,17 @@ var gsmViz = (() => {
       };
     }
     update(mode) {
-      const points = this._cachedMeta.data;
-      this.updateElements(points, 0, points.length, mode);
+      const points2 = this._cachedMeta.data;
+      this.updateElements(points2, 0, points2.length, mode);
     }
-    updateElements(points, start2, count, mode) {
+    updateElements(points2, start2, count, mode) {
       const reset = mode === "reset";
       const { iScale, vScale } = this._cachedMeta;
       const { sharedOptions, includeOptions } = this._getSharedOptions(start2, mode);
       const iAxis = iScale.axis;
       const vAxis = vScale.axis;
       for (let i = start2; i < start2 + count; i++) {
-        const point = points[i];
+        const point = points2[i];
         const parsed = !reset && this.getParsed(i);
         const properties = {};
         const iPixel = properties[iAxis] = reset ? iScale.getPixelForDecimal(0.5) : iScale.getPixelForValue(parsed[iAxis]);
@@ -6382,19 +6382,19 @@ var gsmViz = (() => {
     }
     update(mode) {
       const meta = this._cachedMeta;
-      const { dataset: line, data: points = [], _dataset } = meta;
+      const { dataset: line, data: points2 = [], _dataset } = meta;
       const animationsDisabled = this.chart._animationsDisabled;
-      let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points, animationsDisabled);
+      let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points2, animationsDisabled);
       this._drawStart = start2;
       this._drawCount = count;
       if (_scaleRangesChanged(meta)) {
         start2 = 0;
-        count = points.length;
+        count = points2.length;
       }
       line._chart = this.chart;
       line._datasetIndex = this.index;
       line._decimated = !!_dataset._decimated;
-      line.points = points;
+      line.points = points2;
       const options = this.resolveDatasetElementOptions(mode);
       if (!this.options.showLine) {
         options.borderWidth = 0;
@@ -6404,9 +6404,9 @@ var gsmViz = (() => {
         animated: !animationsDisabled,
         options
       }, mode);
-      this.updateElements(points, start2, count, mode);
+      this.updateElements(points2, start2, count, mode);
     }
-    updateElements(points, start2, count, mode) {
+    updateElements(points2, start2, count, mode) {
       const reset = mode === "reset";
       const { iScale, vScale, _stacked, _dataset } = this._cachedMeta;
       const { sharedOptions, includeOptions } = this._getSharedOptions(start2, mode);
@@ -6417,7 +6417,7 @@ var gsmViz = (() => {
       const directUpdate = this.chart._animationsDisabled || reset || mode === "none";
       let prevParsed = start2 > 0 && this.getParsed(start2 - 1);
       for (let i = start2; i < start2 + count; ++i) {
-        const point = points[i];
+        const point = points2[i];
         const parsed = this.getParsed(i);
         const properties = directUpdate ? point : {};
         const nullData = isNullOrUndef(parsed[vAxis]);
@@ -6678,9 +6678,9 @@ var gsmViz = (() => {
     update(mode) {
       const meta = this._cachedMeta;
       const line = meta.dataset;
-      const points = meta.data || [];
+      const points2 = meta.data || [];
       const labels = meta.iScale.getLabels();
-      line.points = points;
+      line.points = points2;
       if (mode !== "resize") {
         const options = this.resolveDatasetElementOptions(mode);
         if (!this.options.showLine) {
@@ -6688,18 +6688,18 @@ var gsmViz = (() => {
         }
         const properties = {
           _loop: true,
-          _fullLoop: labels.length === points.length,
+          _fullLoop: labels.length === points2.length,
           options
         };
         this.updateElement(line, void 0, properties, mode);
       }
-      this.updateElements(points, 0, points.length, mode);
+      this.updateElements(points2, 0, points2.length, mode);
     }
-    updateElements(points, start2, count, mode) {
+    updateElements(points2, start2, count, mode) {
       const scale = this._cachedMeta.rScale;
       const reset = mode === "reset";
       for (let i = start2; i < start2 + count; i++) {
-        const point = points[i];
+        const point = points2[i];
         const options = this.resolveDataElementOptions(i, point.active ? "active" : mode);
         const pointPosition = scale.getPointPositionForValue(i, this.getParsed(i).r);
         const x = reset ? scale.xCenter : pointPosition.x;
@@ -8340,21 +8340,21 @@ var gsmViz = (() => {
   var ScatterController = class extends DatasetController {
     update(mode) {
       const meta = this._cachedMeta;
-      const { data: points = [] } = meta;
+      const { data: points2 = [] } = meta;
       const animationsDisabled = this.chart._animationsDisabled;
-      let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points, animationsDisabled);
+      let { start: start2, count } = _getStartAndCountOfVisiblePoints(meta, points2, animationsDisabled);
       this._drawStart = start2;
       this._drawCount = count;
       if (_scaleRangesChanged(meta)) {
         start2 = 0;
-        count = points.length;
+        count = points2.length;
       }
       if (this.options.showLine) {
         const { dataset: line, _dataset } = meta;
         line._chart = this.chart;
         line._datasetIndex = this.index;
         line._decimated = !!_dataset._decimated;
-        line.points = points;
+        line.points = points2;
         const options = this.resolveDatasetElementOptions(mode);
         options.segment = this.options.segment;
         this.updateElement(line, void 0, {
@@ -8362,7 +8362,7 @@ var gsmViz = (() => {
           options
         }, mode);
       }
-      this.updateElements(points, start2, count, mode);
+      this.updateElements(points2, start2, count, mode);
     }
     addElements() {
       const { showLine } = this.options;
@@ -8371,7 +8371,7 @@ var gsmViz = (() => {
       }
       super.addElements();
     }
-    updateElements(points, start2, count, mode) {
+    updateElements(points2, start2, count, mode) {
       const reset = mode === "reset";
       const { iScale, vScale, _stacked, _dataset } = this._cachedMeta;
       const firstOpts = this.resolveDataElementOptions(start2, mode);
@@ -8384,7 +8384,7 @@ var gsmViz = (() => {
       const directUpdate = this.chart._animationsDisabled || reset || mode === "none";
       let prevParsed = start2 > 0 && this.getParsed(start2 - 1);
       for (let i = start2; i < start2 + count; ++i) {
-        const point = points[i];
+        const point = points2[i];
         const parsed = this.getParsed(i);
         const properties = directUpdate ? point : {};
         const nullData = isNullOrUndef(parsed[vAxis]);
@@ -10802,8 +10802,8 @@ var gsmViz = (() => {
     }
     return lineTo;
   }
-  function pathVars(points, segment, params = {}) {
-    const count = points.length;
+  function pathVars(points2, segment, params = {}) {
+    const count = points2.length;
     const { start: paramsStart = 0, end: paramsEnd = count - 1 } = params;
     const { start: segmentStart, end: segmentEnd } = segment;
     const start2 = Math.max(paramsStart, segmentStart);
@@ -10817,13 +10817,13 @@ var gsmViz = (() => {
     };
   }
   function pathSegment(ctx, line, segment, params) {
-    const { points, options } = line;
-    const { count, start: start2, loop, ilen } = pathVars(points, segment, params);
+    const { points: points2, options } = line;
+    const { count, start: start2, loop, ilen } = pathVars(points2, segment, params);
     const lineMethod = getLineMethod(options);
     let { move = true, reverse } = params || {};
     let i, point, prev;
     for (i = 0; i <= ilen; ++i) {
-      point = points[(start2 + (reverse ? ilen - i : i)) % count];
+      point = points2[(start2 + (reverse ? ilen - i : i)) % count];
       if (point.skip) {
         continue;
       } else if (move) {
@@ -10835,14 +10835,14 @@ var gsmViz = (() => {
       prev = point;
     }
     if (loop) {
-      point = points[(start2 + (reverse ? ilen : 0)) % count];
+      point = points2[(start2 + (reverse ? ilen : 0)) % count];
       lineMethod(ctx, prev, point, reverse, options.stepped);
     }
     return !!loop;
   }
   function fastPathSegment(ctx, line, segment, params) {
-    const points = line.points;
-    const { count, start: start2, ilen } = pathVars(points, segment, params);
+    const points2 = line.points;
+    const { count, start: start2, ilen } = pathVars(points2, segment, params);
     const { move = true, reverse } = params || {};
     let avgX = 0;
     let countX = 0;
@@ -10856,11 +10856,11 @@ var gsmViz = (() => {
       }
     };
     if (move) {
-      point = points[pointIndex(0)];
+      point = points2[pointIndex(0)];
       ctx.moveTo(point.x, point.y);
     }
     for (i = 0; i <= ilen; ++i) {
-      point = points[pointIndex(i)];
+      point = points2[pointIndex(i)];
       if (point.skip) {
         continue;
       }
@@ -10957,8 +10957,8 @@ var gsmViz = (() => {
         this._pointsUpdated = true;
       }
     }
-    set points(points) {
-      this._points = points;
+    set points(points2) {
+      this._points = points2;
       delete this._segments;
       delete this._path;
       this._pointsUpdated = false;
@@ -10971,19 +10971,19 @@ var gsmViz = (() => {
     }
     first() {
       const segments = this.segments;
-      const points = this.points;
-      return segments.length && points[segments[0].start];
+      const points2 = this.points;
+      return segments.length && points2[segments[0].start];
     }
     last() {
       const segments = this.segments;
-      const points = this.points;
+      const points2 = this.points;
       const count = segments.length;
-      return count && points[segments[count - 1].end];
+      return count && points2[segments[count - 1].end];
     }
     interpolate(point, property) {
       const options = this.options;
       const value = point[property];
-      const points = this.points;
+      const points2 = this.points;
       const segments = _boundSegments(this, { property, start: value, end: value });
       if (!segments.length) {
         return;
@@ -10993,8 +10993,8 @@ var gsmViz = (() => {
       let i, ilen;
       for (i = 0, ilen = segments.length; i < ilen; ++i) {
         const { start: start2, end } = segments[i];
-        const p1 = points[start2];
-        const p2 = points[end];
+        const p1 = points2[start2];
+        const p2 = points2[end];
         if (p1 === p2) {
           result.push(p1);
           continue;
@@ -11023,8 +11023,8 @@ var gsmViz = (() => {
     }
     draw(ctx, chartArea, start2, count) {
       const options = this.options || {};
-      const points = this.points || [];
-      if (points.length && options.borderWidth) {
+      const points2 = this.points || [];
+      if (points2.length && options.borderWidth) {
         ctx.save();
         draw(ctx, this, start2, count);
         ctx.restore();
@@ -11406,17 +11406,17 @@ var gsmViz = (() => {
       cleanDecimatedDataset(dataset);
     });
   }
-  function getStartAndCountOfVisiblePointsSimplified(meta, points) {
-    const pointCount = points.length;
+  function getStartAndCountOfVisiblePointsSimplified(meta, points2) {
+    const pointCount = points2.length;
     let start2 = 0;
     let count;
     const { iScale } = meta;
     const { min: min3, max: max3, minDefined, maxDefined } = iScale.getUserBounds();
     if (minDefined) {
-      start2 = _limitValue(_lookupByKey(points, iScale.axis, min3).lo, 0, pointCount - 1);
+      start2 = _limitValue(_lookupByKey(points2, iScale.axis, min3).lo, 0, pointCount - 1);
     }
     if (maxDefined) {
-      count = _limitValue(_lookupByKey(points, iScale.axis, max3).hi + 1, start2, pointCount) - start2;
+      count = _limitValue(_lookupByKey(points2, iScale.axis, max3).hi + 1, start2, pointCount) - start2;
     } else {
       count = pointCount - start2;
     }
@@ -11491,26 +11491,26 @@ var gsmViz = (() => {
   };
   function _segments(line, target, property) {
     const segments = line.segments;
-    const points = line.points;
+    const points2 = line.points;
     const tpoints = target.points;
     const parts = [];
     for (const segment of segments) {
       let { start: start2, end } = segment;
-      end = _findSegmentEnd(start2, end, points);
-      const bounds = _getBounds(property, points[start2], points[end], segment.loop);
+      end = _findSegmentEnd(start2, end, points2);
+      const bounds = _getBounds(property, points2[start2], points2[end], segment.loop);
       if (!target.segments) {
         parts.push({
           source: segment,
           target: bounds,
-          start: points[start2],
-          end: points[end]
+          start: points2[start2],
+          end: points2[end]
         });
         continue;
       }
       const targetSegments = _boundSegments(target, bounds);
       for (const tgt of targetSegments) {
         const subBounds = _getBounds(property, tpoints[tgt.start], tpoints[tgt.end], tgt.loop);
-        const fillSources = _boundSegment(segment, points, subBounds);
+        const fillSources = _boundSegment(segment, points2, subBounds);
         for (const fillSource of fillSources) {
           parts.push({
             source: fillSource,
@@ -11542,24 +11542,24 @@ var gsmViz = (() => {
   function _pointsFromSegments(boundary, line) {
     const { x = null, y = null } = boundary || {};
     const linePoints = line.points;
-    const points = [];
+    const points2 = [];
     line.segments.forEach(({ start: start2, end }) => {
       end = _findSegmentEnd(start2, end, linePoints);
       const first = linePoints[start2];
       const last = linePoints[end];
       if (y !== null) {
-        points.push({ x: first.x, y });
-        points.push({ x: last.x, y });
+        points2.push({ x: first.x, y });
+        points2.push({ x: last.x, y });
       } else if (x !== null) {
-        points.push({ x, y: first.y });
-        points.push({ x, y: last.y });
+        points2.push({ x, y: first.y });
+        points2.push({ x, y: last.y });
       }
     });
-    return points;
+    return points2;
   }
-  function _findSegmentEnd(start2, end, points) {
+  function _findSegmentEnd(start2, end, points2) {
     for (; end > start2; end--) {
-      const point = points[end];
+      const point = points2[end];
       if (!isNaN(point.x) && !isNaN(point.y)) {
         break;
       }
@@ -11573,16 +11573,16 @@ var gsmViz = (() => {
     return a ? a[prop] : b ? b[prop] : 0;
   }
   function _createBoundaryLine(boundary, line) {
-    let points = [];
+    let points2 = [];
     let _loop = false;
     if (isArray(boundary)) {
       _loop = true;
-      points = boundary;
+      points2 = boundary;
     } else {
-      points = _pointsFromSegments(boundary, line);
+      points2 = _pointsFromSegments(boundary, line);
     }
-    return points.length ? new LineElement({
-      points,
+    return points2.length ? new LineElement({
+      points: points2,
       options: { tension: 0 },
       _loop,
       _fullLoop: _loop
@@ -11678,7 +11678,7 @@ var gsmViz = (() => {
   }
   function _buildStackLine(source) {
     const { scale, index: index3, line } = source;
-    const points = [];
+    const points2 = [];
     const segments = line.segments;
     const sourcePoints = line.points;
     const linesBelow = getLinesBelow(scale, index3);
@@ -11686,10 +11686,10 @@ var gsmViz = (() => {
     for (let i = 0; i < segments.length; i++) {
       const segment = segments[i];
       for (let j = segment.start; j <= segment.end; j++) {
-        addPointsBelow(points, sourcePoints[j], linesBelow);
+        addPointsBelow(points2, sourcePoints[j], linesBelow);
       }
     }
-    return new LineElement({ points, options: {} });
+    return new LineElement({ points: points2, options: {} });
   }
   function getLinesBelow(scale, index3) {
     const below = [];
@@ -11705,7 +11705,7 @@ var gsmViz = (() => {
     }
     return below;
   }
-  function addPointsBelow(points, sourcePoint, linesBelow) {
+  function addPointsBelow(points2, sourcePoint, linesBelow) {
     const postponed = [];
     for (let j = 0; j < linesBelow.length; j++) {
       const line = linesBelow[j];
@@ -11716,13 +11716,13 @@ var gsmViz = (() => {
       if (first) {
         postponed.unshift(point);
       } else {
-        points.push(point);
+        points2.push(point);
         if (!last) {
           break;
         }
       }
     }
-    points.push(...postponed);
+    points2.push(...postponed);
   }
   function findPoint(line, sourcePoint, property) {
     const point = line.interpolate(sourcePoint, property);
@@ -11857,14 +11857,14 @@ var gsmViz = (() => {
     ctx.restore();
   }
   function clipVertical(ctx, target, clipY) {
-    const { segments, points } = target;
+    const { segments, points: points2 } = target;
     let first = true;
     let lineLoop = false;
     ctx.beginPath();
     for (const segment of segments) {
       const { start: start2, end } = segment;
-      const firstPoint = points[start2];
-      const lastPoint = points[_findSegmentEnd(start2, end, points)];
+      const firstPoint = points2[start2];
+      const lastPoint = points2[_findSegmentEnd(start2, end, points2)];
       if (first) {
         ctx.moveTo(firstPoint.x, firstPoint.y);
         first = false;
@@ -16869,10 +16869,10 @@ var gsmViz = (() => {
       }
     };
   }
-  function pointIsInPolygon(points, x, y, useFinalPosition) {
+  function pointIsInPolygon(points2, x, y, useFinalPosition) {
     let isInside = false;
-    let A = points[points.length - 1].getProps(["bX", "bY"], useFinalPosition);
-    for (const point of points) {
+    let A = points2[points2.length - 1].getProps(["bX", "bY"], useFinalPosition);
+    for (const point of points2) {
       const B = point.getProps(["bX", "bY"], useFinalPosition);
       if (B.bY > y !== A.bY > y && x < (A.bX - B.bX) * (y - B.bY) / (A.bY - B.bY) + B.bX) {
         isInside = !isInside;
@@ -17723,32 +17723,32 @@ var gsmViz = (() => {
     end.x = begin.x + width;
     end.y = begin.y + height;
   }
-  function applyMinMaxProps(rect, chartArea, points, { min: min3, max: max3, prop }) {
-    rect[min3] = clamp2(Math.min(points.begin[prop], points.end[prop]), chartArea[min3], chartArea[max3]);
-    rect[max3] = clamp2(Math.max(points.begin[prop], points.end[prop]), chartArea[min3], chartArea[max3]);
+  function applyMinMaxProps(rect, chartArea, points2, { min: min3, max: max3, prop }) {
+    rect[min3] = clamp2(Math.min(points2.begin[prop], points2.end[prop]), chartArea[min3], chartArea[max3]);
+    rect[max3] = clamp2(Math.max(points2.begin[prop], points2.end[prop]), chartArea[min3], chartArea[max3]);
   }
   function getRelativePoints(chart, pointEvents, maintainAspectRatio) {
-    const points = {
+    const points2 = {
       begin: getPointPosition(pointEvents.dragStart, chart),
       end: getPointPosition(pointEvents.dragEnd, chart)
     };
     if (maintainAspectRatio) {
       const aspectRatio = chart.chartArea.width / chart.chartArea.height;
-      applyAspectRatio(points, aspectRatio);
+      applyAspectRatio(points2, aspectRatio);
     }
-    return points;
+    return points2;
   }
   function computeDragRect(chart, mode, pointEvents, maintainAspectRatio) {
     const xEnabled = directionEnabled(mode, "x", chart);
     const yEnabled = directionEnabled(mode, "y", chart);
     const { top, left, right, bottom, width: chartWidth, height: chartHeight } = chart.chartArea;
     const rect = { top, left, right, bottom };
-    const points = getRelativePoints(chart, pointEvents, maintainAspectRatio && xEnabled && yEnabled);
+    const points2 = getRelativePoints(chart, pointEvents, maintainAspectRatio && xEnabled && yEnabled);
     if (xEnabled) {
-      applyMinMaxProps(rect, chart.chartArea, points, { min: "left", max: "right", prop: "x" });
+      applyMinMaxProps(rect, chart.chartArea, points2, { min: "left", max: "right", prop: "x" });
     }
     if (yEnabled) {
-      applyMinMaxProps(rect, chart.chartArea, points, { min: "top", max: "bottom", prop: "y" });
+      applyMinMaxProps(rect, chart.chartArea, points2, { min: "top", max: "bottom", prop: "y" });
     }
     const width = rect.right - rect.left;
     const height = rect.bottom - rect.top;
@@ -18420,10 +18420,10 @@ var gsmViz = (() => {
       q3: r.q3
     };
   }
-  function computeSamples(min3, max3, points) {
+  function computeSamples(min3, max3, points2) {
     const range = max3 - min3;
     const samples = [];
-    const inc = range / points;
+    const inc = range / points2;
     for (let v = min3; v <= max3 && inc > 0; v += inc) {
       samples.push(v);
     }
@@ -22507,13 +22507,13 @@ var gsmViz = (() => {
       y: cy + sin * (point.x - cx) + cos * (point.y - cy)
     };
   }
-  function projected(points, axis) {
+  function projected(points2, axis) {
     var min3 = MAX_INTEGER;
     var max3 = MIN_INTEGER;
     var origin = axis.origin;
     var i, pt, vx, vy, dp;
-    for (i = 0; i < points.length; ++i) {
-      pt = points[i];
+    for (i = 0; i < points2.length; ++i) {
+      pt = points2[i];
       vx = pt.x - origin.x;
       vy = pt.y - origin.y;
       dp = axis.vx * vx + axis.vy * vy;
@@ -25162,7 +25162,7 @@ var gsmViz = (() => {
     if (!yKey) {
       datasets = aggregateCounts(activeData, xKey, fillKey, categoryIndex);
     } else {
-      const points = activeData.map((d) => ({
+      const points2 = activeData.map((d) => ({
         x: d[xKey],
         y: Number(d[yKey]) || 0,
         _fill: fillKey ? d[fillKey] : void 0,
@@ -25170,7 +25170,7 @@ var gsmViz = (() => {
       }));
       if (fillKey) {
         const groups2 = /* @__PURE__ */ new Map();
-        for (const point of points) {
+        for (const point of points2) {
           const key = point._fill;
           if (!groups2.has(key)) groups2.set(key, []);
           groups2.get(key).push(point);
@@ -25184,7 +25184,7 @@ var gsmViz = (() => {
       } else {
         datasets = [
           {
-            data: points.sort(
+            data: points2.sort(
               (a, b) => categoryIndex.get(a.x) - categoryIndex.get(b.x)
             )
           }
@@ -28388,14 +28388,14 @@ var gsmViz = (() => {
   function structureData4(spec) {
     const { data, mapping } = spec;
     const keys = /* @__PURE__ */ new Set();
-    const points = data.map((row, index3) => ({
+    const points2 = data.map((row, index3) => ({
       x: getCoordinate(row, mapping.x, "x", index3),
       y: getCoordinate(row, mapping.y, "y", index3),
       _key: mapping.key === void 0 ? index3 : getKey(row, mapping.key, index3, keys),
       _datum: row
     }));
     return {
-      datasets: [{ data: points }]
+      datasets: [{ data: points2 }]
     };
   }
 
@@ -28456,7 +28456,7 @@ var gsmViz = (() => {
     ];
     return parts.filter(Boolean).join(" ");
   }
-  function renderPoints(element = "body", data = [], spec = {}) {
+  function points(element = "body", data = [], spec = {}) {
     validateSpec3(data, spec);
     let el = element;
     if (typeof el === "string") {
@@ -30270,7 +30270,7 @@ var gsmViz = (() => {
     bars,
     facetBars,
     groupOverview,
-    points: renderPoints,
+    points,
     scatterPlot,
     sparkline,
     timeSeries

@@ -41,7 +41,7 @@ function getAccessibleLabel(spec, pointCount) {
  * @param {Object} spec - Point chart specification.
  * @returns {Object} Chart.js chart instance.
  */
-export default function renderPoints(element = 'body', data = [], spec = {}) {
+export default function points(element = 'body', data = [], spec = {}) {
     validateSpec(data, spec);
 
     let el = element;
